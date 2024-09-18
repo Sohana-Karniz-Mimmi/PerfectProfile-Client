@@ -25,7 +25,12 @@ const Templates = () => {
   };
   return (
     <section
-      style={{ background: `url(${bg})`, backgroundRepeat: "no-repeat", backgroundPosition:"center", backgroundSize: "cover"}}
+      style={{
+        background: `url(${bg})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
       className="  min-h-screen"
     >
       <Container>
@@ -48,23 +53,47 @@ const Templates = () => {
               {resuImage?.map(
                 (img, idx) =>
                   currentImage === idx && (
-                    <img className="h-full rounded-lg" key={idx} src={img} alt="resume image" />
+                    <div className="relative overflow-hidden">
+                      <img
+                        className="h-full rounded-lg"
+                        key={idx}
+                        src={img}
+                        alt="resume image"
+                      />
+                      <div className="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 rounded-lg hover:bottom-0 opacity-0 hover:opacity-100 transition-all duration-300">
+                        <button className="btn -bottom-10  bg-blue-900 text-white font-bold uppercase border-none hover:bg-blue-800 hover:px-5 transition-all duration-300">
+                          Use this Template
+                        </button>
+                      </div>
+                    </div>
                   )
               )}
             </div>
             <div className="flex justify-end mt-8">
-              <div className="cursor-pointer">
-                <MdOutlineArrowLeft
-                  className="text-6xl text-white"
-                  onClick={prevSlide}
-                />
-              </div>
-              <div className="cursor-pointer">
-                <MdOutlineArrowRight
-                  className="text-6xl text-white"
-                  onClick={nextSlide}
-                />
-              </div>
+              {currentImage !== 0 ? (
+                <div className="cursor-pointer">
+                  <MdOutlineArrowLeft
+                    className="text-6xl text-white"
+                    onClick={prevSlide}
+                  />
+                </div>
+              ) : (
+                <div className="">
+                  <MdOutlineArrowLeft className="text-6xl text-gray-400" />
+                </div>
+              )}
+              {currentImage !== resuImage.length - 1 ? (
+                <div className="cursor-pointer">
+                  <MdOutlineArrowRight
+                    className="text-6xl text-white"
+                    onClick={nextSlide}
+                  />
+                </div>
+              ) : (
+                <div className="">
+                  <MdOutlineArrowRight className="text-6xl text-gray-400" />
+                </div>
+              )}
             </div>
           </div>
         </div>
