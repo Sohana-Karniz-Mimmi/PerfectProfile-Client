@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 import toast, { Toaster } from "react-hot-toast";
 import ContactBanner from "../../Components/ContactBanner/ContactBanner";
 import { FaEnvelope, FaLocationPin, FaPhone } from "react-icons/fa6";
@@ -14,24 +14,24 @@ const Contact = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    emailjs
-      .send(
-        "service_cknoetd", // Replace with your Email.js service ID
-        "template_opszo6w", // Replace with your Email.js template ID
-        data,
-        "VXJYTTbDms0frxBQK" // Replace with your Email.js user ID
-      )
-      .then(
-        (response) => {
-          toast.success(
-            "Thank you for contacting us! We will get back to you shortly."
-          );
-          reset(); // Reset the form on successful submission
-        },
-        (error) => {
-          toast.error("There was an error. Please try again later.");
-        }
-      );
+    // emailjs
+    //   .send(
+    //     "service_cknoetd", // Replace with your Email.js service ID
+    //     "template_opszo6w", // Replace with your Email.js template ID
+    //     data,
+    //     "VXJYTTbDms0frxBQK" // Replace with your Email.js user ID
+    //   )
+    //   .then(
+    //     (response) => {
+    //       toast.success(
+    //         "Thank you for contacting us! We will get back to you shortly."
+    //       );
+    //       reset(); // Reset the form on successful submission
+    //     },
+    //     (error) => {
+    //       toast.error("There was an error. Please try again later.");
+    //     }
+    //   );
   };
 
   return (
@@ -174,52 +174,76 @@ const Contact = () => {
             What is a resume profile?
           </div>
           <div className="collapse-content">
-            <p>A resume profile is a concise summary of your career goals, skills, and experience, typically found at the top of your resume, designed to grab the attention of potential employers.</p>
+            <p>
+              A resume profile is a concise summary of your career goals,
+              skills, and experience, typically found at the top of your resume,
+              designed to grab the attention of potential employers.
+            </p>
           </div>
         </div>
         <div className="collapse collapse-plus bg-base-200">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
-          How do I create a professional-looking resume?
+            How do I create a professional-looking resume?
           </div>
           <div className="collapse-content">
-            <p>Start with a clean, easy-to-read template, focus on your relevant experience and skills, and keep it concise. Highlight key achievements and tailor your resume to the job you're applying for.</p>
+            <p>
+              Start with a clean, easy-to-read template, focus on your relevant
+              experience and skills, and keep it concise. Highlight key
+              achievements and tailor your resume to the job you're applying
+              for.
+            </p>
           </div>
         </div>
         <div className="collapse collapse-plus bg-base-200">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
-          Can I edit my resume after submitting it?
+            Can I edit my resume after submitting it?
           </div>
           <div className="collapse-content">
-            <p>Yes, you can update your resume anytime by logging into your account and making changes. All saved versions will remain accessible for future edits.</p>
+            <p>
+              Yes, you can update your resume anytime by logging into your
+              account and making changes. All saved versions will remain
+              accessible for future edits.
+            </p>
           </div>
         </div>
         <div className="collapse collapse-plus bg-base-200">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
-          Are there any costs associated with creating a resume?
+            Are there any costs associated with creating a resume?
           </div>
           <div className="collapse-content">
-            <p>You can create a basic resume for free. However, premium features like advanced templates, cover letters, and resume-sharing options may require a paid subscription.</p>
+            <p>
+              You can create a basic resume for free. However, premium features
+              like advanced templates, cover letters, and resume-sharing options
+              may require a paid subscription.
+            </p>
           </div>
         </div>
         <div className="collapse collapse-plus bg-base-200">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
-          How do I share my resume with potential employers?
+            How do I share my resume with potential employers?
           </div>
           <div className="collapse-content">
-            <p>After building your resume, you can download it as a PDF or use the live URL sharing feature to send your resume directly to employers.</p>
+            <p>
+              After building your resume, you can download it as a PDF or use
+              the live URL sharing feature to send your resume directly to
+              employers.
+            </p>
           </div>
         </div>
         <div className="collapse collapse-plus bg-base-200">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
-          Is my personal information secure on your platform?
+            Is my personal information secure on your platform?
           </div>
           <div className="collapse-content">
-            <p>Yes, we take data privacy seriously. All personal information is encrypted and protected, ensuring your data remains safe.</p>
+            <p>
+              Yes, we take data privacy seriously. All personal information is
+              encrypted and protected, ensuring your data remains safe.
+            </p>
           </div>
         </div>
       </section>

@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-
+import bg from "../assets/templateBg.webp";
 const SignIn = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -26,8 +26,6 @@ const SignIn = () => {
         console.error("SignIn Error:", error);
         toast.error("Failed to SignIn. Please Check your Credentials.");
       });
-    const signin = { email, password };
-    console.log(signin);
   };
   const handleSocialSignIn = (socialProvider) => {
     socialProvider().then((result) => {
@@ -39,12 +37,20 @@ const SignIn = () => {
   };
   return (
     <div>
-      <div>
+      <div
+        className=" flex items-center min-h-screen"
+        style={{
+          background: `url(${bg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
         <Helmet>
           <title>SignIn | Perfect Profile</title>
         </Helmet>
         <Container>
-          <div className="md:flex w-full p-5 bg-cyan-600 items-center">
+          <div className="md:flex w-full p-5 items-center gap-5">
             <div className="md:w-1/2 text-white ">
               <h1 className="text-5xl font-bold my-4 text-center">
                 My Cv/Resume Creator
@@ -57,7 +63,7 @@ const SignIn = () => {
               </p>
               <div className="text-center">
                 <Link to="/signUp">
-                  <button className="btn bg-blue-400 hover:bg-blue-500 my-4">
+                  <button className="btn bg-blue-400 hover:bg-blue-500 my-4 text-white">
                     SignUp
                   </button>
                 </Link>
@@ -67,7 +73,7 @@ const SignIn = () => {
               <form onSubmit={handleSignIn} className="card-body shadow-xl ">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text text-white">Email</span>
                   </label>
                   <input
                     type="email"
@@ -80,7 +86,7 @@ const SignIn = () => {
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Password</span>
+                    <span className="label-text text-white">Password</span>
                   </label>
                   <input
                     type="password"
@@ -92,11 +98,11 @@ const SignIn = () => {
                 </div>
 
                 <div className="form-control mt-6">
-                  <button className="btn bg-blue-400 hover:bg-blue-500">
+                  <button className="btn bg-blue-400 hover:bg-blue-500 text-white">
                     SignIn
                   </button>
                 </div>
-                <div className="mt-5">
+                <div className="mt-5 text-white">
                   <h1>
                     Don't have an account?{" "}
                     <Link
@@ -109,12 +115,16 @@ const SignIn = () => {
                 </div>
                 <hr className="my-5" />
                 <h2 className="text-white text-center">Or SignIn With</h2>
-                <div className="text-5xl flex justify-center  p-2 rounded-md">
-                  <button onClick={() => handleSocialSignIn(googleSignIn)}>
-                    <FcGoogle />
-                  </button>
-                </div>
               </form>
+              <div className=" flex justify-center  p-2 rounded-md w-full">
+                <button
+                  className="flex border w-full px-5  mx-28 items-center gap-5 py-3 justify-center hover:bg-blue-400"
+                  onClick={() => handleSocialSignIn(googleSignIn)}
+                >
+                  <FcGoogle className="text-3xl" />{" "}
+                  <p className="text-white">Continue With Google</p>
+                </button>
+              </div>
             </div>
           </div>
         </Container>
