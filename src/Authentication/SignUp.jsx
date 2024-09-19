@@ -20,7 +20,7 @@ const SignUp = () => {
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
 
-    // Password validation
+    // Password validation system
     if (password.length < 6) {
       toast.error("Password should be at least 6 characters long.");
       return;
