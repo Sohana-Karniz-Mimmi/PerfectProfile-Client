@@ -5,41 +5,58 @@ import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import bg from "../assets/templateBg.webp";
+
 const SignUp = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+
   const handleSignUp = (e) => {
-    const { createUser, updateUserProfile } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location?.state?.from?.pathname || "/";
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
+
+    // Password validation system
     if (password.length < 6) {
-      toast.error("Please Should be at least 6 characters long..!");
+      toast.error("Password should be at least 6 characters long.");
       return;
     } else if (!/(?=.*[a-z])(?=.*[A-Z]).{6}/.test(password)) {
       toast.error(
-        "Password must contain at least one uppercase and on lowercase letter.."
+        "Password must contain at least one uppercase and one lowercase letter."
       );
       return;
+    } else if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
     }
+
+    // Create user with email and password
     createUser(email, password)
       .then((result) => {
-        updateUserProfile(name, photo).then(() => {});
-        toast.success("Successfully SignUp");
-        navigate(from, { replace: true });
+        // Update user profile with name and photo URL
+        updateUserProfile(name, photo)
+          .then(() => {
+            toast.success("Successfully signed up!");
+            navigate(from, { replace: true });
+          })
+          .catch((error) => {
+            console.error("Error updating profile:", error);
+            toast.error("Profile update failed.");
+          });
       })
       .catch((error) => {
-        console.error("Error SignUp User:", error);
-        toast.error("SignUp Failed");
+        console.error("Error signing up user:", error);
+        toast.error("Sign up failed.");
       });
   };
+
   return (
     <div
-      className=" flex items-center min-h-screen"
+      className="flex items-center min-h-screen"
       style={{
         background: `url(${bg})`,
         backgroundRepeat: "no-repeat",
@@ -48,7 +65,7 @@ const SignUp = () => {
       }}
     >
       <Helmet>
-        <title>SignUp | Perfect Profile</title>
+        <title>Register | Perfect Profile</title>
       </Helmet>
       <Container>
         <div className="md:flex w-full p-5 gap-5 items-center">
@@ -57,21 +74,21 @@ const SignUp = () => {
               My Cv/Resume Creator
             </h1>
             <p>
-              Make a Cv/Resume to define yourself The right away. Meet thousands
-              of job announcements and employers by the help of your profile
-              with a private extension, which you can share at all social media
-              environments
+              Make a Cv/Resume to define yourself right away. Meet thousands of
+              job announcements and employers by the help of your profile with a
+              private extension, which you can share on all social media
+              platforms.
             </p>
-            <div className="text-center">
+            {/* <div className="text-center">
               <Link to="/signIn">
                 <button className="btn bg-blue-400 hover:bg-blue-500 my-4 text-white">
-                  SignIn
+                  Login
                 </button>
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="md:w-1/2">
-            <form onSubmit={handleSignUp} className="card-body  shadow-xl">
+            <form onSubmit={handleSignUp} className="card-body shadow-xl">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-white">Name</span>
@@ -98,13 +115,13 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-white">Photo</span>
+                  <span className="label-text text-white">Photo URL</span>
                 </label>
                 <input
-                  type="file"
-                  className="file-input file-input-bordered file-input-info w-full "
+                  type="text"
+                  placeholder="photo URL"
+                  className="input input-bordered"
                   name="photo"
-                  required
                 />
               </div>
               <div className="form-control">
@@ -139,17 +156,17 @@ const SignUp = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn bg-blue-400 hover:bg-blue-500 text-white">
-                  SignUp
+                  Register
                 </button>
               </div>
               <div>
                 <h1 className="text-white">
                   Already have an account?{" "}
                   <Link
-                    className="text-teal-100  text-center font-bold"
+                    className="text-teal-100 text-center font-bold"
                     to="/signIn"
                   >
-                    SignIn
+                    Login
                   </Link>{" "}
                 </h1>
               </div>
