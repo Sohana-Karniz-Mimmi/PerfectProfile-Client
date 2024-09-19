@@ -6,7 +6,7 @@ import resu3 from "../../assets/resu3.webp";
 import resu4 from "../../assets/resu4.webp";
 import resu5 from "../../assets/resu5.webp";
 import resu6 from "../../assets/resu6.webp";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineArrowLeft, MdOutlineArrowRight } from "react-icons/md";
 const Templates = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -23,6 +23,7 @@ const Templates = () => {
       currentImage === 0 ? resuImage.length - 1 : currentImage - 1
     );
   };
+
   return (
     <section
       style={{
@@ -36,10 +37,10 @@ const Templates = () => {
       <Container>
         <div className="flex flex-col lg:flex-row justify-center gap-10 items-center  min-h-screen p-10 ">
           <div className="max-w-full  lg:max-w-[33rem] space-y-3 text-center lg:text-left">
-            <h2 className="font-bold text-[3.375rem] text-white leading-tight">
+            <h2 className="font-bold text-[2rem] md:text-[2.5rem] lg:text-[3.375rem] text-white leading-tight">
               Every detail on your resume, built to perfection
             </h2>
-            <p className="text-white text-[1.25rem] pb-[1rem]">
+            <p className="text-white text-[.85rem] md:text-[1.25rem] pb-[1rem]">
               Our resume templates are based on what employers actually look for
               in a candidate. How do we know? We’ve talked with thousand of
               employers to get the answers.
@@ -49,19 +50,19 @@ const Templates = () => {
             </button>
           </div>
           <div className=" lg:max-w-[33.375rem] w-full overflow-hidden items-center">
-            <div className="flex items-center justify-center object-cover">
+            <div className="flex items-center justify-center object-cover transition-all duration-300">
               {resuImage?.map(
                 (img, idx) =>
                   currentImage === idx && (
-                    <div className="relative overflow-hidden">
+                    <div  key={idx} className="relative overflow-hidden">
                       <img
                         className="h-full rounded-lg"
-                        key={idx}
+                       
                         src={img}
                         alt="resume image"
                       />
-                      <div className="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 rounded-lg hover:bottom-0 opacity-0 hover:opacity-100 transition-all duration-300">
-                        <button className="btn -bottom-10  bg-blue-900 text-white font-bold uppercase border-none hover:bg-blue-800 hover:px-5 transition-all duration-300">
+                      <div className="absolute h-full w-full bg-black/70 flex items-center justify-center -bottom-10 rounded-lg hover:bottom-0 opacity-0 hover:opacity-100 transition-all duration-300">
+                        <button className="btn -bottom-10  bg-blue-600 text-white font-bold uppercase border-none hover:bg-blue-800 hover:px-5 transition-all duration-300">
                           Use this Template
                         </button>
                       </div>
@@ -71,7 +72,7 @@ const Templates = () => {
             </div>
             <div className="flex justify-end mt-8">
               {currentImage !== 0 ? (
-                <div className="cursor-pointer">
+                <div className="cursor-pointer transition-all duration-300">
                   <MdOutlineArrowLeft
                     className="text-6xl text-white"
                     onClick={prevSlide}

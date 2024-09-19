@@ -19,7 +19,11 @@ const Contact = () => {
     //     "service_cknoetd", // Replace with your Email.js service ID
     //     "template_opszo6w", // Replace with your Email.js template ID
     //     data,
+
     //     "VXJYTTbDms0frxBQK" // Replace with your Email.js user ID
+
+    //     "1DqOD6ZUMrca9CdZG" // Replace with your Email.js user ID
+
     //   )
     //   .then(
     //     (response) => {
@@ -50,7 +54,7 @@ const Contact = () => {
 
           <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-12">
             {/* Left Side: Contact Info */}
-            <div className="md:w-1/2 p-6 bg-white rounded-md shadow-md">
+            <div className="md:w-2/6 p-6 bg-white rounded-md shadow-md">
               <div className="h-full flex flex-col justify-center">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
@@ -76,7 +80,7 @@ const Contact = () => {
             </div>
 
             {/* Right Side: Contact Form */}
-            <div className="md:w-1/2">
+            <div className="md:w-4/6">
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="space-y-4  bg-white rounded-md"
