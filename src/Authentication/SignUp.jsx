@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-
+import bg from "../assets/templateBg.webp";
 const SignUp = () => {
   const handleSignUp = (e) => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -38,12 +38,20 @@ const SignUp = () => {
       });
   };
   return (
-    <div>
+    <div
+      className=" flex items-center min-h-screen"
+      style={{
+        background: `url(${bg})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       <Helmet>
         <title>SignUp | Perfect Profile</title>
       </Helmet>
       <Container>
-        <div className="md:flex w-full p-5 bg-cyan-600 items-center">
+        <div className="md:flex w-full p-5 gap-5 items-center">
           <div className="md:w-1/2 text-white">
             <h1 className="text-5xl font-bold text-center my-5">
               My Cv/Resume Creator
@@ -56,7 +64,7 @@ const SignUp = () => {
             </p>
             <div className="text-center">
               <Link to="/signIn">
-                <button className="btn bg-blue-400 hover:bg-blue-500 my-4">
+                <button className="btn bg-blue-400 hover:bg-blue-500 my-4 text-white">
                   SignIn
                 </button>
               </Link>
@@ -66,7 +74,7 @@ const SignUp = () => {
             <form onSubmit={handleSignUp} className="card-body  shadow-xl">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Name</span>
+                  <span className="label-text text-white">Name</span>
                 </label>
                 <input
                   type="text"
@@ -78,7 +86,7 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text text-white">Email</span>
                 </label>
                 <input
                   type="email"
@@ -90,7 +98,7 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Photo</span>
+                  <span className="label-text text-white">Photo</span>
                 </label>
                 <input
                   type="file"
@@ -101,7 +109,7 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-white">Password</span>
                 </label>
                 <input
                   type="password"
@@ -113,7 +121,9 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Confirm Password</span>
+                  <span className="label-text text-white">
+                    Confirm Password
+                  </span>
                 </label>
                 <input
                   type="password"
@@ -125,15 +135,15 @@ const SignUp = () => {
               </div>
               <div className="flex gap-2 mt-4">
                 <input type="checkbox" />
-                <p>Terms & Condition</p>
+                <p className="text-white">Terms & Condition</p>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-blue-400 hover:bg-blue-500">
+                <button className="btn bg-blue-400 hover:bg-blue-500 text-white">
                   SignUp
                 </button>
               </div>
               <div>
-                <h1>
+                <h1 className="text-white">
                   Already have an account?{" "}
                   <Link
                     className="text-teal-100  text-center font-bold"

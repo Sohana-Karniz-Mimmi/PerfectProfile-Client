@@ -1,0 +1,21 @@
+.single_price_table_content {
+    padding: 0 0px 40px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+    border-radius: 6px;
+    box-shadow: 0 5px 40px 0 rgb(0 0 0 / 11%);
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+.price_table_text {
+    margin-bottom: 20px;
+    padding: 40px 30px;
+    text-align: right;
+    background: url(../img/core-img/price.png) no-repeat top right;
+    background-size: 75%;
+}
