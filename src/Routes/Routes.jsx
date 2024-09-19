@@ -13,12 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Home />
-          </PrivateRoute>
-        ),
+        element: <Home />,
       },
       {
         path: "/signIn",
@@ -30,12 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Contact />
-          </PrivateRoute>
-        ),
+        element: <Contact />,
       },
     ],
   },
