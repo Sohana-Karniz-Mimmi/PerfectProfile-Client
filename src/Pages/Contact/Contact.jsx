@@ -172,7 +172,7 @@ const Contact = () => {
             Frequently Asked Questions
           </h1>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title text-xl font-medium">
             What is a resume profile?
@@ -185,7 +185,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             How do I create a professional-looking resume?
@@ -199,7 +199,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             Can I edit my resume after submitting it?
@@ -212,7 +212,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             Are there any costs associated with creating a resume?
@@ -225,7 +225,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             How do I share my resume with potential employers?
@@ -238,7 +238,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             Is my personal information secure on your platform?
