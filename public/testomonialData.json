@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "title": "Software Engineer",
+    "company": "Tech Solutions",
+    "testimonial": "Perfect Profile helped me create a professional resume in minutes. The easy-to-use interface and customizable templates are fantastic!",
+    "image": "https://ntrepidcorp.com/wp-content/uploads/2016/06/team-1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "title": "Marketing Manager",
+    "company": "Creative Agency",
+    "testimonial": "I loved how quickly I could design a resume that stands out. Perfect Profile offers great features for making an impact.",
+    "image": "https://spor12.dk/wp-content/uploads/2017/05/speaker-1.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Michael Brown",
+    "title": "Data Analyst",
+    "company": "DataWorks Inc.",
+    "testimonial": "Building my resume was never this easy! Thanks to Perfect Profile, I landed my dream job with a resume that looked flawless.",
+    "image": "https://www.gethucinema.com/wp-content/uploads/2024/03/MichelBrown-97.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Emily Johnson",
+    "title": "Product Manager",
+    "company": "Innovate Labs",
+    "testimonial": "Perfect Profile's templates and design tools allowed me to create a visually appealing and professional resume in no time!",
+    "image": "https://www.deltapsychology.ca/wp-content/uploads/Emily-Johnson.jpg"
+  },
+  {
+    "id": 5,
+    "name": "David Wilson",
+    "title": "UX Designer",
+    "company": "DesignPro",
+    "testimonial": "The templates are modern and clean, and the user experience is top-notch. Perfect Profile made building my resume a breeze!",
+    "image": "https://d5c1j5k5drfk7.cloudfront.net/wp-content/uploads/2020/04/David_Wilson.jpg"
+  }
+]
