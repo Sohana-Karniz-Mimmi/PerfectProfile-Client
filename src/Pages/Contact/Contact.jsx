@@ -45,7 +45,7 @@ const Contact = () => {
       </section>
       <section>
         <div className="container mx-auto px-4 py-12">
-          <h2 className="text-4xl font-bold text-center mb-16">
+          <h2 className="text-4xl font-bold font-lora text-center mb-16">
             Need Assistance? We’re Ready to Hear from You!
           </h2>
 
@@ -54,7 +54,7 @@ const Contact = () => {
 
           <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-12">
             {/* Left Side: Contact Info */}
-            <div className="md:w-2/6 p-6 bg-white rounded-md shadow-md">
+            <div className="lg:w-2/6 p-6 bg-white rounded-md shadow-md">
               <div className="h-full flex flex-col justify-center">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
@@ -168,11 +168,11 @@ const Contact = () => {
       </section>
       <section className="container mx-auto px-4">
         <div className="flex justify-center items-center py-12">
-          <h1 className="text-4xl text-center font-bold pb-8">
+          <h1 className="text-4xl text-center font-lora font-bold pb-8">
             Frequently Asked Questions
           </h1>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title text-xl font-medium">
             What is a resume profile?
@@ -185,7 +185,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             How do I create a professional-looking resume?
@@ -199,7 +199,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             Can I edit my resume after submitting it?
@@ -212,7 +212,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             Are there any costs associated with creating a resume?
@@ -225,7 +225,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             How do I share my resume with potential employers?
@@ -238,7 +238,7 @@ const Contact = () => {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-plus bg-base-200">
+        <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
             Is my personal information secure on your platform?
