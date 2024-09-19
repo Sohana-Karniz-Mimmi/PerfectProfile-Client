@@ -52,7 +52,6 @@ const Package = () => {
               /month
             </p>
           </div>
-
           <div className="card-body">
             <h2 className="font-bold text-3xl text-blue-950 mb-2">
               Monthly Pack
