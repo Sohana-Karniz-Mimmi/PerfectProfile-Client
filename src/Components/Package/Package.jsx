@@ -1,11 +1,12 @@
 // import './package.css'
 import priceImg from "../../assets/price.png";
 import { SiTicktick } from "react-icons/si";
+import Container from "../../Shared/Container";
 
 const Package = () => {
   return (
-    <div className="">
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:p-16 p-10 ">
+    <Container className="">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:py-16 py-10 ">
         <div className="flex-grow space-y-7">
           <h1 className="text-5xl font-bold">OUR PRICING</h1>
           <p>
@@ -151,7 +152,7 @@ const Package = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
