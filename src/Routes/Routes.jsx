@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import SignIn from "../Authentication/SignIn";
 import SignUp from "../Authentication/SignUp";
 import Contact from "../Pages/Contact/Contact";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Home />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signIn",
@@ -24,8 +30,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact />
-      }
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Contact />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
