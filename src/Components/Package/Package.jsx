@@ -8,7 +8,7 @@ const Package = () => {
       <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:p-16 p-10 ">
         <div className="flex-grow space-y-7">
           <h1 className="text-5xl font-bold">OUR PRICING</h1>
-          <p>
+          <p className="">
            In PerfectProfile,  users can choose from flexible plans that provide full access to
             professional templates, real-time editing, cover letter builders,
             and additional advanced features. Whether opting for the monthly
@@ -45,7 +45,7 @@ const Package = () => {
                 Monthly Pack
               </h2>
               <div>
-                <p className=" mb-3">
+                <p className="text-black mb-4 mt-2">
                   Unlock all premium features with our affordable monthly
                   package. Build, customize, and optimize your resume
                   effortlessly to stand out from the competition!
@@ -109,7 +109,7 @@ const Package = () => {
                 </p>
               </div>
               <div>
-                <p className=" mb-3">
+                <p className=" text-black mb-4 mt-2">
                   Enjoy all premium features while saving 20%! Get unlimited
                   access to professional templates, real-time editing, cloud
                   storage, cover letter builder, and more for a full year—at a
