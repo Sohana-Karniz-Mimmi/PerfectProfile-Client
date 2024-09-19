@@ -50,7 +50,7 @@ const SignIn = () => {
       }}
     >
       <Helmet>
-        <title>SignIn | Perfect Profile</title>
+        <title>Login | Perfect Profile</title>
       </Helmet>
       <Container>
         <div className="md:flex w-full p-5 gap-5 items-center">
@@ -64,13 +64,13 @@ const SignIn = () => {
               of job announcements and employers with the help of your profile,
               which you can share on all social media platforms.
             </p>
-            <div className="text-center">
+            {/* <div className="text-center">
               <Link to="/signUp">
                 <button className="btn bg-blue-400 hover:bg-blue-500 my-4 text-white">
                   SignUp
                 </button>
               </Link>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Section */}
@@ -107,14 +107,14 @@ const SignIn = () => {
 
               <div className="form-control mt-6">
                 <button className="btn bg-blue-400 hover:bg-blue-500 text-white w-full">
-                  SignIn
+                  Login
                 </button>
               </div>
               <div className="mt-5 text-center text-white">
                 <h1>
                   Don't have an account?{" "}
                   <Link className="text-blue-500 font-bold" to="/signUp">
-                    SignUp
+                    Register
                   </Link>
                 </h1>
               </div>
