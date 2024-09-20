@@ -79,13 +79,13 @@ const SignUp = () => {
               private extension, which you can share on all social media
               platforms.
             </p>
-            {/* <div className="text-center">
+            <div className="text-center">
               <Link to="/signIn">
                 <button className="btn bg-blue-400 hover:bg-blue-500 my-4 text-white">
                   Login
                 </button>
               </Link>
-            </div> */}
+            </div>
           </div>
           <div className="md:w-1/2">
             <form onSubmit={handleSignUp} className="card-body shadow-xl">
