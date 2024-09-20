@@ -64,13 +64,13 @@ const SignIn = () => {
               of job announcements and employers with the help of your profile,
               which you can share on all social media platforms.
             </p>
-            {/* <div className="text-center">
+            <div className="text-center">
               <Link to="/signUp">
                 <button className="btn bg-blue-400 hover:bg-blue-500 my-4 text-white">
                   SignUp
                 </button>
               </Link>
-            </div> */}
+            </div>
           </div>
 
           {/* Right Section */}
