@@ -10,6 +10,10 @@ export default {
         lora: ["Lora", "serif"],
         montserrat: ["Montserrat", "sans-serif"]
       },
+      colors: {
+        primary: "#2CACD5",
+        secondary: "#00C8AA"
+      }
     },
   },
   plugins: [
