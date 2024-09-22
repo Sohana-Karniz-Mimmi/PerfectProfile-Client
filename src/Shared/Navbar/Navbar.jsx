@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Container from "../Container";
 import toast from "react-hot-toast";
+import { FaUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -116,6 +117,7 @@ const Navbar = () => {
   };
 
   return (
+    <div className="min-h-[99px] border-b shadow">
     <Container>
       <div className=" navbar items-center justify-between barlow-regular min-h-[99px] p-0 md:py-3 py-5">
         <div className="">
@@ -173,7 +175,7 @@ const Navbar = () => {
                 </div>
 
                 <Link
-                  to={`/signIn`}
+                  to={`/`}
                   onClick={handleLogoutBtn}
                   className="md:mr-2 mr-1 md:px-[20px] md:py-[11px] py-0.5 px-1.5 ease-out font-bold tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-[#51AA1B] rounded-full hover:bg-blue-600 "
                 >
@@ -183,18 +185,20 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <div className=" flex ">
+              <div className=" flex gap-5">
                 <Link
                   to={`/signIn`}
-                  className="md:mr-2 mr-1 md:px-[30px] md:py-[9px] py-0.5 px-1.5 ease-out font-medium tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-primary rounded-full hover:bg-secondary "
+                 
                 >
-                  Login
+                  <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-gray-300 px-5 rounded-full"><FaUser className="text-sm"></FaUser>
+                  Login</button>
+                  
                 </Link>
                 <Link
                   to={`/createResume`}
-                  className="hidden lg:flex md:px-[30px] md:py-[9px] px-1 ease-out font-medium tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-secondary rounded-full hover:bg-primary "
                 >
-                  Create My Resume
+                  <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 hidden lg:block bg-secondary text-white px-5 rounded-full">
+                  Create My Resume</button>
                 </Link>
               </div>
             </>
@@ -202,6 +206,7 @@ const Navbar = () => {
         </div>
       </div>
     </Container>
+    </div>
   );
 };
 
