@@ -9,6 +9,9 @@ import "swiper/css/pagination";
 // import required modules
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { Typewriter } from "react-simple-typewriter";
+import img1 from "../../assets/banner/1131w-f5JNR-K5jjw.webp";
+import img2 from "../../assets/banner/1131w-xkDELtpQH94.webp";
+import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
 const Banner = () => {
   return (
     <>
@@ -90,25 +93,13 @@ const Banner = () => {
               className="mySwiper"
             >
               <SwiperSlide>
-                <img
-                  className=""
-                  src="https://cdn-images.zety.com/images/zety/landings/builder/hero-image-desktop@3x.webp"
-                  alt=""
-                />
+                <img className="w-1/2" src={img1} alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                <img
-                  className=""
-                  src="https://cdn-images.zety.com/images/zety/landings/builder/hero-image-desktop@3x.webp"
-                  alt=""
-                />
+                <img className="w-1/2" src={img2} alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                <img
-                  className=""
-                  src="https://cdn-images.zety.com/images/zety/landings/builder/hero-image-desktop@3x.webp"
-                  alt=""
-                />
+                <img className="" src={img3} alt="" />
               </SwiperSlide>
             </Swiper>
           </div>
