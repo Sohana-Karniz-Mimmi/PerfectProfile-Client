@@ -227,7 +227,7 @@ const Contact = () => {
         </div>
         <div className="collapse collapse-plus bg-base-200 mb-5">
           <input type="radio" name="my-accordion-3" />
-          <div className="collapse-title text-xl text-secondary font-medium">
+          <div className="collapse-title text-xl font-medium">
             How do I share my resume with potential employers?
           </div>
           <div className="collapse-content">

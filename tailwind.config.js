@@ -8,7 +8,10 @@ export default {
     extend: {
       fontFamily: {
         lora: ["Lora", "serif"],
-        montserrat: ["Montserrat", "sans-serif"]
+        montserrat: ["Montserrat", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+        nunito: ["Nunito", "sans-serif"],
+        lato: ["Lato", "sans-serif"],
       },
       colors: {
         primary: "#2CACD5",

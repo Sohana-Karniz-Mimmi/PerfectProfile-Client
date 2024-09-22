@@ -1,76 +1,54 @@
 import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-
-// import required modules
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+import video from "../../assets/banner.mp4";
 import { Typewriter } from "react-simple-typewriter";
+
 import img1 from "../../assets/banner/1131w-f5JNR-K5jjw.webp";
 import img2 from "../../assets/banner/1131w-xkDELtpQH94.webp";
 import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
+
+import { initializeApp } from "firebase/app";
+
+
 const Banner = () => {
   return (
     <>
-      <section className="relative ">
-        <div className="absolute inset-0 "></div>
+      <section className="relative bg-white">
+        {/* <div className="absolute inset-0 "></div> */}
 
         <div className="relative mx-auto max-w-screen-xl px-4 pb-32 sm:px-6 lg:flex justify-between lg:h-screen lg:items-center lg:px-8">
           <div className="max-w-xl ltr:sm:text-left rtl:sm:text-right">
-            <h1 className="text-3xl font-extrabold  sm:text-5xl">
-              Make your <br /> professional resume
-              <strong className="block font-extrabold text-primary">
-                <h1
-                  style={{
-                    paddingTop: "",
-                    margin: "auto 0",
-                    fontWeight: "normal",
-                  }}
-                >
-                  <span style={{ color: "", fontWeight: "bold" }}>
-                    <Typewriter
-                      words={["in  minutes"]}
-                      loop={100}
-                      cursor
-                      cursorStyle=" | "
-                      typeSpeed={70}
-                      deleteSpeed={50}
-                      delaySpeed={2000}
-                      // onLoopDone={handleDone}
-                      // onType={handleType}
-                    />
-                  </span>
-                </h1>
-              </strong>
+            <h1 className="lg:text-5xl md:text-3xl text-2xl font-bold font-lora">
+              Make your professional
+              <br />
+              resume in
+              <span className="text-primary">
+                <Typewriter
+                  words={[" minutes"]}
+                  loop
+                  cursor
+                  cursorStyle="_"
+                ></Typewriter>
+              </span>
             </h1>
 
-            <p className="mt-4 max-w-lg text-gray-600 sm:text-xl/relaxed">
+            <p className="mt-4 max-w-lg text-gray-600 sm:text-xl/relaxed font-montserrat">
               From generating bullet points to automatic formatting, our resume
               builder will help you make a professional resume quickly and
               effortlessly.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4 text-center">
-              <Link
-                to={`#`}
-                href="#"
-                className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-secondary focus:outline-none focus:ring active:bg-blue-500 sm:w-auto hover:scale-110"
-              >
-                Get Started
+            <div className="mt-8 flex flex-wrap gap-6 text-center">
+              <Link>
+                <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary text-white ">Get Started</button>
               </Link>
 
-              <Link
-                to={"/template"}
-                className="block w-full rounded bg-secondary hover:bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:text-white focus:outline-none focus:ring active:text-blue-500 sm:w-auto"
-              >
-                Browse Templates
+              <Link>
+                <button className="py-3 px-5 rounded font-bold font-roboto text-base border border-primary text-primary hover:bg-primary hover:text-white ">Browse Templates</button>
               </Link>
             </div>
           </div>
           <div className="md:w-[600px]">
+
             <Swiper
               effect={"coverflow"}
               grabCursor={true}
@@ -102,6 +80,12 @@ const Banner = () => {
                 <img className="" src={img3} alt="" />
               </SwiperSlide>
             </Swiper>
+
+            <video width="500" autoPlay muted loop>
+              <source src={video} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
           </div>
         </div>
       </section>
