@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import video from "../../assets/banner.mp4";
 import { Typewriter } from "react-simple-typewriter";
+
+import img1 from "../../assets/banner/1131w-f5JNR-K5jjw.webp";
+import img2 from "../../assets/banner/1131w-xkDELtpQH94.webp";
+import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
+
 import { initializeApp } from "firebase/app";
+
 
 const Banner = () => {
   return (
@@ -42,10 +48,44 @@ const Banner = () => {
             </div>
           </div>
           <div className="md:w-[600px]">
+
+            <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={"auto"}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              //   rewind={true}
+              pagination={true}
+              autoplay={{
+                delay: 4000,
+              }}
+              //   speed={20}
+              modules={[EffectCoverflow, Pagination, Autoplay]}
+              className="mySwiper"
+            >
+              <SwiperSlide>
+                <img className="w-1/2" src={img1} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="w-1/2" src={img2} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="" src={img3} alt="" />
+              </SwiperSlide>
+            </Swiper>
+
             <video width="500" autoPlay muted loop>
               <source src={video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
+
           </div>
         </div>
       </section>
