@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const Package = () => {
   return (
     <Container className="">
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:py-16 py-10 ">
-        <div className="space-y-7 card w-[21rem] lg:w-96">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:py-16 py-10">
+        <div className="space-y-7 card w-[21rem] lg:w-96 px-3">
           <h1 className="text-5xl font-bold">OUR PRICING</h1>
           <p className="text-gray-600">
             In PerfectProfile, users can choose from flexible plans that provide

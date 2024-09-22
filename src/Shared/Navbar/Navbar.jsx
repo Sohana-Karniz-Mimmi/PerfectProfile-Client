@@ -191,10 +191,10 @@ const Navbar = () => {
                   Login
                 </Link>
                 <Link
-                  to={`/SignUp`}
-                  className="md:px-[30px] md:py-[9px] px-1 ease-out font-medium tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-violet-800 rounded-full hover:bg-blue-600 "
+                  to={`/createResume`}
+                  className="hidden lg:flex md:px-[30px] md:py-[9px] px-1 ease-out font-medium tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-violet-800 rounded-full hover:bg-blue-600 "
                 >
-                  Register
+                  Create My Resume
                 </Link>
               </div>
             </>
