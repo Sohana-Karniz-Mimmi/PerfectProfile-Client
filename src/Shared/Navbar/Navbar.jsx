@@ -17,8 +17,8 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-blue-600 pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-blue-600 hover:rounded-none text-[17px] hover:border-b-2 border-blue-600 mt-2"
+              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-secondary hover:rounded-none text-[17px] hover:border-b-2 border-primary mt-2"
           }
           to={"/"}
         >
@@ -32,8 +32,8 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-blue-600 pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-blue-600 hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-blue-600"
+              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
           }
           to={"/template"}
         >
@@ -47,8 +47,8 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-blue-600 pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-blue-600 hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-blue-600"
+              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
           }
           to={"/pricing"}
         >
@@ -62,8 +62,8 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-blue-600 pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-blue-600 hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-blue-600"
+              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
           }
           to={"/resources"}
         >
@@ -77,8 +77,8 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-blue-600 pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-blue-600 hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-blue-600"
+              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
           }
           to={"/about"}
         >
@@ -92,8 +92,8 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-blue-600 pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-blue-600 hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-blue-600"
+              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
           }
           to={"/contact"}
         >
@@ -148,7 +148,7 @@ const Navbar = () => {
             {/* <img className="md:w-12 md:h-10 w-7 h-7 relative" src={logo} alt="" /> */}
             <span className="">
               P<span className="">er</span>fect
-              <span className="text-blue-600">Profile</span>
+              <span className="text-primary">Profile</span>
             </span>
           </Link>
 
@@ -186,13 +186,13 @@ const Navbar = () => {
               <div className=" flex ">
                 <Link
                   to={`/signIn`}
-                  className="md:mr-2 mr-1 md:px-[30px] md:py-[9px] py-0.5 px-1.5 ease-out font-medium tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-blue-600 rounded-full hover:bg-violet-800 "
+                  className="md:mr-2 mr-1 md:px-[30px] md:py-[9px] py-0.5 px-1.5 ease-out font-medium tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-primary rounded-full hover:bg-secondary "
                 >
                   Login
                 </Link>
                 <Link
                   to={`/createResume`}
-                  className="hidden lg:flex md:px-[30px] md:py-[9px] px-1 ease-out font-medium tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-violet-800 rounded-full hover:bg-blue-600 "
+                  className="hidden lg:flex md:px-[30px] md:py-[9px] px-1 ease-out font-medium tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-secondary rounded-full hover:bg-primary "
                 >
                   Create My Resume
                 </Link>
