@@ -81,7 +81,7 @@ const SignUp = () => {
             </p>
             <div className="text-center">
               <Link to="/signIn">
-                <button className="btn bg-blue-400 hover:bg-blue-500 my-4 text-white">
+                <button className="btn bg-primary hover:bg-blue-500 my-4 text-white">
                   Login
                 </button>
               </Link>
@@ -155,7 +155,7 @@ const SignUp = () => {
                 <p className="text-white">Terms & Condition</p>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-blue-400 hover:bg-blue-500 text-white">
+                <button className="btn bg-primary hover:bg-blue-500 text-white">
                   Register
                 </button>
               </div>

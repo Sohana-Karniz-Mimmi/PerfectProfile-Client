@@ -66,8 +66,8 @@ const SignIn = () => {
             </p>
             <div className="text-center">
               <Link to="/signUp">
-                <button className="btn bg-blue-400 hover:bg-blue-500 my-4 text-white">
-                  SignUp
+                <button className="btn bg-primary hover:bg-blue-500 my-4 text-white">
+                  Register
                 </button>
               </Link>
             </div>
@@ -106,7 +106,7 @@ const SignIn = () => {
               </div>
 
               <div className="form-control mt-6">
-                <button className="btn bg-blue-400 hover:bg-blue-500 text-white w-full">
+                <button className="btn bg-primary hover:bg-blue-500 text-white w-full">
                   Login
                 </button>
               </div>
@@ -125,7 +125,7 @@ const SignIn = () => {
             {/* Social SignIn */}
             <div className="flex justify-center mt-5">
               <button
-                className="flex items-center gap-3 px-6 py-3 border rounded-lg hover:bg-blue-400 hover:text-white transition w-full md:w-auto"
+                className="flex items-center gap-3 px-6 py-3 border rounded-lg hover:bg-primary hover:text-white transition w-full md:w-auto"
                 onClick={() => handleSocialSignIn(googleSignIn)}
               >
                 <FcGoogle className="text-2xl" />
