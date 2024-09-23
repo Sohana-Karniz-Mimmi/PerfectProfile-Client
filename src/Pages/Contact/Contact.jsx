@@ -252,7 +252,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      <section className="thing2 border-2 border-black">
+      <section className=" border-2 border-black">
         <div className="">
           <h1 className="text-5xl">This is a heading</h1>
         </div>

@@ -7,6 +7,8 @@ import img2 from "../../assets/banner/1131w-xkDELtpQH94.webp";
 import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
 
 import { initializeApp } from "firebase/app";
+import Container from "../../Shared/Container";
+import "./Banner.css";
 
 const Banner = () => {
   return (
