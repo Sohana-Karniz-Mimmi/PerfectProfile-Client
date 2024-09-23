@@ -11,6 +11,8 @@ const Template6 = ({data}) => {
       education,
       certifications,
       workExperience,
+      skills,
+      languages,
       extraCurricularActivities,
     } = data;
     return (

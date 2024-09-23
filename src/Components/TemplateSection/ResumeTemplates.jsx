@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Container from "../../Shared/Container";
 import ResumeTemplate from "./ResumeTemplate";
-import image from '../../assets/Professional Minimalist CV Resume.pdf'
 import { useNavigate } from "react-router-dom";
 import Template1 from "./Template1";
 import Template2 from "./Template2";
@@ -29,7 +28,7 @@ const ResumeTemplates = () => {
           RESUME TEMPLATE
         </h1>
       </div>
-      <div className="grid grid-cols-3 ">
+      <div className="flex justify-around">
         {
             data.length > 0 && (
                 <>
