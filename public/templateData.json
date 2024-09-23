@@ -144,10 +144,14 @@
         {
           "activity": "AI Conference",
           "description": "Presented a paper on AI-driven healthcare solutions."
-        }
+        },
+        {
+            "activity": "Volunteer Work",
+            "description": "Organized coding workshops for underprivileged students."
+          }
       ],
       "skills": ["Python", "Machine Learning", "Data Analysis", "TensorFlow", "Pandas"],
-      "languages": ["English", "Bengali"]
+      "languages": ["English", "Bengali", "Turkish"]
     },
     {
       "_id": 4,

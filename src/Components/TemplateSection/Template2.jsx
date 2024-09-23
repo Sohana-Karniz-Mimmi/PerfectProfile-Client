@@ -20,7 +20,7 @@ const Template2 = ({ data }) => {
     extraCurricularActivities,
   } = data;
   return (
-    <div className="w-[35rem] h-[48rem] mx-auto  flex justify-center gap-1 shadow-2xl rounded-lg  ml-10 ">
+    <div className="w-[35rem] h-[41rem] mx-auto  flex justify-center  shadow-2xl rounded-lg  ml-10 ">
       {/* 1st */}
       <div className="bg-[#353535] text-white px-4 w-[15rem] ">
         <div className="w-40 mx-auto py-4 mb-2">
