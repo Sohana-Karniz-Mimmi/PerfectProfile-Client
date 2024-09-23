@@ -305,7 +305,7 @@
           "description": "Organized ethical hacking workshops."
         }
       ],
-      "skills": ["Network Security", "Ethical Hacking", "Risk Assessment", "Incident Response", "Firewall Management"],
+      "skills": ["Network Security", "Ethical Hacking", "Risk Assessment", "Incident Response"],
       "languages": ["English", "Bengali"]
     }
   ]

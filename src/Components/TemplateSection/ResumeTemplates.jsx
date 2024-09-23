@@ -28,7 +28,7 @@ const ResumeTemplates = () => {
           RESUME TEMPLATE
         </h1>
       </div>
-      <div className="flex flex-col justify-around">
+      <div className="flex flex-col gap-6 justify-around">
         {
             data.length > 0 && (
                 <>
