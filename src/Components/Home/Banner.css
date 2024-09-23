@@ -1,0 +1,31 @@
+.thing{
+    background: tomato;
+    color: aliceblue;
+    height: 550px;
+    padding-top: 130px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .thing::before{
+    position: absolute;
+    content: '';
+    width: 60%;
+    height: 125px;
+    top: -50px;
+    left: 0;
+    background: tomato;
+    transform: skewY(5deg);
+    z-index: 1;
+  }
+  .thing::after{
+    position: absolute;
+    content: '';
+    width: 60%;
+    height: 125px;
+    top: -50px;
+    right: 0;
+    background: tomato;
+    transform: skewY(-5deg);
+    z-index: 1;
+  }
