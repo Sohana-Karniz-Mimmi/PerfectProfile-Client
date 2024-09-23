@@ -4,6 +4,7 @@ const Template5 = ({data}) => {
     const {
       _id,
       name,
+      jobTitle,
       careerObjective,
       email,
       phone,

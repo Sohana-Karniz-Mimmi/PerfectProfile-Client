@@ -12,18 +12,21 @@ const Template1 = ({data}) => {
       certifications,
       workExperience,
       skills,
+      jobTitle,
       languages,
       extraCurricularActivities,
     } = data;
     return (
-        <div className="w-[35rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg py-10 px-12 ">
+        <div className="w-[35rem] h-[48rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
         <div className="">
               {/* Header - Personal Info */}
-              <header className="text-center mb-7 bg-blue-200 rounded-md p-3">
+              <header className="text-center  bg-blue-200  py-7">
              <h1 className="text-3xl font-bold text-blue-900 uppercase">{name}</h1>
+             <p className="font-semibold uppercase mt-1">{jobTitle}</p>
              <p className="font-medium text-sm mt-2">{email} | {phone} | {address}</p>
            </header>
-     
+     <div className="px-10 py-7 ">
+      
            {/* Career Objective */}
            {careerObjective && (
              <section className="mb-2">
@@ -115,6 +118,7 @@ const Template1 = ({data}) => {
                </ul>
              </section>
            )}
+     </div>
         </div>
          </div>
     );

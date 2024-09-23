@@ -13,6 +13,7 @@ const Template6 = ({data}) => {
       workExperience,
       skills,
       languages,
+      jobTitle,
       extraCurricularActivities,
     } = data;
     return (
