@@ -11,3 +11,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.n-container::after,
+.n-container::before {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}

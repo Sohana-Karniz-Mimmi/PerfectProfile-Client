@@ -54,9 +54,9 @@ const Banner = () => {
           </div>
         </Container>
       </section>
-      <section className="thing">
+      <section className="thing bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>
-          <div className="flex flex-col justify-center items-center space-y-4">
+          <div className="z-10 absolute flex flex-col justify-center items-center space-y-4">
             <h1 className="text-5xl font-bold text-center font-lora text-white">
               Templates to win recruiters over
             </h1>
