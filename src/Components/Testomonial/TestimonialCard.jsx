@@ -1,87 +1,34 @@
-import React from "react";
+<div className="absolute z-0 bottom-0 left-0 w-full premium-container">
+<svg
+  // viewBox="0 0 600 320" 
+  viewBox="0 0 1000 200"
+  className="w-full h-auto your-element-class">
+  <defs>
+    <linearGradient
+      id="svgGradient"
+      x1="0%"
+      y1="0%"
+      x2="100%"
+      y2="0%"
+    >
+      <stop
+        offset="0%"
+        style={{ stopColor: "##51e2c2", stopOpacity: 1 }}
+      />
+      <stop
+        offset="100%"
+        style={{ stopColor: "#4bccef", stopOpacity: 1 }}
+      />
+    </linearGradient>
 
-const TestimonialCard = ({ name, desc, img, title, prevSlide, nextSlide }) => {
-  return (
-    <section className="bg-white dark:bg-gray-900">
-      <div className="max-w-6xl px-6 py-10 mx-auto">
-        <p className="text-xl font-medium text-blue-500 text-center">Testimonials</p>
-
-        <h1 className="mt-2 text-2xl font-bold text-gray-800 capitalize lg:text-4xl dark:text-white text-center">
-          What clients saying
-        </h1>
-
-        <main className="relative z-20 w-full mt-8 md:flex md:items-center xl:mt-12">
-          <div className="absolute w-full bg-blue-600 -z-10 md:h-96 rounded-2xl"></div>
-
-          <div className="w-full p-6 bg-blue-600 md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly">
-            <img
-              className="h-24 w-24 md:mx-6 rounded-full object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl"
-              src={img}
-              alt="client photo"
-            />
-
-            <div className="mt-2 md:mx-6">
-              <div>
-                <p className="text-xl font-medium tracking-tight text-white">
-                  {name}
-                </p>
-                <p className="text-blue-200 ">{title}</p>
-              </div>
-
-              <p className="mt-4 text-lg leading-relaxed text-white md:text-xl">
-                {" "}
-                {desc}
-              </p>
-
-              <div className="flex items-center justify-between mt-6 md:justify-start">
-                <button
-                  title="left arrow"
-                  onClick={prevSlide}
-                  className="p-2 text-white transition-colors duration-300 border rounded-full rtl:-scale-x-100 hover:bg-blue-400"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                </button>
-
-                <button
-                  title="right arrow"
-                  onClick={nextSlide}
-                  className="p-2 text-white transition-colors duration-300 border rounded-full rtl:-scale-x-100 md:mx-6 hover:bg-blue-400"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </section>
-  );
-};
-
-export default TestimonialCard;
+    {/* <linearGradient id="svgGradient" x1="0%" y1="0%" x2="100%" y2="0%"> <stop offset="0%" style="stop-color: #51e2c2; stop-opacity: 1"></stop> <stop offset="100%" style="stop-color: #4bccef; stop-opacity: 1"></stop> </linearGradient> */}
+  </defs>
+  <path
+    fill="url(#svgGradient)"
+    fillOpacity="1"
+    // d="M0,160 C320,240 500,1 1440,160 L1440,320 L0,320Z"
+    //  d="M0,140 C320,240 50,10 700,180 L1440,320 L0,320Z"
+    d="M0,100c0,0,250,150,500,0s500,0,500,0v100H0V100z"
+  ></path>
+</svg>
+</div>

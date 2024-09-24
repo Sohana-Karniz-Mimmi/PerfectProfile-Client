@@ -40,15 +40,17 @@ const Banner = () => {
 
             <div className="mt-8 flex flex-wrap gap-6 text-center">
               <Link>
-                <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary text-white ">
+                <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary hover:bg-secondary text-white ">
                   Get Started
                 </button>
               </Link>
 
               <Link>
-                <button className="py-3 px-5 rounded font-bold font-roboto text-base border border-primary text-primary hover:bg-primary hover:text-white ">
-                  Browse Templates
-                </button>
+                <div className="h-[50px] border group border-primary rounded group-hover:border-secondary">
+                  <button className="py-3 px-5  font-bold font-roboto text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
+                    Browse Templates
+                  </button>
+                </div>
               </Link>
             </div>
           </div>
@@ -61,9 +63,9 @@ const Banner = () => {
           </div>
         </div>
       </section>
-      <section className="thing">
+      <section className="thing bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>
-          <div className="flex flex-col justify-center items-center space-y-4">
+          <div className="z-10 absolute flex flex-col justify-center items-center space-y-4">
             <h1 className="text-5xl font-bold text-center font-lora text-white">
               Templates to win recruiters over
             </h1>
