@@ -1,12 +1,9 @@
 import Container from "../../Shared/Container";
 import React, { useRef } from 'react';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-// Import required modules
 import { Navigation, Autoplay } from 'swiper/modules';
 import { FaQuoteRight, FaStar } from "react-icons/fa";
 
@@ -19,7 +16,6 @@ const Testimonial = () => {
 
   return (
     <Container>
-
       <div className="max-w-7xl items-end justify-center sm:flex sm:pe-6 lg:pe-8">
         <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
           Your Success, Our Inspiration
