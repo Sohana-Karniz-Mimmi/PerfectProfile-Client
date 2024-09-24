@@ -63,7 +63,7 @@ const Banner = () => {
           </div>
         </div>
       </section>
-      <section className="thing bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
+      <section className="thing ">
         <Container>
           <div className="z-10 absolute flex flex-col justify-center items-center space-y-4">
             <h1 className="text-5xl font-bold text-center font-lora text-white">

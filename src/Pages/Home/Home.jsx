@@ -19,8 +19,6 @@ const Home = () => {
       <div>
         <Testomonial></Testomonial>
       </div>
-
-      {/* template section */}
       <ResumeTemplates></ResumeTemplates>
       
 
