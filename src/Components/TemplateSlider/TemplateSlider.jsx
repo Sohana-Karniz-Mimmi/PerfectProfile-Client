@@ -95,7 +95,7 @@ export default function App() {
           },
         }}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper z-10 absolute"
       >
         <SwiperSlide><img src={Tem1} alt="" /></SwiperSlide>
         <SwiperSlide><img src={Tem2} alt="" /></SwiperSlide>
