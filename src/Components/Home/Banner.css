@@ -16,7 +16,7 @@
     left: 0;
     background: tomato;
     transform: skewY(5deg);
-    z-index: 1;
+    
   }
   .thing::after{
     position: absolute;
@@ -27,5 +27,5 @@
     right: 0;
     background: tomato;
     transform: skewY(-5deg);
-    z-index: 1;
+   
   }
