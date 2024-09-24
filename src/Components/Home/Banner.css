@@ -1,5 +1,5 @@
 .thing{
-    background: tomato;
+     background: linear-gradient(to right, #51E2C2 , #4BCCEF );
     color: aliceblue;
     height: 550px;
     padding-top: 130px;
@@ -10,22 +10,22 @@
   .thing::before{
     position: absolute;
     content: '';
-    width: 60%;
-    height: 125px;
+    width: 100%;
+    height: 235px;
     top: -50px;
     left: 0;
-    background: tomato;
-    transform: skewY(5deg);
+     background: linear-gradient(to right, #51E2C2, #4BCCEF);
+    transform: skewY(7deg);
     z-index: 1;
   }
   .thing::after{
     position: absolute;
     content: '';
-    width: 60%;
-    height: 125px;
+    width: 100%;
+    height: 235px;
     top: -50px;
     right: 0;
-    background: tomato;
-    transform: skewY(-5deg);
+     background: linear-gradient(to right, #51E2C2, #4BCCEF);
+    transform: skewY(-7deg);
     z-index: 1;
   }
