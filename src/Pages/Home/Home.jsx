@@ -2,7 +2,7 @@ import Banner from "../../Components/Home/Banner";
 import PremiumFeature from "../../Components/Home/PremiumFeature";
 import Package from "../../Components/Package/Package";
 import Testomonial from "../../Components/Testomonial/Testomonial";
-
+import ResumeTemplates from "../../Components/TemplateSection/ResumeTemplates";
 
 
 
@@ -19,6 +19,10 @@ const Home = () => {
       <div>
         <Testomonial></Testomonial>
       </div>
+
+      {/* template section */}
+      <ResumeTemplates></ResumeTemplates>
+      
 
     </div>
   );
