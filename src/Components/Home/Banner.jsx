@@ -8,6 +8,7 @@ import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
 
 import { initializeApp } from "firebase/app";
 import Container from "../../Shared/Container";
+import TemplateSlider from '../TemplateSlider/TemplateSlider'
 import "./Banner.css";
 
 const Banner = () => {
@@ -63,15 +64,19 @@ const Banner = () => {
           </div>
         </div>
       </section>
-      <section className="thing ">
+      <section className="thing pb-60 bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>
-          <div className="z-10 absolute flex flex-col justify-center items-center space-y-4">
+          <div className="absolute z-10 -mt-24  flex flex-col justify-center items-center space-y-4">
             <h1 className="text-5xl font-bold text-center font-lora text-white">
               Templates to win recruiters over
             </h1>
             <p className="font-montserrat text-center lg:w-3/4 w-full">We'll help you choose the right layout for your CV from over 40 available templates. Each is instantly ready to use and requires no design skills.</p>
           </div>
         </Container>
+        <div className="mt-20 px-8"><TemplateSlider></TemplateSlider></div>
+      </section>
+      <section>
+        
       </section>
     </>
   );
