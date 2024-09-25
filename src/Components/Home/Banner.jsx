@@ -15,7 +15,7 @@ import "./Banner.css";
 const Banner = () => {
   return (
     <>
-      <section className="lg:pb-28 pb-16 bg-white">
+      <section className=" bg-white">
         <Container>
           <div className="flex lg:flex-row flex-col gap-1">
             <div className="lg:w-1/2 w-full flex flex-col justify-center">
@@ -64,7 +64,7 @@ const Banner = () => {
           </div>
         </Container>
       </section>
-      <section className="thing relative bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
+      {/* <section className="thing relative bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>
           <div className="absolute z-10 lg:-mt-28 -mt-32  flex flex-col justify-center items-center space-y-4">
             <h1 className="lg:text-5xl text-3xl font-extrabold text-center font-lora text-white">
@@ -78,7 +78,59 @@ const Banner = () => {
           </div>
         </Container>
 
-        <div className="lg:mt-20 md:mt-8 mt-20 px-4">
+        <div className="lg:mt-20 md:mt-8 mt-20 mx-8">
+          <TemplateSlider></TemplateSlider>
+        </div>
+        <div className="flex justify-center items-center py-16">
+          <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
+            Browse Templates
+          </button>
+        </div>
+      </section> */}
+      <section className="bg-white">
+        <div className="custom-shape-divider-bottom-1727289857">
+          <svg
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 119"
+            preserveAspectRatio="none"
+            style={{ width: "100%", height: "auto" }} // Make it responsive
+          >
+            <defs>
+              <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop
+                  offset="0%"
+                  style={{ stopColor: "#51E2C2", stopOpacity: 1 }}
+                />
+                <stop
+                  offset="100%"
+                  style={{ stopColor: "#4BCCEF", stopOpacity: 1 }}
+                />
+              </linearGradient>
+            </defs>
+            <path
+              d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z"
+              className="shape-fill"
+              fill="url(#gradient1)" // Apply the gradient fill here
+            />
+          </svg>
+        </div>
+      </section>
+      <section className="bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
+        <Container>
+          <div className="flex flex-col justify-center items-center py-12 space-y-4">
+            <h1 className="lg:text-5xl text-3xl font-extrabold text-center font-lora text-white">
+              Templates to win recruiters over
+            </h1>
+            <p className="font-montserrat text-center lg:w-3/4 w-full">
+              We'll help you choose the right layout for your CV from over 40
+              available templates. Each is instantly ready to use and requires
+              no design skills.
+            </p>
+          </div>
+        </Container>
+
+        <div className="">
           <TemplateSlider></TemplateSlider>
         </div>
         <div className="flex justify-center items-center py-16">
