@@ -34,7 +34,9 @@ const Template2 = ({ data }) => {
                 <h2 className=" uppercase font-bold lg:text-base text-sm  border-b border-white ">
                   about me
                 </h2>
-                <p className="mt-1 lg:text-sm text-[13px] ">{careerObjective}</p>
+                <p className="mt-1 lg:text-sm text-[13px] ">
+                  {careerObjective}
+                </p>
               </section>
               {/*    
 
