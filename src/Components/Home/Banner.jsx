@@ -64,7 +64,7 @@ const Banner = () => {
           </div>
         </Container>
       </section>
-      <section className="thing relative pb-60 bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
+      <section className="thing relative bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>
           <div className="absolute z-10 lg:-mt-28 -mt-32  flex flex-col justify-center items-center space-y-4">
             <h1 className="lg:text-5xl text-3xl font-extrabold text-center font-lora text-white">
@@ -80,6 +80,11 @@ const Banner = () => {
 
         <div className="lg:mt-20 md:mt-8 mt-20 px-4">
           <TemplateSlider></TemplateSlider>
+        </div>
+        <div className="flex justify-center items-center py-16">
+          <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
+            Browse Templates
+          </button>
         </div>
       </section>
       <section></section>
