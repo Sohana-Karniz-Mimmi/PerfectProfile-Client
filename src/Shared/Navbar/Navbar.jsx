@@ -1,17 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Container from "../Container";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa6";
-// import SignUp from "../../Authentication/SignUp";
-// import SignIn from "../../Authentication/SignIn";
-import Modal from "../../Authentication/Modal";
+import { Button } from "@material-tailwind/react";
+import useAuth from "../../Hook/useAuth";
+import Login from "../../Authentication/Login";
+import Register from "../../Authentication/Register";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
   const navLinks = (
@@ -112,12 +111,13 @@ const Navbar = () => {
     logOut();
     navigate("/")
       .then(() => {
-        toast.success("Sing Out Successfully");
+        toast.success("Sign Out Successfully");
       })
       .catch((error) => {
-        toast.error("SignOut", error);
+        toast.error("Sign Out Error", error);
       });
   };
+
   return (
     <div className="min-h-[99px] border-b shadow">
       <Container>
@@ -162,75 +162,53 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* NavEnds */}
+          {/* Right Section (Login/Logout Buttons) */}
           <div className="">
             {user ? (
-              <>
-                <div className="flex items-center gap-2">
-                  <div
-                    className="btn flex items-center btn-ghost btn-circle avatar tooltip hover:tooltip-open tooltip-bottom text-white"
-                    data-tip={user?.displayName}
-                  >
-                    <div className=" md:w-12 w-8 rounded-full ">
-                      <img alt={"User"} src={user?.photoURL} />
-                    </div>
+              <div className="flex items-center gap-2">
+                <div
+                  className="btn flex items-center btn-ghost btn-circle avatar tooltip hover:tooltip-open tooltip-bottom text-white"
+                  data-tip={user?.displayName}
+                >
+                  <div className=" md:w-12 w-8 rounded-full ">
+                    <img alt={"User"} src={user?.photoURL} />
                   </div>
-
-                  <Link
-                    to={`/`}
-                    onClick={handleLogoutBtn}
-                    className="md:mr-2 mr-1 md:px-[20px] md:py-[11px] py-0.5 px-1.5 ease-out font-bold tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-[#51AA1B] rounded-full hover:bg-blue-600 "
-                  >
-                    Log Out
-                  </Link>
                 </div>
-              </>
+
+                <Link
+                  to={`/`}
+                  onClick={handleLogoutBtn}
+                  className="md:mr-2 mr-1 md:px-[20px] md:py-[11px] py-0.5 px-1.5 ease-out font-bold tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-[#51AA1B] rounded-full hover:bg-blue-600 "
+                >
+                  Log Out
+                </Link>
+              </div>
             ) : (
-              <>
-                <div className=" flex gap-5">
-                  {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                  <button
-                    className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-gray-300 px-5 rounded-full"
-                    onClick={() =>
-                      document.getElementById("my_modal_3").showModal()
-                    }
-                  >
-                    <FaUser className="text-sm"></FaUser>
-                    Login
+              <div className="flex gap-5">
+                <Button
+                  onClick={() =>
+                    document.getElementById("my_modal_3").showModal()
+                  }
+                  className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-gray-500 px-5 rounded-full"
+                >
+                  <FaUser className="text-sm"></FaUser>Log In
+                </Button>
+                <Link to={`/createResume`}>
+                  <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-full">
+                    Create My Resume
                   </button>
-                  <dialog id="my_modal_3" className="modal">
-                    <div className="modal-box">
-                      <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                          ✕
-                        </button>
-                      </form>
-
-                      <Modal />
-                    </div>
-                  </dialog>
-                  {/* <Link
-                    onClick={() =>
-                      document.getElementById("my_modal_3").showModal()
-                    }
-                  > 
-                    <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-gray-300 px-5 rounded-full">
-                      <FaUser className="text-sm"></FaUser>
-                      Login
-                    </button>
-                  </Link> */}
-                  <Link to={`/createResume`}>
-                    <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2  lg:block bg-secondary text-white px-5 rounded-full">
-                      Create My Resume
-                    </button>
-                  </Link>
-                </div>
-              </>
+                </Link>
+              </div>
             )}
           </div>
         </div>
       </Container>
+
+      {/* Modal for Login */}
+      <Login />
+      <Register />
+      {/* <Modal>
+      </Modal> */}
     </div>
   );
 };
