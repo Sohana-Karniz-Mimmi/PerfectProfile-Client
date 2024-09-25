@@ -5,8 +5,8 @@ import Footer from "../Shared/Footer/Footer";
 const MainLayout = () => {
  
   return (
-    <div className="">
-      <div >
+    <div className="relative">
+      <div className="sticky top-0 z-50 bg-white">
         <Navbar></Navbar>
       </div>
       <div >

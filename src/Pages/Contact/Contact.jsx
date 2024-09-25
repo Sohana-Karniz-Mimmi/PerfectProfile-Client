@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import ContactBanner from "../../Components/ContactBanner/ContactBanner";
 import { FaEnvelope, FaLocationPin, FaPhone } from "react-icons/fa6";
+import "./Contact.css"
 
 const Contact = () => {
   const {
@@ -251,6 +252,12 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      <section className=" border-2 border-black">
+        <div className="">
+          <h1 className="text-5xl">This is a heading</h1>
+        </div>
+      </section>
+      {/* <section className="h-96 bg-yellow-800"></section> */}
     </div>
   );
 };

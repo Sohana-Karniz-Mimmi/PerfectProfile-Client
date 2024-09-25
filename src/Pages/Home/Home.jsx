@@ -1,7 +1,9 @@
-import Package from "../../Components/Package/Package";
 import Banner from "../../Components/Home/Banner";
-import Templates from "../../Components/TemplateComponents/Templates";
-import Testomonial from "../../Components/Testomonial/Testomonial.Jsx";
+import PremiumFeature from "../../Components/Home/PremiumFeature";
+import Package from "../../Components/Package/Package";
+import Testomonial from "../../Components/Testomonial/Testomonial";
+import ResumeTemplates from "../../Components/TemplateSection/ResumeTemplates";
+import CVResume from "../../Components/TemplateSection/CVResume";
 
 
 
@@ -9,13 +11,18 @@ const Home = () => {
   return (
     <div className=" py-4">
       <div className="bg-[#F9FAFF]">
-        <Banner/>
+        <Banner />
       </div>
+      <div>
+        <PremiumFeature />
+      </div>
+      <Package />
+      <div>
+        <Testomonial></Testomonial>
+      </div>
+      <ResumeTemplates></ResumeTemplates>
       
-      <Templates/>
-      <Package></Package>
 
-      <Testomonial/>
     </div>
   );
 };

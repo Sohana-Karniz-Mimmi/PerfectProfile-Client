@@ -1,10 +1,2 @@
-.river-shape {
-    width: 100%;
-    height: 300px;
-    background: linear-gradient(to right, #00c6ff, #0072ff); /* River color */
-    clip-path: polygon(0% 50%, 10% 55%, 20% 50%, 30% 45%, 40% 50%, 50% 55%, 60% 50%, 70% 45%, 80% 50%, 90% 55%, 100% 50%, 100% 100%, 0% 100%); /* A circle that fits inside the element */
 
 
-
-    
-  }
