@@ -19,7 +19,7 @@ const Banner = () => {
         <Container>
           <div className="flex lg:flex-row flex-col gap-1">
             <div className="lg:w-1/2 w-full flex flex-col justify-center">
-              <h1 className="lg:text-5xl md:text-4xl text-2xl lg:text-left text-center font-extrabold font-lora">
+              <h1 className="xl:text-6xl lg:text-5xl md:text-4xl text-2xl lg:text-left text-center font-extrabold font-lora">
                 Make your professional
                 <br />
                 resume in
@@ -41,15 +41,15 @@ const Banner = () => {
 
               <div className="mt-8 flex lg:flex-row flex-col lg:items-start items-center gap-6 text-center">
                 <Link>
-                  <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary hover:bg-secondary text-white ">
+                  <button className="py-3 px-5 rounded font-bold font-montserrat text-base bg-primary hover:bg-secondary text-white ">
                     Get Started
                   </button>
                 </Link>
 
                 <Link>
-                  <div className="h-[50px] border group border-primary rounded group-hover:border-secondary">
-                    <button className="py-3 px-5  font-bold font-roboto text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
-                      Browse Templates
+                  <div className="h-[50px] border group border-primary  rounded group-hover:border-secondary hover:border-secondary">
+                    <button className="py-3 px-5  font-bold !font-montserrat text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
+                      Create My Resume
                     </button>
                   </div>
                 </Link>
@@ -119,10 +119,10 @@ const Banner = () => {
       <section className="bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>
           <div className="flex flex-col justify-center items-center py-12 space-y-4">
-            <h1 className="lg:text-5xl text-3xl font-extrabold text-center font-lora text-white">
+            <h1 className="lg:text-5xl text-3xl font-extrabold text-center font-lora text-black">
               Templates to win recruiters over
             </h1>
-            <p className="font-montserrat text-center lg:w-3/4 w-full">
+            <p className="font-montserrat text-center lg:w-2/4 w-full">
               We'll help you choose the right layout for your CV from over 40
               available templates. Each is instantly ready to use and requires
               no design skills.
@@ -134,7 +134,7 @@ const Banner = () => {
           <TemplateSlider></TemplateSlider>
         </div>
         <div className="flex justify-center items-center py-16">
-          <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
+          <button className="bg-gradient-to-r font-montserrat from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full font-bold shadow-lg transform transition duration-500 hover:scale-105">
             Browse Templates
           </button>
         </div>
