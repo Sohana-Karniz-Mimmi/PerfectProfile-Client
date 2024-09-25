@@ -8,11 +8,9 @@ import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
 
 import { initializeApp } from "firebase/app";
 
-
 import Container from "../../Shared/Container";
-import TemplateSlider from '../TemplateSlider/TemplateSlider'
+import TemplateSlider from "../TemplateSlider/TemplateSlider";
 import "./Banner.css";
-
 
 const Banner = () => {
   return (
@@ -44,17 +42,14 @@ const Banner = () => {
 
             <div className="mt-8 flex flex-wrap gap-6 text-center">
               <Link>
-
-                <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary text-white ">
+                {/* <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary text-white "> */}
 
                 <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary hover:bg-secondary text-white ">
-
                   Get Started
                 </button>
               </Link>
 
               <Link>
-
                 <button className="py-3 px-5 rounded font-bold font-roboto text-base border border-primary text-primary hover:bg-primary hover:text-white ">
                   Browse Templates
                 </button>
@@ -94,22 +89,20 @@ const Banner = () => {
               </SwiperSlide>
             </Swiper> */}
 
-
-                <div className="h-[50px] border group border-primary rounded group-hover:border-secondary">
-                  <button className="py-3 px-5  font-bold font-roboto text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
-                    Browse Templates
-                  </button>
-                </div>
-              </Link>
-            </div>
+            <Link>
+              <div className="h-[50px] border group border-primary rounded group-hover:border-secondary">
+                <button className="py-3 px-5  font-bold font-roboto text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
+                  Browse Templates
+                </button>
+              </div>
+            </Link>
           </div>
-          <div className="md:w-[500px]">
-
-            <video width="500" autoPlay muted loop>
-              <source src={video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+        </div>
+        <div className="md:w-[500px]">
+          <video width="500" autoPlay muted loop>
+            <source src={video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </section>
       <section className="thing pb-60 bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
@@ -118,14 +111,18 @@ const Banner = () => {
             <h1 className="text-5xl font-bold text-center font-lora text-white">
               Templates to win recruiters over
             </h1>
-            <p className="font-montserrat text-center lg:w-3/4 w-full">We'll help you choose the right layout for your CV from over 40 available templates. Each is instantly ready to use and requires no design skills.</p>
+            <p className="font-montserrat text-center lg:w-3/4 w-full">
+              We'll help you choose the right layout for your CV from over 40
+              available templates. Each is instantly ready to use and requires
+              no design skills.
+            </p>
           </div>
         </Container>
-        <div className="mt-20 px-8"><TemplateSlider></TemplateSlider></div>
+        <div className="mt-20 px-8">
+          <TemplateSlider></TemplateSlider>
+        </div>
       </section>
-      <section>
-        
-      </section>
+      <section></section>
     </>
   );
 };
