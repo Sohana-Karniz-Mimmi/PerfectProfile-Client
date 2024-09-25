@@ -90,7 +90,7 @@ const Modal = () => {
       style={{ fontFamily: "Montserrat, sans-serif" }}
     >
       <div
-        className={`container ${
+        className={`modalContainer ${
           isActive ? "active" : ""
         } bg-white rounded-[30px] shadow-2xl relative overflow-hidden w-[768px] max-w-full min-h-[480px]`}
       >
