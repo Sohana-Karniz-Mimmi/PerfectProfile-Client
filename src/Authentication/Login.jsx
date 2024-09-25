@@ -1,7 +1,4 @@
-import { Button, Checkbox, Input } from "@material-tailwind/react";
-// import duckImg from "../../../public/NavImages/blackTextLogo.png";
 import { FcGoogle } from "react-icons/fc";
-// import facebook from "../../../public/Icons/facebook.png";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -30,7 +27,7 @@ const Login = () => {
         .then((result) => {
           console.log(result);
           form.reset();
-          toast.success("Login Success Fully !");
+          toast.success("Login Successfully!");
 
           setTimeout(() => {
             if (location.state) {
@@ -47,17 +44,13 @@ const Login = () => {
           if (
             error.message.includes("Firebase: Error (auth/invalid-credential).")
           ) {
-            toast.error("Password Isn't Match");
-          } else if (
-            error.message.includes(
-              "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)."
-            )
-          ) {
-            toast.error("This account has been temporarily disabled !");
+            toast.error("Password doesn't match");
+          } else if (error.message.includes("auth/too-many-requests")) {
+            toast.error("This account has been temporarily disabled!");
           }
         });
     } else {
-      setErrorText("Please Accept Our Turms & Condition !");
+      setErrorText("Please accept our Terms & Conditions!");
     }
   };
 
@@ -65,7 +58,7 @@ const Login = () => {
     socialProvider()
       .then(async (result) => {
         console.log(result);
-        toast.success("Login Success Fully !");
+        toast.success("Login Successfully!");
 
         setTimeout(() => {
           if (location.state) {
@@ -88,18 +81,17 @@ const Login = () => {
         <div className="modal-box text-black bg-transparent relative h-[700px] w-[600px]">
           <div className="bg-white h-[620px] rounded-lg p-10">
             <div className="flex flex-col items-center justify-center">
-              {/* <img src={duckImg} className="mb-7" alt="" /> */}
-              <h1 className="gro text-2xl font-semibold mb-2">
-                Great to have you back !
+              <h1 className="text-2xl font-semibold mb-2">
+                Great to have you back!
               </h1>
-              <p className="gro text-lg font-medium text-center w-[300px] ">
-                Great to have you back !{" "}
+              <p className="text-lg font-medium text-center w-[300px]">
+                Great to have you back!{" "}
                 <span
                   onClick={handleModal}
                   className="text-blue-500 cursor-pointer"
                 >
                   Sign Up
-                </span>{" "}
+                </span>
               </p>
             </div>
 
@@ -107,68 +99,96 @@ const Login = () => {
               onSubmit={handleSubmit}
               className="w-full mt-10 flex flex-col gap-5"
             >
-              <Input name="email" label="Email Address" required />
               <div className="relative">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+
+              <div className="relative">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Password
+                </label>
+                <input
+                  type={eye ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  required
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
                 {eye ? (
                   <IoMdEyeOff
                     onClick={() => setEye(!eye)}
-                    className="cursor-pointer text-2xl absolute z-10 top-[10px] right-2"
+                    className="cursor-pointer text-2xl absolute z-10 top-[30px] right-3"
                   />
                 ) : (
                   <IoMdEye
                     onClick={() => setEye(!eye)}
-                    className="cursor-pointer text-2xl absolute z-10 top-[10px] right-2"
+                    className="cursor-pointer text-2xl absolute z-10 top-[30px] right-3"
                   />
                 )}
-                <Input
-                  className="z-0"
-                  type={eye ? "text" : "password"}
-                  name="password"
-                  label="Password"
-                  size="lg"
-                  required
-                />
               </div>
-              <div className="">
-                <Checkbox
+
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="remember"
                   onClick={() => setRemember(!remember)}
-                  label="Turms & Condition"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
+                <label
+                  htmlFor="remember"
+                  className="ml-2 block text-sm text-gray-900"
+                >
+                  Terms & Conditions
+                </label>
               </div>
-              <div>
-                {remember ? (
-                  <p></p>
-                ) : (
-                  <p className="text-red-800 font-semibold">{errorText}</p>
-                )}
-              </div>
-              <input
+
+              {remember ? (
+                <p></p>
+              ) : (
+                <p className="text-red-800 font-semibold">{errorText}</p>
+              )}
+
+              <button
                 type="submit"
-                value={"Sign Up"}
-                className="btn bg-secondary text-white hover:bg-transparent  hover:text-primary hover:border-secondary gro"
-              />
+                className="btn bg-secondary text-white hover:bg-transparent hover:text-primary hover:border-secondary py-2 px-4 rounded"
+              >
+                Sign In
+              </button>
             </form>
 
-            <div className="divider text-base gro mt-7">Or Sign In With</div>
+            <div className="divider text-base mt-7">Or Sign In With</div>
 
             <div className="flex items-center justify-center gap-3 mt-6">
-              <Button
+              <button
                 onClick={() => handleSocialSignIn(googleSignIn)}
-                className="w-full gro capitalize text-base bg-[#FAFAFA] border text-black shadow-none flex gap-3 items-center justify-center"
+                className="w-full capitalize text-base bg-gray-100 border text-black shadow-none flex gap-3 items-center justify-center py-2 px-4 rounded"
               >
                 <FcGoogle className="text-xl" /> Google
-              </Button>
-              {/* <Button className="w-full gro capitalize text-base bg-[#FAFAFA] border text-black shadow-none flex gap-3 items-center justify-center">
-                <img src={facebook} className="w-[22px] h-[20px]" /> FaceBook
-              </Button> */}
+              </button>
             </div>
           </div>
 
-          <form method="dialog" className="absolute bottom-12 left-[55%]">
-            <button className="btn btn-sm btn-circle absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
+          <button
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+            onClick={() => document.getElementById("my_modal_3").close()}
+          >
+            ✕
+          </button>
         </div>
       </dialog>
       <ToastContainer

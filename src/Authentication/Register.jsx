@@ -1,6 +1,3 @@
-import { Button, Checkbox, Input } from "@material-tailwind/react";
-// import duckImg from "../../../public/NavImages/blackTextLogo.png";
-// import facebook from "../../../public/Icons/facebook.png";
 import { FcGoogle } from "react-icons/fc";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
@@ -114,11 +111,11 @@ const Register = () => {
           <div className="bg-white h-[750px] rounded-lg p-8">
             <div className="flex flex-col items-center justify-center">
               {/* <img src={duckImg} className="mb-7" alt="" /> */}
-              <h1 className="gro text-2xl font-semibold mb-2">
-                Great to see you here !
+              <h1 className="text-2xl font-semibold mb-2">
+                Great to see you here!
               </h1>
-              <p className="gro text-lg font-medium text-center w-[300px] ">
-                It’s free to create an account a Already have an account ?
+              <p className="text-lg font-medium text-center w-[300px] ">
+                It’s free to create an account. Already have an account?
                 <span
                   onClick={() => handleModal()}
                   className="text-blue-500 cursor-pointer"
@@ -132,8 +129,20 @@ const Register = () => {
               onSubmit={handleSubmit}
               className="w-full mt-10 flex flex-col gap-3"
             >
-              <Input name="name" label="Full Name" required />
-              <Input name="email" label="Email Address" required />
+              <input
+                name="name"
+                type="text"
+                placeholder="Full Name"
+                className="input input-bordered w-full"
+                required
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email Address"
+                className="input input-bordered w-full"
+                required
+              />
               <div className="relative">
                 {eye ? (
                   <IoMdEyeOff
@@ -146,12 +155,11 @@ const Register = () => {
                     className="cursor-pointer text-2xl absolute z-10 top-[10px] right-2"
                   />
                 )}
-                <Input
-                  className="z-0"
+                <input
+                  className="input input-bordered w-full z-0"
                   type={eye ? "text" : "password"}
                   name="password"
-                  label="Password"
-                  size="lg"
+                  placeholder="Password"
                   onChange={(e) => setPassInt(e.target.value)}
                   required
                 />
@@ -165,11 +173,14 @@ const Register = () => {
                 />
               </div>
 
-              <div className="">
-                <Checkbox
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  className="mr-2"
                   onClick={() => setRemember(!remember)}
-                  label="Terms & Condition"
                 />
+                <label htmlFor="terms">Terms & Condition</label>
               </div>
 
               <div>
@@ -182,23 +193,20 @@ const Register = () => {
 
               <input
                 type="submit"
-                value={"Sign Up"}
+                value="Sign Up"
                 className="btn bg-secondary text-white hover:bg-transparent border border-[#FF689A] hover:text-primary"
               />
             </form>
 
-            <div className="divider text-base gro mt-7">Or Sign Up With</div>
+            <div className="divider text-base mt-7">Or Sign Up With</div>
 
             <div className="flex items-center justify-between gap-3 mt-6">
-              <Button
+              <button
                 onClick={() => handleSocialSignIn(googleSignIn)}
-                className="w-full gro capitalize text-base bg-[#FAFAFA] border text-black shadow-none flex gap-3 items-center justify-center"
+                className="w-full text-base bg-[#FAFAFA] border text-black shadow-none flex gap-3 items-center justify-center"
               >
                 <FcGoogle className="text-xl" /> Google
-              </Button>
-              {/* <Button className="w-full gro capitalize text-base bg-[#FAFAFA] border text-black shadow-none flex gap-3 items-center justify-center">
-                <img src={facebook} className="w-[22px] h-[20px]" /> FaceBook
-              </Button> */}
+              </button>
             </div>
           </div>
 
