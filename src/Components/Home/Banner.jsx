@@ -7,9 +7,12 @@ import img2 from "../../assets/banner/1131w-xkDELtpQH94.webp";
 import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
 
 import { initializeApp } from "firebase/app";
+
+
 import Container from "../../Shared/Container";
 import TemplateSlider from '../TemplateSlider/TemplateSlider'
 import "./Banner.css";
+
 
 const Banner = () => {
   return (
@@ -41,12 +44,57 @@ const Banner = () => {
 
             <div className="mt-8 flex flex-wrap gap-6 text-center">
               <Link>
+
+                <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary text-white ">
+
                 <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary hover:bg-secondary text-white ">
+
                   Get Started
                 </button>
               </Link>
 
               <Link>
+
+                <button className="py-3 px-5 rounded font-bold font-roboto text-base border border-primary text-primary hover:bg-primary hover:text-white ">
+                  Browse Templates
+                </button>
+              </Link>
+            </div>
+          </div>
+          <div className="md:w-[600px]">
+            {/* <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={"auto"}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              //   rewind={true}
+              pagination={true}
+              autoplay={{
+                delay: 4000,
+              }}
+              //   speed={20}
+              modules={[EffectCoverflow, Pagination, Autoplay]}
+              className="mySwiper"
+            >
+              <SwiperSlide>
+                <img className="w-1/2" src={img1} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="w-1/2" src={img2} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="" src={img3} alt="" />
+              </SwiperSlide>
+            </Swiper> */}
+
+
                 <div className="h-[50px] border group border-primary rounded group-hover:border-secondary">
                   <button className="py-3 px-5  font-bold font-roboto text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
                     Browse Templates
@@ -56,11 +104,11 @@ const Banner = () => {
             </div>
           </div>
           <div className="md:w-[500px]">
+
             <video width="500" autoPlay muted loop>
               <source src={video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-
           </div>
         </div>
       </section>
