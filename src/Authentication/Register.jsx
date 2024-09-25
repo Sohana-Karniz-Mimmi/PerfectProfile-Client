@@ -216,7 +216,7 @@ const Register = () => {
               <div className="-mt-2 md:-mt-2">
                 <input
                   type="submit"
-                  value="Sign Up"
+                  value="Register"
                   className="btn w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary"
                 />
               </div>
