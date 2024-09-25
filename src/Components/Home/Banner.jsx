@@ -17,7 +17,7 @@ const Banner = () => {
       <section className="lg:pb-28 pb-16 bg-white">
         <Container>
           <div className="flex lg:flex-row flex-col gap-1">
-            <div className="lg:w-1/2 w-full flex flex-col justify-center border">
+            <div className="lg:w-1/2 w-full flex flex-col justify-center">
               <h1 className="lg:text-5xl md:text-4xl text-2xl lg:text-left text-center font-extrabold font-lora">
                 Make your professional
                 <br />
@@ -54,7 +54,7 @@ const Banner = () => {
                 </Link>
               </div>
             </div>
-            <div className="lg:w-1/2 w-full flex items-center justify-center border">
+            <div className="lg:w-1/2 w-full flex items-center justify-center">
               <video width="500" autoPlay muted loop>
                 <source src={video} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -63,10 +63,10 @@ const Banner = () => {
           </div>
         </Container>
       </section>
-      <section className="thing pb-60 bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
+      <section className="thing relative pb-60 bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>
-          <div className="absolute z-10 -mt-24  flex flex-col justify-center items-center space-y-4">
-            <h1 className="text-5xl font-bold text-center font-lora text-white">
+          <div className="absolute z-10 lg:-mt-28 -mt-32  flex flex-col justify-center items-center space-y-4">
+            <h1 className="lg:text-5xl text-3xl font-extrabold text-center font-lora text-white">
               Templates to win recruiters over
             </h1>
             <p className="font-montserrat text-center lg:w-3/4 w-full">
@@ -76,9 +76,11 @@ const Banner = () => {
             </p>
           </div>
         </Container>
-        <div className="mt-20 px-8">
-          <TemplateSlider></TemplateSlider>
-        </div>
+       
+          <div className="lg:mt-20 md:mt-8 mt-20 px-4">
+            <TemplateSlider></TemplateSlider>
+          </div>
+       
       </section>
       <section></section>
     </>
