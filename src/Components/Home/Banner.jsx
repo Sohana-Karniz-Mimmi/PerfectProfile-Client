@@ -8,11 +8,9 @@ import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
 
 import { initializeApp } from "firebase/app";
 
-
 import Container from "../../Shared/Container";
 import TemplateSlider from "../TemplateSlider/TemplateSlider";
 import "./Banner.css";
-
 
 const Banner = () => {
   return (
@@ -79,11 +77,10 @@ const Banner = () => {
             </p>
           </div>
         </Container>
-       
-          <div className="lg:mt-20 md:mt-8 mt-20 px-4">
-            <TemplateSlider></TemplateSlider>
-          </div>
-       
+
+        <div className="lg:mt-20 md:mt-8 mt-20 px-4">
+          <TemplateSlider></TemplateSlider>
+        </div>
       </section>
       <section></section>
     </>

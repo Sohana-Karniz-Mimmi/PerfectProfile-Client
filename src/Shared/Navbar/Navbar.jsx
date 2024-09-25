@@ -4,8 +4,8 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Container from "../Container";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa6";
-import SignUp from "../../Authentication/SignUp";
-import SignIn from "../../Authentication/SignIn";
+// import SignUp from "../../Authentication/SignUp";
+// import SignIn from "../../Authentication/SignIn";
 import Modal from "../../Authentication/Modal";
 
 const Navbar = () => {
