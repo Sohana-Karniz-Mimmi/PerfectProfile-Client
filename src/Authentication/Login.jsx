@@ -166,7 +166,7 @@ const Login = () => {
                 <input
                   type="submit"
                   value="Login"
-                  className="btn w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary"
+                  className="btn w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary font-montserrat"
                 />
               </div>
               <span>
@@ -180,7 +180,7 @@ const Login = () => {
               </span>
             </form>
 
-            <div className="bg-gradient-to-r from-[#77E4C8] from-10% via-[#36C2CE] via-50% via-[#478CCF] to-[#6439FF] to-96%  py-8 w-full mt-5">
+            <div className="bg-gradient-to-r from-[#64c3ab] to-[#3da2be]  py-8 w-full mt-5">
               <p className="text-center text-white mb-6">
                 SignIn with other account
               </p>

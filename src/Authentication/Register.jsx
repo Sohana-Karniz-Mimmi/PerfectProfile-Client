@@ -217,7 +217,7 @@ const Register = () => {
                 <input
                   type="submit"
                   value="Register"
-                  className="btn w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary"
+                  className="btn w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary font-montserrat"
                 />
               </div>
               <span>
@@ -231,25 +231,28 @@ const Register = () => {
               </span>
             </form>
 
-            <div className="bg-gradient-to-r from-[#77E4C8] from-10% via-[#36C2CE] via-50% via-[#478CCF] to-[#6439FF] to-96%  py-8 w-full mt-4">
+            <div className="bg-gradient-to-r from-[#64c3ab] to-[#3da2be]  py-8 w-full mt-4">
               <p className="text-center text-white mb-6">
                 SignUp with other account
               </p>
               <div className="flex justify-center space-x-4">
-                <button
-                  onClick={() => handleSocialSignIn(googleSignIn)}
-                  className="btn btn-circle "
-                >
-                  <FaGoogle className="text-blue-600 bg-white rounded-full" />
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button
+                    onClick={() => handleSocialSignIn(googleSignIn)}
+                    className="btn border-none btn-circle hover:bg-transparent bg-transparent shadow-2xl"
+                  >
+                    <FaGoogle className="text-white" />
+                  </button>
+                </div>
+
+                <button className="btn btn-circle">
+                  <FaFacebook className=" text-blue-600 rounded-full bg-white bg-opacity-20 backdrop-blur-lg shadow-[0_0_10px_4px_rgba(0,0,0,0.1)]" />
                 </button>
                 <button className="btn btn-circle">
-                  <FaFacebook className=" text-blue-600 rounded-full bg-white" />
-                </button>
-                <button className="btn btn-circle">
-                  <FaTwitter className="text-blue-600 bg-white rounded-full" />
+                  <FaTwitter className="text-blue-600 bg-white bg-opacity-20 backdrop-blur-lg shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] rounded-full" />
                 </button>
                 <button className="btn btn-circle ">
-                  <FaLinkedin className="text-blue-600 bg-white rounded-full" />
+                  <FaLinkedin className="text-blue-600 bg-white bg-opacity-20 backdrop-blur-lg shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] rounded-full" />
                 </button>
               </div>
             </div>
