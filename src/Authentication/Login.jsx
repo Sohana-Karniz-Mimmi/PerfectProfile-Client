@@ -185,21 +185,29 @@ const Login = () => {
                 SignIn with other account
               </p>
               <div className="flex justify-center space-x-4">
-                <button
-                  onClick={() => handleSocialSignIn(googleSignIn)}
-                  className="btn btn-circle "
-                >
-                  <FaGoogle className="text-blue-600 bg-white rounded-full" />
-                </button>
-                <button className="btn btn-circle">
-                  <FaFacebook className=" text-blue-600 rounded-full bg-white" />
-                </button>
-                <button className="btn btn-circle">
-                  <FaTwitter className="text-blue-600 bg-white rounded-full" />
-                </button>
-                <button className="btn btn-circle ">
-                  <FaLinkedin className="text-blue-600 bg-white rounded-full" />
-                </button>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button
+                    onClick={() => handleSocialSignIn(googleSignIn)}
+                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                  >
+                    <FaGoogle className="text-white " />
+                  </button>
+                </div>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle border-none  hover:bg-transparent bg-transparent">
+                    <FaFacebook className=" text-white " />
+                  </button>
+                </div>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                    <FaTwitter className="text-blue-600 bg-white rounded-full" />
+                  </button>
+                </div>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent ">
+                    <FaLinkedin className="text-white " />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

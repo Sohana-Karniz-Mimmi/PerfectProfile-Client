@@ -245,15 +245,21 @@ const Register = () => {
                   </button>
                 </div>
 
-                <button className="btn btn-circle">
-                  <FaFacebook className=" text-blue-600 rounded-full bg-white bg-opacity-20 backdrop-blur-lg shadow-[0_0_10px_4px_rgba(0,0,0,0.1)]" />
-                </button>
-                <button className="btn btn-circle">
-                  <FaTwitter className="text-blue-600 bg-white bg-opacity-20 backdrop-blur-lg shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] rounded-full" />
-                </button>
-                <button className="btn btn-circle ">
-                  <FaLinkedin className="text-blue-600 bg-white bg-opacity-20 backdrop-blur-lg shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] rounded-full" />
-                </button>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                    <FaFacebook className=" text-white" />
+                  </button>
+                </div>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                    <FaTwitter className="text-white " />
+                  </button>
+                </div>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle hover:bg-transparent bg-transparent border-none ">
+                    <FaLinkedin className="text-white " />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
