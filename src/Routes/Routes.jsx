@@ -5,7 +5,9 @@ import Home from "../Pages/Home/Home";
 // import SignUp from "../Authentication/SignUp";
 import Contact from "../Pages/Contact/Contact";
 import PrivateRoute from "./PrivateRoute";
-import Modal from "../Authentication/Modal";
+// import Modal from "../Authentication/Modal";
+import Login from "../Authentication/Login";
+import Register from "../Authentication/Register";
 
 const router = createBrowserRouter([
   {
@@ -28,9 +30,17 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      // {
+      //   path: "/modal",
+      //   element: <Modal />,
+      // },
       {
-        path: "/modal",
-        element: <Modal />,
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },
