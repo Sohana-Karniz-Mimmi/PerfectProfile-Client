@@ -16,7 +16,7 @@ const Template1 = ({ data }) => {
     extraCurricularActivities,
   } = data;
   return (
-    <div className="w-[35rem] h-[41rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
+    <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
       <div className="">
         {/* Header - Personal Info */}
         <header className="text-center  bg-blue-200  py-4">
@@ -26,7 +26,7 @@ const Template1 = ({ data }) => {
             {email} | {phone} | {address}
           </p>
         </header>
-        <div className="px-10 py-3 ">
+        <div className="px-7 py-3 ">
           {/* Career Objective */}
           {careerObjective && (
             <section className="mb-1">

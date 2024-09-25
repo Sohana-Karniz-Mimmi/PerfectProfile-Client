@@ -19,15 +19,15 @@ const Template4 = ({ data }) => {
     extraCurricularActivities,
   } = data;
   return (
-    <div className="w-[35rem] h-[41rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
+    <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
       <div className="">
         {/* Header - Personal Info */}
-        <header className="text-center  bg-gray-200  py-4 flex justify-between items-center px-5">
+        <header className="text-center  bg-gray-200 py-3 flex justify-between items-center px-2 lg:px-5">
           <div>
             <h1 className="text-2xl font-bold  uppercase">{name}</h1>
             <p className="font-semibold uppercase">{jobTitle}</p>
           </div>
-          <div className="flex flex-col items-start mt-6">
+          <div className="flex flex-col items-start mt-4 lg:mt-3 text-[11px] font-semibold lg:font-normal lg:text-base">
             <div className="flex items-center justify-center gap-2 ">
               <p>
                 <IoMail />
@@ -46,7 +46,7 @@ const Template4 = ({ data }) => {
             </div>
           </div>
         </header>
-        <div className="px-7 py-3 ">
+        <div className="lg:px-7 px-4 py-3 ">
           {/* Career Objective */}
           {careerObjective && (
             <section className="mb-1">
