@@ -8,7 +8,6 @@ import img3 from "../../assets/banner/hero-image-desktop@2x.webp";
 
 import { initializeApp } from "firebase/app";
 
-
 const Banner = () => {
   return (
     <>
@@ -39,17 +38,20 @@ const Banner = () => {
 
             <div className="mt-8 flex flex-wrap gap-6 text-center">
               <Link>
-                <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary text-white ">Get Started</button>
+                <button className="py-3 px-5 rounded font-bold font-roboto text-base bg-primary text-white ">
+                  Get Started
+                </button>
               </Link>
 
               <Link>
-                <button className="py-3 px-5 rounded font-bold font-roboto text-base border border-primary text-primary hover:bg-primary hover:text-white ">Browse Templates</button>
+                <button className="py-3 px-5 rounded font-bold font-roboto text-base border border-primary text-primary hover:bg-primary hover:text-white ">
+                  Browse Templates
+                </button>
               </Link>
             </div>
           </div>
           <div className="md:w-[600px]">
-
-            <Swiper
+            {/* <Swiper
               effect={"coverflow"}
               grabCursor={true}
               centeredSlides={true}
@@ -79,13 +81,12 @@ const Banner = () => {
               <SwiperSlide>
                 <img className="" src={img3} alt="" />
               </SwiperSlide>
-            </Swiper>
+            </Swiper> */}
 
             <video width="500" autoPlay muted loop>
               <source src={video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-
           </div>
         </div>
       </section>

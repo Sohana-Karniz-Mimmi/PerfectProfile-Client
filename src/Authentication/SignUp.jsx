@@ -5,13 +5,17 @@ import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import bg from "../assets/templateBg.webp";
+import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa6";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-
+  // const handleModal = () => {
+  //   document.getElementById("my_modal_4").close();
+  //   document.getElementById("my_modal_3");
+  // };
   const handleSignUp = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -56,124 +60,115 @@ const SignUp = () => {
 
   return (
     <div
-      className="flex items-center min-h-screen"
-      style={{
-        background: `url(${bg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
+      className=""
+      // style={{
+      //   background: `url(${bg})`,
+      //   backgroundRepeat: "no-repeat",
+      //   backgroundPosition: "center",
+      //   backgroundSize: "cover",
+      // }}
     >
       <Helmet>
         <title>Register | Perfect Profile</title>
       </Helmet>
-      <Container>
-        <div className="md:flex w-full p-5 gap-5 items-center">
-          <div className="md:w-1/2 text-white">
-            <h1 className="text-5xl font-bold text-center my-5">
-              My Cv/Resume Creator
-            </h1>
-            <p>
-              Make a Cv/Resume to define yourself right away. Meet thousands of
-              job announcements and employers by the help of your profile with a
-              private extension, which you can share on all social media
-              platforms.
-            </p>
-            <div className="text-center">
-              <Link to="/signIn">
-                <button className="btn bg-primary hover:bg-blue-500 my-4 text-white">
+
+      <div>
+        <h1 className="font-bold text-3xl text-primary">SignUp From</h1>
+      </div>
+      <div className="w-full p-5 gap-5 items-center ">
+        <div className="">
+          <form onSubmit={handleSignUp}>
+            <div className="border-b-4 my-8 bg-[#F2F5FA]">
+              <label>Name</label>
+              <input
+                className="w-full input bg-[#f2f5fa]"
+                type="text"
+                name="name"
+                id=""
+              />
+            </div>
+            <div className="border-b-4 my-8 bg-[#f2f5fa]">
+              <label>
+                Email
+                <input
+                  className="w-full input bg-[#f2f5fa]"
+                  type="text"
+                  name="email"
+                  id=""
+                />
+              </label>
+            </div>
+            {/* <div className="border-b-4 my-8 bg-[#f2f5fa]">
+              <label>
+                Photo
+                <input
+                  className="w-full input bg-[#f2f5fa]"
+                  type="text"
+                  name="photo"
+                  id=""
+                />
+              </label>
+            </div> */}
+
+            <div className="border-b-4 my-8 bg-[#f2f5fa]">
+              <label>
+                Password
+                <input
+                  className="w-full input bg-[#f2f5fa]"
+                  type="text"
+                  name="password"
+                  id=""
+                />
+              </label>
+            </div>
+            {/* <div className="border-b-4 my-8 bg-[#f2f5fa]">
+              <label>
+                Confirm Password
+                <input
+                  className="w-full bg-[#f2f5fa] input"
+                  type="text"
+                  name="confirmPassword"
+                  id=""
+                />
+              </label>
+            </div> */}
+            <div className="flex items-center gap-4">
+              <div
+                className="btn w-1/3  bg-primary text-white hover:scale-110 hover:bg-secondary"
+                onClick={() => handleModal()}
+              >
+                <input type="submit" value="Register" />
+              </div>
+              <p>
+                All ready have an account?{" "}
+                <Link to="/signIn" className="text-primary font-bold">
                   Login
-                </button>
-              </Link>
+                </Link>
+              </p>
+            </div>
+          </form>
+          <div className="bg-gradient-to-r from-[#77E4C8] from-10% via-[#36C2CE] via-50% via-[#478CCF] to-[#6439FF] to-96%  py-8 mt-12">
+            <p className="text-center text-white mb-6">
+              SignUp with other account
+            </p>
+            <div className="flex justify-center space-x-4">
+              <button className="btn btn-circle">
+                <FaFacebook className=" text-blue-600 rounded-full bg-white" />
+              </button>
+              <button className="btn btn-circle">
+                <FaTwitter className="text-blue-600 bg-white rounded-full" />
+              </button>
+              <button className="btn btn-circle ">
+                <FaGoogle className="text-blue-600 bg-white rounded-full" />
+              </button>
+              <button className="btn btn-circle ">
+                <FaLinkedin className="text-blue-600 bg-white rounded-full" />
+              </button>
             </div>
           </div>
-          <div className="md:w-1/2">
-            <form onSubmit={handleSignUp} className="card-body shadow-xl">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-white">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="name"
-                  className="input input-bordered"
-                  name="name"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-white">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  name="email"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-white">Photo URL</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="photo URL"
-                  className="input input-bordered"
-                  name="photo"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-white">Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  name="password"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-white">
-                    Confirm Password
-                  </span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="Confirm password"
-                  className="input input-bordered"
-                  name="confirmPassword"
-                  required
-                />
-              </div>
-              <div className="flex gap-2 mt-4">
-                <input type="checkbox" />
-                <p className="text-white">Terms & Condition</p>
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn bg-primary hover:bg-blue-500 text-white">
-                  Register
-                </button>
-              </div>
-              <div>
-                <h1 className="text-white">
-                  Already have an account?{" "}
-                  <Link
-                    className="text-teal-100 text-center font-bold"
-                    to="/signIn"
-                  >
-                    Login
-                  </Link>{" "}
-                </h1>
-              </div>
-            </form>
-          </div>
         </div>
-      </Container>
+      </div>
+
       <Toaster />
     </div>
   );
