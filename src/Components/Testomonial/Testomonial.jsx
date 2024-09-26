@@ -106,13 +106,13 @@ const Testimonial = () => {
               <div className=" bottom-0
   right-[15px]
   p-5
-  text-[#211e1e]
+  text-white
   text-[60px]
   z-0
   leading-none
   absolute
   opacity-100
-  bg-[#b2caf4]"><FaQuoteRight /></div>
+  bg-primary"><FaQuoteRight /></div>
             </div>
           </SwiperSlide>
           <SwiperSlide className="flex justify-center items-center border-2 border-gray-200 relative overflow-hidden px-[20px] py-[30px] bg-white">
@@ -142,13 +142,13 @@ const Testimonial = () => {
               <div className=" bottom-0
   right-[15px]
   p-5
-  text-[#211e1e]
+  text-white
   text-[60px]
   z-0
   leading-none
   absolute
   opacity-100
-  bg-[#b2caf4]"><FaQuoteRight /></div>
+  bg-primary"><FaQuoteRight /></div>
             </div>
           </SwiperSlide>
 
