@@ -87,7 +87,7 @@ const Banner = () => {
           </button>
         </div>
       </section> */}
-      <section className="bg-white">
+      <section className=" bg-white">
         <div className="custom-shape-divider-bottom-1727289857">
           <svg
             data-name="Layer 1"
@@ -133,7 +133,7 @@ const Banner = () => {
         <div className="">
           <TemplateSlider></TemplateSlider>
         </div>
-        <div className="flex justify-center items-center py-16">
+        <div className="flex justify-center items-center lg:py-16 py-8">
           <button className="bg-gradient-to-r font-montserrat from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full font-bold shadow-lg transform transition duration-500 hover:scale-105">
             Browse Templates
           </button>
