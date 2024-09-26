@@ -5,6 +5,7 @@ import SignIn from "../Authentication/SignIn";
 import SignUp from "../Authentication/SignUp";
 import Contact from "../Pages/Contact/Contact";
 import PrivateRoute from "./PrivateRoute";
+import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+  },
+  {
+    path: "/resume/edit",
+    element: <ResumeEditPage />,
   },
 ]);
 
