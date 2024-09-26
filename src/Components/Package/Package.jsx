@@ -8,7 +8,7 @@ const Package = () => {
     <Container className="">
       <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:py-12 py-10">
         <div className="space-y-7 card w-[21rem] lg:w-96 px-3">
-          <h1 className="text-5xl font-bold">OUR PRICING</h1>
+          <h1 className="text-4xl font-bold">Our Pricing</h1>
           <p className="text-gray-600">
             In PerfectProfile, users can choose from flexible plans that provide
             full access to professional templates and additional advanced

@@ -1,11 +1,15 @@
 import Package from "../../Components/Package/Package";
+import Container from "../../Shared/Container";
+import Pricing2ndBanner from "./Pricing2ndBanner";
+import PricingBanner from "./PricingBanner";
 
 const Pricing = () => {
     return (
-        <div>
-            
+        <Container>
+             <Pricing2ndBanner></Pricing2ndBanner>           
             <Package></Package>
-        </div>
+            <PricingBanner></PricingBanner>
+        </Container>
     );
 };
 
