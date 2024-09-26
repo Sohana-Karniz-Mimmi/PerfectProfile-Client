@@ -39,7 +39,7 @@ const Login = () => {
               navigate(location.state);
             } else {
               document.getElementById("my_modal_3").close();
-              navigate("/");
+              // navigate("/");
             }
           }, 1000);
         })
