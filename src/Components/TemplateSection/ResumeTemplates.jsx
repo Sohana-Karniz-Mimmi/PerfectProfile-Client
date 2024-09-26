@@ -36,8 +36,8 @@ const ResumeTemplates = () => {
                 <Template2 data = {data[1]} />
                 <Template3 data = {data[2]} />
                 <Template4 data = {data[3]} />
-                <Template5 data = {data[4]} />
-                <Template6 data = {data[5]} />
+                {/* <Template5 data = {data[4]} /> */}
+                {/* <Template6 data = {data[5]} /> */}
                 </>
             )
         }
