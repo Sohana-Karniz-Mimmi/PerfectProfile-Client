@@ -22,7 +22,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
   <button
-    className="prev absolute z-10 left-24 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
+    className="prev absolute z-10 lg:left-24 left-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
     onClick={props.onClick}
   >
     {/* &#10094; */}
@@ -32,7 +32,7 @@ const CustomPrevButton = (props) => (
 
 const CustomNextButton = (props) => (
   <button
-    className="next absolute z-10 right-24 top-1/2 transform -translate-y-1/2 bg-primary rounded-full p-2 shadow-md"
+    className="next absolute z-10 lg:right-24 right-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
     onClick={props.onClick}
   >
     {/* &#10095; */}
@@ -55,11 +55,15 @@ export default function App() {
         // }}
         breakpoints={{
           320: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 10,
           },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 30,
           },
         }}
@@ -67,22 +71,64 @@ export default function App() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={Tem1} alt="" />
+          <div className="relative group">
+            <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+              <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Use Template
+              </button>
+            </div>
+            <img src={Tem1} alt="" />
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Tem2} alt="" />
+          <div className="relative group">
+            <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+              <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Use Template
+              </button>
+            </div>
+            <img src={Tem2} alt="" />
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Tem3} alt="" />
+          <div className="relative group">
+            <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+              <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Use Template
+              </button>
+            </div>
+            <img src={Tem3} alt="" />
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Tem4} alt="" />
+          <div className="relative group">
+            <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+              <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Use Template
+              </button>
+            </div>
+            <img src={Tem4} alt="" />
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Tem5} alt="" />
+          <div className="relative group">
+            <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+              <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Use Template
+              </button>
+            </div>
+            <img src={Tem5} alt="" />
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Tem6} alt="" />
+          <div className="relative group">
+            <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+              <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Use Template
+              </button>
+            </div>
+            <img src={Tem6} alt="" />
+          </div>
         </SwiperSlide>
 
         {/* Custom navigation buttons */}
