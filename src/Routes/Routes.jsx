@@ -43,12 +43,14 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      
     ],
   },
   {
     path: "/resume/edit",
     element: <ResumeEditPage />,
   },
+  
 ]);
 
 export default router;
