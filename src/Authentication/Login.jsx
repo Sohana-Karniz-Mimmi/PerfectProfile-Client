@@ -3,6 +3,8 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import useAuth from "../Hook/useAuth";
+import { Link } from "react-router-dom";
+import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Login = () => {
   const { signIn, googleSignIn } = useAuth();
@@ -78,13 +80,11 @@ const Login = () => {
   return (
     <div>
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box text-black bg-transparent relative h-[700px] w-[600px]">
-          <div className="bg-white h-[620px] rounded-lg p-10">
-            <div className="flex flex-col items-center justify-center">
-              <h1 className="text-2xl font-semibold mb-2">
-                Great to have you back!
-              </h1>
-              <p className="text-lg font-medium text-center w-[300px]">
+        <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full">
+          <div className="bg-white h-[580px] md:h-[575px] rounded-lg p-10">
+            <div>
+              <h1 className="text-2xl font-semibold mb-2">Login</h1>
+              {/* <p className="text-lg font-medium text-center w-[300px]">
                 Great to have you back!{" "}
                 <span
                   onClick={handleModal}
@@ -92,12 +92,12 @@ const Login = () => {
                 >
                   Sign Up
                 </span>
-              </p>
+              </p> */}
             </div>
 
             <form
               onSubmit={handleSubmit}
-              className="w-full mt-10 flex flex-col gap-5"
+              className="w-full mt-4 flex flex-col gap-5"
             >
               <div className="relative">
                 <label
@@ -158,28 +158,57 @@ const Login = () => {
               </div>
 
               {remember ? (
-                <p></p>
+                <></>
               ) : (
                 <p className="text-red-800 font-semibold">{errorText}</p>
               )}
-
-              <button
-                type="submit"
-                className="btn bg-secondary text-white hover:bg-transparent hover:text-primary hover:border-secondary py-2 px-4 rounded"
-              >
-                Sign In
-              </button>
+              <div className="-mt-5 md:-mt-3">
+                <input
+                  type="submit"
+                  value="Login"
+                  className="btn w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary font-montserrat"
+                />
+              </div>
+              <span>
+                Don't have an account?
+                <Link
+                  onClick={() => handleModal()}
+                  className="text-blue-500 cursor-pointer"
+                >
+                  Register
+                </Link>
+              </span>
             </form>
 
-            <div className="divider text-base mt-7">Or Sign In With</div>
-
-            <div className="flex items-center justify-center gap-3 mt-6">
-              <button
-                onClick={() => handleSocialSignIn(googleSignIn)}
-                className="w-full capitalize text-base bg-gray-100 border text-black shadow-none flex gap-3 items-center justify-center py-2 px-4 rounded"
-              >
-                <FcGoogle className="text-xl" /> Google
-              </button>
+            <div className="bg-gradient-to-r from-[#64c3ab] to-[#3da2be]  py-8 w-full mt-5">
+              <p className="text-center text-white mb-6">
+                SignIn with other account
+              </p>
+              <div className="flex justify-center space-x-4">
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button
+                    onClick={() => handleSocialSignIn(googleSignIn)}
+                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                  >
+                    <FaGoogle className="text-white " />
+                  </button>
+                </div>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle border-none  hover:bg-transparent bg-transparent">
+                    <FaFacebook className=" text-white " />
+                  </button>
+                </div>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                    <FaTwitter className="text-blue-600 bg-white rounded-full" />
+                  </button>
+                </div>
+                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent ">
+                    <FaLinkedin className="text-white " />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
