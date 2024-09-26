@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Container from "../Container";
 import toast from "react-hot-toast";
-import { FaUser } from "react-icons/fa6";
-
+import { FaUser } from "react-icons/fa6"
 import useAuth from "../../Hook/useAuth";
 import Login from "../../Authentication/Login";
 import Register from "../../Authentication/Register";
@@ -60,7 +59,7 @@ const Navbar = () => {
         </NavLink>{" "}
       </li>
 
-      <li>
+      {/* <li>
         {" "}
         <NavLink
           className={({ isActive }) =>
@@ -73,9 +72,9 @@ const Navbar = () => {
           {" "}
           Resources{" "}
         </NavLink>{" "}
-      </li>
+      </li> */}
 
-      {/* <li>
+      <li>
         {" "}
         <NavLink
           className={({ isActive }) =>
@@ -88,7 +87,7 @@ const Navbar = () => {
           {" "}
           About Us
         </NavLink>{" "}
-      </li> */}
+      </li>
 
       <li>
         {" "}
