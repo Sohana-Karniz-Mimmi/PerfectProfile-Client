@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home";
 // import SignUp from "../Authentication/SignUp";
 import Contact from "../Pages/Contact/Contact";
 import PrivateRoute from "./PrivateRoute";
+import About from "../Pages/About/About";
 // import Modal from "../Authentication/Modal";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
@@ -18,22 +19,15 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      // {
-      //   path: "/signIn",
-      //   element: <SignIn />,
-      // },
-      // {
-      //   path: "/SignUp",
-      //   element: <SignUp />,
-      // },
       {
         path: "/contact",
         element: <Contact />,
       },
-      // {
-      //   path: "/modal",
-      //   element: <Modal />,
-      // },
+      {
+        path: "/about",
+        element: <About />,
+      
+       },
       {
         path: "/login",
         element: <Login />,
