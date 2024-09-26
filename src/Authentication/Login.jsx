@@ -1,10 +1,12 @@
 import { FcGoogle } from "react-icons/fc";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+
 import useAuth from "../Hook/useAuth";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const { signIn, googleSignIn } = useAuth();
@@ -68,7 +70,7 @@ const Login = () => {
             navigate(location.state);
           } else {
             document.getElementById("my_modal_3").close();
-            // navigate("/");
+            navigate("/");
           }
         }, 1000);
       })
@@ -79,6 +81,7 @@ const Login = () => {
 
   return (
     <div>
+      <Toaster />
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full">
           <div className="bg-white h-[580px] md:h-[575px] rounded-lg p-10">
@@ -200,7 +203,7 @@ const Login = () => {
                 </div>
                 <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
-                    <FaTwitter className="text-blue-600 bg-white rounded-full" />
+                    <FaTwitter className="text-white rounded-full" />
                   </button>
                 </div>
                 <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">

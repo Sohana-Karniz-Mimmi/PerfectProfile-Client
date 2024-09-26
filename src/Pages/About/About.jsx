@@ -57,13 +57,13 @@ const About = () => {
                     </div>
 
                     <AboutCompany img={certified} heading={`Our mission`} text={`We empower job seekers with the tools they need to achieve their career goals. Our team of experts is dedicated to helping you every step of the way, from providing tools to create a showstopping resume and cover letter to offering professional interview tips and career guidance.`} />
-                    <div className="md:flex justify-between items-center">
-                        <div className="md:max-w-[580px]">
+                    <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-4">
+                        <div className="xl:max-w-[580px] md:max-w-[380px]">
                             <img src={vision} alt="" />
                         </div>
                         <div>
                             <h2 className="text-2xl font-bold">Our vision</h2>
-                            <p className="max-w-[547px] text-[17px] mt-6">We envision a world where every job seeker has access to the resources they need to succeed, and we are committed to being the driving force behind this change. Our goal is to help job seekers present their skills and experience in the best possible light, giving them the confidence and competitive edge to land their dream job.</p>
+                            <p className="xl:max-w-[547px] md:max-w-[380px] text-sm md:text-[17px] md:mb-0 mb-6 mt-6">We envision a world where every job seeker has access to the resources they need to succeed, and we are committed to being the driving force behind this change. Our goal is to help job seekers present their skills and experience in the best possible light, giving them the confidence and competitive edge to land their dream job.</p>
                         </div>
 
                     </div>

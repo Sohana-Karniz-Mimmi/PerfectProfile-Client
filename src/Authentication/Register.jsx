@@ -1,11 +1,11 @@
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import useAuth from "../Hook/useAuth";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 // const key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
 // const apiUrl = `https://api.imgbb.com/1/upload?key=${key}`;
@@ -15,7 +15,9 @@ const Register = () => {
   const navigate = useNavigate();
   const [errorText, setErrorText] = useState("");
   const [passInt, setPassInt] = useState("");
+  const [passInt2, setPassInt2] = useState("");
   const [eye, setEye] = useState(false);
+  const [eye2, setEye2] = useState(false);
   const [remember, setRemember] = useState(false);
 
   const handleModal = () => {
@@ -50,16 +52,21 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         // Update user profile with name and photo URL
-        // updateUserProfile(name, photo)
-        //   .then(() => {
-        //     toast.success("Successfully signed up!");
-        //     navigate(from, { replace: true });
-        //   })
-        //   .catch((error) => {
-        //     console.error("Error updating profile:", error);
-        //     toast.error("Profile update failed.");
-        //   });
+
+        toast.success("Successfully signed up!");
+        document.getElementById("my_modal_4").close();
+
+        setTimeout(() => {
+          if (location.state) {
+            document.getElementById("my_modal_4").close();
+            navigate(location.state);
+          } else {
+            document.getElementById("my_modal_4").close();
+            navigate("/");
+          }
+        }, 1000);
       })
+
       .catch((error) => {
         console.error("Error signing up user:", error);
         toast.error("Sign up failed.");
@@ -146,6 +153,7 @@ const Register = () => {
                   id="password"
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  onChange={(e) => setPassInt2(e.target.value)}
                 />
                 {eye ? (
                   <IoMdEyeOff
@@ -162,7 +170,7 @@ const Register = () => {
               <div className="relative">
                 {eye ? (
                   <IoMdEyeOff
-                    onClick={() => setEye(!eye)}
+                    onClick={() => setEye(!eye2)}
                     className="cursor-pointer text-2xl absolute z-10 top-[36px]  right-2"
                   />
                 ) : (
