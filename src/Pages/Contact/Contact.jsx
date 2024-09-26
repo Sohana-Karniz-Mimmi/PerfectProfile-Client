@@ -159,7 +159,7 @@ const Contact = () => {
             </div>
             <div className="lg:w-1/2 w-full px-4 space-y-4 border">
               <h2 className="font-montserrat text-3xl font-bold">Get in touch</h2>
-              <p className="font-lora">We believe sustainability is vitally important.</p>
+              <p className="font-lora font-semibold">We believe sustainability is vitally important.</p>
               <p className="font-montserrat">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea natus placeat et non esse beatae ipsa, ipsum modi voluptates asperiores nam doloribus minus repudiandae at ut veritatis tempore dolores? Quia, labore suscipit!</p>
             </div>
           </div>
