@@ -28,7 +28,7 @@ const Team = () => {
                             <div className="mx-auto mb-10 w-full max-w-[370px]">
                                 <div className="relative overflow-hidden rounded-lg">
                                     <img
-                                        src={team1}
+                                        src="https://img.freepik.com/premium-photo/woman-wearing-glasses-black-jacket-with-her-arms-crossed_1081342-44597.jpg?size=626&ext=jpg"
                                         className="w-full h-[362px] object-cover"
                                     />
                                     <div className="absolute bottom-5 left-0 w-full text-center">
@@ -36,9 +36,9 @@ const Team = () => {
                                             className="relative mx-5 overflow-hidden rounded-lg bg-white dark:bg-dark-2 py-5 px-3"
                                         >
                                             <h3 className="text-dark dark:text-black text-base font-semibold">
-                                                Sohana Sheikh
+                                                Shohana Karniz
                                             </h3>
-                                            <p className="text-body-color dark:text-[#909397] text-xs">Web Developer</p>
+                                            <p className="text-body-color dark:text-[#909397] text-xs">Co-founder and CEO</p>
                                             <div>
                                                 <span className="absolute left-0 bottom-0">
                                                     <svg
@@ -218,7 +218,7 @@ const Team = () => {
                             <div className="mx-auto mb-10 w-full max-w-[370px]">
                                 <div className="relative overflow-hidden rounded-lg">
                                     <img
-                                        src={team2}
+                                        src="https://img.freepik.com/premium-photo/smiling-young-male-professional-standing-with-his-arms-crossed-making-eye-contact-against_951300-216.jpg?semt=ais_hybrid"
                                         className="w-full h-[362px] object-cover"
                                     />
                                     <div className="absolute bottom-5 left-0 w-full text-center">
@@ -228,7 +228,7 @@ const Team = () => {
                                             <h3 className="text-dark dark:text-black text-base font-semibold">
                                                 Glorius Cristian
                                             </h3>
-                                            <p className="text-body-color dark:text-[#909397] text-xs">Back-end Developer</p>
+                                            <p className="text-body-color dark:text-[#909397] text-xs">Content Manager / Writer</p>
                                             <div>
                                                 <span className="absolute left-0 bottom-0">
                                                     <svg
@@ -408,7 +408,7 @@ const Team = () => {
                             <div className="mx-auto mb-10 w-full max-w-[370px]">
                                 <div className="relative overflow-hidden rounded-lg">
                                     <img
-                                        src={team3}
+                                        src='https://img.freepik.com/premium-photo/confident-businesswoman-portrait-with-crossed-arm-with-smile-white-background-suit-wearing_1210214-1494.jpg?size=626&ext=jpg'
                                         className="w-full h-[362px] object-cover"
                                     />
                                     <div className="absolute bottom-5 left-0 w-full text-center">
@@ -416,9 +416,9 @@ const Team = () => {
                                             className="relative mx-5 overflow-hidden rounded-lg bg-white dark:bg-dark-2 py-5 px-3"
                                         >
                                             <h3 className="text-dark dark:text-black text-base font-semibold">
-                                            Jane Suttherland
+                                            Afreeda Khan
                                             </h3>
-                                            <p className="text-body-color dark:text-[#909397] text-xs">Content Manager / Writer</p>
+                                            <p className="text-body-color dark:text-[#909397] text-xs">Co-Founder and CMO</p>
                                             <div>
                                                 <span className="absolute left-0 bottom-0">
                                                     <svg
@@ -598,7 +598,7 @@ const Team = () => {
                             <div className="mx-auto mb-10 w-full max-w-[370px]">
                                 <div className="relative overflow-hidden rounded-lg">
                                     <img
-                                        src={team4}
+                                        src="https://img.freepik.com/premium-photo/man-suit-with-blue-shirt-glasses_1268911-264.jpg?semt=ais_hybrid"
                                         className="w-full h-[362px] object-cover"
                                     />
                                     <div className="absolute bottom-5 left-0 w-full text-center">
