@@ -3,7 +3,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import Container from "../Container";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa6";
-import { Button } from "@material-tailwind/react";
 import useAuth from "../../Hook/useAuth";
 import Login from "../../Authentication/Login";
 import Register from "../../Authentication/Register";
@@ -185,14 +184,14 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="flex gap-5">
-                <Button
+                <button
                   onClick={() =>
                     document.getElementById("my_modal_3").showModal()
                   }
                   className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-gray-500 px-5 rounded-full"
                 >
                   <FaUser className="text-sm"></FaUser>Log In
-                </Button>
+                </button>
                 <Link to={`/createResume`}>
                   <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-full">
                     Create My Resume
