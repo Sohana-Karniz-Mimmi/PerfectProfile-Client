@@ -88,7 +88,7 @@ const Register = () => {
         <title>Register | Perfect Profile</title>
       </Helmet>
       <dialog id="my_modal_4" className="modal">
-        <div className="modal-box text-black bg-transparent !shadow-none relative h-full w-full">
+        <div className="modal-box text-black bg-transparent !shadow-none relative h-full w-full font-montserrat">
           <div className="bg-white h-[695px] md:h-[680px] rounded-lg p-5 !overflow-hidden">
             <div>
               <h1 className="text-2xl font-semibold">Register Form</h1>

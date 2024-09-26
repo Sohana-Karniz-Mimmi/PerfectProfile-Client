@@ -2,8 +2,20 @@ import React from "react";
 import Container from "../../Shared/Container";
 import contact from "../../assets/contact.jpg";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
-import { FaEnvelope, FaPhone, FaRocketchat } from "react-icons/fa6";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaLinkedin,
+  FaPhone,
+  FaRocketchat,
+  FaTwitter,
+  FaX,
+  FaYoutube,
+} from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import "./Contact.css";
+import toast from "react-hot-toast";
+// import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const {
@@ -12,12 +24,27 @@ const Contact = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // You can handle form submission here, e.g., send data to API
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+
+    // Your EmailJS service credentials
+    const serviceId = "service_cknoetd";
+    const templateId = "template_2qxk2q7";
+    const userId = "1DqOD6ZUMrca9CdZG";
+
+    emailjs.send(serviceId, templateId, data, userId).then(
+      (result) => {
+        toast.success("Email sent successfully!");
+        e.target.reset();
+      },
+      (error) => {
+        toast.error("Failed to send email. Please try again later.");
+        console.error(error.text);
+      }
+    );
   };
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       <section
         className="lg:py-52 py-16 bg-primary relative"
         style={{
@@ -28,7 +55,7 @@ const Contact = () => {
         }}
       >
         {/* Opacity overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-75"></div>
 
         <Container>
           <div className="flex justify-center items-center relative">
@@ -40,7 +67,7 @@ const Contact = () => {
       </section>
       <Container>
         <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 lg:-mt-24 -mt-8 z-50">
-          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
+          <div className=" p-6 flex flex-col  items-center  h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
             <FaMapMarkerAlt className="text-3xl text-primary" />
             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
               Our main office
@@ -49,7 +76,7 @@ const Contact = () => {
               117/A, Rangs Bhaban, Bijoy Sharani, Tejgaon, Dhaka-1215
             </p>
           </div>
-          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
+          <div className=" p-6 flex flex-col  items-center h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
             <FaPhoneAlt className="text-3xl text-primary" />
             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
               Phone number
@@ -59,7 +86,7 @@ const Contact = () => {
               888-4567-9845 - Toll free
             </p>
           </div>
-          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
+          <div className=" p-6 flex flex-col  items-center h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
             <FaRocketchat className="text-3xl text-primary" />
             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
               Live chat
@@ -68,7 +95,7 @@ const Contact = () => {
               Get real-time assistance and answers to your questions quickly.
             </p>
           </div>
-          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
+          <div className=" p-6 flex flex-col  items-center  h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
             <FaEnvelope className="text-3xl text-primary" />
             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
               Email
@@ -78,10 +105,12 @@ const Contact = () => {
             </p>
           </div>
         </section>
-        <section className="py-12">
-          <div className="flex lg:flex-row flex-col-reverse justify-between gap-8">
+        <section className="py-20 ">
+          <div className="flex lg:flex-row flex-col-reverse justify-between gap-12">
             <div className="lg:w-1/2 w-full">
               <form
+                action="https://getform.io/f/akkgqgwa"
+                method="POST"
                 onSubmit={handleSubmit(onSubmit)}
                 className="font-montserrat pr-4"
               >
@@ -95,7 +124,7 @@ const Contact = () => {
                   <input
                     id="name"
                     {...register("name", { required: "Name is required" })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
                     placeholder="Enter your name"
                   />
                   {errors.name && (
@@ -116,7 +145,7 @@ const Contact = () => {
                     id="email"
                     type="email"
                     {...register("email", { required: "Email is required" })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
                     placeholder="Enter your email"
                   />
                   {errors.email && (
@@ -138,7 +167,7 @@ const Contact = () => {
                     {...register("message", {
                       required: "Message is required",
                     })}
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
                     placeholder="Enter your message"
                     rows="5"
                   />
@@ -151,18 +180,38 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="bg-primary text-white w-full py-2 px-4 rounded"
+                  className="bg-primary text-white w-full py-2 font-semibold px-4 rounded"
                 >
                   Submit
                 </button>
               </form>
             </div>
-            <div className="lg:w-1/2 w-full px-4 space-y-4 border">
-              <h2 className="font-montserrat text-3xl font-bold">Get in touch</h2>
-              <p className="font-lora font-semibold">We believe sustainability is vitally important.</p>
-              <p className="font-montserrat">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea natus placeat et non esse beatae ipsa, ipsum modi voluptates asperiores nam doloribus minus repudiandae at ut veritatis tempore dolores? Quia, labore suscipit!</p>
+            <div className="lg:w-1/2 w-full p-6 space-y-4 flex flex-col justify-between border">
+              <div className="space-y-4">
+                <h2 className="font-montserrat text-3xl font-bold">
+                  Get in touch
+                </h2>
+                <p className="font-lora font-semibold">
+                  We believe sustainability is vitally important.
+                </p>
+                <p className="font-montserrat">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea
+                  natus placeat et non esse beatae ipsa, ipsum modi voluptates
+                  asperiores nam doloribus minus repudiandae at ut veritatis
+                  tempore dolores? Quia, labore suscipit!
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <FaFacebook className="text-2xl text-primary"></FaFacebook>
+                <FaLinkedin className="text-2xl text-primary"></FaLinkedin>
+                <FaX className="text-2xl text-primary"></FaX>
+                <FaYoutube className="text-2xl text-primary"></FaYoutube>
+              </div>
             </div>
           </div>
+        </section>
+        <section>
+          <div className="moving-dashed-line"></div>
         </section>
       </Container>
     </div>
