@@ -16,10 +16,11 @@ const Testimonial = () => {
 
   return (
     <Container>
-      <div className="max-w-7xl items-end justify-center sm:flex sm:pe-6 lg:pe-8">
-        <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+      <div className="flex flex-col justify-center items-center space-y-4">
+        <h2 className="lg:text-5xl text-center md:text-4xl text-3xl font-bold font-lora text-black">
           Your Success, Our Inspiration
         </h2>
+        <p className="lg:w-3/4 w-full text-center md:text-lg text-base font-montserrat">Every success story fuels our passion. We’re inspired by the achievements of our users and proud to be a part of their journey.</p>
       </div>
 
       <div className="md:flex justify-between items-center md:mt-16 mt-8">
