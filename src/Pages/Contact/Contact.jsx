@@ -4,6 +4,7 @@ import contact from "../../assets/contact.jpg";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { FaEnvelope, FaPhone, FaRocketchat } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const {
@@ -18,6 +19,9 @@ const Contact = () => {
   };
   return (
     <div className="min-h-screen">
+       <Helmet>
+                <title>Contact Us- PerfectProfile</title>
+            </Helmet>
       <section
         className="lg:py-52 py-16 bg-primary relative"
         style={{

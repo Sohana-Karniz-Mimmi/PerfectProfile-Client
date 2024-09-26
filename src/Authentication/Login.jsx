@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn, googleSignIn } = useAuth();
@@ -81,6 +82,9 @@ const Login = () => {
 
   return (
     <div>
+       <Helmet>
+                <title>Login - PerfectProfile</title>
+            </Helmet>
       <Toaster />
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full">
