@@ -59,7 +59,7 @@ const Navbar = () => {
         </NavLink>{" "}
       </li>
 
-      <li>
+      {/* <li>
         {" "}
         <NavLink
           className={({ isActive }) =>
@@ -72,9 +72,9 @@ const Navbar = () => {
           {" "}
           Resources{" "}
         </NavLink>{" "}
-      </li>
+      </li> */}
 
-      {/* <li>
+      <li>
         {" "}
         <NavLink
           className={({ isActive }) =>
@@ -87,7 +87,7 @@ const Navbar = () => {
           {" "}
           About Us
         </NavLink>{" "}
-      </li> */}
+      </li>
 
       <li>
         {" "}

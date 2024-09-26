@@ -1,6 +1,6 @@
 const AboutCompany = ({text, heading, img}) => {
     return (
-        <div className="flex justify-between items-center">
+        <div className="md:flex justify-between items-center">
             <div>
                 <h2 className="text-2xl font-bold">{heading}</h2>
                 <p className="max-w-[547px] text-[17px] mt-6">{text}</p>

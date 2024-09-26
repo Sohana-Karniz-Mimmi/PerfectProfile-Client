@@ -1,12 +1,15 @@
 import { Helmet } from "react-helmet-async";
 import teamImg from '../../assets/Images/About/team.jpg'
-import city from '../../assets/Images/About/city.jpeg'
+import vision from '../../assets/Images/About/our-vision.png'
+import mission from '../../assets/Images/About/our-mission.png'
+import certified from '../../assets/Images/About/certified-professionals.png'
 import { Link, ScrollRestoration } from "react-router-dom";
 import Team from './Team';
 import AboutCompany from "./AboutCompany";
 import Container from "../../Shared/Container";
 import Question from "./Question";
 import ResumeAbout from "./ResumeAbout";
+
 
 const About = () => {
     return (
@@ -53,10 +56,10 @@ const About = () => {
                         <p className="lg:w-[623px] lg:text-[16px] md:w-[550px] text-sm  w-80 mx-auto ">We provide the best online resume builder and free expert career advice to guide you through the recruitment process to land your dream job.</p>
                     </div>
 
-                    <AboutCompany img={`https://www.myperfectresume.com/wp-content/uploads/2024/02/certified-professionals.png`} heading={`Our mission`} text={`We empower job seekers with the tools they need to achieve their career goals. Our team of experts is dedicated to helping you every step of the way, from providing tools to create a showstopping resume and cover letter to offering professional interview tips and career guidance.`} />
-                    <div className="flex justify-between items-center">
+                    <AboutCompany img={certified} heading={`Our mission`} text={`We empower job seekers with the tools they need to achieve their career goals. Our team of experts is dedicated to helping you every step of the way, from providing tools to create a showstopping resume and cover letter to offering professional interview tips and career guidance.`} />
+                    <div className="md:flex justify-between items-center">
                         <div className="md:max-w-[580px]">
-                            <img src="https://www.myperfectresume.com/wp-content/uploads/2024/02/our-vision.png" alt="" />
+                            <img src={vision} alt="" />
                         </div>
                         <div>
                             <h2 className="text-2xl font-bold">Our vision</h2>
@@ -64,7 +67,7 @@ const About = () => {
                         </div>
 
                     </div>
-                    <AboutCompany img={`https://www.myperfectresume.com/wp-content/uploads/2024/02/our-mission.png`} heading={`Certified Professional Resume Writers (CPRW)`} text={`At MyPerfectResume, we take pride in our commitment to providing you with the most reliable and up-to-date career advice and job search resources. Our dedication to excellence is reflected in our rigorous editorial process. Learn more about our editorial process and the standards we uphold to ensure the quality of our content.`} />
+                    <AboutCompany img={mission} heading={`Certified Professional Resume Writers (CPRW)`} text={`At MyPerfectResume, we take pride in our commitment to providing you with the most reliable and up-to-date career advice and job search resources. Our dedication to excellence is reflected in our rigorous editorial process. Learn more about our editorial process and the standards we uphold to ensure the quality of our content.`} />
 
                     {/* Button */}
                     <div className="relative z-10 text-center !mt-16">
