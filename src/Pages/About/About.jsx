@@ -5,6 +5,8 @@ import { Link, ScrollRestoration } from "react-router-dom";
 import Team from './Team';
 import AboutCompany from "./AboutCompany";
 import Container from "../../Shared/Container";
+import Question from "./Question";
+import ResumeAbout from "./ResumeAbout";
 
 const About = () => {
     return (
@@ -76,22 +78,27 @@ const About = () => {
                 <Team></Team>
 
                 {/* Get In Touch */}
-                <div className="-mx-4 flex flex-wrap">
+                <div className="">
                     <div className="w-full px-4">
                         <div className="mx-auto mb-[60px] text-center">
 
                             <h2 className="mb-3 text-3xl leading-[1.2] font-bold sm:text-4xl md:text-[40px]"
                             >
-                               Do you have any questions? We are here for you
+                                Do you have any questions? We are here for you
                             </h2>
                             <p className="text-body-color ">
-                            At MyPerfectResume, we’re here to support every step of your career journey. Let’s get in touch!
+                                At MyPerfectResume, we’re here to support every step of your career journey. Let’s get in touch!
                             </p>
                         </div>
                     </div>
+                    <Question />
+
+
+
                 </div>
 
             </Container>
+            <ResumeAbout />
 
         </>
     );

@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Container from "../Container";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa6";
+import useAuth from "../../Hook/useAuth";
+import Login from "../../Authentication/Login";
+import Register from "../../Authentication/Register";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
   const navLinks = (
@@ -109,61 +110,60 @@ const Navbar = () => {
     logOut();
     navigate("/")
       .then(() => {
-        toast.success("Sing Out Successfully");
+        toast.success("Sign Out Successfully");
       })
       .catch((error) => {
-        toast.error("SignOut", error);
+        toast.error("Sign Out Error", error);
       });
   };
 
   return (
     <div className="min-h-[99px] border-b shadow">
-    <Container>
-      <div className=" navbar items-center justify-between barlow-regular min-h-[99px] p-0 md:py-3 py-5">
-        <div className="">
-          <details className="dropdown">
-            <summary className="m-1 btn bg-transparent border-none hover:bg-transparent lg:hidden shadow-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 font-bold"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </summary>
-            <ul className="p-2 shadow dropdown-content z-50 bg-white rounded-box w-52 text-black space-y-2">
-              {navLinks}
-            </ul>
-          </details>
+      <Container>
+        <div className=" navbar items-center justify-between barlow-regular min-h-[99px] p-0 md:py-3 py-5">
+          <div className="">
+            <details className="dropdown">
+              <summary className="m-1 btn bg-transparent border-none hover:bg-transparent lg:hidden shadow-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 font-bold"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </summary>
+              <ul className="p-2 shadow dropdown-content z-50 bg-white rounded-box w-52 text-black space-y-2">
+                {navLinks}
+              </ul>
+            </details>
 
-          <Link
-            to={"/"}
-            className="font-bold text-lg md:text-3xl gap-3 flex items-center"
-          >
-            {/* <img className="md:w-12 md:h-10 w-7 h-7 relative" src={logo} alt="" /> */}
-            <span className="">
-              P<span className="">er</span>fect
-              <span className="text-primary">Profile</span>
-            </span>
-          </Link>
+            <Link
+              to={"/"}
+              className="font-bold text-lg md:text-3xl gap-3 flex items-center"
+            >
+              {/* <img className="md:w-12 md:h-10 w-7 h-7 relative" src={logo} alt="" /> */}
+              <span className="">
+                P<span className="">er</span>fect
+                <span className="text-primary">Profile</span>
+              </span>
+            </Link>
 
-          {/* Nav Menu */}
-          <div className="navbar-center hidden ml-8 lg:flex">
-            <ul className="menu-horizontal space-x-5 ">{navLinks}</ul>
+            {/* Nav Menu */}
+            <div className="navbar-center hidden ml-8 lg:flex">
+              <ul className="menu-horizontal space-x-5 ">{navLinks}</ul>
+            </div>
           </div>
-        </div>
 
-        {/* NavEnds */}
-        <div className="">
-          {user ? (
-            <>
+          {/* Right Section (Login/Logout Buttons) */}
+          <div className="">
+            {user ? (
               <div className="flex items-center gap-2">
                 <div
                   className="btn flex items-center btn-ghost btn-circle avatar tooltip hover:tooltip-open tooltip-bottom text-white"
@@ -182,30 +182,32 @@ const Navbar = () => {
                   Log Out
                 </Link>
               </div>
-            </>
-          ) : (
-            <>
-              <div className=" flex gap-5">
-                <Link
-                  to={`/signIn`}
-                 
+            ) : (
+              <div className="flex gap-5">
+                <button
+                  onClick={() =>
+                    document.getElementById("my_modal_3").showModal()
+                  }
+                  className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-gray-500 px-5 rounded-full"
                 >
-                  <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-gray-300 px-5 rounded-full"><FaUser className="text-sm"></FaUser>
-                  Login</button>
-                  
-                </Link>
-                <Link
-                  to={`/createResume`}
-                >
-                  <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 hidden lg:block bg-secondary text-white px-5 rounded-full">
-                  Create My Resume</button>
+                  <FaUser className="text-sm"></FaUser>Log In
+                </button>
+                <Link to={`/createResume`}>
+                  <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-full">
+                    Create My Resume
+                  </button>
                 </Link>
               </div>
-            </>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+
+      {/* Modal for Login */}
+      <Login />
+      <Register />
+      {/* <Modal>
+      </Modal> */}
     </div>
   );
 };
