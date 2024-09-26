@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import ContactBanner from "../../Components/ContactBanner/ContactBanner";
 import { FaEnvelope, FaLocationPin, FaPhone } from "react-icons/fa6";
-import "./Contact.css"
+import "./Contact.css";
 
 const Contact = () => {
   const {
@@ -20,11 +20,8 @@ const Contact = () => {
     //     "service_cknoetd", // Replace with your Email.js service ID
     //     "template_opszo6w", // Replace with your Email.js template ID
     //     data,
-
     //     "VXJYTTbDms0frxBQK" // Replace with your Email.js user ID
-
     //     "1DqOD6ZUMrca9CdZG" // Replace with your Email.js user ID
-
     //   )
     //   .then(
     //     (response) => {
@@ -252,12 +249,62 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      <section className=" border-2 border-black">
-        <div className="">
+      <section className="relative border-2 border-black">
+        <div className="absolute">
           <h1 className="text-5xl">This is a heading</h1>
         </div>
       </section>
-      {/* <section className="h-96 bg-yellow-800"></section> */}
+      <section>
+        <div class="custom-shape-divider-bottom-1727289573">
+          {/* <div class="custom-shape-divider-bottom-1727289857">
+            <svg
+              data-name="Layer 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1200 120"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z"
+                class="shape-fill"
+              ></path>
+            </svg>
+          </div> */}
+
+          <div className="custom-shape-divider-bottom-1727289857">
+            <svg
+              data-name="Layer 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1200 120"
+              preserveAspectRatio="none"
+              style={{ width: "100%", height: "auto" }} // Make it responsive
+            >
+              <defs>
+                <linearGradient
+                  id="gradient1"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="0%"
+                >
+                  <stop
+                    offset="0%"
+                    style={{ stopColor: "#2CACD5", stopOpacity: 1 }}
+                  />
+                  <stop
+                    offset="100%"
+                    style={{ stopColor: "#00C8AA", stopOpacity: 1 }}
+                  />
+                </linearGradient>
+              </defs>
+              <path
+                d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z"
+                className="shape-fill"
+                fill="url(#gradient1)" // Apply the gradient fill here
+              />
+            </svg>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
