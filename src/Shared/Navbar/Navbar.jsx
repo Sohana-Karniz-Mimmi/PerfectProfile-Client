@@ -165,19 +165,19 @@ const Navbar = () => {
           <div className="">
             {user ? (
               <div className="flex items-center gap-2">
-                <div
+                {/* <div
                   className="btn flex items-center btn-ghost btn-circle avatar tooltip hover:tooltip-open tooltip-bottom text-white"
                   data-tip={user?.displayName}
-                >
-                  <div className=" md:w-12 w-8 rounded-full ">
+                > */}
+                {/* <div className=" md:w-12 w-8 rounded-full ">
                     <img alt={"User"} src={user?.photoURL} />
-                  </div>
-                </div>
+                  </div> */}
+                {/* </div> */}
 
                 <Link
                   to={`/`}
                   onClick={handleLogoutBtn}
-                  className="md:mr-2 mr-1 md:px-[20px] md:py-[11px] py-0.5 px-1.5 ease-out font-bold tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-[#51AA1B] rounded-full hover:bg-blue-600 "
+                  className="md:mr-2 mr-1 md:px-[20px] md:py-[11px] py-0.5 px-1.5 ease-out font-bold tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-secondary "
                 >
                   Log Out
                 </Link>
@@ -188,12 +188,13 @@ const Navbar = () => {
                   onClick={() =>
                     document.getElementById("my_modal_3").showModal()
                   }
-                  className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-gray-500 px-5 rounded-full"
+                  className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-primary px-5 rounded-lg text-white"
                 >
-                  <FaUser className="text-sm"></FaUser>Log In
+                  <FaUser className="text-sm text-white"></FaUser>Log In
                 </button>
+
                 <Link to={`/createResume`}>
-                  <button className="font-bold font-roboto flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-full">
+                  <button className="hidden font-bold font-roboto flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-lg">
                     Create My Resume
                   </button>
                 </Link>
