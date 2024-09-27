@@ -24,11 +24,11 @@ const ResumeTemplates = () => {
   return (
     <Container>
       <div>
-        <h1 className="font-bold text-5xl text-center mb-10">
-          RESUME TEMPLATE
+        <h1 className="font-bold text-5xl mt-10 text-center mb-10">
+          Predefined Templates
         </h1>
       </div>
-      <div className="flex flex-col gap-6 justify-around">
+      <div className="grid grid-cols-1  p-20 lg:grid-cols-2 gap-11 justify-around">
         {
             data.length > 0 && (
                 <>

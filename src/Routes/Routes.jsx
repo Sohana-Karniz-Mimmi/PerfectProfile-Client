@@ -9,6 +9,7 @@ import Pricing from "../Pages/Pricing/Pricing";
 // import Modal from "../Authentication/Modal";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
+import Template from "../Pages/Template/Template";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing/>
+      },
+      {
+        path: "/predefined-templates",
+        element: <Template/>
       },
       {
         path: "/signIn",
