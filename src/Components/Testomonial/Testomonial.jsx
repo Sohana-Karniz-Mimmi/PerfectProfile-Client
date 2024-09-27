@@ -1,18 +1,16 @@
 import Container from "../../Shared/Container";
-import React, { useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import React, { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
 
-import { Navigation, Autoplay } from 'swiper/modules';
+import { Navigation, Autoplay } from "swiper/modules";
 import { FaQuoteRight, FaStar } from "react-icons/fa";
 
 const Testimonial = () => {
-
   const swiperRef = useRef(null);
   const nextRef = useRef(null);
   const prevRef = useRef(null);
-
 
   return (
     <Container>
@@ -29,7 +27,6 @@ const Testimonial = () => {
         </div>
 
         <Swiper
-
           modules={[Navigation, Autoplay]}
           autoplay={{
             delay: 8000,
@@ -53,7 +50,12 @@ const Testimonial = () => {
               <FaStar />
             </div>
             <p className="font-medium text-[#888] mt-5 mb-6 text-sm leading-6">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus hic molestias aliquid possimus autem! Inventore ut ipsa aut, laborum ea molestiae odit sint consequuntur, sequi voluptatum saepe dolore et libero.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus hic molestias aliquid possimus autem! Inventore ut ipsa aut.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus
+              hic molestias aliquid possimus autem! Inventore ut ipsa aut,
+              laborum ea molestiae odit sint consequuntur, sequi voluptatum
+              saepe dolore et libero. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Minus hic molestias aliquid possimus autem!
+              Inventore ut ipsa aut.
             </p>
 
             <div className="flex justify-between items-center">
@@ -64,11 +66,16 @@ const Testimonial = () => {
                   </div>
                 </div>
                 <div className="">
-                  <h2 className="text-xl font-bold mb-1 text-[#13287e]">Sunny Khan</h2>
-                  <h2 className="text-base font-semibold">One Of Our Clients </h2>
+                  <h2 className="text-xl font-bold mb-1 text-[#13287e]">
+                    Sunny Khan
+                  </h2>
+                  <h2 className="text-base font-semibold">
+                    One Of Our Clients{" "}
+                  </h2>
                 </div>
               </div>
-              <div className=" bottom-0
+              <div
+                className=" bottom-0
   right-[15px]
   p-5
   text-white
@@ -77,7 +84,10 @@ const Testimonial = () => {
   leading-none
   absolute
   opacity-80
-  bg-primary"><FaQuoteRight /></div>
+  bg-primary"
+              >
+                <FaQuoteRight />
+              </div>
             </div>
           </SwiperSlide>
           <SwiperSlide className="flex justify-center items-center border-2 border-gray-200 relative overflow-hidden px-[20px] py-[30px] bg-white">
@@ -89,7 +99,12 @@ const Testimonial = () => {
               <FaStar />
             </div>
             <p className="font-medium text-[#888] mt-5 mb-6 text-sm leading-6">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus hic molestias aliquid possimus autem! Inventore ut ipsa aut, laborum ea molestiae odit sint consequuntur, sequi voluptatum saepe dolore et libero.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus hic molestias aliquid possimus autem! Inventore ut ipsa aut.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus
+              hic molestias aliquid possimus autem! Inventore ut ipsa aut,
+              laborum ea molestiae odit sint consequuntur, sequi voluptatum
+              saepe dolore et libero. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Minus hic molestias aliquid possimus autem!
+              Inventore ut ipsa aut.
             </p>
 
             <div className="flex justify-between items-center">
@@ -100,11 +115,16 @@ const Testimonial = () => {
                   </div>
                 </div>
                 <div className="">
-                  <h2 className="text-xl font-bold mb-1 text-[#13287e]">Sunny Khan</h2>
-                  <h2 className="text-base font-semibold">One Of Our Clients </h2>
+                  <h2 className="text-xl font-bold mb-1 text-[#13287e]">
+                    Sunny Khan
+                  </h2>
+                  <h2 className="text-base font-semibold">
+                    One Of Our Clients{" "}
+                  </h2>
                 </div>
               </div>
-              <div className=" bottom-0
+              <div
+                className=" bottom-0
   right-[15px]
   p-5
   text-white
@@ -113,7 +133,10 @@ const Testimonial = () => {
   leading-none
   absolute
   opacity-100
-  bg-primary"><FaQuoteRight /></div>
+  bg-primary"
+              >
+                <FaQuoteRight />
+              </div>
             </div>
           </SwiperSlide>
           <SwiperSlide className="flex justify-center items-center border-2 border-gray-200 relative overflow-hidden px-[20px] py-[30px] bg-white">
@@ -125,7 +148,12 @@ const Testimonial = () => {
               <FaStar />
             </div>
             <p className="font-medium text-[#888] mt-5 mb-6 text-sm leading-6">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus hic molestias aliquid possimus autem! Inventore ut ipsa aut, laborum ea molestiae odit sint consequuntur, sequi voluptatum saepe dolore et libero.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus hic molestias aliquid possimus autem! Inventore ut ipsa aut.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus
+              hic molestias aliquid possimus autem! Inventore ut ipsa aut,
+              laborum ea molestiae odit sint consequuntur, sequi voluptatum
+              saepe dolore et libero. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Minus hic molestias aliquid possimus autem!
+              Inventore ut ipsa aut.
             </p>
 
             <div className="flex justify-between items-center">
@@ -136,11 +164,16 @@ const Testimonial = () => {
                   </div>
                 </div>
                 <div className="">
-                  <h2 className="text-xl font-bold mb-1 text-[#13287e]">Sunny Khan</h2>
-                  <h2 className="text-base font-semibold">One Of Our Clients </h2>
+                  <h2 className="text-xl font-bold mb-1 text-[#13287e]">
+                    Sunny Khan
+                  </h2>
+                  <h2 className="text-base font-semibold">
+                    One Of Our Clients{" "}
+                  </h2>
                 </div>
               </div>
-              <div className=" bottom-0
+              <div
+                className=" bottom-0
   right-[15px]
   p-5
   text-white
@@ -149,13 +182,13 @@ const Testimonial = () => {
   leading-none
   absolute
   opacity-100
-  bg-primary"><FaQuoteRight /></div>
+  bg-primary"
+              >
+                <FaQuoteRight />
+              </div>
             </div>
           </SwiperSlide>
-
-
         </Swiper>
-
       </div>
     </Container>
   );
