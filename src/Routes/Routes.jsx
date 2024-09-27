@@ -33,6 +33,14 @@ const router = createBrowserRouter([
         path: "/predefined-templates",
         element: <Template/>
       },
+      {
+        path: "/signIn",
+        // element: <SignIn />,
+      },
+      {
+        path: "/SignUp",
+        // element: <SignUp />,
+      },
      
       {
         path: "/contact",
