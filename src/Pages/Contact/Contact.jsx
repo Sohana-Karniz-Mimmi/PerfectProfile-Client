@@ -1,265 +1,432 @@
+// import React from "react";
+// import Container from "../../Shared/Container";
+// import contact from "../../assets/contact.jpg";
+// import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+// import {
+//   FaEnvelope,
+//   FaFacebook,
+//   FaLinkedin,
+//   FaPhone,
+//   FaRocketchat,
+//   FaTwitter,
+//   FaX,
+//   FaYoutube,
+// } from "react-icons/fa6";
+// import { useForm } from "react-hook-form";
+// import "./Contact.css";
+// import toast from "react-hot-toast";
+
+// const Contact = () => {
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors },
+//   } = useForm();
+
+//   const onSubmit = (data) => {
+//     //
+//   };
+//   return (
+//     <div className="min-h-screen bg-gray-50">
+//       <section
+//         className="lg:py-52 py-16 bg-primary relative"
+//         style={{
+//           backgroundImage: `url(${contact})`,
+//           backgroundSize: "cover",
+//           backgroundPosition: "center",
+//           backgroundRepeat: "no-repeat",
+//         }}
+//       >
+//         {/* Opacity overlay */}
+//         <div className="absolute inset-0 bg-black bg-opacity-75"></div>
+
+//         <Container>
+//           <div className="flex justify-center items-center relative">
+//             <h1 className="lg:text-5xl md:text-4xl text-3xl font-extrabold font-lora uppercase text-white">
+//               Contact Us
+//             </h1>
+//           </div>
+//         </Container>
+//       </section>
+//       <Container>
+//         <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 lg:-mt-24 -mt-8 z-50">
+//           <div className=" p-6 flex flex-col  items-center  h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+//             <FaMapMarkerAlt className="text-3xl text-primary" />
+//             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+//               Our main office
+//             </h2>
+//             <p className="font-montserrat text-center">
+//               117/A, Rangs Bhaban, Bijoy Sharani, Tejgaon, Dhaka-1215
+//             </p>
+//           </div>
+//           <div className=" p-6 flex flex-col  items-center h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+//             <FaPhoneAlt className="text-3xl text-primary" />
+//             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+//               Phone number
+//             </h2>
+//             <p className="font-montserrat text-center">
+//               234-5674-6855 <br />
+//               888-4567-9845 - Toll free
+//             </p>
+//           </div>
+//           <div className=" p-6 flex flex-col  items-center h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+//             <FaRocketchat className="text-3xl text-primary" />
+//             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+//               Live chat
+//             </h2>
+//             <p className="font-montserrat text-center">
+//               Get real-time assistance and answers to your questions quickly.
+//             </p>
+//           </div>
+//           <div className=" p-6 flex flex-col  items-center  h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+//             <FaEnvelope className="text-3xl text-primary" />
+//             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+//               Email
+//             </h2>
+//             <p className="font-montserrat text-center">
+//               support@perfectprofile.com
+//             </p>
+//           </div>
+//         </section>
+//         <section className="py-20 ">
+//           <div className="flex lg:flex-row flex-col-reverse justify-between gap-12">
+//             <div className="lg:w-1/2 w-full">
+//               <form
+//                 action="https://getform.io/f/akkgqgwa"
+//                 method="POST"
+//                 onSubmit={handleSubmit(onSubmit)}
+//                 className="font-montserrat pr-4"
+//               >
+//                 <div className="mb-4 ">
+//                   <label
+//                     htmlFor="name"
+//                     className="block mb-2 text-sm font-bold "
+//                   >
+//                     Name
+//                   </label>
+//                   <input
+//                     id="name"
+//                     {...register("name", { required: "Name is required" })}
+//                     className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+//                     placeholder="Enter your name"
+//                   />
+//                   {errors.name && (
+//                     <p className="text-red-500 text-sm mt-1">
+//                       {errors.name.message}
+//                     </p>
+//                   )}
+//                 </div>
+
+//                 <div className="mb-4">
+//                   <label
+//                     htmlFor="email"
+//                     className="block mb-2 text-sm font-bold"
+//                   >
+//                     Email
+//                   </label>
+//                   <input
+//                     id="email"
+//                     type="email"
+//                     {...register("email", { required: "Email is required" })}
+//                     className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+//                     placeholder="Enter your email"
+//                   />
+//                   {errors.email && (
+//                     <p className="text-red-500 text-sm mt-1">
+//                       {errors.email.message}
+//                     </p>
+//                   )}
+//                 </div>
+
+//                 <div className="mb-4">
+//                   <label
+//                     htmlFor="message"
+//                     className="block mb-2 text-sm font-bold"
+//                   >
+//                     Message
+//                   </label>
+//                   <textarea
+//                     id="message"
+//                     {...register("message", {
+//                       required: "Message is required",
+//                     })}
+//                     className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+//                     placeholder="Enter your message"
+//                     rows="5"
+//                   />
+//                   {errors.message && (
+//                     <p className="text-red-500 text-sm mt-1">
+//                       {errors.message.message}
+//                     </p>
+//                   )}
+//                 </div>
+
+//                 <button
+//                   type="submit"
+//                   className="bg-primary text-white w-full py-2 font-semibold px-4 rounded"
+//                 >
+//                   Submit
+//                 </button>
+//               </form>
+//             </div>
+//             <div className="lg:w-1/2 w-full py-6 pl-6 space-y-4 flex flex-col justify-between border">
+//               <div className="space-y-4">
+//                 <h2 className="font-montserrat text-3xl font-bold">
+//                   Get in touch
+//                 </h2>
+//                 <p className="font-lora font-semibold">
+//                   We believe sustainability is vitally important.
+//                 </p>
+//                 <p className="font-montserrat">
+//                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea
+//                   natus placeat et non esse beatae ipsa, ipsum modi voluptates
+//                   asperiores nam doloribus minus repudiandae at ut veritatis
+//                   tempore dolores? Quia, labore suscipit!
+//                 </p>
+//               </div>
+//               <div className="flex items-center gap-4">
+//                 <FaFacebook className="text-2xl text-primary"></FaFacebook>
+//                 <FaLinkedin className="text-2xl text-primary"></FaLinkedin>
+//                 <FaX className="text-2xl text-primary"></FaX>
+//                 <FaYoutube className="text-2xl text-primary"></FaYoutube>
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+//         <section>
+//           <div className="moving-dashed-line"></div>
+//         </section>
+//       </Container>
+//     </div>
+//   );
+// };
+
+// export default Contact;
+
+
+
 import React from "react";
+import Container from "../../Shared/Container";
+import contact from "../../assets/contact.jpg";
+import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaLinkedin,
+  FaPhone,
+  FaRocketchat,
+  FaTwitter,
+  FaX,
+  FaYoutube,
+} from "react-icons/fa6";
 import { useForm } from "react-hook-form";
-// import emailjs from "emailjs-com";
-import toast, { Toaster } from "react-hot-toast";
-import ContactBanner from "../../Components/ContactBanner/ContactBanner";
-import { FaEnvelope, FaLocationPin, FaPhone } from "react-icons/fa6";
-import "./Contact.css"
+import "./Contact.css";
+import toast from "react-hot-toast";
+import emailjs from "emailjs-com"; // Import emailjs
 
 const Contact = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
+    formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    // emailjs
-    //   .send(
-    //     "service_cknoetd", // Replace with your Email.js service ID
-    //     "template_opszo6w", // Replace with your Email.js template ID
-    //     data,
-
-    //     "VXJYTTbDms0frxBQK" // Replace with your Email.js user ID
-
-    //     "1DqOD6ZUMrca9CdZG" // Replace with your Email.js user ID
-
-    //   )
-    //   .then(
-    //     (response) => {
-    //       toast.success(
-    //         "Thank you for contacting us! We will get back to you shortly."
-    //       );
-    //       reset(); // Reset the form on successful submission
-    //     },
-    //     (error) => {
-    //       toast.error("There was an error. Please try again later.");
-    //     }
-    //   );
+    emailjs
+      .send(
+        "service_yo6kr9i", // Replace with your service ID
+        "template_opszo6w", // Replace with your template ID
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+        },
+        "1DqOD6ZUMrca9CdZG" // Replace with your user ID from EmailJS
+      )
+      .then(
+        (result) => {
+          toast.success("Email sent successfully!");
+          reset();
+        },
+        (error) => {
+          toast.error("Failed to send the email.");
+        }
+      );
   };
 
   return (
-    <div>
-      <section>
-        <ContactBanner></ContactBanner>
+    <div className="min-h-screen bg-gray-50">
+      <section
+        className="lg:py-52 py-16 bg-primary relative"
+        style={{
+          backgroundImage: `url(${contact})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Opacity overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-75"></div>
+
+        <Container>
+          <div className="flex justify-center items-center relative">
+            <h1 className="lg:text-5xl md:text-4xl text-3xl font-extrabold font-lora uppercase text-white">
+              Contact Us
+            </h1>
+          </div>
+        </Container>
       </section>
-      <section>
-        <div className="container mx-auto px-4 py-12">
-          <h2 className="text-4xl font-bold font-lora text-center mb-16">
-            Need Assistance? We’re Ready to Hear from You!
-          </h2>
-
-          {/* Hot Toast Notifications */}
-          <Toaster />
-
-          <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-12">
-            {/* Left Side: Contact Info */}
-            <div className="lg:w-2/6 p-6 bg-white rounded-md shadow-md">
-              <div className="h-full flex flex-col justify-center">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="bg-blue-200 p-4 rounded">
-                      <FaLocationPin className="text-blue-600"></FaLocationPin>
-                    </span>
-                    <p> 1234 Park View, Houston, Miami, United State</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="bg-blue-200 p-4 rounded">
-                      <FaEnvelope className="text-blue-600"></FaEnvelope>
-                    </span>
-                    <p> support@resumeprofile.com</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="bg-blue-200 p-4 rounded">
-                      <FaPhone className="text-blue-600"></FaPhone>
-                    </span>
-                    <p> +88 01788 000 777</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Side: Contact Form */}
-            <div className="md:w-4/6">
+      <Container>
+        <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 lg:-mt-24 -mt-8 z-50">
+          <div className=" p-6 flex flex-col  items-center  h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+            <FaMapMarkerAlt className="text-3xl text-primary" />
+            <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+              Our main office
+            </h2>
+            <p className="font-montserrat text-center">
+              117/A, Rangs Bhaban, Bijoy Sharani, Tejgaon, Dhaka-1215
+            </p>
+          </div>
+          <div className=" p-6 flex flex-col  items-center h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+            <FaPhoneAlt className="text-3xl text-primary" />
+            <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+              Phone number
+            </h2>
+            <p className="font-montserrat text-center">
+              234-5674-6855 <br />
+              888-4567-9845 - Toll free
+            </p>
+          </div>
+          <div className=" p-6 flex flex-col  items-center h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+            <FaRocketchat className="text-3xl text-primary" />
+            <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+              Live chat
+            </h2>
+            <p className="font-montserrat text-center">
+              Get real-time assistance and answers to your questions quickly.
+            </p>
+          </div>
+          <div className=" p-6 flex flex-col  items-center  h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+            <FaEnvelope className="text-3xl text-primary" />
+            <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+              Email
+            </h2>
+            <p className="font-montserrat text-center">
+              support@perfectprofile.com
+            </p>
+          </div>
+        </section>
+        <section className="py-20 ">
+          <div className="flex lg:flex-row flex-col-reverse justify-between gap-12">
+            <div className="lg:w-1/2 w-full">
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="space-y-4  bg-white rounded-md"
+                className="font-montserrat pr-4"
               >
-                {/* Name Field */}
-                <div>
-                  <strong className="block  font-bold">Name</strong>
+                <div className="mb-4 ">
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-bold "
+                  >
+                    Name
+                  </label>
                   <input
                     id="name"
-                    placeholder="Your name"
-                    {...register("name", {
-                      required: "Name is required",
-                      minLength: {
-                        value: 2,
-                        message: "Name must be at least 2 characters",
-                      },
-                    })}
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-blue-600"
-                    type="text"
+                    {...register("name", { required: "Name is required" })}
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+                    placeholder="Enter your name"
                   />
                   {errors.name && (
-                    <p className="text-red-600 text-sm">
+                    <p className="text-red-500 text-sm mt-1">
                       {errors.name.message}
                     </p>
                   )}
                 </div>
 
-                {/* Email Field */}
-                <div>
-                  <strong className="block font-bold">Email</strong>
+                <div className="mb-4">
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-bold"
+                  >
+                    Email
+                  </label>
                   <input
                     id="email"
-                    placeholder="Enter valid email"
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Invalid email address",
-                      },
-                    })}
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-blue-600"
                     type="email"
+                    {...register("email", { required: "Email is required" })}
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+                    placeholder="Enter your email"
                   />
                   {errors.email && (
-                    <p className="text-red-600 text-sm">
+                    <p className="text-red-500 text-sm mt-1">
                       {errors.email.message}
                     </p>
                   )}
                 </div>
 
-                {/* Message Field */}
-                <div>
-                  <strong className="block font-bold">Message</strong>
+                <div className="mb-4">
+                  <label
+                    htmlFor="message"
+                    className="block mb-2 text-sm font-bold"
+                  >
+                    Message
+                  </label>
                   <textarea
                     id="message"
-                    placeholder="Write your message"
                     {...register("message", {
                       required: "Message is required",
-                      minLength: {
-                        value: 10,
-                        message: "Message must be at least 10 characters",
-                      },
                     })}
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-blue-600"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+                    placeholder="Enter your message"
                     rows="5"
                   />
                   {errors.message && (
-                    <p className="text-red-600 text-sm">
+                    <p className="text-red-500 text-sm mt-1">
                       {errors.message.message}
                     </p>
                   )}
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-3 bg-blue-600 text-white font-bold rounded-md"
+                  className="bg-primary text-white w-full py-2 font-semibold px-4 rounded"
                 >
                   Submit
                 </button>
               </form>
             </div>
+            <div className="lg:w-1/2 w-full py-6 pl-6 space-y-4 flex flex-col justify-between border">
+              <div className="space-y-4">
+                <h2 className="font-montserrat text-3xl font-bold">
+                  Get in touch
+                </h2>
+                <p className="font-lora font-semibold">
+                  We believe sustainability is vitally important.
+                </p>
+                <p className="font-montserrat">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea
+                  natus placeat et non esse beatae ipsa, ipsum modi voluptates
+                  asperiores nam doloribus minus repudiandae at ut veritatis
+                  tempore dolores? Quia, labore suscipit!
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <FaFacebook className="text-2xl text-primary"></FaFacebook>
+                <FaLinkedin className="text-2xl text-primary"></FaLinkedin>
+                <FaX className="text-2xl text-primary"></FaX>
+                <FaYoutube className="text-2xl text-primary"></FaYoutube>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-      <section className="container mx-auto px-4">
-        <div className="flex justify-center items-center py-12">
-          <h1 className="text-4xl text-center font-lora font-bold pb-8">
-            Frequently Asked Questions
-          </h1>
-        </div>
-        <div className="collapse collapse-plus bg-base-200 mb-5">
-          <input type="radio" name="my-accordion-3" defaultChecked />
-          <div className="collapse-title text-xl font-medium">
-            What is a resume profile?
-          </div>
-          <div className="collapse-content">
-            <p>
-              A resume profile is a concise summary of your career goals,
-              skills, and experience, typically found at the top of your resume,
-              designed to grab the attention of potential employers.
-            </p>
-          </div>
-        </div>
-        <div className="collapse collapse-plus bg-base-200 mb-5">
-          <input type="radio" name="my-accordion-3" />
-          <div className="collapse-title text-xl font-medium">
-            How do I create a professional-looking resume?
-          </div>
-          <div className="collapse-content">
-            <p>
-              Start with a clean, easy-to-read template, focus on your relevant
-              experience and skills, and keep it concise. Highlight key
-              achievements and tailor your resume to the job you're applying
-              for.
-            </p>
-          </div>
-        </div>
-        <div className="collapse collapse-plus bg-base-200 mb-5">
-          <input type="radio" name="my-accordion-3" />
-          <div className="collapse-title text-xl font-medium">
-            Can I edit my resume after submitting it?
-          </div>
-          <div className="collapse-content">
-            <p>
-              Yes, you can update your resume anytime by logging into your
-              account and making changes. All saved versions will remain
-              accessible for future edits.
-            </p>
-          </div>
-        </div>
-        <div className="collapse collapse-plus bg-base-200 mb-5">
-          <input type="radio" name="my-accordion-3" />
-          <div className="collapse-title text-xl font-medium">
-            Are there any costs associated with creating a resume?
-          </div>
-          <div className="collapse-content">
-            <p>
-              You can create a basic resume for free. However, premium features
-              like advanced templates, cover letters, and resume-sharing options
-              may require a paid subscription.
-            </p>
-          </div>
-        </div>
-        <div className="collapse collapse-plus bg-base-200 mb-5">
-          <input type="radio" name="my-accordion-3" />
-          <div className="collapse-title text-xl font-medium">
-            How do I share my resume with potential employers?
-          </div>
-          <div className="collapse-content">
-            <p>
-              After building your resume, you can download it as a PDF or use
-              the live URL sharing feature to send your resume directly to
-              employers.
-            </p>
-          </div>
-        </div>
-        <div className="collapse collapse-plus bg-base-200 mb-5">
-          <input type="radio" name="my-accordion-3" />
-          <div className="collapse-title text-xl font-medium">
-            Is my personal information secure on your platform?
-          </div>
-          <div className="collapse-content">
-            <p>
-              Yes, we take data privacy seriously. All personal information is
-              encrypted and protected, ensuring your data remains safe.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className=" border-2 border-black">
-        <div className="">
-          <h1 className="text-5xl">This is a heading</h1>
-        </div>
-      </section>
-      {/* <section className="h-96 bg-yellow-800"></section> */}
+        </section>
+        <section>
+          <div className="moving-dashed-line"></div>
+        </section>
+      </Container>
     </div>
   );
 };
 
 export default Contact;
+
