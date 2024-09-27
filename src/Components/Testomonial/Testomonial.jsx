@@ -14,7 +14,7 @@ const Testimonial = () => {
 
   return (
     <Container>
-      <div className="flex flex-col justify-center items-center space-y-4">
+      <div className="flex flex-col justify-center items-center pt-24 space-y-4">
         <h2 className="lg:text-5xl text-center md:text-4xl text-3xl font-bold font-lora text-black">
           Your Success, Our Inspiration
         </h2>

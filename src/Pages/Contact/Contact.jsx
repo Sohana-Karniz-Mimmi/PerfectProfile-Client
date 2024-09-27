@@ -420,9 +420,6 @@ const Contact = () => {
             </div>
           </div>
         </section>
-        <section>
-          <div className="moving-dashed-line"></div>
-        </section>
       </Container>
     </div>
   );
