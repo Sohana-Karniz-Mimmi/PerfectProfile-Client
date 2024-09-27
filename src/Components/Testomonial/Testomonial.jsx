@@ -77,13 +77,13 @@ const Testimonial = () => {
                 className=" bottom-0
   right-[15px]
   p-5
-  text-[#211e1e]
+  text-white
   text-[60px]
   z-0
   leading-none
   absolute
-  opacity-100
-  bg-[#b2caf4]"
+  opacity-80
+  bg-primary"
               >
                 <FaQuoteRight />
               </div>
@@ -126,13 +126,13 @@ const Testimonial = () => {
                 className=" bottom-0
   right-[15px]
   p-5
-  text-[#211e1e]
+  text-white
   text-[60px]
   z-0
   leading-none
   absolute
   opacity-100
-  bg-[#b2caf4]"
+  bg-primary"
               >
                 <FaQuoteRight />
               </div>
@@ -175,13 +175,13 @@ const Testimonial = () => {
                 className=" bottom-0
   right-[15px]
   p-5
-  text-[#211e1e]
+  text-white
   text-[60px]
   z-0
   leading-none
   absolute
   opacity-100
-  bg-[#b2caf4]"
+  bg-primary"
               >
                 <FaQuoteRight />
               </div>
