@@ -19,7 +19,7 @@ const Banner = () => {
         <Container>
           <div className="flex lg:flex-row flex-col gap-1">
             <div className="lg:w-1/2 w-full flex flex-col justify-center">
-              <h1 className="xl:text-6xl lg:text-5xl md:text-4xl text-2xl lg:text-left text-center font-extrabold font-lora">
+              <h1 className="xl:text-6xl lg:text-5xl md:text-4xl text-2xl lg:text-left text-center font-extrabold text-black font-lora">
                 Make your professional
                 <br />
                 resume in
@@ -87,7 +87,7 @@ const Banner = () => {
           </button>
         </div>
       </section> */}
-      <section className="bg-white">
+      <section className=" bg-white">
         <div className="custom-shape-divider-bottom-1727289857">
           <svg
             data-name="Layer 1"
@@ -115,6 +115,32 @@ const Banner = () => {
             />
           </svg>
         </div>
+        {/* <div class="custom-shape-divider-bottom-1727365409">
+          <svg
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop
+                  offset="0%"
+                  style={{ stopColor: "#51E2C2", stopOpacity: 1 }}
+                />
+                <stop
+                  offset="100%"
+                  style={{ stopColor: "#4BCCEF", stopOpacity: 1 }}
+                />
+              </linearGradient>
+            </defs>
+
+            <path
+              d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z"
+              fill="url(#gradient)"
+            ></path>
+          </svg>
+        </div> */}
       </section>
       <section className="bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>
@@ -133,7 +159,7 @@ const Banner = () => {
         <div className="">
           <TemplateSlider></TemplateSlider>
         </div>
-        <div className="flex justify-center items-center py-16">
+        <div className="flex justify-center items-center lg:py-16 py-8">
           <button className="bg-gradient-to-r font-montserrat from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full font-bold shadow-lg transform transition duration-500 hover:scale-105">
             Browse Templates
           </button>

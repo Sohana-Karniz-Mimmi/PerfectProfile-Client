@@ -1,11 +1,8 @@
 import Banner from "../../Components/Home/Banner";
 import PremiumFeature from "../../Components/Home/PremiumFeature";
-import Package from "../../Components/Package/Package";
+import StepsOfResume from "../../Components/Home/StepsOfResume";
+// import Package from "../../Components/Package/Package";
 import Testomonial from "../../Components/Testomonial/Testomonial";
-// import ResumeTemplates from "../../Components/TemplateSection/ResumeTemplates";
-// import CVResume from "../../Components/TemplateSection/CVResume";
-
-
 
 const Home = () => {
   return (
@@ -14,13 +11,14 @@ const Home = () => {
         <Banner />
       </div>
       <div>
+        <StepsOfResume />
+      </div>
+      <div>
         <PremiumFeature />
       </div>
-      <Package />
       <div>
         <Testomonial></Testomonial>
       </div>
-      {/* <ResumeTemplates></ResumeTemplates> */}
       
 
     </div>

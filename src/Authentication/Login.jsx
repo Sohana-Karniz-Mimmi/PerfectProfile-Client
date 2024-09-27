@@ -39,7 +39,7 @@ const Login = () => {
               navigate(location.state);
             } else {
               document.getElementById("my_modal_3").close();
-              navigate("/");
+              // navigate("/");
             }
           }, 1000);
         })
@@ -83,10 +83,10 @@ const Login = () => {
     <div>
       <Toaster />
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full">
+        <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full font-montserrat">
           <div className="bg-white h-[580px] md:h-[575px] rounded-lg p-10">
             <div>
-              <h1 className="text-2xl font-semibold mb-2">Login</h1>
+              <h1 className="text-2xl font-semibold  mb-2">Login</h1>
               {/* <p className="text-lg font-medium text-center w-[300px]">
                 Great to have you back!{" "}
                 <span
