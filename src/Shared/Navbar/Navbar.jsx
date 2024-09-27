@@ -177,7 +177,7 @@ const Navbar = () => {
                 <Link
                   to={`/`}
                   onClick={handleLogoutBtn}
-                  className="md:mr-2 mr-1 md:px-[20px] md:py-[11px] py-0.5 px-1.5 ease-out font-bold tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-secondary "
+                  className="md:mr-2 mr-1 md:px-[20px] md:py-[11px] py-0.5 px-1.5 ease-out font-bold tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-secondary font-montserrat"
                 >
                   Log Out
                 </Link>
@@ -188,13 +188,13 @@ const Navbar = () => {
                   onClick={() =>
                     document.getElementById("my_modal_3").showModal()
                   }
-                  className="font-bold font-roboto flex gap-2 items-center justify-center py-2 bg-primary px-5 rounded-lg text-white"
+                  className="font-bold font-montserrat flex gap-2 items-center justify-center py-2 bg-primary px-5 rounded-lg text-white"
                 >
                   <FaUser className="text-sm text-white"></FaUser>Log In
                 </button>
 
                 <Link to={`/createResume`}>
-                  <button className="hidden font-bold font-roboto flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-lg">
+                  <button className="hidden font-bold flex gap-2 items-center justify-center py-2 lg:block bg-secondary font-montserrat text-white px-5 rounded-lg">
                     Create My Resume
                   </button>
                 </Link>

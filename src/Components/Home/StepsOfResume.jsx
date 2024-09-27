@@ -10,13 +10,14 @@ const StepsOfResume = () => {
   return (
     <div className="px-4 py-8 sm:px-6 md:px-12 lg:px-16 xl:px-24">
       {/* Header Section */}
-      <div className="text-center mt-12">
+      <div className="flex flex-col justify-center items-center my-12 space-y-4">
         {/* <p className="text-primary my-4 text-sm sm:text-base md:text-lg btn">
           How it Works
         </p> */}
-        <h1 className="text-2xl sm:text-3xl md:text-5xl font-montserrat text-black font-bold">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-lora text-black font-bold">
           Easy Steps To Build Your Resume
         </h1>
+        <p className="lg:w-4/6 w-full font-montserrat text-center md:text-lg text-base text-gray-800">Create a professional resume effortlessly in just a few simple steps. Choose from customizable templates, fill in your details, and tailor your resume to fit your career goals.</p>
       </div>
 
       {/* Marquee Section */}
