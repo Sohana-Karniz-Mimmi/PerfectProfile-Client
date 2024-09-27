@@ -18,6 +18,7 @@ import Tem6 from "../../assets/6.png";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
@@ -73,9 +74,11 @@ export default function App() {
         <SwiperSlide>
           <div className="relative group">
             <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+              <Link to={'resume/edit'}>
               <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Use Template
               </button>
+              </Link>
             </div>
             <img src={Tem1} alt="" />
           </div>
@@ -83,9 +86,11 @@ export default function App() {
         <SwiperSlide>
           <div className="relative group">
             <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+            <Link to={'resume/edit'}>
               <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Use Template
               </button>
+              </Link>
             </div>
             <img src={Tem2} alt="" />
           </div>
@@ -93,9 +98,11 @@ export default function App() {
         <SwiperSlide>
           <div className="relative group">
             <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+            <Link to={'resume/edit'}>
               <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Use Template
               </button>
+              </Link>
             </div>
             <img src={Tem3} alt="" />
           </div>
@@ -103,9 +110,11 @@ export default function App() {
         <SwiperSlide>
           <div className="relative group">
             <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+            <Link to={'resume/edit'}>
               <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Use Template
               </button>
+              </Link>
             </div>
             <img src={Tem4} alt="" />
           </div>
@@ -113,9 +122,11 @@ export default function App() {
         <SwiperSlide>
           <div className="relative group">
             <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+            <Link to={'resume/edit'}>
               <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Use Template
               </button>
+              </Link>
             </div>
             <img src={Tem5} alt="" />
           </div>
@@ -123,9 +134,11 @@ export default function App() {
         <SwiperSlide>
           <div className="relative group">
             <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+            <Link to={'resume/edit'}>
               <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Use Template
               </button>
+              </Link>
             </div>
             <img src={Tem6} alt="" />
           </div>
