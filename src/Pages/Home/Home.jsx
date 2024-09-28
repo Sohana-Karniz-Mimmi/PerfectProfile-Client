@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import Banner from "../../Components/Home/Banner";
 import PremiumFeature from "../../Components/Home/PremiumFeature";
 import StepsOfResume from "../../Components/Home/StepsOfResume";
-// import Package from "../../Components/Package/Package";
 import Testomonial from "../../Components/Testomonial/Testomonial";
 
 const Home = () => {
