@@ -6,57 +6,6 @@ import { Link } from "react-router-dom";
 // import img from "../../assets/PremiumFeture/premium-0.webp"
 
 const PremiumFeature = () => {
-  // Card data array
-  const cardData = [
-    {
-      title: "Unlimited Design Options",
-      description:
-        "Make your resume truly yours by customizing its design, layout, and much more.",
-      imageUrl:
-        "https://d.novoresume.com/images/landing_page/premium/premium-0.webp",
-      altText: "Professional Resume",
-    },
-    {
-      title: "Cover Letter Templates",
-      description:
-        "Want your application to stand out from the rest? Create a matching cover letter for your resume and impress the hiring manager.",
-      imageUrl:
-        "https://d.novoresume.com/images/landing_page/premium/premium-right.webp",
-      altText: "Cover Letter Template",
-    },
-    {
-      title: "Two Pages +",
-      description:
-        "Can’t fit your decade’s worth of experience on one page? Premium let’s you go beyond the one-page limit.",
-      imageUrl:
-        "https://d.novoresume.com/images/landing_page/premium/premium-2.webp",
-      altText: "Two Pages Plus",
-    },
-  ];
-
-  // Reusable card component inside the same file
-  const Card = ({ title, description, imageUrl, altText }) => {
-    return (
-      <div className=" lg:h-[550px] lg:w-[375px] relative bg-white bg-opacity-20 shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col">
-        <div className="absolute bg-primary rounded-full text-white p-2 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-          <FaStar className="text-lg" />
-        </div>
-        <img
-          src={imageUrl}
-          alt={altText}
-          className=" lg:w-[300px] lg:h-[240px]"
-        />
-        <div className="space-y-3 pt-6">
-          <h3 className="font-bold font-lora text-xl text-black">
-            {title}
-          </h3>
-          <p className=" text-gray-800 md:text-lg text-base font-montserrat">
-            {description}
-          </p>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="relative bg-gradient-to-b pb-12 px-6 overflow-hidden">
@@ -67,15 +16,100 @@ const PremiumFeature = () => {
 
       {/* Card Section rendered using map() */}
       <div className="relative z-10 flex flex-col lg:flex-row justify-center items-center gap-8 mx-auto">
-        {cardData.map((card, index) => (
-          <Card
-            key={index}
-            title={card.title}
-            description={card.description}
-            imageUrl={card.imageUrl}
-            altText={card.altText}
+
+
+        <div className="2xl:h-[550px] lg:h-[484px] lg:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center" style={{
+          backdropFilter: 'blur(25px)',
+          backgroundColor: 'rgba(245, 245, 245, 0.2)',
+        }}>
+          <div className="absolute bg-primary rounded-full text-white p-2 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+            <FaStar className="text-lg" />
+          </div>
+          <img
+            src="https://d.novoresume.com/images/landing_page/premium/premium-0.webp"
+            alt={'Professional Resume'}
+            className=" lg:w-[300px] lg:h-[240px]"
           />
-        ))}
+          <div className="space-y-3 pt-8">
+            <h3 className="font-bold font-lora text-xl text-black">
+              Unlimited Design Options
+            </h3>
+            <p className=" text-gray-800 text-[15px] font-montserrat">
+              Make your resume truly yours by customizing its design, layout, and much more.
+            </p>
+          </div>
+        </div>
+
+        <div className="2xl:h-[550px] lg:h-[484px] lg:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center" style={{
+          backdropFilter: 'blur(25px)',
+          backgroundColor: 'rgba(245, 245, 245, 0.2)',
+        }}>
+          <div className="absolute bg-primary rounded-full text-white p-2 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+            <FaStar className="text-lg" />
+          </div>
+
+          <div class="flex">
+            <figure className="mr-8">
+              <img width="145" height="200"
+                srcset="https://d.novoresume.com/images/landing_page/premium/premium-left.webp"
+                alt="Cover Letter Templates"
+                loading="lazy"
+                src="https://d.novoresume.com/images/landing_page/premium/premium-left.png"
+                className=""
+                style={{
+                  transform: 'perspective(60px) rotateY(-2deg)',
+                }} />
+            </figure>
+            <figure className="">
+              <img width="145" height="200" srcset="https://d.novoresume.com/images/landing_page/premium/premium-right.webp" alt="Cover Letter Templates" loading="lazy" src="https://d.novoresume.com/images/landing_page/premium/premium-right.png"
+                className=""
+                style={{
+                  transform: 'perspective(60px) rotateY(2deg)',
+                }} />
+            </figure>
+          </div>
+
+          <div className="space-y-3 pt-8">
+            <h3 className="font-bold font-lora text-xl text-black">
+              Cover Letter Templates
+            </h3>
+            <p className=" text-gray-800 text-[15px] font-montserrat">
+              Want your application to stand out from the rest? Create a matching cover letter for your resume and impress the hiring manager.
+            </p>
+          </div>
+        </div>
+
+
+        <div className="2xl:h-[550px] lg:h-[484px] lg:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center" style={{
+          backdropFilter: 'blur(25px)',
+          backgroundColor: 'rgba(245, 245, 245, 0.2)',
+        }}>
+          <div className="absolute bg-primary rounded-full text-white p-2 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+            <FaStar className="text-lg" />
+          </div>
+          <figure className="-mr-16">
+            <img
+              srcset="https://d.novoresume.com/images/landing_page/premium/premium-2.webp"
+              alt="Two Pages+" loading="lazy" element="2"
+              src="https://d.novoresume.com/images/landing_page/premium/premium-2.png"
+              class="mx-auto lg:h-[240px]"
+              style={{
+                transform: 'perspective(44px) rotateX(0) rotateY(2deg)',
+                boxShadow: '-1px 0 3px 0 rgba(0, 0, 0, .2), -25px 0 0 -10px #fff, -25px 0 3px -10px rgba(0, 0, 0, .3), -50px 0 0 -20px #fff, -50px 0 3px -20px rgba(0, 0, 0, .3), -75px 0 0 -30px #fff, -75px 0 3px -30px rgba(0, 0, 0, .3)',
+              }} />
+          </figure>
+          <div className="space-y-3 pt-8">
+            <h3 className="font-bold font-lora text-xl text-black">
+              Two Pages +
+            </h3>
+            <p className=" text-gray-800 text-[15px] font-montserrat">
+              Can’t fit your decade’s worth of experience on one page? Premium let’s you go beyond the one-page limit.
+            </p>
+          </div>
+        </div>
+
+
+
       </div>
 
       {/* Button */}

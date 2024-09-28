@@ -23,7 +23,7 @@
     height: 0;
 }
 
-/* Define the keyframe for growing the dashed line */
+/*dashed line */
 @keyframes growDash {
     from {
       width: 0%;
@@ -47,7 +47,6 @@
     animation: growDash 2.5s linear infinite;
   }
   
-  /* Arrow animation to move with the dash */
   .arrow-icon-animation {
     position: relative;
     animation: moveArrow 2.5s linear infinite;
@@ -55,9 +54,9 @@
   
   @keyframes moveArrow {
     0% {
-      transform: translateX(0); /* Start at the beginning */
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(100%); /* Move to the end */
+      transform: translateX(100%); 
     }
   }
