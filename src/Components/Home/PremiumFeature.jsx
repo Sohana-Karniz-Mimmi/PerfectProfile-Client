@@ -49,7 +49,7 @@ const PremiumFeature = () => {
           </div>
 
           <div class="flex">
-            <figure className="mr-8">
+            <figure className="mr-8 h-[240px] flex items-center">
               <img width="145" height="200"
                 srcset="https://d.novoresume.com/images/landing_page/premium/premium-left.webp"
                 alt="Cover Letter Templates"
@@ -60,7 +60,7 @@ const PremiumFeature = () => {
                   transform: 'perspective(60px) rotateY(-2deg)',
                 }} />
             </figure>
-            <figure className="">
+            <figure className="h-[240px] flex items-center">
               <img width="145" height="200" srcset="https://d.novoresume.com/images/landing_page/premium/premium-right.webp" alt="Cover Letter Templates" loading="lazy" src="https://d.novoresume.com/images/landing_page/premium/premium-right.png"
                 className=""
                 style={{
@@ -88,11 +88,11 @@ const PremiumFeature = () => {
             <FaStar className="text-lg" />
           </div>
           <figure className="-mr-16">
-            <img
+            <img 
               srcset="https://d.novoresume.com/images/landing_page/premium/premium-2.webp"
               alt="Two Pages+" loading="lazy" element="2"
               src="https://d.novoresume.com/images/landing_page/premium/premium-2.png"
-              class="mx-auto lg:h-[240px]"
+              class="mx-auto md:w-[160px] w-[160px] lg:h-[240px]"
               style={{
                 transform: 'perspective(44px) rotateX(0) rotateY(2deg)',
                 boxShadow: '-1px 0 3px 0 rgba(0, 0, 0, .2), -25px 0 0 -10px #fff, -25px 0 3px -10px rgba(0, 0, 0, .3), -50px 0 0 -20px #fff, -50px 0 3px -20px rgba(0, 0, 0, .3), -75px 0 0 -30px #fff, -75px 0 3px -30px rgba(0, 0, 0, .3)',
