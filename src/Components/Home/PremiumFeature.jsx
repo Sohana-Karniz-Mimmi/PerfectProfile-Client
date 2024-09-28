@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import Button from "../../Shared/Button/Button";
 // import img from "../../assets/PremiumFeture/premium-0.webp"
 
 const PremiumFeature = () => {
@@ -83,40 +84,10 @@ const PremiumFeature = () => {
 
       {/* Button */}
       <div className="relative z-10 text-center mt-12">
-        <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full text-base lg:text-xl font-montserrat font-semibold shadow-lg transform transition duration-500 hover:scale-105">
-          Checkout Premium
-        </button>
+        <Button text="Checkout Premium" className="px-8 rounded-full " />
       </div>
 
       {/* SVG Wave Background */}
-
-      {/* <div className="absolute z-0 bottom-0 left-0 w-full premium-container">
-
-        <div className="shape-svg-premium-top transform scale-x-[-1]">
-          <svg className="shape-svg-bottom "
-            x="0px"
-            y="0px"
-            viewBox="0 0 1000 320"
-            xml:space="preserve">
-            <defs>
-              <linearGradient
-                id="grad3"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="0%">
-                <stop offset="0%" style={{ stopColor: "#4bccef", stopOpacity: 1 }}></stop>
-                <stop offset="100%" style={{ stopColor: "#51e2c2", stopOpacity: 1 }}></stop> </linearGradient>
-            </defs>
-            <path fill="url(#grad3)" d="M0,100c0,0,250,150,500,0s500,0,500,0v100H0V100z"></path>
-          </svg>
-        </div>
-        {/* <div class="h-80 bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
-          <!-- Content here -->
-        </div> */}
-
-      {/* </div> */}
-
       <div className="z-[-1] absolute bottom-0 w-full left-0">
         <div className="transform scale-x-[-1]">
           <svg
