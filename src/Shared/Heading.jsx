@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
-const Heading = ({ title, subtitle, center }) => {
+const Heading = ({ title, subtitle, headingClassName, className }) => {
   return (
-    <div className={center ? 'text-center' : 'text-start'}>
-      <div className='text-2xl font-bold'>{title}</div>
-      <div className='font-light text-neutral-500 mt-2'>{subtitle}</div>
+    <div className='text-center' >
+      <div className={`font-bold tracking-tight text-gray-900 lg:text-[40px] md:text-4xl text-3xl font-lora md:pt-20 pt-10 ${headingClassName}`}>{title}</div>
+      <div className={`font-light mt-2 font-montserrat md:text-lg text-base text-gray-800 ${className}`}>{subtitle}</div>
     </div>
   )
 }
@@ -13,5 +13,4 @@ Heading.propTypes = {
   subtitle: PropTypes.string,
   center: PropTypes.bool,
 }
-
 export default Heading

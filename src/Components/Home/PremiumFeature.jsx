@@ -1,6 +1,8 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import Button from "../../Shared/Button/Button";
+import Heading from "../../Shared/Heading";
+import { Link } from "react-router-dom";
 // import img from "../../assets/PremiumFeture/premium-0.webp"
 
 const PremiumFeature = () => {
@@ -35,7 +37,7 @@ const PremiumFeature = () => {
   // Reusable card component inside the same file
   const Card = ({ title, description, imageUrl, altText }) => {
     return (
-      <div className=" lg:h-[484px] lg:w-[375px] relative bg-white bg-opacity-20 shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col">
+      <div className=" lg:h-[550px] lg:w-[375px] relative bg-white bg-opacity-20 shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col">
         <div className="absolute bg-primary rounded-full text-white p-2 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
           <FaStar className="text-lg" />
         </div>
@@ -57,16 +59,10 @@ const PremiumFeature = () => {
   };
 
   return (
-    <div className="relative bg-gradient-to-b py-12 px-6 overflow-hidden">
+    <div className="relative bg-gradient-to-b pb-12 px-6 overflow-hidden">
       {/* Top Text Section */}
-      <div className="mb-24 space-y-4">
-        <h2 className="text-center font-bold tracking-tight text-gray-900 lg:text-5xl md:text-4xl text-3xl font-lora">
-          Stand Out with Premium Features
-        </h2>
-        <p className="text-center  sm:text-xl md:text-lg text-base text-gray-800 max-w-3xl mx-auto mb-12 md:w-[600px] font-montserrat">
-          The job market today is competitive – you’ll need every edge to make
-          your application shine.
-        </p>
+      <div className="mb-15">
+        <Heading title={'Stand Out with Premium Features'} subtitle={'The job market today is competitive – you’ll need every edge to make your application shine.'} className={'max-w-3xl mx-auto mb-12 md:w-[600px]'} />
       </div>
 
       {/* Card Section rendered using map() */}
@@ -83,8 +79,8 @@ const PremiumFeature = () => {
       </div>
 
       {/* Button */}
-      <div className="relative z-10 text-center mt-12">
-        <Button text="Checkout Premium" className="px-8 rounded-full " />
+      <div to={'/pricing'} className="relative z-10 text-center mt-12">
+        <Button route={'/pricing'} text="Checkout Premium" className="px-8 rounded-full " />
       </div>
 
       {/* SVG Wave Background */}

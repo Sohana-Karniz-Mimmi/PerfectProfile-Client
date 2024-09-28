@@ -9,6 +9,8 @@ import AboutCompany from "./AboutCompany";
 import Container from "../../Shared/Container";
 import Question from "./Question";
 import ResumeAbout from "./ResumeAbout";
+import Heading from "../../Shared/Heading";
+import Button from "../../Shared/Button/Button";
 
 
 const About = () => {
@@ -33,10 +35,10 @@ const About = () => {
 
                         <div>
 
-                            <p data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200" className=" text-center mt-24 max-w-lg sm:text-lg/relaxed">
+                            <p data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200" className=" text-center mt-24 max-w-lg sm:text-lg/relaxed font-montserrat">
                                 Get to know our talented team.
                             </p>
-                            <h1 data-aos="fade-up" data-aos-duration="500" className="text-3xl sm:text-5xl mt-2">
+                            <h1 data-aos="fade-up" data-aos-duration="500" className="text-3xl sm:text-5xl mt-2 font-lora">
                                 MORE ABOUT US
                             </h1>
 
@@ -49,11 +51,15 @@ const About = () => {
 
             {/* About Our Company */}
             <Container>
-                <div className="mt-12 md:mt-24 space-y-6 sm:space-y-12">
+                <div className="space-y-6 sm:space-y-12">
                     <div className="text-center mb-12">
 
-                        <h2 className="font-semibold text-3xl lg:text-[40px] lg:mb-4 mb-2">About our company</h2>
-                        <p className="lg:w-[623px] lg:text-[16px] md:w-[550px] text-sm  w-80 mx-auto ">We provide the best online resume builder and free expert career advice to guide you through the recruitment process to land your dream job.</p>
+                        <Heading 
+                        title={'About our company'}
+                        subtitle={'We provide the best online resume builder and free expert career advice to guide you through the recruitment process to land your dream job.'}
+                        className={'lg:w-[645px] md:w-[550px] mx-auto'}
+                        />
+
                     </div>
 
                     <AboutCompany img={certified} heading={`Our mission`} text={`We empower job seekers with the tools they need to achieve their career goals. Our team of experts is dedicated to helping you every step of the way, from providing tools to create a showstopping resume and cover letter to offering professional interview tips and career guidance.`} />
@@ -62,8 +68,8 @@ const About = () => {
                             <img src={vision} alt="" />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-bold">Our vision</h2>
-                            <p className="xl:max-w-[547px] md:max-w-[380px] text-sm md:text-[17px] md:mb-0 mb-6 mt-6">We envision a world where every job seeker has access to the resources they need to succeed, and we are committed to being the driving force behind this change. Our goal is to help job seekers present their skills and experience in the best possible light, giving them the confidence and competitive edge to land their dream job.</p>
+                            <h2 className="text-2xl font-bold text-gray-900 font-lora">Our vision</h2>
+                            <p className="xl:max-w-[547px] md:max-w-[380px] text-sm md:text-[17px] md:mb-0 mb-6 mt-4 font-montserrat font-light text-gray-800">We envision a world where every job seeker has access to the resources they need to succeed, and we are committed to being the driving force behind this change. Our goal is to help job seekers present their skills and experience in the best possible light, giving them the confidence and competitive edge to land their dream job.</p>
                         </div>
 
                     </div>
@@ -71,27 +77,29 @@ const About = () => {
 
                     {/* Button */}
                     <div className="relative z-10 text-center !mt-16">
-                        <Link to={'/contact'} className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-16 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
+                        <Button 
+                        route={'/contact'} 
+                        text={"Contact Us"} 
+                        className={'px-16 rounded-full'}/>
+                        {/* <Link to={'/contact'} className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-16 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
                             Contact Us
-                        </Link>
+                        </Link> */}
                     </div>
 
                 </div>
 
                 <Team></Team>
 
-                {/* Get In Touch */}
+         
                 <div className="">
                     <div className="w-full px-4">
                         <div className="mx-auto mb-[60px] text-center">
 
-                            <h2 className="mb-3 text-3xl leading-[1.2] font-bold sm:text-4xl md:text-[40px]"
-                            >
-                                Do you have any questions? We are here for you
-                            </h2>
-                            <p className="text-body-color ">
-                                At MyPerfectResume, we’re here to support every step of your career journey. Let’s get in touch!
-                            </p>
+                            <Heading 
+                            title={'Have questions? We are here for you'}
+                            subtitle={'At MyPerfectResume, we’re here to support every step of your career journey. Let’s get in touch!'}
+                            className={'lg:w-[600px] md:w-[550px] mx-auto'}
+                            />
                         </div>
                     </div>
                     <Question />
