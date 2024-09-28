@@ -209,17 +209,9 @@ import React from "react";
 import Container from "../../Shared/Container";
 import contact from "../../assets/contact.jpg";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
-import {
-  FaEnvelope,
-  FaFacebook,
-  FaLinkedin,
-  FaPhone,
-  FaRocketchat,
-  FaTwitter,
-  FaX,
-  FaYoutube,
-} from "react-icons/fa6";
+import { FaEnvelope, FaPhone, FaRocketchat, FaFacebook, FaLinkedin, FaYoutube, FaX } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 import "./Contact.css";
 import toast from "react-hot-toast";
 import emailjs from "emailjs-com"; // Import emailjs
@@ -233,6 +225,8 @@ const Contact = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    console.log(data);
+    // You can handle form submission here, e.g., send data to API
     emailjs
       .send(
         "service_yo6kr9i", // Replace with your service ID
@@ -256,7 +250,10 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
+       <Helmet>
+                <title>Contact Us- PerfectProfile</title>
+            </Helmet>
       <section
         className="lg:py-52 py-16 bg-primary relative"
         style={{
@@ -267,7 +264,7 @@ const Contact = () => {
         }}
       >
         {/* Opacity overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-75"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
         <Container>
           <div className="flex justify-center items-center relative">
@@ -279,7 +276,7 @@ const Contact = () => {
       </section>
       <Container>
         <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 lg:-mt-24 -mt-8 z-50">
-          <div className=" p-6 flex flex-col  items-center  h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
             <FaMapMarkerAlt className="text-3xl text-primary" />
             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
               Our main office
@@ -288,7 +285,7 @@ const Contact = () => {
               117/A, Rangs Bhaban, Bijoy Sharani, Tejgaon, Dhaka-1215
             </p>
           </div>
-          <div className=" p-6 flex flex-col  items-center h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
             <FaPhoneAlt className="text-3xl text-primary" />
             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
               Phone number
@@ -298,7 +295,7 @@ const Contact = () => {
               888-4567-9845 - Toll free
             </p>
           </div>
-          <div className=" p-6 flex flex-col  items-center h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
             <FaRocketchat className="text-3xl text-primary" />
             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
               Live chat
@@ -307,7 +304,7 @@ const Contact = () => {
               Get real-time assistance and answers to your questions quickly.
             </p>
           </div>
-          <div className=" p-6 flex flex-col  items-center  h-[270px] bg-white shadow-2xl rounded-lg z-10 space-y-5">
+          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
             <FaEnvelope className="text-3xl text-primary" />
             <h2 className="text-xl text-center font-extrabold font-lora uppercase">
               Email
@@ -317,8 +314,8 @@ const Contact = () => {
             </p>
           </div>
         </section>
-        <section className="py-20 ">
-          <div className="flex lg:flex-row flex-col-reverse justify-between gap-12">
+        <section className="py-12">
+          <div className="flex lg:flex-row flex-col-reverse justify-between gap-8">
             <div className="lg:w-1/2 w-full">
               <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -334,7 +331,7 @@ const Contact = () => {
                   <input
                     id="name"
                     {...register("name", { required: "Name is required" })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary"
                     placeholder="Enter your name"
                   />
                   {errors.name && (
@@ -355,7 +352,7 @@ const Contact = () => {
                     id="email"
                     type="email"
                     {...register("email", { required: "Email is required" })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary"
                     placeholder="Enter your email"
                   />
                   {errors.email && (
@@ -377,7 +374,7 @@ const Contact = () => {
                     {...register("message", {
                       required: "Message is required",
                     })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary rounded"
+                    className="w-full p-2 border rounded"
                     placeholder="Enter your message"
                     rows="5"
                   />
@@ -390,7 +387,7 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="bg-primary text-white w-full py-2 font-semibold px-4 rounded"
+                  className="bg-primary text-white w-full py-2 px-4 rounded"
                 >
                   Submit
                 </button>
