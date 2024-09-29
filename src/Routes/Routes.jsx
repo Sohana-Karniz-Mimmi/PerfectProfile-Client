@@ -12,8 +12,8 @@ import Register from "../Authentication/Register";
 import Template from "../Pages/Template/Template";
 import About from "../Pages/About/About";
 // import Modal from "../Authentication/Modal";
-import Login from "../Authentication/Login";
-import Register from "../Authentication/Register";
+// import Login from "../Authentication/Login";
+// import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 
 const router = createBrowserRouter([
