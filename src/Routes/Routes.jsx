@@ -20,11 +20,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/pricing",
-        element: <Pricing/>
+        element: <Pricing />,
       },
       {
         path: "/predefined-templates",
-        element: <Template/>
+        element: <Template />,
       },
       {
         path: "/contact",
@@ -33,8 +33,7 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
-      
-       },
+      },
       {
         path: "/login",
         element: <Login />,
@@ -43,14 +42,12 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      
     ],
   },
   {
     path: "/resume/edit",
     element: <ResumeEditPage />,
   },
-  
 ]);
 
 export default router;
