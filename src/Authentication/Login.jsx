@@ -8,9 +8,10 @@ import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Login = () => {
-  const { signIn, googleSignIn } = useAuth();
+  const { signIn, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const [eye, setEye] = useState(false);
   const [remember, setRemember] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -30,7 +31,15 @@ const Login = () => {
     if (remember) {
       signIn(email, pass)
         .then((result) => {
-          console.log(result);
+          const loggedInUser = result.user;
+
+          console.log(loggedInUser);
+          const user = { email };
+          axios
+            .post("http://localhost:5000/jwt", user, { withCredentials: true })
+            .then((res) => {
+              console.log(res.data);
+            });
           form.reset();
           toast.success("Login Successfully!");
 
@@ -82,13 +91,13 @@ const Login = () => {
 
   return (
     <div>
-       <Helmet>
-                <title>Login - PerfectProfile</title>
-            </Helmet>
+      <Helmet>
+        <title>Login - PerfectProfile</title>
+      </Helmet>
       <Toaster />
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full font-montserrat">
-          <div className="bg-white h-[580px] md:h-[575px] rounded-lg p-10">
+          <div className="bg-white h-[549px] md:h-[567px]  p-5">
             <div>
               <h1 className="text-2xl font-semibold  mb-2">Login</h1>
               {/* <p className="text-lg font-medium text-center w-[300px]">
@@ -201,12 +210,18 @@ const Login = () => {
                   </button>
                 </div>
                 <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
-                  <button className="btn btn-circle border-none  hover:bg-transparent bg-transparent">
+                  <button
+                    onClick={() => handleSocialSignIn(facebookSignIn)}
+                    className="btn btn-circle border-none  hover:bg-transparent bg-transparent"
+                  >
                     <FaFacebook className=" text-white " />
                   </button>
                 </div>
                 <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
-                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                  <button
+                    onClick={() => handleSocialSignIn(twitterSignIn)}
+                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                  >
                     <FaTwitter className="text-white rounded-full" />
                   </button>
                 </div>
