@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet-async";
 import axios from "axios";
 
 const Login = () => {
-  const { signIn, googleSignIn, facebookSignIn } = useAuth();
+  const { signIn, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const [eye, setEye] = useState(false);
   const [remember, setRemember] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -218,7 +218,10 @@ const Login = () => {
                   </button>
                 </div>
                 <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
-                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                  <button
+                    onClick={() => handleSocialSignIn(twitterSignIn)}
+                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                  >
                     <FaTwitter className="text-white rounded-full" />
                   </button>
                 </div>

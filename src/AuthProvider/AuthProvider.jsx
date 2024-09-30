@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  TwitterAuthProvider,
   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
@@ -15,6 +16,7 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext();
 const facebookProvider = new FacebookAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -44,6 +46,10 @@ const AuthProvider = ({ children }) => {
   const facebookSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, facebookProvider);
+  };
+  const twitterSignIn = () => {
+    setLoading(true);
+    return signInWithPopup(auth, twitterProvider);
   };
   const logOut = () => {
     setLoading(true);
@@ -84,6 +90,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     googleSignIn,
     facebookSignIn,
+    twitterSignIn,
     logOut,
   };
 
