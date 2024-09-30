@@ -41,8 +41,6 @@ const ResumeEditPage = () => {
       Component: () => <Summery></Summery>,
     },
   ];
-
-  console.log(datas);
   return (
     <div className="lg:m-16">
       <Container className="">
