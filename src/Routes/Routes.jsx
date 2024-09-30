@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/resume/edit",
+    path: "/resume/edit/:id",
     element: <ResumeEditPage />,
   },
 ]);
