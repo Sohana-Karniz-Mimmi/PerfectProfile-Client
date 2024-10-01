@@ -578,7 +578,15 @@ const ResumeEditPage = () => {
     handleSubmit,
     formState: { errors },
     trigger,
+    setValue
   } = useForm();
+
+  const handleInputChange = (e) => {
+    setValue(e.target.name, e.target.value, {
+      shouldValidate: true, // triggers validation
+      shouldDirty: true, // marks field as dirty
+    });
+  };
 
   useEffect(() => {
     const storedCurrentStep = localStorage.getItem("currentStep");
@@ -718,6 +726,7 @@ const ResumeEditPage = () => {
                     type="text"
                     className="border p-2 w-full rounded"
                     {...register("name", { required: "Name is required" })}
+                    onChange={handleInputChange}
                   />
                   {errors.name && (
                     <p className="text-red-500 font-lora text-sm">
@@ -733,6 +742,7 @@ const ResumeEditPage = () => {
                     {...register("jobTitle", {
                       required: "Job title is required",
                     })}
+                    onChange={handleInputChange}
                   />
                   {errors.jobTitle && (
                     <p className="text-red-500 font-lora text-sm">
@@ -748,6 +758,7 @@ const ResumeEditPage = () => {
                     type="email"
                     className="border p-2 w-full rounded"
                     {...register("email", { required: "Email is required" })}
+                    onChange={handleInputChange}
                   />
                   {errors.email && (
                     <p className="text-red-500 font-lora text-sm">
@@ -761,6 +772,7 @@ const ResumeEditPage = () => {
                     type="text"
                     className="border p-2 w-full rounded"
                     {...register("phone", { required: "Phone is required" })}
+                    onChange={handleInputChange}
                   />
                   {errors.phone && (
                     <p className="text-red-500 font-lora text-sm">
@@ -776,6 +788,7 @@ const ResumeEditPage = () => {
                     type="text"
                     className="border p-2 w-full rounded"
                     {...register("address", { required: "Phone is required" })}
+                    onChange={handleInputChange}
                   />
                   {errors.address && (
                     <p className="text-red-500 font-lora text-sm">
@@ -799,6 +812,7 @@ const ResumeEditPage = () => {
                     {...register("companyName", {
                       required: "Company name is required",
                     })}
+                    onChange={handleInputChange}
                   />
                   {errors.companyName && (
                     <p className="text-red-500 font-lora text-sm">
@@ -814,6 +828,7 @@ const ResumeEditPage = () => {
                     {...register("jobRole", {
                       required: "Job role is required",
                     })}
+                    onChange={handleInputChange}
                   />
                   {errors.jobRole && (
                     <p className="text-red-500 font-lora text-sm">
@@ -835,6 +850,7 @@ const ResumeEditPage = () => {
                     type="text"
                     className="border p-2 w-full rounded"
                     {...register("degree", { required: "Degree is required" })}
+                    onChange={handleInputChange}
                   />
                   {errors.degree && (
                     <p className="text-red-500">{errors.degree.message}</p>
@@ -848,6 +864,7 @@ const ResumeEditPage = () => {
                     {...register("institution", {
                       required: "Institution is required",
                     })}
+                    onChange={handleInputChange}
                   />
                   {errors.institution && (
                     <p className="text-red-500">{errors.institution.message}</p>
@@ -867,6 +884,7 @@ const ResumeEditPage = () => {
                     type="text"
                     className="border p-2 w-full rounded"
                     {...register("skill1", { required: "Skill 1 is required" })}
+                    onChange={handleInputChange}
                   />
                   {errors.skill1 && (
                     <p className="text-red-500">{errors.skill1.message}</p>
@@ -878,6 +896,7 @@ const ResumeEditPage = () => {
                     type="text"
                     className="border p-2 w-full rounded"
                     {...register("skill2", { required: "Skill 2 is required" })}
+                    onChange={handleInputChange}
                   />
                   {errors.skill2 && (
                     <p className="text-red-500">{errors.skill2.message}</p>
@@ -898,6 +917,7 @@ const ResumeEditPage = () => {
                     {...register("summary", {
                       required: "Summary is required",
                     })}
+                    onChange={handleInputChange}
                   ></textarea>
                   {errors.summary && (
                     <p className="text-red-500">{errors.summary.message}</p>
