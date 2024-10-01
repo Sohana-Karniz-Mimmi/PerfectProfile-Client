@@ -26,13 +26,6 @@ const ResumeEditPage = () => {
     setValue,
   } = useForm();
 
-  const handleInputChange = (e) => {
-    setValue(e.target.name, e.target.value, {
-      shouldValidate: true, // triggers validation
-      shouldDirty: true, // marks field as dirty
-    });
-  };
-
   // Skills
   const [skills, setSkills] = useState([]); // State to manage the list of custom skills
   const [customSkill, setCustomSkill] = useState(""); // State to manage the input for a new skill
@@ -124,6 +117,95 @@ const ResumeEditPage = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
 
+  // <<=================================Real time data change for template start here =========================================>>
+
+  const [userData, setUserData] = useState({
+    name: "",
+    jobTitle: "",
+    email: "",
+    phone: "",
+    address: "",
+    careerObjective: "",
+    skills: [""], // Start with an empty skill
+    education: [
+      {
+        degree: "",
+        institution: "",
+        year: "",
+      },
+    ], // Start with an empty education entry
+    certifications: [
+      {
+        year: "",
+        institution: "",
+        title: "",
+      },
+    ],
+    workExperience: [
+      {
+        description: "",
+        years: "",
+        company: "",
+        jobTitle: "",
+      },
+    ],
+    languages: [],
+    extraCurricularActivities: [
+      {
+        activity: "",
+        description: "",
+      },
+    ],
+  });
+
+  // <<====================================Real time data change for template end here ========================================>>
+
+  // Handle changes for general fields
+  const handleInputChange = (field, value) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
+  // Handle changes for array fields like skills, languages, etc.
+  const handleArrayChange = (arrayName, index, value) => {
+    setUserData((prevData) => {
+      const updatedArray = [...prevData[arrayName]];
+      updatedArray[index] = value; // Update the value at the specified index
+      return { ...prevData, [arrayName]: updatedArray };
+    });
+  };
+
+  // Add a new entry for array fields
+  const addArrayEntry = (arrayName, newValue) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      [arrayName]: [...prevData[arrayName], newValue],
+    }));
+  };
+
+  // Specific functions for updating nested fields
+  const updateEducation = (index, field, value) => {
+    setUserData((prevData) => {
+      const updatedEducation = [...prevData.education];
+      updatedEducation[index] = { ...updatedEducation[index], [field]: value };
+      return { ...prevData, education: updatedEducation };
+    });
+  };
+
+  const updateWorkExperience = (index, field, value) => {
+    setUserData((prevData) => {
+      const updatedExperience = [...prevData.workExperience];
+      updatedExperience[index] = {
+        ...updatedExperience[index],
+        [field]: value,
+      };
+      return { ...prevData, workExperience: updatedExperience };
+    });
+  };
+  // Real time data change for template start here
+
   useEffect(() => {
     fetch("../../../public/predefinedTemplates.json")
       .then((res) => res.json())
@@ -134,7 +216,7 @@ const ResumeEditPage = () => {
 
   const renderTemplate = (id) => {
     if (id === "template1") {
-      return <Template1 data={template} />;
+      return <Template1 data={template} userData={userData} />;
     }
     if (id === "template2") {
       return <Template2 data={template} />;
@@ -143,6 +225,7 @@ const ResumeEditPage = () => {
 
   console.log(id);
   console.log(template);
+  console.log("Education is here ", userData.education);
 
   return (
     <div className="flex min-h-screen">
@@ -187,7 +270,6 @@ const ResumeEditPage = () => {
           </div>
         </div>
       </div>
-      {/* Content Area */}
       <div className="w-3/6 p-8 font-montserrat">
         <form onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
@@ -201,30 +283,22 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     className="border p-2 w-full rounded"
-                    {...register("name", { required: "Name is required" })}
-                    onChange={handleInputChange}
+                    name="name"
+                    value={userData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
                   />
-                  {errors.name && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.name.message}
-                    </p>
-                  )}
                 </div>
                 <div>
                   <label>Job Title</label>
                   <input
                     type="text"
                     className="border p-2 w-full rounded"
-                    {...register("jobTitle", {
-                      required: "Job title is required",
-                    })}
-                    onChange={handleInputChange}
+                    name="jobTitle"
+                    value={userData.jobTitle}
+                    onChange={(e) =>
+                      handleInputChange("jobTitle", e.target.value)
+                    }
                   />
-                  {errors.jobTitle && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.jobTitle.message}
-                    </p>
-                  )}
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-6">
@@ -233,44 +307,46 @@ const ResumeEditPage = () => {
                   <input
                     type="email"
                     className="border p-2 w-full rounded"
-                    {...register("email", { required: "Email is required" })}
-                    onChange={handleInputChange}
+                    name="email"
+                    value={userData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
                   />
-                  {errors.email && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.email.message}
-                    </p>
-                  )}
                 </div>
                 <div>
                   <label>Phone</label>
                   <input
                     type="text"
                     className="border p-2 w-full rounded"
-                    {...register("phone", { required: "Phone is required" })}
-                    onChange={handleInputChange}
+                    name="phone"
+                    value={userData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
                   />
-                  {errors.phone && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.phone.message}
-                    </p>
-                  )}
                 </div>
               </div>
-              <div className="grid">
+              <div className="grid grid-cols-2 gap-6">
                 <div>
                   <label>Street Address</label>
                   <input
                     type="text"
                     className="border p-2 w-full rounded"
-                    {...register("address", { required: "Phone is required" })}
-                    onChange={handleInputChange}
+                    name="address"
+                    value={userData.address}
+                    onChange={(e) =>
+                      handleInputChange("address", e.target.value)
+                    }
                   />
-                  {errors.address && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.address.message}
-                    </p>
-                  )}
+                </div>
+                <div>
+                  <label>Carrear Objective</label>
+                  <input
+                    type="text"
+                    className="border p-2 w-full rounded"
+                    name="careerObjective"
+                    value={userData.addcareerObjectiveress}
+                    onChange={(e) =>
+                      handleInputChange("careerObjective", e.target.value)
+                    }
+                  />
                 </div>
               </div>
             </div>
@@ -278,212 +354,210 @@ const ResumeEditPage = () => {
 
           {currentStep === 2 && (
             <div>
-              <h2 className="text-xl font-bold mb-4">Work History</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label>Company Name</label>
-                  <input
-                    type="text"
-                    className="border p-2 w-full rounded"
-                    {...register("companyName", {
-                      required: "Company name is required",
-                    })}
-                    onChange={handleInputChange}
-                  />
-                  {errors.companyName && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.companyName.message}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label>Job Role</label>
-                  <input
-                    type="text"
-                    className="border p-2 w-full rounded"
-                    {...register("jobRole", {
-                      required: "Job role is required",
-                    })}
-                    onChange={handleInputChange}
-                  />
-                  {errors.jobRole && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.jobRole.message}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label>Start Date</label>
-                  <input
-                    type="date"
-                    className="border p-2 w-full rounded"
-                    {...register("startDate", {
-                      required: "Start date is required",
-                    })}
-                    onChange={handleInputChange}
-                  />
-                  {errors.startDate && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.startDate.message}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label>End Date</label>
-                  {!isCurrentJob ? (
+              <h2 className="text-xl font-bold mb-4">Work Experience</h2>
+              {userData.workExperience.map((entry, index) => (
+                <div key={index} className="grid grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label>Company Name</label>
                     <input
-                      type="date"
+                      type="text"
                       className="border p-2 w-full rounded"
-                      {...register("endDate")}
+                      value={entry.company}
+                      onChange={(e) =>
+                        updateWorkExperience(index, "company", e.target.value)
+                      }
                     />
-                  ) : (
-                    <p className="text-gray-500 font-lora text-sm">Present</p>
-                  )}
-                  {errors.endDate && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.endDate.message}
-                    </p>
-                  )}
+                  </div>
+                  <div>
+                    <label>Job Title</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.jobTitle}
+                      onChange={(e) =>
+                        updateWorkExperience(index, "jobTitle", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label>Years</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.years}
+                      onChange={(e) =>
+                        updateWorkExperience(index, "years", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label>Description</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.description}
+                      onChange={(e) =>
+                        updateWorkExperience(
+                          index,
+                          "description",
+                          e.target.value
+                        )
+                      }
+                    />
+                  </div>
                 </div>
-
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="currentJob"
-                    {...register("isCurrentJob")}
-                    onChange={handleCurrentJobChange}
-                  />
-                  <label htmlFor="currentJob" className="ml-2">
-                    I'm currently working here
-                  </label>
-                </div>
-              </div>
+              ))}
+              <button
+                type="button"
+                onClick={() =>
+                  addArrayEntry("workExperience", {
+                    description: "",
+                    years: "",
+                    company: "",
+                    jobTitle: "",
+                  })
+                }
+                className="mt-4 bg-blue-500 text-white p-2 rounded"
+              >
+                Add Another Work Entry
+              </button>
             </div>
           )}
 
           {currentStep === 3 && (
             <div>
               <h2 className="text-xl font-bold mb-4">Education</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label>Degree</label>
-                  <input
-                    type="text"
-                    className="border p-2 w-full rounded"
-                    {...register("degree", { required: "Degree is required" })}
-                    onChange={handleInputChange}
-                  />
-                  {errors.degree && (
-                    <p className="text-red-500">{errors.degree.message}</p>
-                  )}
+              {userData.education.map((entry, index) => (
+                <div key={index} className="grid grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label>Degree</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.degree}
+                      onChange={(e) =>
+                        updateEducation(index, "degree", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label>Institution</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.institution}
+                      onChange={(e) =>
+                        updateEducation(index, "institution", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label>Year</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.year}
+                      onChange={(e) =>
+                        updateEducation(index, "year", e.target.value)
+                      }
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label>Institution</label>
-                  <input
-                    type="text"
-                    className="border p-2 w-full rounded"
-                    {...register("institution", {
-                      required: "Institution is required",
-                    })}
-                    onChange={handleInputChange}
-                  />
-                  {errors.institution && (
-                    <p className="text-red-500">{errors.institution.message}</p>
-                  )}
-                </div>
-              </div>
+              ))}
+              <button
+                type="button"
+                onClick={() =>
+                  addArrayEntry("education", {
+                    degree: "",
+                    institution: "",
+                    year: "",
+                  })
+                }
+                className="mt-4 bg-blue-500 text-white p-2 rounded"
+              >
+                Add Another Education Entry
+              </button>
             </div>
           )}
 
           {currentStep === 4 && (
             <div>
               <h2 className="text-xl font-bold mb-4">Skills</h2>
-              <div className="flex gap-4">
-                {/* Custom skill input */}
-                <div className="mt-4">
-                  <label>Add Custom Skill</label>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      className="border p-2 w-full rounded"
-                      value={customSkill}
-                      onChange={(e) => setCustomSkill(e.target.value)}
-                    />
-                    <button
-                      type="button"
-                      className="bg-green-500 min-w-xl text-white py-2 px-5 rounded"
-                      onClick={addSkill}
-                    >
-                      Add Skill
-                    </button>
-                  </div>
+              {userData.skills.map((skill, index) => (
+                <div key={index} className="mb-4">
+                  <label>Skill {index + 1}</label>
+                  <input
+                    type="text"
+                    className="border p-2 w-full rounded"
+                    value={skill}
+                    onChange={(e) =>
+                      handleArrayChange("skills", index, e.target.value)
+                    }
+                  />
                 </div>
-
-                {/* Display added custom skills */}
-                {skills.length > 0 && (
-                  <div className="mt-4">
-                    <h3 className="font-bold">Custom Skills</h3>
-                    <ul>
-                      {skills.map((skill, index) => (
-                        <li
-                          key={index}
-                          className="flex justify-between items-center"
-                        >
-                          {skill}
-                          <button
-                            type="button"
-                            className="text-red-500"
-                            onClick={() => removeSkill(index)}
-                          >
-                            Remove
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
+              ))}
+              <button
+                type="button"
+                onClick={() => addArrayEntry("skills", "")}
+                className="mt-4 bg-blue-500 text-white p-2 rounded"
+              >
+                Add Another Skill
+              </button>
             </div>
           )}
 
           {currentStep === 5 && (
             <div>
-              <h2 className="text-xl font-bold mb-4">Summary</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label>Professional Summary</label>
-                  <textarea
+              <h2 className="text-xl font-bold mb-4">Languages</h2>
+              {userData.languages.map((language, index) => (
+                <div key={index} className="mb-4">
+                  <label>Language {index + 1}</label>
+                  <input
+                    type="text"
                     className="border p-2 w-full rounded"
-                    {...register("summary", {
-                      required: "Summary is required",
-                    })}
-                    onChange={handleInputChange}
-                  ></textarea>
-                  {errors.summary && (
-                    <p className="text-red-500">{errors.summary.message}</p>
-                  )}
+                    value={language}
+                    onChange={(e) =>
+                      handleArrayChange("languages", index, e.target.value)
+                    }
+                  />
                 </div>
-              </div>
+              ))}
+              <button
+                type="button"
+                onClick={() => addArrayEntry("languages", "")}
+                className="mt-4 bg-blue-500 text-white p-2 rounded"
+              >
+                Add Another Language
+              </button>
             </div>
           )}
 
-          <div className="mt-6">
-            <button
-              type="button"
-              onClick={handlePreviousStep}
-              className="bg-gray-300 p-2 rounded mr-4"
-            >
-              Previous
-            </button>
-            <button
-              type="submit"
-              className="bg-blue-500 text-white p-2 rounded"
-            >
-              Next
-            </button>
+          <div className="flex justify-between mt-6">
+            {currentStep > 1 && (
+              <button
+                type="button"
+                onClick={handlePreviousStep}
+                className="bg-gray-300 p-2 rounded mr-4"
+              >
+                Previous
+              </button>
+            )}
+            {currentStep < 5 ? (
+              <button
+                type="button"
+                onClick={handleNextStep}
+                className="bg-blue-500 text-white p-2 rounded"
+              >
+                Next
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="bg-green-500 text-white p-2 rounded"
+              >
+                Submit
+              </button>
+            )}
           </div>
         </form>
       </div>

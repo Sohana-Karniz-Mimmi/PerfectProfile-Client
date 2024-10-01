@@ -1,4 +1,4 @@
-const Template1 = ({ data }) => {
+const Template1 = ({ data, userData }) => {
   console.log(data);
   // const {
   //   _id,
@@ -15,27 +15,42 @@ const Template1 = ({ data }) => {
   //   languages,
   //   extraCurricularActivities,
   // } = data;
+
+  console.log("user data", userData);
+
   return (
-    <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
+    <div className="lg:w-[31rem]  mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
       <div className="">
         {/* Header - Personal Info */}
         <header className="text-center  bg-blue-200  py-4">
-          <h1 className="text-2xl font-bold text-blue-900 uppercase">{data?.name}</h1>
-          <p className="font-semibold uppercase">{data?.jobTitle}</p>
+          <h1 className="text-2xl font-bold text-blue-900 uppercase ">
+            {userData?.name === "" ? data?.name : userData.name}
+          </h1>
+          <p className="font-semibold uppercase ">
+            {userData?.jobTitle === "" ? data?.jobTitle : userData.jobTitle}
+          </p>
           <p className="font-medium text-sm ">
-            {data?.email} | {data?.phone} | {data?.address}
+            {userData.email === "" ? data?.email : userData.email} |{" "}
+            {userData.phone === "" ? data?.phone : userData.phone} |{" "}
+            {userData.address === "" ? data?.address : userData.address}
           </p>
         </header>
         <div className="px-7 py-3 ">
           {/* Career Objective */}
-          {data?.careerObjective && (
-            <section className="mb-1">
-              <h2 className=" uppercase text-sm  font-bold text-blue-900 border-b border-blue-950 ">
-                Career Objective
-              </h2>
-              <p className="mt-1 text-sm">{data?.careerObjective}</p>
-            </section>
-          )}
+          {userData.careerObjective === ""
+            ? data?.careerObjective
+            : userData.careerObjective && (
+                <section className="mb-1">
+                  <h2 className=" uppercase text-sm  font-bold text-blue-900 border-b border-blue-950 ">
+                    Career Objective
+                  </h2>
+                  <p className="mt-1 text-sm break-words max-w-[450px]">
+                    {userData.careerObjective === ""
+                      ? data?.careerObjective
+                      : userData.careerObjective}
+                  </p>
+                </section>
+              )}
 
           {/* skills */}
           {data?.skills && data?.skills.length > 0 && (
@@ -61,7 +76,7 @@ const Template1 = ({ data }) => {
               <ul className=" text-sm ">
                 {data?.education.map((edu, index) => (
                   <li key={index}>
-                    <h3 className=" font-semibold">
+                    <h3 className=" font-semibold break-words max-w-[420px]">
                       {edu.degree} - {edu.institution}{" "}
                       <span className="text-gray-500">({edu.year})</span>
                     </h3>
@@ -77,10 +92,10 @@ const Template1 = ({ data }) => {
               <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                 Certifications
               </h2>
-              <ul className="mt-1 text-sm space-y-1">
+              <ul className="mt-1 text-sm space-y-1 break-words max-w-[420px]">
                 {data?.certifications.map((cert, index) => (
                   <li key={index}>
-                    <h3 className=" font-semibold">
+                    <h3 className=" font-semibold break-words max-w-[420px]">
                       {cert.title} - {cert.institution}{" "}
                       <span className="text-gray-500">({cert.year})</span>
                     </h3>
@@ -118,12 +133,14 @@ const Template1 = ({ data }) => {
                   Extra Curricular Activities
                 </h2>
                 <ul className="mt-1 text-sm space-y-1">
-                  {data?.extraCurricularActivities.map((activityItem, index) => (
-                    <li key={index} className="text-gray-600">
-                      <strong>{activityItem.activity}</strong> -{" "}
-                      {activityItem.description}
-                    </li>
-                  ))}
+                  {data?.extraCurricularActivities.map(
+                    (activityItem, index) => (
+                      <li key={index} className="text-gray-600">
+                        <strong>{activityItem.activity}</strong> -{" "}
+                        {activityItem.description}
+                      </li>
+                    )
+                  )}
                 </ul>
               </section>
             )}
