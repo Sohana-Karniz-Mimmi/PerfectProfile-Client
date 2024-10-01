@@ -298,12 +298,18 @@ const ResumeEditPage = () => {
   const template = data.find(item1 => item1.templateItem === id);
 
   const renderTemplate = (id) => {
-    if (id === 'template1') {
-      return <Template1 data={template} />
-    }
-    if (id === 'template2') {
-      return <Template2 data={template} />
-    }
+    // if (id === 'template1') {
+    //   return <Template1 data={template} />
+    // }
+    // if (id === 'template2') {
+    //   return <Template2 data={template} />
+    // }
+    switch(id) {
+    case 'template1': return <Template1 data={template} />;
+    case 'template2': return <Template2 data={template} />;
+    case 'template3': return <Template3 data={template} />;
+    default: return <div>No template found</div>;
+  }
   }
 
 
