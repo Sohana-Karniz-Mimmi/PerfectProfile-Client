@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
+import { FaPlus, FaTrash } from "react-icons/fa6";
+import { FaTrashAlt } from "react-icons/fa";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -12,7 +14,7 @@ const ResumeEditPage = () => {
     { id: 2, name: "Work History" },
     { id: 3, name: "Education" },
     { id: 4, name: "Skills" },
-    { id: 5, name: "Summary" },
+    { id: 5, name: "Language" },
     { id: 6, name: "Finalize" },
   ];
 
@@ -25,36 +27,6 @@ const ResumeEditPage = () => {
     trigger,
     setValue,
   } = useForm();
-
-  // Skills
-  const [skills, setSkills] = useState([]); // State to manage the list of custom skills
-  const [customSkill, setCustomSkill] = useState(""); // State to manage the input for a new skill
-  const [isCurrentJob, setIsCurrentJob] = useState(false);
-
-  const handleCurrentJobChange = () => {
-    setIsCurrentJob(!isCurrentJob);
-    if (!isCurrentJob) {
-      // Set the "endDate" value to "Present" when checkbox is selected
-      setValue("endDate", "present");
-    } else {
-      // Clear "endDate" value when checkbox is deselected
-      setValue("endDate", "");
-    }
-  };
-
-  // Add a custom skill to the list
-  const addSkill = () => {
-    if (customSkill.trim()) {
-      setSkills([...skills, customSkill.trim()]);
-      setCustomSkill(""); // Clear the input field after adding
-    }
-  };
-
-  // Remove a skill from the list
-  const removeSkill = (index) => {
-    const updatedSkills = skills.filter((_, i) => i !== index);
-    setSkills(updatedSkills);
-  };
 
   useEffect(() => {
     const storedCurrentStep = localStorage.getItem("currentStep");
@@ -204,6 +176,26 @@ const ResumeEditPage = () => {
       return { ...prevData, workExperience: updatedExperience };
     });
   };
+
+  // Delete Work experience section
+  const deleteWorkExperience = (index) => {
+    const updatedWorkExperience = userData.workExperience.filter(
+      (_, i) => i !== index
+    );
+    setUserData((prevData) => ({
+      ...prevData,
+      workExperience: updatedWorkExperience,
+    }));
+  };
+  // Delete Education section
+  const deleteEducationEntry = (index) => {
+    const updatedEducation = userData.education.filter((_, i) => i !== index);
+    setUserData((prevData) => ({
+      ...prevData,
+      education: updatedEducation,
+    }));
+  };
+
   // Real time data change for template start here
 
   useEffect(() => {
@@ -270,83 +262,143 @@ const ResumeEditPage = () => {
           </div>
         </div>
       </div>
-      <div className="w-3/6 p-8 font-montserrat">
+      {/* Content Area */}
+      <div className="w-3/6 p-8 font-montserrat bg-gray-50">
         <form onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
             <div className="space-y-4">
               <div>
-                <h2 className="text-xl font-bold mb-4">Heading</h2>
+                <h2 className="text-3xl font-bold mb-8">Personal Informaion</h2>
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label>Full Name</label>
+                  <label className="font-bold">Name</label>
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    name="name"
+                    placeholder="Your full name"
+                    className="border py-3 px-2 w-full rounded"
+                    {...register("name", {
+                      // required: "Job title is required",
+                    })}
                     value={userData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                   />
                 </div>
                 <div>
-                  <label>Job Title</label>
+                  <label className="font-bold">Job Title</label>
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    name="jobTitle"
+                    placeholder="Frontend Developer"
+                    className={`border py-3 px-2 w-full rounded`}
+                    {...register("jobTitle", {
+                      // required: "Job title is required",
+                    })}
                     value={userData.jobTitle}
                     onChange={(e) =>
                       handleInputChange("jobTitle", e.target.value)
                     }
                   />
+                  {errors.jobTitle && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.jobTitle.message}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label>Email</label>
+                  <label className="font-bold">Email*</label>
                   <input
                     type="email"
-                    className="border p-2 w-full rounded"
-                    name="email"
+                    placeholder="example@gmail.com"
+                    className={`border py-3 px-2 w-full rounded`}
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        message: "Invalid email format",
+                      },
+                    })}
                     value={userData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                   />
+                  {errors.email && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label>Phone</label>
+                  <label className="font-bold">Phone*</label>
                   <input
-                    type="text"
-                    className="border p-2 w-full rounded"
-                    name="phone"
+                    type="tel"
+                    placeholder="+1-212-456-7890"
+                    className={`border py-3 px-2 w-full rounded`}
+                    {...register("phone", {
+                      required: "Phone is required",
+                      pattern: {
+                        value: /^[0-9\s()+-]*$/,
+                        message: "Phone number must be number",
+                      },
+                    })}
                     value={userData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                   />
+                  {errors.phone && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.phone.message}
+                    </p>
+                  )}
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <label>Street Address</label>
+                  <label className="font-bold">Street Address</label>
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    name="address"
+                    placeholder="123 Main Street, Anytown, USA, 12345"
+                    className={`border py-3 px-2 w-full rounded`}
+                    {...register("address", {
+                      // required: "Job title is required",
+                    })}
                     value={userData.address}
                     onChange={(e) =>
                       handleInputChange("address", e.target.value)
                     }
                   />
+                  {errors.address && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.address.message}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label>Carrear Objective</label>
-                  <input
-                    type="text"
-                    className="border p-2 w-full rounded"
+                  <label className="font-bold">Career Objective</label>
+                  <textarea
+                    type="text-area"
+                    placeholder="Write about your career goal"
+                    className="border py-3 px-2 w-full rounded"
+                    // name="careerObjective"
+                    {...register("careerObjective", {
+                      // required: "Job title is required",
+                    })}
+                    value={userData.careerObjective}
+                    onChange={(e) =>
+                      handleInputChange("careerObjective", e.target.value)
+                    }
+                    rows={6}
+                  />
+
+                  {/* <input
+                    type="text-area"
+                    className="border py-3 px-2 w-full rounded"
                     name="careerObjective"
                     value={userData.addcareerObjectiveress}
                     onChange={(e) =>
                       handleInputChange("careerObjective", e.target.value)
                     }
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -356,7 +408,10 @@ const ResumeEditPage = () => {
             <div>
               <h2 className="text-xl font-bold mb-4">Work Experience</h2>
               {userData.workExperience.map((entry, index) => (
-                <div key={index} className="grid grid-cols-2 gap-4 mb-4">
+                <div
+                  key={index}
+                  className="grid relative border-2 p-8 rounded rounded-tr-3xl border-gray-200 border-dashed grid-cols-2 gap-4 mb-4"
+                >
                   <div>
                     <label>Company Name</label>
                     <input
@@ -405,6 +460,19 @@ const ResumeEditPage = () => {
                       }
                     />
                   </div>
+                  {index > 0 && ( // Only show delete button if it's not the first entry
+                    <div
+                      className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => deleteWorkExperience(index)} // Call delete function
+                        className="text-red-500 hover:text-red-700 bg-white"
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </div>
+                  )}
                 </div>
               ))}
               <button
@@ -417,9 +485,9 @@ const ResumeEditPage = () => {
                     jobTitle: "",
                   })
                 }
-                className="mt-4 bg-blue-500 text-white p-2 rounded"
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
               >
-                Add Another Work Entry
+                Add Another Work History <FaPlus className="font-bold " />
               </button>
             </div>
           )}
@@ -428,7 +496,7 @@ const ResumeEditPage = () => {
             <div>
               <h2 className="text-xl font-bold mb-4">Education</h2>
               {userData.education.map((entry, index) => (
-                <div key={index} className="grid grid-cols-3 gap-4 mb-4">
+                <div key={index} className="grid relative grid-cols-3 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4">
                   <div>
                     <label>Degree</label>
                     <input
@@ -462,6 +530,19 @@ const ResumeEditPage = () => {
                       }
                     />
                   </div>
+                  {index > 0 && (
+                    <div
+                    className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => deleteEducationEntry(index)} // Call delete function
+                      className="text-red-500 hover:text-red-700 bg-white"
+                    >
+                      <FaTrashAlt />
+                    </button>
+                  </div>
+                  )}
                 </div>
               ))}
               <button
@@ -473,9 +554,9 @@ const ResumeEditPage = () => {
                     year: "",
                   })
                 }
-                className="mt-4 bg-blue-500 text-white p-2 rounded"
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
               >
-                Add Another Education Entry
+                Add Another Education Entry <FaPlus className="font-bold"/>
               </button>
             </div>
           )}
@@ -562,7 +643,9 @@ const ResumeEditPage = () => {
         </form>
       </div>
       {/* Template preview area */}
-      // <div className="w-2/6 p-8 flex items-center">{renderTemplate(id)}</div>
+      <div className="w-2/6 p-8 flex items-center bg-gray-50">
+        {renderTemplate(id)}
+      </div>
     </div>
   );
 };
