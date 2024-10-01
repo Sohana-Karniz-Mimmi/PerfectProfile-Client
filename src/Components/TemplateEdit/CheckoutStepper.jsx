@@ -108,46 +108,46 @@
 // export default CheckoutStepper;
 
 
-import React from "react";
+// import React from "react";
 
-const CheckoutStepper = ({ stepConfig, currentStep, onStepChange }) => {
-  return (
-    <div className="w-full">
-      {/* Vertical Stepper */}
-      <div className="flex flex-col items-start mb-8 space-y-4">
-        {stepConfig.map((step, index) => (
-          <div
-            key={index}
-            className="flex items-start cursor-pointer"
-            onClick={() => onStepChange(index)}
-          >
-            <div
-              className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                currentStep === index
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-gray-500"
-              }`}
-            >
-              {index + 1}
-            </div>
-            <div className="ml-4">
-              <span
-                className={`text-lg ${
-                  currentStep === index
-                    ? "text-blue-500 font-semibold"
-                    : "text-gray-500"
-                }`}
-              >
-                {step.name}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+// const CheckoutStepper = ({ stepConfig, currentStep, onStepChange }) => {
+//   return (
+//     <div className="w-full">
+//       {/* Vertical Stepper */}
+//       <div className="flex flex-col items-start mb-8 space-y-4">
+//         {stepConfig.map((step, index) => (
+//           <div
+//             key={index}
+//             className="flex items-start cursor-pointer"
+//             onClick={() => onStepChange(index)}
+//           >
+//             <div
+//               className={`flex items-center justify-center w-10 h-10 rounded-full ${
+//                 currentStep === index
+//                   ? "bg-blue-500 text-white"
+//                   : "bg-gray-300 text-gray-500"
+//               }`}
+//             >
+//               {index + 1}
+//             </div>
+//             <div className="ml-4">
+//               <span
+//                 className={`text-lg ${
+//                   currentStep === index
+//                     ? "text-blue-500 font-semibold"
+//                     : "text-gray-500"
+//                 }`}
+//               >
+//                 {step.name}
+//               </span>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
-export default CheckoutStepper;
+// export default CheckoutStepper;
 
 
