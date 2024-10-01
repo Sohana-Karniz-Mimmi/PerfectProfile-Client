@@ -19,17 +19,17 @@ const Template1 = ({ data, userData }) => {
   console.log("user data", userData);
 
   return (
-    <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
+    <div className="lg:w-[31rem]  mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
       <div className="">
         {/* Header - Personal Info */}
         <header className="text-center  bg-blue-200  py-4">
-          <h1 className="text-2xl font-bold text-blue-900 uppercase break-words max-w-[420px]">
+          <h1 className="text-2xl font-bold text-blue-900 uppercase ">
             {userData?.name === "" ? data?.name : userData.name}
           </h1>
-          <p className="font-semibold uppercase break-words max-w-[420px]">
+          <p className="font-semibold uppercase ">
             {userData?.jobTitle === "" ? data?.jobTitle : userData.jobTitle}
           </p>
-          <p className="font-medium text-sm break-words max-w-[420px]">
+          <p className="font-medium text-sm ">
             {userData.email === "" ? data?.email : userData.email} |{" "}
             {userData.phone === "" ? data?.phone : userData.phone} |{" "}
             {userData.address === "" ? data?.address : userData.address}
@@ -44,7 +44,7 @@ const Template1 = ({ data, userData }) => {
                   <h2 className=" uppercase text-sm  font-bold text-blue-900 border-b border-blue-950 ">
                     Career Objective
                   </h2>
-                  <p className="mt-1 text-sm break-words max-w-[420px]">
+                  <p className="mt-1 text-sm break-words max-w-[450px]">
                     {userData.careerObjective === ""
                       ? data?.careerObjective
                       : userData.careerObjective}
