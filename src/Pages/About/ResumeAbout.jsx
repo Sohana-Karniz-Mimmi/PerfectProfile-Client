@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import img1 from '../../assets/4.png'
-import img2 from '../../assets/1.png'
-import img3 from '../../assets/3.png'
+import img1 from '../../assets/Images/ResumeTemplate/4.png'
+import img2 from '../../assets/Images/ResumeTemplate/1.png'
+import img3 from '../../assets/Images/ResumeTemplate/3.png'
 import Container from "../../Shared/Container";
 import Button from "../../Shared/Button/Button";
 
