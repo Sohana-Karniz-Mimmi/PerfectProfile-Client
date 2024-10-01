@@ -109,7 +109,7 @@ const Banner = () => {
               </linearGradient>
             </defs>
             <path
-              d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z"
+              d="M598.97 70.72L0 0 0 120 1200 120 1200 0 598.97 70.72z"
               className="shape-fill"
               fill="url(#gradient1)" // Apply the gradient fill here
             />

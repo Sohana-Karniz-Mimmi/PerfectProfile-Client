@@ -6,9 +6,11 @@ import { Helmet } from "react-helmet-async";
 import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import useAuth from "../Hook/useAuth";
 import toast, { Toaster } from "react-hot-toast";
+import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Register = () => {
-  const { createUser, googleSignIn } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const { createUser, googleSignIn, facebookSignIn } = useAuth();
   const navigate = useNavigate();
   const [errorText, setErrorText] = useState("");
   const [eyePassword, setEyePassword] = useState(false);
@@ -41,20 +43,28 @@ const Register = () => {
       toast.error("Passwords do not match.");
       return;
     }
-
+    const userInfo = {
+      name: name,
+      email: email,
+      // createdAt: new date(),
+    };
     // Create user with email and password
     createUser(email, password)
       .then((result) => {
-        toast.success("Successfully signed up!");
-        document.getElementById("my_modal_4").close();
+        const loggedUser = result;
+        console.log(loggedUser);
+        axiosPublic.post("/users", userInfo).then((res) => {
+          toast.success("Successfully signed up!");
+          document.getElementById("my_modal_4").close();
 
-        setTimeout(() => {
-          if (location.state) {
-            navigate(location.state);
-          } else {
-            navigate("/");
-          }
-        }, 1000);
+          setTimeout(() => {
+            if (location.state) {
+              navigate(location.state);
+            } else {
+              navigate("/");
+            }
+          }, 1000);
+        });
       })
       .catch((error) => {
         console.error("Error signing up user:", error);
@@ -89,7 +99,7 @@ const Register = () => {
       </Helmet>
       <dialog id="my_modal_4" className="modal">
         <div className="modal-box text-black bg-transparent !shadow-none relative h-full w-full font-montserrat">
-          <div className="bg-white h-[695px] md:h-[680px] rounded-lg p-5 !overflow-hidden">
+          <div className="bg-white h-[705px] md:h-[690px]  p-5 !overflow-hidden">
             <div>
               <h1 className="text-2xl font-semibold">Register Form</h1>
             </div>
@@ -231,7 +241,10 @@ const Register = () => {
                 </div>
 
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
-                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                  <button
+                    onClick={() => handleSocialSignIn(facebookSignIn)}
+                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                  >
                     <FaFacebook className="text-white" />
                   </button>
                 </div>

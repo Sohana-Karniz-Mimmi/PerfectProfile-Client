@@ -6,14 +6,14 @@ import Template1 from "./Template1";
 import Template2 from "./Template2";
 import Template3 from "./Template3";
 import Template4 from "./Template4";
-// import Template5 from "./Template5";
-// import Template6 from "./Template6";
+import Template5 from "./Template5";
+import Template6 from "./Template6";
 
 const ResumeTemplates = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("./templateData.json")
+    fetch("./predefinedTemplates.json")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
@@ -36,8 +36,8 @@ const ResumeTemplates = () => {
                 <Template2 data = {data[1]} />
                 <Template3 data = {data[2]} />
                 <Template4 data = {data[3]} />
-                {/* <Template5 data = {data[4]} /> */}
-                {/* <Template6 data = {data[5]} /> */}
+                <Template5 data = {data[4]} />
+                <Template6 data = {data[5]} />
                 </>
             )
         }
