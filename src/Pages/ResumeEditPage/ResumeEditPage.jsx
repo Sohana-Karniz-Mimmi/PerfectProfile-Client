@@ -124,7 +124,7 @@ const ResumeEditPage = () => {
         jobTitle: "",
       },
     ],
-    languages: [],
+    languages: [""],
     extraCurricularActivities: [
       {
         activity: "",
@@ -229,7 +229,9 @@ const ResumeEditPage = () => {
 
   // Delete Education section
   const deleteCertifications = (index) => {
-    const updatedCertificate = userData.certifications.filter((_, i) => i !== index);
+    const updatedCertificate = userData.certifications.filter(
+      (_, i) => i !== index
+    );
     setUserData((prevData) => ({
       ...prevData,
       certifications: updatedCertificate,
@@ -254,10 +256,6 @@ const ResumeEditPage = () => {
       return <Template2 data={template} />;
     }
   };
-
-  console.log(id);
-  console.log(template);
-  console.log("Education is here ", userData.education);
 
   return (
     <div className="flex min-h-screen">
@@ -434,7 +432,7 @@ const ResumeEditPage = () => {
                     type="text-area"
                     className="border py-3 px-2 w-full rounded"
                     name="careerObjective"
-                    value={userData.addcareerObjectiveress}
+                    value={userData.careerObjective}
                     onChange={(e) =>
                       handleInputChange("careerObjective", e.target.value)
                     }

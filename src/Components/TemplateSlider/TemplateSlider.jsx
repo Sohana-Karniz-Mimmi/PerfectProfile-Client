@@ -18,7 +18,6 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
-
   <button
     className="prev absolute z-10 lg:left-24 left-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
     onClick={props.onClick}
@@ -44,15 +43,13 @@ export default function App() {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axiosPublic(
-        `/predefined-templates`)
-      setPredefinedTemplate(data)
-    }
-    getData()
-  }, [])
+      const { data } = await axiosPublic(`/predefined-templates`);
+      setPredefinedTemplate(data);
+    };
+    getData();
+  }, []);
 
   // console.log(predefinedTemplate);
-
 
   return (
     <>
@@ -83,9 +80,8 @@ export default function App() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-
-        {
-          predefinedTemplate?.map(template => <SwiperSlide>
+        {predefinedTemplate?.map((template) => (
+          <SwiperSlide key={template._id}>
             <div className="relative group">
               <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
                 <Link to={`resume/edit/${template.templateItem}`}>
@@ -96,9 +92,8 @@ export default function App() {
               </div>
               <img src={template.image} alt="" />
             </div>
-          </SwiperSlide>)
-        }
-
+          </SwiperSlide>
+        ))}
 
         {/* <SwiperSlide>
           <div className="relative group">
