@@ -1,6 +1,6 @@
 const Template1 = ({ data, userData }) => {
   return (
-    <div className="lg:w-[31rem]  mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
+    <div className="lg:w-[31rem]  mx-auto  bg-slate-50 shadow-2xl rounded-lg ">
       <div className="">
         {/* Header - Personal Info */}
         <header className="text-center  bg-blue-200  py-4">
@@ -28,7 +28,7 @@ const Template1 = ({ data, userData }) => {
               : userData?.address}
           </p>
         </header>
-        <div className="px-7 py-3 ">
+        <div className="px-7 py-3 space-y-3">
           {/* Career Objective */}
           {userData?.careerObjective === "" ||
           userData?.careerObjective === undefined ? (
@@ -60,7 +60,7 @@ const Template1 = ({ data, userData }) => {
           {/* skills */}
           {userData?.skills.length >= 1 ? (
             // If userData.skills exist and the length is greater than 0, show userData.skills
-            <section className="mb-1">
+            <section className="mb-1 space-y-3">
               <h2 className="uppercase text-sm font-bold text-blue-900 border-b border-blue-950">
                 Skills
               </h2>
@@ -78,7 +78,7 @@ const Template1 = ({ data, userData }) => {
             // If userData.skills is empty or doesn't exist, fallback to data.skills
             data?.skills &&
             data?.skills.length > 0 && (
-              <section className="mb-1">
+              <section className="mb-1 space-y-3">
                 <h2 className="uppercase text-sm font-bold text-blue-900 border-b border-blue-950">
                   Skills
                 </h2>
@@ -93,8 +93,8 @@ const Template1 = ({ data, userData }) => {
             )
           )}
           {/* Education */}
-          {userData?.education.length >= 1 && (
-            <section className="mb-1">
+          {userData?.education.length >= 1 ? (
+            <section className="mb-1 space-y-3">
               <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                 Education
               </h2>
@@ -112,11 +112,30 @@ const Template1 = ({ data, userData }) => {
                 ))}
               </ul>
             </section>
+          ) : (
+            data?.education &&
+            data?.education.length > 0 && (
+              <section className="mb-1 space-y-3">
+                <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
+                  Education
+                </h2>
+                <ul className=" text-sm ">
+                  {data?.education.map((edu, index) => (
+                    <li key={index}>
+                      <h3 className=" font-semibold break-words max-w-[420px]">
+                        {edu.degree} - {edu.institution}{" "}
+                        <span className="text-gray-500">({edu.year})</span>
+                      </h3>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )
           )}
 
           {/* Certifications */}
           {userData?.certifications && userData?.certifications.length >= 1 ? (
-            <section className="mb-1">
+            <section className="mb-1 space-y-3">
               <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                 Certifications
               </h2>
@@ -137,7 +156,7 @@ const Template1 = ({ data, userData }) => {
           ) : (
             data?.certifications &&
             data?.certifications.length > 0 && (
-              <section className="mb-1">
+              <section className="mb-1 space-y-3">
                 <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                   Certifications
                 </h2>
@@ -157,7 +176,7 @@ const Template1 = ({ data, userData }) => {
 
           {/* Work Experience */}
           {userData?.workExperience && userData?.workExperience.length >= 1 ? (
-            <section className="mb-1">
+            <section className="mb-1 space-y-3">
               <h2 className=" font-bold text-sm uppercase text-blue-900 border-b border-blue-950 ">
                 Work Experience
               </h2>
@@ -182,7 +201,7 @@ const Template1 = ({ data, userData }) => {
           ) : (
             data?.workExperience &&
             data?.workExperience.length > 0 && (
-              <section className="mb-1">
+              <section className="mb-1 space-y-3">
                 <h2 className=" font-bold text-sm uppercase text-blue-900 border-b border-blue-950 ">
                   Work Experience
                 </h2>
@@ -224,8 +243,8 @@ const Template1 = ({ data, userData }) => {
             )} */}
 
           {/* languages */}
-          {userData.languages && userData?.languages.length >= 1 ? (
-            <section className="mb-1">
+          {userData?.languages && userData?.languages.length >= 1 ? (
+            <section className="mb-1 space-y-3">
               <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                 language
               </h2>
@@ -242,7 +261,7 @@ const Template1 = ({ data, userData }) => {
           ) : (
             data?.languages &&
             data?.languages.length > 0 && (
-              <section className="mb-1">
+              <section className="mb-1 space-y-3">
                 <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                   language
                 </h2>
