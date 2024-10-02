@@ -12,7 +12,7 @@ const ResumeEditPage = () => {
     { id: 2, name: "Work History" },
     { id: 3, name: "Education" },
     { id: 4, name: "Skills" },
-    { id: 5, name: "Summary" },
+    { id: 5, name: "Language" },
     { id: 6, name: "Finalize" },
   ];
 
@@ -117,7 +117,7 @@ const ResumeEditPage = () => {
         jobTitle: "",
       },
     ],
-    languages: [],
+    languages: [""],
     extraCurricularActivities: [
       {
         activity: "",
@@ -172,6 +172,7 @@ const ResumeEditPage = () => {
       return { ...prevData, workExperience: updatedExperience };
     });
   };
+
   // Real time data change for template start here
 
   useEffect(() => {
@@ -190,10 +191,6 @@ const ResumeEditPage = () => {
       return <Template2 data={template} />;
     }
   };
-
-  console.log(id);
-  console.log(template);
-  console.log("Education is here ", userData.education);
 
   return (
     <div className="flex min-h-screen">
@@ -310,7 +307,7 @@ const ResumeEditPage = () => {
                     type="text"
                     className="border p-2 w-full rounded"
                     name="careerObjective"
-                    value={userData.addcareerObjectiveress}
+                    value={userData.careerObjective}
                     onChange={(e) =>
                       handleInputChange("careerObjective", e.target.value)
                     }
@@ -510,7 +507,7 @@ const ResumeEditPage = () => {
                 Previous
               </button>
             )}
-            {currentStep < 5 ? (
+            {currentStep < 6 ? (
               <button
                 type="button"
                 onClick={handleNextStep}
