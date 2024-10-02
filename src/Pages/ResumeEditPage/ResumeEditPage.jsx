@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
+import { FaDeleteLeft, FaPlus, FaTrash } from "react-icons/fa6";
+import { FaTrashAlt } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -12,17 +15,21 @@ const ResumeEditPage = () => {
     { id: 2, name: "Work History" },
     { id: 3, name: "Education" },
     { id: 4, name: "Skills" },
-    { id: 5, name: "Summary" },
-    { id: 6, name: "Finalize" },
+    { id: 5, name: "Language" },
+    { id: 6, name: "Certifications" },
+    { id: 7, name: "Finalize" },
   ];
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
+  const predefinedSkills = ["React.js", "Node.js", "CSS", "HTML", "JavaScript"];
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     trigger,
+    setValue,
   } = useForm();
 
   useEffect(() => {
@@ -78,6 +85,7 @@ const ResumeEditPage = () => {
 
   const onSubmit = (data) => {
     console.log(`Form Step ${currentStep} Data:`, data);
+    console.log(data.isCurrentJob);
     handleNextStep();
   };
 
@@ -94,7 +102,7 @@ const ResumeEditPage = () => {
     phone: "",
     address: "",
     careerObjective: "",
-    skills: [""], // Start with an empty skill
+    skills: [], // Start with an empty skill
     education: [
       {
         degree: "",
@@ -126,6 +134,9 @@ const ResumeEditPage = () => {
     ],
   });
 
+  console.log("Skills are: ", userData.skills);
+  console.log("Educations are: ", userData.education);
+
   // <<====================================Real time data change for template end here ========================================>>
 
   // Handle changes for general fields
@@ -137,10 +148,24 @@ const ResumeEditPage = () => {
   };
 
   // Handle changes for array fields like skills, languages, etc.
+  // const handleArrayChange = (arrayName, index, value) => {
+  //   setUserData((prevData) => {
+  //     const updatedArray = [...prevData[arrayName]];
+  //     updatedArray[index] = value; // Update the value at the specified index
+  //     return { ...prevData, [arrayName]: updatedArray };
+  //   });
+  // };
+
   const handleArrayChange = (arrayName, index, value) => {
     setUserData((prevData) => {
       const updatedArray = [...prevData[arrayName]];
-      updatedArray[index] = value; // Update the value at the specified index
+
+      if (index >= updatedArray.length) {
+        updatedArray.push(value);
+      } else {
+        updatedArray[index] = value;
+      }
+
       return { ...prevData, [arrayName]: updatedArray };
     });
   };
@@ -162,6 +187,57 @@ const ResumeEditPage = () => {
     });
   };
 
+  //Skills area start
+  const [showInput, setShowInput] = useState(false); // State to toggle input visibility
+  const [newSkill, setNewSkill] = useState(""); // State to store the new skill input
+  // const [skills, setSkills] = useState([]);
+
+  const handleAddSkill = () => {
+    if (newSkill) {
+      setUserData((prevData) => ({
+        ...prevData,
+        skills: [...prevData.skills, newSkill], // Add new skill to userData.skills array
+      }));
+      setNewSkill(""); // Clear the input field
+      setShowInput(false); // Hide the input field after adding the skill
+    }
+  };
+
+  const handleDeleteSkill = (skillToDelete) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      skills: prevData.skills.filter((skill) => skill !== skillToDelete), // Remove skill from userData.skills
+    }));
+  };
+  //Skills area end
+
+  //Start language area
+
+  // const [showInput, setShowInput] = useState(false); // State to toggle input visibility
+  const [newLanguage, setNewLanguage] = useState(""); // State to store the new Language input
+
+  const handleAddLanguage = () => {
+    if (newLanguage) {
+      setUserData((prevData) => ({
+        ...prevData,
+        languages: [...prevData.languages, newLanguage], // Add new language to userData.languages array
+      }));
+      setNewLanguage(""); // Clear the input field
+      setShowInput(false); // Hide the input field after adding the language
+    }
+  };
+
+  const handleDeleteLanguage = (languageToDelete) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      languages: prevData.languages.filter(
+        (language) => language !== languageToDelete
+      ), // Remove language from userData.languages
+    }));
+  };
+
+  //End language area
+
   const updateWorkExperience = (index, field, value) => {
     setUserData((prevData) => {
       const updatedExperience = [...prevData.workExperience];
@@ -172,6 +248,49 @@ const ResumeEditPage = () => {
       return { ...prevData, workExperience: updatedExperience };
     });
   };
+
+  const updateCertificate = (index, field, value) => {
+    setUserData((prevData) => {
+      const updatedCertificate = [...prevData.certifications];
+      updatedCertificate[index] = {
+        ...updatedCertificate[index],
+        [field]: value,
+      };
+      return { ...prevData, certifications: updatedCertificate };
+    });
+  };
+
+  // Delete Work experience section
+  const deleteWorkExperience = (index) => {
+    const updatedWorkExperience = userData.workExperience.filter(
+      (_, i) => i !== index
+    );
+    setUserData((prevData) => ({
+      ...prevData,
+      workExperience: updatedWorkExperience,
+    }));
+  };
+
+  // Delete Education section
+  const deleteEducationEntry = (index) => {
+    const updatedEducation = userData.education.filter((_, i) => i !== index);
+    setUserData((prevData) => ({
+      ...prevData,
+      education: updatedEducation,
+    }));
+  };
+
+  // Delete Education section
+  const deleteCertifications = (index) => {
+    const updatedCertificate = userData.certifications.filter(
+      (_, i) => i !== index
+    );
+    setUserData((prevData) => ({
+      ...prevData,
+      certifications: updatedCertificate,
+    }));
+  };
+
   // Real time data change for template start here
 
   useEffect(() => {
@@ -191,10 +310,6 @@ const ResumeEditPage = () => {
     }
   };
 
-  console.log(id);
-  console.log(template);
-  console.log("Education is here ", userData.education);
-
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
@@ -206,9 +321,9 @@ const ResumeEditPage = () => {
               key={step.id}
               className={`flex items-center space-x-2 cursor-pointer ${
                 currentStep === step.id
-                  ? "text-white font-bold"
+                  ? "text-white font-montserrat"
                   : isStepCompleted(step.id)
-                  ? "text-white"
+                  ? "text-white font-bold font-montserrat"
                   : "text-gray-500"
               }`}
               onClick={() => handleStepClick(step.id)}
@@ -228,93 +343,158 @@ const ResumeEditPage = () => {
             </div>
           ))}
         </div>
-        <div className="mt-6">
-          <h3 className="text-sm mb-2">Completion: {completionPercentage}%</h3>
-          <div className="w-full bg-gray-200 h-2 rounded">
-            <div
-              className="bg-green-500 h-full"
-              style={{ width: `${completionPercentage}%` }}
-            />
+        <div className="mt-6 ">
+          <h3 className="text-sm lg:text-lg font-montserrat  mb-2">
+            Completion status:{" "}
+          </h3>
+          <div className="flex items-center gap-2">
+            <div className="w-full bg-gray-200 h-2 rounded">
+              <div
+                className="bg-gradient-to-r to-primary from-secondary rounded-r-full h-full"
+                style={{ width: `${completionPercentage}%` }}
+              />
+            </div>
+            <div className="font-lora font-bold">{completionPercentage}%</div>
           </div>
         </div>
       </div>
-      <div className="w-3/6 p-8 font-montserrat">
+      {/* Content Area */}
+      <div className="w-3/6 p-8 font-montserrat bg-gray-50">
         <form onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
             <div className="space-y-4">
               <div>
-                <h2 className="text-xl font-bold mb-4">Heading</h2>
+                <h2 className="text-3xl font-bold mb-8">Personal Informaion</h2>
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label>Full Name</label>
+                  <label className="font-bold">Name</label>
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    name="name"
+                    placeholder="Your full name"
+                    className="border py-3 px-2 w-full rounded"
+                    {...register("name", {
+                      // required: "Job title is required",
+                    })}
                     value={userData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                   />
                 </div>
                 <div>
-                  <label>Job Title</label>
+                  <label className="font-bold">Job Title</label>
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    name="jobTitle"
+                    placeholder="Frontend Developer"
+                    className={`border py-3 px-2 w-full rounded`}
+                    {...register("jobTitle", {
+                      // required: "Job title is required",
+                    })}
                     value={userData.jobTitle}
                     onChange={(e) =>
                       handleInputChange("jobTitle", e.target.value)
                     }
                   />
+                  {errors.jobTitle && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.jobTitle.message}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label>Email</label>
+                  <label className="font-bold">Email*</label>
                   <input
                     type="email"
-                    className="border p-2 w-full rounded"
-                    name="email"
+                    placeholder="example@gmail.com"
+                    className={`border py-3 px-2 w-full rounded`}
+                    {...register("email", {
+                      // required: "Email is required",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        message: "Invalid email format",
+                      },
+                    })}
                     value={userData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                   />
+                  {errors.email && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label>Phone</label>
+                  <label className="font-bold">Phone*</label>
                   <input
-                    type="text"
-                    className="border p-2 w-full rounded"
-                    name="phone"
+                    type="tel"
+                    placeholder="+1-212-456-7890"
+                    className={`border py-3 px-2 w-full rounded`}
+                    {...register("phone", {
+                      // required: "Phone is required",
+                      pattern: {
+                        value: /^[0-9\s()+-]*$/,
+                        message: "Phone number must be number",
+                      },
+                    })}
                     value={userData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                   />
+                  {errors.phone && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.phone.message}
+                    </p>
+                  )}
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <label>Street Address</label>
+                  <label className="font-bold">Street Address</label>
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    name="address"
+                    placeholder="123 Main Street, Anytown, USA, 12345"
+                    className={`border py-3 px-2 w-full rounded`}
+                    {...register("address", {
+                      // required: "Job title is required",
+                    })}
                     value={userData.address}
                     onChange={(e) =>
                       handleInputChange("address", e.target.value)
                     }
                   />
+                  {errors.address && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.address.message}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label>Carrear Objective</label>
-                  <input
-                    type="text"
-                    className="border p-2 w-full rounded"
-                    name="careerObjective"
-                    value={userData.addcareerObjectiveress}
+                  <label className="font-bold">Career Objective</label>
+                  <textarea
+                    type="text-area"
+                    placeholder="Write about your career goal"
+                    className="border py-3 px-2 w-full rounded"
+                    // name="careerObjective"
+                    {...register("careerObjective", {
+                      // required: "Job title is required",
+                    })}
+                    value={userData.careerObjective}
                     onChange={(e) =>
                       handleInputChange("careerObjective", e.target.value)
                     }
+                    rows={6}
                   />
+
+                  {/* <input
+                    type="text-area"
+                    className="border py-3 px-2 w-full rounded"
+                    name="careerObjective"
+                    value={userData.careerObjective}
+                    onChange={(e) =>
+                      handleInputChange("careerObjective", e.target.value)
+                    }
+                  /> */}
                 </div>
               </div>
             </div>
@@ -324,7 +504,10 @@ const ResumeEditPage = () => {
             <div>
               <h2 className="text-xl font-bold mb-4">Work Experience</h2>
               {userData.workExperience.map((entry, index) => (
-                <div key={index} className="grid grid-cols-2 gap-4 mb-4">
+                <div
+                  key={index}
+                  className="grid relative border-2 p-8 rounded rounded-tr-3xl border-gray-200 border-dashed grid-cols-2 gap-4 mb-4"
+                >
                   <div>
                     <label>Company Name</label>
                     <input
@@ -373,6 +556,19 @@ const ResumeEditPage = () => {
                       }
                     />
                   </div>
+                  {index > 0 && ( // Only show delete button if it's not the first entry
+                    <div
+                      className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => deleteWorkExperience(index)} // Call delete function
+                        className="text-red-500 hover:text-red-700 bg-white"
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </div>
+                  )}
                 </div>
               ))}
               <button
@@ -385,9 +581,9 @@ const ResumeEditPage = () => {
                     jobTitle: "",
                   })
                 }
-                className="mt-4 bg-blue-500 text-white p-2 rounded"
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
               >
-                Add Another Work Entry
+                Add Another Work History <FaPlus className="font-bold " />
               </button>
             </div>
           )}
@@ -396,7 +592,10 @@ const ResumeEditPage = () => {
             <div>
               <h2 className="text-xl font-bold mb-4">Education</h2>
               {userData.education.map((entry, index) => (
-                <div key={index} className="grid grid-cols-3 gap-4 mb-4">
+                <div
+                  key={index}
+                  className="grid relative grid-cols-3 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
+                >
                   <div>
                     <label>Degree</label>
                     <input
@@ -430,6 +629,19 @@ const ResumeEditPage = () => {
                       }
                     />
                   </div>
+                  {index > 0 && (
+                    <div
+                      className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => deleteEducationEntry(index)} // Call delete function
+                        className="text-red-500 hover:text-red-700 bg-white"
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </div>
+                  )}
                 </div>
               ))}
               <button
@@ -441,80 +653,255 @@ const ResumeEditPage = () => {
                     year: "",
                   })
                 }
-                className="mt-4 bg-blue-500 text-white p-2 rounded"
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
               >
-                Add Another Education Entry
+                Add Another Education Entry <FaPlus className="font-bold" />
               </button>
             </div>
           )}
 
           {currentStep === 4 && (
+            // <div>
+            //   <h2 className="text-xl font-bold mb-4">Skills</h2>
+            //   {userData.skills.map((skill, index) => (
+            //     <div key={index}>
+            //       <div className="mb-4">
+            //         <label>Skill {index + 1}</label>
+            //         <input
+            //           type="text"
+            //           className="border p-2 w-full rounded"
+            //           value={skill}
+            //           onChange={(e) =>
+            //             handleArrayChange("skills", index, e.target.value)
+            //           }
+            //         />
+            //       </div>
+            //     </div>
+            //   ))}
+
+            //     <button
+            //       type="button"
+            //       className="mt-4 flex items-center gap-2 bg-blue-500 text-white p-2 rounded"
+            //     >
+            //       Add new skills <FaPlus />
+            //     </button>
+
+            //   {/* <button
+            //     type="button"
+            //     onClick={() => addArrayEntry("skills", "")}
+            //     className="mt-4 bg-blue-500 text-white p-2 rounded"
+            //   >
+            //     Add Another Skill
+            //   </button> */}
+            // </div>
+
             <div>
-              <h2 className="text-xl font-bold mb-4">Skills</h2>
-              {userData.skills.map((skill, index) => (
-                <div key={index} className="mb-4">
-                  <label>Skill {index + 1}</label>
+              <h2 className="text-3xl font-bold mb-4">Skills</h2>
+              <div className="flex gap-3 flex-wrap">
+                {userData.skills.map((skill, index) => (
+                  <div key={index} className="flex justify-between gap-2 mb-2">
+                    <div className="border relative rounded  gap-4 py-1 px-4">
+                      <span>{skill}</span>
+                      <button
+                        type="button"
+                        className="text-red-500 absolute p-0 m-0 -top-2 -right-2"
+                        onClick={() => handleDeleteSkill(skill)}
+                      >
+                        <TiDelete className="p-0 m-0 text-xl" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {showInput && (
+                <div className="mt-4 relative flex items-center">
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    value={skill}
-                    onChange={(e) =>
-                      handleArrayChange("skills", index, e.target.value)
-                    }
+                    className="border   py-3 px-2 w-full  rounded"
+                    value={newSkill}
+                    onChange={(e) => setNewSkill(e.target.value)} // Update input value
+                    placeholder="Enter new skill"
                   />
+
+                  <button
+                    type="button"
+                    className="absolute right-0 bg-secondary font-bold text-white py-3 px-2 rounded"
+                    onClick={() => handleAddSkill()}
+                  >
+                    Add Skill
+                  </button>
                 </div>
-              ))}
+              )}
               <button
                 type="button"
-                onClick={() => addArrayEntry("skills", "")}
-                className="mt-4 bg-blue-500 text-white p-2 rounded"
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+                onClick={() => setShowInput(true)} // Show input on button click
               >
-                Add Another Skill
+                Add new skill <FaPlus className="font-bold" />
               </button>
             </div>
           )}
 
           {currentStep === 5 && (
+            // <div>
+            //   <h2 className="text-xl font-bold mb-4">Languages</h2>
+            //   {userData.languages.map((language, index) => (
+            //     <div key={index} className="mb-4">
+            //       <label>Language {index + 1}</label>
+            //       <input
+            //         type="text"
+            //         className="border p-2 w-full rounded"
+            //         value={language}
+            //         onChange={(e) =>
+            //           handleArrayChange("languages", index, e.target.value)
+            //         }
+            //       />
+            //     </div>
+            //   ))}
+            //   <button
+            //     type="button"
+            //     onClick={() => addArrayEntry("languages", "")}
+            //     className="mt-4 bg-blue-500 text-white p-2 rounded"
+            //   >
+            //     Add Another Language
+            //   </button>
+            // </div>
             <div>
-              <h2 className="text-xl font-bold mb-4">Languages</h2>
-              {userData.languages.map((language, index) => (
-                <div key={index} className="mb-4">
-                  <label>Language {index + 1}</label>
+              <h2 className="text-3xl font-bold mb-4">Languages</h2>
+              <div className="flex gap-3 flex-wrap">
+                {userData.languages.map((language, index) => (
+                  <div key={index} className="flex justify-between gap-2 mb-2">
+                    <div className="border relative rounded  gap-4 py-1 px-4">
+                      <span>{language}</span>
+                      <button
+                        type="button"
+                        className="text-red-500 absolute p-0 m-0 -top-2 -right-2"
+                        onClick={() => handleDeleteLanguage(language)}
+                      >
+                        <TiDelete className="p-0 m-0 text-xl" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {showInput && (
+                <div className="mt-4 relative flex items-center">
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    value={language}
-                    onChange={(e) =>
-                      handleArrayChange("languages", index, e.target.value)
-                    }
+                    className="border   py-3 px-2 w-full  rounded"
+                    value={newLanguage}
+                    onChange={(e) => setNewLanguage(e.target.value)} // Update input value
+                    placeholder="Enter new language"
                   />
+
+                  <button
+                    type="button"
+                    className="absolute right-0 bg-secondary font-bold text-white py-3 px-2 rounded"
+                    onClick={() => handleAddLanguage()}
+                  >
+                    Add Language
+                  </button>
                 </div>
-              ))}
+              )}
               <button
                 type="button"
-                onClick={() => addArrayEntry("languages", "")}
-                className="mt-4 bg-blue-500 text-white p-2 rounded"
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+                onClick={() => setShowInput(true)} // Show input on button click
               >
-                Add Another Language
+                Add new language <FaPlus className="font-bold" />
               </button>
             </div>
           )}
 
-          <div className="flex justify-between mt-6">
+          {currentStep === 6 && (
+            <div>
+              <h2 className="text-xl font-bold mb-4">Certifications</h2>
+              {userData.certifications.map((entry, index) => (
+                <div
+                  key={index}
+                  className="grid relative grid-cols-3 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
+                >
+                  <div>
+                    <label>Certificate Name</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.title}
+                      onChange={(e) =>
+                        updateCertificate(index, "title", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label>Institution Name</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.institution}
+                      onChange={(e) =>
+                        updateCertificate(index, "institution", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label>Year</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.year}
+                      onChange={(e) =>
+                        updateCertificate(index, "year", e.target.value)
+                      }
+                    />
+                  </div>
+                  {index > 0 && (
+                    <div
+                      className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => deleteCertifications(index)} // Call delete function
+                        className="text-red-500 hover:text-red-700 bg-white"
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() =>
+                  addArrayEntry("certifications", {
+                    title: "",
+                    institution: "",
+                    year: "",
+                  })
+                }
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+              >
+                Add Another Certification <FaPlus className="font-bold" />
+              </button>
+            </div>
+          )}
+
+          <div className="flex justify-end gap-16 mt-8">
             {currentStep > 1 && (
               <button
                 type="button"
                 onClick={handlePreviousStep}
-                className="bg-gray-300 p-2 rounded mr-4"
+                className="border border-black font-bold text-black py-3 px-2 rounded"
               >
                 Previous
               </button>
             )}
-            {currentStep < 5 ? (
+            {currentStep < 7 ? (
               <button
                 type="button"
                 onClick={handleNextStep}
-                className="bg-blue-500 text-white p-2 rounded"
+                className="bg-primary font-bold text-white py-3 px-5 rounded"
               >
                 Next
               </button>
@@ -530,7 +917,9 @@ const ResumeEditPage = () => {
         </form>
       </div>
       {/* Template preview area */}
-      // <div className="w-2/6 p-8 flex items-center">{renderTemplate(id)}</div>
+      <div className="w-2/6 p-8 flex items-center bg-gray-50">
+        {renderTemplate(id)}
+      </div>
     </div>
   );
 };
