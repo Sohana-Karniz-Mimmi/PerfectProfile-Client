@@ -5,8 +5,9 @@ import { useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
-import { FaPlus, FaTrash } from "react-icons/fa6";
+import { FaDeleteLeft, FaPlus, FaTrash } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -124,7 +125,7 @@ const ResumeEditPage = () => {
         jobTitle: "",
       },
     ],
-    languages: [""],
+    languages: [],
     extraCurricularActivities: [
       {
         activity: "",
@@ -134,6 +135,7 @@ const ResumeEditPage = () => {
   });
 
   console.log("Skills are: ", userData.skills);
+  console.log("Educations are: ", userData.education);
 
   // <<====================================Real time data change for template end here ========================================>>
 
@@ -184,6 +186,57 @@ const ResumeEditPage = () => {
       return { ...prevData, education: updatedEducation };
     });
   };
+
+  //Skills area start
+  const [showInput, setShowInput] = useState(false); // State to toggle input visibility
+  const [newSkill, setNewSkill] = useState(""); // State to store the new skill input
+  // const [skills, setSkills] = useState([]);
+
+  const handleAddSkill = () => {
+    if (newSkill) {
+      setUserData((prevData) => ({
+        ...prevData,
+        skills: [...prevData.skills, newSkill], // Add new skill to userData.skills array
+      }));
+      setNewSkill(""); // Clear the input field
+      setShowInput(false); // Hide the input field after adding the skill
+    }
+  };
+
+  const handleDeleteSkill = (skillToDelete) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      skills: prevData.skills.filter((skill) => skill !== skillToDelete), // Remove skill from userData.skills
+    }));
+  };
+  //Skills area end
+
+  //Start language area
+
+  // const [showInput, setShowInput] = useState(false); // State to toggle input visibility
+  const [newLanguage, setNewLanguage] = useState(""); // State to store the new Language input
+
+  const handleAddLanguage = () => {
+    if (newLanguage) {
+      setUserData((prevData) => ({
+        ...prevData,
+        languages: [...prevData.languages, newLanguage], // Add new language to userData.languages array
+      }));
+      setNewLanguage(""); // Clear the input field
+      setShowInput(false); // Hide the input field after adding the language
+    }
+  };
+
+  const handleDeleteLanguage = (languageToDelete) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      languages: prevData.languages.filter(
+        (language) => language !== languageToDelete
+      ), // Remove language from userData.languages
+    }));
+  };
+
+  //End language area
 
   const updateWorkExperience = (index, field, value) => {
     setUserData((prevData) => {
@@ -268,9 +321,9 @@ const ResumeEditPage = () => {
               key={step.id}
               className={`flex items-center space-x-2 cursor-pointer ${
                 currentStep === step.id
-                  ? "text-white font-bold"
+                  ? "text-white font-montserrat"
                   : isStepCompleted(step.id)
-                  ? "text-white"
+                  ? "text-white font-bold font-montserrat"
                   : "text-gray-500"
               }`}
               onClick={() => handleStepClick(step.id)}
@@ -290,13 +343,18 @@ const ResumeEditPage = () => {
             </div>
           ))}
         </div>
-        <div className="mt-6">
-          <h3 className="text-sm mb-2">Completion: {completionPercentage}%</h3>
-          <div className="w-full bg-gray-200 h-2 rounded">
-            <div
-              className="bg-green-500 h-full"
-              style={{ width: `${completionPercentage}%` }}
-            />
+        <div className="mt-6 ">
+          <h3 className="text-sm lg:text-lg font-montserrat  mb-2">
+            Completion status:{" "}
+          </h3>
+          <div className="flex items-center gap-2">
+            <div className="w-full bg-gray-200 h-2 rounded">
+              <div
+                className="bg-gradient-to-r to-primary from-secondary rounded-r-full h-full"
+                style={{ width: `${completionPercentage}%` }}
+              />
+            </div>
+            <div className="font-lora font-bold">{completionPercentage}%</div>
           </div>
         </div>
       </div>
@@ -603,68 +661,156 @@ const ResumeEditPage = () => {
           )}
 
           {currentStep === 4 && (
-            <div>
-              <h2 className="text-xl font-bold mb-4">Skills</h2>
-              {userData.skills.map((skill, index) => (
-                <div key={index}>
-                  <div className="mb-4">
-                    <label>Skill {index + 1}</label>
-                    <input
-                      type="text"
-                      className="border p-2 w-full rounded"
-                      value={skill}
-                      onChange={(e) =>
-                        handleArrayChange("skills", index, e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-              ))}
-              {predefinedSkills.map((tag, index) => (
-                <button
-                  type="button"
-                  value={tag}
-                  onClick={(e) =>
-                    handleArrayChange("skills", index, e.target.value)
-                  }
-                  className="mt-4 bg-blue-500 text-white p-2 rounded"
-                >
-                  {tag}
-                </button>
-              ))}
+            // <div>
+            //   <h2 className="text-xl font-bold mb-4">Skills</h2>
+            //   {userData.skills.map((skill, index) => (
+            //     <div key={index}>
+            //       <div className="mb-4">
+            //         <label>Skill {index + 1}</label>
+            //         <input
+            //           type="text"
+            //           className="border p-2 w-full rounded"
+            //           value={skill}
+            //           onChange={(e) =>
+            //             handleArrayChange("skills", index, e.target.value)
+            //           }
+            //         />
+            //       </div>
+            //     </div>
+            //   ))}
 
-              {/* <button
+            //     <button
+            //       type="button"
+            //       className="mt-4 flex items-center gap-2 bg-blue-500 text-white p-2 rounded"
+            //     >
+            //       Add new skills <FaPlus />
+            //     </button>
+
+            //   {/* <button
+            //     type="button"
+            //     onClick={() => addArrayEntry("skills", "")}
+            //     className="mt-4 bg-blue-500 text-white p-2 rounded"
+            //   >
+            //     Add Another Skill
+            //   </button> */}
+            // </div>
+
+            <div>
+              <h2 className="text-3xl font-bold mb-4">Skills</h2>
+              <div className="flex gap-3 flex-wrap">
+                {userData.skills.map((skill, index) => (
+                  <div key={index} className="flex justify-between gap-2 mb-2">
+                    <div className="border relative rounded  gap-4 py-1 px-4">
+                      <span>{skill}</span>
+                      <button
+                        type="button"
+                        className="text-red-500 absolute p-0 m-0 -top-2 -right-2"
+                        onClick={() => handleDeleteSkill(skill)}
+                      >
+                        <TiDelete className="p-0 m-0 text-xl" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {showInput && (
+                <div className="mt-4 relative flex items-center">
+                  <input
+                    type="text"
+                    className="border   py-3 px-2 w-full  rounded"
+                    value={newSkill}
+                    onChange={(e) => setNewSkill(e.target.value)} // Update input value
+                    placeholder="Enter new skill"
+                  />
+
+                  <button
+                    type="button"
+                    className="absolute right-0 bg-secondary font-bold text-white py-3 px-2 rounded"
+                    onClick={() => handleAddSkill()}
+                  >
+                    Add Skill
+                  </button>
+                </div>
+              )}
+              <button
                 type="button"
-                onClick={() => addArrayEntry("skills", "")}
-                className="mt-4 bg-blue-500 text-white p-2 rounded"
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+                onClick={() => setShowInput(true)} // Show input on button click
               >
-                Add Another Skill
-              </button> */}
+                Add new skill <FaPlus className="font-bold" />
+              </button>
             </div>
           )}
 
           {currentStep === 5 && (
+            // <div>
+            //   <h2 className="text-xl font-bold mb-4">Languages</h2>
+            //   {userData.languages.map((language, index) => (
+            //     <div key={index} className="mb-4">
+            //       <label>Language {index + 1}</label>
+            //       <input
+            //         type="text"
+            //         className="border p-2 w-full rounded"
+            //         value={language}
+            //         onChange={(e) =>
+            //           handleArrayChange("languages", index, e.target.value)
+            //         }
+            //       />
+            //     </div>
+            //   ))}
+            //   <button
+            //     type="button"
+            //     onClick={() => addArrayEntry("languages", "")}
+            //     className="mt-4 bg-blue-500 text-white p-2 rounded"
+            //   >
+            //     Add Another Language
+            //   </button>
+            // </div>
             <div>
-              <h2 className="text-xl font-bold mb-4">Languages</h2>
-              {userData.languages.map((language, index) => (
-                <div key={index} className="mb-4">
-                  <label>Language {index + 1}</label>
+              <h2 className="text-3xl font-bold mb-4">Languages</h2>
+              <div className="flex gap-3 flex-wrap">
+                {userData.languages.map((language, index) => (
+                  <div key={index} className="flex justify-between gap-2 mb-2">
+                    <div className="border relative rounded  gap-4 py-1 px-4">
+                      <span>{language}</span>
+                      <button
+                        type="button"
+                        className="text-red-500 absolute p-0 m-0 -top-2 -right-2"
+                        onClick={() => handleDeleteLanguage(language)}
+                      >
+                        <TiDelete className="p-0 m-0 text-xl" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {showInput && (
+                <div className="mt-4 relative flex items-center">
                   <input
                     type="text"
-                    className="border p-2 w-full rounded"
-                    value={language}
-                    onChange={(e) =>
-                      handleArrayChange("languages", index, e.target.value)
-                    }
+                    className="border   py-3 px-2 w-full  rounded"
+                    value={newLanguage}
+                    onChange={(e) => setNewLanguage(e.target.value)} // Update input value
+                    placeholder="Enter new language"
                   />
+
+                  <button
+                    type="button"
+                    className="absolute right-0 bg-secondary font-bold text-white py-3 px-2 rounded"
+                    onClick={() => handleAddLanguage()}
+                  >
+                    Add Language
+                  </button>
                 </div>
-              ))}
+              )}
               <button
                 type="button"
-                onClick={() => addArrayEntry("languages", "")}
-                className="mt-4 bg-blue-500 text-white p-2 rounded"
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+                onClick={() => setShowInput(true)} // Show input on button click
               >
-                Add Another Language
+                Add new language <FaPlus className="font-bold" />
               </button>
             </div>
           )}
@@ -741,12 +887,12 @@ const ResumeEditPage = () => {
             </div>
           )}
 
-          <div className="flex justify-between mt-6">
+          <div className="flex justify-end gap-16 mt-8">
             {currentStep > 1 && (
               <button
                 type="button"
                 onClick={handlePreviousStep}
-                className="bg-gray-300 p-2 rounded mr-4"
+                className="border border-black font-bold text-black py-3 px-2 rounded"
               >
                 Previous
               </button>
@@ -755,7 +901,7 @@ const ResumeEditPage = () => {
               <button
                 type="button"
                 onClick={handleNextStep}
-                className="bg-blue-500 text-white p-2 rounded"
+                className="bg-primary font-bold text-white py-3 px-5 rounded"
               >
                 Next
               </button>
