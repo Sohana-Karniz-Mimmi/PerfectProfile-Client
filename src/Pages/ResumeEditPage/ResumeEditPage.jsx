@@ -15,11 +15,14 @@ const ResumeEditPage = () => {
     { id: 3, name: "Education" },
     { id: 4, name: "Skills" },
     { id: 5, name: "Language" },
-    { id: 6, name: "Finalize" },
+    { id: 6, name: "Certifications" },
+    { id: 7, name: "Finalize" },
   ];
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
+  const predefinedSkills = ["React.js", "Node.js", "CSS", "HTML", "JavaScript"];
+
   const {
     register,
     handleSubmit,
@@ -98,7 +101,7 @@ const ResumeEditPage = () => {
     phone: "",
     address: "",
     careerObjective: "",
-    skills: [""], // Start with an empty skill
+    skills: [], // Start with an empty skill
     education: [
       {
         degree: "",
@@ -130,6 +133,8 @@ const ResumeEditPage = () => {
     ],
   });
 
+  console.log("Skills are: ", userData.skills);
+
   // <<====================================Real time data change for template end here ========================================>>
 
   // Handle changes for general fields
@@ -141,10 +146,24 @@ const ResumeEditPage = () => {
   };
 
   // Handle changes for array fields like skills, languages, etc.
+  // const handleArrayChange = (arrayName, index, value) => {
+  //   setUserData((prevData) => {
+  //     const updatedArray = [...prevData[arrayName]];
+  //     updatedArray[index] = value; // Update the value at the specified index
+  //     return { ...prevData, [arrayName]: updatedArray };
+  //   });
+  // };
+
   const handleArrayChange = (arrayName, index, value) => {
     setUserData((prevData) => {
       const updatedArray = [...prevData[arrayName]];
-      updatedArray[index] = value; // Update the value at the specified index
+
+      if (index >= updatedArray.length) {
+        updatedArray.push(value);
+      } else {
+        updatedArray[index] = value;
+      }
+
       return { ...prevData, [arrayName]: updatedArray };
     });
   };
@@ -177,6 +196,17 @@ const ResumeEditPage = () => {
     });
   };
 
+  const updateCertificate = (index, field, value) => {
+    setUserData((prevData) => {
+      const updatedCertificate = [...prevData.certifications];
+      updatedCertificate[index] = {
+        ...updatedCertificate[index],
+        [field]: value,
+      };
+      return { ...prevData, certifications: updatedCertificate };
+    });
+  };
+
   // Delete Work experience section
   const deleteWorkExperience = (index) => {
     const updatedWorkExperience = userData.workExperience.filter(
@@ -187,12 +217,22 @@ const ResumeEditPage = () => {
       workExperience: updatedWorkExperience,
     }));
   };
+
   // Delete Education section
   const deleteEducationEntry = (index) => {
     const updatedEducation = userData.education.filter((_, i) => i !== index);
     setUserData((prevData) => ({
       ...prevData,
       education: updatedEducation,
+    }));
+  };
+
+  // Delete Education section
+  const deleteCertifications = (index) => {
+    const updatedCertificate = userData.certifications.filter((_, i) => i !== index);
+    setUserData((prevData) => ({
+      ...prevData,
+      certifications: updatedCertificate,
     }));
   };
 
@@ -313,7 +353,7 @@ const ResumeEditPage = () => {
                     placeholder="example@gmail.com"
                     className={`border py-3 px-2 w-full rounded`}
                     {...register("email", {
-                      required: "Email is required",
+                      // required: "Email is required",
                       pattern: {
                         value:
                           /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -336,7 +376,7 @@ const ResumeEditPage = () => {
                     placeholder="+1-212-456-7890"
                     className={`border py-3 px-2 w-full rounded`}
                     {...register("phone", {
-                      required: "Phone is required",
+                      // required: "Phone is required",
                       pattern: {
                         value: /^[0-9\s()+-]*$/,
                         message: "Phone number must be number",
@@ -496,7 +536,10 @@ const ResumeEditPage = () => {
             <div>
               <h2 className="text-xl font-bold mb-4">Education</h2>
               {userData.education.map((entry, index) => (
-                <div key={index} className="grid relative grid-cols-3 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4">
+                <div
+                  key={index}
+                  className="grid relative grid-cols-3 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
+                >
                   <div>
                     <label>Degree</label>
                     <input
@@ -532,16 +575,16 @@ const ResumeEditPage = () => {
                   </div>
                   {index > 0 && (
                     <div
-                    className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => deleteEducationEntry(index)} // Call delete function
-                      className="text-red-500 hover:text-red-700 bg-white"
+                      className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
                     >
-                      <FaTrashAlt />
-                    </button>
-                  </div>
+                      <button
+                        type="button"
+                        onClick={() => deleteEducationEntry(index)} // Call delete function
+                        className="text-red-500 hover:text-red-700 bg-white"
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </div>
                   )}
                 </div>
               ))}
@@ -556,7 +599,7 @@ const ResumeEditPage = () => {
                 }
                 className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
               >
-                Add Another Education Entry <FaPlus className="font-bold"/>
+                Add Another Education Entry <FaPlus className="font-bold" />
               </button>
             </div>
           )}
@@ -565,25 +608,40 @@ const ResumeEditPage = () => {
             <div>
               <h2 className="text-xl font-bold mb-4">Skills</h2>
               {userData.skills.map((skill, index) => (
-                <div key={index} className="mb-4">
-                  <label>Skill {index + 1}</label>
-                  <input
-                    type="text"
-                    className="border p-2 w-full rounded"
-                    value={skill}
-                    onChange={(e) =>
-                      handleArrayChange("skills", index, e.target.value)
-                    }
-                  />
+                <div key={index}>
+                  <div className="mb-4">
+                    <label>Skill {index + 1}</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={skill}
+                      onChange={(e) =>
+                        handleArrayChange("skills", index, e.target.value)
+                      }
+                    />
+                  </div>
                 </div>
               ))}
-              <button
+              {predefinedSkills.map((tag, index) => (
+                <button
+                  type="button"
+                  value={tag}
+                  onClick={(e) =>
+                    handleArrayChange("skills", index, e.target.value)
+                  }
+                  className="mt-4 bg-blue-500 text-white p-2 rounded"
+                >
+                  {tag}
+                </button>
+              ))}
+
+              {/* <button
                 type="button"
                 onClick={() => addArrayEntry("skills", "")}
                 className="mt-4 bg-blue-500 text-white p-2 rounded"
               >
                 Add Another Skill
-              </button>
+              </button> */}
             </div>
           )}
 
@@ -613,6 +671,78 @@ const ResumeEditPage = () => {
             </div>
           )}
 
+          {currentStep === 6 && (
+            <div>
+              <h2 className="text-xl font-bold mb-4">Certifications</h2>
+              {userData.certifications.map((entry, index) => (
+                <div
+                  key={index}
+                  className="grid relative grid-cols-3 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
+                >
+                  <div>
+                    <label>Certificate Name</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.title}
+                      onChange={(e) =>
+                        updateCertificate(index, "title", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label>Institution Name</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.institution}
+                      onChange={(e) =>
+                        updateCertificate(index, "institution", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label>Year</label>
+                    <input
+                      type="text"
+                      className="border p-2 w-full rounded"
+                      value={entry.year}
+                      onChange={(e) =>
+                        updateCertificate(index, "year", e.target.value)
+                      }
+                    />
+                  </div>
+                  {index > 0 && (
+                    <div
+                      className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => deleteCertifications(index)} // Call delete function
+                        className="text-red-500 hover:text-red-700 bg-white"
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() =>
+                  addArrayEntry("certifications", {
+                    title: "",
+                    institution: "",
+                    year: "",
+                  })
+                }
+                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+              >
+                Add Another Certification <FaPlus className="font-bold" />
+              </button>
+            </div>
+          )}
+
           <div className="flex justify-between mt-6">
             {currentStep > 1 && (
               <button
@@ -623,7 +753,7 @@ const ResumeEditPage = () => {
                 Previous
               </button>
             )}
-            {currentStep < 5 ? (
+            {currentStep < 7 ? (
               <button
                 type="button"
                 onClick={handleNextStep}
