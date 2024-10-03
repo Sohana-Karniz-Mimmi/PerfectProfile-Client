@@ -10,7 +10,7 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
-  const { createUser, googleSignIn, facebookSignIn } = useAuth();
+  const { createUser, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const navigate = useNavigate();
   const [errorText, setErrorText] = useState("");
   const [eyePassword, setEyePassword] = useState(false);
@@ -265,7 +265,10 @@ const Register = () => {
                   </button>
                 </div>
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
-                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                  <button
+                    onClick={() => handleSocialSignIn(twitterSignIn)}
+                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                  >
                     <FaTwitter className="text-white" />
                   </button>
                 </div>
