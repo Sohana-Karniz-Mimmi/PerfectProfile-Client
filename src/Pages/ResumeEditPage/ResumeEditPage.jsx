@@ -327,9 +327,9 @@ const ResumeEditPage = () => {
   };
 
 
-  /*****URL Generate *******/
-  const [shareLink, setShareLink] = useState(""); // Shareable URL
-  const [copied, setCopied] = useState(false); // Copy success state
+  /*****URL Generate ************/
+  const [shareLink, setShareLink] = useState(""); 
+  const [copied, setCopied] = useState(false); 
   // Function to generate a shareable link
   const handleShare = async () => {
     try {
