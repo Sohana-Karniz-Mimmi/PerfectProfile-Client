@@ -8,7 +8,7 @@ import About from "../Pages/About/About";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
-import EmneiPage from "../Pages/EmneiPage";
+import FinalResume from "../Pages/FinalResume/FinalResume";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/resume/edit/:id",
     element: <ResumeEditPage />,
+  },
+  {
+    path: "resume/final-resume",
+    element: <FinalResume />,
   },
 ]);
 
