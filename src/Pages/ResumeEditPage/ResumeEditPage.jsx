@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
@@ -14,6 +14,8 @@ import {
 } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
+import { MdDoneOutline } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -23,7 +25,7 @@ const ResumeEditPage = () => {
     { id: 4, name: "Skills" },
     { id: 5, name: "Language" },
     { id: 6, name: "Certifications" },
-    { id: 7, name: "Finalize" },
+    // { id: 7, name: "Finalize" },
   ];
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -65,6 +67,17 @@ const ResumeEditPage = () => {
           setCompletedSteps([...completedSteps, currentStep]);
         }
       }
+    }
+    if(currentStep === 6) {
+      setCurrentStep(6);
+      // Trigger SweetAlert when moving to step 7
+      Swal.fire({
+        title: `You're all done!`,
+        text: 'You have reached the final step.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        timer: 1500,
+      });
     }
   };
 
@@ -140,6 +153,7 @@ const ResumeEditPage = () => {
     ],
   });
 
+  console.log("User data:", userData);
   console.log("Skills are: ", userData.skills);
   console.log("Educations are: ", userData.education);
 
@@ -320,7 +334,9 @@ const ResumeEditPage = () => {
     <div className="flex min-h-screen">
       {/* Sidebar */}
       <div className="w-1/6 bg-gray-900 text-white p-8">
-        <h1 className="text-white text-xl font-bold mb-4">Resume Builder</h1>
+        <Link to="/">
+          <h1 className="text-white text-xl font-bold mb-4">Perfect Profile</h1>
+        </Link>
         <div className="space-y-6">
           {steps.map((step) => (
             <div
@@ -914,6 +930,14 @@ const ResumeEditPage = () => {
               </button>
             </div>
           )}
+          {/* {currentStep === 7 && (
+            <div className="space-y-4">
+              <div className="mx-auto shadow-lg p-8">
+              <MdDoneOutline className="text-secondary" />
+                <h2 className="text-3xl font-bold mb-8">Finalize</h2>
+              </div>
+            </div>
+          )} */}
 
           <div className="flex justify-end gap-16 mt-8">
             {currentStep > 1 && (
@@ -925,7 +949,7 @@ const ResumeEditPage = () => {
                 <FaBackward /> Previous
               </button>
             )}
-            {currentStep < 7 ? (
+            {currentStep < 6 ? (
               <button
                 type="button"
                 onClick={handleNextStep}
@@ -934,12 +958,14 @@ const ResumeEditPage = () => {
                 Next <FaForward />
               </button>
             ) : (
-              <button
-                type="submit"
-                className="bg-green-500 text-white p-2 rounded"
-              >
-                Submit
-              </button>
+              <div>
+                <button
+                  type="submit"
+                  className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
+                >
+                  Save & Finalize
+                </button>
+              </div>
             )}
           </div>
         </form>
