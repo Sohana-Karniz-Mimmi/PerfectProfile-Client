@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
-import { FaDeleteLeft, FaPlus, FaTrash } from "react-icons/fa6";
+import {
+  FaBackward,
+  FaDeleteLeft,
+  FaForward,
+  FaPlus,
+  FaTrash,
+} from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
+import { MdDoneOutline } from "react-icons/md";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -17,7 +25,7 @@ const ResumeEditPage = () => {
     { id: 4, name: "Skills" },
     { id: 5, name: "Language" },
     { id: 6, name: "Certifications" },
-    { id: 7, name: "Finalize" },
+    // { id: 7, name: "Finalize" },
   ];
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -60,6 +68,17 @@ const ResumeEditPage = () => {
         }
       }
     }
+    if (currentStep === 6) {
+      setCurrentStep(6);
+      // Trigger SweetAlert when moving to step 7
+      Swal.fire({
+        title: `You're all done!`,
+        text: 'You have reached the final step.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        timer: 1500,
+      });
+    }
   };
 
   const handlePreviousStep = () => {
@@ -95,49 +114,11 @@ const ResumeEditPage = () => {
 
   // <<=================================Real time data change for template start here =========================================>>
 
-  const [userData, setUserData] = useState({
-    name: "",
-    jobTitle: "",
-    email: "",
-    phone: "",
-    address: "",
-    careerObjective: "",
-    skills: [], // Start with an empty skill
-    education: [
-      {
-        degree: "",
-        institution: "",
-        year: "",
-      },
-    ], // Start with an empty education entry
-    certifications: [
-      {
-        year: "",
-        institution: "",
-        title: "",
-      },
-    ],
-    workExperience: [
-      {
-        description: "",
-        years: "",
-        company: "",
-        jobTitle: "",
-      },
-    ],
-    languages: [],
-    extraCurricularActivities: [
-      {
-        activity: "",
-        description: "",
-      },
-    ],
-  });
 
-  console.log("Skills are: ", userData.skills);
-  console.log("Educations are: ", userData.education);
 
-  // <<====================================Real time data change for template end here ========================================>>
+
+
+  // <<===========Real time data change for template end here ============>>
 
   // Handle changes for general fields
   const handleInputChange = (field, value) => {
@@ -147,14 +128,6 @@ const ResumeEditPage = () => {
     }));
   };
 
-  // Handle changes for array fields like skills, languages, etc.
-  // const handleArrayChange = (arrayName, index, value) => {
-  //   setUserData((prevData) => {
-  //     const updatedArray = [...prevData[arrayName]];
-  //     updatedArray[index] = value; // Update the value at the specified index
-  //     return { ...prevData, [arrayName]: updatedArray };
-  //   });
-  // };
 
   const handleArrayChange = (arrayName, index, value) => {
     setUserData((prevData) => {
@@ -299,7 +272,50 @@ const ResumeEditPage = () => {
       .then((data) => setData(data));
   }, []);
 
+
   const template = data.find((item1) => item1.templateItem === id);
+
+  const [userData, setUserData] = useState({
+    name: "",
+    jobTitle: "",
+    email: "",
+    phone: "",
+    address: "",
+    careerObjective: "",
+    skills: [], // Start with an empty skill
+    education: [
+      {
+        degree: "",
+        institution: "",
+        year: "",
+      },
+    ], // Start with an empty education entry
+    certifications: [
+      {
+        year: "",
+        institution: "",
+        title: "",
+      },
+    ],
+    workExperience: [
+      {
+        description: "",
+        years: "",
+        company: "",
+        jobTitle: "",
+      },
+    ],
+    languages: [],
+    extraCurricularActivities: [
+      {
+        activity: "",
+        description: "",
+      },
+    ],
+  });
+
+  console.log("User data:", userData);
+
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -310,32 +326,61 @@ const ResumeEditPage = () => {
     }
   };
 
+
+  /*****URL Generate *******/
+  const [shareLink, setShareLink] = useState(""); // Shareable URL
+  const [copied, setCopied] = useState(false); // Copy success state
+  // Function to generate a shareable link
+  const handleShare = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/share-resume", userData,
+        { withCredentials: true }
+      );
+      if (response.data.success) {
+        setShareLink(response.data.shareLink);
+      }
+    } catch (error) {
+      console.error("Error generating share link:", error);
+    }
+  };
+
+  // Function to copy the shareable link
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareLink).then(() => {
+      setCopied(true); // Set the copied state
+      setTimeout(() => setCopied(false), 2000); // Remove copied state after 2 seconds
+    });
+  };
+
+
+
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
       <div className="w-1/6 bg-gray-900 text-white p-8">
-        <h1 className="text-white text-xl font-bold mb-4">Resume Builder</h1>
+        <Link to="/">
+          <h1 className="text-white text-xl font-bold mb-4">Perfect Profile</h1>
+        </Link>
         <div className="space-y-6">
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${
-                currentStep === step.id
-                  ? "text-white font-montserrat"
-                  : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
+                ? "text-white font-montserrat"
+                : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500"
-              }`}
+                }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
-                  currentStep === step.id
-                    ? "border-white bg-white text-black"
-                    : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${currentStep === step.id
+                  ? "border-white bg-white text-black"
+                  : isStepCompleted(step.id)
                     ? "border-green-400 bg-green-400 text-white"
                     : "border-gray-500"
-                }`}
+                  }`}
               >
                 {isStepCompleted(step.id) ? "✓" : step.id}
               </span>
@@ -372,7 +417,7 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     placeholder="Your full name"
-                    className="border py-3 px-2 w-full rounded"
+                    className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                     {...register("name", {
                       // required: "Job title is required",
                     })}
@@ -385,7 +430,7 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     placeholder="Frontend Developer"
-                    className={`border py-3 px-2 w-full rounded`}
+                    className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                     {...register("jobTitle", {
                       // required: "Job title is required",
                     })}
@@ -407,7 +452,7 @@ const ResumeEditPage = () => {
                   <input
                     type="email"
                     placeholder="example@gmail.com"
-                    className={`border py-3 px-2 w-full rounded`}
+                    className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
@@ -430,7 +475,7 @@ const ResumeEditPage = () => {
                   <input
                     type="tel"
                     placeholder="+1-212-456-7890"
-                    className={`border py-3 px-2 w-full rounded`}
+                    className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                     {...register("phone", {
                       // required: "Phone is required",
                       pattern: {
@@ -454,7 +499,7 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     placeholder="123 Main Street, Anytown, USA, 12345"
-                    className={`border py-3 px-2 w-full rounded`}
+                    className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                     {...register("address", {
                       // required: "Job title is required",
                     })}
@@ -474,7 +519,7 @@ const ResumeEditPage = () => {
                   <textarea
                     type="text-area"
                     placeholder="Write about your career goal"
-                    className="border py-3 px-2 w-full rounded"
+                    className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                     // name="careerObjective"
                     {...register("careerObjective", {
                       // required: "Job title is required",
@@ -501,18 +546,21 @@ const ResumeEditPage = () => {
           )}
 
           {currentStep === 2 && (
-            <div>
-              <h2 className="text-xl font-bold mb-4">Work Experience</h2>
+            <div className="space-y-4">
+              <div>
+                <h2 className="text-3xl font-bold mb-8">Work Experience</h2>
+              </div>
               {userData.workExperience.map((entry, index) => (
                 <div
                   key={index}
                   className="grid relative border-2 p-8 rounded rounded-tr-3xl border-gray-200 border-dashed grid-cols-2 gap-4 mb-4"
                 >
                   <div>
-                    <label>Company Name</label>
+                    <label className="font-bold">Company Name</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="e.g. Microsoft"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.company}
                       onChange={(e) =>
                         updateWorkExperience(index, "company", e.target.value)
@@ -520,10 +568,11 @@ const ResumeEditPage = () => {
                     />
                   </div>
                   <div>
-                    <label>Job Title</label>
+                    <label className="font-bold">Job Title</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="e.g. Software Engineer"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.jobTitle}
                       onChange={(e) =>
                         updateWorkExperience(index, "jobTitle", e.target.value)
@@ -531,21 +580,25 @@ const ResumeEditPage = () => {
                     />
                   </div>
                   <div>
-                    <label>Years</label>
+                    <label className="font-bold">Years</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="2016"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.years}
                       onChange={(e) =>
                         updateWorkExperience(index, "years", e.target.value)
                       }
                     />
                   </div>
+                  <div />
                   <div>
-                    <label>Description</label>
-                    <input
+                    <label className="font-bold">Job Role</label>
+                    <textarea
+                      rows={6}
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="Write your previous job duties"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.description}
                       onChange={(e) =>
                         updateWorkExperience(
@@ -556,6 +609,7 @@ const ResumeEditPage = () => {
                       }
                     />
                   </div>
+                  <div></div>
                   {index > 0 && ( // Only show delete button if it's not the first entry
                     <div
                       className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
@@ -589,18 +643,21 @@ const ResumeEditPage = () => {
           )}
 
           {currentStep === 3 && (
-            <div>
-              <h2 className="text-xl font-bold mb-4">Education</h2>
+            <div className="space-y-4">
+              <div>
+                <h2 className="text-3xl font-bold mb-8">Education</h2>
+              </div>
               {userData.education.map((entry, index) => (
                 <div
                   key={index}
-                  className="grid relative grid-cols-3 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
+                  className="grid relative grid-cols-2 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
                 >
                   <div>
-                    <label>Degree</label>
+                    <label className="font-bold">Degree</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="e.g. Bechelor of science"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.degree}
                       onChange={(e) =>
                         updateEducation(index, "degree", e.target.value)
@@ -608,10 +665,11 @@ const ResumeEditPage = () => {
                     />
                   </div>
                   <div>
-                    <label>Institution</label>
+                    <label className="font-bold">Institute Name</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="e.g. Oxford University"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.institution}
                       onChange={(e) =>
                         updateEducation(index, "institution", e.target.value)
@@ -619,10 +677,11 @@ const ResumeEditPage = () => {
                     />
                   </div>
                   <div>
-                    <label>Year</label>
+                    <label className="font-bold">Passing Year</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="2020"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.year}
                       onChange={(e) =>
                         updateEducation(index, "year", e.target.value)
@@ -695,8 +754,10 @@ const ResumeEditPage = () => {
             //   </button> */}
             // </div>
 
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Skills</h2>
+            <div className="space-y-4">
+              <div>
+                <h2 className="text-3xl font-bold mb-8">Skills</h2>
+              </div>
               <div className="flex gap-3 flex-wrap">
                 {userData.skills.map((skill, index) => (
                   <div key={index} className="flex justify-between gap-2 mb-2">
@@ -715,10 +776,10 @@ const ResumeEditPage = () => {
               </div>
 
               {showInput && (
-                <div className="mt-4 relative flex items-center">
+                <div className=" relative flex items-center">
                   <input
                     type="text"
-                    className="border   py-3 px-2 w-full  rounded"
+                    className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                     value={newSkill}
                     onChange={(e) => setNewSkill(e.target.value)} // Update input value
                     placeholder="Enter new skill"
@@ -767,8 +828,9 @@ const ResumeEditPage = () => {
             //     Add Another Language
             //   </button>
             // </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Languages</h2>
+            <div className="space-y-4">
+              <div></div>
+              <h2 className="text-3xl font-bold mb-8">Languages</h2>
               <div className="flex gap-3 flex-wrap">
                 {userData.languages.map((language, index) => (
                   <div key={index} className="flex justify-between gap-2 mb-2">
@@ -790,7 +852,7 @@ const ResumeEditPage = () => {
                 <div className="mt-4 relative flex items-center">
                   <input
                     type="text"
-                    className="border   py-3 px-2 w-full  rounded"
+                    className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                     value={newLanguage}
                     onChange={(e) => setNewLanguage(e.target.value)} // Update input value
                     placeholder="Enter new language"
@@ -816,18 +878,21 @@ const ResumeEditPage = () => {
           )}
 
           {currentStep === 6 && (
-            <div>
-              <h2 className="text-xl font-bold mb-4">Certifications</h2>
+            <div className="space-y-4">
+              <div>
+                <h2 className="text-3xl font-bold mb-8">Certifications</h2>
+              </div>
               {userData.certifications.map((entry, index) => (
                 <div
                   key={index}
-                  className="grid relative grid-cols-3 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
+                  className="grid relative grid-cols-2 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
                 >
                   <div>
-                    <label>Certificate Name</label>
+                    <label className="font-bold">Certificate Name</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="e.g. Full stack development"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.title}
                       onChange={(e) =>
                         updateCertificate(index, "title", e.target.value)
@@ -835,10 +900,11 @@ const ResumeEditPage = () => {
                     />
                   </div>
                   <div>
-                    <label>Institution Name</label>
+                    <label className="font-bold">Institution Name</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="e.g. Udemy"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.institution}
                       onChange={(e) =>
                         updateCertificate(index, "institution", e.target.value)
@@ -846,10 +912,11 @@ const ResumeEditPage = () => {
                     />
                   </div>
                   <div>
-                    <label>Year</label>
+                    <label className="font-bold">Duration</label>
                     <input
                       type="text"
-                      className="border p-2 w-full rounded"
+                      placeholder="e.g. 6 months"
+                      className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
                       value={entry.year}
                       onChange={(e) =>
                         updateCertificate(index, "year", e.target.value)
@@ -886,32 +953,48 @@ const ResumeEditPage = () => {
               </button>
             </div>
           )}
+          {/* {currentStep === 7 && (
+            <div className="space-y-4">
+              <div className="mx-auto shadow-lg p-8">
+              <MdDoneOutline className="text-secondary" />
+                <h2 className="text-3xl font-bold mb-8">Finalize</h2>
+              </div>
+            </div>
+          )} */}
 
           <div className="flex justify-end gap-16 mt-8">
             {currentStep > 1 && (
               <button
                 type="button"
                 onClick={handlePreviousStep}
-                className="border border-black font-bold text-black py-3 px-2 rounded"
+                className="border border-black flex items-center gap-2 font-bold text-black py-3 px-5 rounded"
               >
-                Previous
+                <FaBackward /> Previous
               </button>
             )}
-            {currentStep < 7 ? (
+            {currentStep < 6 ? (
               <button
                 type="button"
                 onClick={handleNextStep}
-                className="bg-primary font-bold text-white py-3 px-5 rounded"
+                className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
               >
-                Next
+                Next <FaForward />
               </button>
             ) : (
-              <button
-                type="submit"
-                className="bg-green-500 text-white p-2 rounded"
-              >
-                Submit
-              </button>
+              <div>
+                <Link
+                  to={`/resume/final-resume/${id}`}
+                  onClick={handleShare}
+                >
+                  <button
+
+                    type="submit"
+                    className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
+                  >
+                    Save & Finalize
+                  </button>
+                </Link>
+              </div>
             )}
           </div>
         </form>

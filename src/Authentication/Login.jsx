@@ -8,9 +8,10 @@ import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-import axios from "axios";
+import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Login = () => {
+  const axiosPublic = useAxiosPublic();
   const { signIn, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const [eye, setEye] = useState(false);
   const [remember, setRemember] = useState(false);
@@ -35,7 +36,7 @@ const Login = () => {
 
           console.log(loggedInUser);
           const user = { email };
-          axios
+          axiosPublic
             .post("http://localhost:5000/jwt", user, { withCredentials: true })
             .then((res) => {
               console.log(res.data);
