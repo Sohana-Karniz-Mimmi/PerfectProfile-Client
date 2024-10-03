@@ -9,7 +9,7 @@ const ShareResume = () => {
     try {
       const response = await fetch("http://localhost:5000/share-resume", {
         method: "POST",
-        credentials: "include", // to include cookies for auth
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
