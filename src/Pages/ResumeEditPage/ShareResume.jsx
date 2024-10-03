@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 const ShareResume = () => {
 
-
   const [shareLink, setShareLink] = useState("");
   const [isCopied, setIsCopied] = useState(false);
-
 
   // Function to request the share link from the backend
   const generateShareLink = async () => {
@@ -43,7 +41,6 @@ const ShareResume = () => {
       >
         Share Resume
       </button>
-
 
       {shareLink && (
         <div className="mt-4">
