@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 const ShareResume = () => {
+
   const [shareLink, setShareLink] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
@@ -9,7 +9,7 @@ const ShareResume = () => {
     try {
       const response = await fetch("http://localhost:5000/share-resume", {
         method: "POST",
-        credentials: "include", // to include cookies for auth
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,7 +58,7 @@ const ShareResume = () => {
                 isCopied ? "bg-green-700" : ""
               }`}
             >
-              {isCopied ? "Copied!" : "Copy Link"}
+              { isCopied ? "Copied!" : "Copy Link" }
             </button>
           </div>
         </div>
