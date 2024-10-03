@@ -190,7 +190,7 @@ const Template1 = ({ data, userData }) => {
                         ({exp.years || "1 Year"})
                       </span>{" "}
                     </h3>
-                    <p className="text-gray-600  text-sm">
+                    <p className="text-gray-600  text-sm max-w-[450px] break-words">
                       {exp.description ||
                         "Assisted in data cleaning and visualization tasks."}
                     </p>
@@ -212,7 +212,7 @@ const Template1 = ({ data, userData }) => {
                         {exp.jobTitle} - {exp.company}{" "}
                         <span className="text-gray-500">({exp.years})</span>{" "}
                       </h3>
-                      <p className="text-gray-600  text-sm">
+                      <p className="text-gray-600  text-sm ">
                         {exp.description}
                       </p>
                     </li>

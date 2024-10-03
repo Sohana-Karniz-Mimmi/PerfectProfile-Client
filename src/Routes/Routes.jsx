@@ -8,6 +8,7 @@ import About from "../Pages/About/About";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
+import EmneiPage from "../Pages/EmneiPage";
 
 const router = createBrowserRouter([
   {

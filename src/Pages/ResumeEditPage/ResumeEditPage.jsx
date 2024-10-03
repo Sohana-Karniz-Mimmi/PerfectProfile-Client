@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
@@ -68,14 +68,14 @@ const ResumeEditPage = () => {
         }
       }
     }
-    if(currentStep === 6) {
+    if (currentStep === 6) {
       setCurrentStep(6);
       // Trigger SweetAlert when moving to step 7
       Swal.fire({
         title: `You're all done!`,
-        text: 'You have reached the final step.',
-        icon: 'success',
-        confirmButtonText: 'OK',
+        text: "You have reached the final step.",
+        icon: "success",
+        confirmButtonText: "OK",
         timer: 1500,
       });
     }
