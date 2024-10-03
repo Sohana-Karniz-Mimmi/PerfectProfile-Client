@@ -348,8 +348,8 @@ const ResumeEditPage = () => {
   // Function to copy the shareable link
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shareLink).then(() => {
-      setCopied(true); 
-      setTimeout(() => setCopied(false), 2000); 
+      setCopied(true); // Set the copied state
+      setTimeout(() => setCopied(false), 2000); // Remove copied state after 2 seconds
     });
   };
 
