@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 const ShareResume = () => {
 
-  
+
   const [shareLink, setShareLink] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
@@ -44,6 +44,7 @@ const ShareResume = () => {
         Share Resume
       </button>
 
+
       {shareLink && (
         <div className="mt-4">
           <p className="text-gray-700">Here is your shareable link:</p>
@@ -60,7 +61,7 @@ const ShareResume = () => {
                 isCopied ? "bg-green-700" : ""
               }`}
             >
-              {isCopied ? "Copied!" : "Copy Link"}
+              { isCopied ? "Copied!" : "Copy Link" }
             </button>
           </div>
         </div>
