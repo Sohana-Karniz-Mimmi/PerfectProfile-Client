@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
-
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
@@ -16,6 +15,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { MdDoneOutline } from "react-icons/md";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -68,7 +68,7 @@ const ResumeEditPage = () => {
         }
       }
     }
-    if(currentStep === 6) {
+    if (currentStep === 6) {
       setCurrentStep(6);
       // Trigger SweetAlert when moving to step 7
       Swal.fire({
@@ -114,50 +114,11 @@ const ResumeEditPage = () => {
 
   // <<=================================Real time data change for template start here =========================================>>
 
-  const [userData, setUserData] = useState({
-    name: "",
-    jobTitle: "",
-    email: "",
-    phone: "",
-    address: "",
-    careerObjective: "",
-    skills: [], // Start with an empty skill
-    education: [
-      {
-        degree: "",
-        institution: "",
-        year: "",
-      },
-    ], // Start with an empty education entry
-    certifications: [
-      {
-        year: "",
-        institution: "",
-        title: "",
-      },
-    ],
-    workExperience: [
-      {
-        description: "",
-        years: "",
-        company: "",
-        jobTitle: "",
-      },
-    ],
-    languages: [],
-    extraCurricularActivities: [
-      {
-        activity: "",
-        description: "",
-      },
-    ],
-  });
 
-  console.log("User data:", userData);
-  console.log("Skills are: ", userData.skills);
-  console.log("Educations are: ", userData.education);
 
-  // <<====================================Real time data change for template end here ========================================>>
+
+
+  // <<===========Real time data change for template end here ============>>
 
   // Handle changes for general fields
   const handleInputChange = (field, value) => {
@@ -167,14 +128,6 @@ const ResumeEditPage = () => {
     }));
   };
 
-  // Handle changes for array fields like skills, languages, etc.
-  // const handleArrayChange = (arrayName, index, value) => {
-  //   setUserData((prevData) => {
-  //     const updatedArray = [...prevData[arrayName]];
-  //     updatedArray[index] = value; // Update the value at the specified index
-  //     return { ...prevData, [arrayName]: updatedArray };
-  //   });
-  // };
 
   const handleArrayChange = (arrayName, index, value) => {
     setUserData((prevData) => {
@@ -319,7 +272,50 @@ const ResumeEditPage = () => {
       .then((data) => setData(data));
   }, []);
 
+
   const template = data.find((item1) => item1.templateItem === id);
+
+  const [userData, setUserData] = useState({
+    name: "",
+    jobTitle: "",
+    email: "",
+    phone: "",
+    address: "",
+    careerObjective: "",
+    skills: [], // Start with an empty skill
+    education: [
+      {
+        degree: "",
+        institution: "",
+        year: "",
+      },
+    ], // Start with an empty education entry
+    certifications: [
+      {
+        year: "",
+        institution: "",
+        title: "",
+      },
+    ],
+    workExperience: [
+      {
+        description: "",
+        years: "",
+        company: "",
+        jobTitle: "",
+      },
+    ],
+    languages: [],
+    extraCurricularActivities: [
+      {
+        activity: "",
+        description: "",
+      },
+    ],
+  });
+
+  console.log("User data:", userData);
+
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -329,6 +325,35 @@ const ResumeEditPage = () => {
       return <Template2 data={template} />;
     }
   };
+
+
+  /*****URL Generate *******/
+  const [shareLink, setShareLink] = useState(""); // Shareable URL
+  const [copied, setCopied] = useState(false); // Copy success state
+  // Function to generate a shareable link
+  const handleShare = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/share-resume", userData,
+        { withCredentials: true }
+      );
+      if (response.data.success) {
+        setShareLink(response.data.shareLink);
+      }
+    } catch (error) {
+      console.error("Error generating share link:", error);
+    }
+  };
+
+  // Function to copy the shareable link
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareLink).then(() => {
+      setCopied(true); // Set the copied state
+      setTimeout(() => setCopied(false), 2000); // Remove copied state after 2 seconds
+    });
+  };
+
+
 
   return (
     <div className="flex min-h-screen">
@@ -341,23 +366,21 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${
-                currentStep === step.id
-                  ? "text-white font-montserrat"
-                  : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
+                ? "text-white font-montserrat"
+                : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500"
-              }`}
+                }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
-                  currentStep === step.id
-                    ? "border-white bg-white text-black"
-                    : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${currentStep === step.id
+                  ? "border-white bg-white text-black"
+                  : isStepCompleted(step.id)
                     ? "border-green-400 bg-green-400 text-white"
                     : "border-gray-500"
-                }`}
+                  }`}
               >
                 {isStepCompleted(step.id) ? "✓" : step.id}
               </span>
@@ -959,12 +982,18 @@ const ResumeEditPage = () => {
               </button>
             ) : (
               <div>
-                <button
-                  type="submit"
-                  className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
+                <Link
+                  to={`/resume/final-resume/${id}`}
+                  onClick={handleShare}
                 >
-                  Save & Finalize
-                </button>
+                  <button
+
+                    type="submit"
+                    className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
+                  >
+                    Save & Finalize
+                  </button>
+                </Link>
               </div>
             )}
           </div>

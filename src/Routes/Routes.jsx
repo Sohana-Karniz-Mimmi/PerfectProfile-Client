@@ -50,7 +50,7 @@ const router = createBrowserRouter([
     element: <ResumeEditPage />,
   },
   {
-    path: 'resume/final-resume',
+    path: '/resume/final-resume/:id',
     element: <FinalResume  />
   }
 ]);
