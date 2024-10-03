@@ -75,19 +75,35 @@ const Register = () => {
   const handleSocialSignIn = (socialProvider) => {
     socialProvider()
       .then(async (result) => {
-        toast.success("Login SuccessFull !");
-        document.getElementById("my_modal_4").close();
+        const user = result.user; // Access user details like name, email, etc.
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+        };
 
-        setTimeout(() => {
-          if (location.state) {
-            navigate(location.state);
-          } else {
-            navigate("/");
-          }
-        }, 1000);
+        // Save user information to the database
+        axiosPublic
+          .post("/users", userInfo)
+          .then((res) => {
+            toast.success("Login Successful!");
+            document.getElementById("my_modal_4").close();
+
+            setTimeout(() => {
+              if (location.state) {
+                navigate(location.state);
+              } else {
+                navigate("/");
+              }
+            }, 1000);
+          })
+          .catch((error) => {
+            console.error("Error saving user to the database:", error);
+            toast.error("Failed to save user information.");
+          });
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Social login error:", error);
+        toast.error("Social login failed.");
       });
   };
 
