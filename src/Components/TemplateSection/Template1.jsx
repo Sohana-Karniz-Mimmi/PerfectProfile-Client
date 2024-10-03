@@ -58,7 +58,7 @@ const Template1 = ({ data, userData }) => {
           )}
 
           {/* skills */}
-          {userData?.skills.length >= 1 ? (
+          {userData?.skills?.length >= 1 ? (
             // If userData.skills exist and the length is greater than 0, show userData.skills
             <section className="mb-1 space-y-3">
               <h2 className="uppercase text-sm font-bold text-blue-900 border-b border-blue-950">
@@ -93,7 +93,7 @@ const Template1 = ({ data, userData }) => {
             )
           )}
           {/* Education */}
-          {userData?.education.length >= 1 ? (
+          {userData?.education?.length >= 1 ? (
             <section className="mb-1 space-y-3">
               <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                 Education

@@ -10,7 +10,7 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
-  const { createUser, googleSignIn, facebookSignIn } = useAuth();
+  const { createUser, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const navigate = useNavigate();
   const [errorText, setErrorText] = useState("");
   const [eyePassword, setEyePassword] = useState(false);
@@ -75,19 +75,35 @@ const Register = () => {
   const handleSocialSignIn = (socialProvider) => {
     socialProvider()
       .then(async (result) => {
-        toast.success("Login SuccessFull !");
-        document.getElementById("my_modal_4").close();
+        const user = result.user; // Access user details like name, email, etc.
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+        };
 
-        setTimeout(() => {
-          if (location.state) {
-            navigate(location.state);
-          } else {
-            navigate("/");
-          }
-        }, 1000);
+        // Save user information to the database
+        axiosPublic
+          .post("/users", userInfo)
+          .then((res) => {
+            toast.success("Login Successful!");
+            document.getElementById("my_modal_4").close();
+
+            setTimeout(() => {
+              if (location.state) {
+                navigate(location.state);
+              } else {
+                navigate("/");
+              }
+            }, 1000);
+          })
+          .catch((error) => {
+            console.error("Error saving user to the database:", error);
+            toast.error("Failed to save user information.");
+          });
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Social login error:", error);
+        toast.error("Social login failed.");
       });
   };
 
@@ -249,7 +265,10 @@ const Register = () => {
                   </button>
                 </div>
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
-                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                  <button
+                    onClick={() => handleSocialSignIn(twitterSignIn)}
+                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                  >
                     <FaTwitter className="text-white" />
                   </button>
                 </div>

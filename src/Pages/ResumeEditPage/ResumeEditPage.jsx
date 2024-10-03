@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate, useParams } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
@@ -16,6 +15,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { MdDoneOutline } from "react-icons/md";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -114,50 +114,7 @@ const ResumeEditPage = () => {
 
   // <<=================================Real time data change for template start here =========================================>>
 
-  const [userData, setUserData] = useState({
-    name: "",
-    jobTitle: "",
-    email: "",
-    phone: "",
-    address: "",
-    careerObjective: "",
-    skills: [], // Start with an empty skill
-    education: [
-      {
-        degree: "",
-        institution: "",
-        year: "",
-      },
-    ], // Start with an empty education entry
-    certifications: [
-      {
-        year: "",
-        institution: "",
-        title: "",
-      },
-    ],
-    workExperience: [
-      {
-        description: "",
-        years: "",
-        company: "",
-        jobTitle: "",
-      },
-    ],
-    languages: [],
-    extraCurricularActivities: [
-      {
-        activity: "",
-        description: "",
-      },
-    ],
-  });
-
-  console.log("User data:", userData);
-  console.log("Skills are: ", userData.skills);
-  console.log("Educations are: ", userData.education);
-
-  // <<====================================Real time data change for template end here ========================================>>
+  // <<===========Real time data change for template end here ============>>
 
   // Handle changes for general fields
   const handleInputChange = (field, value) => {
@@ -166,15 +123,6 @@ const ResumeEditPage = () => {
       [field]: value,
     }));
   };
-
-  // Handle changes for array fields like skills, languages, etc.
-  // const handleArrayChange = (arrayName, index, value) => {
-  //   setUserData((prevData) => {
-  //     const updatedArray = [...prevData[arrayName]];
-  //     updatedArray[index] = value; // Update the value at the specified index
-  //     return { ...prevData, [arrayName]: updatedArray };
-  //   });
-  // };
 
   const handleArrayChange = (arrayName, index, value) => {
     setUserData((prevData) => {
@@ -314,12 +262,54 @@ const ResumeEditPage = () => {
   // Real time data change for template start here
 
   useEffect(() => {
-    fetch("../../../public/predefinedTemplates.json")
+    fetch("https://perfect-profile-server.vercel.app/predefined-templates")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
 
   const template = data.find((item1) => item1.templateItem === id);
+  console.log(template);
+
+  const [userData, setUserData] = useState({
+    name: "",
+    jobTitle: "",
+    email: "",
+    phone: "",
+    address: "",
+    careerObjective: "",
+    skills: [], // Start with an empty skill
+    education: [
+      {
+        degree: "",
+        institution: "",
+        year: "",
+      },
+    ], // Start with an empty education entry
+    certifications: [
+      {
+        year: "",
+        institution: "",
+        title: "",
+      },
+    ],
+    workExperience: [
+      {
+        description: "",
+        years: "",
+        company: "",
+        jobTitle: "",
+      },
+    ],
+    languages: [],
+    extraCurricularActivities: [
+      {
+        activity: "",
+        description: "",
+      },
+    ],
+  });
+
+  console.log("User data:", userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -328,6 +318,37 @@ const ResumeEditPage = () => {
     if (id === "template2") {
       return <Template2 data={template} />;
     }
+  };
+
+  /*****URL Generate *******/
+  const [shareLink, setShareLink] = useState(""); // Shareable URL
+  const [copied, setCopied] = useState(false); // Copy success state
+  // Function to generate a shareable link
+  const handleShare = async () => {
+    const resumeData = {
+      userData,
+      templateItem: id,
+    };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/share-resume",
+        resumeData,
+        { withCredentials: true }
+      );
+      if (response.data.success) {
+        setShareLink(response.data.shareLink);
+      }
+    } catch (error) {
+      console.error("Error generating share link:", error);
+    }
+  };
+
+  // Function to copy the shareable link
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareLink).then(() => {
+      setCopied(true); // Set the copied state
+      setTimeout(() => setCopied(false), 2000); // Remove copied state after 2 seconds
+    });
   };
 
   return (
@@ -433,8 +454,7 @@ const ResumeEditPage = () => {
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
-                        value:
-                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                         message: "Invalid email format",
                       },
                     })}
@@ -959,12 +979,14 @@ const ResumeEditPage = () => {
               </button>
             ) : (
               <div>
-                <button
-                  type="submit"
-                  className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
-                >
-                  Save & Finalize
-                </button>
+                <Link to={`/resume/final-resume/${id}`} onClick={handleShare}>
+                  <button
+                    type="submit"
+                    className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
+                  >
+                    Save & Finalize
+                  </button>
+                </Link>
               </div>
             )}
           </div>
