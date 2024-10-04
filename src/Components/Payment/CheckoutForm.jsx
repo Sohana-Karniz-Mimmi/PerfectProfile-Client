@@ -78,7 +78,7 @@ console.log(getPrice())
     }
 
   return (
-    <div className="relative mx-auto w-[25rem] h-[38rem]  bg-white">
+    <div className="relative mx-auto w-[25rem] h-[30rem]  bg-white">
       <div className="grid min-h-screen grid-cols-10">
         {/* Left Side: Checkout Form */}
         <div className="col-span-full ">
@@ -187,77 +187,6 @@ console.log(getPrice())
               )}
               </div>
 
-              {/* Card Number Input */}
-              <div className="relative">
-                <label
-                  htmlFor="card-number"
-                  className="text-xs font-semibold text-gray-500"
-                >
-                  Card number
-                </label>
-                <input
-                  type="text"
-                  id="card-number"
-                  placeholder="1234-5678-XXXX-XXXX"
-                  {...register("cardNumber", { required: true })}
-
-                //   required
-                  className="block w-full rounded border-gray-300 bg-gray-50 py-3 px-4 pr-10 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-primary"
-                />
-                   {errors.name && (
-                <span className="text-sm text-red-500">
-                  This field is required
-                </span>
-              )}
-              </div>
-
-              {/* Expiration Date and Security Code */}
-              <div>
-                <p className="text-xs font-semibold text-gray-500">
-                  Expiration date
-                </p>
-                <div className="mr-6 flex justify-between">
-                  <div className="my-1">
-                    <label htmlFor="date" className="sr-only">
-                      Select expiration date
-                    </label>
-                    <input type="date" 
-                   {...register("date", { required: true })}
-
-                    // required
-                  className="block w-44 rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-primary"
-
-                    id="" />
-                       {errors.name && (
-                <span className="text-sm text-red-500">
-                  This field is required
-                </span>
-              )}
-                   
-                  </div>
-                 
-                  <div className="relative my-1">
-                    <label htmlFor="security-code" className="sr-only">
-                      Security code
-                    </label>
-                    <input
-                      type="text"
-                      id="security-code"
-                  
-                      placeholder="Security code"
-                      {...register("security-code", { required: true })}
-
-                    //   required
-                      className="block w-44 rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-primary"
-                    />
-                       {errors.name && (
-                <span className="text-sm text-red-500">
-                  This field is required
-                </span>
-              )}
-                  </div>
-                </div>
-              </div>
 
            
 
