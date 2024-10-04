@@ -19,7 +19,7 @@ const ResumeCustomizer = () => {
   const handleShare = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/share-resume", // Backend URL
+        "https://perfect-profile-server.vercel.app/share-resume", // Backend URL
         resumeData, // Send the customized resume data
         { withCredentials: true } // Send the token for verification
       );

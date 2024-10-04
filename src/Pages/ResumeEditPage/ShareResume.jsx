@@ -7,7 +7,7 @@ const ShareResume = () => {
   // Function to request the share link from the backend
   const generateShareLink = async () => {
     try {
-      const response = await fetch("http://localhost:5000/share-resume", {
+      const response = await fetch("https://perfect-profile-server.vercel.app/share-resume", {
         method: "POST",
         credentials: "include",
         headers: {
