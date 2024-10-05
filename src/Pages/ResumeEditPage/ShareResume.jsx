@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const ShareResume = () => {
+const ShareResume2 = () => {
 
   const [shareLink, setShareLink] = useState("");
   const [isCopied, setIsCopied] = useState(false);
@@ -67,4 +67,4 @@ const ShareResume = () => {
   );
 };
 
-export default ShareResume;
+export default ShareResume2;

@@ -90,7 +90,7 @@ export default function App() {
                   </button>
                 </Link>
               </div>
-              <img src={template.image} alt="" />
+              <img className="w-[330px] h-[420px]" src={template.image} alt="" />
             </div>
           </SwiperSlide>
         ))}

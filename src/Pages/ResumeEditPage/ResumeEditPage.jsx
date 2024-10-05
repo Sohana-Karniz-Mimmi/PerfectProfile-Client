@@ -267,7 +267,7 @@ const ResumeEditPage = () => {
   // Real time data change for template start here
 
   useEffect(() => {
-    fetch("../../../public/predefinedTemplates.json")
+    fetch("https://perfect-profile-server.vercel.app/predefined-templates")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
