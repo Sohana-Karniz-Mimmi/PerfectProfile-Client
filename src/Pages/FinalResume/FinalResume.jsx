@@ -27,19 +27,18 @@ const FinalResume = () => {
       .then((data) => setDatas(data));
   }, []);
 
+  const userResumeData = datas.find(
+    (item) => item?.userData?.templateItem === id
+  );
   const template = data.find((item1) => item1.templateItem === id);
-  const userData = datas.find((item) => item?.userData?.templateItem === id);
   console.log(template);
   console.log(datas);
-
+  const userData = userResumeData?.userData?.userData;
   console.log(userData);
-  console.log(userData?.userData?.userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
-      return (
-        <Template1 data={template} userData={userData?.userData?.userData} />
-      );
+      return <Template1 data={template} userData={userData} />;
     }
     if (id === "template2") {
       return <Template2 data={template} userData={userData} />;
