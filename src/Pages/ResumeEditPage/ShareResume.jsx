@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const ShareResume = () => {
+const ShareResume2 = () => {
 
   const [shareLink, setShareLink] = useState("");
   const [isCopied, setIsCopied] = useState(false);
@@ -7,7 +7,7 @@ const ShareResume = () => {
   // Function to request the share link from the backend
   const generateShareLink = async () => {
     try {
-      const response = await fetch("http://localhost:5000/share-resume", {
+      const response = await fetch("https://perfect-profile-server.vercel.app/share-resume", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -67,4 +67,4 @@ const ShareResume = () => {
   );
 };
 
-export default ShareResume;
+export default ShareResume2;
