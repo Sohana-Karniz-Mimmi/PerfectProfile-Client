@@ -6,9 +6,11 @@ import { FaUser } from "react-icons/fa6"
 import useAuth from "../../Hook/useAuth";
 import Login from "../../Authentication/Login";
 import Register from "../../Authentication/Register";
+import { GrLogout } from "react-icons/gr";
+import { MdDashboard } from "react-icons/md";
+import NavModal from "./NavModal";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
@@ -117,6 +119,7 @@ const Navbar = () => {
       });
   };
 
+
   return (
     <div className="min-h-[99px] border-b shadow">
       <Container>
@@ -164,30 +167,15 @@ const Navbar = () => {
           {/* Right Section (Login/Logout Buttons) */}
           <div className="">
             {user ? (
-              <div className="flex items-center gap-2">
-                {/* <div
-                  className="btn flex items-center btn-ghost btn-circle avatar tooltip hover:tooltip-open tooltip-bottom text-white"
-                  data-tip={user?.displayName}
-                > */}
-                {/* <div className=" md:w-12 w-8 rounded-full ">
-                    <img alt={"User"} src={user?.photoURL} />
-                  </div> */}
-                {/* </div> */}
-
-                <Link
-                  to={`/`}
-                  onClick={handleLogoutBtn}
-                  className="md:mr-2 mr-1 md:px-[20px] md:py-[11px] py-0.5 px-1.5 ease-out font-bold tracking-wide text-white md:text-[15px] text-xs capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-secondary font-montserrat"
-                >
-                  Log Out
-                </Link>
-              </div>
+              <>
+                <NavModal
+                handleLogoutBtn={handleLogoutBtn}
+                />
+              </>
             ) : (
               <div className="flex gap-5">
                 <button
-                  onClick={() =>
-                    document.getElementById("my_modal_3").showModal()
-                  }
+                  onClick={() => document.getElementById("my_modal_3").showModal()}
                   className="font-bold font-montserrat flex gap-2 items-center justify-center py-2 bg-primary px-5 rounded-lg text-white"
                 >
                   <FaUser className="text-sm text-white"></FaUser>Log In

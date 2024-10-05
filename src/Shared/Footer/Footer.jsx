@@ -5,22 +5,22 @@ import footer from "../../assets/footer.png"
 const Footer = () => {
   return (
     <>
-      <footer className="relative bg-cover bg-center text-black bg-no-repeat z-10 pb-10 pt-10 bg-[#00C8AABF] lg:pb-4 lg:pt-[110px]" style={{ backgroundImage: `url(${footer})` }} >
+      <footer className="relative bg-cover bg-center text-white bg-no-repeat z-10 pb-10 pt-10 bg-[#1C2733] lg:pb-4 lg:pt-[110px]" style={{ backgroundImage: `url(${footer})` }} >
         <div className="container mx-auto md:px-10 px-5 md:text-start text-center">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
               <div className="mb-10 w-full">
-                <Link className="mb-6 inline-block max-w-[160px]">
+              <Link className="mb-6 inline-block max-w-[160px]">
                   <Link to={'/'} className="font-bold text-3xl md:text-4xl gap-3 flex items-center">
                     <span className="">
                       P<span className="">er</span>fect
                       <span className="text-primary ">Profile</span>
                     </span></Link>
                 </Link>
-                <p className="mb-7 text-black text-body-color">
+                <p className="mb-7 text-[#a1a6ab] text-body-color">
                 At PerfectProfile, we help job seekers craft stunning resumes with customizable templates and expert tips, empowering you to stand out in today's competitive job market.
                 </p>
-                <p className="flex md:justify-start justify-center items-center text-sm font-medium text-dark dark:text-black">
+                <p className="flex md:justify-start justify-center items-center text-sm font-medium text-dark dark:text-[#a1a6ab]">
                   <span className="mr-3 text-primary">
                     <svg
                       width="20"
@@ -45,7 +45,7 @@ const Footer = () => {
                       </g>
                       <defs>
                         <clipPath id="clip0_941_15626">
-                          <rect width="20" height="20" fill="black" />
+                          <rect width="20" height="20" fill="white" />
                         </clipPath>
                       </defs>
                     </svg>
@@ -56,32 +56,32 @@ const Footer = () => {
             </div>
 
             <LinkGroup header="Resources">
-              <NavLink link="/#" label="Resume Examples" />
-              <NavLink link="/#" label="Cover Letter Examples" />
-              <NavLink link="/#" label="Pricing" />
+              <NavLink link="/predefined-templates" label="Resume Examples" />
+              <NavLink link="/predefined-templates" label="Cover Letter Examples" />
+              <NavLink link="/pricing" label="Pricing" />
               <NavLink link="/#" label="User Strategy" />
             </LinkGroup>
             <LinkGroup header="Company">
               <NavLink link="about" label="About PerfectProfile" />
-              <NavLink link="/#" label="Contact & Support" />
+              <NavLink link="/contact" label="Contact & Support" />
               <NavLink link="/#" label="Terms" />
               <NavLink link="/#" label="Setting & Privacy" />
             </LinkGroup>
             <LinkGroup header="Quick Links">
-              <NavLink link="/#" label="Premium Support" />
+              <NavLink link="/pricing" label="Premium Support" />
               <NavLink link="/#" label="Our Services" />
-              <NavLink link="/#" label="Know Our Team" />
+              <NavLink link="/about" label="Know Our Team" />
               <NavLink link="/#" label="Download App" />
             </LinkGroup>
 
             <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
               <div className="mb-10 w-full">
-                <h4 className="mb-9 text-lg font-semibold text-dark dark:text-black">
+                <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
                   Follow Us On
                 </h4>
                 <div className="mb-6 flex md:justify-start justify-center  items-center">
                   <Link
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-black dark:border-dark-3 dark:text-black dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width="8"
@@ -93,7 +93,7 @@ const Footer = () => {
                     </svg>
                   </Link>
                   <Link
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-black dark:border-dark-3 dark:text-black dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width="16"
@@ -105,7 +105,7 @@ const Footer = () => {
                     </svg>
                   </Link>
                   <Link
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-black dark:border-dark-3 dark:text-black dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width="16"
@@ -117,7 +117,7 @@ const Footer = () => {
                     </svg>
                   </Link>
                   <Link
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-black dark:border-dark-3 dark:text-black dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width="14"
@@ -129,15 +129,15 @@ const Footer = () => {
                     </svg>
                   </Link>
                 </div>
-                <p className="text-base text-body-color dark:text-black">
-                  &copy; {new Date().getFullYear()} PerfectProfile
+                <p className="text-base text-body-color dark:text-[#a1a6ab]">
+                  &copy; {new Date().getFullYear()} Perfect Profile
                 </p>
               </div>
             </div>
           </div>
 
           {/* Copyright */}
-          <div className="footer footer-center text-black pt-4 pb-3 border-t">
+          <div className="footer footer-center text-[#a1a6ab] pt-4 pb-3 border-t">
             <aside>
               <p>Copyright © {new Date().getFullYear()} - All right reserved by Perfect Profile Ltd</p>
             </aside>
@@ -208,13 +208,12 @@ const Footer = () => {
 
 export default Footer;
 
-
 const LinkGroup = ({ children, header }) => {
   return (
     <>
       <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
         <div className="mb-10 w-full">
-          <h4 className="mb-9 text-lg font-semibold text-dark dark:text-black">
+          <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
             {header}
           </h4>
           <ul className="space-y-3">{children}</ul>
@@ -229,7 +228,7 @@ const NavLink = ({ link, label }) => {
     <li>
       <a
         href={link}
-        className="inline-block text-base hover:underline leading-loose text-body-color hover:text-Primary dark:text-black"
+        className="inline-block text-base hover:underline leading-loose text-body-color hover:text-primary dark:text-[#a1a6ab]"
       >
         {label}
       </a>

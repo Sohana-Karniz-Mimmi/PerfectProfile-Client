@@ -331,8 +331,7 @@ const ResumeEditPage = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5000/share-resume",
-        resumeData,
+        "https://perfect-profile-server.vercel.app/share-resume", userData,
         { withCredentials: true }
       );
       if (response.data.success) {
