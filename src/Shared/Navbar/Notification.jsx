@@ -31,7 +31,7 @@ const Notification = ({ handleLogoutBtn }) => {
                                             <IoNotificationsSharp  className="mt-1.5 p-1 bg-secondary text-white text-[22px] rounded " />
                                         </div>
                                         <h2>
-                                            This is where your will notifications will appear
+                                            This is where your notifications will appear
                                         </h2>
 
                                     </div>
@@ -49,7 +49,7 @@ const Notification = ({ handleLogoutBtn }) => {
                                             <IoNotificationsSharp  className="mt-1.5 p-1 bg-secondary text-white text-[22px] rounded " />
                                         </div>
                                         <h2>
-                                            This is where your will notifications will appear
+                                            This is where your notifications will appear
                                         </h2>
 
                                     </div>
