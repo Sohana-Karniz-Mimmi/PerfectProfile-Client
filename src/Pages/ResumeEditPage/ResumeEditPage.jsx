@@ -31,7 +31,7 @@ const ResumeEditPage = () => {
     { id: 6, name: "Certifications" },
     // { id: 7, name: "Finalize" },
   ];
-  const { setSavedResume } = useContext(ResumeContext);
+  const { setSavedResume, setShareLink } = useContext(ResumeContext);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -333,10 +333,6 @@ const ResumeEditPage = () => {
     }
   };
 
-  /*****URL Generate *******/
-  const [shareLink, setShareLink] = useState("");
-  const [copied, setCopied] = useState(false);
-
   const resumeData = {
     ...userData,
     templateItem: id
@@ -363,13 +359,6 @@ const ResumeEditPage = () => {
     }
   };
 
-  // Function to copy the shareable link
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(shareLink).then(() => {
-      setCopied(true); // Set the copied state
-      setTimeout(() => setCopied(false), 2000); // Remove copied state after 2 seconds
-    });
-  };
 
   return (
     <div className="flex min-h-screen">
