@@ -37,7 +37,6 @@ const ResumeViewer = () => {
         }
     }
 
-
     return (
         <div>
             <ShareResumeNavbar />
