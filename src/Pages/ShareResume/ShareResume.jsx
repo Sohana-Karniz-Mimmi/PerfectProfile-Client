@@ -6,8 +6,13 @@ import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
+import ShareResumeNavbar from "./ShareResumeNavbar";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
 
 const ShareResume = () => {
+
+  const axiosPublic = useAxiosPublic();
+  
   // Find common objects with the same _id in both arrays
   const [data, setData] = useState([]);
   // const { id } = useParams();
@@ -15,9 +20,16 @@ const ShareResume = () => {
 
   //   Real time data change for template start here
   useEffect(() => {
-    fetch("https://perfect-profile-server.vercel.app/predefined-templates")
-      .then((res) => res.json())
-      .then((data) => setData(data));
+    const fetchData = async () => {
+      try {
+        const response = await axiosPublic.get("/predefined-templates");
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching predefined templates:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const template = data.find((item1) => item1.templateItem === "template1");
@@ -32,15 +44,11 @@ const ShareResume = () => {
   //   }
   // };
   return (
-    <div className="h-screen">
-      <div className="py-8 px-4 bg-[#00000f]">
-        <Link to="/">
-          <h1 className="text-white text-xl font-bold inline-block">
-            Perfect Profile
-          </h1>
-        </Link>
-      </div>
-      <section className="flex justify-between pt-12 gap-8">
+    <div className="">
+
+      <ShareResumeNavbar/>
+   
+      <section className="flex py-12 gap-8">
         <div className="w-3/12">
 
         </div>
@@ -335,18 +343,6 @@ const ShareResume = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="w-3/12 flex flex-col items-end px-8 gap-4">
-          <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
-            <FaFileExport className="text-secondary" /> Export
-          </button>
-          <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
-            <FaShare className="text-secondary" /> Share
-          </button>
-          <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
-            <FaEnvelope className="text-secondary" /> Email
-          </button>
-          <button className="w-36 px-8 py-2  font-montserrat rounded-full text-center bg-primary font-bold text-black">Finish</button>
         </div>
       </section>
     </div>

@@ -15,9 +15,11 @@ import { FaTrashAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { MdDoneOutline } from "react-icons/md";
 import Swal from "sweetalert2";
-import axios from "axios";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
 
 const ResumeEditPage = () => {
+  const axiosPublic = useAxiosPublic();
+  
   const steps = [
     { id: 1, name: "Heading" },
     { id: 2, name: "Work History" },
@@ -267,10 +269,18 @@ const ResumeEditPage = () => {
   // Real time data change for template start here
 
   useEffect(() => {
-    fetch("https://perfect-profile-server.vercel.app/predefined-templates")
-      .then((res) => res.json())
-      .then((data) => setData(data));
+    const fetchData = async () => {
+      try {
+        const response = await axiosPublic.get("/predefined-templates");
+        setData(response.data); // Set the data from the response
+      } catch (error) {
+        console.error("Error fetching predefined templates:", error);
+      }
+    };
+
+    fetchData();
   }, []);
+  
 
 
   const template = data.find((item1) => item1.templateItem === id);
@@ -333,8 +343,7 @@ const ResumeEditPage = () => {
   // Function to generate a shareable link
   const handleShare = async () => {
     try {
-      const response = await axios.post(
-        "https://perfect-profile-server.vercel.app/share-resume", userData,
+      const response = await axiosPublic.post("/share-resume", userData,
         { withCredentials: true }
       );
       if (response.data.success) {

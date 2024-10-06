@@ -9,6 +9,7 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
+import ShareResume from "../Pages/ShareResume/ShareResume";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      
     ],
   },
   {
@@ -52,7 +54,11 @@ const router = createBrowserRouter([
   {
     path: '/resume/final-resume/:id',
     element: <FinalResume  />
-  }
+  },
+  {
+    path: "resume-sharing",
+    element: <ShareResume />,
+  },
 ]);
 
 export default router;

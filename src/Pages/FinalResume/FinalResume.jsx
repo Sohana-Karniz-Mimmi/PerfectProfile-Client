@@ -6,8 +6,10 @@ import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
 
 const FinalResume = () => {
+  const axiosPublic = useAxiosPublic();
   // Find common objects with the same _id in both arrays
   const [data, setData] = useState([]);
   // const { id } = useParams();
@@ -15,11 +17,17 @@ const FinalResume = () => {
 
   //   Real time data change for template start here
   useEffect(() => {
-    fetch("https://perfect-profile-server.vercel.app/predefined-templates")
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axiosPublic.get("/predefined-templates");
+        setData(response.data); // Set the data from the response
+      } catch (error) {
+        console.error("Error fetching predefined templates:", error);
+      }
+    };
 
+    fetchData();
+  }, []);
   const template = data.find((item1) => item1.templateItem === "template1");
   console.log(template);
 
@@ -76,7 +84,7 @@ const FinalResume = () => {
               <div className="px-7 py-3 space-y-3">
                 {/* Career Objective */}
                 {template?.careerObjective === "" ||
-                template?.careerObjective === undefined ? (
+                  template?.careerObjective === undefined ? (
                   <section className="mb-1">
                     {data?.careerObjective && (
                       <>
@@ -184,7 +192,7 @@ const FinalResume = () => {
 
                 {/* Certifications */}
                 {template?.certifications &&
-                template?.certifications.length >= 1 ? (
+                  template?.certifications.length >= 1 ? (
                   <section className="mb-1 space-y-3">
                     <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                       Certifications
@@ -228,7 +236,7 @@ const FinalResume = () => {
 
                 {/* Work Experience */}
                 {template?.workExperience &&
-                template?.workExperience.length >= 1 ? (
+                  template?.workExperience.length >= 1 ? (
                   <section className="mb-1 space-y-3">
                     <h2 className=" font-bold text-sm uppercase text-blue-900 border-b border-blue-950 ">
                       Work Experience
