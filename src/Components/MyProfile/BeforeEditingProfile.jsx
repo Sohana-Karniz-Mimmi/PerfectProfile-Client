@@ -3,28 +3,21 @@ import image from "../../assets/profile image/FjU2lkcWYAgNG6d.jpg";
 
 const BeforeEditingProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const [username, setUsername] = useState("user name"); // Default username
-  const [tempUsername, setTempUsername] = useState(username); // Temporary username for edits
+  const [username, setUsername] = useState("user name");
+  const [tempUsername, setTempUsername] = useState(username);
 
-  // Function to handle file input change
-  const handleChangeProfilePhoto = () => {
-    document.getElementById("profilePhotoInput").click();
-  };
-
-  // Function to handle "Edit" button click
   const handleEdit = () => {
     setIsEditing(true);
   };
 
-  // Function to handle "Save" button click
   const handleSave = () => {
-    setUsername(tempUsername); // Save the changes
+    setUsername(tempUsername);
+    s;
     setIsEditing(false);
   };
 
-  // Function to handle "Cancel" button click
   const handleCancel = () => {
-    setTempUsername(username); // Revert changes
+    setTempUsername(username);
     setIsEditing(false);
   };
 
@@ -48,10 +41,7 @@ const BeforeEditingProfile = () => {
           </div>
         </div>
         <div className="text-white mt-4 md:mt-0">
-          <button
-            className="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
-            onClick={handleChangeProfilePhoto}
-          >
+          <button className="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">
             Change
           </button>
           {/* Hidden file input */}
