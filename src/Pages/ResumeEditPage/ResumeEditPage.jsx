@@ -15,10 +15,13 @@ import { FaTrashAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { MdDoneOutline } from "react-icons/md";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
 import axios from "axios";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
 
 const ResumeEditPage = () => {
+  const axiosPublic = useAxiosPublic();
+
   const steps = [
     { id: 1, name: "Heading" },
     { id: 2, name: "Work History" },
@@ -264,10 +267,18 @@ const ResumeEditPage = () => {
   // Real time data change for template start here
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_LOCALHOST}/predefined-templates`)
-      .then((res) => res.json())
-      .then((data) => setData(data));
+    const fetchData = async () => {
+      try {
+        const response = await axiosPublic.get("/predefined-templates");
+        setData(response.data); // Set the data from the response
+      } catch (error) {
+        console.error("Error fetching predefined templates:", error);
+      }
+    };
+
+    fetchData();
   }, []);
+
 
   const template = data.find((item1) => item1.templateItem === id);
   console.log(template);
@@ -323,18 +334,22 @@ const ResumeEditPage = () => {
   };
 
   /*****URL Generate *******/
-  const [shareLink, setShareLink] = useState(""); // Shareable URL
-  const [copied, setCopied] = useState(false); // Copy success state
+  const [shareLink, setShareLink] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const resumeData = {
+    ...userData,
+    templateItem: id
+  };
+
+  // console.log(resumeData);
+
   // Function to generate a shareable link
   const handleShare = async () => {
-    const resumeData = {
-      userData,
-      templateItem: id,
-    };
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_LOCALHOST}/share-resume`,
-        userData,
+        resumeData,
         { withCredentials: true }
       );
       if (response.data.success) {
@@ -367,23 +382,21 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${
-                currentStep === step.id
-                  ? "text-white font-montserrat"
-                  : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
+                ? "text-white font-montserrat"
+                : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500"
-              }`}
+                }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
-                  currentStep === step.id
-                    ? "border-white bg-white text-black"
-                    : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${currentStep === step.id
+                  ? "border-white bg-white text-black"
+                  : isStepCompleted(step.id)
                     ? "border-green-400 bg-green-400 text-white"
                     : "border-gray-500"
-                }`}
+                  }`}
               >
                 {isStepCompleted(step.id) ? "✓" : step.id}
               </span>

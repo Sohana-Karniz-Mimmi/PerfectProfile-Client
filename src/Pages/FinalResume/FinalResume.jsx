@@ -6,9 +6,11 @@ import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
 
 const FinalResume = () => {
+  const axiosPublic = useAxiosPublic();
   const [datas, setDatas] = useState([]);
   const { savedResume } = useContext(ResumeContext);
   // Find common objects with the same _id in both arrays
@@ -96,4 +98,4 @@ const FinalResume = () => {
   );
 };
 
-export default FinalResume;
+export default FinalResume; 

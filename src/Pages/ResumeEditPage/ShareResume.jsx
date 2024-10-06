@@ -7,22 +7,27 @@ const ShareResume2 = () => {
   // Function to request the share link from the backend
   const generateShareLink = async () => {
     try {
-      const response = await fetch("https://perfect-profile-server.vercel.app/share-resume", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
+      const response = await axiosPublic.post("/share-resume", 
+        {},
+        {
+          withCredentials: true, // Include credentials (cookies, etc.)
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      const data = response.data; 
       if (data.success) {
-        setShareLink(data.shareLink);
-        setIsCopied(false); // Reset copy state
+        setShareLink(data.shareLink); 
+        setIsCopied(false); 
       }
     } catch (error) {
       console.error("Error generating share link:", error);
     }
   };
+  
+  
 
   // Function to copy the link to clipboard
   const copyToClipboard = () => {
