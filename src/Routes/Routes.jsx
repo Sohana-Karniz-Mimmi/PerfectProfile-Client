@@ -9,8 +9,7 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
-import ShareResume from "../Pages/ShareResume/ShareResume";
-import ResumeViewer from "../Pages/ShareResume/ResumeViewer ";
+import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
 
 const router = createBrowserRouter([
   {
