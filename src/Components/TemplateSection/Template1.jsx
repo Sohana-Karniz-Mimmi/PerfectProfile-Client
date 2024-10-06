@@ -1,6 +1,6 @@
 const Template1 = ({ data, userData }) => {
   return (
-    <div className="lg:w-[31rem]  mx-auto  bg-slate-50 shadow-2xl rounded-lg ">
+    <div className="lg:w-[31rem] w-full max-h-[2400px]  mx-auto  bg-slate-50 shadow-2xl rounded-lg ">
       <div className="">
         {/* Header - Personal Info */}
         <header className="text-center  bg-blue-200  py-4">

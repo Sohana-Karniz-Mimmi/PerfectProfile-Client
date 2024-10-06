@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
@@ -16,6 +16,7 @@ import { TiDelete } from "react-icons/ti";
 import { MdDoneOutline } from "react-icons/md";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { ResumeContext } from "../../Context/CustomizeResumeContext";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -27,6 +28,7 @@ const ResumeEditPage = () => {
     { id: 6, name: "Certifications" },
     // { id: 7, name: "Finalize" },
   ];
+  const { setSavedResume } = useContext(ResumeContext);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -262,7 +264,7 @@ const ResumeEditPage = () => {
   // Real time data change for template start here
 
   useEffect(() => {
-    fetch("https://perfect-profile-server.vercel.app/predefined-templates")
+    fetch(`${import.meta.env.VITE_LOCALHOST}/predefined-templates`)
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
@@ -331,11 +333,15 @@ const ResumeEditPage = () => {
     };
     try {
       const response = await axios.post(
-        "https://perfect-profile-server.vercel.app/share-resume", userData,
+        `${import.meta.env.VITE_LOCALHOST}/share-resume`,
+        userData,
         { withCredentials: true }
       );
       if (response.data.success) {
+        console.log(response.data.sendInfo);
+
         setShareLink(response.data.shareLink);
+        setSavedResume(response.data.sendInfo);
       }
     } catch (error) {
       console.error("Error generating share link:", error);

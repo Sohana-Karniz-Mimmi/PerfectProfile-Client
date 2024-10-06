@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import Template1 from "../../Components/TemplateSection/Template1";
@@ -6,35 +6,56 @@ import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
+import { ResumeContext } from "../../Context/CustomizeResumeContext";
 
 const FinalResume = () => {
   const [datas, setDatas] = useState([]);
+  const { savedResume } = useContext(ResumeContext);
   // Find common objects with the same _id in both arrays
   const [data, setData] = useState([]);
   const { id } = useParams();
-  console.log(data);
+  // console.log(data);
+
+  const useUnloadAlert = () => {
+    useEffect(() => {
+      const handleBeforeUnload = (event) => {
+        // Confirmation message
+        event.preventDefault();
+        event.returnValue = ""; // Required for modern browsers
+      };
+
+      // Add event listener for 'beforeunload' event
+      window.addEventListener("beforeunload", handleBeforeUnload);
+
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+      };
+    }, []);
+  };
+  useUnloadAlert();
 
   //   Real time data change for template start here
   useEffect(() => {
-    fetch("https://perfect-profile-server.vercel.app/predefined-templates")
+    fetch(`${import.meta.env.VITE_LOCALHOST}/predefined-templates`)
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
 
   useEffect(() => {
-    fetch("https://perfect-profile-server.vercel.app/share-resume")
+    fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume`)
       .then((res) => res.json())
       .then((data) => setDatas(data));
   }, []);
 
   const userResumeData = datas.find(
-    (item) => item?.userData?.templateItem === id
+    (item) => item?._id === savedResume?.templateID
   );
+
   const template = data.find((item1) => item1.templateItem === id);
-  console.log(template);
-  console.log(datas);
-  const userData = userResumeData?.userData?.userData;
-  console.log(userData);
+  // console.log(template);
+  // console.log(datas);
+  const userData = userResumeData?.userData;
 
   const renderTemplate = (id) => {
     if (id === "template1") {
