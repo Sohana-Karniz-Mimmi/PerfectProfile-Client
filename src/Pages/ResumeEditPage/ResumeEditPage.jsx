@@ -21,7 +21,7 @@ import { ResumeContext } from "../../Context/CustomizeResumeContext";
 
 const ResumeEditPage = () => {
   const axiosPublic = useAxiosPublic();
-  
+
   const steps = [
     { id: 1, name: "Heading" },
     { id: 2, name: "Work History" },
@@ -278,7 +278,7 @@ const ResumeEditPage = () => {
 
     fetchData();
   }, []);
-  
+
 
   const template = data.find((item1) => item1.templateItem === id);
   console.log(template);
@@ -334,18 +334,22 @@ const ResumeEditPage = () => {
   };
 
   /*****URL Generate *******/
-  const [shareLink, setShareLink] = useState(""); // Shareable URL
-  const [copied, setCopied] = useState(false); // Copy success state
+  const [shareLink, setShareLink] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const resumeData = {
+    ...userData,
+    templateItem: id
+  };
+
+  // console.log(resumeData);
+
   // Function to generate a shareable link
   const handleShare = async () => {
-    const resumeData = {
-      userData,
-      templateItem: id,
-    };
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_LOCALHOST}/share-resume`,
-        userData,
+        resumeData,
         { withCredentials: true }
       );
       if (response.data.success) {
@@ -378,23 +382,21 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${
-                currentStep === step.id
-                  ? "text-white font-montserrat"
-                  : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
+                ? "text-white font-montserrat"
+                : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500"
-              }`}
+                }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
-                  currentStep === step.id
-                    ? "border-white bg-white text-black"
-                    : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${currentStep === step.id
+                  ? "border-white bg-white text-black"
+                  : isStepCompleted(step.id)
                     ? "border-green-400 bg-green-400 text-white"
                     : "border-gray-500"
-                }`}
+                  }`}
               >
                 {isStepCompleted(step.id) ? "✓" : step.id}
               </span>

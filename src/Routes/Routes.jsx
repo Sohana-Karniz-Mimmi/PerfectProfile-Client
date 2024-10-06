@@ -10,6 +10,7 @@ import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
 import ShareResume from "../Pages/ShareResume/ShareResume";
+import ResumeViewer from "../Pages/ShareResume/ResumeViewer ";
 
 const router = createBrowserRouter([
   {
@@ -55,9 +56,13 @@ const router = createBrowserRouter([
     path: '/resume/final-resume/:id',
     element: <FinalResume  />
   },
+  // {
+  //   path: "/resume/:customUrl",
+  //   element: <ShareResume />,
+  // },
   {
-    path: "resume-sharing",
-    element: <ShareResume />,
+    path: "/resume/:link",
+    element: <ResumeViewer />,
   },
 ]);
 
