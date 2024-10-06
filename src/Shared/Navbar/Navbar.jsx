@@ -168,7 +168,7 @@ const Navbar = () => {
           {/* Right Section (Login/Logout Buttons) */}
           <div className="">
             {user ? (
-              <div className="flex gap-5 items-center">
+              <div className="flex md:gap-5 items-center">
                 <Notification/>
                 <NavModal
                 handleLogoutBtn={handleLogoutBtn}

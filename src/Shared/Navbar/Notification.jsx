@@ -1,15 +1,14 @@
 import { Menu } from '@headlessui/react';
 import PropTypes from 'prop-types';
-import { GrLogout } from 'react-icons/gr';
 import { IoMdNotificationsOutline } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { IoNotificationsSharp } from "react-icons/io5";
 
 const Notification = ({ handleLogoutBtn }) => {
     return (
         <div className="relative text-right">
             <Menu as="div" className="relative inline-block text-left ">
                 <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-                    <IoMdNotificationsOutline className="text-3xl" />
+                    <IoMdNotificationsOutline className="text-[28px]" />
                 </Menu.Button>
 
                 <Menu.Items
@@ -18,21 +17,46 @@ const Notification = ({ handleLogoutBtn }) => {
 
 
                     <div className="border-b p-3">
-                        <h3 className='text-lg font-semibold text-black'>Notification</h3>
+                        <h3 className='text-lg font-semibold text-black'>Notifications</h3>
                     </div>
                     <div className="bg-white rounded-xl pb-6">
                         <Menu.Item>
                             {({ active }) => (
                                 <button
                                     className={`${active ? 'bg-white' : ''
-                                        } text-start w-full hover:bg-gray-400 py-1.5 text-black`}
+                                        } text-start w-full hover:bg-gray-300 py-1.5 text-black `}
                                 >
-                                    <h2 className=' px-3'>
-                                        This is where your will notifications will appear
-                                    </h2>
+                                    <div className='px-3 flex gap-2.5 '>
+                                        <div className=''>
+                                            <IoNotificationsSharp  className="mt-1.5 p-1 bg-secondary text-white text-[22px] rounded " />
+                                        </div>
+                                        <h2>
+                                            This is where your will notifications will appear
+                                        </h2>
+
+                                    </div>
                                 </button>
                             )}
                         </Menu.Item>
+                        <Menu.Item>
+                            {({ active }) => (
+                                <button
+                                    className={`${active ? 'bg-white' : ''
+                                        } text-start w-full hover:bg-gray-300 py-1.5 text-black `}
+                                >
+                                    <div className='px-3 flex gap-2.5 '>
+                                        <div className=''>
+                                            <IoNotificationsSharp  className="mt-1.5 p-1 bg-secondary text-white text-[22px] rounded " />
+                                        </div>
+                                        <h2>
+                                            This is where your will notifications will appear
+                                        </h2>
+
+                                    </div>
+                                </button>
+                            )}
+                        </Menu.Item>
+                       
 
                     </div>
                 </Menu.Items>
