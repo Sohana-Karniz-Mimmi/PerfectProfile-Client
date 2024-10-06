@@ -7,7 +7,7 @@ import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
 
-const FinalResume = () => {
+const ShareResume = () => {
   // Find common objects with the same _id in both arrays
   const [data, setData] = useState([]);
   // const { id } = useParams();
@@ -353,4 +353,4 @@ const FinalResume = () => {
   );
 };
 
-export default FinalResume;
+export default ShareResume;
