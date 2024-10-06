@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
@@ -10,13 +10,9 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
 
 const FinalResume = () => {
-  const axiosPublic = useAxiosPublic();
-  const [datas, setDatas] = useState([]);
-  const { savedResume } = useContext(ResumeContext);
-  // Find common objects with the same _id in both arrays
-  const [data, setData] = useState([]);
+  const info = useLoaderData();
+  console.log(info);
   const { id } = useParams();
-  // console.log(data);
 
   const useUnloadAlert = () => {
     useEffect(() => {
@@ -37,34 +33,15 @@ const FinalResume = () => {
   };
   useUnloadAlert();
 
-  //   Real time data change for template start here
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_LOCALHOST}/predefined-templates`)
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume`)
-      .then((res) => res.json())
-      .then((data) => setDatas(data));
-  }, []);
-
-  const userResumeData = datas.find(
-    (item) => item?._id === savedResume?.templateID
-  );
-
-  const template = data.find((item1) => item1.templateItem === id);
-  // console.log(template);
-  // console.log(datas);
-  const userData = userResumeData?.userData;
+  const userData = info?.userData?.userData;
+  console.log(userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
-      return <Template1 data={template} userData={userData} />;
+      return <Template1 userData={userData} />;
     }
     if (id === "template2") {
-      return <Template2 data={template} userData={userData} />;
+      return <Template2 userData={userData} />;
     }
   };
   return (
@@ -78,7 +55,9 @@ const FinalResume = () => {
       </div>
       <section className="flex justify-between pt-12 gap-8">
         <div className="w-3/12"></div>
-        <div className="w-6/12">{renderTemplate(id)}</div>
+        <div className="w-6/12">
+          {renderTemplate(info?.userData?.templateItem)}
+        </div>
         <div className="w-3/12 flex flex-col items-end px-8 gap-4">
           <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
             <FaFileExport className="text-secondary" /> Export
@@ -98,4 +77,4 @@ const FinalResume = () => {
   );
 };
 
-export default FinalResume; 
+export default FinalResume;
