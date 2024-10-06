@@ -9,6 +9,7 @@ import Register from "../../Authentication/Register";
 import { GrLogout } from "react-icons/gr";
 import { MdDashboard } from "react-icons/md";
 import NavModal from "./NavModal";
+import Notification from "./Notification";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -167,11 +168,12 @@ const Navbar = () => {
           {/* Right Section (Login/Logout Buttons) */}
           <div className="">
             {user ? (
-              <>
+              <div className="flex md:gap-5 items-center">
+                <Notification/>
                 <NavModal
                 handleLogoutBtn={handleLogoutBtn}
                 />
-              </>
+              </div>
             ) : (
               <div className="flex gap-5">
                 <button
