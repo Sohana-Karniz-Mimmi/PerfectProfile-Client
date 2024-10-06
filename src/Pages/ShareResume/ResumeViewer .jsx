@@ -7,7 +7,6 @@ import ShareResumeNavbar from './ShareResumeNavbar';
 const ResumeViewer = () => {
     const { link } = useParams();
     const [resumeData, setResumeData] = useState(null);
-    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchResumeData = async () => {
@@ -19,7 +18,7 @@ const ResumeViewer = () => {
                 const data = await response.json();
                 setResumeData(data);
             } catch (err) {
-                setError(err.message);
+                console.log(err.message);
             }
         };
 
@@ -38,15 +37,6 @@ const ResumeViewer = () => {
         }
     }
 
-
-
-    if (error) {
-        return <div>{error}</div>;
-    }
-
-    if (!resumeData) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <div>
