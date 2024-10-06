@@ -1,6 +1,6 @@
 const Template1 = ({ data, userData }) => {
   return (
-    <div className="lg:w-[31rem]  mx-auto  bg-slate-50 shadow-2xl rounded-lg ">
+    <div className="lg:w-[31rem] w-full max-h-[2400px]  mx-auto  bg-slate-50 shadow-2xl rounded-lg ">
       <div className="">
         {/* Header - Personal Info */}
         <header className="text-center  bg-blue-200  py-4">
@@ -58,7 +58,7 @@ const Template1 = ({ data, userData }) => {
           )}
 
           {/* skills */}
-          {userData?.skills.length >= 1 ? (
+          {userData?.skills?.length >= 1 ? (
             // If userData.skills exist and the length is greater than 0, show userData.skills
             <section className="mb-1 space-y-3">
               <h2 className="uppercase text-sm font-bold text-blue-900 border-b border-blue-950">
@@ -93,7 +93,7 @@ const Template1 = ({ data, userData }) => {
             )
           )}
           {/* Education */}
-          {userData?.education.length >= 1 ? (
+          {userData?.education?.length >= 1 ? (
             <section className="mb-1 space-y-3">
               <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
                 Education
@@ -190,7 +190,7 @@ const Template1 = ({ data, userData }) => {
                         ({exp.years || "1 Year"})
                       </span>{" "}
                     </h3>
-                    <p className="text-gray-600  text-sm">
+                    <p className="text-gray-600  text-sm max-w-[450px] break-words">
                       {exp.description ||
                         "Assisted in data cleaning and visualization tasks."}
                     </p>
@@ -212,7 +212,7 @@ const Template1 = ({ data, userData }) => {
                         {exp.jobTitle} - {exp.company}{" "}
                         <span className="text-gray-500">({exp.years})</span>{" "}
                       </h3>
-                      <p className="text-gray-600  text-sm">
+                      <p className="text-gray-600  text-sm ">
                         {exp.description}
                       </p>
                     </li>

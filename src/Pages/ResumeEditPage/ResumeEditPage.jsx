@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
@@ -16,6 +16,7 @@ import { TiDelete } from "react-icons/ti";
 import { MdDoneOutline } from "react-icons/md";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { ResumeContext } from "../../Context/CustomizeResumeContext";
 
 const ResumeEditPage = () => {
   const steps = [
@@ -27,6 +28,7 @@ const ResumeEditPage = () => {
     { id: 6, name: "Certifications" },
     // { id: 7, name: "Finalize" },
   ];
+  const { setSavedResume } = useContext(ResumeContext);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -73,9 +75,9 @@ const ResumeEditPage = () => {
       // Trigger SweetAlert when moving to step 7
       Swal.fire({
         title: `You're all done!`,
-        text: 'You have reached the final step.',
-        icon: 'success',
-        confirmButtonText: 'OK',
+        text: "You have reached the final step.",
+        icon: "success",
+        confirmButtonText: "OK",
         timer: 1500,
       });
     }
@@ -114,10 +116,6 @@ const ResumeEditPage = () => {
 
   // <<=================================Real time data change for template start here =========================================>>
 
-
-
-
-
   // <<===========Real time data change for template end here ============>>
 
   // Handle changes for general fields
@@ -127,7 +125,6 @@ const ResumeEditPage = () => {
       [field]: value,
     }));
   };
-
 
   const handleArrayChange = (arrayName, index, value) => {
     setUserData((prevData) => {
@@ -267,13 +264,13 @@ const ResumeEditPage = () => {
   // Real time data change for template start here
 
   useEffect(() => {
-    fetch("https://perfect-profile-server.vercel.app/predefined-templates")
+    fetch(`${import.meta.env.VITE_LOCALHOST}/predefined-templates`)
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
 
-
   const template = data.find((item1) => item1.templateItem === id);
+  console.log(template);
 
   const [userData, setUserData] = useState({
     name: "",
@@ -316,7 +313,6 @@ const ResumeEditPage = () => {
 
   console.log("User data:", userData);
 
-
   const renderTemplate = (id) => {
     if (id === "template1") {
       return <Template1 data={template} userData={userData} />;
@@ -326,19 +322,26 @@ const ResumeEditPage = () => {
     }
   };
 
-
   /*****URL Generate *******/
   const [shareLink, setShareLink] = useState(""); // Shareable URL
   const [copied, setCopied] = useState(false); // Copy success state
   // Function to generate a shareable link
   const handleShare = async () => {
+    const resumeData = {
+      userData,
+      templateItem: id,
+    };
     try {
       const response = await axios.post(
-        "https://perfect-profile-server.vercel.app/share-resume", userData,
+        `${import.meta.env.VITE_LOCALHOST}/share-resume`,
+        userData,
         { withCredentials: true }
       );
       if (response.data.success) {
+        console.log(response.data.sendInfo);
+
         setShareLink(response.data.shareLink);
+        setSavedResume(response.data.sendInfo);
       }
     } catch (error) {
       console.error("Error generating share link:", error);
@@ -353,8 +356,6 @@ const ResumeEditPage = () => {
     });
   };
 
-
-
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
@@ -366,21 +367,23 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
-                ? "text-white font-montserrat"
-                : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${
+                currentStep === step.id
+                  ? "text-white font-montserrat"
+                  : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500"
-                }`}
+              }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${currentStep === step.id
-                  ? "border-white bg-white text-black"
-                  : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
+                  currentStep === step.id
+                    ? "border-white bg-white text-black"
+                    : isStepCompleted(step.id)
                     ? "border-green-400 bg-green-400 text-white"
                     : "border-gray-500"
-                  }`}
+                }`}
               >
                 {isStepCompleted(step.id) ? "✓" : step.id}
               </span>
@@ -456,8 +459,7 @@ const ResumeEditPage = () => {
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
-                        value:
-                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                         message: "Invalid email format",
                       },
                     })}
@@ -982,12 +984,8 @@ const ResumeEditPage = () => {
               </button>
             ) : (
               <div>
-                <Link
-                  to={`/resume/final-resume/${id}`}
-                  onClick={handleShare}
-                >
+                <Link to={`/resume/final-resume/${id}`} onClick={handleShare}>
                   <button
-
                     type="submit"
                     className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
                   >
