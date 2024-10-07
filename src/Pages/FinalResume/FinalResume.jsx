@@ -35,7 +35,7 @@ const FinalResume = () => {
   };
   useUnloadAlert();
 
-  const userData = info?.userData?.userData;
+  const userData = info?.userData;
   console.log(userData);
 
   const renderTemplate = (id) => {

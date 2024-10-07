@@ -376,7 +376,7 @@ const ResumeEditPage = () => {
   // Function to generate a shareable link
   const handleShare = async () => {
     const resumeData = {
-      userData,
+      ...userData,
       templateItem: id,
     };
 

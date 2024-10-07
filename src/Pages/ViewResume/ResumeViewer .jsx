@@ -26,7 +26,7 @@ const ResumeViewer = () => {
   }, [link]);
 
   const templateID = resumeData?.userData?.templateItem;
-  const showResume = resumeData?.userData?.userData;
+  const showResume = resumeData?.userData;
 
   console.log(templateID);
   console.log(showResume);
