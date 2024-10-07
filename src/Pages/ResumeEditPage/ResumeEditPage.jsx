@@ -314,9 +314,7 @@ const ResumeEditPage = () => {
   }, []);
 
   const template = data.find((item1) => item1.templateItem === id);
-  console.log(template);
 
-  console.log("User data:", userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
