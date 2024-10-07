@@ -36,8 +36,7 @@ const Login = () => {
 
           console.log(loggedInUser);
           const user = { email };
-          axiosPublic
-            .post("https://perfect-profile-server.vercel.app/jwt", user, { withCredentials: true })
+          axiosPublic.post("/jwt", user, { withCredentials: true })
             .then((res) => {
               console.log(res.data);
             });
