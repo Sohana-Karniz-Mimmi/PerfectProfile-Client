@@ -2,6 +2,8 @@ import img from "../../assets/resumeimg2.png";
 import { IoMail } from "react-icons/io5";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+
 const Template3 = ({ data }) => {
   console.log(data);
   const {
@@ -20,6 +22,14 @@ const Template3 = ({ data }) => {
     extraCurricularActivities,
   } = data;
   return (
+    <div className="relative">
+      <div className="bg-slate-200 rounded-full px-2 py-0.5 flex gap-1 justify-between items-center absolute -top-3 left-[45%]">
+    <div className=" bg-primary rounded-full  text-white p-1  ">
+      <FaStar className="" />
+      {/* top-0  */}
+    </div>
+    <p className="font-semibold  ">{data.package}</p>
+  </div>
     <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  flex justify-center  shadow-2xl rounded-lg  ">
       {/* 1st */}
       <div className="bg-blue-50  lg:w-[13rem] w-[9rem]">
@@ -181,6 +191,7 @@ const Template3 = ({ data }) => {
             )}
         </div>
       </div>
+    </div>
     </div>
   );
 };
