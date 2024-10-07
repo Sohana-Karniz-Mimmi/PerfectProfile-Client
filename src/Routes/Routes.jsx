@@ -44,7 +44,6 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      
     ],
   },
   {
@@ -52,8 +51,10 @@ const router = createBrowserRouter([
     element: <ResumeEditPage />,
   },
   {
-    path: '/resume/final-resume/:id',
-    element: <FinalResume  />
+    path: "/resume/final-resume/:id",
+    element: <FinalResume />,
+    loader: ({ params }) =>
+      fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume/${params.id}`),
   },
   // {
   //   path: "/resume/:customUrl",

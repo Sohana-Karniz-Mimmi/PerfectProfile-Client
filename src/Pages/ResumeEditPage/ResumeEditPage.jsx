@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
@@ -20,7 +20,47 @@ import axios from "axios";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
 
 const ResumeEditPage = () => {
+  const [userData, setUserData] = useState({
+    name: "",
+    jobTitle: "",
+    email: "",
+    phone: "",
+    address: "",
+    careerObjective: "",
+    skills: [], // Start with an empty skill
+    education: [
+      {
+        degree: "",
+        institution: "",
+        year: "",
+      },
+    ], // Start with an empty education entry
+    certifications: [
+      {
+        year: "",
+        institution: "",
+        title: "",
+      },
+    ],
+    workExperience: [
+      {
+        description: "",
+        years: "",
+        company: "",
+        jobTitle: "",
+      },
+    ],
+    languages: [],
+    extraCurricularActivities: [
+      {
+        activity: "",
+        description: "",
+      },
+    ],
+  });
+
   const axiosPublic = useAxiosPublic();
+  const [savedDataId, setSaveDataId] = useState("");
 
   const steps = [
     { id: 1, name: "Heading" },
@@ -116,10 +156,6 @@ const ResumeEditPage = () => {
   // Find common objects with the same _id in both arrays
   const [data, setData] = useState([]);
   const { id } = useParams();
-
-  // <<=================================Real time data change for template start here =========================================>>
-
-  // <<===========Real time data change for template end here ============>>
 
   // Handle changes for general fields
   const handleInputChange = (field, value) => {
@@ -264,8 +300,6 @@ const ResumeEditPage = () => {
     }));
   };
 
-  // Real time data change for template start here
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -279,50 +313,7 @@ const ResumeEditPage = () => {
     fetchData();
   }, []);
 
-
   const template = data.find((item1) => item1.templateItem === id);
-  console.log(template);
-
-  const [userData, setUserData] = useState({
-    name: "",
-    jobTitle: "",
-    email: "",
-    phone: "",
-    address: "",
-    careerObjective: "",
-    skills: [], // Start with an empty skill
-    education: [
-      {
-        degree: "",
-        institution: "",
-        year: "",
-      },
-    ], // Start with an empty education entry
-    certifications: [
-      {
-        year: "",
-        institution: "",
-        title: "",
-      },
-    ],
-    workExperience: [
-      {
-        description: "",
-        years: "",
-        company: "",
-        jobTitle: "",
-      },
-    ],
-    languages: [],
-    extraCurricularActivities: [
-      {
-        activity: "",
-        description: "",
-      },
-    ],
-  });
-
-  console.log("User data:", userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -333,15 +324,62 @@ const ResumeEditPage = () => {
     }
   };
 
-  const resumeData = {
-    ...userData,
-    templateItem: id
-  };
-
   // console.log(resumeData);
 
+  // Optional chaining দিয়ে template অবজেক্ট অ্যাক্সেস করা হচ্ছে
+
+  useEffect(() => {
+    // template অবজেক্ট থেকে ডাটা optional chaining এর মাধ্যমে অ্যাক্সেস করা হচ্ছে
+    if (template) {
+      setUserData({
+        name: template?.name || "",
+        jobTitle: template?.jobTitle || "",
+        email: template?.email || "",
+        phone: template?.phone || "",
+        address: template?.address || "",
+        careerObjective: template?.careerObjective || "",
+        skills: template?.skills || [],
+        education: template?.education || [
+          {
+            degree: "",
+            institution: "",
+            year: "",
+          },
+        ],
+        certifications: template?.certifications || [
+          {
+            year: "",
+            institution: "",
+            title: "",
+          },
+        ],
+        workExperience: template?.workExperience || [
+          {
+            description: "",
+            years: "",
+            company: "",
+            jobTitle: "",
+          },
+        ],
+        languages: template?.languages || [],
+        extraCurricularActivities: template?.extraCurricularActivities || [
+          {
+            activity: "",
+            description: "",
+          },
+        ],
+      });
+    }
+  }, [template]); // template আপডেট হলে এটি পুনরায় রান হবে
+
+  const navigate = useNavigate();
   // Function to generate a shareable link
   const handleShare = async () => {
+    const resumeData = {
+      ...userData,
+      templateItem: id,
+    };
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_LOCALHOST}/share-resume`,
@@ -349,16 +387,20 @@ const ResumeEditPage = () => {
         { withCredentials: true }
       );
       if (response.data.success) {
-        console.log(response.data.sendInfo);
-
         setShareLink(response.data.shareLink);
-        setSavedResume(response.data.sendInfo);
+        navigate(`/resume/final-resume/${response.data.sendInfo.templateID}`);
       }
     } catch (error) {
       console.error("Error generating share link:", error);
     }
   };
-
+  // Function to copy the shareable link
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareLink).then(() => {
+      setCopied(true); // Set the copied state
+      setTimeout(() => setCopied(false), 2000); // Remove copied state after 2 seconds
+    });
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -371,21 +413,23 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
-                ? "text-white font-montserrat"
-                : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${
+                currentStep === step.id
+                  ? "text-white font-montserrat"
+                  : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500"
-                }`}
+              }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${currentStep === step.id
-                  ? "border-white bg-white text-black"
-                  : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
+                  currentStep === step.id
+                    ? "border-white bg-white text-black"
+                    : isStepCompleted(step.id)
                     ? "border-green-400 bg-green-400 text-white"
                     : "border-gray-500"
-                  }`}
+                }`}
               >
                 {isStepCompleted(step.id) ? "✓" : step.id}
               </span>
@@ -426,7 +470,7 @@ const ResumeEditPage = () => {
                     {...register("name", {
                       // required: "Job title is required",
                     })}
-                    value={userData.name}
+                    // value={userData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                   />
                 </div>
@@ -439,7 +483,7 @@ const ResumeEditPage = () => {
                     {...register("jobTitle", {
                       // required: "Job title is required",
                     })}
-                    value={userData.jobTitle}
+                    // value={userData.jobTitle}
                     onChange={(e) =>
                       handleInputChange("jobTitle", e.target.value)
                     }
@@ -465,7 +509,7 @@ const ResumeEditPage = () => {
                         message: "Invalid email format",
                       },
                     })}
-                    value={userData.email}
+                    // value={userData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                   />
                   {errors.email && (
@@ -487,7 +531,7 @@ const ResumeEditPage = () => {
                         message: "Phone number must be number",
                       },
                     })}
-                    value={userData.phone}
+                    // value={userData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                   />
                   {errors.phone && (
@@ -507,7 +551,7 @@ const ResumeEditPage = () => {
                     {...register("address", {
                       // required: "Job title is required",
                     })}
-                    value={userData.address}
+                    // value={userData.address}
                     onChange={(e) =>
                       handleInputChange("address", e.target.value)
                     }
@@ -528,7 +572,7 @@ const ResumeEditPage = () => {
                     {...register("careerObjective", {
                       // required: "Job title is required",
                     })}
-                    value={userData.careerObjective}
+                    // value={userData.careerObjective}
                     onChange={(e) =>
                       handleInputChange("careerObjective", e.target.value)
                     }
@@ -724,40 +768,6 @@ const ResumeEditPage = () => {
           )}
 
           {currentStep === 4 && (
-            // <div>
-            //   <h2 className="text-xl font-bold mb-4">Skills</h2>
-            //   {userData.skills.map((skill, index) => (
-            //     <div key={index}>
-            //       <div className="mb-4">
-            //         <label>Skill {index + 1}</label>
-            //         <input
-            //           type="text"
-            //           className="border p-2 w-full rounded"
-            //           value={skill}
-            //           onChange={(e) =>
-            //             handleArrayChange("skills", index, e.target.value)
-            //           }
-            //         />
-            //       </div>
-            //     </div>
-            //   ))}
-
-            //     <button
-            //       type="button"
-            //       className="mt-4 flex items-center gap-2 bg-blue-500 text-white p-2 rounded"
-            //     >
-            //       Add new skills <FaPlus />
-            //     </button>
-
-            //   {/* <button
-            //     type="button"
-            //     onClick={() => addArrayEntry("skills", "")}
-            //     className="mt-4 bg-blue-500 text-white p-2 rounded"
-            //   >
-            //     Add Another Skill
-            //   </button> */}
-            // </div>
-
             <div className="space-y-4">
               <div>
                 <h2 className="text-3xl font-bold mb-8">Skills</h2>
@@ -784,7 +794,7 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
-                    value={newSkill}
+                    // value={newSkill}
                     onChange={(e) => setNewSkill(e.target.value)} // Update input value
                     placeholder="Enter new skill"
                   />
@@ -809,29 +819,6 @@ const ResumeEditPage = () => {
           )}
 
           {currentStep === 5 && (
-            // <div>
-            //   <h2 className="text-xl font-bold mb-4">Languages</h2>
-            //   {userData.languages.map((language, index) => (
-            //     <div key={index} className="mb-4">
-            //       <label>Language {index + 1}</label>
-            //       <input
-            //         type="text"
-            //         className="border p-2 w-full rounded"
-            //         value={language}
-            //         onChange={(e) =>
-            //           handleArrayChange("languages", index, e.target.value)
-            //         }
-            //       />
-            //     </div>
-            //   ))}
-            //   <button
-            //     type="button"
-            //     onClick={() => addArrayEntry("languages", "")}
-            //     className="mt-4 bg-blue-500 text-white p-2 rounded"
-            //   >
-            //     Add Another Language
-            //   </button>
-            // </div>
             <div className="space-y-4">
               <div></div>
               <h2 className="text-3xl font-bold mb-8">Languages</h2>
@@ -857,7 +844,7 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     className="border py-3 px-2 w-full rounded outline-none focus:border-gray-300"
-                    value={newLanguage}
+                    // value={newLanguage}
                     onChange={(e) => setNewLanguage(e.target.value)} // Update input value
                     placeholder="Enter new language"
                   />
@@ -986,14 +973,13 @@ const ResumeEditPage = () => {
               </button>
             ) : (
               <div>
-                <Link to={`/resume/final-resume/${id}`} onClick={handleShare}>
-                  <button
-                    type="submit"
-                    className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
-                  >
-                    Save & Finalize
-                  </button>
-                </Link>
+                <button
+                  onClick={handleShare}
+                  type="submit"
+                  className="bg-primary font-bold flex items-center gap-2 text-white py-3 px-5 rounded"
+                >
+                  Save & Finalize
+                </button>
               </div>
             )}
           </div>
