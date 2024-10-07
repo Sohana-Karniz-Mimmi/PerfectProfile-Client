@@ -71,7 +71,7 @@ const ResumeEditPage = () => {
     { id: 6, name: "Certifications" },
     // { id: 7, name: "Finalize" },
   ];
-  const { setSavedResume } = useContext(ResumeContext);
+  const { setSavedResume, setShareLink } = useContext(ResumeContext);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -315,7 +315,6 @@ const ResumeEditPage = () => {
 
   const template = data.find((item1) => item1.templateItem === id);
 
-
   const renderTemplate = (id) => {
     if (id === "template1") {
       return <Template1 data={template} userData={userData} />;
@@ -324,10 +323,6 @@ const ResumeEditPage = () => {
       return <Template2 data={template} />;
     }
   };
-
-  /*****URL Generate *******/
-  const [shareLink, setShareLink] = useState("");
-  const [copied, setCopied] = useState(false);
 
   // console.log(resumeData);
 
