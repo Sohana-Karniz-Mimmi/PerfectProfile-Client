@@ -46,6 +46,7 @@ const Register = () => {
     const userInfo = {
       name: name,
       email: email,
+      productName : "free"
       // createdAt: new date(),
     };
     // Create user with email and password
