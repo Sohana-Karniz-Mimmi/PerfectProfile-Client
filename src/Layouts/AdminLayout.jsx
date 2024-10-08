@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Container from "../Shared/Container";
 import { GoHomeFill } from "react-icons/go";
@@ -6,6 +6,8 @@ import { FaUsers } from "react-icons/fa6";
 import { MdPayments, MdClose } from "react-icons/md";
 import { HiTemplate } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
+import { useDispatch } from "react-redux";
+import { fetchUsers } from "../store/Features/user/userSlice";
 const AdminLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navLink = (
@@ -84,6 +86,14 @@ const AdminLayout = () => {
       </li>
     </>
   );
+
+  const dispatch = useDispatch();
+  const limit = 10; // Define the same limit
+
+  useEffect(() => {
+    // Fetch users when the dashboard loads (this will update totalUsers in the store)
+    dispatch(fetchUsers({ page: 1, limit })); // Fetch first page
+  }, [dispatch, limit]);
 
   const handleOpen = () => setIsOpen((prev) => !isOpen);
   return (

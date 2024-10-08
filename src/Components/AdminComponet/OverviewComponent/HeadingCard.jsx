@@ -1,7 +1,23 @@
 import { IoTrendingUpOutline } from "react-icons/io5";
 import { GrMoney, GrTemplate } from "react-icons/gr";
 import HeadingChart from "./HeadingChart";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  fetchPredefinedTemplates,
+  selectTemplates,
+} from "../../../store/Features/predefinedTemplates/templateSlice";
+
 const HeadingCard = () => {
+  const user = useSelector((state) => state?.users?.totalUsers);
+  const dispatch = useDispatch();
+  const templates = useSelector(selectTemplates); // Access templates from Redux store
+
+  useEffect(() => {
+    dispatch(fetchPredefinedTemplates()); // Fetch predefined templates when component loads
+  }, [dispatch]);
+  console.log(templates);
+
   return (
     <section>
       <div className="flex gap-20 w-full h-full py-10 rounded-lg text-neutral-700">
@@ -10,7 +26,8 @@ const HeadingCard = () => {
           <div className="flex items-center justify-between gap-3">
             <div className="space-y-3">
               <h3 className="text-lg text-balck/70 font-bold">Total User</h3>
-              <p className="text-3xl font-semibold">210</p>
+
+              <p className="text-3xl font-semibold">{user}</p>
             </div>
             <div>
               <svg
@@ -73,7 +90,7 @@ const HeadingCard = () => {
               <h3 className="text-lg text-balck/70 font-bold">
                 Total Template
               </h3>
-              <p className="text-3xl font-semibold">30</p>
+              <p className="text-3xl font-semibold">{templates?.length}</p>
             </div>
             <div>
               <GrTemplate className="w-[60px] h-[55px] text-[#8280FF]" />
