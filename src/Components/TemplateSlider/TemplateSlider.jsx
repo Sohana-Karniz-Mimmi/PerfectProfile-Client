@@ -45,7 +45,7 @@ export default function App() {
     const getData = async () => {
       const { data } = await axiosPublic(`/predefined-templates`);
       setPredefinedTemplate(data);
-    };
+    }
     getData();
   }, []);
 

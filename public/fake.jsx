@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
+import useAxiosPublic from "../src/Hook/useAxiosPublic";
 
 const ResumeCustomizer = () => {
   const [resumeData, setResumeData] = useState({}); // Resume customization data
   const [shareLink, setShareLink] = useState(""); // Shareable URL
   const [copied, setCopied] = useState(false); // Copy success state
+  const axiosPublic = useAxiosPublic();
 
   // Function to handle customization changes
   const handleChange = (e) => {
@@ -18,10 +19,9 @@ const ResumeCustomizer = () => {
   // Function to generate a shareable link
   const handleShare = async () => {
     try {
-      const response = await axios.post(
-        "https://perfect-profile-server.vercel.app/share-resume", // Backend URL
-        resumeData, // Send the customized resume data
-        { withCredentials: true } // Send the token for verification
+      const response = await axiosPublic.post("/share-resume", 
+        resumeData,
+        { withCredentials: true }
       );
       if (response.data.success) {
         setShareLink(response.data.shareLink); // Set the generated shareable URL

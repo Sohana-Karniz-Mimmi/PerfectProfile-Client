@@ -5,10 +5,11 @@ export const ResumeContext = createContext();
 
 // Provider Component তৈরি করা
 export const ResumeProvider = ({ children }) => {
-  const [savedResume, setSavedResume] = useState(null); // গ্লোবাল স্টেট তৈরি করা
+  const [savedResume, setSavedResume] = useState(null); 
+  const [shareLink, setShareLink] = useState("");
 
   return (
-    <ResumeContext.Provider value={{ savedResume, setSavedResume }}>
+    <ResumeContext.Provider value={{ savedResume, setSavedResume, shareLink, setShareLink }}>
       {children}
     </ResumeContext.Provider>
   );
