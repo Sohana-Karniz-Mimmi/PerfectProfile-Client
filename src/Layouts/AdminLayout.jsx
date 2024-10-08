@@ -12,6 +12,7 @@ const AdminLayout = () => {
     <>
       <li>
         <NavLink
+          to="/admin/dashboard/overview"
           className="flex items-center gap-2 font-montserrat hover:text-primary transition-colors text-slate-600"
           style={({ isActive, isPending, isTransitioning }) => {
             return {
@@ -28,17 +29,56 @@ const AdminLayout = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className="flex items-center gap-2 font-montserrat hover:text-primary transition-colors text-slate-600">
+        <NavLink
+          to="/admin/dashboard/alluser"
+          className="flex items-center gap-2 font-montserrat hover:text-primary transition-colors text-slate-600"
+          style={({ isActive, isPending, isTransitioning }) => {
+            return {
+              fontWeight: isActive ? "600" : "",
+              color: isActive ? "white" : "",
+              background: isActive ? "#2CACD5" : "",
+              borderRadius: isActive ? "50px" : "",
+              padding: isActive ? "6px 15px" : "",
+              viewTransitionName: isTransitioning ? "slide" : "",
+            };
+          }}
+        >
           <FaUsers /> Users
         </NavLink>
       </li>
       <li>
-        <NavLink className="flex items-center gap-2 font-montserrat hover:text-primary transition-colors text-slate-600">
+        <NavLink
+          to="/admin/dashboard/subscription"
+          className="flex items-center gap-2 font-montserrat hover:text-primary transition-colors text-slate-600"
+          style={({ isActive, isPending, isTransitioning }) => {
+            return {
+              fontWeight: isActive ? "600" : "",
+              color: isActive ? "white" : "",
+              background: isActive ? "#2CACD5" : "",
+              borderRadius: isActive ? "50px" : "",
+              padding: isActive ? "6px 15px" : "",
+              viewTransitionName: isTransitioning ? "slide" : "",
+            };
+          }}
+        >
           <MdPayments /> Subscription
         </NavLink>
       </li>
       <li>
-        <NavLink className="flex items-center gap-2 font-montserrat hover:text-primary transition-colors text-slate-600">
+        <NavLink
+          to="/admin/dashboard/alltemplate"
+          className="flex items-center gap-2 font-montserrat hover:text-primary transition-colors text-slate-600"
+          style={({ isActive, isPending, isTransitioning }) => {
+            return {
+              fontWeight: isActive ? "600" : "",
+              color: isActive ? "white" : "",
+              background: isActive ? "#2CACD5" : "",
+              borderRadius: isActive ? "50px" : "",
+              padding: isActive ? "6px 15px" : "",
+              viewTransitionName: isTransitioning ? "slide" : "",
+            };
+          }}
+        >
           <HiTemplate /> All Templates
         </NavLink>
       </li>
