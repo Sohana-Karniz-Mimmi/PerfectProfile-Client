@@ -1,286 +1,131 @@
 const Template1 = ({ data, userData }) => {
   return (
-    <div
-      className="lg:w-[31rem] w-full max-h-[2400px]  mx-auto  bg-slate-50 shadow-2xl rounded-lg "
-      id="resume-content"
-    >
+    <div className="lg:w-[790px] w-full  h-[1000px] mx-auto bg-white shadow-lg rounded-lg">
       <div className="">
         {/* Header - Personal Info */}
-        <header className="text-center  bg-blue-200  py-4">
-          <h1 className="text-2xl font-bold text-blue-900 uppercase ">
-            {userData?.name === "" || userData?.name === undefined
-              ? data?.name
-              : userData?.name}
+        <header className="text-center bg-blue-200 py-8">
+          <h1 className="text-4xl font-bold text-blue-900 uppercase">
+            {userData?.name || data?.name}
           </h1>
-          <p>{data?.package}</p>
-          <p className="font-semibold uppercase ">
-            {userData?.jobTitle === "" || userData?.jobTitle === undefined
-              ? data?.jobTitle
-              : userData?.jobTitle}
-          </p>
-          <p className="font-medium text-sm break-words max-w-[420px] mx-auto">
-            {userData?.email === "" || userData?.email === undefined
-              ? data?.email
-              : userData?.email}{" "}
-            |{" "}
-            {userData?.phone === "" || userData?.phone === undefined
-              ? data?.phone
-              : userData?.phone}{" "}
-            |{" "}
-            {userData?.address === "" || userData?.address === undefined
-              ? data?.address
-              : userData?.address}
+          <h2 className="font-semibold mt-1.5 mb-1.5 text-xl uppercase">
+            {userData?.jobTitle || data?.jobTitle}
+          </h2>
+          <p className="font-medium  mx-auto">
+            {userData?.email || data?.email} | {userData?.phone || data?.phone} |{" "}
+            {userData?.address || data?.address}
           </p>
         </header>
-        <div className="px-7 py-3 space-y-3">
+
+        <div className="px-7 py-6 space-y-5">
           {/* Career Objective */}
-          {userData?.careerObjective === "" ||
-          userData?.careerObjective === undefined ? (
-            <section className="mb-1">
-              {data?.careerObjective && (
-                <>
-                  <h2 className=" uppercase text-sm  font-bold text-blue-900 border-b border-blue-950 ">
-                    Career Objective
-                  </h2>
-                  <p className="mt-1 text-sm break-words max-w-[450px]">
-                    {data?.careerObjective}
-                  </p>
-                </>
-              )}
+          {(userData?.careerObjective || data?.careerObjective) && (
+            <section className="mb-2">
+              <h3 className="uppercase text-xl font-bold text-blue-900 border-b border-blue-950">
+                Career Objective
+              </h3>
+              <p className="mt-2  font-semibold">
+                {userData?.careerObjective || data?.careerObjective}
+              </p>
             </section>
-          ) : (
-            userData?.careerObjective !== "" && (
-              <section className="mb-1">
-                <h2 className=" uppercase text-sm  font-bold text-blue-900 border-b border-blue-950 ">
-                  Career Objective
-                </h2>
-                <p className="mt-1 text-sm break-words max-w-[450px]">
-                  {userData?.careerObjective}
-                </p>
-              </section>
-            )
           )}
 
-          {/* skills */}
-          {userData?.skills?.length >= 1 ? (
-            // If userData.skills exist and the length is greater than 0, show userData.skills
+          {/* Skills */}
+          {(userData?.skills?.length || data?.skills?.length) && (
             <section className="mb-1 space-y-3">
-              <h2 className="uppercase text-sm font-bold text-blue-900 border-b border-blue-950">
+              <h3 className="uppercase text-xl font-bold text-blue-900 border-b border-blue-950">
                 Skills
-              </h2>
-              <ul className="mt-1 text-sm grid grid-cols-2 justify-between list-disc list-inside">
-                {userData?.skills.map((skill, index) => (
-                  <li key={index} className="pl-2">
-                    <h3 className="font-semibold inline-block">
-                      {skill || "Html"}
-                    </h3>
+              </h3>
+              <ul className="mt-1 pl-2 grid grid-cols-2 list-disc list-inside">
+                {(userData?.skills || data?.skills).map((skill, index) => (
+                  <li key={index} className="pl-1">
+                    <span className="font-semibold inline-block">{skill}</span>
                   </li>
                 ))}
               </ul>
             </section>
-          ) : (
-            // If userData.skills is empty or doesn't exist, fallback to data.skills
-            data?.skills &&
-            data?.skills.length > 0 && (
-              <section className="mb-1 space-y-3">
-                <h2 className="uppercase text-sm font-bold text-blue-900 border-b border-blue-950">
-                  Skills
-                </h2>
-                <ul className="mt-1 text-sm grid grid-cols-2 justify-between list-disc list-inside">
-                  {data?.skills.map((skill, index) => (
-                    <li key={index} className="pl-2">
-                      <h3 className="font-semibold inline-block">{skill}</h3>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )
           )}
+
           {/* Education */}
-          {userData?.education?.length >= 1 ? (
-            <section className="mb-1 space-y-3">
-              <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
+          {(userData?.education?.length || data?.education?.length) && (
+            <section className="mb-2 space-y-3">
+              <h3 className="uppercase text-xl font-bold text-blue-900 border-b border-blue-950">
                 Education
-              </h2>
-              <ul className=" text-sm ">
-                {userData?.education.map((edu, index) => (
+              </h3>
+              <ul className="mt-2 space-y-1">
+                {(userData?.education || data?.education).map((edu, index) => (
                   <li key={index}>
-                    <h3 className=" font-semibold break-words max-w-[420px]">
-                      {edu.degree || "Cse"} -{" "}
-                      {edu.institution || "Harbard University"}{" "}
-                      <span className="text-gray-500">
-                        ({edu.year || "2024"})
-                      </span>
-                    </h3>
+                    <span className="font-semibold break-words ">
+                      {edu.degree} - {edu.institution}{" "}
+                      <span className="text-gray-500">({edu.year})</span>
+                    </span>
                   </li>
                 ))}
               </ul>
             </section>
-          ) : (
-            data?.education &&
-            data?.education.length > 0 && (
-              <section className="mb-1 space-y-3">
-                <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
-                  Education
-                </h2>
-                <ul className=" text-sm ">
-                  {data?.education.map((edu, index) => (
-                    <li key={index}>
-                      <h3 className=" font-semibold break-words max-w-[420px]">
-                        {edu.degree} - {edu.institution}{" "}
-                        <span className="text-gray-500">({edu.year})</span>
-                      </h3>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )
           )}
 
           {/* Certifications */}
-          {userData?.certifications && userData?.certifications.length >= 1 ? (
-            <section className="mb-1 space-y-3">
-              <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
+          {(userData?.certifications?.length || data?.certifications?.length) && (
+            <section className="mb-2 space-y-3">
+              <h3 className="uppercase text-xl font-bold text-blue-900 border-b border-blue-950">
                 Certifications
-              </h2>
-              <ul className="mt-1 text-sm space-y-1 break-words max-w-[420px]">
-                {userData?.certifications.map((cert, index) => (
-                  <li key={index}>
-                    <h3 className=" font-semibold break-words max-w-[420px]">
-                      {cert.title || "Data Science with Python"} -{" "}
-                      {cert.institution || "Coursera "}{" "}
-                      <span className="text-gray-500">
-                        ({cert.year || "2018"})
-                      </span>
-                    </h3>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : (
-            data?.certifications &&
-            data?.certifications.length > 0 && (
-              <section className="mb-1 space-y-3">
-                <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
-                  Certifications
-                </h2>
-                <ul className="mt-1 text-sm space-y-1 break-words max-w-[420px]">
-                  {data?.certifications.map((cert, index) => (
+              </h3>
+              <ul className="mt-2  space-y-1  ">
+                {(userData?.certifications || data?.certifications).map(
+                  (cert, index) => (
                     <li key={index}>
-                      <h3 className=" font-semibold break-words max-w-[420px]">
+                      <span className="font-semibold">
                         {cert.title} - {cert.institution}{" "}
                         <span className="text-gray-500">({cert.year})</span>
-                      </h3>
+                      </span>
                     </li>
-                  ))}
-                </ul>
-              </section>
-            )
+                  )
+                )}
+              </ul>
+            </section>
           )}
 
           {/* Work Experience */}
-          {userData?.workExperience && userData?.workExperience.length >= 1 ? (
-            <section className="mb-1 space-y-3">
-              <h2 className=" font-bold text-sm uppercase text-blue-900 border-b border-blue-950 ">
+          {(userData?.workExperience?.length || data?.workExperience?.length) && (
+            <section className="mb-2 space-y-3">
+              <h3 className="font-bold text-xl uppercase text-blue-900 border-b border-blue-950">
                 Work Experience
-              </h2>
-              <ul className="mt-1 text-sm ">
-                {userData?.workExperience.map((exp, index) => (
-                  <li key={index}>
-                    <h3 className=" font-semibold">
-                      {exp.jobTitle || "Junior Data Analyst"} -{" "}
-                      {exp.company || "Data Solutions"}{" "}
-                      <span className="text-gray-500">
-                        ({exp.years || "1 Year"})
-                      </span>{" "}
-                    </h3>
-                    <p className="text-gray-600  text-sm max-w-[450px] break-words">
-                      {exp.description ||
-                        "Assisted in data cleaning and visualization tasks."}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : (
-            data?.workExperience &&
-            data?.workExperience.length > 0 && (
-              <section className="mb-1 space-y-3">
-                <h2 className=" font-bold text-sm uppercase text-blue-900 border-b border-blue-950 ">
-                  Work Experience
-                </h2>
-                <ul className="mt-1 text-sm ">
-                  {data?.workExperience.map((exp, index) => (
+              </h3>
+              <ul className="mt-2 space-y-2 ">
+                {(userData?.workExperience || data?.workExperience).map(
+                  (exp, index) => (
                     <li key={index}>
-                      <h3 className=" font-semibold">
+                      <span className="font-semibold">
                         {exp.jobTitle} - {exp.company}{" "}
-                        <span className="text-gray-500">({exp.years})</span>{" "}
-                      </h3>
-                      <p className="text-gray-600  text-sm ">
+                        <span className="text-gray-500">({exp.years})</span>
+                      </span>
+                      <p className="text-gray-600  break-words ">
                         {exp.description}
                       </p>
                     </li>
-                  ))}
-                </ul>
-              </section>
-            )
+                  )
+                )}
+              </ul>
+            </section>
           )}
 
-          {/* Extra Curricular Activities
-          {data?.extraCurricularActivities &&
-            data?.extraCurricularActivities.length > 0 && (
-              <section className="mb-1">
-                <h2 className=" font-bold text-sm uppercase text-blue-900 border-b border-blue-950 ">
-                  Extra Curricular Activities
-                </h2>
-                <ul className="mt-1 text-sm space-y-1">
-                  {data?.extraCurricularActivities.map(
-                    (activityItem, index) => (
-                      <li key={index} className="text-gray-600">
-                        <strong>{activityItem.activity}</strong> -{" "}
-                        {activityItem.description}
-                      </li>
-                    )
-                  )}
-                </ul>
-              </section>
-            )} */}
-
-          {/* languages */}
-          {userData?.languages && userData?.languages.length >= 1 ? (
-            <section className="mb-1 space-y-3">
-              <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
-                language
-              </h2>
-              <ul className="mt-1 text-sm  grid grid-cols-2 justify-between list-disc list-inside">
-                {userData?.languages.map((language, index) => (
-                  <li key={index} className="pl-2">
-                    <h3 className=" font-semibold inline-block">
-                      {language || "English"}
-                    </h3>
+          {/* Languages */}
+          {(userData?.languages?.length || data?.languages?.length) && (
+            <section className="mb-2 space-y-4">
+              <h3 className="uppercase text-xl font-bold text-blue-900 border-b border-blue-950">
+                Languages
+              </h3>
+              <ul className="mt-2 pl-2 grid grid-cols-2 list-disc list-inside">
+                {(userData?.languages || data?.languages).map((language, index) => (
+                  <li key={index} className="pl-1">
+                    <h3 className="font-semibold inline-block">{language}</h3>
                   </li>
                 ))}
               </ul>
             </section>
-          ) : (
-            data?.languages &&
-            data?.languages.length > 0 && (
-              <section className="mb-1 space-y-3">
-                <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
-                  language
-                </h2>
-                <ul className="mt-1 text-sm  grid grid-cols-2 justify-between list-disc list-inside">
-                  {data?.languages.map((language, index) => (
-                    <li key={index} className="pl-2">
-                      <h3 className=" font-semibold inline-block">
-                        {language}
-                      </h3>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )
           )}
+        
+          
         </div>
       </div>
     </div>
