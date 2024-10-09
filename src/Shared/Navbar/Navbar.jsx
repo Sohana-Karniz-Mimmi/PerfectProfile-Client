@@ -14,6 +14,7 @@ import Notification from "./Notification";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = (
     <>
@@ -109,6 +110,10 @@ const Navbar = () => {
     </>
   );
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   const handleLogoutBtn = () => {
     logOut();
     navigate("/")
@@ -120,14 +125,17 @@ const Navbar = () => {
       });
   };
 
-
   return (
     <div className="min-h-[99px] border-b shadow">
       <Container>
         <div className="flex items-center justify-between min-h-[99px] p-0 md:py-3 py-5">
           <div className="flex items-center">
-            <details className="relative">
-              <summary className="m-1 bg-transparent border-none lg:hidden shadow-none cursor-pointer">
+            <div className="relative">
+              {/* Hamburger Icon */}
+              <div
+                className="m-1 bg-transparent border-none lg:hidden shadow-none cursor-pointer"
+                onClick={toggleMenu} // Call toggle function on click
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 font-bold"
@@ -142,12 +150,15 @@ const Navbar = () => {
                     d="M4 6h16M4 12h8m-8 6h16"
                   />
                 </svg>
-              </summary>
-              <ul className="absolute mt-2 p-2 shadow-lg z-50 bg-white rounded-lg w-52 text-black space-y-2">
-                {navLinks} {/* Replace with your navigation links */}
-              </ul>
-            </details>
+              </div>
 
+              {/* Menu */}
+              {menuOpen && ( // Only show menu when menuOpen is true
+                <ul className="absolute mt-2 p-2 shadow-lg z-50 bg-white rounded-lg w-52 text-black space-y-2">
+                  {navLinks} {/* Replace with your navigation links */}
+                </ul>
+              )}
+            </div>
 
             <Link
               to={"/"}
@@ -176,7 +187,9 @@ const Navbar = () => {
             ) : (
               <div className="flex gap-5">
                 <button
-                  onClick={() => document.getElementById("my_modal_3").showModal()}
+                  onClick={() =>
+                    document.getElementById("my_modal_3").showModal()
+                  }
                   className="font-bold flex gap-2 items-center justify-center py-2 bg-primary px-5 rounded-lg text-white"
                 >
                   <FaUser className="text-sm text-white"></FaUser>Log In
@@ -197,7 +210,6 @@ const Navbar = () => {
       <Login />
       <Register />
     </div>
-
   );
 };
 
