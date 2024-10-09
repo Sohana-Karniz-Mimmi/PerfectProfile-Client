@@ -506,7 +506,10 @@ const ResumeEditPage = () => {
                       <FaUser className="text-9xl text-gray-300" />
                     </div>
                   </div>
-                  <button disabled className="bg-[#00000f] uppercase py-2 text-white">
+                  <button
+                    disabled
+                    className="bg-[#00000f] uppercase py-2 text-white"
+                  >
                     Change Photo
                   </button>
                 </div>
@@ -859,7 +862,8 @@ const ResumeEditPage = () => {
                 }
                 className="flex items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 w-full lg:text-2xl text-base border border-dashed border-secondary"
               >
-                Add Another Education <FaPlus className="font-extrabold text-2xl" />
+                Add Another Education{" "}
+                <FaPlus className="font-extrabold text-2xl" />
               </button>
             </div>
           )}
@@ -867,16 +871,16 @@ const ResumeEditPage = () => {
           {currentStep === 4 && (
             <div className="space-y-4">
               <div>
-                <h2 className="text-3xl font-bold mb-8">Skills</h2>
+                <h2 className="text-3xl font-bold font-lora mb-8">Skills</h2>
               </div>
-              <div className="flex gap-3 flex-wrap">
+              <div className="flex gap-6 flex-wrap">
                 {userData.skills.map((skill, index) => (
                   <div key={index} className="flex justify-between gap-2 mb-2">
-                    <div className="border relative rounded  gap-4 py-1 px-4">
+                    <div className="border border-gray-400 relative rounded  gap-6 py-1 px-4">
                       <span>{skill}</span>
                       <button
                         type="button"
-                        className="text-red-500 absolute p-0 m-0 -top-2 -right-2"
+                        className="text-red-500 absolute p-0 m-0 -top-3 -right-3 "
                         onClick={() => handleDeleteSkill(skill)}
                       >
                         <TiDelete className="p-0 m-0 text-xl" />
@@ -887,10 +891,10 @@ const ResumeEditPage = () => {
               </div>
 
               {showInput && (
-                <div className=" relative flex items-center">
+                <div className="flex items-center">
                   <input
                     type="text"
-                    className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
+                    className={`border py-2 px-2 max-w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
                     // value={newSkill}
                     onChange={(e) => setNewSkill(e.target.value)} // Update input value
                     placeholder="Enter new skill"
@@ -898,19 +902,19 @@ const ResumeEditPage = () => {
 
                   <button
                     type="button"
-                    className="absolute right-0 bg-secondary font-bold text-white py-2 px-2 rounded"
+                    className="absolute border border-secondary bg-secondary ml-44 flex  font-bold text-white py-2 px-2"
                     onClick={() => handleAddSkill()}
                   >
-                    Add Skill
+                    Add
                   </button>
                 </div>
               )}
               <button
                 type="button"
-                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+                className="flex lg:w-1/4 w-full items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black text-lg p-4 border border-dashed border-gray-400"
                 onClick={() => setShowInput(true)} // Show input on button click
               >
-                Add new skill <FaPlus className="font-bold" />
+                Add New Skill <FaPlus className="font-bold text-lg" />
               </button>
             </div>
           )}
@@ -922,14 +926,14 @@ const ResumeEditPage = () => {
               <div className="flex gap-3 flex-wrap">
                 {userData.languages.map((language, index) => (
                   <div key={index} className="flex justify-between gap-2 mb-2">
-                    <div className="border relative rounded  gap-4 py-1 px-4">
+                    <div className="border border-gray-400 relative rounded  gap-6 py-1 px-4">
                       <span>{language}</span>
                       <button
                         type="button"
-                        className="text-red-500 absolute p-0 m-0 -top-2 -right-2"
+                        className="text-red-500 absolute p-0 m-0 -top-3 -right-3 "
                         onClick={() => handleDeleteLanguage(language)}
                       >
-                        <TiDelete className="p-0 m-0 text-xl" />
+                        <TiDelete className="p-0 m-0 text-xl " />
                       </button>
                     </div>
                   </div>
@@ -940,7 +944,7 @@ const ResumeEditPage = () => {
                 <div className="mt-4 relative flex items-center">
                   <input
                     type="text"
-                    className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
+                    className={`border py-2 px-2 max-w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
                     // value={newLanguage}
                     onChange={(e) => setNewLanguage(e.target.value)} // Update input value
                     placeholder="Enter new language"
@@ -948,16 +952,16 @@ const ResumeEditPage = () => {
 
                   <button
                     type="button"
-                    className="absolute right-0 bg-secondary font-bold text-white py-2 px-2 rounded"
+                    className="absolute border border-secondary bg-secondary ml-44 flex  font-bold text-white py-2 px-2"
                     onClick={() => handleAddLanguage()}
                   >
-                    Add Language
+                    Add
                   </button>
                 </div>
               )}
               <button
                 type="button"
-                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+                className="flex lg:w-1/4 w-full items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black text-lg p-4 border border-dashed border-gray-400"
                 onClick={() => setShowInput(true)} // Show input on button click
               >
                 Add new language <FaPlus className="font-bold" />
@@ -973,47 +977,53 @@ const ResumeEditPage = () => {
               {userData.certifications.map((entry, index) => (
                 <div
                   key={index}
-                  className="grid relative grid-cols-2 border-2 border-dashed p-8 rounded-tr-3xl border-gray-200 gap-4 mb-4"
+                  className="relative bg-white p-8 rounded-tr-3xl gap-4 mb-4"
                 >
-                  <div>
-                    <label className="font-bold">Certificate Name</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Full stack development"
-                      className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
-                      value={entry.title}
-                      onChange={(e) =>
-                        updateCertificate(index, "title", e.target.value)
-                      }
-                    />
-                  </div>
-                  <div>
-                    <label className="font-bold">Institution Name</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Udemy"
-                      className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
-                      value={entry.institution}
-                      onChange={(e) =>
-                        updateCertificate(index, "institution", e.target.value)
-                      }
-                    />
-                  </div>
-                  <div>
-                    <label className="font-bold">Duration</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. 6 months"
-                      className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
-                      value={entry.year}
-                      onChange={(e) =>
-                        updateCertificate(index, "year", e.target.value)
-                      }
-                    />
+                  <div className="flex lg:flex-row flex-col justify-between gap-6">
+                    <div className="space-y-1">
+                      <label className="font-bold">Certificate Name</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Full stack development"
+                        className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
+                        value={entry.title}
+                        onChange={(e) =>
+                          updateCertificate(index, "title", e.target.value)
+                        }
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="font-bold">Institution Name</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Udemy"
+                        className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
+                        value={entry.institution}
+                        onChange={(e) =>
+                          updateCertificate(
+                            index,
+                            "institution",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="font-bold">Duration</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 6 months"
+                        className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
+                        value={entry.year}
+                        onChange={(e) =>
+                          updateCertificate(index, "year", e.target.value)
+                        }
+                      />
+                    </div>
                   </div>
                   {index > 0 && (
                     <div
-                      className={`flex absolute right-0 items-center justify-end bg-white p-4 rounded-full`}
+                      className={`flex absolute top-0 right-0 items-center justify-end bg-white p-4 rounded-full`}
                     >
                       <button
                         type="button"
@@ -1035,9 +1045,10 @@ const ResumeEditPage = () => {
                     year: "",
                   })
                 }
-                className="flex items-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 rounded-full border-2 border-dashed border-secondary"
+                className="flex items-center justify-center w-full gap-2 mt-4 font-bold bg-gray-200 text-black p-4 border lg:text-2xl text-lg  border-dashed border-secondary"
               >
-                Add Another Certification <FaPlus className="font-bold" />
+                Add Another Certification
+                <FaPlus className="font-bold text-lg" />
               </button>
             </div>
           )}
@@ -1074,7 +1085,7 @@ const ResumeEditPage = () => {
                 <button
                   onClick={handleShare}
                   type="submit"
-                  className="bg-primary font-bold flex items-center gap-2 text-white py-2 px-5 rounded"
+                  className="bg-primary uppercase font-bold text-lg flex items-center gap-2 text-white py-3 px-5"
                 >
                   Save & Finalize
                 </button>
@@ -1084,7 +1095,7 @@ const ResumeEditPage = () => {
         </form>
       </div>
       {/* Template preview area */}
-      <div className="lg:w-2/6 w-full lg:p-8 p-2 flex flex-col lg:block justify-center items-center bg-gray-100">
+      <div className="lg:w-2/6 w-full lg:p-8 p-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
         {renderTemplate(id)}
         <div className="flex flex-col justify-center items-center py-6 space-y-6">
           <button className="font-roboto font-medium text-primary">
