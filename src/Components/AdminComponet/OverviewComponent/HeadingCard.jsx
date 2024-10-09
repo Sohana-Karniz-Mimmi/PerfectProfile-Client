@@ -1,16 +1,48 @@
 import { IoTrendingUpOutline } from "react-icons/io5";
 import { GrMoney, GrTemplate } from "react-icons/gr";
 import HeadingChart from "./HeadingChart";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  fetchPredefinedTemplates,
+  selectTemplates,
+} from "../../../store/Features/predefinedTemplates/templateSlice";
+import PieChartForUser from "./PieChartForUser";
+import { selectAllUsersState } from "../../../store/Features/user/userSlice";
+
 const HeadingCard = () => {
+  const user = useSelector((state) => state?.users?.totalUsers);
+  const dispatch = useDispatch();
+  const templates = useSelector(selectTemplates); // Access templates from Redux store
+
+  const users = useSelector(selectAllUsersState);
+
+  // Count the occurrences of each productName
+  const userCounts = users.reduce(
+    (acc, user) => {
+      acc[user.productName] = (acc[user.productName] || 0) + 1;
+      return acc;
+    },
+    { standard: 0, free: 0, premium: 0 }
+  );
+
+  const totalPremiumUser = userCounts.standard + userCounts.premium;
+
+  useEffect(() => {
+    dispatch(fetchPredefinedTemplates()); // Fetch predefined templates when component loads
+  }, [dispatch]);
+  console.log(templates);
+
   return (
     <section>
-      <div className="flex gap-20 w-full h-full py-10 rounded-lg text-neutral-700">
+      <div className="flex flex-col md:flex-row md:justify-center gap-5 lg:gap-20 w-full h-full py-10 rounded-lg text-neutral-700 flex-wrap">
         {/* card 1 */}
         <div className="bg-white  min-h-16 rounded-lg p-5 font-lora">
           <div className="flex items-center justify-between gap-3">
             <div className="space-y-3">
               <h3 className="text-lg text-balck/70 font-bold">Total User</h3>
-              <p className="text-3xl font-semibold">210</p>
+
+              <p className="text-3xl font-semibold md:text-2xl">{user}</p>
             </div>
             <div>
               <svg
@@ -54,7 +86,7 @@ const HeadingCard = () => {
           <div className="flex items-center justify-between gap-3">
             <div className="space-y-3">
               <h3 className="text-lg text-balck/70 font-bold">Premium User</h3>
-              <p className="text-3xl font-semibold">120</p>
+              <p className="text-3xl font-semibold">{totalPremiumUser}</p>
             </div>
             <div>
               <GrMoney className="w-[60px] h-[55px] text-[#8280FF]" />
@@ -73,7 +105,7 @@ const HeadingCard = () => {
               <h3 className="text-lg text-balck/70 font-bold">
                 Total Template
               </h3>
-              <p className="text-3xl font-semibold">30</p>
+              <p className="text-3xl font-semibold">{templates?.length}</p>
             </div>
             <div>
               <GrTemplate className="w-[60px] h-[55px] text-[#8280FF]" />
@@ -87,6 +119,9 @@ const HeadingCard = () => {
       </div>
       <div className="bg-white rounded-lg p-5 flex items-center justify-center w-full border">
         <HeadingChart />
+      </div>
+      <div className="bg-white rounded-lg p-5 flex items-center justify-center w-full border mt-10 mb-10">
+        <PieChartForUser />
       </div>
     </section>
   );

@@ -13,6 +13,7 @@ import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
 import AdminLayout from "../Layouts/AdminLayout";
 import OverviewPage from "../Pages/AdminPage/OverviewPage";
 import AllUserPage from "../Pages/AdminPage/AllUserPage";
+import AllTemplates from "../Pages/AdminPage/AllTemplates";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "alluser",
         element: <AllUserPage />,
+      },
+      {
+        path: "alltemplate",
+        element: <AllTemplates />,
       },
     ],
   },

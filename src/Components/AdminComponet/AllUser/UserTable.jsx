@@ -1,6 +1,37 @@
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchUsers,
+  selectAllUsers,
+} from "../../../store/Features/user/userSlice";
+import { useEffect, useState } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 const UserTable = () => {
+  const dispatch = useDispatch();
+  const users = useSelector(selectAllUsers);
+  const loading = useSelector((state) => state.users.loading);
+  const error = useSelector((state) => state.users.error);
+  const currentPage = useSelector((state) => state.users.currentPage);
+  const totalPages = useSelector((state) => state.users.totalPages);
+
+  const [page, setPage] = useState(1);
+  const limit = 10; // You can change this as per your need
+
+  useEffect(() => {
+    dispatch(fetchUsers({ page, limit }));
+  }, [dispatch, page]);
+
+  const handlePrevious = () => {
+    if (page > 1) setPage(page - 1);
+  };
+
+  const handleNext = () => {
+    if (page < totalPages) setPage(page + 1);
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -15,14 +46,16 @@ const UserTable = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td className="p-5">Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Littel, Schaden and Vandervort</td>
-              <td>Canada</td>
-            </tr>
-            <tr>
+            {users.map((user, idx) => (
+              <tr key={user._id}>
+                <th>{idx + 1}</th>
+                <td className="py-5">{user.name}</td>
+                <td>{user._id}</td>
+                <td>{user.email}</td>
+                <td>Canada</td>
+              </tr>
+            ))}
+            {/* <tr>
               <th>2</th>
               <td className="p-5">Hart Hagerty</td>
               <td>Desktop Support Technician</td>
@@ -154,9 +187,31 @@ const UserTable = () => {
               <td>Data Coordiator</td>
               <td>Witting, Kutch and Greenfelder</td>
               <td>Kazakhstan</td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
+        <div className="flex justify-center items-center mt-16">
+          <div className="flex gap-5">
+            <button
+              className="btn bg-primary text-white px-6 hover:bg-secondary"
+              onClick={handlePrevious}
+            >
+              {" "}
+              <FaArrowLeft />{" "}
+            </button>
+            <p>
+              {" "}
+              {currentPage} of {totalPages}{" "}
+            </p>
+            <button
+              className="btn bg-primary text-white px-6 hover:bg-secondary"
+              onClick={handleNext}
+            >
+              {" "}
+              <FaArrowRight />{" "}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
