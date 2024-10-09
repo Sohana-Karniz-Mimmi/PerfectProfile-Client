@@ -78,11 +78,24 @@ const FinalResume = () => {
       html2canvas: { scale: 3 },
       jsPDF: { format: "a4", orientation: "portrait" },
     };
-    html2pdf()
-      .set(opt)
-      .from(element)
-      .save();
+    html2pdf().set(opt).from(element).save();
   };
+
+  // const resumeRef = useRef(null);
+
+  // // Generate PDF
+  // const generatePDF = () => {
+  //   const element = resumeRef.current;
+  //   const options = {
+  //     margin: 0, // Set to 0 for full-width
+  //     filename: `${userData.name}_Resume.pdf`,
+  //     image: { type: "jpeg", quality: 0.98 },
+  //     html2canvas: { scale: 2 }, // Increase the scale for better quality
+  //     jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+  //   };
+
+  //   html2pdf().set(options).from(element).save();
+  // };
 
   return (
     <div className="h-screen">
@@ -100,13 +113,16 @@ const FinalResume = () => {
       <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
         <div className="lg:w-2/12 w-full"></div>
 
-        <div id="element" className="lg:w-8/12 w-full pt-0">
-          {renderTemplate(info?.userData?.templateItem)}
+        <div>
+          <div id="element" className=" w-full pt-0">
+            {renderTemplate(info?.userData?.templateItem)}
+          </div>
         </div>
 
         <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4">
           <button
             onClick={handlePdf}
+            // onClick={generatePDF}
             className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
           >
             <FaFileExport className="text-secondary" /> Export

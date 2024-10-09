@@ -83,11 +83,11 @@ const ResumeEditPage = () => {
   };
 
   const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null); 
+  const [endDate, setEndDate] = useState(null);
 
-   const handleDateChange = (date) => {
-     setSelectedDate(date); // Set the selected date
-   };
+  const handleDateChange = (date) => {
+    setSelectedDate(date); // Set the selected date
+  };
 
   const axiosPublic = useAxiosPublic();
   const [savedDataId, setSaveDataId] = useState("");
@@ -1068,8 +1068,9 @@ const ResumeEditPage = () => {
               <button
                 type="button"
                 onClick={handlePreviousStep}
-                className={`border border-black uppercase flex text-lg items-center gap-2 font-bold text-black py-3 px-5 ${currentStep ==
-                  1 && "opacity-0"}`}
+                className={`border border-black uppercase flex text-lg items-center gap-2 font-bold text-black py-3 px-5 ${
+                  currentStep == 1 && "opacity-0"
+                }`}
               >
                 <FaBackward /> Previous
               </button>
