@@ -12,11 +12,14 @@ const userAdapter = createEntityAdapter({
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async ({ page, limit }) => {
-    const { users, totalUsers, currentPage, totalPages } = await getUsers(
-      page,
-      limit
-    );
-    return { users, totalUsers, currentPage, totalPages };
+    const {
+      users,
+      totalUsers,
+      currentPage,
+      totalPages,
+      allUsers,
+    } = await getUsers(page, limit);
+    return { users, totalUsers, currentPage, totalPages, allUsers };
   }
 );
 
@@ -26,6 +29,7 @@ const initialState = userAdapter.getInitialState({
   currentPage: 1,
   totalPages: 1,
   totalUsers: 0, // Store total users here
+  allUsers: [], // To store all users
 });
 
 const userSlice = createSlice({
@@ -44,6 +48,7 @@ const userSlice = createSlice({
         state.currentPage = action.payload.currentPage;
         state.totalPages = action.payload.totalPages;
         state.totalUsers = action.payload.totalUsers; // Update total users
+        state.allUsers = action.payload.allUsers; // Store all users in the state
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
@@ -55,4 +60,7 @@ const userSlice = createSlice({
 export const { selectAll: selectAllUsers } = userAdapter.getSelectors(
   (state) => state.users
 );
+
+export const selectAllUsersState = (state) => state.users.allUsers;
+
 export default userSlice.reducer;

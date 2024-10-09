@@ -98,15 +98,15 @@ const AdminLayout = () => {
   const handleOpen = () => setIsOpen((prev) => !isOpen);
   return (
     <section className="flex flex-col lg:flex-row">
-      <div className="max-w-[290px] w-full bg-white lg:h-screen lg:border-r-2 lg:border-r-[#f0f0f0] relative">
+      <div className="w-[290px]  bg-white lg:h-screen lg:border-r-2 lg:border-r-[#f0f0f0] relative">
         <button
           onClick={handleOpen}
-          className="text-xl font-bold lg:hidden flex mt-5"
+          className="text-xl font-bold lg:hidden flex mt-5 px-3"
         >
           {isOpen ? <MdClose /> : <SlMenu />}
         </button>
         <nav className=" flex justify-center lg:mt-20 ">
-          <ul className="font-semibold text-lg lg:flex flex-col gap-5 hidden">
+          <ul className="font-semibold text-lg lg:flex flex-col gap-5 hidden md:text-base">
             {navLink}
           </ul>
           {isOpen && (
@@ -116,7 +116,7 @@ const AdminLayout = () => {
           )}
         </nav>
       </div>
-      <div className="bg-[#F5F6FA]  g:mt-24 mt-5 lg:mt-0 pt-5  flex-1 px-3">
+      <div className="bg-[#F5F6FA] mt-5 lg:mt-0 pt-5  px-3 min-h-screen flex-1">
         <Outlet></Outlet>
       </div>
     </section>
