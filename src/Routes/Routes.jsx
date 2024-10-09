@@ -10,6 +10,9 @@ import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
+import AdminLayout from "../Layouts/AdminLayout";
+import OverviewPage from "../Pages/AdminPage/OverviewPage";
+import AllUserPage from "../Pages/AdminPage/AllUserPage";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +66,20 @@ const router = createBrowserRouter([
   {
     path: "/resume/:link",
     element: <ResumeViewer />,
+  },
+  {
+    path: "admin/dashboard",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "/admin/dashboard/overview",
+        element: <OverviewPage />,
+      },
+      {
+        path: "alluser",
+        element: <AllUserPage />,
+      },
+    ],
   },
 ]);
 
