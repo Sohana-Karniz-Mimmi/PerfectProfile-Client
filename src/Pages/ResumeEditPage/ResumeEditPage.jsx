@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Template1 from "../../Components/TemplateSection/Template1";
+// import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import {
@@ -18,6 +18,7 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import axios from "axios";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
+import Template1 from "../../assets/Template1";
 
 const ResumeEditPage = () => {
   const [userData, setUserData] = useState({
@@ -505,7 +506,8 @@ const ResumeEditPage = () => {
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
-                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        value:
+                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                         message: "Invalid email format",
                       },
                     })}

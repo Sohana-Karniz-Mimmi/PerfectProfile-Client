@@ -9,17 +9,21 @@ import router from "./Routes/Routes";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ResumeProvider } from "./Context/CustomizeResumeContext";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <ResumeProvider>
-          <RouterProvider router={router} />
-        </ResumeProvider>
-      </QueryClientProvider>
-      <Toaster />
-    </HelmetProvider>
-  </AuthProvider>
+  <Provider store={store}>
+    <AuthProvider>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          <ResumeProvider>
+            <RouterProvider router={router} />
+          </ResumeProvider>
+        </QueryClientProvider>
+        <Toaster />
+      </HelmetProvider>
+    </AuthProvider>
+  </Provider>
 );
