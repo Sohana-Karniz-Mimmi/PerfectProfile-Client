@@ -68,8 +68,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         const loggedUser = { email: currentUser.email };
 
-        axiosPublic
-          .post("/jwt", loggedUser, { withCredentials: true })
+        axiosPublic.post("/jwt", loggedUser, { withCredentials: true })
           .then((res) => {
             console.log("JWT token received and set in cookies", res.data);
           });

@@ -30,8 +30,8 @@ const ShareResumeNavbar = () => {
     return (
         <div className="min-h-[70px] border-b shadow">
             <Container>
-                <div className=" navbar items-center justify-between barlow-regular min-h-[70px] p-0 md:py-3 py-5">
-                    <div className="space-x-5">
+                <div className=" flex items-center justify-between barlow-regular min-h-[70px] p-0 md:py-3 py-5">
+                    <div className="space-x-5 flex items-center">
 
                         <Link
                             to={"/"}
