@@ -1,10 +1,10 @@
 const Template1 = ({ data, userData }) => {
   return (
-    <div className="lg:w-[790px] w-full  h-[1000px] mx-auto bg-white shadow-lg rounded-lg">
+    <div className="lg:w-[790px] w-full  min-h-[1000px] mx-auto bg-white shadow-lg rounded-lg">
       <div className="">
         {/* Header - Personal Info */}
         <header className="text-center bg-blue-200 py-8">
-          <h1 className="text-4xl font-bold text-blue-900 uppercase">
+          <h1 className="lg:text-4xl text-2xl font-bold text-blue-900 uppercase">
             {userData?.name || data?.name}
           </h1>
           <h2 className="font-semibold mt-1.5 mb-1.5 text-xl uppercase">

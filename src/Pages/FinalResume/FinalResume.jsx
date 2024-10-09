@@ -97,14 +97,14 @@ const FinalResume = () => {
           </span>
         </Link>
       </div>
-      <section className="flex justify-between pt-8 gap-5">
-        <div className="w-2/12"></div>
+      <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
+        <div className="lg:w-2/12 w-full"></div>
 
-        <div id="element" className="w-5/12 pt-0">
+        <div id="element" className="lg:w-8/12 w-full pt-0">
           {renderTemplate(info?.userData?.templateItem)}
         </div>
 
-        <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
+        <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4">
           <button
             onClick={handlePdf}
             className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
