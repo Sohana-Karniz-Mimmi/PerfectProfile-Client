@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, twitterProvider);
   };
-  const logOut = () => {
+  const logOut = async () => {
     setLoading(true);
     return signOut(auth).then(() => {
       axiosPublic.post("/logout", {}, { withCredentials: true }).then(() => {
