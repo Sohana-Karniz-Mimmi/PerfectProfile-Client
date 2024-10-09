@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 const CheckoutForm = () => {
     const {user} = useAuth()
+    // console.log();
     const {
         register,
         handleSubmit,
@@ -56,10 +57,10 @@ console.log(getPrice())
     console.log(amount);
     axiosPublic
       .post("/create-payment", {
-        amount: amount * 100,
+        amount: amount,
         currency: "USD",
         tran_id,
-        userName: "Jung Hae in",
+        userName: user.displayName,
         email ,
         phone,
         productName,
@@ -75,12 +76,20 @@ console.log(getPrice())
          
         }       
       });
+
+      // update user profile in db
+      axiosPublic.put(`/user/${user.email}`, {
+        productName,
+        amount,
+      })
+      .then(res =>{
+        console.log(res);
+      })
     }
 
   return (
     <div className="relative mx-auto w-[25rem] h-[30rem]  bg-white">
       <div className="grid min-h-screen grid-cols-10">
-        {/* Left Side: Checkout Form */}
         <div className="col-span-full ">
           <div className="mx-auto w-full max-w-lg">
             <h1 className="relative text-3xl text-center font-bold text-primary sm:text-3xl">

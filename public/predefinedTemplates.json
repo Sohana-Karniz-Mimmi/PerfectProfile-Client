@@ -59,6 +59,7 @@
   },
   {
     "_id": "66fa7d2e54075c0baa21fecc",
+    "package" : "premium",
     "name": "Meherun Nessa",
     "templateItem": "template2",
     "jobTitle": "Backend Developer",
@@ -113,6 +114,7 @@
     "_id": "66fa7d2e54075c0baa21fecd",
     "name": "Shamim Hossain",
     "jobTitle": "ML Engineer",
+    "package" : "premium",
     "careerObjective": "Aiming to work in the field of Artificial Intelligence and Machine Learning.",
     "email": "shamimhossain@gmail.com",
     "phone": "+8822334455",
@@ -292,6 +294,7 @@
   {
     "_id": "66fa7d2e54075c0baa21fed0",
     "name": "Tanveer Hossain",
+    "package" : "premium",
     "jobTitle": "Cybersecurity Specialist",
     "careerObjective": "To apply my skills as a Cybersecurity Specialist, ensuring robust network security.",
     "email": "tanveerhossain@gmail.com",
