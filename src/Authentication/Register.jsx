@@ -16,6 +16,7 @@ const Register = () => {
   const [eyePassword, setEyePassword] = useState(false);
   const [eyeConfirmPassword, setEyeConfirmPassword] = useState(false);
   const [remember, setRemember] = useState(false);
+  
 
   const handleModal = () => {
     document.getElementById("my_modal_4").close();
@@ -46,8 +47,8 @@ const Register = () => {
     const userInfo = {
       name: name,
       email: email,
-      productName : "free"
-      // createdAt: new date(),
+      productName : "free",
+      
     };
     // Create user with email and password
     createUser(email, password)
@@ -80,6 +81,7 @@ const Register = () => {
         const userInfo = {
           name: user.displayName,
           email: user.email,
+          productName : "free"
         };
 
         // Save user information to the database
