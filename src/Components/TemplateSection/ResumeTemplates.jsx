@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Container from "../../Shared/Container";
 import ResumeTemplate from "./ResumeTemplate";
 import { useNavigate } from "react-router-dom";
-import Template1 from "./Template1";
+import Template1 from "../../assets/Template1";
 import Template2 from "./Template2";
 import Template3 from "./Template3";
 import Template4 from "./Template4";
