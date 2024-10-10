@@ -11,6 +11,7 @@ import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
 import Profile from "../Components/MyProfile/Profile";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
+import SocketChatLive from "../Components/LiveChat/SocketChatLive";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/livechat",
+        element: <SocketChatLive />,
       },
     ],
   },
