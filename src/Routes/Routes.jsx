@@ -9,7 +9,9 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
+import Profile from "../Components/MyProfile/Profile";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
+import SocketChatLive from "../Components/LiveChat/SocketChatLive";
 import AdminLayout from "../Layouts/AdminLayout";
 import OverviewPage from "../Pages/AdminPage/OverviewPage";
 import AllUserPage from "../Pages/AdminPage/AllUserPage";
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/livechat",
+        element: <SocketChatLive />,
       },
     ],
   },
