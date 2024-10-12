@@ -28,7 +28,7 @@ const ResumeTemplates = () => {
           Predefined Templates
         </h1>
       </div>
-      <div className="grid grid-cols-1  p-20 lg:grid-cols-2 gap-11 justify-around">
+      <div className="grid grid-cols-1  lg:grid-cols-2 gap-36 justify-around">
         {
             data.length > 0 && (
                 <>

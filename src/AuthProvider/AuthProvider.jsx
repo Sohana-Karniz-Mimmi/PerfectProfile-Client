@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, twitterProvider);
   };
-  const logOut = () => {
+  const logOut = async () => {
     setLoading(true);
     return signOut(auth).then(() => {
       axiosPublic.post("/logout", {}, { withCredentials: true }).then(() => {
@@ -72,8 +72,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         const loggedUser = { email: currentUser.email };
 
-        axiosPublic
-          .post("/jwt", loggedUser, { withCredentials: true })
+        axiosPublic.post("/jwt", loggedUser, { withCredentials: true })
           .then((res) => {
             console.log("JWT token received and set in cookies", res.data);
           });
@@ -105,3 +104,5 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+
+

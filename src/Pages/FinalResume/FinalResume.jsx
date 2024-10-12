@@ -1,23 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link, useLoaderData, useParams } from "react-router-dom";
+import html2pdf from "html2pdf.js";
+import jsPDF from "jspdf";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
-import useAxiosPublic from "../../Hook/useAxiosPublic";
+import useAxiosPublic, { axiosPublic } from "../../Hook/useAxiosPublic";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import ShareLinkCopyModal from "./ShareLinkCopyModal";
-
+import axios from "axios";
+// import Template1 from "../../assets/Template1";
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
-  const [datas, setDatas] = useState([]);
   const { savedResume, shareLink } = useContext(ResumeContext);
-  // Find common objects with the same _id in both arrays
-  const [data, setData] = useState([]);
+  // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
+  const info = useLoaderData();
   const { id } = useParams();
-  // console.log(shareLink);
+
   console.log(savedResume);
 
   const useUnloadAlert = () => {
@@ -39,44 +40,24 @@ const FinalResume = () => {
   };
   useUnloadAlert();
 
-  //   Real time data change for template start here
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_LOCALHOST}/predefined-templates`)
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume`)
-      .then((res) => res.json())
-      .then((data) => setDatas(data));
-  }, []);
-
-  const userResumeData = datas.find(
-    (item) => item?._id === savedResume?.templateID
-  );
-
-  const template = data.find((item1) => item1.templateItem === id);
-  // console.log(template);
-  // console.log(datas);
-  const userData = userResumeData?.userData;
+  const userData = info?.userData;
   console.log(userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
-      return <Template1 data={template} userData={userData} />;
+      return <Template1 userData={userData} />;
     }
     if (id === "template2") {
-      return <Template2 data={template} userData={userData} />;
+      return <Template2 userData={userData} />;
     }
   };
 
   // for modal state management
-  const [shareLinkCopy, setShareLinkCopy] = useState(false)
+  const [shareLinkCopy, setShareLinkCopy] = useState(false);
 
   const closeModal = () => {
-    setShareLinkCopy(false)
-  }
+    setShareLinkCopy(false);
+  };
 
   // Function to copy the shareable link
   const [copied, setCopied] = useState(false);
@@ -87,25 +68,54 @@ const FinalResume = () => {
     });
   };
 
+  const handlePdf = async () => {
+    const element = document.getElementById("element");
+    const opt = {
+      margin: 1,
+      filename: "myResume.pdf",
+      enableLinks: true,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 3 },
+      jsPDF: { format: "a4", orientation: "portrait" },
+    };
+    html2pdf()
+      .set(opt)
+      .from(element)
+      .save();
+  };
+
   return (
     <div className="h-screen">
-      <div className="py-8 px-4 bg-[#00000f]">
-        <Link to="/">
-          <h1 className="text-white text-xl font-bold inline-block">
-            Perfect Profile
-          </h1>
+      <div className="py-6 px-4 bg-[#00000f]">
+        <Link
+          to={"/"}
+          className="font-bold text-lg md:text-3xl gap-3 flex items-center"
+        >
+          <span className="text-white">
+            Perfect
+            <span className="text-primary">Profile</span>
+          </span>
         </Link>
       </div>
-      <section className="flex justify-between pt-12 gap-8">
-        <div className="w-3/12"></div>
-        <div className="w-6/12">{renderTemplate(id)}</div>
-        <div className="w-3/12 flex flex-col items-end px-8 gap-4">
-          <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
+      <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
+        <div className="lg:w-2/12 w-full"></div>
+
+        <div id="element" className="lg:w-8/12 w-full pt-0">
+          {renderTemplate(info?.userData?.templateItem)}
+        </div>
+
+        <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4">
+          <button
+            onClick={handlePdf}
+            className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
+          >
             <FaFileExport className="text-secondary" /> Export
           </button>
+
           <button
             onClick={() => setShareLinkCopy(true)}
-            className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
+            className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
+          >
             <FaShare className="text-secondary" /> Share
           </button>
           <ShareLinkCopyModal
@@ -119,7 +129,7 @@ const FinalResume = () => {
           <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
             <FaEnvelope className="text-secondary" /> Email
           </button>
-          <button className="w-36 px-8 py-2  font-montserrat rounded-full text-center bg-primary font-bold text-black">
+          <button className="w-36 px-5 py-1   rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l  text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
             Finish
           </button>
         </div>
@@ -128,4 +138,4 @@ const FinalResume = () => {
   );
 };
 
-export default FinalResume; 
+export default FinalResume;

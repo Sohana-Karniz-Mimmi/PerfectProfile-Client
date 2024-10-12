@@ -46,7 +46,7 @@ const Register = () => {
     const userInfo = {
       name: name,
       email: email,
-      // createdAt: new date(),
+      productName: "free",
     };
     // Create user with email and password
     createUser(email, password)
@@ -79,6 +79,7 @@ const Register = () => {
         const userInfo = {
           name: user.displayName,
           email: user.email,
+          productName: "free",
         };
 
         // Save user information to the database
@@ -115,7 +116,7 @@ const Register = () => {
       </Helmet>
       <dialog id="my_modal_4" className="modal">
         <div className="modal-box text-black bg-transparent !shadow-none relative h-full w-full font-montserrat">
-          <div className="bg-white h-[705px] md:h-[690px]  p-5 !overflow-hidden">
+          <div className="bg-white h-[667px] md:h-[680px]  p-6 !overflow-hidden">
             <div>
               <h1 className="text-2xl font-semibold">Register Form</h1>
             </div>
@@ -134,8 +135,9 @@ const Register = () => {
                 <input
                   type="text"
                   name="name"
+                  placeholder="Enter your name"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
               <div className="relative">
@@ -149,8 +151,9 @@ const Register = () => {
                   type="email"
                   name="email"
                   id="email"
+                  placeholder="Enter your email"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
               {/* Password Field */}
@@ -165,8 +168,9 @@ const Register = () => {
                   type={eyePassword ? "text" : "password"}
                   name="password"
                   id="password"
+                  placeholder="Enter your password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
                 {eyePassword ? (
                   <IoMdEyeOff
@@ -191,8 +195,9 @@ const Register = () => {
                 <input
                   type={eyeConfirmPassword ? "text" : "password"}
                   name="confirmPassword"
+                  placeholder="Enter your confirm password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
                 {eyeConfirmPassword ? (
                   <IoMdEyeOff
@@ -228,7 +233,7 @@ const Register = () => {
                 <input
                   type="submit"
                   value="Register"
-                  className="btn w-1/3 bg-secondary text-white hover:bg-transparent border hover:text-primary font-montserrat"
+                  className="py-2 rounded-md w-1/3 bg-secondary text-white hover:bg-transparent border hover:text-primary font-montserrat"
                 />
               </div>
               <span>
@@ -247,33 +252,42 @@ const Register = () => {
                 SignUp with other account
               </p>
               <div className="flex justify-center space-x-4">
+                {/* Google Sign In */}
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(googleSignIn)}
-                    className="btn border-none btn-circle hover:bg-transparent bg-transparent shadow-2xl"
+                    className="p-3 rounded-full bg-transparent hover:bg-transparent shadow-2xl focus:outline-none"
                   >
                     <FaGoogle className="text-white" />
                   </button>
                 </div>
 
+                {/* Facebook Sign In */}
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(facebookSignIn)}
-                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                    className="p-3 rounded-full bg-transparent hover:bg-transparent shadow-2xl focus:outline-none"
                   >
                     <FaFacebook className="text-white" />
                   </button>
                 </div>
+
+                {/* Twitter Sign In */}
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(twitterSignIn)}
-                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                    className="p-3 rounded-full bg-transparent hover:bg-transparent shadow-2xl focus:outline-none"
                   >
                     <FaTwitter className="text-white" />
                   </button>
                 </div>
+
+                {/* LinkedIn Sign In */}
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
-                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent">
+                  <button
+                    onClick={() => handleSocialSignIn(linkedinSignIn)}
+                    className="p-3 rounded-full bg-transparent hover:bg-transparent shadow-2xl focus:outline-none"
+                  >
                     <FaLinkedin className="text-white" />
                   </button>
                 </div>

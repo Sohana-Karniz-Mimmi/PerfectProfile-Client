@@ -36,7 +36,8 @@ const Login = () => {
 
           console.log(loggedInUser);
           const user = { email };
-          axiosPublic.post("/jwt", user, { withCredentials: true })
+          axiosPublic
+            .post("/jwt", user, { withCredentials: true })
             .then((res) => {
               console.log(res.data);
             });
@@ -96,10 +97,10 @@ const Login = () => {
       </Helmet>
       <Toaster />
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full font-montserrat">
-          <div className="bg-white h-[549px] md:h-[567px]  p-5">
+        <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full font-montserrat ">
+          <div className="bg-white h-[552px] md:h-[550px] p-6">
             <div>
-              <h1 className="text-2xl font-semibold  mb-2">Login</h1>
+              <h1 className="text-2xl font-semibold  mb-2">Login Form</h1>
               {/* <p className="text-lg font-medium text-center w-[300px]">
                 Great to have you back!{" "}
                 <span
@@ -113,7 +114,7 @@ const Login = () => {
 
             <form
               onSubmit={handleSubmit}
-              className="w-full mt-4 flex flex-col gap-5"
+              className=" w-full pf mt-4 flex flex-col gap-5"
             >
               <div className="relative">
                 <label
@@ -126,8 +127,9 @@ const Login = () => {
                   type="email"
                   name="email"
                   id="email"
+                  placeholder="Enter your email"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
 
@@ -142,8 +144,9 @@ const Login = () => {
                   type={eye ? "text" : "password"}
                   name="password"
                   id="password"
+                  placeholder="Enter your password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
                 {eye ? (
                   <IoMdEyeOff
@@ -182,7 +185,7 @@ const Login = () => {
                 <input
                   type="submit"
                   value="Login"
-                  className="btn w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary font-montserrat"
+                  className=" py-2 rounded-md w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary font-montserrat"
                 />
               </div>
               <span>
@@ -201,33 +204,43 @@ const Login = () => {
                 SignIn with other account
               </p>
               <div className="flex justify-center space-x-4">
-                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                {/* Google Sign In */}
+                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(googleSignIn)}
-                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                    className="p-2 rounded-full bg-transparent hover:bg-transparent focus:outline-none"
                   >
-                    <FaGoogle className="text-white " />
+                    <FaGoogle className="text-white" />
                   </button>
                 </div>
-                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+
+                {/* Facebook Sign In */}
+                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(facebookSignIn)}
-                    className="btn btn-circle border-none  hover:bg-transparent bg-transparent"
+                    className="p-2 rounded-full bg-transparent hover:bg-transparent focus:outline-none"
                   >
-                    <FaFacebook className=" text-white " />
+                    <FaFacebook className="text-white" />
                   </button>
                 </div>
-                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+
+                {/* Twitter Sign In */}
+                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(twitterSignIn)}
-                    className="btn btn-circle border-none hover:bg-transparent bg-transparent"
+                    className="p-2 rounded-full bg-transparent hover:bg-transparent focus:outline-none"
                   >
-                    <FaTwitter className="text-white rounded-full" />
+                    <FaTwitter className="text-white" />
                   </button>
                 </div>
-                <div className="bg-opacity-75  shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
-                  <button className="btn btn-circle border-none hover:bg-transparent bg-transparent ">
-                    <FaLinkedin className="text-white " />
+
+                {/* LinkedIn Sign In */}
+                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                  <button
+                    onClick={() => handleSocialSignIn(linkedinSignIn)}
+                    className="p-2 rounded-full bg-transparent hover:bg-transparent focus:outline-none"
+                  >
+                    <FaLinkedin className="text-white" />
                   </button>
                 </div>
               </div>

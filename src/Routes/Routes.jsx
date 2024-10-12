@@ -12,6 +12,10 @@ import FinalResume from "../Pages/FinalResume/FinalResume";
 import Profile from "../Components/MyProfile/Profile";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
 import SocketChatLive from "../Components/LiveChat/SocketChatLive";
+import AdminLayout from "../Layouts/AdminLayout";
+import OverviewPage from "../Pages/AdminPage/OverviewPage";
+import AllUserPage from "../Pages/AdminPage/AllUserPage";
+import AllTemplates from "../Pages/AdminPage/AllTemplates";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +67,8 @@ const router = createBrowserRouter([
   {
     path: "/resume/final-resume/:id",
     element: <FinalResume />,
+    loader: ({ params }) =>
+      fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume/${params.id}`),
   },
   // {
   //   path: "/resume/:customUrl",
@@ -71,6 +77,24 @@ const router = createBrowserRouter([
   {
     path: "/resume/:link",
     element: <ResumeViewer />,
+  },
+  {
+    path: "admin/dashboard",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "/admin/dashboard/overview",
+        element: <OverviewPage />,
+      },
+      {
+        path: "alluser",
+        element: <AllUserPage />,
+      },
+      {
+        path: "alltemplate",
+        element: <AllTemplates />,
+      },
+    ],
   },
 ]);
 

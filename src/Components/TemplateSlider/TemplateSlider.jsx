@@ -45,7 +45,7 @@ export default function App() {
     const getData = async () => {
       const { data } = await axiosPublic(`/predefined-templates`);
       setPredefinedTemplate(data);
-    };
+    }
     getData();
   }, []);
 
@@ -73,7 +73,7 @@ export default function App() {
             spaceBetween: 20,
           },
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 5,
             spaceBetween: 30,
           },
         }}

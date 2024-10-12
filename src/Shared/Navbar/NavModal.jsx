@@ -2,16 +2,18 @@ import { Menu } from "@headlessui/react";
 import PropTypes from "prop-types";
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import useAuth from "../../Hook/useAuth";
-import userImage from "../../assets/usericon/istockphoto-1300845620-612x612.jpg";
+
 const NavModal = ({ handleLogoutBtn }) => {
-  const { user } = useAuth();
   return (
     <div className="relative text-right">
       <Menu as="div" className="relative inline-block text-left ">
-        <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-          <div className="w-20 border rounded-full">
-            <img src={user?.photoURL || userImage} alt="User" />
+        <Menu.Button className="bg-transparent rounded-full p-2 text-black">
+          <div className="w-14 h-14 border rounded-full overflow-hidden">
+            <img
+              alt="User"
+              src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+              className="object-cover w-full h-full"
+            />
           </div>
         </Menu.Button>
 
@@ -19,13 +21,15 @@ const NavModal = ({ handleLogoutBtn }) => {
           <div className="bg-white rounded-xl p-6">
             <Menu.Item>
               {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-white" : ""
-                  } group flex w-full items-center gap-2  py-1.5 border-b text-black`}
-                >
-                  <Link to={`/profile`}>My Profile</Link>
-                </button>
+                <Link to={`/profile`}>
+                  <button
+                    className={`${
+                      active ? "bg-white" : ""
+                    } group flex w-full items-center gap-2  py-1.5 border-b text-black`}
+                  >
+                    My Profile
+                  </button>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
