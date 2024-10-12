@@ -2,8 +2,10 @@ import { Menu } from "@headlessui/react";
 import PropTypes from "prop-types";
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hook/useAuth";
 
 const NavModal = ({ handleLogoutBtn }) => {
+  const { user } = useAuth();
   return (
     <div className="relative text-right">
       <Menu as="div" className="relative inline-block text-left ">
@@ -11,7 +13,10 @@ const NavModal = ({ handleLogoutBtn }) => {
           <div className="w-14 h-14 border rounded-full overflow-hidden">
             <img
               alt="User"
-              src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+              src={
+                user?.photoURL ||
+                "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+              }
               className="object-cover w-full h-full"
             />
           </div>
