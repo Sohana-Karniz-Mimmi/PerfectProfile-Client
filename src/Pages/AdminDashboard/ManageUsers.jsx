@@ -17,7 +17,7 @@ const ManageUsers = () => {
   const [searchText, setSearchText] = useState('')
   const [users, setUsers] = useState([])
 
-  // Fetch Wishlist data
+  // Fetch data
   const fetchBookings = async () => {
 
     const { data } = await axios(
