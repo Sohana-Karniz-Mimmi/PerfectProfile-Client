@@ -14,6 +14,9 @@ import AdminLayout from "../Layouts/AdminLayout";
 import OverviewPage from "../Pages/AdminPage/OverviewPage";
 import AllUserPage from "../Pages/AdminPage/AllUserPage";
 import AllTemplates from "../Pages/AdminPage/AllTemplates";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Statistics from "../Pages/AdminDashboard/Statistics";
+import ManageUsers from "../Pages/AdminDashboard/ManageUsers";
 
 const router = createBrowserRouter([
   {
@@ -60,32 +63,53 @@ const router = createBrowserRouter([
     loader: ({ params }) =>
       fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume/${params.id}`),
   },
-  // {
-  //   path: "/resume/:customUrl",
-  //   element: <ShareResume />,
-  // },
   {
     path: "/resume/:link",
     element: <ResumeViewer />,
   },
+
+  // {
+  //   path: "admin/dashboard",
+  //   element: <AdminLayout />,
+  //   children: [
+  //     {
+  //       path: "/admin/dashboard/overview",
+  //       element: <OverviewPage />,
+  //     },
+  //     {
+  //       path: "alluser",
+  //       element: <AllUserPage />,
+  //     },
+  //     {
+  //       path: "alltemplate",
+  //       element: <AllTemplates />,
+  //     },
+  //   ],
+  // },
+
   {
-    path: "admin/dashboard",
-    element: <AdminLayout />,
+    path: '/dashboard',
+    element: (
+      <DashboardLayout />
+    ),
     children: [
       {
-        path: "/admin/dashboard/overview",
-        element: <OverviewPage />,
+        index: true,
+        element: (
+          <Statistics />
+
+        ),
       },
       {
-        path: "alluser",
-        element: <AllUserPage />,
-      },
-      {
-        path: "alltemplate",
-        element: <AllTemplates />,
+        path: 'manage-users',
+        element: (
+              <ManageUsers />
+
+        ),
       },
     ],
   },
+
 ]);
 
 export default router;
