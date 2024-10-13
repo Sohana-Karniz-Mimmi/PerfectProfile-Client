@@ -66,7 +66,7 @@ export default function App() {
         breakpoints={{
           320: {
             slidesPerView: 2,
-            spaceBetween: 10,
+            spaceBetween: 15,
           },
           768: {
             slidesPerView: 3,
@@ -74,7 +74,11 @@ export default function App() {
           },
           1024: {
             slidesPerView: 4,
-            spaceBetween: 30,
+            spaceBetween: 20,
+          },
+          1441: {
+            slidesPerView: 5,
+            spaceBetween: 15,
           },
         }}
         modules={[Autoplay, Pagination, Navigation]}
@@ -91,7 +95,7 @@ export default function App() {
                 </Link>
               </div>
               {/* <img className="w-[330px] h-[420px]" src={template.image} alt="" /> */}
-              <img className="w-full h-[550px]" src={template.image} alt="" />
+              <img className="w-full size" src={template.image} alt="" />
             </div>
           </SwiperSlide>
         ))}
