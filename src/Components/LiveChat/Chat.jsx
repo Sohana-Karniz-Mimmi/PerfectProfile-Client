@@ -1,22 +1,23 @@
-import ChatBot from "react-simple-chatbot";
-import { ThemeProvider } from "styled-components";
+// import ChatBot from "react-simple-chatbot";
+// import { ThemeProvider } from "styled-components";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const Chat = () => {
-  const theme = {
-    background: "#f5f8fb",
-    fontFamily: " sans-serif",
-    headerBgColor: "#00C8AA",
-    headerFontColor: "#fff",
-    headerFontSize: "16px",
-    botBubbleColor: "#00C8AA",
-    botFontColor: "#fff",
-    userBubbleColor: "#fff",
-    userFontColor: "#4a4a4a",
-  };
+  // const theme = {
+  //   background: "#f5f8fb",
+  //   fontFamily: " sans-serif",
+  //   headerBgColor: "#00C8AA",
+  //   headerFontColor: "#fff",
+  //   headerFontSize: "16px",
+  //   botBubbleColor: "#00C8AA",
+  //   botFontColor: "#fff",
+  //   userBubbleColor: "#fff",
+  //   userFontColor: "#4a4a4a",
+  // };
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}>
         <ChatBot
           steps={[
             {
@@ -94,7 +95,8 @@ const Chat = () => {
           ]}
           floating={true}
         />
-      </ThemeProvider>
+      </ThemeProvider> */}
+      <MessengerCustomerChat pageId="408975285639904" appId="552990647191639" />
     </div>
   );
 };

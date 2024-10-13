@@ -1,24 +1,40 @@
-import { useContext } from "react";
-import { AuthContext } from "../AuthProvider/AuthProvider";
-import { Navigate, useLocation } from "react-router-dom";
-import LoadingSpinner from "../Shared/LoadingSpinner";
+import PropTypes from 'prop-types';
+import { useContext, useEffect } from 'react';
+import { useLocation, Navigate } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import LoadingSpinner from '../Shared/LoadingSpinner';
+import toast from 'react-hot-toast';
 
-const PrivateRoute = ({ children }) => {
+const PrivetRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
+
   if (loading) {
     return <LoadingSpinner />;
   }
-  if (!user) {
-    return (
-      <Navigate
-        to="/signIn"
-        state={location?.pathname || "/"}
-        replace
-      ></Navigate>
-    );
+
+  if (user) {
+    return children;
   }
-  return <div>{children}</div>;
+
+  useEffect(() => {
+    if (!user) {
+      toast.error('You have to log in first');
+      setTimeout(() => {
+        document.getElementById("my_modal_3").showModal();
+      }, 3000);
+    }
+  }, [user]); 
+
+
+  return (
+    <Navigate to={`/`} state={location?.pathname || '/'}>
+    </Navigate>
+  );
 };
 
-export default PrivateRoute;
+PrivetRoute.propTypes = {
+  children: PropTypes.node
+};
+
+export default PrivetRoute;

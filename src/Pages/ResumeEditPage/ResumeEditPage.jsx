@@ -29,6 +29,7 @@ import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Template1 from "../../assets/Template1";
+import Template4 from "../../Components/TemplateSection/Template4";
 
 const ResumeEditPage = () => {
   const [userData, setUserData] = useState({
@@ -38,7 +39,7 @@ const ResumeEditPage = () => {
     phone: "",
     address: "",
     careerObjective: "",
-    skills: [], // Start with an empty skill
+    skills: ["skill 1", "skill 2", "skill 2", "skill 2", "skill 2"], // Start with an empty skill
     education: [
       {
         degree: "",
@@ -63,7 +64,7 @@ const ResumeEditPage = () => {
         jobTitle: "",
       },
     ],
-    languages: [],
+    languages: ["English", "Bangla"],
     extraCurricularActivities: [
       {
         activity: "",
@@ -350,58 +351,14 @@ const ResumeEditPage = () => {
     if (id === "template1") {
       return <Template1 data={template} userData={userData} />;
     }
-    if (id === "template2") {
-      return <Template2 data={template} />;
+    if (id === "template4") {
+      return <Template4 data={template} userData={userData} />;
     }
   };
 
   // console.log(resumeData);
 
   // Optional chaining দিয়ে template অবজেক্ট অ্যাক্সেস করা হচ্ছে
-
-  useEffect(() => {
-    // template অবজেক্ট থেকে ডাটা optional chaining এর মাধ্যমে অ্যাক্সেস করা হচ্ছে
-    if (template) {
-      setUserData({
-        name: template?.name || "",
-        jobTitle: template?.jobTitle || "",
-        email: template?.email || "",
-        phone: template?.phone || "",
-        address: template?.address || "",
-        careerObjective: template?.careerObjective || "",
-        skills: template?.skills || [],
-        education: template?.education || [
-          {
-            degree: "",
-            institution: "",
-            year: "",
-          },
-        ],
-        certifications: template?.certifications || [
-          {
-            year: "",
-            institution: "",
-            title: "",
-          },
-        ],
-        workExperience: template?.workExperience || [
-          {
-            description: "",
-            years: "",
-            company: "",
-            jobTitle: "",
-          },
-        ],
-        languages: template?.languages || [],
-        extraCurricularActivities: template?.extraCurricularActivities || [
-          {
-            activity: "",
-            description: "",
-          },
-        ],
-      });
-    }
-  }, [template]); // template আপডেট হলে এটি পুনরায় রান হবে
 
   const navigate = useNavigate();
   // Function to generate a shareable link
@@ -549,8 +506,7 @@ const ResumeEditPage = () => {
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
-                        value:
-                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                         message: "Invalid email format",
                       },
                     })}
