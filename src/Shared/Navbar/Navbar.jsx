@@ -3,13 +3,14 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import Container from "../Container";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa6"
-import useAuth from "../../Hook/useAuth";
+// import useAuth from "../../Hook/useAuth";
 import Login from "../../Authentication/Login";
 import Register from "../../Authentication/Register";
 import { GrLogout } from "react-icons/gr";
 import { MdDashboard } from "react-icons/md";
 import NavModal from "./NavModal";
 import Notification from "./Notification";
+import useAuth from "../../Hook/useAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();

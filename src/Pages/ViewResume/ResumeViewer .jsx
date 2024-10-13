@@ -11,7 +11,7 @@ const ResumeViewer = () => {
   useEffect(() => {
     const fetchResumeData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/resume/${link}`);
+        const response = await fetch(`https://perfect-profile-server.vercel.app/resume/${link}`);
         if (!response.ok) {
           throw new Error("Resume not found");
         }
@@ -28,8 +28,9 @@ const ResumeViewer = () => {
   const templateID = resumeData?.userData?.templateItem;
   const showResume = resumeData?.userData;
 
-  console.log(templateID);
-  console.log(showResume);
+  // console.log(templateID);
+  // console.log(showResume);
+  console.log(resumeData?.resumeLink);
 
   const renderTemplate = (templateID) => {
     if (templateID === "template1") {
@@ -42,7 +43,7 @@ const ResumeViewer = () => {
 
   return (
     <div>
-      <ShareResumeNavbar />
+      <ShareResumeNavbar shareLink={resumeData?.resumeLink} />
       <div className="py-12">{renderTemplate(templateID)}</div>
     </div>
   );
