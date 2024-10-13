@@ -83,6 +83,7 @@ const Register = () => {
           name: user.displayName,
           email: user.email,
           productName: "free",
+          role : 'user',
         };
 
         // Save user information to the database
