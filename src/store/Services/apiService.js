@@ -21,7 +21,7 @@ export const getUsers = async (
 
 export const getPredefinedTemplates = async () => {
   try {
-    const response = await api.get("/predefined-templates");
+    const response = await axiosPublic.get("/predefined-templates");
     return response.data;
   } catch (error) {
     console.error("Error fetching predefined templates:", error);
