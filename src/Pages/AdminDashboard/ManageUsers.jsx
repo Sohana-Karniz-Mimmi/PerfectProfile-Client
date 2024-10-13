@@ -3,35 +3,32 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserDataRow from './UserDataRow';
-// import LoadingSpinner from '../../../Components/Shared/LoadingSpinner'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers, selectAllUsers } from '../../store/Features/user/userSlice';
+// import LoadingSpinner from '../../Shared/LoadingSpinner';
 const ManageUsers = () => {
 
 
   /****Use Search and filter****/
-  // eslint-disable-next-line no-unused-vars
-  const [itemsPerPage, setItemsPerPage] = useState(10)
-  const [currentPage, setCurrentPage] = useState(1)
+  const dispatch = useDispatch();
+
+  // Redux selectors
+  const users = useSelector(selectAllUsers);
+  const loading = useSelector((state) => state.users.loading);
+  const error = useSelector((state) => state.users.error);
+  const currentPage = useSelector((state) => state.users.currentPage);
+  const totalPages = useSelector((state) => state.users.totalPages);
+
+  // Define filter, search, and size using useState
+  const [filter, setFilter] = useState(""); 
+  const [search, setSearch] = useState(""); 
+  const [size, setSize] = useState(2); 
   const [count, setCount] = useState(0)
-  const [filter, setFilter] = useState('')
-  const [search, setSearch] = useState('')
-  const [searchText, setSearchText] = useState('')
-  const [users, setUsers] = useState([])
 
-  // Fetch data
-  const fetchBookings = async () => {
-
-    const { data } = await axios(
-      `${import.meta.env.VITE_API_URL
-      }/users?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&search=${search}`
-    )
-    setUsers(data)
-  };
-
+  // useEffect to fetch users
   useEffect(() => {
-    fetchBookings();
-  }, [currentPage, filter, itemsPerPage, search]);
-
-
+    dispatch(fetchUsers({ page: currentPage, size, filter, search }));
+  }, [dispatch, currentPage, size, filter, search]);
 
   useEffect(() => {
     const getCount = async () => {
@@ -45,19 +42,22 @@ const ManageUsers = () => {
     getCount()
   }, [filter, search])
 
-  // console.log(count)
-  const numberOfPages = Math.ceil(count / itemsPerPage)
-  const pages = [...Array(numberOfPages).keys()].map(element => element + 1)
 
-  //  handle pagination button
-  const handlePaginationButton = value => {
-    console.log(value)
-    setCurrentPage(value)
-  }
+  // Pagination Button Handler
+  const handlePaginationButton = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      dispatch(fetchUsers({ page: newPage, size, filter, search }));
+    }
+  };
+
+  // const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pages = [...Array(totalPages).keys()].map(element => element + 1)
+
+
   const handleReset = () => {
     setFilter('')
     setSearch('')
-    setSearchText('')
+    
   }
 
   const handleSearch = e => {
@@ -65,13 +65,8 @@ const ManageUsers = () => {
     setSearch(searchText)
   }
 
-  console.log('Current Filter:', filter);
-console.log('Current Search:', search);
-
-
-
   console.log(users)
-  // if (isLoading || loading) return <LoadingSpinner />
+  // if ( loading) return <LoadingSpinner />
   return (
     <>
       <div className='container mx-auto px-4 sm:px-8'>
@@ -88,7 +83,7 @@ console.log('Current Search:', search);
             <select
               onChange={e => {
                 setFilter(e.target.value)
-                setCurrentPage(1)
+                dispatch(fetchUsers({ page: 1 }));
               }}
               value={filter}
               name='productName'
@@ -107,8 +102,10 @@ console.log('Current Search:', search);
               <input
                 className='px-6 py-2 w-full text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
                 type='text'
-                onChange={e => setSearchText(e.target.value)}
-                value={searchText}
+                // onChange={e => setSearchText(e.target.value)}
+                // value={searchText}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 name='search'
                 placeholder='Enter User Name'
                 aria-label='Enter User Name'
@@ -175,7 +172,7 @@ console.log('Current Search:', search);
                       key={user?._id}
                       user={user}
                       indx={indx}
-                      refetch={fetchBookings}
+                    // refetch={fetchBookings}
                     />
                   ))}
                 </tbody>
@@ -187,32 +184,33 @@ console.log('Current Search:', search);
 
         {/* Pagination Section */}
         <div className='flex justify-center mt-12'>
-          {/* Previous Button */}
+         {/* Previous Button */}
           <button
             disabled={currentPage === 1}
             onClick={() => handlePaginationButton(currentPage - 1)}
-            className='px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-[#FD4C5C] rounded-full disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:bg-gray-200 disabled:hover:text-gray-500 hover:bg-[#FF0143] hover:text-white'
+            className='px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-primary rounded-full disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:bg-gray-200 disabled:hover:text-gray-500 hover:bg-secondary hover:text-white'
           >
             <div className='flex items-center -mx-1'>
               <IoIosArrowBack />
             </div>
           </button>
-          {/* Numbers */}
+
+          {/* Number of page */}
           {pages.map(btnNum => (
             <button
               onClick={() => handlePaginationButton(btnNum)}
               key={btnNum}
-              className={`hidden ${currentPage === btnNum ? 'bg-primary text-white' : ''
-                } px-4 py-2 mx-1 transition-colors duration-300 transform border rounded-full sm:inline hover:bg-secondary  hover:text-white`}
+              className={`hidden ${currentPage === btnNum ? 'bg-primary text-white' : ''} px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
             >
               {btnNum}
             </button>
           ))}
-          {/* Next Button */}
+
+         {/* Next Button */}
           <button
-            disabled={currentPage === numberOfPages}
+            disabled={currentPage === totalPages}
             onClick={() => handlePaginationButton(currentPage + 1)}
-            className='px-4 py-2 mx-1 text-white transition-colors duration-300 transform bg-primary rounded-full hover:bg-secondary disabled:hover:bg-gray-200 disabled:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500'
+            className='px-4 py-2 mx-1 text-white bg-primary rounded-full hover:bg-secondary disabled:cursor-not-allowed disabled:bg-gray-200'
           >
             <div className='flex items-center -mx-1'>
               <IoIosArrowForward />
