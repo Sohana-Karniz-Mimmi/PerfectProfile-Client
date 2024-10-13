@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   signOut,
   TwitterAuthProvider,
+  updateEmail,
   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
@@ -33,7 +34,10 @@ const AuthProvider = ({ children }) => {
       photoURL: photo,
     });
   };
-
+  const updateUserEmail = (email) => {
+    setLoading(false);
+    return updateEmail(auth.currentUser);
+  };
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -86,6 +90,7 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     updateUserProfile,
+    updateUserEmail,
     signIn,
     googleSignIn,
     facebookSignIn,

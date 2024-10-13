@@ -35,9 +35,10 @@ const HeadingCard = () => {
 
   return (
     <section>
-      <div className="flex flex-col md:flex-row md:justify-center gap-5 lg:gap-20 w-full h-full py-10 rounded-lg text-neutral-700 flex-wrap">
+      <div className="flex flex-col md:flex-row gap-5 lg:gap-10 w-full h-full py-10 rounded-lg text-neutral-700 flex-wrap">
         {/* card 1 */}
-        <div className="bg-white  min-h-16 rounded-lg p-5 font-lora">
+        <div className="bg-white min-h-16 rounded-lg p-5 font-lora"
+          style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
           <div className="flex items-center justify-between gap-3">
             <div className="space-y-3">
               <h3 className="text-lg text-balck/70 font-bold">Total User</h3>
@@ -82,7 +83,8 @@ const HeadingCard = () => {
           </p>
         </div>
         {/* card 2 */}
-        <div className="bg-white  min-h-16 rounded-lg p-5 font-lora">
+        <div className="bg-white min-h-16 rounded-lg p-5 font-lora"
+          style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
           <div className="flex items-center justify-between gap-3">
             <div className="space-y-3">
               <h3 className="text-lg text-balck/70 font-bold">Premium User</h3>
@@ -99,7 +101,8 @@ const HeadingCard = () => {
           </p>
         </div>
         {/* card 3 */}
-        <div className="bg-white  min-h-16 rounded-lg p-5 font-lora">
+        <div className="bg-white min-h-16 rounded-lg p-5 font-lora"
+          style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
           <div className="flex items-center justify-between gap-3">
             <div className="space-y-3">
               <h3 className="text-lg text-balck/70 font-bold">
