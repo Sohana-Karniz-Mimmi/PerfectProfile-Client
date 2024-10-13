@@ -10,7 +10,7 @@ const LoadingSpinner = ({ smallHeight }) => {
       justify-center 
       items-center `}
     >
-      <FadeLoader size={100} color='red' />
+      <FadeLoader size={100} color='#00C8AA' />
     </div>
   )
 }
