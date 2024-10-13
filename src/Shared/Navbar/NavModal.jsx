@@ -3,28 +3,12 @@ import PropTypes from "prop-types";
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUserRole } from "../../store/Features/role/roleSlice";
-import { useEffect } from "react";
+import useRole from "../../Hook/useRole";
 
 const NavModal = ({ handleLogoutBtn }) => {
   const { user } = useAuth();
-  const dispatch = useDispatch();
-  
-  // Selecting role and loading state from the Redux store
-  const { role, isLoading } = useSelector((state) => state.role);
-  console.log(user?.email);
-  useEffect(() => {
-    const userEmail = user?.email;
-
-    // Dispatch action to fetch user role
-    if (userEmail) {
-      dispatch(fetchUserRole(userEmail));
-    }
-  }, [dispatch]);
-
-  // Log the role in the console
-  console.log(role);
+  const [role, isLoading] = useRole()
+  // console.log(role.role);
   return (
     <div className="relative text-right">
       <Menu as="div" className="relative inline-block text-left ">
@@ -41,85 +25,124 @@ const NavModal = ({ handleLogoutBtn }) => {
           </div>
         </Menu.Button>
 
-        <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
-          <div className="bg-white rounded-xl p-6">
-            <Menu.Item>
-              {({ active }) => (
-                <Link to={`/profile`}>
-                  <button
-                    className={`${
-                      active ? "bg-white" : ""
-                    } group flex w-full items-center gap-2  py-1.5 border-b text-black`}
-                  >
-                    My Profile
-                  </button>
-                </Link>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <Link
-                  className={`${
-                    active ? "bg-white" : ""
-                  } group flex w-full items-center gap-2  py-1.5 border-b text-black`}
-                >
-                  My Resume
-                </Link>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-white" : ""
-                  } group flex w-full items-center gap-2  py-1.5 border-b text-black`}
-                  onClick={() => handleRoleChange("archive")}
-                >
-                  Favorite
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-white" : ""
-                  } group flex w-full items-center gap-2  py-1.5 border-b text-black`}
-                  onClick={() => handleRoleChange("archive")}
-                >
-                  Plan & Pricing
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-white" : ""
-                  } group flex w-full items-center gap-2  py-1.5 border-b text-black`}
-                  onClick={() => handleRoleChange("archive")}
-                >
-                  Purchase History
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  onClick={handleLogoutBtn}
-                  className={`${
-                    active ? "bg-white" : ""
-                  } group flex w-full items-center gap-2  py-1.5 text-black`}
-                >
-                  Logout
-                  <GrLogout className="size-4 fill-black/30" />
-                </button>
-              )}
-            </Menu.Item>
-          </div>
-        </Menu.Items>
+        {
+          role?.role === "user" && (
+            <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
+              <div className="bg-white rounded-xl p-6">
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link to={`/profile`}>
+                      <button
+                        className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      >
+                        My Profile
+                      </button>
+                    </Link>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link to={`/resume`}>
+                      <button
+                        className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      >
+                        My Resume
+                      </button>
+                    </Link>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      onClick={() => handleRoleChange("favorite")}
+                    >
+                      Favorite
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      onClick={() => handleRoleChange("pricing")}
+                    >
+                      Plan & Pricing
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      onClick={() => handleRoleChange("purchaseHistory")}
+                    >
+                      Purchase History
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      onClick={handleLogoutBtn}
+                      className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 text-black`}
+                    >
+                      Logout
+                      <GrLogout className="size-4 fill-black/30" />
+                    </button>
+                  )}
+                </Menu.Item>
+              </div>
+            </Menu.Items>
+          )
+        }
+
+        {
+           role?.role === "admin" && (
+            <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
+              <div className="bg-white rounded-xl p-6">
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link to={`/profile`}>
+                      <button
+                        className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      >
+                        My Profile
+                      </button>
+                    </Link>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link to={`dashboard`}>
+                      <button
+                        className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      >
+                        Dashboard
+                      </button>
+                    </Link>
+                  )}
+                </Menu.Item>
+               
+                
+                
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      onClick={handleLogoutBtn}
+                      className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 text-black`}
+                    >
+                      Logout
+                      <GrLogout className="size-4 fill-black/30" />
+                    </button>
+                  )}
+                </Menu.Item>
+              </div>
+            </Menu.Items>
+           )
+        }
       </Menu>
-    </div>
+    </div >
   );
 };
 
