@@ -1,6 +1,6 @@
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -9,9 +9,11 @@ import toast, { Toaster } from "react-hot-toast";
 import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Register = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location?.state || '/'
   const axiosPublic = useAxiosPublic();
   const { createUser, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
-  const navigate = useNavigate();
   const [errorText, setErrorText] = useState("");
   const [eyePassword, setEyePassword] = useState(false);
   const [eyeConfirmPassword, setEyeConfirmPassword] = useState(false);
