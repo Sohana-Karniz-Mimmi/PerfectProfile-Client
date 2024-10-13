@@ -49,6 +49,7 @@ const Register = () => {
       name: name,
       email: email,
       productName: "free",
+      role : 'user',
     };
     // Create user with email and password
     createUser(email, password)
