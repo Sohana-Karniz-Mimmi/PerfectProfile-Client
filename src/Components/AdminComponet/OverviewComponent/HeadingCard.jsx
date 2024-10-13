@@ -18,15 +18,15 @@ const HeadingCard = () => {
   const users = useSelector(selectAllUsersState);
 
   // Count the occurrences of each productName
-  const userCounts = users.reduce(
+  const userCounts = users?.reduce(
     (acc, user) => {
-      acc[user.productName] = (acc[user.productName] || 0) + 1;
+      acc[user?.productName] = (acc[user?.productName] || 0) + 1;
       return acc;
     },
     { standard: 0, free: 0, premium: 0 }
   );
 
-  const totalPremiumUser = userCounts.standard + userCounts.premium;
+  const totalPremiumUser = userCounts?.standard + userCounts?.premium;
 
   useEffect(() => {
     dispatch(fetchPredefinedTemplates()); // Fetch predefined templates when component loads
