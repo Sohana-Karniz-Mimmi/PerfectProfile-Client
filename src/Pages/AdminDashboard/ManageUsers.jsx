@@ -22,7 +22,7 @@ const ManageUsers = () => {
   // Define filter, search, and size using useState
   const [filter, setFilter] = useState(""); 
   const [search, setSearch] = useState(""); 
-  const [size, setSize] = useState(10); 
+  const [size, setSize] = useState(2); 
   const [count, setCount] = useState(0)
 
   // useEffect to fetch users
@@ -83,6 +83,7 @@ const ManageUsers = () => {
             <select
               onChange={e => {
                 setFilter(e.target.value)
+                dispatch(fetchUsers({ page: 1 }));
               }}
               value={filter}
               name='productName'

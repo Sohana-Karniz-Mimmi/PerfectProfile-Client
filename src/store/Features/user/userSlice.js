@@ -28,8 +28,8 @@ const initialState = userAdapter.getInitialState({
   error: null,
   currentPage: 1,
   totalPages: 1,
-  totalUsers: 0, // Store total users here
-  allUsers: [], // To store all users
+  totalUsers: 0,
+  allUsers: [], 
 });
 
 const userSlice = createSlice({
@@ -47,8 +47,8 @@ const userSlice = createSlice({
         userAdapter.setAll(state, action.payload.users);
         state.currentPage = action.payload.currentPage;
         state.totalPages = action.payload.totalPages;
-        state.totalUsers = action.payload.totalUsers; // Update total users
-        state.allUsers = action.payload.allUsers; // Store all users in the state
+        state.totalUsers = action.payload.totalUsers; 
+        state.allUsers = action.payload.allUsers;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
