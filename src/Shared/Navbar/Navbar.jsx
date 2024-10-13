@@ -154,9 +154,9 @@ const Navbar = () => {
               </div>
 
               {/* Menu */}
-              {menuOpen && ( // Only show menu when menuOpen is true
+              {menuOpen && ( 
                 <ul className="absolute mt-2 p-2 shadow-lg z-50 bg-white rounded-lg w-52 text-black space-y-2">
-                  {navLinks} {/* Replace with your navigation links */}
+                  {navLinks} 
                 </ul>
               )}
             </div>
@@ -197,7 +197,7 @@ const Navbar = () => {
                 </button>
 
                 <Link to={`/createResume`}>
-                  <button className="hidden font-bold flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-lg">
+                  <button className="hidden font-bold md:flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-lg">
                     Create My Resume
                   </button>
                 </Link>

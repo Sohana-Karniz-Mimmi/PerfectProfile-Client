@@ -3,9 +3,28 @@ import PropTypes from "prop-types";
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserRole } from "../../store/Features/role/roleSlice";
+import { useEffect } from "react";
 
 const NavModal = ({ handleLogoutBtn }) => {
   const { user } = useAuth();
+  const dispatch = useDispatch();
+  
+  // Selecting role and loading state from the Redux store
+  const { role, isLoading } = useSelector((state) => state.role);
+  console.log(user?.email);
+  useEffect(() => {
+    const userEmail = user?.email;
+
+    // Dispatch action to fetch user role
+    if (userEmail) {
+      dispatch(fetchUserRole(userEmail));
+    }
+  }, [dispatch]);
+
+  // Log the role in the console
+  console.log(role);
   return (
     <div className="relative text-right">
       <Menu as="div" className="relative inline-block text-left ">
