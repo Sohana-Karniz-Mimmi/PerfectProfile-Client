@@ -96,7 +96,6 @@ const NavModal = ({ handleLogoutBtn }) => {
             </Menu.Items>
           )
         }
-
         {
            role?.role === "admin" && (
             <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
