@@ -22,7 +22,7 @@ const ManageUsers = () => {
   // Define filter, search, and size using useState
   const [filter, setFilter] = useState(""); 
   const [search, setSearch] = useState(""); 
-  const [size, setSize] = useState(2); 
+  const [size, setSize] = useState(10); 
   const [count, setCount] = useState(0)
 
   // useEffect to fetch users
@@ -50,7 +50,8 @@ const ManageUsers = () => {
     }
   };
 
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  // const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pages = [...Array(totalPages).keys()].map(element => element + 1)
 
 
   const handleReset = () => {
