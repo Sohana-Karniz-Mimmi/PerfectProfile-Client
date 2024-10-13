@@ -1,50 +1,43 @@
-const InputLive = () => {
-  return (
-    <div>
-      <div className="card  w-full max-w-sm shrink-0 ">
-        <form className="card-body">
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Full Name</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your full name"
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Email address</span>
-            </label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control mt-6">
-            <button className="py-2 px-4 bg-primary border rounded-md">
-              Sign Up
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
+// import { useEffect } from "react";
 
-export default InputLive;
+// const InputLive = () => {
+//   useEffect(() => {
+//     // Dynamically create a script element and inject the Drift code
+//     const driftScript = document.createElement("script");
+//     driftScript.innerHTML = `
+//         "use strict";
+//         !function() {
+//           var t = window.driftt = window.drift = window.driftt || [];
+//           if (!t.init) {
+//             if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+//             t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+//             t.factory = function(e) {
+//               // return function() {
+//                 var n = Array.prototype.slice.call(arguments);
+//                 return n.unshift(e), t.push(n), t;
+//               };
+//             }, t.methods.forEach(function(e) {
+//               t[e] = t.factory(e);
+//             }), t.load = function(t) {
+//               var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+//               o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+//               var i = document.getElementsByTagName("script")[0];
+//               i.parentNode.insertBefore(o, i);
+//             };
+//           }
+//         }();
+//         drift.SNIPPET_VERSION = '0.3.1';
+//         drift.load('2r826nzuvmfg');
+//       `;
+//     document.body.appendChild(driftScript);
+
+//     return () => {
+//       // Cleanup the script when the component is unmounted
+//       document.body.removeChild(driftScript);
+//     };
+//   }, []);
+
+//   return null; // This component does not render any JSX
+// };
+
+// export default InputLive;
