@@ -15,7 +15,7 @@ import axios from "axios";
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
   const { savedResume, shareLink } = useContext(ResumeContext);
-  // Find common objects with the same _id in both arrays
+  // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
   const info = useLoaderData();
   const { id } = useParams();
 

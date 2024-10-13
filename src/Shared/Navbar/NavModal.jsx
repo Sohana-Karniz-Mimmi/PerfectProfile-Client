@@ -7,14 +7,16 @@ const NavModal = ({ handleLogoutBtn }) => {
     return (
         <div className="relative text-right">
             <Menu as="div" className="relative inline-block text-left ">
-                <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-                    <div className="w-20 border rounded-full">
+                <Menu.Button className="bg-transparent rounded-full p-2 text-black">
+                    <div className="w-14 h-14 border rounded-full overflow-hidden">
                         <img
                             alt="User"
                             src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                            className="object-cover w-full h-full"
                         />
                     </div>
                 </Menu.Button>
+
 
                 <Menu.Items
                     className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64"
