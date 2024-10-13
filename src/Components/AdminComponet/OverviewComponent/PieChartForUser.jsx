@@ -16,9 +16,9 @@ const PieChartForUser = () => {
   console.log(users);
 
   // Count the occurrences of each productName
-  const userCounts = users.reduce(
+  const userCounts = users?.reduce(
     (acc, user) => {
-      acc[user.productName] = (acc[user.productName] || 0) + 1;
+      acc[user?.productName] = (acc[user?.productName] || 0) + 1;
       return acc;
     },
     { standard: 0, free: 0, premium: 0 }
@@ -26,9 +26,9 @@ const PieChartForUser = () => {
 
   //   Convert the userCounts into an array for Recharts
   const pieData = [
-    { name: "Standard", value: userCounts.standard },
-    { name: "Free", value: userCounts.free },
-    { name: "Premium", value: userCounts.premium },
+    { name: "Standard", value: userCounts?.standard },
+    { name: "Free", value: userCounts?.free },
+    { name: "Premium", value: userCounts?.premium },
   ];
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
@@ -77,7 +77,7 @@ const PieChartForUser = () => {
             fill="#8884d8"
             dataKey="value"
           >
-            {users.map((entry, index) => (
+            {users?.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
