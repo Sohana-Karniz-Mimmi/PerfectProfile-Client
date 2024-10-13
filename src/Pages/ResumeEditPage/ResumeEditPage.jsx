@@ -83,11 +83,11 @@ const ResumeEditPage = () => {
   };
 
   const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null); 
+  const [endDate, setEndDate] = useState(null);
 
-   const handleDateChange = (date) => {
-     setSelectedDate(date); // Set the selected date
-   };
+  const handleDateChange = (date) => {
+    setSelectedDate(date); // Set the selected date
+  };
 
   const axiosPublic = useAxiosPublic();
   const [savedDataId, setSaveDataId] = useState("");
@@ -435,7 +435,7 @@ const ResumeEditPage = () => {
         <Link to="/">
           <h1 className="text-white text-xl font-bold mb-4">Perfect Profile</h1>
         </Link>
-        <div className="space-y-6 flex flex-col overscroll-x-none overflow-x-auto">
+        <div className="space-y-6 flex lg:flex-col flex-row hidden lg:block overscroll-x-none overflow-x-auto">
           {steps.map((step) => (
             <div
               key={step.id}
@@ -483,7 +483,7 @@ const ResumeEditPage = () => {
         </div>
       </div>
       {/* Content Area */}
-      <div className="lg:w-3/6 w-full lg:p-6 p-2 font-roboto  bg-gray-50">
+      <div className="lg:w-3/6 w-full lg:px-24 lg:py-6 p-2 font-roboto  bg-gray-50">
         <form className="text-sm" onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
             <div className="space-y-4">
@@ -493,84 +493,50 @@ const ResumeEditPage = () => {
                   contact you?
                 </h2>
               </div>
-              <div className="flex lg:flex-row flex-col gap-8">
-                <div className="flex flex-col gap-8">
-                  <div className="flex items-center justify-center">
-                    <div className="w-52 h-52 rounded-full flex justify-center items-center bg-gray-100 border border-gray-300">
-                      <FaUser className="text-9xl text-gray-300" />
-                    </div>
-                  </div>
-                  <button
-                    disabled
-                    className="bg-[#00000f] uppercase py-2 text-white"
-                  >
-                    Change Photo
-                  </button>
+              <div className="flex lg:flex-row justify-between flex-col gap-6">
+                <div className="w-full space-y-1">
+                  <label className="font-bold">Full Name*</label>
+                  <input
+                    type="text"
+                    placeholder="Your full name"
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
+                      errors.name ? "border-red-500" : "border-gray-400"
+                    } focus:border-gray-400`}
+                    {...register("name", {
+                      // required: "Full name is required",
+                      onChange: (e) =>
+                        handleInputChange("name", e.target.value),
+                    })}
+                  />
+                  {/* Display error message if name has a validation error */}
+                  {errors.name && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.name.message}
+                    </p>
+                  )}
                 </div>
-                <div className="flex-1 lg:space-y-10 space-y-6">
-                  <div className="space-y-1">
-                    <label className="font-bold">Full Name*</label>
-                    <input
-                      type="text"
-                      placeholder="Your full name"
-                      className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
-                        errors.name ? "border-red-500" : "border-gray-400"
-                      } focus:border-gray-400`}
-                      {...register("name", {
-                        // required: "Full name is required",
-                        onChange: (e) =>
-                          handleInputChange("name", e.target.value),
-                      })}
-                    />
-                    {/* Display error message if name has a validation error */}
-                    {errors.name && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.name.message}
-                      </p>
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <label className="font-bold">Job Title</label>
-                    <input
-                      type="text"
-                      placeholder="Frontend Developer"
-                      className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                      {...register("jobTitle", {
-                        // required: "Job title is required",
-                      })}
-                      // value={userData.jobTitle}
-                      onChange={(e) =>
-                        handleInputChange("jobTitle", e.target.value)
-                      }
-                    />
-                    {errors.jobTitle && (
-                      <p className="text-red-500 text-sm">
-                        {errors.jobTitle.message}
-                      </p>
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <label className="font-bold">Street Address</label>
-                    <input
-                      type="text"
-                      placeholder="123 Main Street, Anytown, USA, 12345"
-                      className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                      {...register("address", {
-                        // required: "Job title is required",
-                      })}
-                      // value={userData.address}
-                      onChange={(e) =>
-                        handleInputChange("address", e.target.value)
-                      }
-                    />
-                    {errors.address && (
-                      <p className="text-red-500 font-lora text-sm">
-                        {errors.address.message}
-                      </p>
-                    )}
-                  </div>
+                <div className="w-full space-y-1">
+                  <label className="font-bold">Job Title</label>
+                  <input
+                    type="text"
+                    placeholder="Frontend Developer"
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                    {...register("jobTitle", {
+                      // required: "Job title is required",
+                    })}
+                    // value={userData.jobTitle}
+                    onChange={(e) =>
+                      handleInputChange("jobTitle", e.target.value)
+                    }
+                  />
+                  {errors.jobTitle && (
+                    <p className="text-red-500 text-sm">
+                      {errors.jobTitle.message}
+                    </p>
+                  )}
                 </div>
               </div>
+
               <div className="flex lg:flex-row justify-between flex-col gap-6">
                 <div className="w-full space-y-1">
                   <label className="font-bold">Email*</label>
@@ -622,6 +588,29 @@ const ResumeEditPage = () => {
                   )}
                 </div>
               </div>
+              <div>
+                <div className="space-y-1">
+                  <label className="font-bold">Street Address</label>
+                  <input
+                    type="text"
+                    placeholder="123 Main Street, Anytown, USA, 12345"
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                    {...register("address", {
+                      // required: "Job title is required",
+                    })}
+                    // value={userData.address}
+                    onChange={(e) =>
+                      handleInputChange("address", e.target.value)
+                    }
+                  />
+                  {errors.address && (
+                    <p className="text-red-500 font-lora text-sm">
+                      {errors.address.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
               <div className="">
                 <div className="space-y-1">
                   <label className="font-bold">Career Objective</label>
@@ -885,32 +874,32 @@ const ResumeEditPage = () => {
                 ))}
               </div>
 
-              {showInput && (
-                <div className="flex items-center">
-                  <input
-                    type="text"
-                    className={`border py-2 px-2 max-w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                    // value={newSkill}
-                    onChange={(e) => setNewSkill(e.target.value)} // Update input value
-                    placeholder="Enter new skill"
-                  />
+              {/* {showInput && ( */}
+              <div className="flex relative items-center">
+                <input
+                  type="text"
+                  className={`border py-3 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                  value={newSkill}
+                  onChange={(e) => setNewSkill(e.target.value)} // Update input value
+                  placeholder="Enter new skill"
+                />
 
-                  <button
-                    type="button"
-                    className="absolute border border-secondary bg-secondary ml-44 flex  font-bold text-white py-2 px-2"
-                    onClick={() => handleAddSkill()}
-                  >
-                    Add
-                  </button>
-                </div>
-              )}
-              <button
+                <button
+                  type="button"
+                  className="absolute border border-secondary bg-secondary right-0 flex  font-bold text-white py-3 px-5"
+                  onClick={() => handleAddSkill()}
+                >
+                  Add Skill
+                </button>
+              </div>
+              {/* // )} */}
+              {/* <button
                 type="button"
                 className="flex lg:w-1/4 w-full items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black text-lg p-4 border border-dashed border-gray-400"
-                onClick={() => setShowInput(true)} // Show input on button click
+                // onClick={() => setShowInput(true)} // Show input on button click
               >
                 Add New Skill <FaPlus className="font-bold text-lg" />
-              </button>
+              </button> */}
             </div>
           )}
 
@@ -935,32 +924,32 @@ const ResumeEditPage = () => {
                 ))}
               </div>
 
-              {showInput && (
-                <div className="mt-4 relative flex items-center">
-                  <input
-                    type="text"
-                    className={`border py-2 px-2 max-w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                    // value={newLanguage}
-                    onChange={(e) => setNewLanguage(e.target.value)} // Update input value
-                    placeholder="Enter new language"
-                  />
+              {/* {showInput && ( */}
+              <div className="mt-4 relative flex items-center">
+                <input
+                  type="text"
+                  className={`border py-3 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                  value={newLanguage}
+                  onChange={(e) => setNewLanguage(e.target.value)} // Update input value
+                  placeholder="Enter new language"
+                />
 
-                  <button
-                    type="button"
-                    className="absolute border border-secondary bg-secondary ml-44 flex  font-bold text-white py-2 px-2"
-                    onClick={() => handleAddLanguage()}
-                  >
-                    Add
-                  </button>
-                </div>
-              )}
-              <button
+                <button
+                  type="button"
+                  className="absolute border border-secondary bg-secondary right-0 flex  font-bold text-white py-3 px-6"
+                  onClick={() => handleAddLanguage()}
+                >
+                  Add Language
+                </button>
+              </div>
+              {/* )} */}
+              {/* <button
                 type="button"
                 className="flex lg:w-1/4 w-full items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black text-lg p-4 border border-dashed border-gray-400"
-                onClick={() => setShowInput(true)} // Show input on button click
+                // onClick={() => setShowInput(true)} // Show input on button click
               >
                 Add new language <FaPlus className="font-bold" />
-              </button>
+              </button> */}
             </div>
           )}
 
@@ -1056,13 +1045,14 @@ const ResumeEditPage = () => {
             </div>
           )} */}
 
-          <div className="flex justify-between gap-12 mt-8">
+          <div className="flex justify-between mt-12">
             {currentStep >= 1 && (
               <button
                 type="button"
                 onClick={handlePreviousStep}
-                className={`border border-black uppercase flex text-lg items-center gap-2 font-bold text-black py-3 px-5 ${currentStep ==
-                  1 && "opacity-0"}`}
+                className={`border border-black uppercase flex text-lg items-center gap-2 font-bold text-black py-3 px-5 ${
+                  currentStep == 1 && "opacity-0"
+                }`}
               >
                 <FaBackward /> Previous
               </button>
