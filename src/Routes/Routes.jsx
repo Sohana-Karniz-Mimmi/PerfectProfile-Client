@@ -78,25 +78,6 @@ const router = createBrowserRouter([
     element: <ResumeViewer />,
   },
 
-  // {
-  //   path: "admin/dashboard",
-  //   element: <AdminLayout />,
-  //   children: [
-  //     {
-  //       path: "/admin/dashboard/overview",
-  //       element: <OverviewPage />,
-  //     },
-  //     {
-  //       path: "alluser",
-  //       element: <AllUserPage />,
-  //     },
-  //     {
-  //       path: "alltemplate",
-  //       element: <AllTemplates />,
-  //     },
-  //   ],
-  // },
-
   {
     path: '/dashboard',
     element: (

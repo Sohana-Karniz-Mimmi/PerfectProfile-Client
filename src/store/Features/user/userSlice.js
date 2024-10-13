@@ -11,14 +11,14 @@ const userAdapter = createEntityAdapter({
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
-  async ({ page, limit }) => {
+  async ({ page, size, filter, search }) => {
     const {
       users,
       totalUsers,
       currentPage,
       totalPages,
       allUsers,
-    } = await getUsers(page, limit);
+    } = await getUsers(page, size, filter, search);
     return { users, totalUsers, currentPage, totalPages, allUsers };
   }
 );
