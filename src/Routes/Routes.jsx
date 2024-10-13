@@ -12,13 +12,12 @@ import FinalResume from "../Pages/FinalResume/FinalResume";
 import Profile from "../Components/MyProfile/Profile";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
 import SocketChatLive from "../Components/LiveChat/SocketChatLive";
-import AdminLayout from "../Layouts/AdminLayout";
-import OverviewPage from "../Pages/AdminPage/OverviewPage";
-import AllUserPage from "../Pages/AdminPage/AllUserPage";
-import AllTemplates from "../Pages/AdminPage/AllTemplates";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Statistics from "../Pages/AdminDashboard/Statistics";
 import ManageUsers from "../Pages/AdminDashboard/ManageUsers";
+import PrivateRoute from "./PrivateRoute";
+import PrivetRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -65,7 +64,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/resume/edit/:id",
-    element: <ResumeEditPage />,
+    element: <PrivateRoute><ResumeEditPage /></PrivateRoute>,
   },
   {
     path: "/resume/final-resume/:id",
@@ -87,14 +86,21 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <Statistics />
-
+          <PrivetRoute>
+            <AdminRoute>
+              <Statistics />
+            </AdminRoute>
+          </PrivetRoute>
         ),
       },
       {
         path: 'manage-users',
         element: (
+          <PrivetRoute>
+            <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivetRoute>
 
         ),
       },
