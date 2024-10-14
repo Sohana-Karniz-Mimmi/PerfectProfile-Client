@@ -9,10 +9,16 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
+import Profile from "../Components/MyProfile/Profile";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
+import SocketChatLive from "../Components/LiveChat/SocketChatLive";
 import AdminLayout from "../Layouts/AdminLayout";
 import OverviewPage from "../Pages/AdminPage/OverviewPage";
 import AllUserPage from "../Pages/AdminPage/AllUserPage";
+import AllTemplates from "../Pages/AdminPage/AllTemplates";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Statistics from "../Pages/AdminDashboard/Statistics";
+import ManageUsers from "../Pages/AdminDashboard/ManageUsers";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +53,14 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/livechat",
+        element: <SocketChatLive />,
+      },
     ],
   },
   {
@@ -59,28 +73,53 @@ const router = createBrowserRouter([
     loader: ({ params }) =>
       fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume/${params.id}`),
   },
-  // {
-  //   path: "/resume/:customUrl",
-  //   element: <ShareResume />,
-  // },
   {
     path: "/resume/:link",
     element: <ResumeViewer />,
   },
+
+  // {
+  //   path: "admin/dashboard",
+  //   element: <AdminLayout />,
+  //   children: [
+  //     {
+  //       path: "/admin/dashboard/overview",
+  //       element: <OverviewPage />,
+  //     },
+  //     {
+  //       path: "alluser",
+  //       element: <AllUserPage />,
+  //     },
+  //     {
+  //       path: "alltemplate",
+  //       element: <AllTemplates />,
+  //     },
+  //   ],
+  // },
+
   {
-    path: "admin/dashboard",
-    element: <AdminLayout />,
+    path: '/dashboard',
+    element: (
+      <DashboardLayout />
+    ),
     children: [
       {
-        path: "/admin/dashboard/overview",
-        element: <OverviewPage />,
+        index: true,
+        element: (
+          <Statistics />
+
+        ),
       },
       {
-        path: "alluser",
-        element: <AllUserPage />,
+        path: 'manage-users',
+        element: (
+              <ManageUsers />
+
+        ),
       },
     ],
   },
+
 ]);
 
 export default router;

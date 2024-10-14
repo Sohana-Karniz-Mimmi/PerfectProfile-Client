@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Container from "../../Shared/Container";
 import ResumeTemplate from "./ResumeTemplate";
 import { useNavigate } from "react-router-dom";
-import Template1 from "./Template1";
+import Template1 from "../../assets/Template1";
 import Template2 from "./Template2";
 import Template3 from "./Template3";
 import Template4 from "./Template4";
@@ -24,9 +24,7 @@ const ResumeTemplates = () => {
   return (
     <Container>
       <div>
-        <h1 className="font-bold text-5xl mt-10 text-center mb-10">
-          Predefined Templates
-        </h1>
+       
       </div>
       <div className="grid grid-cols-1  lg:grid-cols-2 gap-36 justify-around">
         {

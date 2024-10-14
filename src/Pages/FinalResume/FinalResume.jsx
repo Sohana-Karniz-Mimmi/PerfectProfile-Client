@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import html2pdf from 'html2pdf.js'
-import jsPDF from 'jspdf';
+import html2pdf from "html2pdf.js";
+import jsPDF from "jspdf";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
@@ -13,12 +13,13 @@ import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { Menu } from '@headlessui/react';
 import { GrDocumentText } from "react-icons/gr";
 import axios from "axios";
+// import Template1 from "../../assets/Template1";
 const FinalResume = () => {
-  const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
   const { savedResume, shareLink } = useContext(ResumeContext);
-  // Find common objects with the same _id in both arrays
+  // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
   const info = useLoaderData();
-  const {id} = useParams()
+  const { id } = useParams();
 
   console.log(savedResume);
 
@@ -69,40 +70,40 @@ const FinalResume = () => {
     });
   };
 
- 
-
-  const handlePdf = async() => {
-   const element = document.getElementById('element');
-   const opt = {
-    margin:1, 
-    filename: 'myResume.pdf',
-    enableLinks: true,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 3}, 
-    jsPDF: {  format: 'a4', orientation: 'portrait' }
+  const handlePdf = async () => {
+    const element = document.getElementById("element");
+    const opt = {
+      margin: 1,
+      filename: "myResume.pdf",
+      enableLinks: true,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 3 },
+      jsPDF: { format: "a4", orientation: "portrait" },
+    };
+    html2pdf()
+      .set(opt)
+      .from(element)
+      .save();
   };
-  html2pdf().set(opt).from(element).save();
-  };
-
 
   return (
-    <div  className="h-screen">
+    <div className="h-screen">
       <div className="py-6 px-4 bg-[#00000f]">
-      <Link
-              to={"/"}
-              className="font-bold text-lg md:text-3xl gap-3 flex items-center"
-            >
-              <span className="text-white">
-                Perfect
-                <span className="text-primary">Profile</span>
-              </span>
-            </Link>
+        <Link
+          to={"/"}
+          className="font-bold text-lg md:text-3xl gap-3 flex items-center"
+        >
+          <span className="text-white">
+            Perfect
+            <span className="text-primary">Profile</span>
+          </span>
+        </Link>
       </div>
-      <section  className="flex justify-between pt-8 gap-5">
-        <div className="w-2/12"></div>             
-      
-         <div id="element"  className="w-5/12 pt-0">
-        {renderTemplate(info?.userData?.templateItem)}
+      <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
+        <div className="lg:w-2/12 w-full"></div>
+
+        <div id="element" className="lg:w-8/12 w-full pt-0">
+          {renderTemplate(info?.userData?.templateItem)}
         </div>
         
      
@@ -167,7 +168,4 @@ const FinalResume = () => {
   );
 };
 
-
-
 export default FinalResume;
-

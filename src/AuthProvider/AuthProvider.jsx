@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   signOut,
   TwitterAuthProvider,
+  updateEmail,
   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
@@ -33,7 +34,10 @@ const AuthProvider = ({ children }) => {
       photoURL: photo,
     });
   };
-
+  const updateUserEmail = (email) => {
+    setLoading(false);
+    return updateEmail(auth.currentUser);
+  };
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -51,7 +55,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, twitterProvider);
   };
-  const logOut = () => {
+  const logOut = async () => {
     setLoading(true);
     return signOut(auth).then(() => {
       axiosPublic.post("/logout", {}, { withCredentials: true }).then(() => {
@@ -68,8 +72,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         const loggedUser = { email: currentUser.email };
 
-        axiosPublic
-          .post("/jwt", loggedUser, { withCredentials: true })
+        axiosPublic.post("/jwt", loggedUser, { withCredentials: true })
           .then((res) => {
             console.log("JWT token received and set in cookies", res.data);
           });
@@ -87,6 +90,7 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     updateUserProfile,
+    updateUserEmail,
     signIn,
     googleSignIn,
     facebookSignIn,
@@ -100,3 +104,5 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+
+
