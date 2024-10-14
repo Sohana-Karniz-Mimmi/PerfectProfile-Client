@@ -3,7 +3,7 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 
 import useAuth from "../Hook/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
@@ -12,6 +12,9 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Login = () => {
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location?.state || '/'
   const { signIn, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const [eye, setEye] = useState(false);
   const [remember, setRemember] = useState(false);
@@ -47,7 +50,7 @@ const Login = () => {
           setTimeout(() => {
             if (location.state) {
               document.getElementById("my_modal_3").close();
-              navigate(location.state);
+              navigate(from);
             } else {
               document.getElementById("my_modal_3").close();
               // navigate("/");
