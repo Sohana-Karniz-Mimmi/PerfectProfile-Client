@@ -3,7 +3,7 @@ import Banner from "../../Components/Home/Banner";
 import PremiumFeature from "../../Components/Home/PremiumFeature";
 import StepsOfResume from "../../Components/Home/StepsOfResume";
 import Testomonial from "../../Components/Testomonial/Testomonial";
-import Chat from "../../Components/LiveChat/Chat";
+// import Chat from "../../Components/LiveChat/Chat";
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
         <Banner />
       </div>
       <div>
-        <Chat />
+        {/* <Chat /> */}
       </div>
       <div>
         <StepsOfResume />
