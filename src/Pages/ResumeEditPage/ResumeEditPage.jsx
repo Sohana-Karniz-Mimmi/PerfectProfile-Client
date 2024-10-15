@@ -437,9 +437,9 @@ const ResumeEditPage = () => {
   return (
     <div className="flex lg:flex-row flex-col min-h-screen">
       {/* Sidebar */}
-      <div className="lg:w-1/6 w-full lg:block bg-[#00000f] text-white p-6">
+      <div className="lg:w-[20%] xl:w-[] w-[100%] lg:block bg-[#00000f] text-white p-6">
         <Link to="/">
-          <h1 className="text-white lg:text-2xl text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
+          <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
             Perfect<span className="text-primary">Profile</span>
           </h1>
         </Link>
@@ -495,7 +495,7 @@ const ResumeEditPage = () => {
         </div>
       </div>
       {/* Content Area */}
-      <div className="lg:w-3/6 w-full lg:px-24 lg:py-6 p-2 font-roboto  bg-gray-50">
+      <div className="lg:w-[40%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
         <form className="text-sm" onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
             <div className="space-y-4">
@@ -727,6 +727,7 @@ const ResumeEditPage = () => {
                         selected={
                           entry.startDate ? new Date(entry.startDate) : null
                         } // Bind to individual entry's startDate
+                        
                         onChange={(date) =>
                           updateWorkExperience(index, "startDate", date)
                         }
@@ -767,6 +768,7 @@ const ResumeEditPage = () => {
                             ? new Date(entry.endDate)
                             : null
                         }
+                        
                         onChange={(date) =>
                           updateWorkExperience(index, "endDate", date)
                         }
@@ -1157,7 +1159,7 @@ const ResumeEditPage = () => {
         </form>
       </div>
       {/* Template preview area */}
-      <div className="lg:w-2/6 w-full lg:p-8 p-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
+      <div className="lg:w-[40%] w-[100%] lg:p-8 px-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
         {renderTemplate(id)}
         <div className="flex flex-col justify-center items-center py-6 space-y-6">
           <button className="font-roboto font-medium text-primary">

@@ -1,18 +1,18 @@
 const Template1 = ({ data, userData }) => {
   return (
     <div
-      className="lg:w-[31rem] w-full max-h-[2400px]  mx-auto  bg-slate-50 border-2 border-secondary "
+      className="lg:max-w-[31rem] w-full max-h-[2400px]  mx-auto  bg-slate-50 border-2 border-secondary"
       id="resume-content"
     >
       <div className="">
         {/* Header - Personal Info */}
-        <header className="text-center  bg-blue-200  py-4">
+        <header className="text-center font-roboto  bg-blue-200  py-4 px-12">
           <h1 className="text-2xl font-bold text-blue-900 uppercase ">
             {userData?.name === "" || userData?.name === undefined
               ? "Your Name"
               : userData?.name}
           </h1>
-          <p>{data?.package}</p>
+          <p className="text-red-500">{data?.package}</p>
           <p className="font-semibold uppercase ">
             {userData?.jobTitle === "" || userData?.jobTitle === undefined
               ? "Profession"
@@ -32,16 +32,16 @@ const Template1 = ({ data, userData }) => {
               : userData?.address}
           </p>
         </header>
-        <div className="px-7 py-3 space-y-3">
+        <div className="px-12 py-3 space-y-4">
           {/* Career Objective */}
           {userData?.careerObjective === "" ||
           userData?.careerObjective === undefined ? (
             <section className="mb-1">
               <>
-                <h2 className=" uppercase text-sm  font-bold text-blue-900 border-b border-blue-950 ">
+                <h2 className=" uppercase text-sm font-roboto  font-bold text-blue-900 border-b border-blue-950 ">
                   Career Objective
                 </h2>
-                <p className="mt-1 text-sm break-words max-w-[450px]">
+                <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
                   Use this section to give recruiters a quick glimpse of your
                   professional profile. In just 3-4 lines, highlight your
                   background, education and main skills.
@@ -51,10 +51,10 @@ const Template1 = ({ data, userData }) => {
           ) : (
             userData?.careerObjective !== "" && (
               <section className="mb-1">
-                <h2 className=" uppercase text-sm  font-bold text-blue-900 border-b border-blue-950 ">
+                <h2 className=" uppercase text-sm font-roboto font-bold text-blue-900 border-b border-blue-950 ">
                   Career Objective
                 </h2>
-                <p className="mt-1 text-sm break-words max-w-[450px]">
+                <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
                   {userData?.careerObjective}
                 </p>
               </section>
@@ -65,13 +65,13 @@ const Template1 = ({ data, userData }) => {
           {userData?.skills?.length >= 1 && (
             // If userData.skills exist and the length is greater than 0, show userData.skills
             <section className="mb-1 space-y-3">
-              <h2 className="uppercase text-sm font-bold text-blue-900 border-b border-blue-950">
+              <h2 className="uppercase text-sm font-roboto font-bold text-blue-900 border-b border-blue-950">
                 Skills
               </h2>
               <ul className="mt-1 text-sm grid grid-cols-2 justify-between list-disc list-inside">
                 {userData?.skills.map((skill, index) => (
-                  <li key={index} className="pl-2">
-                    <h3 className="font-semibold inline-block">{skill}</h3>
+                  <li key={index} className="pl-2 font-roboto text-sm">
+                    <h3 className="font-medium inline-block">{skill}</h3>
                   </li>
                 ))}
               </ul>
@@ -80,18 +80,16 @@ const Template1 = ({ data, userData }) => {
           {/* Education */}
           {userData?.education?.length >= 1 && (
             <section className="mb-1 space-y-3">
-              <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
+              <h2 className=" uppercase text-sm font-roboto font-bold text-blue-900 border-b border-blue-950 ">
                 Education
               </h2>
-              <ul className=" text-sm ">
+              <ul className="text-sm ">
                 {userData?.education.map((edu, index) => (
                   <li key={index}>
-                    <h3 className=" font-semibold break-words max-w-[420px]">
+                    <h3 className=" font-medium text-sm font-roboto break-words max-w-[420px]">
                       {edu.degree || "Your Degree"} -{" "}
-                      {edu.institution || "Institute"}{" "}
-                      <span className="text-gray-500">
-                        ({edu.year || "2024"})
-                      </span>
+                      {edu.institution || "Institute"} -{" "}
+                      <span className="">({edu.year || "2024"})</span>
                     </h3>
                   </li>
                 ))}
@@ -133,9 +131,51 @@ const Template1 = ({ data, userData }) => {
                     <h3 className=" font-semibold">
                       {exp.jobTitle || "Postion"} -{" "}
                       {exp.company || "Company Name"}{" "}
-                      <span className="text-gray-500">
+                      {/* <span className="text-gray-500">
                         ({exp.years || "Year of Experience"})
-                      </span>{" "}
+                      </span> */}
+                      {/* <span className="text-gray-500">
+                        (
+                        {exp.startDate
+                          ? new Date(exp.startDate).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "short",
+                              }
+                            )
+                          : "Mar 2020"}{" "}
+                        -{" "}
+                        {exp.endDate
+                          ? new Date(exp.endDate).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "short",
+                            })
+                          : "Present"}
+                        )
+                      </span> */}
+                      <span className="">
+                        (
+                        {exp.startDate
+                          ? new Date(exp.startDate).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "short",
+                              }
+                            )
+                          : "Start Date"}{" "}
+                        -{" "}
+                        {exp.isCurrent
+                          ? "Present" // If isCurrent is true, show 'Present'
+                          : exp.endDate
+                          ? new Date(exp.endDate).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "short",
+                            })
+                          : "End Date"}
+                        )
+                      </span>
                     </h3>
                     <p className="text-gray-600  text-sm max-w-[450px] break-words">
                       {exp.description ||
