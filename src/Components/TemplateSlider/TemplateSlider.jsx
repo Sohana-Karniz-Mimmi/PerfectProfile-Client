@@ -10,6 +10,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import useRole from './../../Hook/useRole';
+import useAuth from "../../Hook/useAuth";
 
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
@@ -36,6 +37,7 @@ const CustomNextButton = (props) => (
 export default function App() {
 
   const [role] = useRole()
+  const { user } = useAuth();
 
   const axiosPublic = useAxiosPublic();
   const [predefinedTemplate, setPredefinedTemplate] = useState([]);
@@ -49,8 +51,6 @@ export default function App() {
   }, []);
 
   const [showModal, setShowModal] = useState(false);
-
-  // console.log(predefinedTemplate);
 
   return (
     <>
@@ -89,75 +89,46 @@ export default function App() {
           <SwiperSlide key={template._id}>
             <div className="relative group">
               <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
-                {template.package === "premium" ? (
-                  (role.productName === "standard" || role.productName === "premium") ? (
-                    <Link to={`resume/edit/${template.templateItem}`}>
-                      <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Use Template
-                      </button>
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() => setShowModal(true)}
-                      className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      Use Template
-                    </button>
-                  )
-                ) : (
-                  <Link to={`resume/edit/${template.templateItem}`}>
-                    <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Use Template
-                    </button>
-                  </Link>
-                )}
-              </div>
-              <img className="w-full size" src={template.image} alt={template.name} />
+                <Link to={`resume/edit/${template.templateItem}`}>
+                <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Use Template
+                </button>
+              </Link>
             </div>
+            {/* <img className="w-[330px] h-[420px]" src={template.image} alt="" /> */}
+            <img className="w-full size" src={template.image} alt="" />
+          </div>
           </SwiperSlide>
         ))}
 
-        {/* Modal component */}
-        {showModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>Upgrade to Premium</h2>
-              <p>You need to purchase a premium package to use this template.</p>
-              <button onClick={() => setShowModal(false)}>Close</button>
-              {/* Add purchase link or action here */}
-            </div>
-          </div>
-        )}
-
-
-        {/* Modal */}
-        {showModal && (
-          <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-md">
-              <h2 className="text-lg font-bold">Premium Package Required</h2>
-              <p className="mt-2">To use this template, you need to purchase the premium package.</p>
-              <div className="mt-4 flex justify-end">
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="bg-gray-300 text-black py-2 px-4 rounded mr-2"
-                >
-                  Cancel
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-md">
+            <h2 className="text-lg font-bold">Premium Package Required</h2>
+            <p className="mt-2">To use this template, you need to purchase the premium package.</p>
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-gray-300 text-black py-2 px-4 rounded mr-2"
+              >
+                Cancel
+              </button>
+              <Link to={'/pricing'}>
+                <button className="bg-primary text-white py-2 px-4 rounded">
+                  Purchase Package
                 </button>
-                <Link to={'/pricing'}>
-                  <button className="bg-primary text-white py-2 px-4 rounded">
-                    Purchase Package
-                  </button>
-                </Link>
-              </div>
+              </Link>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
 
-        {/* Custom navigation buttons */}
-        <CustomPrevButton />
-        <CustomNextButton />
-      </Swiper>
+      {/* Custom navigation buttons */}
+      <CustomPrevButton />
+      <CustomNextButton />
+    </Swiper >
     </>
   );
 }
