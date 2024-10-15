@@ -4,6 +4,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import LoadingSpinner from '../Shared/LoadingSpinner';
 import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
+import PremiumModal from '../Components/Modal/PremiumModal'
 
 const PremiumRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -24,6 +25,7 @@ const PremiumRoute = ({ children }) => {
     } else if (template?.package === "premium") {
       if (user.productName !== "standard" && user.productName !== "premium") {
         setTimeout(() => {
+          document.getElementById("premium-modal").showModal(); //
           console.log('Premium user not available');
         }, 3000);
         
@@ -36,6 +38,8 @@ const PremiumRoute = ({ children }) => {
       return children;
     }
 
+    
+    
   return <Navigate to={`/`} state={location?.pathname || '/'} />;
 };
 

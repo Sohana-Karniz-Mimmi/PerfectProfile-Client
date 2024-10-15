@@ -19,6 +19,7 @@ import PrivateRoute from "./PrivateRoute";
 import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import PremiumRoute from "./PremiumRoute";
+import PremiumModal from "../Components/Modal/PremiumModal";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       </PremiumRoute>
     ),
   
+  },
+  {
+    path: "/premium",
+    element: <PremiumModal />,
   },
   {
     path: "/resume/final-resume/:id",
