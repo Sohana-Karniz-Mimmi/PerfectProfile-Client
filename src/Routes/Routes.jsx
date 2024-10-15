@@ -11,13 +11,14 @@ import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
 import Profile from "../Components/MyProfile/Profile";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
-import SocketChatLive from "../Components/LiveChat/SocketChatLive";
+// import SocketChatLive from "../Components/LiveChat/SocketChatLive";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Statistics from "../Pages/AdminDashboard/Statistics";
 import ManageUsers from "../Pages/AdminDashboard/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import MainChatBox from "../Components/LiveChat/NewChatComponent/MainChatbox";
 
 const router = createBrowserRouter([
   {
@@ -56,15 +57,23 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
       },
+      // {
+      //   path: "/livechat",
+      //   element: <SocketChatLive />,
+      // },
       {
-        path: "/livechat",
-        element: <SocketChatLive />,
+        path: "/liveChat",
+        element: <MainChatBox />,
       },
     ],
   },
   {
     path: "/resume/edit/:id",
-    element: <PrivateRoute><ResumeEditPage /></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <ResumeEditPage />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/resume/final-resume/:id",
@@ -78,10 +87,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/dashboard',
-    element: (
-      <DashboardLayout />
-    ),
+    path: "/dashboard",
+    element: <DashboardLayout />,
     children: [
       {
         index: true,
@@ -94,19 +101,17 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'manage-users',
+        path: "manage-users",
         element: (
           <PrivetRoute>
             <AdminRoute>
               <ManageUsers />
             </AdminRoute>
           </PrivetRoute>
-
         ),
       },
     ],
   },
-
 ]);
 
 export default router;
