@@ -156,7 +156,7 @@ const Banner = () => {
           </div>
         </Container>
 
-        <div className="">
+        <div className="overflow-visible relative">
           <TemplateSlider></TemplateSlider>
         </div>
         <div className="flex justify-center items-center lg:py-16 py-8">
