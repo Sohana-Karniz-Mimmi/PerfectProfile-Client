@@ -171,3 +171,65 @@ export default function App() {
     </>
   );
 }
+
+import PropTypes from 'prop-types';
+import PurchaseModal from "../Components/Modal/PurchaseModal";
+import LoginModal from "../Components/Modal/LoginModal"; // Import LoginModal
+import useAuth from "../Hook/useAuth";
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+const PremiumRoute = ({ children }) => {
+  const { user } = useAuth();
+  const location = useLocation();
+  const template = location.state?.template;
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+
+  useEffect(() => {
+    // ইউজার যদি লগইন না থাকে, তাহলে লগইন মডাল দেখানো হবে
+    if (!user) {
+      setShowLoginModal(true);
+    } else if (template?.package === "premium") {
+      if (user.productName !== "standard" && user.productName !== "premium") {
+        setShowPurchaseModal(true);
+      }
+    }
+  }, [user, template]);
+
+  const handleLoginClose = () => {
+    setShowLoginModal(false);
+  };
+
+  const handlePurchaseClose = () => {
+    setShowPurchaseModal(false);
+  };
+
+  // লগইন মডাল খোলার অবস্থায়
+  if (showLoginModal) {
+    return <LoginModal isOpen={showLoginModal} onClose={handleLoginClose} />;
+  }
+
+  // পারচেস মডাল খোলার অবস্থায়
+  if (showPurchaseModal) {
+    return (
+      <PurchaseModal 
+        isOpen={showPurchaseModal} 
+        onClose={handlePurchaseClose} 
+        templateName={template?.name} // Assuming the template has a name property
+      />
+    );
+  }
+
+  // শর্তগুলো মেট হলে, ইউজারকে নির্দিষ্ট রুটে রেন্ডার করা হবে
+  return children;
+};
+
+PremiumRoute.propTypes = {
+  children: PropTypes.node.isRequired, // Added isRequired for better prop validation
+};
+
+export default PremiumRoute;
+
+
