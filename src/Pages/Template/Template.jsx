@@ -24,13 +24,16 @@ const Template = () => {
 
   const [predefinedTemplate, setPredefinedTemplate] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [itemPerPage, setItemPerPage] = useState(4)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [count, setCount] = useState(0)
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axiosPublic(`/predefined-templates`);
+      const { data } = await axiosPublic(`/templates?page=${currentPage}&size=${itemPerPage}`);
       setPredefinedTemplate(data);
     };
     getData();
-  }, []);
+  }, [currentPage, itemPerPage]);
 
   //   add to favorite
   const handleFavorite = (_id) => {
@@ -54,10 +57,27 @@ const Template = () => {
 
     console.log(_id);
   };
+// pagination
+
+  useEffect(() => {
+    const getCount = async () => {
+      const { data } = await axiosPublic(`/templates-count`);
+      setCount(data.count)
+    };
+    getCount();
+  }, []);
+
+  const numofPage = Math.ceil(count/itemPerPage)
+  const pages = [...Array(numofPage).keys().map(element => element + 1)];
+  const handlePagination =(value)=>{
+    console.log(value);
+    setCurrentPage(value)
+
+  }
 
   // filter
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Free + Premium"); // Set default to "Free + Premium"
+  const [selectedValue, setSelectedValue] = useState("Free + Premium"); 
 
   // Function to toggle the dropdown
   const toggleDropdown = () => {
@@ -70,9 +90,7 @@ const Template = () => {
     setIsOpen(false); // Close the dropdown when an option is selected
   };
 
-  // pagination
-  const pages = [1, 2, 3, 4];
-
+  
   return (
     <Container>
       <TemplateBanner></TemplateBanner>
@@ -149,9 +167,9 @@ const Template = () => {
             isFavorite?   <FaRegStar className="text-primary"/> : <FaStar className="text-primary"/>
         } */}
                 {favorites[template._id] ? (
-                  <FaStar className="text-primary" />
+                  <FaStar className="text-cyan-400" />
                 ) : (
-                  <FaRegStar className="text-primary" />
+                  <FaRegStar className="text-cyan-400" />
                 )}
                 {/* <FaRegStar className="text-primary"/> */}
               </button>
@@ -171,12 +189,18 @@ const Template = () => {
               </div>
 
               {/* Crown Icon for Premium Templates with Tooltip */}
-              <FaCrown className="absolute bottom-4 right-4 text-yellow-400 text-2xl bg-yellow-100 p-1 rounded-full tooltip-crown" />
+              {
+  template.package === "premium" && (
+    <>
+      <FaCrown className="absolute bottom-4 right-4 text-yellow-400 text-2xl bg-yellow-100 p-1 rounded-full tooltip-crown" />
 
-              {/* Tooltip for Crown Button */}
-              <span className="tooltip-text-crown hidden absolute bottom-12 right-4 bg-gray-700 text-white text-xs rounded py-1 px-2">
-                Premium
-              </span>
+      <span className="tooltip-text-crown hidden absolute bottom-12 right-4 bg-gray-700 text-white text-xs rounded py-1 px-2">
+        Premium
+      </span>
+    </>
+  )
+}
+
 
               {/* Template Image */}
               <img
@@ -191,24 +215,32 @@ const Template = () => {
 
       {/* pagination */}
       <div className="flex justify-center mt-24 mb-20">
-        <button className="px-4 mx-1 text-white disabled:text-white capitalize bg-primary rounded-md disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:text-white hover:bg-secondary  hover:text-white">
+        {/* prev button */}
+        <button 
+        disabled = {currentPage === 1}
+         onClick={()=>handlePagination(currentPage - 1)}
+        className="px-4 mx-1 text-white disabled:text-white capitalize bg-primary rounded-md disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:text-white hover:bg-secondary  hover:text-white">
           <div className="flex items-center -mx-1">
             <span className="mx-1">
               <FaArrowLeft />
             </span>
           </div>
         </button>
-
+{/* numbers */}
         {pages.map((btnNum) => (
           <button
+          onClick={()=>handlePagination(btnNum)}
             key={btnNum}
-            className={`hidden px-3 py-1 mx-1 border-2 rounded-full transition-colors duration-300 transform   sm:inline hover:bg-primary  hover:text-white`}
+            className={`hidden ${currentPage === btnNum? "bg-primary text-white border-primary" : ""} px-3 py-1 mx-1 border-2 rounded-full transition-colors duration-300 transform   sm:inline hover:bg-primary  hover:text-white`}
           >
             {btnNum}
           </button>
         ))}
-
-        <button className="px-4 mx-1 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondary disabled:hover:bg-secondary disabled:hover:text-white hover:text-white disabled:cursor-not-allowed disabled:text-white disabled:bg-primary">
+{/* next button */}
+        <button
+         disabled = {currentPage === numofPage}
+         onClick={()=>handlePagination(currentPage + 1)}
+         className="px-4 mx-1 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondary disabled:hover:bg-primary disabled:hover:text-white hover:text-white disabled:cursor-not-allowed disabled:text-white disabled:bg-primary">
           <div className="flex items-center -mx-1">
             <span className="mx-1">
               <FaArrowRight />
