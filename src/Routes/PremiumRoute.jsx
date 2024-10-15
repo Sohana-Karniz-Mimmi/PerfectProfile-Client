@@ -4,7 +4,6 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import LoadingSpinner from '../Shared/LoadingSpinner';
 import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
-import PremiumModal from '../Components/Modal/PremiumModal'
 
 const PremiumRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -33,13 +32,10 @@ const PremiumRoute = ({ children }) => {
     }
   }, [user, template]);
 
-    // যদি ব্যবহারকারী সঠিক হয় এবং টেমপ্লেট প্রিমিয়াম হয়, তাহলে শিশুদের রিটার্ন করুন
     if (user && (user.productName === "standard" || user.productName === "premium" || !template?.package)) {
       return children;
     }
 
-    
-    
   return <Navigate to={`/`} state={location?.pathname || '/'} />;
 };
 
