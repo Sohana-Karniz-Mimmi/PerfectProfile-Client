@@ -466,9 +466,13 @@ const ResumeEditPage = () => {
                 }`}
               >
                 {isStepCompleted(step.id) ? (
-                  <span className="text-2xl text-secondary">{stepIcons[step.id]}</span>
+                  <span className="text-2xl text-secondary">
+                    {stepIcons[step.id]}
+                  </span>
                 ) : (
-                  <span className="text-lg text-gray-500">{stepIcons[step.id]}</span>
+                  <span className="text-lg text-gray-500">
+                    {stepIcons[step.id]}
+                  </span>
                 )}
               </span>
               <span>{step.name}</span>
@@ -496,7 +500,7 @@ const ResumeEditPage = () => {
           {currentStep === 1 && (
             <div className="space-y-4">
               <div>
-                <h2 className="text-4xl font-lora font-bold mb-8">
+                <h2 className="lg:text-4xl text-3xl font-lora font-extrabold mb-12">
                   How do you want recruiters to <br />
                   contact you?
                 </h2>
@@ -653,140 +657,19 @@ const ResumeEditPage = () => {
           {currentStep === 2 && (
             <div className="space-y-4">
               <div>
-                <h2 className="text-4xl font-lora  font-bold mb-8">
-                  Work Experience
+                <h2 className="lg:text-4xl text-3xl font-lora  font-extrabold mb-12">
+                  Tell us about your work <br />
+                  experience to showcase your professional journey.
                 </h2>
               </div>
-              {/* {userData.workExperience.map((entry, index) => (
-                <div
-                  key={index}
-                  className="relative  p-8 rounded rounded-tr-3xl bg-white border-gray-400 border-dashed gap-6 flex flex-col mb-4"
-                >
-                  <div className="flex lg:flex-row flex-col justify-between gap-6">
-                    <div className="space-y-1">
-                      <label className="font-bold">Company Name</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Microsoft"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                        value={entry.company}
-                        onChange={(e) =>
-                          updateWorkExperience(index, "company", e.target.value)
-                        }
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="font-bold">Job Title</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Software Engineer"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                        value={entry.jobTitle}
-                        onChange={(e) =>
-                          updateWorkExperience(
-                            index,
-                            "jobTitle",
-                            e.target.value
-                          )
-                        }
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="font-bold">Job Role</label>
-                      <input
-                        type="text"
-                        placeholder="Job role"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                        value={entry.description}
-                        onChange={(e) =>
-                          updateWorkExperience(
-                            index,
-                            "description",
-                            e.target.value
-                          )
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div className="flex lg:flex-row flex-col justify-between gap-6">
-                    <div className="space-y-1">
-                      <label className="font-bold">Start Date</label>
-                      <DatePicker
-                        selected={startDate} // Bind Start Date state
-                        onChange={(date) => setStartDate(date)} // Handle Start Date selection
-                        dateFormat="dd/MM/yyyy" // Display format: day/month/year
-                        placeholderText="Select Date"
-                        className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                        wrapperClassName="w-full"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="font-bold">End Date</label>
-                      <DatePicker
-                        selected={endDate} // Bind End Date state
-                        onChange={(date) => setEndDate(date)} // Handle End Date selection
-                        dateFormat="dd/MM/yyyy" // Display format: day/month/year
-                        placeholderText="Select Date"
-                        className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                        wrapperClassName="w-full"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="font-bold">Duration</label>
-                      <input
-                        type="text"
-                        placeholder="2016"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                        value={entry.years}
-                        onChange={(e) =>
-                          updateWorkExperience(index, "years", e.target.value)
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  {index > 0 && ( // Only show delete button if it's not the first entry
-                    <div
-                      className={`flex absolute top-0 right-0 items-center justify-end bg-white p-4 rounded-full`}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => deleteWorkExperience(index)} // Call delete function
-                        className="text-red-500 hover:text-red-700 bg-white"
-                      >
-                        <FaTrashAlt />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() =>
-                  addArrayEntry("workExperience", {
-                    description: "",
-                    years: "",
-                    company: "",
-                    jobTitle: "",
-                    startDate: null, // Add startDate for each entry
-                    endDate: null,
-                  })
-                }
-                className="flex items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black lg:text-2xl text-base p-4 w-full border border-dashed border-secondary"
-              >
-                Add Another Work Experience{" "}
-                <FaPlus className="font-extrabold text-2xl" />
-              </button> */}
-
               {userData.workExperience.map((entry, index) => (
                 <div
                   key={index}
-                  className="relative p-8 rounded rounded-tr-3xl bg-white border-gray-400 border-dashed gap-6 flex flex-col mb-4"
+                  className="relative lg:p-4 p-2 rounded rounded-tr-3xl bg-white border-gray-400 border-dashed gap-6 flex flex-col mb-4"
                 >
                   <div className="flex lg:flex-row flex-col justify-between gap-6">
                     {/* Company Name Input */}
-                    <div className="space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Company Name</label>
                       <input
                         type="text"
@@ -800,7 +683,7 @@ const ResumeEditPage = () => {
                     </div>
 
                     {/* Job Title Input */}
-                    <div className="space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Job Title</label>
                       <input
                         type="text"
@@ -816,9 +699,10 @@ const ResumeEditPage = () => {
                         }
                       />
                     </div>
-
+                  </div>
+                  <div className="">
                     {/* Job Role Input */}
-                    <div className="space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Job Role</label>
                       <input
                         type="text"
@@ -835,10 +719,9 @@ const ResumeEditPage = () => {
                       />
                     </div>
                   </div>
-
-                  <div className="flex lg:flex-row flex-col justify-between gap-6">
+                  <div className="flex lg:flex-row flex-col items-center justify-between gap-6">
                     {/* Start Date Input */}
-                    <div className="space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Start Date</label>
                       <DatePicker
                         selected={
@@ -876,7 +759,7 @@ const ResumeEditPage = () => {
                     </div> */}
 
                     {/* End Date Input (set to "present" if "Currently working here" is checked) */}
-                    <div className="space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">End Date</label>
                       <DatePicker
                         selected={
@@ -899,7 +782,7 @@ const ResumeEditPage = () => {
                     </div>
 
                     {/* "Currently Working Here" Checkbox */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 w-full lg:mt-5 mt-0">
                       <input
                         type="checkbox"
                         id={`current-${index}`}
@@ -909,7 +792,7 @@ const ResumeEditPage = () => {
                         }
                       />
                       <label htmlFor={`current-${index}`} className="font-bold">
-                        I'm working here
+                        Currently, I'm working here
                       </label>
                     </div>
 
@@ -958,15 +841,17 @@ const ResumeEditPage = () => {
           {currentStep === 3 && (
             <div className="space-y-4">
               <div>
-                <h2 className="text-3xl font-bold mb-8">Education</h2>
+                <h2 className="lg:text-4xl text-3xl font-lora font-extrabold mb-12">
+                  Share your educational background and achievements.
+                </h2>
               </div>
               {userData.education.map((entry, index) => (
                 <div
                   key={index}
-                  className="relative   bg-white p-8 rounded-tr-3xl mb-4"
+                  className="relative bg-white lg:p-4 p-2 rounded-tr-3xl mb-4 space-y-6"
                 >
                   <div className="flex lg:flex-row flex-col justify-between gap-6">
-                    <div className="space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Degree</label>
                       <input
                         type="text"
@@ -978,7 +863,7 @@ const ResumeEditPage = () => {
                         }
                       />
                     </div>
-                    <div className="space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Institute Name</label>
                       <input
                         type="text"
@@ -990,6 +875,8 @@ const ResumeEditPage = () => {
                         }
                       />
                     </div>
+                  </div>
+                  <div>
                     <div className="space-y-1">
                       <label className="font-bold">Passing Year</label>
                       <input
@@ -1038,7 +925,9 @@ const ResumeEditPage = () => {
           {currentStep === 4 && (
             <div className="space-y-4">
               <div>
-                <h2 className="text-3xl font-bold font-lora mb-8">Skills</h2>
+                <h2 className="lg:text-4xl text-3xl font-extrabold font-lora mb-12">
+                  Showcase your key skills and expertise.
+                </h2>
               </div>
               <div className="flex gap-6 flex-wrap">
                 {userData.skills.map((skill, index) => (
@@ -1088,8 +977,11 @@ const ResumeEditPage = () => {
 
           {currentStep === 5 && (
             <div className="space-y-4">
-              <div></div>
-              <h2 className="text-3xl font-bold mb-8">Languages</h2>
+              <div>
+                <h2 className="lg:text-4xl text-3xl font-lora font-extrabold mb-12">
+                  List the languages you speak fluently.
+                </h2>
+              </div>
               <div className="flex gap-3 flex-wrap">
                 {userData.languages.map((language, index) => (
                   <div key={index} className="flex justify-between gap-2 mb-2">
@@ -1139,7 +1031,10 @@ const ResumeEditPage = () => {
           {currentStep === 6 && (
             <div className="space-y-4">
               <div>
-                <h2 className="text-3xl font-bold mb-8">Certifications</h2>
+                <h2 className="lg:text-4xl text-3xl font-lora font-extrabold mb-12">
+                  What certifications have you earned to strengthen your
+                  profile?
+                </h2>
               </div>
               {userData.certifications.map((entry, index) => (
                 <div

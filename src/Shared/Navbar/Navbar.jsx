@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Container from "../Container";
 import toast from "react-hot-toast";
-import { FaUser } from "react-icons/fa6"
+import { FaUser } from "react-icons/fa6";
 // import useAuth from "../../Hook/useAuth";
 import Login from "../../Authentication/Login";
 import Register from "../../Authentication/Register";
@@ -154,22 +154,17 @@ const Navbar = () => {
               </div>
 
               {/* Menu */}
-              {menuOpen && ( 
+              {menuOpen && (
                 <ul className="absolute mt-2 p-2 shadow-lg z-50 bg-white rounded-lg w-52 text-black space-y-2">
-                  {navLinks} 
+                  {navLinks}
                 </ul>
               )}
             </div>
 
-            <Link
-              to={"/"}
-              className="font-bold text-lg md:text-3xl gap-3 flex items-center"
-            >
-              {/* <img className="md:w-12 md:h-10 w-7 h-7 relative" src={logo} alt="" /> */}
-              <span>
-                P<span>er</span>fect
-                <span className="text-primary">Profile</span>
-              </span>
+            <Link to="/">
+              <h1 className="text-[#00000f] lg:text-2xl text-xl font-extrabold font-lora uppercase">
+                Perfect<span className="text-primary">Profile</span>
+              </h1>
             </Link>
 
             {/* Nav Menu */}

@@ -99,15 +99,11 @@ const FinalResume = () => {
 
   return (
     <div className="h-screen">
-      <div className="py-6 px-4 bg-[#00000f]">
-        <Link
-          to={"/"}
-          className="font-bold text-lg md:text-3xl gap-3 flex items-center"
-        >
-          <span className="text-white">
-            Perfect
-            <span className="text-primary">Profile</span>
-          </span>
+      <div className="py-6 px-4 flex items-center bg-[#00000f]">
+        <Link to="/">
+          <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora uppercase">
+            Perfect<span className="text-primary">Profile</span>
+          </h1>
         </Link>
       </div>
       <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
