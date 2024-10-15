@@ -42,7 +42,7 @@ const NavModal = ({ handleLogoutBtn }) => {
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <Link to={`/resume`}>
+                    <Link to={`/my-resume`}>
                       <button
                         className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                       >
