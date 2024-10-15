@@ -20,6 +20,7 @@ import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import PremiumRoute from "./PremiumRoute";
 import PremiumModal from "../Components/Modal/PremiumModal";
+import MyResume from "../Pages/MyResume/MyResume";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/livechat",
         element: <SocketChatLive />,
+      },
+      {
+        path: "/my-resume",
+        element: <MyResume />,
       },
     ],
   },
