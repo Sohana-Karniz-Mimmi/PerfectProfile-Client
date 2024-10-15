@@ -18,6 +18,7 @@ import ManageUsers from "../Pages/AdminDashboard/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import PremiumRoute from "./PremiumRoute";
 
 const router = createBrowserRouter([
   {
@@ -64,7 +65,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/resume/edit/:id",
-    element: <PrivateRoute><ResumeEditPage /></PrivateRoute>,
+    element: 
+    // <PremiumRoute>
+      <ResumeEditPage />
+    // </PremiumRoute>,
   },
   {
     path: "/resume/final-resume/:id",

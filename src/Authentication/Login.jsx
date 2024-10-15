@@ -72,27 +72,67 @@ const Login = () => {
     }
   };
 
+  // const handleSocialSignIn = (socialProvider) => {
+  //   socialProvider()
+  //     .then(async (result) => {
+  //       console.log(result);
+  //       toast.success("Login Successfully!");
+
+  //       setTimeout(() => {
+  //         if (location.state) {
+  //           document.getElementById("my_modal_3").close();
+  //           navigate(location.state);
+  //         } else {
+  //           document.getElementById("my_modal_3").close();
+  //           navigate("/");
+  //         }
+  //       }, 1000);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  
+
   const handleSocialSignIn = (socialProvider) => {
     socialProvider()
       .then(async (result) => {
-        console.log(result);
-        toast.success("Login Successfully!");
+        const user = result.user;
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+          productName: "free",
+          role : 'user',
+        };
 
-        setTimeout(() => {
-          if (location.state) {
+        // Save user information to the database
+        axiosPublic
+          .post("/users", userInfo)
+          .then((res) => {
+            toast.success("Login Successful!");
             document.getElementById("my_modal_3").close();
-            navigate(location.state);
-          } else {
-            document.getElementById("my_modal_3").close();
-            navigate("/");
-          }
-        }, 1000);
+
+            setTimeout(() => {
+              if (location.state) {
+                navigate(location.state);
+              } else {
+                navigate("/");
+              }
+            }, 1000);
+          })
+          .catch((error) => {
+            console.error("Error saving user to the database:", error);
+            toast.error("Failed to save user information.");
+          });
       })
       .catch((error) => {
-        console.log(error);
+        console.error("Social login error:", error);
+        toast.error("Social login failed.");
       });
   };
-
+  
+  
   return (
     <div>
       <Helmet>
