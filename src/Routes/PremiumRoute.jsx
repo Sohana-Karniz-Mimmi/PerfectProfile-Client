@@ -19,14 +19,14 @@ const PremiumRoute = ({ children }) => {
       toast.error('You have to log in first');
       setTimeout(() => {
         document.getElementById("my_modal_3").showModal();
-      }, 3000);
+      }, 1000);
      
     } else if (template?.package === "premium") {
       if (user.productName !== "standard" && user.productName !== "premium") {
         setTimeout(() => {
           document.getElementById("premium-modal").showModal(); //
           console.log('Premium user not available');
-        }, 3000);
+        }, 1000);
         
       }
     }
