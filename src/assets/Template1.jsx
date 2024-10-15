@@ -1,7 +1,7 @@
 const Template1 = ({ data, userData }) => {
   return (
     <div
-      className="lg:max-w-[31rem] w-full max-h-[2400px]  mx-auto  bg-slate-50 border-2 border-secondary"
+      className="lg:max-w-[31rem] w-full max-h-[2400px]  mx-auto  bg-slate-50 border-2 border-secondary pb-8"
       id="resume-content"
     >
       <div className="">
@@ -88,8 +88,8 @@ const Template1 = ({ data, userData }) => {
                   <li key={index}>
                     <h3 className=" font-medium text-sm font-roboto break-words max-w-[420px]">
                       {edu.degree || "Your Degree"} -{" "}
-                      {edu.institution || "Institute"} -{" "}
-                      <span className="">({edu.year || "2024"})</span>
+                      {edu.institution || "Institute Name"} -{" "}
+                      <span className="">({edu.year || "Passing Year"})</span>
                     </h3>
                   </li>
                 ))}
@@ -100,17 +100,17 @@ const Template1 = ({ data, userData }) => {
           {/* Certifications */}
           {userData?.certifications && userData?.certifications.length >= 1 && (
             <section className="mb-1 space-y-3">
-              <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
+              <h2 className=" uppercase font-roboto text-sm font-bold text-blue-900 border-b border-blue-950 ">
                 Certifications
               </h2>
               <ul className="mt-1 text-sm space-y-1 break-words max-w-[420px]">
                 {userData?.certifications.map((cert, index) => (
                   <li key={index}>
-                    <h3 className=" font-semibold break-words max-w-[420px]">
-                      {cert.title || "Coure Name"} -{" "}
-                      {cert.institution || "Institute"}{" "}
-                      <span className="text-gray-500">
-                        ({cert.year || "Finishing Date (e.g 2019)"})
+                    <h3 className=" font-medium font-roboto break-words max-w-[420px]">
+                      {cert.title || "Course Name"} -{" "}
+                      {cert.institution || "Institute Name"} -{" "}
+                      <span className="">
+                        ({cert.year || "Duration"})
                       </span>
                     </h3>
                   </li>
@@ -122,15 +122,15 @@ const Template1 = ({ data, userData }) => {
           {/* Work Experience */}
           {userData?.workExperience && userData?.workExperience.length >= 1 && (
             <section className="mb-1 space-y-3">
-              <h2 className=" font-bold text-sm uppercase text-blue-900 border-b border-blue-950 ">
+              <h2 className=" font-bold font-roboto text-sm uppercase text-blue-900 border-b border-blue-950 ">
                 Work Experience
               </h2>
-              <ul className="mt-1 text-sm ">
+              <ul className="mt-1 text-sm font-roboto">
                 {userData?.workExperience.map((exp, index) => (
-                  <li key={index}>
-                    <h3 className=" font-semibold">
-                      {exp.jobTitle || "Postion"} -{" "}
-                      {exp.company || "Company Name"}{" "}
+                  <li key={index} className="mb-2">
+                    <h3 className="font-medium">
+                      {exp.jobTitle || "Your Postion"} -{" "}
+                      {exp.company || "Company Name"} -{" "}
                       {/* <span className="text-gray-500">
                         ({exp.years || "Year of Experience"})
                       </span> */}
@@ -177,7 +177,7 @@ const Template1 = ({ data, userData }) => {
                         )
                       </span>
                     </h3>
-                    <p className="text-gray-600  text-sm max-w-[450px] break-words">
+                    <p className="font-roboto text-justify  text-sm max-w-[450px] break-words">
                       {exp.description ||
                         "Include your degree, school name and the year you graduated. If you don’t have a degree, list coursework or training that’s relevant to the job you’re applying for."}
                     </p>
@@ -210,10 +210,10 @@ const Template1 = ({ data, userData }) => {
           {/* languages */}
           {userData?.languages && userData?.languages.length >= 1 && (
             <section className="mb-1 space-y-3">
-              <h2 className=" uppercase text-sm font-bold text-blue-900 border-b border-blue-950 ">
+              <h2 className=" uppercase text-sm font-roboto font-bold text-blue-900 border-b border-blue-950 ">
                 language
               </h2>
-              <ul className="mt-1 text-sm  grid grid-cols-2 justify-between list-disc list-inside">
+              <ul className="mt-1 text-sm font-roboto  grid grid-cols-2 justify-between list-disc list-inside">
                 {userData?.languages.map((language, index) => (
                   <li key={index} className="pl-2">
                     <h3 className=" font-semibold inline-block">{language}</h3>
