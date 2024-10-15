@@ -4,6 +4,7 @@ import PremiumFeature from "../../Components/Home/PremiumFeature";
 import StepsOfResume from "../../Components/Home/StepsOfResume";
 import Testomonial from "../../Components/Testomonial/Testomonial";
 import Chat from "../../Components/LiveChat/Chat";
+import PremiumModal from "../../Components/Modal/PremiumModal";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Helmet>
         <title>Home - PerfectProfile</title>
       </Helmet>
+      <PremiumModal /> 
       <div className="bg-[#F9FAFF]">
         <Banner />
       </div>
