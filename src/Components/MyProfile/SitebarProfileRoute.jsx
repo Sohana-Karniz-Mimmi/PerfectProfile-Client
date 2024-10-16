@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   FaUser,
   FaEdit,
@@ -12,18 +12,22 @@ const SitebarProfileRoute = () => {
   return (
     <div className="">
       <div className="text-center py-8">
-        <h2 className="text-2xl font-bold">Profile Settings</h2>
+        {/* <h2 className="text-2xl font-bold">Profile Settings</h2> */}
       </div>
       <nav className="mt-10">
         <ul className="space-y-4">
           <li>
-            <Link
-              to="/general"
-              className="flex items-center gap-2 p-4 hover:bg-gray-300 transition duration-200"
+            <NavLink
+              to="/userDashboard/editingProfile"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-4 transition duration-200 ${
+                  isActive ? "text-white" : "hover:text-gray-300"
+                }`
+              }
             >
               <FaUser />
               General
-            </Link>
+            </NavLink>
           </li>
           {/* <li>
             <Link
@@ -35,13 +39,17 @@ const SitebarProfileRoute = () => {
             </Link>
           </li> */}
           <li>
-            <Link
-              to="/address"
-              className="flex items-center gap-2 p-4 hover:bg-primary transition duration-200"
+            <NavLink
+              to="/userDashboard/address"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-4 transition duration-200 ${
+                  isActive ? " text-white" : "hover:text-gray-300 "
+                }`
+              }
             >
               <FaAddressBook />
               Address
-            </Link>
+            </NavLink>
           </li>
           {/* <li>
             <Link

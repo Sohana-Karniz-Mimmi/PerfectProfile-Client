@@ -9,7 +9,7 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
-import Profile from "../Components/MyProfile/Profile";
+// import Profile from "../Components/MyProfile/Profile";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
 // import SocketChatLive from "../Components/LiveChat/SocketChatLive";
 import DashboardLayout from "../Layouts/DashboardLayout";
@@ -23,6 +23,8 @@ import PremiumRoute from "./PremiumRoute";
 import PremiumModal from "../Components/Modal/PremiumModal";
 import MyResume from "../Pages/MyResume/MyResume";
 import Address from "../Components/MyProfile/Address";
+import UserDashboardLayout from "../Components/MyProfile/UserDashboardLayout";
+import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 
 const router = createBrowserRouter([
   {
@@ -57,10 +59,10 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
+      // {
+      //   path: "/profile",
+      //   element: <Profile />,
+      // },
       // {
       //   path: "/livechat",
       //   element: <SocketChatLive />,
@@ -69,10 +71,10 @@ const router = createBrowserRouter([
         path: "/liveChat",
         element: <MainChatBox />,
       },
-      {
-        path: "/address",
-        element: <Address />,
-      },
+      // {
+      //   path: "/address",
+      //   element: <Address />,
+      // },
       {
         path: "/my-resume",
         element: <MyResume />,
@@ -125,6 +127,20 @@ const router = createBrowserRouter([
             </AdminRoute>
           </PrivetRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: "/userDashboard",
+    element: <UserDashboardLayout />,
+    children: [
+      {
+        path: "editingProfile",
+        element: <BeforeEditingProfile />,
+      },
+      {
+        path: "address",
+        element: <Address />,
       },
     ],
   },
