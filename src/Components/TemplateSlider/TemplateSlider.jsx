@@ -108,7 +108,10 @@ export default function App() {
                 )}
               </div>
               <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
-                <Link to={`resume/edit/${template.templateItem}`}>
+                <Link
+                  to={`resume/edit/${template.templateItem}`}
+                  state={{ template: template }}
+                >
                   <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     Use Template
                   </button>

@@ -1,30 +1,46 @@
+import { useContext, useEffect, useState } from 'react';
+import { Navigate, useLocation, Link } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import LoadingSpinner from '../Shared/LoadingSpinner';
+import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
-import PurchaseModal from "../Components/Modal/PurchaseModal";
-import useAuth from "../Hook/useAuth";
-import { useState } from 'react';
 
-const PremiumRoute = ({ children, template }) => {
-  const { user } = useAuth(); // ইউজার তথ্য
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+const PremiumRoute = ({ children }) => {
+  const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
+  const template = location.state?.template;
 
-  if (!user) {
-    setShowLoginModal(true);
-    return <LoginModal onClose={() => setShowLoginModal(false)} />;
+  if (loading) {
+    return <LoadingSpinner />;
   }
 
-  if (template.package === "premium") {
-    if (user.productName !== "standard" && user.productName !== "premium") {
-      setShowPurchaseModal(true);
-      return <PurchaseModal onClose={() => setShowPurchaseModal(false)} />;
+  useEffect(() => {
+    if (!user) {
+      toast.error('You have to log in first');
+      setTimeout(() => {
+        document.getElementById("my_modal_3").showModal();
+      }, 1000);
+     
+    } else if (template?.package === "premium") {
+      if (user.productName !== "standard" && user.productName !== "premium") {
+        setTimeout(() => {
+          document.getElementById("premium-modal").showModal(); //
+          console.log('Premium user not available');
+        }, 1000);
+        
+      }
     }
-  }
-  return children;
+  }, [user, template]);
+
+    if (user && (user.productName === "standard" || user.productName === "premium" || !template?.package)) {
+      return children;
+    }
+
+  return <Navigate to={`/`} state={location?.pathname || '/'} />;
 };
 
 PremiumRoute.propTypes = {
-  children: PropTypes.node,
-  template: PropTypes.object.isRequired, 
+  children: PropTypes.node
 };
 
 export default PremiumRoute;
