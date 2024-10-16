@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 // import Template1 from "../../Components/TemplateSection/Template1";
-import Template2 from "../../Components/TemplateSection/Template2";
-import Template3 from "../../Components/TemplateSection/Template3";
+// import Template2 from "../../Components/TemplateSection/Template2";
+// import Template3 from "../../Components/TemplateSection/Template3";
 import {
   FaBackward,
   FaCertificate,
@@ -33,7 +33,12 @@ import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Template1 from "../../assets/Template1";
-import Template4 from "../../Components/TemplateSection/Template4";
+import Template2 from "../../assets/Template2";
+import Template3 from "../../assets/Template3";
+import Template4 from "../../assets/Template4";
+import Template5 from "../../assets/Template5";
+import Template6 from "../../assets/Template6";
+// import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
 
@@ -94,9 +99,9 @@ const ResumeEditPage = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date); // Set the selected date
-  };
+  // const handleDateChange = (date) => {
+  //   setSelectedDate(date); // Set the selected date
+  // };
 
   const axiosPublic = useAxiosPublic();
   const [savedDataId, setSaveDataId] = useState("");
@@ -402,6 +407,34 @@ const ResumeEditPage = () => {
     }
     if (id === "template4") {
       return <Template4 data={template} userData={userData} />;
+    }
+  };
+
+  // Dynamic Template Rendering on Resume Customization page
+  // const { templateId } = useParams(); // Assuming templateId comes from the URL or another source
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+
+  useEffect(() => {
+    setSelectedTemplate(id);
+  }, [id]);
+
+  const renderTemplateDynamic = () => {
+    switch (selectedTemplate) {
+      case "template1":
+        return <Template1 userData={userData}/>;
+      case "template2":
+        return <Template2 userData={userData}/>;
+      case "template3":
+        return <Template3 userData={userData}/>;
+      case "template4":
+        return <Template4 userData={userData}/>;
+      case "template5":
+        return <Template5 userData={userData}/>;
+      case "template6":
+        return <Template6 userData={userData}/>;
+      // Add more cases for the other templates
+      default:
+        return <p>Template not found.</p>;
     }
   };
 
@@ -1116,14 +1149,6 @@ const ResumeEditPage = () => {
               </button>
             </div>
           )}
-          {/* {currentStep === 7 && (
-            <div className="space-y-4">
-              <div className="mx-auto shadow-lg p-8">
-              <MdDoneOutline className="text-secondary" />
-                <h2 className="text-3xl font-bold mb-8">Finalize</h2>
-              </div>
-            </div>
-          )} */}
 
           <div className="flex justify-between mt-12">
             {currentStep >= 1 && (
@@ -1160,7 +1185,7 @@ const ResumeEditPage = () => {
       </div>
       {/* Template preview area */}
       <div className="lg:w-[40%] w-[100%] lg:p-8 px-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
-        {renderTemplate(id)}
+        {renderTemplateDynamic()}
         <div className="flex flex-col justify-center items-center py-6 space-y-6">
           <button className="font-roboto font-medium text-primary">
             Change Template

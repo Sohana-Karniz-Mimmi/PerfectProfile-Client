@@ -1,137 +1,149 @@
-import { useState } from 'react'
-import { GrLogout } from 'react-icons/gr'
+import { useState } from "react";
+import { GrLogout } from "react-icons/gr";
 // import { FcSettings } from 'react-icons/fc'
 // import { BsFingerprint, BsFillHouseAddFill } from 'react-icons/bs'
 // import { GrUserAdmin } from 'react-icons/gr'
 // import { MdHomeWork } from 'react-icons/md'
 // import { NavLink } from 'react-router-dom'
-import { AiOutlineBars } from 'react-icons/ai'
-import { Link, useNavigate } from 'react-router-dom'
+import { AiOutlineBars, AiOutlineClose, AiOutlineOpenAI } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
 // import ToggleBtn from '../../Shared/Button/ToggleBtn'
 import { GoHomeFill } from "react-icons/go";
 import { FaUsers } from "react-icons/fa6";
 import { MdPayments } from "react-icons/md";
 import { HiTemplate } from "react-icons/hi";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-
-import MenuItem from './MenuItem';
-import useAuth from '../../Hook/useAuth';
+import MenuItem from "./MenuItem";
+import useAuth from "../../Hook/useAuth";
+import { FaHamburger } from "react-icons/fa";
 
 const Sidebar = () => {
-  const { logOut } = useAuth()
+  const { logOut } = useAuth();
   const navigate = useNavigate();
-  const [isActive, setActive] = useState(false)
+  const [isActive, setActive] = useState(false);
   // const [toggle, setToggle] = useState(true)
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
-    setActive(!isActive)
-  }
+    setActive(!isActive);
+  };
 
   const handleLogoutBtn = () => {
-    logOut()
-    navigate('/')
-        .then(() => {
-            console.log("Sing Out Successfully");
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}
-  
+    logOut();
+    navigate("/")
+      .then(() => {
+        console.log("Sing Out Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
-      {/* Small Screen Navbar */}
-      <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
-        <div>
-          <div className='block cursor-pointer p-4 font-bold'>
+      {/* Mobile Navbar */}
+      <div className="bg-[#00000f] flex justify-between w-full fixed top-0 left-0 z-50 md:hidden">
+        <div className="p-4">
           <Link
-              to={"/"}
-              className="font-bold text-lg md:text-3xl gap-3 flex items-center"
-            >
+            to="/"
+            className="font-bold text-lg md:text-3xl gap-3 flex items-center"
+          >
+            <h1 className="uppercase font-bold font-lora text-white">
               <span>
-                P<span>er</span>fect
+                Perfect
                 <span className="text-primary">Profile</span>
               </span>
-            </Link>
-          </div>
+            </h1>
+          </Link>
         </div>
 
         <button
           onClick={handleToggle}
-          className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
+          className={`p-4 focus:outline-none ${
+            isActive ? "text-secondary" : "text-primary"
+          } `}
         >
-          <AiOutlineBars className='h-5 w-5' />
+          {isActive ? (
+            <AiOutlineClose className="text-2xl" /> // Close button when sidebar is open
+          ) : (
+            <GiHamburgerMenu className="text-2xl" /> // Open button when sidebar is closed
+          )}
         </button>
       </div>
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
-          isActive && '-translate-x-full'
-        }  md:translate-x-0  transition duration-200 ease-in-out`}
+        className={`z-40 fixed md:static flex flex-col justify-between bg-[#00000f] text-white md:w-full w-[80%] min-h-full space-y-6 px-2 py-4
+        transform ${isActive ? "translate-x-0" : "-translate-x-full"} 
+        transition-transform duration-200 ease-in-out md:translate-x-0 md:relative`}
       >
-        <div>
-          <div>
-            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center mx-auto'>
-            <Link
-              to={"/"}
-              className="font-bold text-lg md:text-3xl gap-3 flex items-center"
-            >
-              <span>
-                P<span>er</span>fect
-                <span className="text-primary">Profile</span>
-              </span>
+        <div className="">
+          {/* Close Button for Mobile Devices */}
+          <div className="hidden md:block px-4">
+            <Link to="/" className="  ">
+              <h1 className="font-bold text-lg lg:text-2xl uppercase font-lora">
+                <span>
+                  Perfect
+                  <span className="text-primary">Profile</span>
+                </span>
+              </h1>
             </Link>
-            </div>
           </div>
-
-          {/* Nav Items */}
-          <div className='flex flex-col justify-between flex-1 mt-6'>
-
-            {/*  Menu Items */}
-            <nav>
-              {/* Statistics */}
-              <MenuItem
-                label='Overview'
-                address='/dashboard'
-                icon={GoHomeFill}
-              />
-              <MenuItem
-                label='Manage Users'
-                address='manage-users'
-                icon={FaUsers}
-              />
-              <MenuItem
-                label='Subscription'
-                address='subscription'
-                icon={MdPayments}
-              />
-              <MenuItem
-                label='All Templates'
-                address='all-templates'
-                icon={HiTemplate}
-              />
-              
-            </nav>
-          </div>
+          {isActive && (
+            <button onClick={handleToggle} className="p-2 text-white md:hidden">
+              <AiOutlineClose className="h-5 w-5" />
+            </button>
+          )}
         </div>
 
-        <div>
-          <hr />
-          <button
-            onClick={handleLogoutBtn}
-            className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
-          >
-            <GrLogout className='w-5 h-5' />
-
-            <span className='mx-4 font-medium'>Logout</span>
-          </button>
+        {/* Nav Items */}
+        <div className="flex flex-col justify-between h-full flex-1 mt-6">
+          <nav>
+            <MenuItem
+              label="Overview"
+              address="/dashboard"
+              icon={GoHomeFill}
+              handleToggle={handleToggle} // Pass handleToggle to MenuItem
+            />
+            <MenuItem
+              label="Manage Users"
+              address="manage-users"
+              icon={FaUsers}
+              handleToggle={handleToggle} // Pass handleToggle to MenuItem
+            />
+            <MenuItem
+              label="Subscription"
+              address="/subscription"
+              icon={MdPayments}
+              handleToggle={handleToggle} // Pass handleToggle to MenuItem
+            />
+            <MenuItem
+              label="Transaction History"
+              address="/transaction-history"
+              icon={MdPayments}
+              handleToggle={handleToggle} // Pass handleToggle to MenuItem
+            />
+            <MenuItem
+              label="All Templates"
+              address="/all-templates"
+              icon={HiTemplate}
+              handleToggle={handleToggle} // Pass handleToggle to MenuItem
+            />
+            <div className="mt-24">
+              <button
+                onClick={handleLogoutBtn}
+                className="flex w-full items-center px-4 py-2 mt-5 text-gray-600  transition-colors duration-300 transform"
+              >
+                <GrLogout className="text-2xl text-secondary" />
+                <span className="mx-4 font-medium font-montserrat text-lg text-white">Logout</span>
+              </button>
+            </div>
+          </nav>
         </div>
       </div>
     </>
-  )
- 
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

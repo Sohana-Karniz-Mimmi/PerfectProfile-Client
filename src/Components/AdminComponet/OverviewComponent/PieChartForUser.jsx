@@ -9,9 +9,11 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { useEffect, useState } from "react";
 
 const PieChartForUser = () => {
   const users = useSelector(selectAllUsersState);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   console.log(users);
 
@@ -60,6 +62,26 @@ const PieChartForUser = () => {
     );
   };
 
+  
+
+  // Update window width when resized
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // Add event listener for resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Set outerRadius dynamically based on window width
+  const getOuterRadius = () => (windowWidth < 768 ? 100 : 150);
+
   return (
     <div className="max-w-full w-full h-[70vh] px-2">
       <h2 className="text-2xl font-bold pb-10 font-lora">
@@ -73,7 +95,7 @@ const PieChartForUser = () => {
             cy="50%"
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={150}
+            outerRadius={getOuterRadius()}
             fill="#8884d8"
             dataKey="value"
           >
