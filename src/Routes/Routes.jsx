@@ -18,6 +18,9 @@ import ManageUsers from "../Pages/AdminDashboard/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import PremiumRoute from "./PremiumRoute";
+import PremiumModal from "../Components/Modal/PremiumModal";
+import MyResume from "../Pages/MyResume/MyResume";
 
 const router = createBrowserRouter([
   {
@@ -60,11 +63,24 @@ const router = createBrowserRouter([
         path: "/livechat",
         element: <SocketChatLive />,
       },
+      {
+        path: "/my-resume",
+        element: <MyResume />,
+      },
     ],
   },
   {
     path: "/resume/edit/:id",
-    element: <PrivateRoute><ResumeEditPage /></PrivateRoute>,
+    element: (
+      <PremiumRoute> 
+        <ResumeEditPage />
+      </PremiumRoute>
+    ),
+  
+  },
+  {
+    path: "/premium",
+    element: <PremiumModal />,
   },
   {
     path: "/resume/final-resume/:id",

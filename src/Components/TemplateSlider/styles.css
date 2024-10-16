@@ -90,9 +90,15 @@
     height: 520px;
   }
 }
+@media (min-width: 1680px) {
+  .size {
+    height: 520px;
+  }
+}
 @media (min-width: 1992px) {
   .size {
     height: 760px;
   }
 }
+
 
