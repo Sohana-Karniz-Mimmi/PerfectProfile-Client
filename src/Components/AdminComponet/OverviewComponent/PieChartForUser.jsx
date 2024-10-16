@@ -84,7 +84,7 @@ const PieChartForUser = () => {
 
   return (
     <div className="max-w-full w-full h-[70vh] px-2">
-      <h2 className="text-2xl font-bold pb-10 font-lora">
+      <h2 className="text-2xl font-bold  font-lora">
         Overview of our Different type of user
       </h2>
       <ResponsiveContainer width="100%" height="100%">

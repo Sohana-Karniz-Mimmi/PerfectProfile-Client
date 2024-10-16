@@ -50,7 +50,7 @@ const HeadingChart = () => {
   ];
 
   return (
-    <div className="w-full h-full overflow-x-auto  font-montserrat">
+    <div className="w-full h-full overflow-x-auto font-montserrat">
       <h2 className="text-2xl font-bold pb-10 font-lora">Most Used Template</h2>
       <div className="min-w-[1080px] w-full lg:w-[100%]">
         {" "}

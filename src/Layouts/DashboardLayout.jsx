@@ -15,14 +15,14 @@ const DashboardLayout = () => {
   }, [dispatch, size, filter, search]);
 
   return (
-    <div className="min-h-screen md:flex justify-between">
+    <div className="min-h-screen md:flex justify-between bg-gray-50">
       {/* Sidebar */}
       <div className="w-2/6 flex-1">
         <Sidebar />
       </div>
 
       {/* Outlet --> Dynamic content */}
-      <div className="md:w-5/6 border-2 overflow-hidden border-red-500">
+      <div className="md:w-5/6 overflow-hidden">
         <div className="md:p-6 p-2 md:mt-0 mt-20">
           <Outlet />
         </div>
