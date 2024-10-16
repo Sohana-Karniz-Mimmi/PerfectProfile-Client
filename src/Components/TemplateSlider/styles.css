@@ -1,0 +1,104 @@
+/* Responsive styles */
+
+@media (min-width: 280px) and (max-width: 320px) {
+  .size {
+    height: 210px;
+  }
+}
+@media (min-width: 321px) and (max-width: 376px) {
+  .size {
+    height: 240px;
+  }
+}
+@media (min-width: 376px) and (max-width: 426px) {
+  .size {
+    height: 300px;
+  }
+}
+@media (min-width: 426px) and (max-width: 490px) {
+  .size {
+    height: 340px;
+  }
+}
+@media (min-width: 490px) and (max-width: 568px) {
+  .size {
+    height: 370px;
+  }
+}
+@media (min-width: 568px) and (max-width: 625px) {
+  .size {
+    height: 390px;
+  }
+}
+@media (min-width: 625px) and (max-width: 692px) {
+  .size {
+    height: 440px;
+  }
+}
+@media (min-width: 692px) and (max-width: 768px) {
+  .size {
+    height: 490px;
+  }
+}
+@media (min-width: 768px) and (max-width: 792px) {
+  .size {
+    height: 350px;
+  }
+}
+@media (min-width: 792px) and (max-width: 852px) {
+  .size {
+    height: 380px;
+  }
+}
+@media (min-width: 852px) and (max-width: 892px) {
+  .size {
+    height: 400px;
+  }
+}
+@media (min-width: 892px) and (max-width: 972px) {
+  .size {
+    height: 430px;
+  }
+}
+@media (min-width: 972px) and (max-width: 1024px) {
+  .size {
+    height: 450px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1120px) {
+  .size {
+    height: 360px;
+  }
+}
+@media (min-width: 1120px) and (max-width: 1240px) {
+  .size {
+    height: 390px;
+  }
+}
+@media (min-width: 1240px) and (max-width: 1340px) {
+  .size {
+    height: 420px;
+  }
+}
+@media (min-width: 1340px) and (max-width: 1440px) {
+  .size {
+    height: 465px;
+  }
+}
+@media (min-width: 1440px) {
+  .size {
+    height: 520px;
+  }
+}
+@media (min-width: 1680px) {
+  .size {
+    height: 520px;
+  }
+}
+@media (min-width: 1992px) {
+  .size {
+    height: 760px;
+  }
+}
+
+

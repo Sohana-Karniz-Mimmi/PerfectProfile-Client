@@ -251,11 +251,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-       <Helmet>
-                <title>Contact Us- PerfectProfile</title>
-            </Helmet>
+      <Helmet>
+        <title>Contact Us- PerfectProfile</title>
+      </Helmet>
       <section
-        className="lg:py-52 py-16 bg-primary relative"
+        className="lg:py-72 py-16 bg-primary relative"
         style={{
           backgroundImage: `url(${contact})`,
           backgroundSize: "cover",
@@ -275,46 +275,48 @@ const Contact = () => {
         </Container>
       </section>
       <Container>
-        <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 lg:-mt-24 -mt-8 z-50">
-          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
-            <FaMapMarkerAlt className="text-3xl text-primary" />
-            <h2 className="text-xl text-center font-extrabold font-lora uppercase">
-              Our main office
-            </h2>
-            <p className="font-montserrat text-center">
-              117/A, Rangs Bhaban, Bijoy Sharani, Tejgaon, Dhaka-1215
-            </p>
-          </div>
-          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
-            <FaPhoneAlt className="text-3xl text-primary" />
-            <h2 className="text-xl text-center font-extrabold font-lora uppercase">
-              Phone number
-            </h2>
-            <p className="font-montserrat text-center">
-              234-5674-6855 <br />
-              888-4567-9845 - Toll free
-            </p>
-          </div>
-          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
-            <FaRocketchat className="text-3xl text-primary" />
-            <h2 className="text-xl text-center font-extrabold font-lora uppercase">
-              Live chat
-            </h2>
-            <p className="font-montserrat text-center">
-              Get real-time assistance and answers to your questions quickly.
-            </p>
-          </div>
-          <div className="lg:w-[250px] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
-            <FaEnvelope className="text-3xl text-primary" />
-            <h2 className="text-xl text-center font-extrabold font-lora uppercase">
-              Email
-            </h2>
-            <p className="font-montserrat text-center">
-              support@perfectprofile.com
-            </p>
+        <section className="container mx-auto">
+          <div className="grid lg:grid-cols-4 mx-auto md:grid-cols-2 grid-cols-1 xl:gap-24 gap-6 lg:-mt-24 -mt-8 z-50">
+            <div className="lg:w-[100%] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
+              <FaMapMarkerAlt className="text-3xl text-secondary" />
+              <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+                Our main office
+              </h2>
+              <p className="font-montserrat text-center">
+                117/A, Rangs Bhaban, Bijoy Sharani, Tejgaon, Dhaka-1215
+              </p>
+            </div>
+            <div className="lg:w-[100%] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
+              <FaPhoneAlt className="text-3xl text-secondary" />
+              <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+                Phone number
+              </h2>
+              <p className="font-montserrat text-center">
+                234-5674-6855 <br />
+                888-4567-9845 - Toll free
+              </p>
+            </div>
+            <div className="lg:w-[100%] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
+              <FaRocketchat className="text-3xl text-secondary" />
+              <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+                Live chat
+              </h2>
+              <p className="font-montserrat text-center">
+                Get real-time assistance and answers to your questions quickly.
+              </p>
+            </div>
+            <div className="lg:w-[100%] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
+              <FaEnvelope className="text-3xl text-secondary" />
+              <h2 className="text-xl text-center font-extrabold font-lora uppercase">
+                Email
+              </h2>
+              <p className="font-montserrat text-center">
+                info@perfectprofile.com
+              </p>
+            </div>
           </div>
         </section>
-        <section className="py-12">
+        <section className="py-24">
           <div className="flex lg:flex-row flex-col-reverse justify-between gap-8">
             <div className="lg:w-1/2 w-full">
               <form
@@ -331,7 +333,7 @@ const Contact = () => {
                   <input
                     id="name"
                     {...register("name", { required: "Name is required" })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary focus:bg-gray-50"
                     placeholder="Enter your name"
                   />
                   {errors.name && (
@@ -352,7 +354,7 @@ const Contact = () => {
                     id="email"
                     type="email"
                     {...register("email", { required: "Email is required" })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary focus:bg-gray-50"
                     placeholder="Enter your email"
                   />
                   {errors.email && (
@@ -374,7 +376,7 @@ const Contact = () => {
                     {...register("message", {
                       required: "Message is required",
                     })}
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary focus:bg-gray-50"
                     placeholder="Enter your message"
                     rows="5"
                   />
@@ -393,7 +395,7 @@ const Contact = () => {
                 </button>
               </form>
             </div>
-            <div className="lg:w-1/2 w-full py-6 pl-6 space-y-4 flex flex-col justify-between border">
+            <div className="lg:w-1/2 w-full  pl-6 space-y-4 flex flex-col justify-between">
               <div className="space-y-4">
                 <h2 className="font-montserrat text-3xl font-bold">
                   Get in touch

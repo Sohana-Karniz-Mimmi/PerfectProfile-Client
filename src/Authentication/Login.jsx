@@ -3,7 +3,7 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 
 import useAuth from "../Hook/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
@@ -12,6 +12,9 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Login = () => {
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location?.state || '/'
   const { signIn, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const [eye, setEye] = useState(false);
   const [remember, setRemember] = useState(false);
@@ -47,7 +50,7 @@ const Login = () => {
           setTimeout(() => {
             if (location.state) {
               document.getElementById("my_modal_3").close();
-              navigate(location.state);
+              navigate(from);
             } else {
               document.getElementById("my_modal_3").close();
               // navigate("/");
@@ -69,27 +72,67 @@ const Login = () => {
     }
   };
 
+  // const handleSocialSignIn = (socialProvider) => {
+  //   socialProvider()
+  //     .then(async (result) => {
+  //       console.log(result);
+  //       toast.success("Login Successfully!");
+
+  //       setTimeout(() => {
+  //         if (location.state) {
+  //           document.getElementById("my_modal_3").close();
+  //           navigate(location.state);
+  //         } else {
+  //           document.getElementById("my_modal_3").close();
+  //           navigate("/");
+  //         }
+  //       }, 1000);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  
+
   const handleSocialSignIn = (socialProvider) => {
     socialProvider()
       .then(async (result) => {
-        console.log(result);
-        toast.success("Login Successfully!");
+        const user = result.user;
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+          productName: "free",
+          role : 'user',
+        };
 
-        setTimeout(() => {
-          if (location.state) {
+        // Save user information to the database
+        axiosPublic
+          .post("/users", userInfo)
+          .then((res) => {
+            toast.success("Login Successful!");
             document.getElementById("my_modal_3").close();
-            navigate(location.state);
-          } else {
-            document.getElementById("my_modal_3").close();
-            navigate("/");
-          }
-        }, 1000);
+
+            setTimeout(() => {
+              if (location.state) {
+                navigate(location.state);
+              } else {
+                navigate("/");
+              }
+            }, 1000);
+          })
+          .catch((error) => {
+            console.error("Error saving user to the database:", error);
+            toast.error("Failed to save user information.");
+          });
       })
       .catch((error) => {
-        console.log(error);
+        console.error("Social login error:", error);
+        toast.error("Social login failed.");
       });
   };
-
+  
+  
   return (
     <div>
       <Helmet>

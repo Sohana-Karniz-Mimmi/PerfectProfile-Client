@@ -80,40 +80,57 @@ const FinalResume = () => {
       html2canvas: { scale: 3 },
       jsPDF: { format: "a4", orientation: "portrait" },
     };
-    html2pdf()
-      .set(opt)
-      .from(element)
-      .save();
+    html2pdf().set(opt).from(element).save();
   };
+
+  // const resumeRef = useRef(null);
+
+  // // Generate PDF
+  // const generatePDF = () => {
+  //   const element = resumeRef.current;
+  //   const options = {
+  //     margin: 0, // Set to 0 for full-width
+  //     filename: `${userData.name}_Resume.pdf`,
+  //     image: { type: "jpeg", quality: 0.98 },
+  //     html2canvas: { scale: 2 }, // Increase the scale for better quality
+  //     jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+  //   };
+
+  //   html2pdf().set(options).from(element).save();
+  // };
 
   return (
     <div className="h-screen">
-      <div className="py-6 px-4 bg-[#00000f]">
-        <Link
-          to={"/"}
-          className="font-bold text-lg md:text-3xl gap-3 flex items-center"
-        >
-          <span className="text-white">
-            Perfect
-            <span className="text-primary">Profile</span>
-          </span>
+      <div className="py-6 px-4 flex items-center bg-[#00000f]">
+        <Link to="/">
+          <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora uppercase">
+            Perfect<span className="text-primary">Profile</span>
+          </h1>
         </Link>
       </div>
       <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
         <div className="lg:w-2/12 w-full"></div>
 
-        <div id="element" className="lg:w-8/12 w-full pt-0">
-          {renderTemplate(info?.userData?.templateItem)}
+        <div>
+          <div id="element" className=" w-full pt-0">
+            {renderTemplate(info?.userData?.templateItem)}
+          </div>
         </div>
         
      
         <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
          
-
+        {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
           <div className="relative text-right">
             <Menu as="div" className="relative inline-block text-left ">
                 <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-                <button   className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
+               
+       
+          <button
+            onClick={handlePdf}
+            // onClick={generatePDF}
+            className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
+          >
             <FaFileExport className="text-secondary" /> Export
           </button>
                 </Menu.Button>
