@@ -278,7 +278,7 @@ const Contact = () => {
         <section className="container mx-auto">
           <div className="grid lg:grid-cols-4 mx-auto md:grid-cols-2 grid-cols-1 xl:gap-24 gap-6 lg:-mt-24 -mt-8 z-50">
             <div className="lg:w-[100%] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
-              <FaMapMarkerAlt className="text-3xl text-primary" />
+              <FaMapMarkerAlt className="text-3xl text-secondary" />
               <h2 className="text-xl text-center font-extrabold font-lora uppercase">
                 Our main office
               </h2>
@@ -287,7 +287,7 @@ const Contact = () => {
               </p>
             </div>
             <div className="lg:w-[100%] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
-              <FaPhoneAlt className="text-3xl text-primary" />
+              <FaPhoneAlt className="text-3xl text-secondary" />
               <h2 className="text-xl text-center font-extrabold font-lora uppercase">
                 Phone number
               </h2>
@@ -297,7 +297,7 @@ const Contact = () => {
               </p>
             </div>
             <div className="lg:w-[100%] w-full p-6 flex flex-col  items-center h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
-              <FaRocketchat className="text-3xl text-primary" />
+              <FaRocketchat className="text-3xl text-secondary" />
               <h2 className="text-xl text-center font-extrabold font-lora uppercase">
                 Live chat
               </h2>
@@ -306,7 +306,7 @@ const Contact = () => {
               </p>
             </div>
             <div className="lg:w-[100%] w-full p-6 flex flex-col  items-center  h-[250px] bg-white shadow-2xl rounded z-10 space-y-5">
-              <FaEnvelope className="text-3xl text-primary" />
+              <FaEnvelope className="text-3xl text-secondary" />
               <h2 className="text-xl text-center font-extrabold font-lora uppercase">
                 Email
               </h2>
