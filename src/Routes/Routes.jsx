@@ -20,6 +20,8 @@ import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import MainChatBox from "../Components/LiveChat/NewChatComponent/MainChatbox";
 import PremiumRoute from "./PremiumRoute";
+import PremiumModal from "../Components/Modal/PremiumModal";
+import MyResume from "../Pages/MyResume/MyResume";
 import Address from "../Components/MyProfile/Address";
 
 const router = createBrowserRouter([
@@ -71,15 +73,23 @@ const router = createBrowserRouter([
         path: "/address",
         element: <Address />,
       },
+      {
+        path: "/my-resume",
+        element: <MyResume />,
+      },
     ],
   },
   {
     path: "/resume/edit/:id",
     element: (
-      // <PremiumRoute>
-      <ResumeEditPage />
+      <PremiumRoute>
+        <ResumeEditPage />
+      </PremiumRoute>
     ),
-    // </PremiumRoute>,
+  },
+  {
+    path: "/premium",
+    element: <PremiumModal />,
   },
   {
     path: "/resume/final-resume/:id",
