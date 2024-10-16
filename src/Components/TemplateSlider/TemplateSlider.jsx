@@ -15,7 +15,7 @@ import useAuth from "../../Hook/useAuth";
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
   <button
-    className="prev absolute z-10 lg:left-24 left-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
+    className="prev absolute z-10 lg:left-12 left-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
     onClick={props.onClick}
   >
     {/* &#10094; */}
@@ -25,7 +25,7 @@ const CustomPrevButton = (props) => (
 
 const CustomNextButton = (props) => (
   <button
-    className="next absolute z-10 lg:right-24 right-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
+    className="next absolute z-10 lg:right-12 right-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
     onClick={props.onClick}
   >
     {/* &#10095; */}
