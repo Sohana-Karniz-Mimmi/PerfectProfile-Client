@@ -1,7 +1,6 @@
 import { FcGoogle } from "react-icons/fc";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-
 import useAuth from "../Hook/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -12,9 +11,9 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Login = () => {
   const axiosPublic = useAxiosPublic();
-  const navigate = useNavigate()
-  const location = useLocation()
-  const from = location?.state || '/'
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
   const { signIn, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const [eye, setEye] = useState(false);
   const [remember, setRemember] = useState(false);
@@ -27,112 +26,64 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const form = e.target;
-    const email = form.email.value;
-    const pass = form.password.value;
+    const { email, password } = e.target;
 
     if (remember) {
-      signIn(email, pass)
-        .then((result) => {
-          const loggedInUser = result.user;
+      try {
+        const result = await signIn(email.value, password.value);
+        const loggedInUser = result.user;
 
-          console.log(loggedInUser);
-          const user = { email };
-          axiosPublic
-            .post("/jwt", user, { withCredentials: true })
-            .then((res) => {
-              console.log(res.data);
-            });
-          form.reset();
-          toast.success("Login Successfully!");
+        const user = { email: loggedInUser.email };
+        await axiosPublic.post("/login", user, { withCredentials: true });
 
-          setTimeout(() => {
-            if (location.state) {
-              document.getElementById("my_modal_3").close();
-              navigate(from);
-            } else {
-              document.getElementById("my_modal_3").close();
-              // navigate("/");
-            }
-          }, 1000);
-        })
-        .catch((error) => {
-          console.log(error.message);
-          if (
-            error.message.includes("Firebase: Error (auth/invalid-credential).")
-          ) {
-            toast.error("Password doesn't match");
-          } else if (error.message.includes("auth/too-many-requests")) {
-            toast.error("This account has been temporarily disabled!");
-          }
-        });
+        toast.success("Login Successfully!");
+        setTimeout(() => {
+          document.getElementById("my_modal_3").close();
+          navigate(from);
+        }, 1000);
+      } catch (error) {
+        handleError(error);
+      }
     } else {
       setErrorText("Please accept our Terms & Conditions!");
     }
   };
 
-  // const handleSocialSignIn = (socialProvider) => {
-  //   socialProvider()
-  //     .then(async (result) => {
-  //       console.log(result);
-  //       toast.success("Login Successfully!");
-
-  //       setTimeout(() => {
-  //         if (location.state) {
-  //           document.getElementById("my_modal_3").close();
-  //           navigate(location.state);
-  //         } else {
-  //           document.getElementById("my_modal_3").close();
-  //           navigate("/");
-  //         }
-  //       }, 1000);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  
-
-  const handleSocialSignIn = (socialProvider) => {
-    socialProvider()
-      .then(async (result) => {
-        const user = result.user;
-        const userInfo = {
-          name: user.displayName,
-          email: user.email,
-          productName: "free",
-          role : 'user',
-        };
-
-        // Save user information to the database
-        axiosPublic
-          .post("/users", userInfo)
-          .then((res) => {
-            toast.success("Login Successful!");
-            document.getElementById("my_modal_3").close();
-
-            setTimeout(() => {
-              if (location.state) {
-                navigate(location.state);
-              } else {
-                navigate("/");
-              }
-            }, 1000);
-          })
-          .catch((error) => {
-            console.error("Error saving user to the database:", error);
-            toast.error("Failed to save user information.");
-          });
-      })
-      .catch((error) => {
-        console.error("Social login error:", error);
-        toast.error("Social login failed.");
-      });
+  const handleError = (error) => {
+    console.error(error.message);
+    if (error.message.includes("Firebase: Error (auth/invalid-credential).")) {
+      toast.error("Password doesn't match");
+    } else if (error.message.includes("auth/too-many-requests")) {
+      toast.error("This account has been temporarily disabled!");
+    } else {
+      toast.error("Login failed. Please try again.");
+    }
   };
-  
-  
+
+  const handleSocialSignIn = async (socialProvider) => {
+    try {
+      const result = await socialProvider();
+      const user = result.user;
+      const userInfo = {
+        name: user.displayName,
+        email: user.email,
+        productName: "free",
+        role: "user",
+      };
+
+      await axiosPublic.post("/users", userInfo);
+      toast.success("Login Successful!");
+      document.getElementById("my_modal_3").close();
+
+      setTimeout(() => {
+        navigate(from);
+      }, 1000);
+    } catch (error) {
+      console.error("Social login error:", error);
+      toast.error("Social login failed.");
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -140,24 +91,12 @@ const Login = () => {
       </Helmet>
       <Toaster />
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full font-montserrat ">
+        <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full font-montserrat">
           <div className="bg-white h-[552px] md:h-[550px] p-6">
-            <div>
-              <h1 className="text-2xl font-semibold  mb-2">Login Form</h1>
-              {/* <p className="text-lg font-medium text-center w-[300px]">
-                Great to have you back!{" "}
-                <span
-                  onClick={handleModal}
-                  className="text-blue-500 cursor-pointer"
-                >
-                  Sign Up
-                </span>
-              </p> */}
-            </div>
-
+            <h1 className="text-2xl font-semibold mb-2">Login Form</h1>
             <form
               onSubmit={handleSubmit}
-              className=" w-full pf mt-4 flex flex-col gap-5"
+              className="w-full mt-4 flex flex-col gap-5"
             >
               <div className="relative">
                 <label
@@ -215,26 +154,24 @@ const Login = () => {
                   htmlFor="remember"
                   className="ml-2 block text-sm text-gray-900"
                 >
-                  Terms & Conditions
+                  Accept Terms & Conditions
                 </label>
               </div>
 
-              {remember ? (
-                <></>
-              ) : (
+              {errorText && (
                 <p className="text-red-800 font-semibold">{errorText}</p>
               )}
               <div className="-mt-5 md:-mt-3">
                 <input
                   type="submit"
                   value="Login"
-                  className=" py-2 rounded-md w-1/3 bg-secondary text-white hover:bg-transparent border  hover:text-primary font-montserrat"
+                  className="py-2 rounded-md w-1/3 bg-secondary text-white hover:bg-transparent border hover:text-primary font-montserrat"
                 />
               </div>
               <span>
-                Don't have an account?
+                Don't have an account?{" "}
                 <Link
-                  onClick={() => handleModal()}
+                  onClick={handleModal}
                   className="text-blue-500 cursor-pointer"
                 >
                   Register
@@ -242,12 +179,11 @@ const Login = () => {
               </span>
             </form>
 
-            <div className="bg-gradient-to-r from-[#64c3ab] to-[#3da2be]  py-8 w-full mt-5">
+            <div className="bg-gradient-to-r from-[#64c3ab] to-[#3da2be] py-8 w-full mt-5">
               <p className="text-center text-white mb-6">
-                SignIn with other account
+                Sign In with other accounts
               </p>
               <div className="flex justify-center space-x-4">
-                {/* Google Sign In */}
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(googleSignIn)}
@@ -256,8 +192,6 @@ const Login = () => {
                     <FaGoogle className="text-white" />
                   </button>
                 </div>
-
-                {/* Facebook Sign In */}
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(facebookSignIn)}
@@ -266,8 +200,6 @@ const Login = () => {
                     <FaFacebook className="text-white" />
                   </button>
                 </div>
-
-                {/* Twitter Sign In */}
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(twitterSignIn)}
@@ -276,8 +208,6 @@ const Login = () => {
                     <FaTwitter className="text-white" />
                   </button>
                 </div>
-
-                {/* LinkedIn Sign In */}
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(linkedinSignIn)}

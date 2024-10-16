@@ -1,5 +1,5 @@
-import Search from "./Search";
-import User from "./User";
+import Search from "./LeftSiteBar/Search";
+import User from "./LeftSiteBar/User";
 const LeftSite = () => {
   return (
     <div>

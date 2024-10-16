@@ -9,9 +9,9 @@ import toast, { Toaster } from "react-hot-toast";
 import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const Register = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const from = location?.state || '/'
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
   const axiosPublic = useAxiosPublic();
   const { createUser, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
   const [errorText, setErrorText] = useState("");
@@ -32,11 +32,10 @@ const Register = () => {
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
 
-    // Password validation system
     if (password.length < 6) {
       toast.error("Password should be at least 6 characters long.");
       return;
-    } else if (!/(?=.*[a-z])(?=.*[A-Z]).{6}/.test(password)) {
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])/.test(password)) {
       toast.error(
         "Password must contain at least one uppercase and one lowercase letter."
       );
@@ -45,71 +44,44 @@ const Register = () => {
       toast.error("Passwords do not match.");
       return;
     }
-    const userInfo = {
-      name: name,
-      email: email,
-      productName: "free",
-      role : 'user',
-    };
-    // Create user with email and password
-    createUser(email, password)
-      .then((result) => {
-        const loggedUser = result;
-        console.log(loggedUser);
-        axiosPublic.post("/users", userInfo).then((res) => {
-          toast.success("Successfully signed up!");
-          document.getElementById("my_modal_4").close();
 
-          setTimeout(() => {
-            if (location.state) {
-              navigate(location.state);
-            } else {
-              navigate("/");
-            }
-          }, 1000);
-        });
-      })
-      .catch((error) => {
-        console.error("Error signing up user:", error);
-        toast.error("Sign up failed.");
-      });
+    const userInfo = {
+      name,
+      email,
+      productName: "free",
+      role: "user",
+    };
+
+    try {
+      const result = await createUser(email, password);
+      await axiosPublic.post("/users", userInfo);
+      toast.success("Successfully signed up!");
+      document.getElementById("my_modal_4").close();
+      navigate(from);
+    } catch (error) {
+      console.error("Error signing up user:", error);
+      toast.error("Sign up failed.");
+    }
   };
 
-  const handleSocialSignIn = (socialProvider) => {
-    socialProvider()
-      .then(async (result) => {
-        const user = result.user; // Access user details like name, email, etc.
-        const userInfo = {
-          name: user.displayName,
-          email: user.email,
-          productName: "free",
-          role : 'user',
-        };
-
-        // Save user information to the database
-        axiosPublic
-          .post("/users", userInfo)
-          .then((res) => {
-            toast.success("Login Successful!");
-            document.getElementById("my_modal_4").close();
-
-            setTimeout(() => {
-              if (location.state) {
-                navigate(location.state);
-              } else {
-                navigate("/");
-              }
-            }, 1000);
-          })
-          .catch((error) => {
-            console.error("Error saving user to the database:", error);
-            toast.error("Failed to save user information.");
-          });
-      })
-      .catch((error) => {
-        console.error("Social login error:", error);
-        toast.error("Social login failed.");
-      });
+  const handleSocialSignIn = async (socialProvider) => {
+    try {
+      const result = await socialProvider();
+      const user = result.user;
+      const userInfo = {
+        name: user.displayName,
+        email: user.email,
+        productName: "free",
+        role: "user",
+      };
+      await axiosPublic.post("/users", userInfo);
+      toast.success("Login Successful!");
+      document.getElementById("my_modal_4").close();
+      navigate(from);
+    } catch (error) {
+      console.error("Social login error:", error);
+      toast.error("Social login failed.");
+    }
   };
 
   return (

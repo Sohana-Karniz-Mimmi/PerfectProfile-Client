@@ -3,7 +3,7 @@ import Banner from "../../Components/Home/Banner";
 import PremiumFeature from "../../Components/Home/PremiumFeature";
 import StepsOfResume from "../../Components/Home/StepsOfResume";
 import Testomonial from "../../Components/Testomonial/Testomonial";
-import Chat from "../../Components/LiveChat/NewChatComponent/RightSte/Chat";
+// import Chat from "../../Components/LiveChat/NewChatComponent/RightSte/Chat";
 
 const Home = () => {
   return (
@@ -23,9 +23,9 @@ const Home = () => {
       <div>
         <Testomonial></Testomonial>
       </div>
-      <div>
+      {/* <div>
         <Chat />
-      </div>
+      </div> */}
     </div>
   );
 };

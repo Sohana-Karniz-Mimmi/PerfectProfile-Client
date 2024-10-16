@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 import image from "../../assets/profile image/FjU2lkcWYAgNG6d.jpg";
 import useAuth from "../../Hook/useAuth";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BeforeEditingProfile = () => {
-  const { user, updateUserProfile, updateUserEmail } = useAuth();
+  const { user, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const [isEditingName, setIsEditingName] = useState(false);
   const [username, setUsername] = useState("User not found");
   const [tempUsername, setTempUsername] = useState("");
@@ -66,39 +70,36 @@ const BeforeEditingProfile = () => {
       }
     }
 
-    try {
-      await updateUserProfile(tempUsername, uploadedImageUrl);
-      toast.success("Profile updated successfully!");
-    } catch (error) {
-      console.error(error.message);
-      toast.error("Failed to update profile.");
-    }
-  };
+    const updatedProfile = {
+      name: tempUsername,
+      email: tempEmail,
+      photoURL: uploadedImageUrl,
+    };
 
-  const handleUpdateEmail = async () => {
     try {
-      await updateUserEmail(tempEmail);
-      setEmail(tempEmail);
-      toast.success("Email updated successfully!");
+      const response = await axiosPublic.patch(
+        `/updateProfile/${user?.email}`,
+        updatedProfile
+      );
+      if (response.status === 200) {
+        setUsername(tempUsername);
+        setProfilePhoto(uploadedImageUrl);
+        setEmail(tempEmail);
+        setTempUsername(tempUsername);
+        setTempEmail(tempEmail);
+        Swal.fire("Success", "Profile updated successfully!", "success");
+      } else {
+        Swal.fire("Error", "Failed to update profile.", "error");
+      }
     } catch (error) {
       console.error(error.message);
-      toast.error("Failed to update email.");
+      Swal.fire("Error", "Failed to update profile.", "error");
     }
   };
 
   const handleSaveChanges = async (e) => {
     e.preventDefault();
     await handleUpdateProfile();
-
-    if (isEditingEmail) {
-      await handleUpdateEmail();
-    }
-  };
-
-  // Define handleSaveEmail function
-  const handleSaveEmail = () => {
-    setEmail(tempEmail);
-    setIsEditingEmail(false);
   };
 
   const uploadImageToImgbb = async (file) => {
@@ -129,7 +130,7 @@ const BeforeEditingProfile = () => {
 
   return (
     <form onSubmit={handleSaveChanges} className="p-4 md:p-8 min-h-screen">
-      {/* Profile Photo */}
+      {/* Profile Photo Section */}
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center">
         <div className="flex flex-col items-center md:items-start">
           <h2 className="md:text-2xl mb-4 text-center md:text-left font-montserrat">
@@ -217,7 +218,7 @@ const BeforeEditingProfile = () => {
       <hr className="border-dashed border-slate-500 mt-6" />
 
       {/* Email Section */}
-      <div className="flex flex-col md:flex-row justify-between items-center  mt-4">
+      <div className="flex flex-col md:flex-row justify-between items-center mt-4">
         <div className="w-full md:w-1/2">
           <h1 className="mb-4 text-2xl text-center md:text-left font-montserrat">
             Email
@@ -235,7 +236,10 @@ const BeforeEditingProfile = () => {
                 <button
                   type="button"
                   className="border py-2 px-4 hover:bg-secondary font-montserrat"
-                  onClick={handleSaveEmail}
+                  onClick={() => {
+                    setEmail(tempEmail); // Update email in state
+                    handleCancelEmailEdit();
+                  }}
                 >
                   Save
                 </button>
@@ -266,13 +270,16 @@ const BeforeEditingProfile = () => {
         )}
       </div>
 
-      <Toaster />
-      <div className="flex justify-end mt-60">
+      <hr className="border-dashed border-slate-500 mt-6" />
+
+      {/* Save Changes Button */}
+      <div className="mt-8 flex justify-end">
         <button
           type="submit"
-          className="py-2 px-4 bg-primary hover:bg-secondary text-white rounded-lg font-montserrat"
+          className="border py-2 px-4 hover:bg-secondary font-montserrat"
+          disabled={isUploading}
         >
-          Save Changes
+          {isUploading ? "Uploading..." : "Save Changes"}
         </button>
       </div>
     </form>

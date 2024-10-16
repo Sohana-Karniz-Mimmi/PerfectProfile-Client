@@ -20,6 +20,7 @@ import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import MainChatBox from "../Components/LiveChat/NewChatComponent/MainChatbox";
 import PremiumRoute from "./PremiumRoute";
+import Address from "../Components/MyProfile/Address";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "/liveChat",
         element: <MainChatBox />,
+      },
+      {
+        path: "/address",
+        element: <Address />,
       },
     ],
   },

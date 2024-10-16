@@ -1,5 +1,5 @@
 import React from "react";
-import LeftSite from "./LeftSiteBar/LeftSite";
+import LeftSite from "./LeftSite";
 import LeftSite1 from "./LeftSiteBar/LeftSite1";
 import RightSite from "./RightSte/RightSite";
 

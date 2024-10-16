@@ -25,7 +25,7 @@ const SitebarProfileRoute = () => {
               General
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/edit-profile"
               className="flex items-center gap-2 p-4 hover:bg-gray-700 transition duration-200"
@@ -33,17 +33,17 @@ const SitebarProfileRoute = () => {
               <FaEdit />
               Edit Profile
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
-              to="/social-profiles"
-              className="flex items-center gap-2 p-4 hover:bg-gray-700 transition duration-200"
+              to="/address"
+              className="flex items-center gap-2 p-4 hover:bg-primary transition duration-200"
             >
               <FaAddressBook />
               Address
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/company"
               className="flex items-center gap-2 p-4 hover:bg-gray-700 transition duration-200"
@@ -51,8 +51,8 @@ const SitebarProfileRoute = () => {
               <FaBuilding />
               Company
             </Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link
               to="/applications"
               className="flex items-center gap-2 p-4 hover:bg-gray-700 transition duration-200"
@@ -60,7 +60,7 @@ const SitebarProfileRoute = () => {
               <FaFileAlt />
               Applications
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>
