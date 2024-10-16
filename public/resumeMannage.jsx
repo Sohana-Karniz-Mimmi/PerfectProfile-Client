@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { FaStar, FaEdit, } from 'react-icons/fa';
-import { RiDeleteBinLine } from "react-icons/ri";
+import { FaStar, FaEdit, FaTimes, FaTrash } from 'react-icons/fa';
 import useAxiosPublic from '../../Hook/useAxiosPublic';
-import { LiaTimesSolid } from "react-icons/lia";
 
 const ManageResume = () => {
     const axiosPublic = useAxiosPublic();
     const [templates, setTemplate] = useState([]);
-    const [selectedTemplates, setSelectedTemplates] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedCount, setSelectedCount] = useState(0);
 
     useEffect(() => {
         const getData = async () => {
@@ -17,16 +16,17 @@ const ManageResume = () => {
         getData();
     }, []);
 
-    const handleCheckboxChange = (e, templateId) => {
+    const handleCheckboxChange = (e) => {
         if (e.target.checked) {
-            setSelectedTemplates([...selectedTemplates, templateId]); 
+            setSelectedCount(selectedCount + 1);
+            setShowModal(true);
         } else {
-            setSelectedTemplates(selectedTemplates.filter(id => id !== templateId));
+            setSelectedCount(selectedCount - 1);
         }
     };
 
     const closeModal = () => {
-        setSelectedTemplates([]);
+        setShowModal(false);
     };
 
     return (
@@ -34,7 +34,7 @@ const ManageResume = () => {
             <h1 className="text-3xl font-bold mb-8">Recent Designs</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {templates?.map(template => (
-                    <div key={template._id} className={`relative bg-white rounded-lg p-4 flex flex-col items-center transition-transform transform h-[300px] overflow-hidden ${selectedTemplates.includes(template._id) ? 'border-2 border-blue-500' : ''}`}
+                    <div key={template._id} className="relative bg-white rounded-lg p-4 flex flex-col items-center transition-transform transform h-[300px] overflow-hidden"
                         style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
                         <div>
                             <img src={template.image} alt={template.name} className="object-cover mb-2 rounded h-[250px]" />
@@ -42,9 +42,8 @@ const ManageResume = () => {
                         <div className="absolute inset-0 flex justify-between items-start opacity-0 hover:opacity-100 transition-opacity p-5">
                             <input
                                 type="checkbox"
-                                className="form-checkbox text-black bg-white border-gray-300 focus:ring-offset-2 w-6 h-6"
-                                onChange={(e) => handleCheckboxChange(e, template._id)}
-                                checked={selectedTemplates.includes(template._id)}
+                                className="form-checkbox text-black bg-white p-2 rounded-xl border-gray-300 focus:ring-offset-2 w-6 h-6"
+                                onChange={handleCheckboxChange}
                             />
                             <div className="flex space-x-2">
                                 <button className="text-black hover:text-yellow-500 bg-white p-2 rounded-xl">
@@ -60,26 +59,21 @@ const ManageResume = () => {
             </div>
 
             {/* Modal */}
-            {selectedTemplates.length > 0 && (
-                <div className="fixed inset-0  flex items-end mb-10 justify-center z-50">
-                    <div className="bg-white p-5 rounded-2xl shadow-lg w-[650px]"
-                        style={{
-                            boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-                        }}
-
-                    >
+            {showModal && (
+                <div className="fixed inset-0 flex items-end justify-center z-50">
+                    <div className="bg-white p-5 rounded-lg shadow-lg w-80">
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="text-lg font-semibold">{selectedCount} Selected</h2>
+                            <button onClick={closeModal} className="text-red-500">
+                                <FaTimes size={20} />
+                            </button>
+                        </div>
                         <div className="flex justify-between items-center">
-                            <div className="flex justify-between items-center">
-                                <h2 className="text-lg font-semibold">{selectedTemplates.length} Selected</h2>
-
-                            </div>
-
-                            <button className=" flex items-center space-x-1">
-                                <RiDeleteBinLine className='hover:text-red-500' size={25} />
+                            <button className="text-red-500 flex items-center space-x-1">
+                                <FaTrash size={20} />
+                                <span>Remove</span>
                             </button>
-                            <button onClick={closeModal} className="">
-                                <LiaTimesSolid className='hover:text-red-500' size={25} />
-                            </button>
+                            <button onClick={closeModal} className="bg-gray-300 p-2 rounded-md">Close</button>
                         </div>
                     </div>
                 </div>
