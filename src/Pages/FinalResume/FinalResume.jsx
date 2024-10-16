@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
 import Template1 from "../../Components/TemplateSection/Template1";
@@ -13,15 +13,16 @@ import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { Menu } from '@headlessui/react';
 import { GrDocumentText } from "react-icons/gr";
 import axios from "axios";
+import Template4 from "../../Components/TemplateSection/Template4";
+import Template5 from "../../Components/TemplateSection/Template5";
+import Template6 from "../../Components/TemplateSection/Template6";
 // import Template1 from "../../assets/Template1";
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
-  const { savedResume, shareLink } = useContext(ResumeContext);
+  const { shareLink } = useContext(ResumeContext);
   // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
   const info = useLoaderData();
-  const { id } = useParams();
 
-  console.log(savedResume);
 
   const useUnloadAlert = () => {
     useEffect(() => {
@@ -42,8 +43,7 @@ const FinalResume = () => {
   };
   useUnloadAlert();
 
-  const userData = info?.userData;
-  console.log(userData);
+  const userData = info;
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -51,6 +51,18 @@ const FinalResume = () => {
     }
     if (id === "template2") {
       return <Template2 userData={userData} />;
+    }
+    if (id === "template3") {
+      return <Template3 userData={userData} />;
+    }
+    if (id === "template4") {
+      return <Template4 userData={userData} />;
+    }
+    if (id === "template5") {
+      return <Template5 userData={userData} />;
+    }
+    if (id === "template6") {
+      return <Template6 userData={userData} />;
     }
   };
 
@@ -113,7 +125,7 @@ const FinalResume = () => {
 
         <div>
           <div id="element" className=" w-full pt-0">
-            {renderTemplate(info?.userData?.templateItem)}
+            {renderTemplate(info?.templateItem)}
           </div>
         </div>
         

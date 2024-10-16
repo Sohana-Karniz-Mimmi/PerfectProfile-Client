@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
-// import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import {
@@ -22,7 +21,7 @@ import {
   FaCheckCircle,
   FaClipboard,
   FaTools,
-} from "react-icons/fa"; // Import icons from React Icons
+} from "react-icons/fa"; 
 import { FaTrashAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { MdDoneOutline, MdOutlineWorkHistory } from "react-icons/md";
@@ -36,8 +35,12 @@ import Template1 from "../../assets/Template1";
 import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
+import useAuth from "../../Hook/useAuth";
 
 const ResumeEditPage = () => {
+
+  const {user} = useAuth()
+  
   const [userData, setUserData] = useState({
     name: "",
     jobTitle: "",
@@ -45,7 +48,7 @@ const ResumeEditPage = () => {
     phone: "",
     address: "",
     careerObjective: "",
-    skills: ["skill 1", "skill 2", "skill 2", "skill 2", "skill 2"], // Start with an empty skill
+    skills: ["skill 1", "skill 2", "skill 2", "skill 2", "skill 2"],
     education: [
       {
         degree: "",
@@ -68,7 +71,7 @@ const ResumeEditPage = () => {
         endDate: "",
         company: "",
         jobTitle: "",
-        isCurrent: false, // Track if currently working
+        isCurrent: false, 
       },
     ],
     languages: ["English", "Bangla"],
@@ -143,7 +146,7 @@ const ResumeEditPage = () => {
   const isStepCompleted = (stepId) => completedSteps.includes(stepId);
 
   const handleNextStep = async () => {
-    const isValid = await trigger(); // Validate the current step
+    const isValid = await trigger(); 
     if (isValid) {
       if (currentStep < steps.length) {
         const newStep = currentStep + 1;
@@ -233,7 +236,7 @@ const ResumeEditPage = () => {
     updatedWorkExperience[index] = {
       ...updatedWorkExperience[index],
       isCurrent: isChecked,
-      endDate: isChecked ? "present" : "", // Set "present" if checked, clear if unchecked
+      endDate: isChecked ? "present" : "",
     };
     setUserData({ ...userData, workExperience: updatedWorkExperience });
   };
@@ -243,7 +246,7 @@ const ResumeEditPage = () => {
     const newEntry = {
       description: "",
       years: "",
-      startDate: "", // Reset fields for new entry
+      startDate: "", 
       endDate: "",
       company: "",
       jobTitle: "",
@@ -265,25 +268,25 @@ const ResumeEditPage = () => {
   };
 
   //Skills area start
-  const [showInput, setShowInput] = useState(false); // State to toggle input visibility
-  const [newSkill, setNewSkill] = useState(""); // State to store the new skill input
+  const [showInput, setShowInput] = useState(false); 
+  const [newSkill, setNewSkill] = useState(""); 
   // const [skills, setSkills] = useState([]);
 
   const handleAddSkill = () => {
     if (newSkill) {
       setUserData((prevData) => ({
         ...prevData,
-        skills: [...prevData.skills, newSkill], // Add new skill to userData.skills array
+        skills: [...prevData.skills, newSkill], 
       }));
-      setNewSkill(""); // Clear the input field
-      setShowInput(false); // Hide the input field after adding the skill
+      setNewSkill(""); 
+      setShowInput(false); 
     }
   };
 
   const handleDeleteSkill = (skillToDelete) => {
     setUserData((prevData) => ({
       ...prevData,
-      skills: prevData.skills.filter((skill) => skill !== skillToDelete), // Remove skill from userData.skills
+      skills: prevData.skills.filter((skill) => skill !== skillToDelete),
     }));
   };
   //Skills area end
@@ -291,16 +294,16 @@ const ResumeEditPage = () => {
   //Start language area
 
   // const [showInput, setShowInput] = useState(false); // State to toggle input visibility
-  const [newLanguage, setNewLanguage] = useState(""); // State to store the new Language input
+  const [newLanguage, setNewLanguage] = useState("");
 
   const handleAddLanguage = () => {
     if (newLanguage) {
       setUserData((prevData) => ({
         ...prevData,
-        languages: [...prevData.languages, newLanguage], // Add new language to userData.languages array
+        languages: [...prevData.languages, newLanguage], 
       }));
-      setNewLanguage(""); // Clear the input field
-      setShowInput(false); // Hide the input field after adding the language
+      setNewLanguage(""); 
+      setShowInput(false); 
     }
   };
 
@@ -309,7 +312,7 @@ const ResumeEditPage = () => {
       ...prevData,
       languages: prevData.languages.filter(
         (language) => language !== languageToDelete
-      ), // Remove language from userData.languages
+      ),
     }));
   };
 
@@ -331,7 +334,7 @@ const ResumeEditPage = () => {
     const updatedWorkExperience = [...userData.workExperience];
     updatedWorkExperience[index] = {
       ...updatedWorkExperience[index],
-      [field]: value, // Update the specific field (startDate, endDate, etc.)
+      [field]: value, 
     };
     setUserData({
       ...userData,
@@ -385,7 +388,7 @@ const ResumeEditPage = () => {
     const fetchData = async () => {
       try {
         const response = await axiosPublic.get("/predefined-templates");
-        setData(response.data); // Set the data from the response
+        setData(response.data);
       } catch (error) {
         console.error("Error fetching predefined templates:", error);
       }
@@ -407,7 +410,6 @@ const ResumeEditPage = () => {
 
   // console.log(resumeData);
 
-  // Optional chaining দিয়ে template অবজেক্ট অ্যাক্সেস করা হচ্ছে
 
   const navigate = useNavigate();
   // Function to generate a shareable link
@@ -415,6 +417,7 @@ const ResumeEditPage = () => {
     const resumeData = {
       ...userData,
       templateItem: id,
+      user_email : user?.email,
     };
 
     try {

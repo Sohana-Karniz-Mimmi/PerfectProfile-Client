@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { FaStar, FaEdit, } from 'react-icons/fa';
+import { FaStar, } from 'react-icons/fa';
 import { RiDeleteBinLine } from "react-icons/ri";
 import useAxiosPublic from '../../Hook/useAxiosPublic';
 import { LiaTimesSolid } from "react-icons/lia";
+import { FiEdit } from "react-icons/fi";
 
 const ManageResume = () => {
     const axiosPublic = useAxiosPublic();
@@ -19,7 +20,7 @@ const ManageResume = () => {
 
     const handleCheckboxChange = (e, templateId) => {
         if (e.target.checked) {
-            setSelectedTemplates([...selectedTemplates, templateId]); 
+            setSelectedTemplates([...selectedTemplates, templateId]);
         } else {
             setSelectedTemplates(selectedTemplates.filter(id => id !== templateId));
         }
@@ -28,6 +29,41 @@ const ManageResume = () => {
     const closeModal = () => {
         setSelectedTemplates([]);
     };
+
+    const handleDelete = id => {
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`https://tourism-server-beta.vercel.app/tourists/${id}`, {
+                        method: 'DELETE',
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.deletedCount > 0) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success"
+                                });
+
+                                const remaining = touristList.filter(touristEmail => touristEmail._id !== id)
+                                setTouristList(remaining);
+                            }
+                        })
+                }
+            })
+
+    }
 
     return (
         <div className="p-4">
@@ -51,7 +87,7 @@ const ManageResume = () => {
                                     <FaStar size={20} />
                                 </button>
                                 <button className="text-black hover:text-primary bg-white p-2 rounded-xl">
-                                    <FaEdit size={20} />
+                                    <FiEdit size={20} />
                                 </button>
                             </div>
                         </div>

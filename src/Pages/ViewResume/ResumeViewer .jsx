@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2";
 import ShareResumeNavbar from "./ShareResumeNavbar";
+import Template4 from "../../Components/TemplateSection/Template4";
+import Template3 from "../../Components/TemplateSection/Template3";
+import Template5 from './../../Components/TemplateSection/Template5';
+import Template6 from "../../Components/TemplateSection/Template6";
 
 const ResumeViewer = () => {
   const { link } = useParams();
@@ -25,8 +29,8 @@ const ResumeViewer = () => {
     fetchResumeData();
   }, [link]);
 
-  const templateID = resumeData?.userData?.templateItem;
-  const showResume = resumeData?.userData;
+  const templateID = resumeData?.templateItem;
+  const showResume = resumeData;
 
   // console.log(templateID);
   // console.log(showResume);
@@ -38,6 +42,18 @@ const ResumeViewer = () => {
     }
     if (templateID === "template2") {
       return <Template2 userData={showResume} />;
+    }
+    if (templateID === "template3") {
+      return <Template3 userData={showResume} />;
+    }
+    if (templateID === "template4") {
+      return <Template4 userData={showResume} />;
+    }
+    if (templateID === "template5") {
+      return <Template5 userData={showResume} />;
+    }
+    if (templateID === "template6") {
+      return <Template6 userData={showResume} />;
     }
   };
 
