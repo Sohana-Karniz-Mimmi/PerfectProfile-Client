@@ -24,9 +24,7 @@ const ResumeTemplates = () => {
   return (
     <Container>
       <div>
-        <h1 className="font-bold text-5xl mt-10 text-center mb-10">
-          Predefined Templates
-        </h1>
+       
       </div>
       <div className="grid grid-cols-1  lg:grid-cols-2 gap-36 justify-around">
         {
