@@ -124,7 +124,7 @@ const NavModal = ({ handleLogoutBtn }) => {
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
-                  <Link to={`dashboard`}>
+                  <Link to={`/dashboard`}>
                     <button
                       className={`${
                         active ? "bg-white" : ""
