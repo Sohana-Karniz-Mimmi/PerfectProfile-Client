@@ -83,7 +83,7 @@ const PieChartForUser = () => {
   const getOuterRadius = () => (windowWidth < 768 ? 100 : 150);
 
   return (
-    <div className="max-w-full w-full h-[70vh] px-2">
+    <div className="max-w-full w-full h-[60vh] md:pb-0 pb-10 px-2">
       <h2 className="text-2xl font-bold  font-lora">
         Overview of our Different type of user
       </h2>

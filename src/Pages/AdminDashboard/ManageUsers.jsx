@@ -1,14 +1,18 @@
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from "react-helmet-async";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import UserDataRow from './UserDataRow';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, selectAllUsers } from '../../store/Features/user/userSlice';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import UserDataRow from "./UserDataRow";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchUsers,
+  selectAllUsers,
+} from "../../store/Features/user/userSlice";
+import { FaSearch } from "react-icons/fa";
+import { TbRefresh } from "react-icons/tb";
+import { IoFilter } from "react-icons/io5";
 // import LoadingSpinner from '../../Shared/LoadingSpinner';
 const ManageUsers = () => {
-
-
   /****Use Search and filter****/
   const dispatch = useDispatch();
 
@@ -20,10 +24,10 @@ const ManageUsers = () => {
   const totalPages = useSelector((state) => state.users.totalPages);
 
   // Define filter, search, and size using useState
-  const [filter, setFilter] = useState(""); 
-  const [search, setSearch] = useState(""); 
-  const [size, setSize] = useState(10); 
-  const [count, setCount] = useState(0)
+  const [filter, setFilter] = useState("");
+  const [search, setSearch] = useState("");
+  const [size, setSize] = useState(10);
+  const [count, setCount] = useState(0);
 
   // useEffect to fetch users
   useEffect(() => {
@@ -33,15 +37,15 @@ const ManageUsers = () => {
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axios(
-        `${import.meta.env.VITE_API_URL
+        `${
+          import.meta.env.VITE_API_URL
         }/users-count?filter=${filter}&search=${search}`
-      )
+      );
 
-      setCount(data.count)
-    }
-    getCount()
-  }, [filter, search])
-
+      setCount(data.count);
+    };
+    getCount();
+  }, [filter, search]);
 
   // Pagination Button Handler
   const handlePaginationButton = (newPage) => {
@@ -51,82 +55,89 @@ const ManageUsers = () => {
   };
 
   // const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-  const pages = [...Array(totalPages).keys()].map(element => element + 1)
-
+  const pages = [...Array(totalPages).keys()].map((element) => element + 1);
 
   const handleReset = () => {
-    setFilter('')
-    setSearch('')
-    
-  }
+    setFilter("");
+    setSearch("");
+  };
 
-  const handleSearch = e => {
-    e.preventDefault()
-    setSearch(searchText)
-  }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(searchText);
+  };
 
-  console.log(users)
+  console.log(users);
   // if ( loading) return <LoadingSpinner />
   return (
     <>
-      <div className='container mx-auto px-4 sm:px-8'>
+      <div className="container mx-auto">
         <Helmet>
           <title>Manage Users</title>
         </Helmet>
 
-        <div className='flex items-center pt-8 pb-3 gap-x-3'>
-          <h2 className='text-lg font-medium text-gray-800 '>Manage Users</h2>
+        <div className="flex items-center pb-6 gap-x-3">
+          <h2 className="text-2xl font-bold font-lora ">Manage Users</h2>
         </div>
 
-        <div className='flex w-full flex-col md:flex-row items-center gap-5'>
-          <div>
+        <div className="flex w-full flex-col md:flex-row items-center gap-3">
+          <div className="md:max-w-sm relative flex items-center font-roboto font-medium text-base w-full">
             <select
-              onChange={e => {
-                setFilter(e.target.value)
+              onChange={(e) => {
+                setFilter(e.target.value);
                 dispatch(fetchUsers({ page: 1 }));
               }}
               value={filter}
-              name='productName'
-              id='productName'
-              className='border px-4 py-3 rounded-sm'
+              name="productName"
+              id="productName"
+              className="border w-full appearance-none cursor-pointer focus:outline-none px-4 py-3 rounded"
             >
-              <option value=''>Filter By Role</option>
-              <option value='free'>Free</option>
-              <option value='standard'>Standard</option>
-              <option value='premium'>Premium</option>
+              <option value="">Filter By Role</option>
+              <option value="free">Free</option>
+              <option value="standard">Standard</option>
+              <option value="premium">Premium</option>
             </select>
+            <span className="absolute text-xl right-3 pointer-events-none">
+              <IoFilter />
+            </span>
           </div>
 
-          <form onSubmit={handleSearch} className='flex-grow'>
-            <div className='flex p-1 overflow-hidden border focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
+          <form
+            onSubmit={handleSearch}
+            className="flex-grow font-roboto font-medium w-full"
+          >
+            <div className="flex overflow-hidden rounded border">
               <input
-                className='px-6 py-2 w-full text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
-                type='text'
+                className="px-6 py-3 w-full placeholder-gray-300 bg-white outline-none focus:placeholder-transparent placeholder:font-normal focus:outline-none rounded"
+                type="text"
                 // onChange={e => setSearchText(e.target.value)}
                 // value={searchText}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                name='search'
-                placeholder='Enter User Name'
-                aria-label='Enter User Name'
+                name="search"
+                placeholder="Search by name, email, role..."
+                aria-label="Enter User Name"
               />
-              <button className='px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-primary hover:bg-secondary focus:[#FF0143] focus:outline-none'>
-                Search
+              <button className="px-3 py-3 text-sm font-medium tracking-wider uppercase rounded bg-none transition-colors duration-300 transform focus:outline-none">
+                <FaSearch className="font-bold" />
               </button>
             </div>
           </form>
 
-          <button onClick={handleReset} className='px-1 md:px-4 py-3 text-sm font-medium rounded-sm border'>
-            Reset
+          <button
+            onClick={handleReset}
+            className="px-2 md:px-4 font-roboto justify-center flex items-center gap-1 md:max-w-sm w-full py-3 text-base font-medium rounded border"
+          >
+            <TbRefresh /> Reset
           </button>
         </div>
 
-        <div className='pb-8 pt-2.5'>
-          <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
-            <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
-              <table className='min-w-full leading-normal'>
-                <thead className='bg-gray-50'>
-                  <tr>
+        <div className="pb-8 px-2 md:px-0 pt-2.5">
+          <div className="-mx-4 sm:-mx-8 px-2 sm:px-8 py-4 overflow-x-auto">
+            <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+              <table className="min-w-full leading-normal ">
+                <thead className="bg-gray-300 ">
+                  <tr className="">
                     {/* <th
                       scope='col'
                       className='pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
@@ -134,45 +145,45 @@ const ManageUsers = () => {
                       #
                     </th> */}
                     <th
-                      scope='col'
-                      className='pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      scope="col"
+                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
                     >
                       Name
                     </th>
                     <th
-                      scope='col'
-                      className='pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      scope="col"
+                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
                     >
                       Email
                     </th>
                     <th
-                      scope='col'
-                      className='pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      scope="col"
+                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
                     >
                       Role
                     </th>
                     <th
-                      scope='col'
-                      className='pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      scope="col"
+                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
                     >
                       Status
                     </th>
 
                     <th
-                      scope='col'
-                      className='pl-6 pr-12 py-3 text-center border-b border-gray-200 text-gray-800  text-sm uppercase font-normal'
+                      scope="col"
+                      className="pl-6 pr-12 py-3 text-center border-b border-gray-200 text-gray-800 md:text-lg text-base uppercase font-lora font-bold"
                     >
                       Action
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="font-montserrat">
                   {users?.map((user, indx) => (
                     <UserDataRow
                       key={user?._id}
                       user={user}
                       indx={indx}
-                    // refetch={fetchBookings}
+                      // refetch={fetchBookings}
                     />
                   ))}
                 </tbody>
@@ -181,46 +192,46 @@ const ManageUsers = () => {
           </div>
         </div>
 
-
         {/* Pagination Section */}
-        <div className='flex justify-center mt-12'>
-         {/* Previous Button */}
+        <div className="flex justify-center mt-12">
+          {/* Previous Button */}
           <button
             disabled={currentPage === 1}
             onClick={() => handlePaginationButton(currentPage - 1)}
-            className='px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-primary rounded-full disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:bg-gray-200 disabled:hover:text-gray-500 hover:bg-secondary hover:text-white'
+            className="px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-primary rounded-full disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:bg-gray-200 disabled:hover:text-gray-500 hover:bg-secondary hover:text-white"
           >
-            <div className='flex items-center -mx-1'>
+            <div className="flex items-center -mx-1">
               <IoIosArrowBack />
             </div>
           </button>
 
           {/* Number of page */}
-          {pages.map(btnNum => (
+          {pages.map((btnNum) => (
             <button
               onClick={() => handlePaginationButton(btnNum)}
               key={btnNum}
-              className={`hidden ${currentPage === btnNum ? 'bg-primary text-white' : ''} px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
+              className={`hidden ${
+                currentPage === btnNum ? "bg-primary text-white" : ""
+              } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
             >
               {btnNum}
             </button>
           ))}
 
-         {/* Next Button */}
+          {/* Next Button */}
           <button
             disabled={currentPage === totalPages}
             onClick={() => handlePaginationButton(currentPage + 1)}
-            className='px-4 py-2 mx-1 text-white bg-primary rounded-full hover:bg-secondary disabled:cursor-not-allowed disabled:bg-gray-200'
+            className="px-4 py-2 mx-1 text-white bg-primary rounded-full hover:bg-secondary disabled:cursor-not-allowed disabled:bg-gray-200"
           >
-            <div className='flex items-center -mx-1'>
+            <div className="flex items-center -mx-1">
               <IoIosArrowForward />
             </div>
           </button>
         </div>
-
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ManageUsers
+export default ManageUsers;
