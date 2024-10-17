@@ -7,6 +7,7 @@ import Template4 from "../../Components/TemplateSection/Template4";
 import Template3 from "../../Components/TemplateSection/Template3";
 import Template5 from './../../Components/TemplateSection/Template5';
 import Template6 from "../../Components/TemplateSection/Template6";
+import MyTemplate from "../../assets/MyTemplate";
 
 const ResumeViewer = () => {
   const { link } = useParams();
@@ -38,7 +39,7 @@ const ResumeViewer = () => {
 
   const renderTemplate = (templateID) => {
     if (templateID === "template1") {
-      return <Template1 userData={showResume} />;
+      return < MyTemplate userData={showResume} />;
     }
     if (templateID === "template2") {
       return <Template2 userData={showResume} />;

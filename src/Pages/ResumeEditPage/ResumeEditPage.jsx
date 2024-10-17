@@ -21,7 +21,7 @@ import {
   FaCheckCircle,
   FaClipboard,
   FaTools,
-} from "react-icons/fa"; 
+} from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { MdDoneOutline, MdOutlineWorkHistory } from "react-icons/md";
@@ -36,11 +36,12 @@ import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
 import useAuth from "../../Hook/useAuth";
+import MyTemplate from "../../assets/MyTemplate";
 
 const ResumeEditPage = () => {
 
-  const {user} = useAuth()
-  
+  const { user } = useAuth()
+
   const [userData, setUserData] = useState({
     name: "",
     jobTitle: "",
@@ -71,7 +72,7 @@ const ResumeEditPage = () => {
         endDate: "",
         company: "",
         jobTitle: "",
-        isCurrent: false, 
+        isCurrent: false,
       },
     ],
     languages: ["English", "Bangla"],
@@ -146,7 +147,7 @@ const ResumeEditPage = () => {
   const isStepCompleted = (stepId) => completedSteps.includes(stepId);
 
   const handleNextStep = async () => {
-    const isValid = await trigger(); 
+    const isValid = await trigger();
     if (isValid) {
       if (currentStep < steps.length) {
         const newStep = currentStep + 1;
@@ -246,7 +247,7 @@ const ResumeEditPage = () => {
     const newEntry = {
       description: "",
       years: "",
-      startDate: "", 
+      startDate: "",
       endDate: "",
       company: "",
       jobTitle: "",
@@ -268,18 +269,18 @@ const ResumeEditPage = () => {
   };
 
   //Skills area start
-  const [showInput, setShowInput] = useState(false); 
-  const [newSkill, setNewSkill] = useState(""); 
+  const [showInput, setShowInput] = useState(false);
+  const [newSkill, setNewSkill] = useState("");
   // const [skills, setSkills] = useState([]);
 
   const handleAddSkill = () => {
     if (newSkill) {
       setUserData((prevData) => ({
         ...prevData,
-        skills: [...prevData.skills, newSkill], 
+        skills: [...prevData.skills, newSkill],
       }));
-      setNewSkill(""); 
-      setShowInput(false); 
+      setNewSkill("");
+      setShowInput(false);
     }
   };
 
@@ -300,10 +301,10 @@ const ResumeEditPage = () => {
     if (newLanguage) {
       setUserData((prevData) => ({
         ...prevData,
-        languages: [...prevData.languages, newLanguage], 
+        languages: [...prevData.languages, newLanguage],
       }));
-      setNewLanguage(""); 
-      setShowInput(false); 
+      setNewLanguage("");
+      setShowInput(false);
     }
   };
 
@@ -334,7 +335,7 @@ const ResumeEditPage = () => {
     const updatedWorkExperience = [...userData.workExperience];
     updatedWorkExperience[index] = {
       ...updatedWorkExperience[index],
-      [field]: value, 
+      [field]: value,
     };
     setUserData({
       ...userData,
@@ -406,6 +407,9 @@ const ResumeEditPage = () => {
     if (id === "template4") {
       return <Template4 data={template} userData={userData} />;
     }
+    if (id === "template2") {
+      return <Template2 data={template} userData={userData} />;
+    }
   };
 
   // console.log(resumeData);
@@ -417,7 +421,7 @@ const ResumeEditPage = () => {
     const resumeData = {
       ...userData,
       templateItem: id,
-      user_email : user?.email,
+      user_email: user?.email,
     };
 
     try {
@@ -438,9 +442,9 @@ const ResumeEditPage = () => {
   };
 
   return (
-    <div className="flex lg:flex-row flex-col min-h-screen">
+    <div className="flex xl:flex-row flex-col min-h-screen">
       {/* Sidebar */}
-      <div className="lg:w-[20%] xl:w-[] w-[100%] lg:block bg-[#00000f] text-white p-6">
+      <div className="xl:w-[20%] w-[100%] lg:block bg-[#00000f] text-white p-6">
         <Link to="/">
           <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
             Perfect<span className="text-primary">Profile</span>
@@ -450,23 +454,21 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${
-                currentStep === step.id
-                  ? "text-white font-montserrat font-medium"
-                  : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
+                ? "text-white font-montserrat font-medium"
+                : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500 font-montserrat font-medium"
-              }`}
+                }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center ${
-                  currentStep === step.id
-                    ? "  text-black"
-                    : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center ${currentStep === step.id
+                  ? "  text-black"
+                  : isStepCompleted(step.id)
                     ? " rounded-full text-rose-700"
                     : ""
-                }`}
+                  }`}
               >
                 {isStepCompleted(step.id) ? (
                   <span className="text-2xl text-secondary">
@@ -498,7 +500,7 @@ const ResumeEditPage = () => {
         </div>
       </div>
       {/* Content Area */}
-      <div className="lg:w-[40%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
+      <div className="xl:w-[48%] 2xl:w-[53%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
         <form className="text-sm" onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
             <div className="space-y-4">
@@ -514,9 +516,8 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     placeholder="Your full name"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
-                      errors.name ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.name ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("name", {
                       // required: "Full name is required",
                       onChange: (e) =>
@@ -558,9 +559,8 @@ const ResumeEditPage = () => {
                   <input
                     type="email"
                     placeholder="example@gmail.com"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${
-                      errors.email ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${errors.email ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
@@ -582,9 +582,8 @@ const ResumeEditPage = () => {
                   <input
                     type="tel"
                     placeholder="+1-212-456-7890"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
-                      errors.phone ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.phone ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("phone", {
                       // required: "Phone is required",
                       pattern: {
@@ -730,7 +729,7 @@ const ResumeEditPage = () => {
                         selected={
                           entry.startDate ? new Date(entry.startDate) : null
                         } // Bind to individual entry's startDate
-                        
+
                         onChange={(date) =>
                           updateWorkExperience(index, "startDate", date)
                         }
@@ -771,16 +770,15 @@ const ResumeEditPage = () => {
                             ? new Date(entry.endDate)
                             : null
                         }
-                        
+
                         onChange={(date) =>
                           updateWorkExperience(index, "endDate", date)
                         }
                         dateFormat="MMMM yyyy"
                         showMonthYearPicker
                         placeholderText="Select End Date"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${
-                          entry.isCurrent ? "opacity-35" : "bg-transparent"
-                        }`}
+                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${entry.isCurrent ? "opacity-35" : "bg-transparent"
+                          }`}
                         wrapperClassName="w-full"
                         disabled={entry.isCurrent} // Disable if "Currently working here" is checked
                       />
@@ -1162,12 +1160,23 @@ const ResumeEditPage = () => {
         </form>
       </div>
       {/* Template preview area */}
-      <div className="lg:w-[40%] w-[100%] lg:p-8 px-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
-        {renderTemplate(id)}
-        <div className="flex flex-col justify-center items-center py-6 space-y-6">
-          <button className="font-roboto font-medium text-primary">
-            Change Template
-          </button>
+      <div className="xl:w-[33%] 2xl:w-[27%] w-[100%] lg:p-8 px-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
+        <div
+          className="w-full h-full"
+          style={{
+            transform: 'scale(0.50)',
+            transformOrigin: 'top left',
+            height: '400px',
+          }}
+        >
+          {renderTemplate(id)}
+        </div>
+        <div className="flex flex-col justify-center items-center mt-28 ">
+          <Link to={`/predefined-templates`}>
+            <button className="font-roboto font-medium text-primary mb-2">
+              Change Template
+            </button>
+          </Link>
           <p className="text-xs font-roboto text-gray-500 text-center w-3/4 mx-auto">
             You can edit the content, use other fonts, adjust format, add
             sections, and change placement of the sections later on.
