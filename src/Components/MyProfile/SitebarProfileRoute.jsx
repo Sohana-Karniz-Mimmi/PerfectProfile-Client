@@ -13,12 +13,18 @@ const SitebarProfileRoute = () => {
     <div className="">
       <div className="text-center py-8">
         {/* <h2 className="text-2xl font-bold">Profile Settings</h2> */}
+        <div className=" font-montserrat ">
+          <h1 className="text-white text-3xl">
+            <span className="text-primary">MY</span>
+            <span className="text-secondary">Profile</span>
+          </h1>
+        </div>
       </div>
       <nav className="mt-10">
         <ul className="space-y-4">
           <li>
             <NavLink
-              to="editingProfile"
+              to="editingProfile/#general"
               className={({ isActive }) =>
                 `flex items-center gap-2 p-4 transition duration-200 ${
                   isActive ? "text-white" : "hover:text-gray-300 text-slate-400"
@@ -40,7 +46,7 @@ const SitebarProfileRoute = () => {
           </li> */}
           <li>
             <NavLink
-              to="address"
+              to="address/#profile"
               className={({ isActive }) =>
                 `flex items-center gap-2 p-4 transition duration-200 ${
                   isActive

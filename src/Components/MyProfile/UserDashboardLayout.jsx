@@ -9,15 +9,12 @@ const UserDashboardLayout = () => {
         <Navbar />
       </div>
       <div className="flex min-h-screen">
-        <div className=" p-4 md:p-8  bg-slate-900">
+        <div className=" p-4 md:p-8  bg-[#00000f]">
           <SitebarProfileRoute />
         </div>
         {/* Main Content */}
-        <div className="flex-1 p-4   shadow-white">
-          <div className="flex justify-between mt-4 text-4xl font-montserrat  w-[70%]">
-            <h1>My Profile</h1>
-          </div>
-          <hr className="border-dashed my-6 border-slate-600 w-[70%]" />
+        <div className="flex-1  ">
+          {/* <hr className="border-dashed my-6 border-slate-600 " /> */}
 
           <Outlet />
         </div>

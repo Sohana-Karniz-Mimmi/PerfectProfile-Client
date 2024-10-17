@@ -22,8 +22,9 @@ import MainChatBox from "../Components/LiveChat/NewChatComponent/MainChatbox";
 import PremiumRoute from "./PremiumRoute";
 import PremiumModal from "../Components/Modal/PremiumModal";
 import MyResume from "../Pages/MyResume/MyResume";
-import Address from "../Components/MyProfile/Address";
+// import Address from "../Components/MyProfile/Address";
 import UserDashboardLayout from "../Components/MyProfile/UserDashboardLayout";
+import ProfileInfo from "../Components/MyProfile/ProfileInfo";
 import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 
 const router = createBrowserRouter([
@@ -140,8 +141,12 @@ const router = createBrowserRouter([
       },
       {
         path: "address",
-        element: <Address />,
+        element: <ProfileInfo />,
       },
+      // {
+      //   path: "address",
+      //   element: <Address />,
+      // },
     ],
   },
 ]);

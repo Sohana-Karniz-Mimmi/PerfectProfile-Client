@@ -30,7 +30,7 @@ const NavModal = ({ handleLogoutBtn }) => {
             <div className="bg-white rounded-xl p-6">
               <Menu.Item>
                 {({ active }) => (
-                  <Link to={`/profile`}>
+                  <Link to={`userDashboard/editingProfile`}>
                     <button
                       className={`${
                         active ? "bg-white" : ""
