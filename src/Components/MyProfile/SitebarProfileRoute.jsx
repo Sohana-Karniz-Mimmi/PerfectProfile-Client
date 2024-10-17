@@ -18,10 +18,10 @@ const SitebarProfileRoute = () => {
         <ul className="space-y-4">
           <li>
             <NavLink
-              to="/userDashboard/editingProfile"
+              to="editingProfile"
               className={({ isActive }) =>
                 `flex items-center gap-2 p-4 transition duration-200 ${
-                  isActive ? "text-white" : "hover:text-gray-300"
+                  isActive ? "text-white" : "hover:text-gray-300 text-slate-400"
                 }`
               }
             >
@@ -40,10 +40,12 @@ const SitebarProfileRoute = () => {
           </li> */}
           <li>
             <NavLink
-              to="/userDashboard/address"
+              to="address"
               className={({ isActive }) =>
                 `flex items-center gap-2 p-4 transition duration-200 ${
-                  isActive ? " text-white" : "hover:text-gray-300 "
+                  isActive
+                    ? " text-white"
+                    : "hover:text-gray-300 text-slate-400"
                 }`
               }
             >

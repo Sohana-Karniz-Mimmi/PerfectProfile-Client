@@ -92,7 +92,7 @@ const Login = () => {
       <Toaster />
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box text-black bg-transparent shadow-none relative h-full w-full font-montserrat">
-          <div className="bg-white h-[552px] md:h-[550px] p-6">
+          <div className="bg-white h-[552px] md:h-[538px] p-6">
             <h1 className="text-2xl font-semibold mb-2">Login Form</h1>
             <form
               onSubmit={handleSubmit}
@@ -148,11 +148,11 @@ const Login = () => {
                   type="checkbox"
                   id="remember"
                   onClick={() => setRemember(!remember)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                 />
                 <label
                   htmlFor="remember"
-                  className="ml-2 block text-sm text-gray-900"
+                  className="ml-2 block text-sm text-gray-900 cursor-pointer"
                 >
                   Accept Terms & Conditions
                 </label>
@@ -165,7 +165,7 @@ const Login = () => {
                 <input
                   type="submit"
                   value="Login"
-                  className="py-2 rounded-md w-1/3 bg-secondary text-white hover:bg-transparent border hover:text-primary font-montserrat"
+                  className="py-2 rounded-md w-1/3 bg-secondary text-white hover:bg-transparent border hover:text-primary font-montserrat cursor-pointer"
                 />
               </div>
               <span>

@@ -9,7 +9,7 @@ const UserDashboardLayout = () => {
         <Navbar />
       </div>
       <div className="flex min-h-screen">
-        <div className=" p-4 md:p-8  bg-slate-700 ">
+        <div className=" p-4 md:p-8  bg-slate-900">
           <SitebarProfileRoute />
         </div>
         {/* Main Content */}

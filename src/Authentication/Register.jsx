@@ -191,11 +191,16 @@ const Register = () => {
               <div className="flex items-center">
                 <input
                   type="checkbox"
-                  id="terms"
-                  className="mr-2"
+                  id="remember"
                   onClick={() => setRemember(!remember)}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                 />
-                <label htmlFor="terms">Terms & Condition</label>
+                <label
+                  htmlFor="remember"
+                  className="ml-2 block text-sm text-gray-900 cursor-pointer"
+                >
+                  Accept Terms & Conditions
+                </label>
               </div>
 
               <div>
