@@ -30,7 +30,7 @@ const Template2nd = ({ data, userData }) => {
     const profile = {
       image : res.data.data.display_url
     }
-    const profileRes = axiosPublic.patch(`/predefined-templates/${data?.templateItem}`, profile)
+    const profileRes = axiosPublic.patch(`/share-resume/${data?.templateItem}`, profile)
     console.log(profileRes.data);
    
   }
