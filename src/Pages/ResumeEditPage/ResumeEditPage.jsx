@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 // import Template1 from "../../Components/TemplateSection/Template1";
-import Template2 from "../../Components/TemplateSection/Template2";
+import Template2 from "../../Components/TemplateSection/Template2nd";
 import Template3 from "../../Components/TemplateSection/Template3";
 import {
   FaBackward,
@@ -36,6 +36,9 @@ import Template1 from "../../assets/Template1";
 import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
+import Template2nd from "../../Components/TemplateSection/Template2nd";
+import Template5 from "../../Components/TemplateSection/Template5";
+import Template6 from "../../Components/TemplateSection/Template6";
 
 const ResumeEditPage = () => {
   const [userData, setUserData] = useState({
@@ -400,8 +403,20 @@ const ResumeEditPage = () => {
     if (id === "template1") {
       return <Template1 data={template} userData={userData} />;
     }
+    if (id === "template2") {
+      return <Template2nd data={template} userData={userData} />;
+    }
+    if (id === "template3") {
+      return <Template3 data={template} userData={userData} />;
+    }
     if (id === "template4") {
       return <Template4 data={template} userData={userData} />;
+    }
+    if (id === "template5") {
+      return <Template5 data={template} userData={userData} />;
+    }
+    if (id === "template6") {
+      return <Template6 data={template} userData={userData} />;
     }
   };
 
@@ -433,6 +448,9 @@ const ResumeEditPage = () => {
       console.error("Error generating share link:", error);
     }
   };
+
+ 
+ 
 
   return (
     <div className="flex lg:flex-row flex-col min-h-screen">

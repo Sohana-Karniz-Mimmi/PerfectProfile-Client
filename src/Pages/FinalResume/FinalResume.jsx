@@ -3,7 +3,7 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
 import Template1 from "../../Components/TemplateSection/Template1";
-import Template2 from "../../Components/TemplateSection/Template2";
+import Template2 from "../../Components/FinalPageTemplate/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
@@ -13,6 +13,7 @@ import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { Menu } from '@headlessui/react';
 import { GrDocumentText } from "react-icons/gr";
 import axios from "axios";
+// import Template2nd from "../../Components/TemplateSection/Template2nd";
 // import Template1 from "../../assets/Template1";
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
@@ -83,21 +84,7 @@ const FinalResume = () => {
     html2pdf().set(opt).from(element).save();
   };
 
-  // const resumeRef = useRef(null);
-
-  // // Generate PDF
-  // const generatePDF = () => {
-  //   const element = resumeRef.current;
-  //   const options = {
-  //     margin: 0, // Set to 0 for full-width
-  //     filename: `${userData.name}_Resume.pdf`,
-  //     image: { type: "jpeg", quality: 0.98 },
-  //     html2canvas: { scale: 2 }, // Increase the scale for better quality
-  //     jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-  //   };
-
-  //   html2pdf().set(options).from(element).save();
-  // };
+ 
 
   return (
     <div className="h-screen">
@@ -112,7 +99,7 @@ const FinalResume = () => {
         <div className="lg:w-2/12 w-full"></div>
 
         <div>
-          <div id="element" className=" w-full pt-0">
+          <div id="element" className="w-full pt-0">
             {renderTemplate(info?.userData?.templateItem)}
           </div>
         </div>
@@ -127,8 +114,7 @@ const FinalResume = () => {
                
        
           <button
-            onClick={handlePdf}
-            // onClick={generatePDF}
+            // onClick={handlePdf}
             className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
           >
             <FaFileExport className="text-secondary" /> Export

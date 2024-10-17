@@ -21,6 +21,7 @@ import AdminRoute from "./AdminRoute";
 import PremiumRoute from "./PremiumRoute";
 import PremiumModal from "../Components/Modal/PremiumModal";
 import MyResume from "../Pages/MyResume/MyResume";
+import Favorite from "../Pages/Favorites/Favorite";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
+        path: "/my-favorites",
+        element: <Favorite />
+      },
+      {
         path: "/livechat",
         element: <SocketChatLive />,
       },
@@ -72,9 +77,9 @@ const router = createBrowserRouter([
   {
     path: "/resume/edit/:id",
     element: (
-      <PremiumRoute> 
+      // <PremiumRoute> 
         <ResumeEditPage />
-      </PremiumRoute>
+      // </PremiumRoute>
     ),
   
   },

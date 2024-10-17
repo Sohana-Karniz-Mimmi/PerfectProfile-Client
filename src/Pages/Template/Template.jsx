@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ResumeTemplates from "../../Components/TemplateSection/ResumeTemplates";
 import Template1 from "../../Components/TemplateSection/Template1";
-import Template2 from "../../Components/TemplateSection/Template2";
+import Template2 from "../../Components/TemplateSection/Template2nd";
 import Template3 from "../../Components/TemplateSection/Template3";
 import Container from "../../Shared/Container";
 import TemplateBanner from "./TemplateBanner";
@@ -40,26 +40,34 @@ const Template = () => {
   }, [currentPage, itemPerPage, filter]);
 
   //   add to favorite
-  const handleFavorite = (_id) => {
+  const handleFavorite = (template) => {
+    const { _id, image, package: templatePackage } = template; 
+    console.log(template)  
+
     if (user) {
       setFavorites((prev) => {
-        const isFavorite = !prev[_id];
+        const isFavorite = !prev[_id]; 
+  
         if (isFavorite) {
-          toast.success("Added to the favorite");
+          // Send the template data to the backend
+          axiosPublic.post('/my-favorites', {
+            email: user.email,
+            templateId: _id,
+            image, 
+            templatePackage, 
+          });
+  
+          toast.success('Added to the favorite');
         } else {
-          toast.success("Removed from the favorite");
+          toast.success('Removed from the favorite');
         }
-        return {
-          ...prev,
-          [_id]: isFavorite, // Toggle favorite status for this template ID
-        };
+  
+        return { ...prev, [_id]: isFavorite }; // Update favorite state
       });
     } else {
-      toast.error("You have to login first");
-      document.getElementById("my_modal_3").showModal();
+      toast.error('You have to login first');
+      document.getElementById('my_modal_3').showModal();
     }
-
-    console.log(_id);
   };
 
 // pagination
@@ -88,9 +96,7 @@ const Template = () => {
   return (
     <Container>
       <TemplateBanner></TemplateBanner>
-      {/* <Template2></Template2> */}
-      {/* <ResumeTemplates></ResumeTemplates> */}
-
+     
       {/* filter */}
       <div className="w-[79rem] mt-12 justify-end flex item-end">
             <select
@@ -113,17 +119,17 @@ const Template = () => {
           <div key={template._id}>
             <div className="relative group w-[350px] h-[450px]">
             
-              <button
-                onClick={() => handleFavorite(template._id)}
-                className="absolute text-3xl top-[6px] right-2 rounded-full   z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"
-              >
-                {favorites[template._id] ? (
-                  <FaStar className="text-cyan-400" />
-                ) : (
-                  <FaRegStar className="text-cyan-400" />
-                )}
-                {/* <FaRegStar className="text-primary"/> */}
-              </button>
+            <button
+  onClick={() => handleFavorite(template)} // Pass the whole template object
+  className="absolute text-3xl top-[6px] right-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"
+>
+  {favorites[template._id] ? (
+    <FaStar className="text-cyan-400" />
+  ) : (
+    <FaRegStar className="text-cyan-400" />
+  )}
+</button>
+
 
               {/* Tooltip for Favorite Button */}
               <span className="tooltip-text-favorite hidden absolute -top-7 right-0 bg-gray-700 text-white text-xs rounded py-1 px-2">

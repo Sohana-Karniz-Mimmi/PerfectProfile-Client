@@ -4,48 +4,28 @@ import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 
-const Template2 = ({ data }) => {
-  console.log(data);
-  const {
-    _id,
-    name,
-    jobTitle,
-    careerObjective,
-    email,
-    phone,
-    address,
-    education,
-    certifications,
-    workExperience,
-    skills,
-    languages,
-    extraCurricularActivities,
-  } = data;
+const Template2 = ({ data, userData }) => {
+  
+  
   return (
     <div className="relative">
-      <div className="bg-slate-200 rounded-full px-2 py-0.5 flex gap-1 justify-between items-center absolute -top-3 left-[45%]">
-        <div className=" bg-primary rounded-full  text-white p-1  ">
-          <FaStar className="" />
-          {/* top-0  */}
-        </div>
-        <p className="font-semibold  ">{data.package}</p>
-      </div>
+     
       <div className="lg:w-[790px] w-full  min-h-[1000px] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
         {/* 1st */}
-        <div className="bg-[#353535] text-white lg:px-4 px-2 lg:w-[18rem] w-[11rem] ">
+        <div className="bg-[#353535] text-white lg:px-4 px-2 lg:w-[17rem] w-[11rem] ">
           <div className="lg:w-48 w-32 mx-auto py-7 mb-4">
             <img className="rounded-full" src={img} alt="" />
           </div>
           <div>
             {/* about me */}
-            {careerObjective && (
+            {(userData?.careerObjective || data?.careerObjective) && (
               <>
                 <section className="mb-2">
                   <h2 className=" uppercase font-bold text-xl  border-b border-white ">
                     about me
                   </h2>
                   <p className="mt-2 ">
-                    {careerObjective}
+                    {userData?.careerObjective || data?.careerObjective}
                   </p>
                 </section>
                 {/*    
@@ -58,29 +38,29 @@ const Template2 = ({ data }) => {
                 <p>
                   <IoMail />
                 </p>
-                <p>{email}</p>
+                <p>{userData?.email || data?.email}</p>
               </div>
               <div className="flex items-center justify-center gap-2 text-white">
                 <p>
                   <FaPhoneFlip />
                 </p>
-                <p>{phone}</p>
+                <p>{userData?.phone || data?.phone}</p>
               </div>
               <div className="flex items-center justify-center gap-2 text-white">
                 <FaMapMarkerAlt className="inline" />
-                <p className="inline">{address}</p>
+                <p className="inline">{userData?.address || data?.address}</p>
               </div>
             </div>
           </div>
 
           {/* Education */}
-          {education && education.length > 0 && (
+          {(userData?.education?.length || data?.education?.length) && (
             <section className="mb-2 mt-7">
               <h2 className=" uppercase text-base lg:text-xl font-bold border-b border-white ">
                 Education
               </h2>
               <ul className="mt-2  space-y-4">
-                {education.map((edu, index) => (
+                {(userData?.education || data?.education).map((edu, index) => (
                   <li key={index}>
                     <h3 className=" font-semibold">
                       {edu.degree} - {edu.institution}{" "}
@@ -94,21 +74,23 @@ const Template2 = ({ data }) => {
           )}
         </div>
         {/* 2nd */}
-        <div className="">
+        <div className="lg:w-[517px]">
           {/* Header - Personal Info */}
           <header className="text-center mb-3  bg-[#F0F0F0] py-4 lg:py-16">
-            <h1 className="text-4xl font-bold text-black uppercase">{name}</h1>
-            <p className="font-bold uppercase mt-2">{jobTitle}</p>
+            <h1 className="text-4xl font-bold text-black uppercase">  {userData?.name === "" || userData?.name === undefined
+                ? "Your Name"
+                : userData?.name}</h1>
+            <p className="font-bold uppercase mt-2">{userData?.jobTitle || data?.jobTitle}</p>
           </header>
           <div className="lg:px-6 px-2">
             {/* skills */}
-            {skills && skills.length > 0 && (
+            {(userData?.skills?.length || data?.skills?.length)&& (
               <section className="mb-2 mt-6">
                 <h2 className=" uppercase text-base lg:text-xl font-bold  border-b border-black ">
                   skills
                 </h2>
                 <ul className="mt-2  grid grid-cols-2 justify-between list-disc list-inside">
-                  {skills.map((skill, index) => (
+                  {(userData?.skills || data?.skills).map((skill, index) => (
                     <li key={index} className="pl-2">
                       <h3 className=" font-semibold inline-block">{skill}</h3>
                     </li>
@@ -118,13 +100,13 @@ const Template2 = ({ data }) => {
             )}
 
             {/* Certifications */}
-            {certifications && certifications.length > 0 && (
+            {(userData?.certifications?.length || data?.certifications?.length) && (
               <section className="mb-2 mt-5">
                 <h2 className=" uppercase text-base lg:text-xl font-bold  border-b border-black ">
                   Certifications
                 </h2>
                 <ul className="mt-2  space-y-2">
-                  {certifications.map((cert, index) => (
+                  {(userData?.certifications || data?.certifications).map((cert, index) => (
                     <li key={index}>
                       <h3 className=" font-semibold">
                         {cert.title} - {cert.institution}{" "}
@@ -137,13 +119,13 @@ const Template2 = ({ data }) => {
             )}
 
             {/* Work Experience */}
-            {workExperience && workExperience.length > 0 && (
+            {(userData?.workExperience?.length || data?.workExperience?.length) && (
               <section className="mb-2 mt-5">
                 <h2 className=" font-bold uppercase text-base lg:text-xl  border-b border-black ">
                   Work Experience
                 </h2>
                 <ul className="mt-2  space-y-2">
-                  {workExperience.map((exp, index) => (
+                  {(userData?.workExperience || data?.workExperience).map((exp, index) => (
                     <li key={index}>
                       <h3 className=" font-semibold">
                         {exp.jobTitle} - {exp.company}{" "}
@@ -159,7 +141,7 @@ const Template2 = ({ data }) => {
             )}
 
             {/* Extra Curricular Activities */}
-            {extraCurricularActivities && extraCurricularActivities.length > 0 && (
+            {/* {extraCurricularActivities && extraCurricularActivities.length > 0 && (
               <section className="mb-2 mt-5">
                 <h2 className=" font-bold uppercase text-base lg:text-xl  border-b border-black">
                   Extra Curricular Activities
@@ -173,16 +155,16 @@ const Template2 = ({ data }) => {
                   ))}
                 </ul>
               </section>
-            )}
+            )} */}
 
             {/* languages */}
-            {languages && languages.length > 0 && (
+            {(userData?.languages?.length || data?.languages?.length) && (
               <section className="mb-2 mt-5">
                 <h2 className=" uppercase font-bold  text-base lg:text-xl border-b border-black">
                   language
                 </h2>
                 <ul className="mt-2   grid grid-cols-2 justify-between list-disc list-inside">
-                  {languages.map((language, index) => (
+                  {(userData?.languages || data?.languages).map((language, index) => (
                     <li key={index} className="pl-2">
                       <h3 className=" font-semibold inline-block">
                         {language}
