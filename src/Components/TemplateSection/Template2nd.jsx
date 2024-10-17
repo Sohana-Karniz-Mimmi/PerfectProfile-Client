@@ -12,7 +12,7 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 const Template2nd = ({ data, userData }) => {
   const axiosPublic = useAxiosPublic()
   const { register, handleSubmit, reset } = useForm();
-
+// console.log(data._id)
   const onSubmit = async(data) => {
     console.log(data);
     // img bb te data upload kore url niye db te save korbo
@@ -30,7 +30,7 @@ const Template2nd = ({ data, userData }) => {
     const profile = {
       image : res.data.data.display_url
     }
-    const profileRes = axiosPublic.patch(`/predefined-templates/${data?._id}`, profile)
+    const profileRes = axiosPublic.patch(`/share-resume/${data?.templateItem}`, profile)
     console.log(profileRes.data);
    
   }
@@ -40,8 +40,8 @@ const Template2nd = ({ data, userData }) => {
   
   
   return (
-    <div className="relative">
-      <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
+    <div className="relative border-2 border-secondary">
+      <div className="w-[790px] min-h-[1000px] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
         {/* 1st */}
         <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[12rem] w-[11rem] ">
           <div className="lg:w-44 h-28 w-32 mx-auto px-2.5 py-4 mb-2 ">
