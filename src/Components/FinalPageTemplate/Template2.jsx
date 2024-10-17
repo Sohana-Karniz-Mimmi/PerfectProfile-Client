@@ -10,9 +10,9 @@ const Template2 = ({ data, userData }) => {
   return (
     <div className="relative">
      
-      <div className="lg:w-[790px] w-full  min-h-[1000px] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
+      <div className="lg:w-[794px] w-full  min-h-[1115px] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
         {/* 1st */}
-        <div className="bg-[#353535] text-white lg:px-4 px-2 lg:w-[17rem] w-[11rem] ">
+        <div className="bg-[#353535] text-white lg:px-4 px-2 lg:w-[18rem] w-[11rem] ">
           <div className="lg:w-48 w-32 mx-auto py-7 mb-4">
             <img className="rounded-full" src={img} alt="" />
           </div>
@@ -74,7 +74,7 @@ const Template2 = ({ data, userData }) => {
           )}
         </div>
         {/* 2nd */}
-        <div className="lg:w-[517px]">
+        <div className="lg:w-[521px]">
           {/* Header - Personal Info */}
           <header className="text-center mb-3  bg-[#F0F0F0] py-4 lg:py-16">
             <h1 className="text-4xl font-bold text-black uppercase">  {userData?.name === "" || userData?.name === undefined
