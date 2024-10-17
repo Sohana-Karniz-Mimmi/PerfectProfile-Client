@@ -13,13 +13,11 @@ const Home = () => {
       <Helmet>
         <title>Home - PerfectProfile</title>
       </Helmet>
-      <PremiumModal /> 
+      <PremiumModal />
       <div className="bg-[#F9FAFF]">
         <Banner />
       </div>
-      <div>
-        {/* <Chat /> */}
-      </div>
+      <div>{/* <Chat /> */}</div>
       <div>
         <StepsOfResume />
       </div>
@@ -29,6 +27,9 @@ const Home = () => {
       <div>
         <Testomonial></Testomonial>
       </div>
+      {/* <div>
+        <Chat />
+      </div> */}
     </div>
   );
 };
