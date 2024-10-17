@@ -39,7 +39,7 @@ const ResumeViewer = () => {
 
   const renderTemplate = (templateID) => {
     if (templateID === "template1") {
-      return < MyTemplate userData={showResume} />;
+      return < Template1 userData={showResume} />;
     }
     if (templateID === "template2") {
       return <Template2 userData={showResume} />;

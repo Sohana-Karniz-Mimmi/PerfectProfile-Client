@@ -123,17 +123,17 @@ const FinalResume = () => {
       <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
         <div className="lg:w-2/12 w-full"></div>
 
-        <div>
-          <div id="element"
+        <div  id="element" className="w-full h-full">
+          {/* <div id="element"
             className="w-full h-full"
             style={{
               transform: 'scale(0.60)',
               transformOrigin: 'top left',
               height: '400px',
             }}
-          >
+          > */}
             {renderTemplate(info?.templateItem)}
-          </div>
+          {/* </div> */}
         </div>
 
 

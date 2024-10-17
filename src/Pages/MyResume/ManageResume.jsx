@@ -8,6 +8,7 @@ import useAuth from '../../Hook/useAuth';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import MyTemplate from '../../assets/MyTemplate';
+import Template1 from '../../assets/Template1';
 
 const ManageResume = () => {
     const axiosPublic = useAxiosPublic();
@@ -77,18 +78,18 @@ const ManageResume = () => {
                 {templates?.map(template => (
                     <div key={template._id} className={`relative bg-white rounded-lg p-4 flex flex-col items-center transition-transform transform overflow-hidden ${myResumeTemplate === template._id ? 'border-2 border-blue-500' : ''}`}
                         style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
-                        <div className="w-[300px] h-[330px] overflow-hidden">
+                        <div className="w-[275px] h-[330px] overflow-hidden">
                             <div
                                 className="w-full h-full"
                                 style={{
-                                    // transform: 'scale(0.35)',
-                                    transform: `scale(${scale})`, 
+                                    transform: 'scale(0.35)',
+                                    // transform: `scale(${scale})`, 
                                     transformOrigin: 'top left',
                                     height: '400px',
                                 }}
                                 
                             >
-                                <MyTemplate userData={template} />
+                                <Template1 userData={template} />
                             </div>
                         </div>
 
