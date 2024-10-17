@@ -288,7 +288,7 @@ const BeforeEditingProfile = () => {
           </button>
         </div>
       </form>
-      <div className="w-[30%] bg-slate-200"></div>
+      <div className="w-[30%"></div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 const Address = () => {
   return (
     <div className=" shadow-sm">
-      <div className="  rounded-lg  w-[740px] ">
+      <div className="  rounded-lg  w-[740px]">
         {/* <h1 className="text-4xl mb-12 text-center mt-12">
           Address form template
         </h1> */}
