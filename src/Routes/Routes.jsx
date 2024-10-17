@@ -18,14 +18,15 @@ import ManageUsers from "../Pages/AdminDashboard/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
-import MainChatBox from "../Components/LiveChat/NewChatComponent/MainChatbox";
+// import MainChatBox from "../Components/LiveChat/NewChatComponent/MainChatbox";
 import PremiumRoute from "./PremiumRoute";
 import PremiumModal from "../Components/Modal/PremiumModal";
 import MyResume from "../Pages/MyResume/MyResume";
-// import Address from "../Components/MyProfile/Address";
+
 import UserDashboardLayout from "../Components/MyProfile/UserDashboardLayout";
 import ProfileInfo from "../Components/MyProfile/ProfileInfo";
 import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
+import Favorite from "../Pages/Favorites/Favorite";
 
 const router = createBrowserRouter([
   {
@@ -68,9 +69,17 @@ const router = createBrowserRouter([
       //   path: "/livechat",
       //   element: <SocketChatLive />,
       // },
+      // {
+      //   path: "/profile",
+      //   element: <Profile />,
+      // },
       {
-        path: "/liveChat",
-        element: <MainChatBox />,
+        path: "/my-favorites",
+        element: <Favorite />,
+      },
+      {
+        // path: "/livechat",
+        // element: <SocketChatLive />,
       },
       // {
       //   path: "/address",
@@ -85,9 +94,9 @@ const router = createBrowserRouter([
   {
     path: "/resume/edit/:id",
     element: (
-      <PremiumRoute>
-        <ResumeEditPage />
-      </PremiumRoute>
+      // <PremiumRoute>
+      <ResumeEditPage />
+      // </PremiumRoute>
     ),
   },
   {
@@ -143,10 +152,6 @@ const router = createBrowserRouter([
         path: "address",
         element: <ProfileInfo />,
       },
-      // {
-      //   path: "address",
-      //   element: <Address />,
-      // },
     ],
   },
 ]);

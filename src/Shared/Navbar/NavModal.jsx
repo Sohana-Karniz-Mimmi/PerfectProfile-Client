@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import useRole from "../../Hook/useRole";
 
-const NavModal = ({ handleLogoutBtn }) => {
+const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
   const { user } = useAuth();
   const [role, isLoading] = useRole();
-  // console.log(role.role);
+
   return (
     <div className="relative text-right">
-      <Menu as="div" className="relative inline-block text-left ">
+      <Menu as="div" className="relative inline-block text-left">
         <Menu.Button className="bg-transparent rounded-full p-2 text-black">
           <div className="w-14 h-14 border rounded-full overflow-hidden">
             <img
@@ -41,9 +41,10 @@ const NavModal = ({ handleLogoutBtn }) => {
                   </Link>
                 )}
               </Menu.Item>
+
               <Menu.Item>
                 {({ active }) => (
-                  <Link to={`/resume`}>
+                  <Link to="/userDashboard/resume">
                     <button
                       className={`${
                         active ? "bg-white" : ""
@@ -54,6 +55,7 @@ const NavModal = ({ handleLogoutBtn }) => {
                   </Link>
                 )}
               </Menu.Item>
+
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -66,6 +68,7 @@ const NavModal = ({ handleLogoutBtn }) => {
                   </button>
                 )}
               </Menu.Item>
+
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -78,6 +81,7 @@ const NavModal = ({ handleLogoutBtn }) => {
                   </button>
                 )}
               </Menu.Item>
+
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -90,6 +94,7 @@ const NavModal = ({ handleLogoutBtn }) => {
                   </button>
                 )}
               </Menu.Item>
+
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -106,6 +111,7 @@ const NavModal = ({ handleLogoutBtn }) => {
             </div>
           </Menu.Items>
         )}
+
         {role?.role === "admin" && (
           <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
             <div className="bg-white rounded-xl p-6">
@@ -122,6 +128,7 @@ const NavModal = ({ handleLogoutBtn }) => {
                   </Link>
                 )}
               </Menu.Item>
+
               <Menu.Item>
                 {({ active }) => (
                   <Link to={`/dashboard`}>
@@ -158,8 +165,7 @@ const NavModal = ({ handleLogoutBtn }) => {
 };
 
 NavModal.propTypes = {
-  closeModal: PropTypes.func,
-  isOpen: PropTypes.bool,
+  handleLogoutBtn: PropTypes.func,
   handleRoleChange: PropTypes.func,
 };
 

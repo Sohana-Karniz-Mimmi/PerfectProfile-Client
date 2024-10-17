@@ -1,4 +1,5 @@
 const Template1 = ({ data, userData }) => {
+  console.log(userData)
   return (
     <div className="lg:w-[790px] w-full  min-h-[1000px] h-full mx-auto bg-white shadow-lg rounded-lg">
       <div className="">

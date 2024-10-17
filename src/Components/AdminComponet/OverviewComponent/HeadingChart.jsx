@@ -50,37 +50,39 @@ const HeadingChart = () => {
   ];
 
   return (
-    <div className="max-w-[100%] w-full h-[60vh] ">
+    <div className="w-full h-full overflow-x-auto font-montserrat">
       <h2 className="text-2xl font-bold pb-10 font-lora">Most Used Template</h2>
-      <ResponsiveContainer width="100%" height="100%" className="pb-16">
-        <BarChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar
-            dataKey="totalUse"
-            fill="#8884d8"
-            activeBar={<Rectangle fill="pink" stroke="blue" />}
-          />
-          <Bar
-            dataKey="totalUser"
-            fill="#82ca9d"
-            activeBar={<Rectangle fill="gold" stroke="purple" />}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+      <div className="min-w-[1080px] w-full lg:w-[100%]">
+        {" "}
+        {/* Ensure a minimum width for the chart */}
+        <ResponsiveContainer width="100%" height={600}>
+          <BarChart
+            width={1000} // Still large enough to accommodate all labels
+            height={600}
+            data={data}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 50, // Extra space for rotated X-axis labels
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="name"
+              interval={0} // Show all labels
+              tick={{ angle: 0, fontSize: 12, textAnchor: "end" }}
+            />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            
+              <Bar dataKey="totalUse" fill="#8884d8" />
+              <Bar dataKey="totalUser" fill="#82ca9d" />
+            
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
