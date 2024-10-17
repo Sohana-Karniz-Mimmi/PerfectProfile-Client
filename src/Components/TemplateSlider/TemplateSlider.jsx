@@ -91,7 +91,7 @@ export default function App() {
             <div className="relative group !overflow-visible">
               {/* Adjust the position and ensure it's visible */}
               <div
-                className={`absolute top-1 left-1 text-white font-bold rounded-full px-4 py-1 z-[500] flex items-center ${
+                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${
                   template.package === "premium" ? "bg-secondary" : "bg-primary"
                 }`}
               >
