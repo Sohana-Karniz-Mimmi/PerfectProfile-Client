@@ -53,12 +53,14 @@ const NavModal = ({ handleLogoutBtn }) => {
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
+                    <Link to={`/my-favorites`}>
                     <button
                       className={`${active ? "bg-white" : ""} group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                       onClick={() => handleRoleChange("favorite")}
                     >
                       Favorite
                     </button>
+                    </Link>
                   )}
                 </Menu.Item>
                 <Menu.Item>

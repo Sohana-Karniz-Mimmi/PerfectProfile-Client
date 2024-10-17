@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Template1 from "../../Components/TemplateSection/Template1";
-import Template2 from "../../Components/TemplateSection/Template2";
+import Template2 from "../../Components/FinalPageTemplate/Template2";
 import ShareResumeNavbar from "./ShareResumeNavbar";
 import Template4 from "../../Components/TemplateSection/Template4";
 import Template3 from "../../Components/TemplateSection/Template3";

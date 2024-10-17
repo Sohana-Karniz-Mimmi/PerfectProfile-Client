@@ -21,6 +21,7 @@ import AdminRoute from "./AdminRoute";
 import PremiumRoute from "./PremiumRoute";
 import PremiumModal from "../Components/Modal/PremiumModal";
 import MyResume from "../Pages/MyResume/MyResume";
+import Favorite from "../Pages/Favorites/Favorite";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/my-favorites",
+        element: <Favorite />
       },
       {
         path: "/livechat",

@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
 import Template1 from "../../Components/TemplateSection/Template1";
-import Template2 from "../../Components/TemplateSection/Template2";
+import Template2 from "../../Components/FinalPageTemplate/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
@@ -13,6 +13,7 @@ import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { Menu } from '@headlessui/react';
 import { GrDocumentText } from "react-icons/gr";
 import axios from "axios";
+// import Template2nd from "../../Components/TemplateSection/Template2nd";
 import Template4 from "../../Components/TemplateSection/Template4";
 import Template5 from "../../Components/TemplateSection/Template5";
 import Template6 from "../../Components/TemplateSection/Template6";
@@ -95,21 +96,7 @@ const FinalResume = () => {
     html2pdf().set(opt).from(element).save();
   };
 
-  // const resumeRef = useRef(null);
-
-  // // Generate PDF
-  // const generatePDF = () => {
-  //   const element = resumeRef.current;
-  //   const options = {
-  //     margin: 0, // Set to 0 for full-width
-  //     filename: `${userData.name}_Resume.pdf`,
-  //     image: { type: "jpeg", quality: 0.98 },
-  //     html2canvas: { scale: 2 }, // Increase the scale for better quality
-  //     jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-  //   };
-
-  //   html2pdf().set(options).from(element).save();
-  // };
+ 
 
   return (
     <div className="h-screen">
@@ -146,7 +133,7 @@ const FinalResume = () => {
 
 
                 <button
-                  onClick={handlePdf}
+                  // onClick={handlePdf}
                   // onClick={generatePDF}
                   className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
                 >

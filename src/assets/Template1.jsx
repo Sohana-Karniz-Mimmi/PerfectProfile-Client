@@ -129,7 +129,7 @@ const Template1 = ({ data, userData }) => {
                 {userData?.workExperience.map((exp, index) => (
                   <li key={index} className="mb-2">
                     <h3 className="font-medium">
-                      {exp.jobTitle || "Your Postion"} -{" "}
+                      {exp.jobTitle || "Your Position"} -{" "}
                       {exp.company || "Company Name"} -{" "}
                       {/* <span className="text-gray-500">
                         ({exp.years || "Year of Experience"})
