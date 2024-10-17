@@ -30,10 +30,10 @@ const Template2 = ({ data }) => {
         </div>
         <p className="font-semibold  ">{data.package}</p>
       </div>
-      <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
+      <div className="lg:w-[790px] w-full  min-h-[1000px] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
         {/* 1st */}
-        <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[14rem] w-[11rem] ">
-          <div className="lg:w-40 w-32 mx-auto py-4 mb-2">
+        <div className="bg-[#353535] text-white lg:px-4 px-2 lg:w-[18rem] w-[11rem] ">
+          <div className="lg:w-48 w-32 mx-auto py-7 mb-4">
             <img className="rounded-full" src={img} alt="" />
           </div>
           <div>
@@ -41,10 +41,10 @@ const Template2 = ({ data }) => {
             {careerObjective && (
               <>
                 <section className="mb-2">
-                  <h2 className=" uppercase font-bold lg:text-base text-sm  border-b border-white ">
+                  <h2 className=" uppercase font-bold text-xl  border-b border-white ">
                     about me
                   </h2>
-                  <p className="mt-1 lg:text-sm text-[13px] ">
+                  <p className="mt-2 ">
                     {careerObjective}
                   </p>
                 </section>
@@ -53,7 +53,7 @@ const Template2 = ({ data }) => {
 */}
               </>
             )}
-            <div className="flex flex-col items-start mt-6 text-xs lg:text-sm">
+            <div className="flex flex-col items-start mt-6  lg:text-base text-sm">
               <div className="flex items-center justify-center gap-2 text-white">
                 <p>
                   <IoMail />
@@ -75,11 +75,11 @@ const Template2 = ({ data }) => {
 
           {/* Education */}
           {education && education.length > 0 && (
-            <section className="mb-2 mt-6">
-              <h2 className=" uppercase lg:text-base text-sm font-bold border-b border-white ">
+            <section className="mb-2 mt-7">
+              <h2 className=" uppercase text-base lg:text-xl font-bold border-b border-white ">
                 Education
               </h2>
-              <ul className="mt-1 text-[13px] lg:text-sm space-y-2">
+              <ul className="mt-2  space-y-4">
                 {education.map((edu, index) => (
                   <li key={index}>
                     <h3 className=" font-semibold">
@@ -96,18 +96,18 @@ const Template2 = ({ data }) => {
         {/* 2nd */}
         <div className="">
           {/* Header - Personal Info */}
-          <header className="text-center mb-3  bg-[#F0F0F0] py-4 lg:py-9">
-            <h1 className="text-3xl font-bold text-black uppercase">{name}</h1>
-            <p className="font-semibold uppercase mt-1">{jobTitle}</p>
+          <header className="text-center mb-3  bg-[#F0F0F0] py-4 lg:py-16">
+            <h1 className="text-4xl font-bold text-black uppercase">{name}</h1>
+            <p className="font-bold uppercase mt-2">{jobTitle}</p>
           </header>
-          <div className="lg:px-3 px-2">
+          <div className="lg:px-6 px-2">
             {/* skills */}
             {skills && skills.length > 0 && (
-              <section className="mb-2">
-                <h2 className=" uppercase lg:text-base text-sm font-bold  border-b border-black ">
+              <section className="mb-2 mt-6">
+                <h2 className=" uppercase text-base lg:text-xl font-bold  border-b border-black ">
                   skills
                 </h2>
-                <ul className="mt-1 text-[13px] lg:text-sm  grid grid-cols-2 justify-between list-disc list-inside">
+                <ul className="mt-2  grid grid-cols-2 justify-between list-disc list-inside">
                   {skills.map((skill, index) => (
                     <li key={index} className="pl-2">
                       <h3 className=" font-semibold inline-block">{skill}</h3>
@@ -119,11 +119,11 @@ const Template2 = ({ data }) => {
 
             {/* Certifications */}
             {certifications && certifications.length > 0 && (
-              <section className="mb-2">
-                <h2 className=" uppercase lg:text-base text-sm font-bold  border-b border-black ">
+              <section className="mb-2 mt-5">
+                <h2 className=" uppercase text-base lg:text-xl font-bold  border-b border-black ">
                   Certifications
                 </h2>
-                <ul className="mt-1 text-[13px] lg:text-sm space-y-1">
+                <ul className="mt-2  space-y-2">
                   {certifications.map((cert, index) => (
                     <li key={index}>
                       <h3 className=" font-semibold">
@@ -138,18 +138,18 @@ const Template2 = ({ data }) => {
 
             {/* Work Experience */}
             {workExperience && workExperience.length > 0 && (
-              <section className="mb-2">
-                <h2 className=" font-bold uppercase lg:text-base text-sm  border-b border-black ">
+              <section className="mb-2 mt-5">
+                <h2 className=" font-bold uppercase text-base lg:text-xl  border-b border-black ">
                   Work Experience
                 </h2>
-                <ul className="mt-1 text-[13px] lg:text-sm space-y-1">
+                <ul className="mt-2  space-y-2">
                   {workExperience.map((exp, index) => (
                     <li key={index}>
                       <h3 className=" font-semibold">
                         {exp.jobTitle} - {exp.company}{" "}
                         <span className="text-gray-500">({exp.years})</span>{" "}
                       </h3>
-                      <p className="text-gray-600 mt-1 text-sm">
+                      <p className="text-gray-600 mt-1">
                         {exp.description}
                       </p>
                     </li>
@@ -160,11 +160,11 @@ const Template2 = ({ data }) => {
 
             {/* Extra Curricular Activities */}
             {extraCurricularActivities && extraCurricularActivities.length > 0 && (
-              <section className="mb-2">
-                <h2 className=" font-bold uppercase lg:text-base text-sm  border-b border-black">
+              <section className="mb-2 mt-5">
+                <h2 className=" font-bold uppercase text-base lg:text-xl  border-b border-black">
                   Extra Curricular Activities
                 </h2>
-                <ul className="mt-1 text-[13px] lg:text-sm space-y-1">
+                <ul className="mt-2  space-y-2">
                   {extraCurricularActivities.map((activityItem, index) => (
                     <li key={index} className="text-gray-600">
                       <strong>{activityItem.activity}</strong> -{" "}
@@ -177,11 +177,11 @@ const Template2 = ({ data }) => {
 
             {/* languages */}
             {languages && languages.length > 0 && (
-              <section className="mb-2">
-                <h2 className=" uppercase font-bold  lg:text-base text-sm border-b border-black">
+              <section className="mb-2 mt-5">
+                <h2 className=" uppercase font-bold  text-base lg:text-xl border-b border-black">
                   language
                 </h2>
-                <ul className="mt-1 text-[13px] lg:text-sm  grid grid-cols-2 justify-between list-disc list-inside">
+                <ul className="mt-2   grid grid-cols-2 justify-between list-disc list-inside">
                   {languages.map((language, index) => (
                     <li key={index} className="pl-2">
                       <h3 className=" font-semibold inline-block">

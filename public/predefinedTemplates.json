@@ -2,6 +2,7 @@
   {
     "_id": "66fa7d2e54075c0baa21fecb",
     "name": "Alomgir Hasan Shakib",
+    "package" : "free",
     "templateItem": "template1",
     "jobTitle": "Software Engineer",
     "careerObjective": "To pursue a challenging career in data science and contribute to innovative solutions.",
@@ -175,6 +176,7 @@
   {
     "_id": "66fa7d2e54075c0baa21fece",
     "name": "Tania Rahman",
+    "package" : "free",
     "jobTitle": "Graphic Designer",
     "careerObjective": "To contribute as a Graphic Designer, focusing on visual communication and branding.",
     "email": "taniarahman@gmail.com",
@@ -237,6 +239,7 @@
   {
     "_id": "66fa7d2e54075c0baa21fecf",
     "name": "Farzana Islam",
+    "package" : "free",
     "jobTitle": "Financial Analyst",
     "careerObjective": "To work as a Financial Analyst, assisting in making data-driven financial decisions.",
     "email": "farzanai@gmail.com",
