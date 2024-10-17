@@ -43,7 +43,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Mobile Navbar */}
-      <div className="bg-[#00000f] flex justify-between w-full fixed top-0 left-0 z-50 md:hidden">
+      <div className="bg-[#00000f] flex justify-between w-full fixed top-0 left-0 z-[1000] md:hidden">
         <div className="p-4">
           <Link
             to="/"
@@ -74,7 +74,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`z-40 fixed md:static flex flex-col justify-between bg-[#00000f] text-white md:w-full w-[80%] min-h-full space-y-6 px-2 py-4
+        className={`z-[100]  md:block flex flex-col justify-between bg-[#00000f] text-white md:w-full w-[80%] h-screen fixed space-y-6 px-2 py-4
         transform ${isActive ? "translate-x-0" : "-translate-x-full"} 
         transition-transform duration-200 ease-in-out md:translate-x-0 md:relative`}
       >
@@ -98,8 +98,8 @@ const Sidebar = () => {
         </div>
 
         {/* Nav Items */}
-        <div className="flex flex-col justify-between h-full flex-1 mt-6">
-          <nav>
+        <div className="flex flex-col justify-between h-full ">
+          <nav className="">
             <MenuItem
               label="Overview"
               address="/dashboard"
@@ -130,16 +130,20 @@ const Sidebar = () => {
               icon={HiTemplate}
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
             />
-            <div className="mt-24">
+          </nav>
+          <div>
+            <div className=" md:-mt-28">
               <button
                 onClick={handleLogoutBtn}
-                className="flex w-full items-center px-4 py-2 mt-5 text-gray-600  transition-colors duration-300 transform"
+                className="flex w-full items-center px-4 py-2 text-gray-600  transition-colors duration-300 transform"
               >
                 <GrLogout className="text-2xl text-secondary" />
-                <span className="mx-4 font-medium font-montserrat text-lg text-white">Logout</span>
+                <span className="mx-4 font-medium font-montserrat text-lg text-white">
+                  Logout
+                </span>
               </button>
             </div>
-          </nav>
+          </div>
         </div>
       </div>
     </>
