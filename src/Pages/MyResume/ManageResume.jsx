@@ -13,12 +13,12 @@ import Template1 from '../../assets/Template1';
 const ManageResume = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
-    const [templates, setTemplate] = useState([]);
+    const [myResumeTemplates, setMyResumeTemplates] = useState([]);
     const [myResumeTemplate, setMyResumeTemplate] = useState(null);
     useEffect(() => {
         const getData = async () => {
             const { data } = await axiosPublic(`/my-resume/${user?.email}`);
-            setTemplate(data);
+            setMyResumeTemplates(data);
         };
         getData();
     }, [user?.email]);
@@ -56,7 +56,7 @@ const ManageResume = () => {
                                     text: "Your file has been deleted.",
                                     icon: "success"
                                 });
-                                setTemplate(prevTemplates => prevTemplates.filter(template => template._id !== id));
+                                setMyResumeTemplates(prevTemplates => prevTemplates.filter(template => template._id !== id));
                             }
                         })
                         .catch((error) => {
@@ -75,7 +75,7 @@ const ManageResume = () => {
         <div className="p-4">
             <h1 className="text-3xl font-bold mb-8">Recent Designs</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {templates?.map(template => (
+                {myResumeTemplates?.map(template => (
                     <div key={template._id} className={`relative bg-white rounded-lg p-4 flex flex-col items-center transition-transform transform overflow-hidden ${myResumeTemplate === template._id ? 'border-2 border-blue-500' : ''}`}
                         style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
                         <div className="w-[275px] h-[330px] overflow-hidden">
@@ -87,14 +87,11 @@ const ManageResume = () => {
                                     transformOrigin: 'top left',
                                     height: '400px',
                                 }}
-                                
+
                             >
                                 <Template1 userData={template} />
                             </div>
                         </div>
-
-
-
 
                         <div className="absolute inset-0 flex justify-between items-start opacity-0 hover:opacity-100 transition-opacity p-5">
                             <input
@@ -107,9 +104,7 @@ const ManageResume = () => {
                                 <button className="text-black hover:text-yellow-500 bg-white p-2 rounded-xl">
                                     <FaStar size={20} />
                                 </button>
-                                <Link
-                                    to={`/resume/edit/${template.templateItem}`}
-                                >
+                                <Link to={`/resume/edit/${template.templateItem}?resumeId=${template._id}`}>
                                     <button className="text-black hover:text-primary bg-white p-2 rounded-xl">
                                         <FiEdit size={20} />
                                     </button>

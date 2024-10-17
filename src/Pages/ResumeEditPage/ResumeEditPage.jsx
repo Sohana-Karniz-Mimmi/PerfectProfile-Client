@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import {
@@ -400,6 +400,30 @@ const ResumeEditPage = () => {
 
   const template = data.find((item1) => item1.templateItem === id);
 
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const resumeId = queryParams.get('resumeId');
+
+  const [myResumeTemplates, setMyResumeTemplates] = useState([]);
+  useEffect(() => {
+    if (resumeId) {
+      const getData = async () => {
+        try {
+          const { data } = await axiosPublic(`/my-resume/edit/${resumeId}`);
+          setMyResumeTemplates(data);
+        } catch (error) {
+          console.error("Error fetching resume data", error);
+        }
+      };
+      getData();
+    }
+  }, [resumeId]);
+
+  console.log('resume data', myResumeTemplates);
+  console.log('template data', template);
+  console.log('user data', userData);
+
   const renderTemplate = (id) => {
     if (id === "template1") {
       return <Template1 data={template} userData={userData} />;
@@ -411,8 +435,6 @@ const ResumeEditPage = () => {
       return <Template2 data={template} userData={userData} />;
     }
   };
-
-  // console.log(resumeData);
 
 
   const navigate = useNavigate();
