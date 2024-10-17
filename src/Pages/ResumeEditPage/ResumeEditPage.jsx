@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
-<<<<<<< HEAD
-import { Link, useNavigate, useParams } from "react-router-dom";
-// import Template1 from "../../Components/TemplateSection/Template1";
-// import Template2 from "../../Components/TemplateSection/Template2";
-// import Template3 from "../../Components/TemplateSection/Template3";
-=======
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
->>>>>>> 22ca43e5c023fd796480698e4934138cbcdd289f
 import {
   FaBackward,
   FaCertificate,
@@ -39,11 +32,11 @@ import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Template1 from "../../assets/Template1";
-import Template2 from "../../assets/Template2";
-import Template3 from "../../assets/Template3";
-import Template4 from "../../assets/Template4";
-import Template5 from "../../assets/Template5";
-import Template6 from "../../assets/Template6";
+// import Template2 from "../../assets/Template2";
+// import Template3 from "../../assets/Template3";
+// import Template4 from "../../assets/Template4";
+// import Template5 from "../../assets/Template5";
+// import Template6 from "../../assets/Template6";
 // import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
@@ -448,40 +441,6 @@ const ResumeEditPage = () => {
     }
   };
 
-<<<<<<< HEAD
-  // Dynamic Template Rendering on Resume Customization page
-  // const { templateId } = useParams(); // Assuming templateId comes from the URL or another source
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
-
-  useEffect(() => {
-    setSelectedTemplate(id);
-  }, [id]);
-
-  const renderTemplateDynamic = () => {
-    switch (selectedTemplate) {
-      case "template1":
-        return <Template1 userData={userData}/>;
-      case "template2":
-        return <Template2 userData={userData}/>;
-      case "template3":
-        return <Template3 userData={userData}/>;
-      case "template4":
-        return <Template4 userData={userData}/>;
-      case "template5":
-        return <Template5 userData={userData}/>;
-      case "template6":
-        return <Template6 userData={userData}/>;
-      // Add more cases for the other templates
-      default:
-        return <p>Template not found.</p>;
-    }
-  };
-
-  // console.log(resumeData);
-
-  // Optional chaining দিয়ে template অবজেক্ট অ্যাক্সেস করা হচ্ছে
-=======
->>>>>>> 22ca43e5c023fd796480698e4934138cbcdd289f
 
   const navigate = useNavigate();
   // Function to generate a shareable link
@@ -1220,14 +1179,6 @@ const ResumeEditPage = () => {
         </form>
       </div>
       {/* Template preview area */}
-<<<<<<< HEAD
-      <div className="lg:w-[40%] w-[100%] lg:p-8 px-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
-        {renderTemplateDynamic()}
-        <div className="flex flex-col justify-center items-center py-6 space-y-6">
-          <button className="font-roboto font-medium text-primary">
-            Change Template
-          </button>
-=======
       <div className="xl:w-[33%] 2xl:w-[27%] w-[100%] lg:p-8 px-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
         <div
           className="w-full h-full"
@@ -1245,7 +1196,6 @@ const ResumeEditPage = () => {
               Change Template
             </button>
           </Link>
->>>>>>> 22ca43e5c023fd796480698e4934138cbcdd289f
           <p className="text-xs font-roboto text-gray-500 text-center w-3/4 mx-auto">
             You can edit the content, use other fonts, adjust format, add
             sections, and change placement of the sections later on.
