@@ -32,7 +32,12 @@ import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Template1 from "../../assets/Template1";
-import Template4 from "../../Components/TemplateSection/Template4";
+// import Template2 from "../../assets/Template2";
+// import Template3 from "../../assets/Template3";
+// import Template4 from "../../assets/Template4";
+// import Template5 from "../../assets/Template5";
+// import Template6 from "../../assets/Template6";
+// import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
 import useAuth from "../../Hook/useAuth";
@@ -98,9 +103,9 @@ const ResumeEditPage = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date); // Set the selected date
-  };
+  // const handleDateChange = (date) => {
+  //   setSelectedDate(date); // Set the selected date
+  // };
 
   const axiosPublic = useAxiosPublic();
   const [savedDataId, setSaveDataId] = useState("");
@@ -1139,14 +1144,6 @@ const ResumeEditPage = () => {
               </button>
             </div>
           )}
-          {/* {currentStep === 7 && (
-            <div className="space-y-4">
-              <div className="mx-auto shadow-lg p-8">
-              <MdDoneOutline className="text-secondary" />
-                <h2 className="text-3xl font-bold mb-8">Finalize</h2>
-              </div>
-            </div>
-          )} */}
 
           <div className="flex justify-between mt-12">
             {currentStep >= 1 && (

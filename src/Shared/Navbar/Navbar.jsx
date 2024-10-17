@@ -168,7 +168,7 @@ const Navbar = () => {
             </Link>
 
             {/* Nav Menu */}
-            <div className="hidden ml-8 lg:flex">
+            <div className="hidden font-bold  ml-8 lg:flex">
               <ul className="flex space-x-5">{navLinks}</ul>
             </div>
           </div>

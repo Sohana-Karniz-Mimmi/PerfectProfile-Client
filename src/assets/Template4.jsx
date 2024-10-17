@@ -1,7 +1,7 @@
 import { IoMail } from "react-icons/io5";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
-const Template4 = ({data,userData }) => {
+const Template4 = ({ data, userData }) => {
   console.log(data);
   const {
     _id,
@@ -149,21 +149,24 @@ const Template4 = ({data,userData }) => {
           )}
 
           {/* Extra Curricular Activities */}
-          {userData?.extraCurricularActivities && userData?.extraCurricularActivities.length > 0 && (
-            <section className="mb-1">
-              <h2 className="  text-sm uppercase font-semibold  text-center  bg-gray-400">
-                Extra Curricular Activities
-              </h2>
-              <ul className="mt-1 text-sm space-y-1">
-                {userData?.extraCurricularActivities.map((activityItem, index) => (
-                  <li key={index} className="text-gray-600">
-                    <strong>{activityItem.activity || "Work Title"}</strong> -{" "}
-                    {activityItem.description || "About your activities"}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {userData?.extraCurricularActivities &&
+            userData?.extraCurricularActivities.length > 0 && (
+              <section className="mb-1">
+                <h2 className="  text-sm uppercase font-semibold  text-center  bg-gray-400">
+                  Extra Curricular Activities
+                </h2>
+                <ul className="mt-1 text-sm space-y-1">
+                  {userData?.extraCurricularActivities.map(
+                    (activityItem, index) => (
+                      <li key={index} className="text-gray-600">
+                        <strong>{activityItem.activity || "Work Title"}</strong>{" "}
+                        - {activityItem.description || "About your activities"}
+                      </li>
+                    )
+                  )}
+                </ul>
+              </section>
+            )}
 
           {/* languages */}
           {userData?.languages && userData?.languages.length > 0 && (
