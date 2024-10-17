@@ -72,9 +72,9 @@ const router = createBrowserRouter([
   {
     path: "/resume/edit/:id",
     element: (
-      <PremiumRoute> 
+      // <PremiumRoute> 
         <ResumeEditPage />
-      </PremiumRoute>
+      // </PremiumRoute>
     ),
   
   },
