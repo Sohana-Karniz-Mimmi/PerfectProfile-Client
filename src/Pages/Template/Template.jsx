@@ -25,7 +25,7 @@ const Template = () => {
 
   const [predefinedTemplate, setPredefinedTemplate] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [itemPerPage, setItemPerPage] = useState(4);
+  const [itemPerPage, setItemPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
   const [filter, setFilter] = useState("");
@@ -124,7 +124,7 @@ console.log(filter)
             <div className="relative group w-[350px] h-[450px]">
               <button
                 onClick={() => handleFavorite(template)} // Pass the whole template object
-                className="absolute text-3xl top-[6px] right-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"
+                className="absolute text-3xl bg-white top-[6px] right-2 rounded-lg p-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"
               >
                 {favorites[template._id] ? (
                   <FaStar className="text-cyan-400" />
@@ -134,7 +134,7 @@ console.log(filter)
               </button>
 
               {/* Tooltip for Favorite Button */}
-              <span className="tooltip-text-favorite hidden absolute -top-7 right-0 bg-gray-700 text-white text-xs rounded py-1 px-2">
+              <span className="tooltip-text-favorite hidden absolute -top-7 right-0 bg-primary text-white text-xs rounded py-1 px-2">
                 Add to Favorite
               </span>
 
@@ -152,7 +152,7 @@ console.log(filter)
                 <>
                   <FaCrown className="absolute bottom-4 right-4 text-yellow-400 text-2xl bg-yellow-100 p-1 rounded-full tooltip-crown" />
 
-                  <span className="tooltip-text-crown hidden absolute bottom-12 right-4 bg-gray-700 text-white text-xs rounded py-1 px-2">
+                  <span className="tooltip-text-crown hidden absolute bottom-12 right-4 bg-primary text-white text-xs rounded py-1 px-2">
                     Premium
                   </span>
                 </>
