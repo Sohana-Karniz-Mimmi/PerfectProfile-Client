@@ -1,3 +1,5 @@
+import Container from "../../Shared/Container";
+import Categories from "./Categories";
 import EditorPicks from "./EditorPicks";
 import HeadingResource from "./HeadingResource";
 import ResentBlog from "./ResentBlog";
@@ -9,10 +11,18 @@ const ResourcePage = () => {
         <HeadingResource />
       </div>
       <div>
-        <EditorPicks />
+        <Container>
+          <EditorPicks />
+        </Container>
       </div>
       <div>
-        <ResentBlog />
+        <Container>
+          <ResentBlog />
+        </Container>
+      </div>
+      <div>
+        <Container></Container>
+        <Categories />
       </div>
     </div>
   );

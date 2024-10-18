@@ -5,9 +5,7 @@ import examples from "../../assets/Resource/two-page-resume-example.avif";
 const ResentBlog = () => {
   return (
     <div className="container mx-auto py-10 px-4">
-      <h1 className="text-3xl md:text-5xl font-bold mb-8 text-center">
-        Most Recent
-      </h1>
+      <h1 className="text-3xl md:text-5xl font-bold mb-8 ">Most Recent</h1>
 
       {/* Articles Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
