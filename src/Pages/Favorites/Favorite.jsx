@@ -4,12 +4,20 @@ import useAxiosSecure from "../../Hook/useAxiosSecure";
 import { Link } from "react-router-dom";
 import { FaCrown } from "react-icons/fa";
 import Container from "../../Shared/Container";
-import img from '../../assets/feature/favorite.png'
-import img2 from '../../assets/feature/favorite2.jpg'
+import img from '../../assets/feature/favorite (2).png'
+import img2 from '../../assets/feature/review.png'
+import { useState } from "react";
+import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { axiosPublic } from "../../Hook/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const Favorite = () => {
     const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [favorites, setFavorites] = useState([]);
+
   const { data: templates = [], refetch } = useQuery({
     queryKey: ["templates"],
     queryFn: async () => {
@@ -21,11 +29,35 @@ const Favorite = () => {
   });
 
   console.log(templates);
+
+  const handleDelete = (template) => {
+    // Optimistic UI update (remove the template from the favorites list)
+    setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav._id !== template._id));
+  
+    // Send the delete request
+    axiosPublic.delete(`/my-favorites/${template._id}`)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          toast.success("Removed From Favorite");
+        }
+      })
+      .catch((error) => {
+        // If there's an error, re-add the item back to the state or handle the error
+        console.error("Error removing favorite:", error);
+        toast.error("Failed to remove from favorites.");
+      })
+      .finally(() => {
+        // Always refetch to ensure data sync
+        refetch();
+      });
+  };
+  
     return (
         <Container>
 
             {/* banner */}
-            <div className="flex flex-col lg:flex-row justify-between items-center px-2 lg:px-9 py-4 mb-[21rem] lg:mb-1 h-[26rem] lg:h-[15rem] mt-6 rounded-lg bg-cyan-50">
+            <div className="flex flex-col  lg:flex-row justify-between items-center px-2 lg:px-9 py-4 mb-[15rem] lg:mb-7 h-[26rem] lg:h-[15rem] mt-6 rounded-lg bg-cyan-50">
         <div>
           <h1 className="font-bold text-4xl">
           Favorite Resume Templates
@@ -40,41 +72,58 @@ const Favorite = () => {
   
           <div className="flex flex-col  items-start  text-base  font-bold lg:font-semibold">
            
-            <Link to={`/predefined-templates`} className="mt-5  mb-16 lg:mb-0">
+            <Link to={`/pricing`} className="mt-5  mb-10 lg:mb-0">
               <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105">
-                Browse Templates
+                Get Started
               </button>
             </Link>
           </div>
         </div>
   
         <div className="flex item-center justify-center">
-          <img className="h-full w-full rounded-lg" src={img} alt="" />
-          <img className="h-full w-full rounded-lg" src={img2} alt="" />
+          <img className="h-52 w-64 rounded-lg" src={img2} alt="" />
+          {/* <img className="h-full w-full rounded-lg" src={img2} alt="" /> */}
         </div>
       </div>
+      {
+        templates.length === 0 && (
+          <>
+          <p className="mt-20 text-center font-bold text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">No Favorite Resume Template</p>
+<div className="  text-center mt-5 ">
+<Link to={`/predefined-templates`} class="relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group rounded-md">
+<span class="w-full h-full bg-gradient-to-br from-primary  to-secondary group-hover:from-secondary   group-hover:to-primary absolute"></span>
+<span class="relative px-5 py-2 transition-all ease-out bg-white rounded-md group-hover:bg-opacity-0 duration-400">
+<span class="relative text-black uppercase group-hover:text-white">Browse templates</span>
+</span>
+</Link>
+</div>
+          </>
+        )
+      }
 
-            {
+           <div className="grid grid-cols-3 p-20 pl-36">
+           {
                 templates.map(template=>(
                     <div key={template._id}>
                     <div className="relative group w-[350px] h-[450px]">
                     
-                    {/* <button
-          onClick={() => handleFavorite(template)} // Pass the whole template object
-          className="absolute text-3xl top-[6px] right-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"
+                    <button
+           onClick={() => handleDelete(template)} // Pass the whole template object
+          className="absolute text-3xl top-[6px] right-2 p-1 bg-white rounded-lg z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"
         >
-          {favorites[template._id] ? (
-            <FaStar className="text-cyan-400" />
-          ) : (
+          {favorites[template._id] ?  (
             <FaRegStar className="text-cyan-400" />
-          )}
-        </button> */}
+          ) : (
+            <FaStar className="text-cyan-400" />
+          ) 
+          }
+        </button>
         
         
                       {/* Tooltip for Favorite Button */}
-                      {/* <span className="tooltip-text-favorite hidden absolute -top-7 right-0 bg-gray-700 text-white text-xs rounded py-1 px-2">
-                        Add to Favorite
-                      </span> */}
+                      <span className="tooltip-text-favorite hidden absolute -top-7 right-0 bg-primary text-white text-xs rounded py-1 px-2">
+                        Remove From Favorite
+                      </span>
         
                       {/* Hover Effect with "Use Template" Button */}
                       <div className="absolute w-full h-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
@@ -109,6 +158,7 @@ const Favorite = () => {
                   </div>
                 ))
             }
+           </div>
             
         </Container>
     );

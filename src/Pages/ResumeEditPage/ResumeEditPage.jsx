@@ -35,11 +35,12 @@ import Template1 from "../../assets/Template1";
 import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
-import Template2nd from "../../Components/TemplateSection/Template2nd";
+import Template2nd, { ImageContext } from "../../Components/TemplateSection/Template2nd";
 import Template5 from "../../Components/TemplateSection/Template5";
 import Template6 from "../../Components/TemplateSection/Template6";
 import useAuth from "../../Hook/useAuth";
 import MyTemplate from "../../assets/MyTemplate";
+import { useProfile } from "../../Context/ProfileContext"; 
 
 const ResumeEditPage = () => {
 
@@ -118,6 +119,7 @@ const ResumeEditPage = () => {
     // { id: 7, name: "Finalize" },
   ];
   const { setSavedResume, setShareLink } = useContext(ResumeContext);
+  const { image } = useContext(ImageContext); // Use useContext to access setImage
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -450,13 +452,17 @@ const ResumeEditPage = () => {
 
 
   const navigate = useNavigate();
+ 
+
   // Function to generate a shareable link
   const handleShare = async () => {
     const resumeData = {
       ...userData,
       templateItem: id,
       user_email: user?.email,
+      image
     };
+    console.log(resumeData)
 
     try {
       const response = await axios.post(
