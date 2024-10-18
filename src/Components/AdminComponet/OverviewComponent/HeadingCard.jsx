@@ -9,6 +9,9 @@ import {
 } from "../../../store/Features/predefinedTemplates/templateSlice";
 import PieChartForUser from "./PieChartForUser";
 import { selectAllUsersState } from "../../../store/Features/user/userSlice";
+import { FaCrown, FaUsers } from "react-icons/fa6";
+import { LuLayoutTemplate } from "react-icons/lu";
+import { RiVipCrownLine } from "react-icons/ri";
 
 const HeadingCard = () => {
   const user = useSelector((state) => state?.users?.totalUsers);
@@ -35,96 +38,90 @@ const HeadingCard = () => {
   console.log(users);
 
   return (
-    <section>
-      <div className="flex flex-col md:flex-row gap-5 lg:gap-10 w-full h-full py-10 rounded-lg text-neutral-700 flex-wrap">
+    <section className="">
+      <div className="flex flex-col lg:flex-row justify-between lg:gap-16 gap-8  h-full rounded-lg text-neutral-700">
         {/* card 1 */}
-        <div className="bg-white min-h-16 rounded-lg p-5 font-lora"
-          style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
-          <div className="flex items-center justify-between gap-3">
-            <div className="space-y-3">
-              <h3 className="text-lg text-balck/70 font-bold">Total User</h3>
-
-              <p className="text-3xl font-semibold md:text-2xl">{user}</p>
+        <div
+          className="bg-gradient-to-r from-secondary/90 to-white  md:min-h-72 min-h-52 lg:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-between gap-8"
+          style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+        >
+          <div className=" font-lora flex justify-between">
+            <div className="space-y-2">
+              <h3 className="text-lg text-balck/80 font-bold">Total User</h3>
+              <p className="!text-3xl font-semibold md:text-2xl">{user}</p>
             </div>
             <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="60"
-                height="60"
-                viewBox="0 0 60 60"
-                fill="none"
-              >
-                <path
-                  opacity="0.21"
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0 30V37C0 49.7025 10.2975 60 23 60H30H37C49.7025 60 60 49.7025 60 37V30V23C60 10.2975 49.7025 0 37 0H30H23C10.2975 0 0 10.2975 0 23V30Z"
-                  fill="#8280FF"
-                />
-                <path
-                  opacity="0.587821"
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M20.6667 23.3333C20.6667 26.2789 23.0545 28.6667 26 28.6667C28.9455 28.6667 31.3333 26.2789 31.3333 23.3333C31.3333 20.3878 28.9455 18 26 18C23.0545 18 20.6667 20.3878 20.6667 23.3333ZM34 28.6667C34 30.8758 35.7909 32.6667 38 32.6667C40.2091 32.6667 42 30.8758 42 28.6667C42 26.4575 40.2091 24.6667 38 24.6667C35.7909 24.6667 34 26.4575 34 28.6667Z"
-                  fill="#8280FF"
-                />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M25.9778 31.3333C19.6826 31.3333 14.5177 34.5687 14.0009 40.9323C13.9727 41.2789 14.6356 42 14.97 42H36.9956C37.9972 42 38.0128 41.194 37.9972 40.9333C37.6065 34.3909 32.3616 31.3333 25.9778 31.3333ZM45.2746 42L40.1333 42C40.1333 38.9988 39.1417 36.2291 37.4683 34.0008C42.0103 34.0505 45.7189 36.3469 45.998 41.2C46.0092 41.3955 45.998 42 45.2746 42Z"
-                  fill="#8280FF"
-                />
-              </svg>
+              <FaUsers className="text-5xl text-secondary" />
             </div>
           </div>
-          <p className="flex justify-center items-center gap-1 text-lg pt-7 font-semibold">
-            <IoTrendingUpOutline className="text-secondary" />{" "}
-            <span className="text-secondary font-bold">8.07%</span> Grouth From
-            Yesterday{" "}
-          </p>
+          <div className="">
+            <p className="flex items-center gap-1 md:text-lg text-base font-semibold">
+              <IoTrendingUpOutline className="text-white font-extrabold text-2xl" />{" "}
+              <span className="text-white font-bold">8.07%</span> Growth From
+              Yesterday{" "}
+            </p>{" "}
+          </div>
         </div>
         {/* card 2 */}
-        <div className="bg-white min-h-16 rounded-lg p-5 font-lora"
-          style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
-          <div className="flex items-center justify-between gap-3">
-            <div className="space-y-3">
-              <h3 className="text-lg text-balck/70 font-bold">Premium User</h3>
-              <p className="text-3xl font-semibold">{totalPremiumUser}</p>
+        <div
+          className="bg-gradient-to-r from-primary/90 to-white md:min-h-72 min-h-52 lg:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-between gap-8"
+          style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+        >
+          <div className=" font-lora flex justify-between">
+            <div className="space-y-2">
+              <h3 className="text-lg text-balck/80 font-bold">Premium User</h3>
+              <p className="!text-3xl font-semibold md:text-2xl">
+                {totalPremiumUser}
+              </p>
             </div>
             <div>
-              <GrMoney className="w-[60px] h-[55px] text-[#8280FF]" />
+              <RiVipCrownLine className="text-5xl text-primary" />
             </div>
           </div>
-          <p className="flex justify-center items-center gap-1 text-lg pt-7 font-semibold">
-            <IoTrendingUpOutline className="text-secondary" />{" "}
-            <span className="text-secondary font-bold">8.07%</span> Grouth From
-            Yesterday{" "}
-          </p>
+          <div className="">
+            <p className="flex items-center gap-1 md:text-lg text-base font-semibold">
+              <IoTrendingUpOutline className="text-white font-extrabold text-2xl" />{" "}
+              <span className="text-white font-bold">8.07%</span> Growth From
+              Yesterday{" "}
+            </p>{" "}
+          </div>
         </div>
         {/* card 3 */}
-        <div className="bg-white min-h-16 rounded-lg p-5 font-lora"
-          style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
-          <div className="flex items-center justify-between gap-3">
-            <div className="space-y-3">
-              <h3 className="text-lg text-balck/70 font-bold">
-                Total Template
+        <div
+          className="bg-gradient-to-r from-violet-500 to-white md:min-h-72 min-h-52 lg:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-between gap-8"
+          style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+        >
+          <div className=" font-lora flex justify-between">
+            <div className="space-y-2">
+              <h3 className="text-lg text-balck/80 font-bold">
+                Total Templates
               </h3>
-              <p className="text-3xl font-semibold">{templates?.length}</p>
+              <p className="!text-3xl font-semibold md:text-2xl">
+                {templates?.length}
+              </p>
             </div>
             <div>
-              <GrTemplate className="w-[60px] h-[55px] text-[#8280FF]" />
+              <LuLayoutTemplate className="text-5xl text-violet-500" />
             </div>
           </div>
-          <p className="flex justify-center items-center gap-1 text-lg pt-7 font-semibold">
-            Included <span className="text-secondary font-bold">Premium</span>{" "}
-            Templates
-          </p>
+          <div className="">
+            <p className="flex items-center gap-1 md:text-lg text-base font-semibold">
+              {" "}
+              Include Premium Templates{" "}
+            </p>{" "}
+          </div>
         </div>
       </div>
-      <div className="bg-white rounded-lg p-5 flex items-center justify-center w-full border">
+      <div
+        className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full "
+        style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+      >
         <HeadingChart />
       </div>
-      <div className="bg-white rounded-lg p-5 flex items-center justify-center w-full border mt-10 mb-10">
+      <div
+        className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full  "
+        style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+      >
         <PieChartForUser />
       </div>
     </section>

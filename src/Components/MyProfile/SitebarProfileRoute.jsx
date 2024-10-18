@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   FaUser,
   FaEdit,
@@ -12,20 +12,30 @@ const SitebarProfileRoute = () => {
   return (
     <div className="">
       <div className="text-center py-8">
-        <h2 className="text-2xl font-bold">Profile Settings</h2>
+        {/* <h2 className="text-2xl font-bold">Profile Settings</h2> */}
+        <div className=" font-montserrat ">
+          <h1 className="text-white text-3xl">
+            <span className="text-primary">MY</span>
+            <span className="text-secondary">Profile</span>
+          </h1>
+        </div>
       </div>
       <nav className="mt-10">
         <ul className="space-y-4">
           <li>
-            <Link
-              to="/general"
-              className="flex items-center gap-2 p-4 hover:bg-gray-300 transition duration-200"
+            <NavLink
+              to="editingProfile/#general"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-4 transition duration-200 ${
+                  isActive ? "text-white" : "hover:text-gray-300 text-slate-400"
+                }`
+              }
             >
               <FaUser />
               General
-            </Link>
+            </NavLink>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/edit-profile"
               className="flex items-center gap-2 p-4 hover:bg-gray-700 transition duration-200"
@@ -33,17 +43,23 @@ const SitebarProfileRoute = () => {
               <FaEdit />
               Edit Profile
             </Link>
-          </li>
+          </li> */}
           <li>
-            <Link
-              to="/social-profiles"
-              className="flex items-center gap-2 p-4 hover:bg-gray-700 transition duration-200"
+            <NavLink
+              to="address/#profile"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-4 transition duration-200 ${
+                  isActive
+                    ? " text-white"
+                    : "hover:text-gray-300 text-slate-400"
+                }`
+              }
             >
               <FaAddressBook />
               Address
-            </Link>
+            </NavLink>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/company"
               className="flex items-center gap-2 p-4 hover:bg-gray-700 transition duration-200"
@@ -51,8 +67,8 @@ const SitebarProfileRoute = () => {
               <FaBuilding />
               Company
             </Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link
               to="/applications"
               className="flex items-center gap-2 p-4 hover:bg-gray-700 transition duration-200"
@@ -60,7 +76,7 @@ const SitebarProfileRoute = () => {
               <FaFileAlt />
               Applications
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

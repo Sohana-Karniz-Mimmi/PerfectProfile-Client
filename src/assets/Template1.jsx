@@ -1,7 +1,7 @@
 const Template1 = ({ data, userData }) => {
   return (
     <div
-      className="lg:max-w-[31rem] w-full max-h-[2400px]  mx-auto  bg-slate-50 border-2 border-secondary pb-8"
+      className="w-[790px] min-h-[1000px] mx-auto bg-slate-50 border-2 border-secondary pb-8"
       id="resume-content"
     >
       <div className="">
@@ -18,7 +18,7 @@ const Template1 = ({ data, userData }) => {
               ? "Profession"
               : userData?.jobTitle}
           </p>
-          <p className="font-medium text-sm break-words max-w-[420px] mx-auto">
+          <p className="font-medium text-sm break-words mx-auto">
             {userData?.email === "" || userData?.email === undefined
               ? "yourmail@gmail.com"
               : userData?.email}{" "}
@@ -28,7 +28,7 @@ const Template1 = ({ data, userData }) => {
               : userData?.phone}{" "}
             |{" "}
             {userData?.address === "" || userData?.address === undefined
-              ? data?.address
+              ? "45 Greenway, Dhaka"
               : userData?.address}
           </p>
         </header>
@@ -41,10 +41,10 @@ const Template1 = ({ data, userData }) => {
                 <h2 className=" uppercase text-sm font-roboto  font-bold text-blue-900 border-b border-blue-950 ">
                   Career Objective
                 </h2>
-                <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
+                <p className="mt-1 text-sm font-roboto break-words text-justify ">
                   Use this section to give recruiters a quick glimpse of your
                   professional profile. In just 3-4 lines, highlight your
-                  background, education and main skills.
+                  background, education and main skills. Use this section to give recruiters a quick glimpse of your professional profile. In just 3-4 lines, highlight your background, education and main skills.
                 </p>
               </>
             </section>
@@ -54,7 +54,7 @@ const Template1 = ({ data, userData }) => {
                 <h2 className=" uppercase text-sm font-roboto font-bold text-blue-900 border-b border-blue-950 ">
                   Career Objective
                 </h2>
-                <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
+                <p className="mt-1 text-sm font-roboto break-words text-justify ">
                   {userData?.careerObjective}
                 </p>
               </section>
@@ -86,7 +86,7 @@ const Template1 = ({ data, userData }) => {
               <ul className="text-sm ">
                 {userData?.education.map((edu, index) => (
                   <li key={index}>
-                    <h3 className=" font-medium text-sm font-roboto break-words max-w-[420px]">
+                    <h3 className=" font-medium text-sm font-roboto break-words ">
                       {edu.degree || "Your Degree"} -{" "}
                       {edu.institution || "Institute Name"} -{" "}
                       <span className="">({edu.year || "Passing Year"})</span>
@@ -103,10 +103,10 @@ const Template1 = ({ data, userData }) => {
               <h2 className=" uppercase font-roboto text-sm font-bold text-blue-900 border-b border-blue-950 ">
                 Certifications
               </h2>
-              <ul className="mt-1 text-sm space-y-1 break-words max-w-[420px]">
+              <ul className="mt-1 text-sm space-y-1 break-words ">
                 {userData?.certifications.map((cert, index) => (
                   <li key={index}>
-                    <h3 className=" font-medium font-roboto break-words max-w-[420px]">
+                    <h3 className=" font-medium font-roboto break-words ">
                       {cert.title || "Course Name"} -{" "}
                       {cert.institution || "Institute Name"} -{" "}
                       <span className="">
@@ -129,7 +129,7 @@ const Template1 = ({ data, userData }) => {
                 {userData?.workExperience.map((exp, index) => (
                   <li key={index} className="mb-2">
                     <h3 className="font-medium">
-                      {exp.jobTitle || "Your Postion"} -{" "}
+                      {exp.jobTitle || "Your Position"} -{" "}
                       {exp.company || "Company Name"} -{" "}
                       {/* <span className="text-gray-500">
                         ({exp.years || "Year of Experience"})
@@ -177,9 +177,9 @@ const Template1 = ({ data, userData }) => {
                         )
                       </span>
                     </h3>
-                    <p className="font-roboto text-justify  text-sm max-w-[450px] break-words">
+                    <p className="font-roboto text-justify  text-sm break-words">
                       {exp.description ||
-                        "Include your degree, school name and the year you graduated. If you don’t have a degree, list coursework or training that’s relevant to the job you’re applying for."}
+                        "Include your degree, school name and the year you graduated. If you don’t have a degree, list coursework or training that’s relevant to the job you’re applying for. Include your degree, school name and the year you graduated. If you don’t have a degree, list coursework or training that’s relevant to the job you’re applying for."}
                     </p>
                   </li>
                 ))}
