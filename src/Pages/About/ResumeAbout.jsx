@@ -23,7 +23,7 @@ const ResumeAbout = () => {
                                 <div className="!mt-8">
 
                                     <Button 
-                                    route={'/template'} 
+                                    route={'/predefined-templates'} 
                                     text={"Create Resume"}
                                     className={'py-[10px] px-12 rounded-lg md:text-lg'}
                                     />

@@ -34,7 +34,7 @@ const Login = () => {
         const loggedInUser = result.user;
 
         const user = { email: loggedInUser.email };
-        await axiosPublic.post("/login", user, { withCredentials: true });
+        // await axiosPublic.post("/login", user, { withCredentials: true });
 
         toast.success("Login Successfully!");
         setTimeout(() => {

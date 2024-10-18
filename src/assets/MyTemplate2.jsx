@@ -1,32 +1,18 @@
-import img from "../../assets/resumeimage.jpg";
+import img from "../assets/resumeimage.jpg";
 import { IoMail } from "react-icons/io5";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import useAxiosPublic from "../../Hook/useAxiosPublic";
-import { createContext, useContext, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../Hook/useAxiosPublic";
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
-
-export const ImageContext = createContext()
-export const ImageState = ({children}) => {
-  const [image, setImage] = useState(null);
-
-  return (
-    <ImageContext.Provider value={{ image, setImage }}>
-      {children}
-    </ImageContext.Provider>
-  );
-};
-
-const Template2nd = ({ data, userData }) => {
+const MyTemplate2 = ({ data, userData }) => {
   const axiosPublic = useAxiosPublic()
-  const { setImage } = useContext(ImageContext); // Use useContext to access setImage
-
   const { register, handleSubmit, reset } = useForm();
-// console.log(userData.image)
+
   const onSubmit = async(data) => {
     console.log(data);
     // img bb te data upload kore url niye db te save korbo
@@ -37,35 +23,25 @@ const Template2nd = ({ data, userData }) => {
       }
     })
     console.log(res.data);
-    console.log(data?.image)
   
 
   if(res.data.success){
-    const image = res.data.data.display_url
-   setImage(image)
+    // now save data on db
+    const profile = {
+      image : res.data.data.display_url
+    }
+    const profileRes = axiosPublic.patch(`/predefined-templates/${data?._id}`, profile)
+    console.log(profileRes.data);
+   
   }
-  
   }
 
-  console.log(data?.templateItem)
-  
-  
   return (
-    <div className="relative border-2 border-secondary">
-      <div className="w-[790px] min-h-[1000px] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
+    <div className="relative">
+      <div className="w-[790px] min-h-[1000px] mx-auto flex justify-center  shadow-2xl rounded-lg   ">
         {/* 1st */}
         <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[12rem] w-[11rem] ">
-          <div className="lg:w-44 h-28 w-32 mx-auto px-2.5 py-4 mb-2 ">
-          <img className="rounded-full lg:w-[9rem] h-36 w-32" src={img} alt="" id="profile-pic" />
-
           
-
-         <form onSubmit={handleSubmit(onSubmit)}>
-         {/* <label  className="cursor-pointer" htmlFor="input-file">Upload Image</label> */}
-         <input  {...register("image")}   type="file" name="image" accept="image/jpeg, image/jpg, image/png" id="input-file"  />
-         <button type="submit">upload</button>
-         </form>
-          </div>
           <div className="mt-36">
             {/* about me */}
             {userData?.careerObjective === "" ||
@@ -314,4 +290,4 @@ const Template2nd = ({ data, userData }) => {
   );
 };
 
-export default Template2nd;
+export default MyTemplate2;
