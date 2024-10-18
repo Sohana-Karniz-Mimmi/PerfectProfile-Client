@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../Hook/useAxiosPublic";
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
-const Template2nd = ({ data, userData }) => {
+const MyTemplate2 = ({ data, userData }) => {
   const axiosPublic = useAxiosPublic()
   const { register, handleSubmit, reset } = useForm();
 
@@ -41,17 +41,7 @@ const Template2nd = ({ data, userData }) => {
       <div className="w-[790px] min-h-[1000px] mx-auto flex justify-center  shadow-2xl rounded-lg   ">
         {/* 1st */}
         <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[12rem] w-[11rem] ">
-          <div className="lg:w-44 h-28 w-32 mx-auto px-2.5 py-4 mb-2 ">
-          <img className="rounded-full lg:w-[9rem] h-36 w-32" src={img} alt="" id="profile-pic" />
-
           
-
-         <form onSubmit={handleSubmit(onSubmit)}>
-         {/* <label  className="cursor-pointer" htmlFor="input-file">Upload Image</label> */}
-         <input  {...register("image")}   type="file" name="image" accept="image/jpeg, image/jpg, image/png" id="input-file"  />
-         <button type="submit">upload</button>
-         </form>
-          </div>
           <div className="mt-36">
             {/* about me */}
             {userData?.careerObjective === "" ||
@@ -300,4 +290,4 @@ const Template2nd = ({ data, userData }) => {
   );
 };
 
-export default Template2nd;
+export default MyTemplate2;

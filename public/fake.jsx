@@ -173,3 +173,63 @@ export default function App() {
 }
 
 
+const renderTemplate = (id, template, userData) => {
+  switch (id) {
+    case "template1":
+      return <Template1 data={template} userData={userData} />;
+    case "template2":
+      return <MyTemplate data={template} userData={userData} />;
+    case "template3":
+      return <Template3 data={template} userData={userData} />;
+    case "template4":
+      return <Template4 data={template} userData={userData} />;
+    case "template5":
+      return <Template5 data={template} userData={userData} />;
+    case "template6":
+      return <Template6 data={template} userData={userData} />;
+    default:
+      return null; // যদি কোনও টেমপ্লেট না মিলে
+  }
+};
+
+{myResumeTemplates?.map(template => (
+  <div key={template._id} className={`relative bg-white rounded-lg p-4 flex flex-col items-center transition-transform transform overflow-hidden ${myResumeTemplate === template._id ? 'border-2 border-blue-500' : ''}`}
+    style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
+      
+    <div className="w-[275px] h-[330px] overflow-hidden">
+      <div
+        className="w-full h-full"
+        style={{
+          transform: 'scale(0.35)', 
+          transformOrigin: 'top left',
+          height: '400px',
+        }}
+      >
+        {/* এখানে renderTemplate ফাংশন ব্যবহার করে সঠিক টেমপ্লেট রেন্ডার করা হবে */}
+        {renderTemplate(template.templateItem, template, user)}
+      </div>
+    </div>
+
+    <div className="absolute inset-0 flex justify-between items-start opacity-0 hover:opacity-100 transition-opacity p-5">
+      <input
+        type="checkbox"
+        className="form-checkbox text-black bg-white border-gray-300 focus:ring-offset-2 w-6 h-6"
+        onChange={(e) => handleCheckboxChange(e, template._id)}
+        checked={myResumeTemplate === template._id}
+      />
+      <div className="flex space-x-2">
+        <button className="text-black hover:text-yellow-500 bg-white p-2 rounded-xl">
+          <FaStar size={20} />
+        </button>
+        <Link to={`/resume/edit/${template.templateItem}?resumeId=${template._id}`}>
+          <button className="text-black hover:text-primary bg-white p-2 rounded-xl">
+            <FiEdit size={20} />
+          </button>
+        </Link>
+      </div>
+    </div>
+  </div>
+))}
+
+
+

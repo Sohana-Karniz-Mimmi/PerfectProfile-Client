@@ -431,7 +431,7 @@ const ResumeEditPage = () => {
 
   const renderTemplate = (id) => {
     if (id === "template1") {
-      return <Template1 data={template} userData={userData} />;
+      return <Template1 data={template} userData={myResumeTemplates} />;
     }
     if (id === "template2") {
       return <Template2nd data={template} userData={userData} />;

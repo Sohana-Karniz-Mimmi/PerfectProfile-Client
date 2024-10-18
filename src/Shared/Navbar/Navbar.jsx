@@ -191,7 +191,7 @@ const Navbar = () => {
                   <FaUser className="text-sm text-white"></FaUser>Log In
                 </button>
 
-                <Link to={`/createResume`}>
+                <Link to={`predefined-templates`}>
                   <button className="hidden font-bold md:flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-lg">
                     Create My Resume
                   </button>
