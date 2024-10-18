@@ -5,14 +5,28 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
+
+export const ImageContext = createContext()
+export const ImageState = ({children}) => {
+  const [image, setImage] = useState(null);
+
+  return (
+    <ImageContext.Provider value={{ image, setImage }}>
+      {children}
+    </ImageContext.Provider>
+  );
+};
+
 const Template2nd = ({ data, userData }) => {
   const axiosPublic = useAxiosPublic()
+  const { setImage } = useContext(ImageContext); // Use useContext to access setImage
+
   const { register, handleSubmit, reset } = useForm();
-// console.log(data._id)
+// console.log(userData.image)
   const onSubmit = async(data) => {
     console.log(data);
     // img bb te data upload kore url niye db te save korbo
@@ -23,20 +37,17 @@ const Template2nd = ({ data, userData }) => {
       }
     })
     console.log(res.data);
+    console.log(data?.image)
   
 
   if(res.data.success){
-    // now save data on db
-    const profile = {
-      image : res.data.data.display_url
-    }
-    const profileRes = axiosPublic.patch(`/share-resume/${data?.templateItem}`, profile)
-    console.log(profileRes.data);
-   
+    const image = res.data.data.display_url
+   setImage(image)
   }
+  
   }
 
-  
+  console.log(data?.templateItem)
   
   
   return (
