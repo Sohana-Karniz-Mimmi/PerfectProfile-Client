@@ -44,7 +44,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
 
               <Menu.Item>
                 {({ active }) => (
-                  <Link to="/userDashboard/resume">
+                  <Link to="/my-resume">
                     <button
                       className={`${
                         active ? "bg-white" : ""
