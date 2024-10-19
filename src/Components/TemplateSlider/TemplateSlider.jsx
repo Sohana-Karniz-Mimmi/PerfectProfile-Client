@@ -6,12 +6,20 @@ import "./styles.css";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { FaArrowLeft, FaArrowRight, FaCrown, FaStar } from "react-icons/fa6";
+import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import useRole from "./../../Hook/useRole";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
+import { FiEdit } from "react-icons/fi";
+import { TiTimes } from "react-icons/ti";
+import { FaRegStar } from "react-icons/fa";
+import { LuShare } from "react-icons/lu";
+import { MdOutlineColorLens } from "react-icons/md";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { FaCrown } from "react-icons/fa";
+
 
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
@@ -50,7 +58,7 @@ export default function App() {
     getData();
   }, []);
 
- 
+
   const handleTemplateClick = (template) => {
     if (!user) {
       toast.error("You have to login first");
@@ -67,7 +75,7 @@ export default function App() {
     }
 
     if (template.package === "premium") {
-      setModalContent("To use this premium template, you need to purchase the premium package.");
+      setModalContent(template?.image);
       setShowModal(true);
       return;
     }
@@ -80,6 +88,12 @@ export default function App() {
     setModalContent("To use this template, please check your package.");
     setShowModal(true);
   };
+
+
+  const handleFavorite = () => {
+    toast.success("Added to the favorite");
+  }
+  
 
   return (
     <>
@@ -144,20 +158,86 @@ export default function App() {
         ))}
 
         {showModal && (
-          <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-md">
-              <h2 className="text-lg font-bold">{modalContent}</h2>
-              <div className="mt-4 flex justify-end">
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="bg-gray-300 text-black py-2 px-4 rounded mr-2"
-                >
-                  Close
-                </button>
+          <div className="fixed z-50 inset-0 flex justify-center bg-black bg-opacity-50 mt-28 mb-5">
+            <div className="bg-white p-6 rounded-md flex md:flex-row flex-col items-center max-w-4xl mx-auto relative">
+              {/* Close Icon */}
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              >
+                <TiTimes className="text-xl" />
+              </button>
+
+              {/* Image Section */}
+              <div className="md:w-1/2 w-full p-4">
+                <img
+                  src={modalContent}
+                  alt="Premium Template"
+                  className="w-[300px] h-[400px] rounded-md shadow-md"
+                />
+              </div>
+
+              {/* Text Section */}
+              <div className="md:w-1/2 w-full p-4 space-y-4">
+                {/* Premium Icon and Heading */}
+                <div className="flex items-center gap-1 px-2 bg-black bg-opacity-60 rounded-full w-fit">
+                  <FaCrown className="text-yellow-500 text-base" />
+                  <span className="text-sm text-white">Pro</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <h2 className="text-2xl font-bold">Professional Modern Resume</h2>
+                </div>
+
+                {/* Description */}
+                <span className="block text-lg font-medium text-gray-600">
+                  Premium templates designed to showcase your skills with a modern and professional look.
+                </span>
+
+                {/* Use Template Button */}
+                <div className="flex items-center w-full gap-2">
+                  <Link to="/pricing">
+                    <button className="bg-primary text-white py-2 px-4 rounded-lg w-[300px] font-semibold hover:bg-primary-dark transition flex justify-center items-center gap-2">
+                      <FaCrown className="text-xl" />
+                      Use This Template
+                    </button>
+                  </Link>
+
+                  <button
+                   onClick={handleFavorite}
+                    className=" hover:text-primary border bg-white p-2 rounded-xl">
+                    <FaRegStar size={20} />
+                  </button>
+                  
+                  
+                  <button
+                    className=" hover:text-primary border bg-white p-2 rounded-xl">
+                    <HiDotsHorizontal size={20} />
+                  </button>
+                  <div></div>
+                </div>
+
+                {/* Feature 1 */}
+                <div className="flex items-center space-x-2 text-gray-700">
+                  <MdOutlineColorLens className="text-xl text-black" />
+                  <p>100% fully customizable</p>
+                </div>
+
+                {/* Feature 2 */}
+                <div className="flex items-center space-x-2 text-gray-700">
+                  <FiEdit className="text-xl text-black" />
+                  <p>Edit and download on the go</p>
+                </div>
+
+                {/* Feature 3 */}
+                <div className="flex items-center space-x-2 text-gray-700">
+                  <LuShare className="text-xl text-black" />
+                  <p>Share and publish anywhere</p>
+                </div>
               </div>
             </div>
           </div>
         )}
+
 
         <CustomPrevButton />
         <CustomNextButton />
