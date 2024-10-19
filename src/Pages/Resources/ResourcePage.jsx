@@ -3,6 +3,7 @@ import Categories from "./Categories";
 import EditorPicks from "./EditorPicks";
 import HeadingResource from "./HeadingResource";
 import ResentBlog from "./ResentBlog";
+import Resumes from "./Resumes";
 
 const ResourcePage = () => {
   return (
@@ -21,8 +22,12 @@ const ResourcePage = () => {
         </Container>
       </div>
       <div>
-        <Container></Container>
         <Categories />
+      </div>
+      <div>
+        <Container>
+          <Resumes />
+        </Container>
       </div>
     </div>
   );

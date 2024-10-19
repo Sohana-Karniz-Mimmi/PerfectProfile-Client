@@ -41,7 +41,7 @@ const Categories = () => {
               key={index}
               className="bg-[#e4e4e4] rounded-lg shadow-lg p-6 max-w-xl"
             >
-              <h2 className="text-xl font-semibold text-center mt-4">
+              <h2 className="text-3xl font-semibold text-center mt-4">
                 {category?.name}
               </h2>
               <p className="text-center text-gray-600 mt-2">
