@@ -156,7 +156,6 @@ const Resumes = () => {
           </div>
         </div>
       </div>
-      <div></div>
     </>
   );
 };

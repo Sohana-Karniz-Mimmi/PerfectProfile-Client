@@ -23,7 +23,7 @@ const Categories = () => {
 
   return (
     <div className="relative">
-      <h1 className="text-4xl font-bold text-center">Categories</h1>
+      <h1 className="text-4xl font-bold ">Categories</h1>
 
       {/* Swiper Container */}
       <div className="relative flex items-center justify-center mt-10">

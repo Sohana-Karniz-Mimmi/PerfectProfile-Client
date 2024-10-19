@@ -2,6 +2,7 @@ import Container from "../../Shared/Container";
 import Categories from "./Categories";
 import EditorPicks from "./EditorPicks";
 import HeadingResource from "./HeadingResource";
+import InterviewsResources from "./InterviewsResources";
 import ResentBlog from "./ResentBlog";
 import Resumes from "./Resumes";
 
@@ -25,8 +26,11 @@ const ResourcePage = () => {
         <Categories />
       </div>
       <div>
+        <Resumes />
+      </div>
+      <div>
         <Container>
-          <Resumes />
+          <InterviewsResources />
         </Container>
       </div>
     </div>
