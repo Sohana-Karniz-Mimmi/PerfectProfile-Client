@@ -3,6 +3,7 @@ import Categories from "./Categories";
 import EditorPicks from "./EditorPicks";
 import HeadingResource from "./HeadingResource";
 import InterviewsResources from "./InterviewsResources";
+import JobResources from "./JobResources";
 import ResentBlog from "./ResentBlog";
 import Resumes from "./Resumes";
 
@@ -32,6 +33,10 @@ const ResourcePage = () => {
         <Container>
           <InterviewsResources />
         </Container>
+      </div>
+      <div>
+        <Container></Container>
+        <JobResources />
       </div>
     </div>
   );
