@@ -1,4 +1,5 @@
 import Container from "../../Shared/Container";
+import Careers from "./Careers";
 import Categories from "./Categories";
 import EditorPicks from "./EditorPicks";
 import HeadingResource from "./HeadingResource";
@@ -14,14 +15,12 @@ const ResourcePage = () => {
         <HeadingResource />
       </div>
       <div>
-        <Container>
-          <EditorPicks />
-        </Container>
+        <Container></Container>
+        <EditorPicks />
       </div>
       <div>
-        <Container>
-          <ResentBlog />
-        </Container>
+        <Container></Container>
+        <ResentBlog />
       </div>
       <div>
         <Categories />
@@ -30,13 +29,16 @@ const ResourcePage = () => {
         <Resumes />
       </div>
       <div>
-        <Container>
-          <InterviewsResources />
-        </Container>
+        <Container></Container>
+        <InterviewsResources />
       </div>
       <div>
-        <Container></Container>
         <JobResources />
+      </div>
+      <div>
+        <Container>
+          <Careers />
+        </Container>
       </div>
     </div>
   );

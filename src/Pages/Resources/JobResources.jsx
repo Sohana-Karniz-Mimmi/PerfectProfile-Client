@@ -9,15 +9,17 @@ const JobResources = () => {
           View more jobs articles ➜
         </a>
       </div>
-      <h1 className="text-3xl font-bold mb-6">Jobs</h1>
-
-      {/* Buttons */}
-      <div className="mb-6 flex space-x-4">
-        <button className="px-4 py-2 bg-gray-200 rounded-lg text-blue-900">
-          Job Search
-        </button>
-      </div>
       <div className="bg-slate-100 p-10 ">
+        <div className="container mx-auto">
+          <h1 className="text-3xl font-bold mb-6">Jobs</h1>
+
+          {/* Buttons */}
+          <div className="mb-6 flex space-x-4">
+            <button className="px-4 py-2 bg-gray-200 rounded-lg text-blue-900">
+              Job Search
+            </button>
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 container mx-auto">
           <div>
             <img className="w-[250px] rounded-xl" src={jobImg1} alt="" />
