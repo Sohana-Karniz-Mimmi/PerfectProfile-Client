@@ -107,7 +107,7 @@ const router = createBrowserRouter([
     path: "/resume/final-resume/:id",
     element: <FinalResume />,
     loader: ({ params }) =>
-      fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume/${params.id}`),
+      fetch(`${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume/${params.id}`),
   },
   {
     path: "/resume/:link",

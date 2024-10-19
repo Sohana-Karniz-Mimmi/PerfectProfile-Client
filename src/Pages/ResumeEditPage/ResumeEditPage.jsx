@@ -466,7 +466,7 @@ const ResumeEditPage = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_LOCALHOST}/share-resume`,
+        `${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume`,
         resumeData,
         { withCredentials: true }
       );

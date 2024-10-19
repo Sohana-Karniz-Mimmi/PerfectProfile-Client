@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import useRole from "./../../Hook/useRole";
 import useAuth from "../../Hook/useAuth";
+import toast from "react-hot-toast";
 
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
@@ -36,9 +37,10 @@ const CustomNextButton = (props) => (
 export default function App() {
   const [role] = useRole();
   const { user } = useAuth();
-
   const axiosPublic = useAxiosPublic();
   const [predefinedTemplate, setPredefinedTemplate] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -48,7 +50,36 @@ export default function App() {
     getData();
   }, []);
 
-  const [showModal, setShowModal] = useState(false);
+ 
+  const handleTemplateClick = (template) => {
+    if (!user) {
+      toast.error("You have to login first");
+      document.getElementById("my_modal_3").showModal();
+      return;
+    }
+    if (template.package === "premium" && role.productName === "premium") {
+      window.location.href = `/resume/edit/${template.templateItem}`;
+      return;
+    }
+    if (template.package === "premium" && role.productName === "standard") {
+      window.location.href = `/resume/edit/${template.templateItem}`;
+      return;
+    }
+
+    if (template.package === "premium") {
+      setModalContent("To use this premium template, you need to purchase the premium package.");
+      setShowModal(true);
+      return;
+    }
+
+    if (template.package === "free") {
+      window.location.href = `/resume/edit/${template.templateItem}`;
+      return;
+    }
+
+    setModalContent("To use this template, please check your package.");
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -59,9 +90,6 @@ export default function App() {
           prevEl: ".prev",
           nextEl: ".next",
         }}
-        // pagination={{
-        //   clickable: true,
-        // }}
         breakpoints={{
           320: {
             slidesPerView: 2,
@@ -84,75 +112,53 @@ export default function App() {
         className="mySwiper"
       >
         {predefinedTemplate?.map((template) => (
-          <SwiperSlide
-            key={template._id}
-            className="relative !overflow-visible"
-          >
+          <SwiperSlide key={template._id} className="relative !overflow-visible">
             <div className="relative group !overflow-visible">
-              {/* Adjust the position and ensure it's visible */}
               <div
-                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${
-                  template.package === "premium" ? "bg-secondary" : "bg-primary"
-                }`}
+                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${template.package === "premium" ? "bg-secondary" : "bg-primary"
+                  }`}
               >
                 {template.package === "premium" ? (
                   <>
-                    <FaCrown className="mr-1" /> {/* Icon for Premium */}
-                    Premium
+                    <FaCrown className="mr-1" /> Premium
                   </>
                 ) : (
                   <>
-                    <FaStar className="mr-1" /> {/* Icon for Free */}
-                    Free
+                    <FaStar className="mr-1" /> Free
                   </>
                 )}
               </div>
-              <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
-                <Link
-                  to={`resume/edit/${template.templateItem}`}
-                  state={{ template: template }}
-                >
-                  <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Use Template
-                  </button>
-                  {/* <button className="bg-red-500 -top-3 z-50 absolute">{template.package}</button> */}
-                </Link>
 
-                {/* <button className="bg-red-500 -top-3 z-50 absolute">{template.package}</button> */}
+              <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+                <button
+                  onClick={() => handleTemplateClick(template)}
+                  className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  Use Template
+                </button>
               </div>
 
-              {/* <img className="w-[330px] h-[420px]" src={template.image} alt="" /> */}
               <img className="w-full size" src={template.image} alt="" />
             </div>
           </SwiperSlide>
         ))}
 
-        {/* Modal */}
         {showModal && (
           <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-md">
-              <h2 className="text-lg font-bold">Premium Package Required</h2>
-              <p className="mt-2">
-                To use this template, you need to purchase the premium package.
-              </p>
+              <h2 className="text-lg font-bold">{modalContent}</h2>
               <div className="mt-4 flex justify-end">
                 <button
                   onClick={() => setShowModal(false)}
                   className="bg-gray-300 text-black py-2 px-4 rounded mr-2"
                 >
-                  Cancel
+                  Close
                 </button>
-                <Link to={"/pricing"}>
-                  <button className="bg-primary text-white py-2 px-4 rounded">
-                    Purchase Package
-                  </button>
-                </Link>
               </div>
             </div>
           </div>
         )}
 
-        {/* Custom navigation buttons */}
         <CustomPrevButton />
         <CustomNextButton />
       </Swiper>
