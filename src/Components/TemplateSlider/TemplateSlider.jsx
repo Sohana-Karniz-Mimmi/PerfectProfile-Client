@@ -13,7 +13,6 @@ import useRole from "./../../Hook/useRole";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
 import { FiEdit } from "react-icons/fi";
-import { TiTimes } from "react-icons/ti";
 import { FaRegStar } from "react-icons/fa";
 import { LuShare } from "react-icons/lu";
 import { MdOutlineColorLens } from "react-icons/md";
@@ -163,95 +162,96 @@ export default function App() {
         ))}
 
 
-          <Dialog open={isOpen2nd} onClose={() => set2ndIsOpen(false)} className="relative z-50">
-            <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-              <DialogPanel className=" space-y-4 border bg-white p-12">
+        <Dialog open={isOpen2nd} onClose={() => set2ndIsOpen(false)} className="relative z-50">
+          <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+            <DialogPanel className=" space-y-4 border bg-white p-12">
 
-                <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
-                  <div className="bg-white p-6 rounded-md flex md:flex-row flex-col items-center max-w-4xl mx-auto relative">
-                    {/* Close Icon */}
-                    <button
-                      onClick={() => set2ndIsOpen(false)}
-                      className="absolute top-4 right-4 text-gray-500 hover:text-white hover:bg-black hover:bg-opacity-50 p-1 rounded-full transition duration-300 "
-                    >
-                      <IoMdClose  className="text-xl " />
-                    </button>
+              <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
+                <div className="bg-white p-6 rounded-md flex md:flex-row flex-col items-center w-full lg:max-w-4xl mx-auto relative">
+                  {/* Close Icon */}
+                  <button
+                    onClick={() => set2ndIsOpen(false)}
+                    className="absolute top-4 right-4 text-gray-500 hover:text-white hover:bg-black hover:bg-opacity-50 p-1 rounded-full transition duration-300 "
+                  >
+                    <IoMdClose className="text-xl " />
+                  </button>
 
-                    {/* Image Section */}
-                    <div className="md:w-1/2 w-full p-4">
-                      <img
-                        src={modalContent}
-                        alt="Premium Template"
-                        className="w-[300px] h-[400px] rounded-md shadow-md"
-                      />
+                  {/* Image Section */}
+                  <div className="md:w-1/2 w-full p-4">
+                    <img
+                      src={modalContent}
+                      alt="Premium Template"
+                      className="w-[300px] h-[400px] rounded-md shadow-md"
+                    />
+                  </div>
+
+                  {/* Text Section */}
+                  <div className="md:w-1/2 w-full p-4 space-y-4">
+                    {/* Premium Icon and Heading */}
+                    <div className="flex items-center gap-1 px-2 bg-black bg-opacity-60 rounded-full w-fit">
+                      <FaCrown className="text-yellow-500 text-base" />
+                      <span className="text-sm text-white">Pro</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <h2 className="text-2xl font-bold">Professional Modern Resume</h2>
                     </div>
 
-                    {/* Text Section */}
-                    <div className="md:w-1/2 w-full p-4 space-y-4">
-                      {/* Premium Icon and Heading */}
-                      <div className="flex items-center gap-1 px-2 bg-black bg-opacity-60 rounded-full w-fit">
-                        <FaCrown className="text-yellow-500 text-base" />
-                        <span className="text-sm text-white">Pro</span>
+                    {/* Description */}
+                    <span className="block text-lg font-medium text-gray-600">
+                      Premium templates designed to showcase your skills with a modern and professional look.
+                    </span>
+
+                    {/* Use Template Button */}
+                    <div className="md:flex-row flex flex-col items-center w-full gap-2">
+                      <div className="card-actions justify-center ">
+                        <button
+                          onClick={() => (setIsOpen(true), set2ndIsOpen(false))}
+                          className="bg-primary text-white py-2 px-4 rounded-lg md:w-[300px] font-semibold hover:bg-primary-dark transition flex justify-center items-center gap-2">
+                          <FaCrown className="text-xl" />
+                          Use This Template
+                        </button>
+
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <h2 className="text-2xl font-bold">Professional Modern Resume</h2>
-                      </div>
-
-                      {/* Description */}
-                      <span className="block text-lg font-medium text-gray-600">
-                        Premium templates designed to showcase your skills with a modern and professional look.
-                      </span>
-
-                      {/* Use Template Button */}
-                      <div className="flex items-center w-full gap-2">
-                        <div className="card-actions justify-center ">
-                          <button
-                            onClick={() => (setIsOpen(true), set2ndIsOpen(false))}
-                            className="bg-primary text-white py-2 px-4 rounded-lg w-[300px] font-semibold hover:bg-primary-dark transition flex justify-center items-center gap-2">
-                            <FaCrown className="text-xl" />
-                            Use This Template
-                          </button>
-
-                        </div>
 
 
+                      <div className="flex gap-2 items-center">
                         <button
                           onClick={handleFavorite}
                           className=" hover:text-primary border bg-white p-2 rounded-xl">
                           <FaRegStar size={20} />
                         </button>
 
-
                         <button
                           className=" hover:text-primary border bg-white p-2 rounded-xl">
                           <HiDotsHorizontal size={20} />
                         </button>
-                        <div></div>
                       </div>
+                      <div></div>
+                    </div>
 
-                      {/* Feature 1 */}
-                      <div className="flex items-center space-x-2 text-gray-700">
-                        <MdOutlineColorLens className="text-xl text-black" />
-                        <p>100% fully customizable</p>
-                      </div>
+                    {/* Feature 1 */}
+                    <div className="flex items-center space-x-2 text-gray-700">
+                      <MdOutlineColorLens className="text-xl text-black" />
+                      <p>100% fully customizable</p>
+                    </div>
 
-                      {/* Feature 2 */}
-                      <div className="flex items-center space-x-2 text-gray-700">
-                        <FiEdit className="text-xl text-black" />
-                        <p>Edit and download on the go</p>
-                      </div>
+                    {/* Feature 2 */}
+                    <div className="flex items-center space-x-2 text-gray-700">
+                      <FiEdit className="text-xl text-black" />
+                      <p>Edit and download on the go</p>
+                    </div>
 
-                      {/* Feature 3 */}
-                      <div className="flex items-center space-x-2 text-gray-700">
-                        <LuShare className="text-xl text-black" />
-                        <p>Share and publish anywhere</p>
-                      </div>
+                    {/* Feature 3 */}
+                    <div className="flex items-center space-x-2 text-gray-700">
+                      <LuShare className="text-xl text-black" />
+                      <p>Share and publish anywhere</p>
                     </div>
                   </div>
                 </div>
-              </DialogPanel>
-            </div>
-          </Dialog>
+              </div>
+            </DialogPanel>
+          </div>
+        </Dialog>
 
 
         <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
