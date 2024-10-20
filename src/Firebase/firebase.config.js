@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBOMF-SViTyX9pkXitnbNQ_1t1dn-bojhE",
-  authDomain: "perfectprofile-ebde4.firebaseapp.com",
-  projectId: "perfectprofile-ebde4",
-  storageBucket: "perfectprofile-ebde4.appspot.com",
-  messagingSenderId: "442789089074",
-  appId: "1:442789089074:web:9dda5bc3e203d7d300512b",
+  apiKey: import.meta.evn.VITE_APIKEY,
+  authDomain: import.meta.evn.VITE_AUTHDOMAIN,
+  projectId: import.meta.evn.VITE_PROJECTID,
+  storageBucket: import.meta.evn.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.evn.VITE_MESSAGINGSENDERID,
+  appId: import.meta.evn.VITE_APPID,
 };
 
 // Initialize Firebase
