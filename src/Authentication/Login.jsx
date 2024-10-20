@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
-  const { signIn, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
+  const { signIn, googleSignIn, facebookSignIn, twitterSignIn, setLoading } = useAuth();
   const [eye, setEye] = useState(false);
   const [remember, setRemember] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -30,17 +30,11 @@ const Login = () => {
 
     if (remember) {
       try {
-        const result = await signIn(email.value, password.value);
-        const loggedInUser = result.user;
-
-        const user = { email: loggedInUser.email };
-        // await axiosPublic.post("/login", user, { withCredentials: true });
-
+        setLoading(true)
+        await signIn(email.value, password.value);
         toast.success("Login Successfully!");
-        setTimeout(() => {
-          document.getElementById("my_modal_3").close();
-          navigate(from);
-        }, 1000);
+        document.getElementById("my_modal_3").close();
+        navigate(from);
       } catch (error) {
         handleError(error);
       }

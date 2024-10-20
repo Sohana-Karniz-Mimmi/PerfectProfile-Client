@@ -69,8 +69,8 @@ const Register = () => {
       const result = await socialProvider();
       const user = result.user;
       const userInfo = {
-        name: user.displayName,
-        email: user.email,
+        name: user?.displayName,
+        email: user?.email,
         productName: "free",
         role: "user",
       };
