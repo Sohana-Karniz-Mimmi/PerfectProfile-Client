@@ -417,6 +417,7 @@ const ResumeEditPage = () => {
         try {
           const { data } = await axiosPublic(`/my-resume/edit/${resumeId}`);
           setMyResumeTemplates(data);
+          setUserData(data);
         } catch (error) {
           console.error("Error fetching resume data", error);
         }
@@ -431,7 +432,7 @@ const ResumeEditPage = () => {
 
   const renderTemplate = (id) => {
     if (id === "template1") {
-      return <Template1 data={template} userData={myResumeTemplates} />;
+      return <Template1 data={template} userData={userData} />;
     }
     if (id === "template2") {
       return <Template2nd data={template} userData={userData} />;
