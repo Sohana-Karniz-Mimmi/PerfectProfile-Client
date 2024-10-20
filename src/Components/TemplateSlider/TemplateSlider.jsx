@@ -20,7 +20,6 @@ import { MdOutlineColorLens } from "react-icons/md";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { FaCrown } from "react-icons/fa";
 
-
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
   <button
@@ -58,7 +57,6 @@ export default function App() {
     getData();
   }, []);
 
-
   const handleTemplateClick = (template) => {
     if (!user) {
       toast.error("You have to login first");
@@ -89,11 +87,9 @@ export default function App() {
     setShowModal(true);
   };
 
-
   const handleFavorite = () => {
     toast.success("Added to the favorite");
-  }
-  
+  };
 
   return (
     <>
@@ -126,11 +122,15 @@ export default function App() {
         className="mySwiper"
       >
         {predefinedTemplate?.map((template) => (
-          <SwiperSlide key={template._id} className="relative !overflow-visible">
+          <SwiperSlide
+            key={template._id}
+            className="relative !overflow-visible"
+          >
             <div className="relative group !overflow-visible">
               <div
-                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${template.package === "premium" ? "bg-secondary" : "bg-primary"
-                  }`}
+                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${
+                  template.package === "premium" ? "bg-secondary" : "bg-primary"
+                }`}
               >
                 {template.package === "premium" ? (
                   <>
@@ -185,12 +185,15 @@ export default function App() {
                   <span className="text-sm text-white">Pro</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <h2 className="text-2xl font-bold">Professional Modern Resume</h2>
+                  <h2 className="text-2xl font-bold">
+                    Professional Modern Resume
+                  </h2>
                 </div>
 
                 {/* Description */}
                 <span className="block text-lg font-medium text-gray-600">
-                  Premium templates designed to showcase your skills with a modern and professional look.
+                  Premium templates designed to showcase your skills with a
+                  modern and professional look.
                 </span>
 
                 {/* Use Template Button */}
@@ -203,14 +206,13 @@ export default function App() {
                   </Link>
 
                   <button
-                   onClick={handleFavorite}
-                    className=" hover:text-primary border bg-white p-2 rounded-xl">
+                    onClick={handleFavorite}
+                    className=" hover:text-primary border bg-white p-2 rounded-xl"
+                  >
                     <FaRegStar size={20} />
                   </button>
-                  
-                  
-                  <button
-                    className=" hover:text-primary border bg-white p-2 rounded-xl">
+
+                  <button className=" hover:text-primary border bg-white p-2 rounded-xl">
                     <HiDotsHorizontal size={20} />
                   </button>
                   <div></div>
@@ -237,7 +239,6 @@ export default function App() {
             </div>
           </div>
         )}
-
 
         <CustomPrevButton />
         <CustomNextButton />
