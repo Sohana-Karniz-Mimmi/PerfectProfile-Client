@@ -57,7 +57,7 @@ const Banner = () => {
             </div>
             <div className="lg:w-1/2 w-full flex items-center justify-center">
               <video width="500" autoPlay muted loop>
-                <source src={video} type="video/mp4" />
+                <source src={video} type="video/mp4"role="video" />
                 Your browser does not support the video tag.
               </video>
             </div>

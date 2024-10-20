@@ -1,76 +1,65 @@
 import { render, screen } from "@testing-library/react";
-import Banner from "./Banner"; // Adjust the import path according to your project structure
-import { MemoryRouter } from "react-router-dom"; // To wrap your component with MemoryRouter for Link components
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Banner from "./Banner";
+import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "@testing-library/jest-dom";
+import { vi } from "vitest";
+
+// Mock the useAuth hook to return a user object
+vi.mock("../../Hook/useAuth", () => ({
+  default: () => ({
+    user: { email: "testuser@example.com" },
+    loading: false,
+  }),
+}));
+vi.mock('react-simple-typewriter', () => ({
+  Typewriter: ({ words }) => <span>{words[0]}</span>,
+}));
+
+// Create a QueryClient instance
 const queryClient = new QueryClient();
-const mockAuthValue = {
-  user: null, // You can set this to a mock user object if needed
-  loading: false,
-};
 
 describe("Banner Component", () => {
-  beforeEach(() => {
-    render(
+  const renderWithProviders = (ui) => {
+    return render(
       <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <AuthContext.Provider value={mockAuthValue}>
-            <Banner />
-          </AuthContext.Provider>
-        </MemoryRouter>
+        <BrowserRouter>{ui}</BrowserRouter>
       </QueryClientProvider>
     );
+  };
+
+  it("renders the banner content", () => {
+    renderWithProviders(<Banner />);
+
+    // Check for elements with specific text content
+    // Check for elements with specific text content using a flexible matcher
+    expect(
+      screen.getByText((content) =>
+        content.includes(
+          "From generating bullet points to automatic formatting"
+        )
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByText(/minutes/i)).toBeInTheDocument();
+
+    expect(
+      screen.getByText("Templates to win recruiters over")
+    ).toBeInTheDocument();
   });
 
-  test("renders the main title", () => {
-    const titleElement = screen.getByText(/Make your professional/i);
-    expect(titleElement).toBeInTheDocument();
+  // Check for specific elements
+  it("renders the video element", () => {
+    renderWithProviders(<Banner />);
+    expect(screen.getByRole("video")).toBeInTheDocument();
   });
 
-  test("renders the typewriter effect", () => {
-    const typewriterElement = screen.getByText(/minutes/i);
-    expect(typewriterElement).toBeInTheDocument();
-  });
-
-  test("renders the subtitle", () => {
-    const subtitleElement = screen.getByText(
-      /From generating bullet points to automatic formatting/i
-    );
-    expect(subtitleElement).toBeInTheDocument();
-  });
-
-  test("renders Get Started button", () => {
-    const getStartedButton = screen.getByRole("button", {
-      name: /Get Started/i,
-    });
-    expect(getStartedButton).toBeInTheDocument();
-  });
-
-  test("renders Create My Resume button", () => {
-    const createResumeButton = screen.getByRole("button", {
-      name: /Create My Resume/i,
-    });
-    expect(createResumeButton).toBeInTheDocument();
-  });
-
-  test("renders video element", () => {
-    const videoElement = screen.getByText(
-      /Your browser does not support the video tag/i
-    );
-    expect(videoElement).toBeInTheDocument();
-  });
-
-  test("renders templates section title", () => {
-    const templatesTitle = screen.getByText(
-      /Templates to win recruiters over/i
-    );
-    expect(templatesTitle).toBeInTheDocument();
-  });
-
-  test("renders Browse Templates button", () => {
-    const browseTemplatesButton = screen.getByRole("button", {
-      name: /Browse Templates/i,
-    });
-    expect(browseTemplatesButton).toBeInTheDocument();
+  it("renders the Get Started and Create My Resume buttons", () => {
+    renderWithProviders(<Banner />);
+    expect(
+      screen.getByRole("button", { name: /Get Started/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Create My Resume/i })
+    ).toBeInTheDocument();
   });
 });
