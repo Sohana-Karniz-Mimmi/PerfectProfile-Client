@@ -10,15 +10,16 @@ import { Link } from 'react-router-dom';
 import MyTemplate from '../../assets/MyTemplate';
 import Template1 from '../../assets/Template1';
 import toast from 'react-hot-toast';
+import useAxiosSecure from './../../Hook/useAxiosSecure';
 
 const ManageResume = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const [myResumeTemplates, setMyResumeTemplates] = useState([]);
     const [myResumeTemplate, setMyResumeTemplate] = useState(null);
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axiosPublic(`/my-resume/${user?.email}`);
+            const { data } = await axiosSecure(`/my-resume/${user?.email}`);
             setMyResumeTemplates(data);
         };
         getData();
