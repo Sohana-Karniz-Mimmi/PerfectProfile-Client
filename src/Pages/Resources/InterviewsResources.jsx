@@ -1,28 +1,22 @@
 import { Link } from "react-router-dom";
 import interviewImg from "../../assets/Resource/interview/score.avif";
+
 const InterviewsResources = () => {
   return (
-    <div className="container mx-auto">
-      <div className="mt-12 text-right ">
-        <a href="#" className="text-blue-600 font-semibold">
-          View more resumes articles ➜
-        </a>
+    <div className="container mx-auto px-4 mt-12">
+      <div className="text-center my-6">
+        <h1 className="text-3xl md:text-4xl my-5 font-bold">Interviews</h1>
+        <p className="font-montserrat md:text-[17px] text-sm text-gray-800 font-light ">
+          Job interviews can be stressful, even for an experienced HR
+          administrative assistant. How you tackle <br /> each answer shows an
+          employer what type of candidate you are.
+        </p>
       </div>
-      <h1 className="text-3xl font-bold mb-6">Resumes</h1>
 
-      {/* Buttons */}
-      <div className="mb-6 flex space-x-4">
-        <button className="px-4 py-2 bg-gray-200 rounded-lg text-blue-900">
-          Interview Prep
-        </button>
-        <button className="px-4 py-2 bg-gray-200 rounded-lg text-blue-900">
-          Interview Questions
-        </button>
-      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <div>
-          <div className="">
-            <h3 className="my-2 text-xl font-bold text-blue-900 cursor-pointer">
+          <div>
+            <h3 className="my-2 text-xl font-bold text-secondary cursor-pointer">
               HR Administrative Assistant Interview..
             </h3>
             <p>
@@ -30,12 +24,13 @@ const InterviewsResources = () => {
               administrative..
             </p>
             <p className="font-bold my-2">
-              <Link className="text-blue-900 ">INTERVIEWS .</Link>{" "}
+              <Link className="text-primary ">INTERVIEWS .</Link>{" "}
               <span className="font-normal">16 min read</span>
             </p>
           </div>
+
           <div className="my-8">
-            <h3 className="my-2 text-xl font-bold text-blue-900 cursor-pointer">
+            <h3 className="my-2 text-xl font-bold text-secondary cursor-pointer">
               Frequently Asked Communications..
             </h3>
             <p>
@@ -43,12 +38,13 @@ const InterviewsResources = () => {
               specialist..
             </p>
             <p className="font-bold my-2">
-              <Link className="text-blue-900 ">INTERVIEWS .</Link>{" "}
+              <Link className="text-primary ">INTERVIEWS .</Link>{" "}
               <span className="font-normal">13 min read</span>
             </p>
           </div>
-          <div className="">
-            <h3 className="my-2 text-xl font-bold text-blue-900 cursor-pointer">
+
+          <div>
+            <h3 className="my-2 text-xl font-bold text-secondary cursor-pointer">
               Answers: What Does Goods Customer Service..
             </h3>
             <p>
@@ -56,27 +52,28 @@ const InterviewsResources = () => {
               likely be..
             </p>
             <p className="font-bold my-2">
-              <Link className="text-blue-900 ">INTERVIEWS .</Link>{" "}
+              <Link className="text-primary ">INTERVIEWS .</Link>{" "}
               <span className="font-normal">8 min read</span>
             </p>
           </div>
         </div>
 
         <div>
-          <div className="">
-            <h3 className="my-2 text-xl font-bold text-blue-900 cursor-pointer">
+          <div>
+            <h3 className="my-2 text-xl font-bold text-secondary cursor-pointer">
               How Would You Describe Yourself as a Team..
             </h3>
             <p>
               Questions like ‘How would you describe yourself in terms of your..
             </p>
             <p className="font-bold my-2">
-              <Link className="text-blue-900 ">INTERVIEWS .</Link>{" "}
+              <Link className="text-primary ">INTERVIEWS .</Link>{" "}
               <span className="font-normal">7 min read</span>
             </p>
           </div>
+
           <div className="my-8">
-            <h3 className="my-2 text-xl font-bold text-blue-900 cursor-pointer">
+            <h3 className="my-2 text-xl font-bold text-secondary cursor-pointer">
               Interview Question: Why Do You Think You Are..
             </h3>
             <p>
@@ -84,12 +81,13 @@ const InterviewsResources = () => {
               common..
             </p>
             <p className="font-bold my-2">
-              <Link className="text-blue-900 ">INTERVIEWS .</Link>{" "}
+              <Link className="text-primary">INTERVIEWS .</Link>{" "}
               <span className="font-normal">8 min read</span>
             </p>
           </div>
-          <div className="">
-            <h3 className="my-2 text-xl font-bold text-blue-900 cursor-pointer">
+
+          <div>
+            <h3 className="my-2 text-xl font-bold text-secondary cursor-pointer">
               Example Answers: "What is Your Educational..
             </h3>
             <p>
@@ -97,24 +95,28 @@ const InterviewsResources = () => {
               at the answer..
             </p>
             <p className="font-bold my-2">
-              <Link className="text-blue-900 ">INTERVIEWS .</Link>{" "}
+              <Link className="text-primary ">INTERVIEWS .</Link>{" "}
               <span className="font-normal">4 min read</span>
             </p>
           </div>
         </div>
-        <div className="bg-secondary p-8 text-center rounded-tl-[60px] rounded-br-[60px]">
-          <img src={interviewImg} alt="" />
-          <h3 className="text-3xl font-bold text-white mt-2">
+
+        <div className="bg-[#d1fae5] p-8 text-center rounded-tl-[60px] rounded-br-[60px]">
+          <img src={interviewImg} alt="" className="mx-auto mb-4" />
+          <h3 className="text-3xl font-bold  mt-2">
             Build the perfect resume for the job you want.
           </h3>
-          <p className="text-white my-2">
+          <p className=" my-2">
             Our free-to-use resume builder will help you easily create the
-            perfect resume. We provide step-by-step writing advice and a resume
-            check to fix common grammar and spelling mistakes.
+            perfect resume.
           </p>
-          <button className="py-2 px-4 rounded-full bg-primary text-white w-full">
-            Resume Builder
-          </button>
+          <div className=" mt-20">
+            <Link to={`/predefined-templates`}>
+              <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
+                Resume Builder
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

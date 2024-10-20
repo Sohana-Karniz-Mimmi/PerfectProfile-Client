@@ -2,20 +2,20 @@ import Container from "../../Shared/Container";
 import Careers from "./Careers";
 import Categories from "./Categories";
 import EditorPicks from "./EditorPicks";
-import HeadingResource from "./HeadingResource";
+// import HeadingResource from "./HeadingResource";
 import InterviewsResources from "./InterviewsResources";
 import JobResources from "./JobResources";
 import ResentBlog from "./ResentBlog";
 import Resumes from "./Resumes";
+import TopResume from "./TopResume";
 
 const ResourcePage = () => {
   return (
     <div>
-      <div>
+      {/* <div>
         <HeadingResource />
-      </div>
+      </div> */}
       <div>
-        <Container></Container>
         <EditorPicks />
       </div>
       <div>
@@ -39,6 +39,9 @@ const ResourcePage = () => {
         <Container>
           <Careers />
         </Container>
+      </div>
+      <div>
+        <TopResume />
       </div>
     </div>
   );
