@@ -403,7 +403,7 @@ const ResumeEditPage = () => {
     fetchData();
   }, []);
 
-  const template = data.find((item1) => item1.templateItem === id);
+  const template =  data.find((item1) => item1.templateItem === id);
 
 
   const location = useLocation();

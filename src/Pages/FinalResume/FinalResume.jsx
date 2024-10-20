@@ -18,9 +18,12 @@ import Template4 from "../../Components/TemplateSection/Template4";
 import Template5 from "../../Components/TemplateSection/Template5";
 import Template6 from "../../Components/TemplateSection/Template6";
 // import Template1 from "../../assets/Template1";
+import ReviewModal from "../../Components/ReviewModal/ReviewModal";
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
   const { shareLink } = useContext(ResumeContext);
+  // State for the review modal
+  const [showReviewModal, setShowReviewModal] = useState(false);
   // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
   const info = useLoaderData();
 
@@ -96,6 +99,16 @@ const FinalResume = () => {
     html2pdf().set(opt).from(element).save();
   };
 
+  useEffect(() => {
+    // Show the review modal after 3 seconds
+    const timer = setTimeout(() => {
+      setShowReviewModal(true);
+    }, 3000);
+
+    // Clean up the timer
+    return () => clearTimeout(timer);
+  }, []);
+
  
 
   return (
@@ -110,7 +123,7 @@ const FinalResume = () => {
       <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
         <div className="lg:w-2/12 w-full"></div>
 
-        <div  id="element" className="w-full h-full">
+        <div id="element" className="w-full h-full">
           {/* <div id="element"
             className="w-full h-full"
             style={{
@@ -119,19 +132,15 @@ const FinalResume = () => {
               height: '400px',
             }}
           > */}
-            {renderTemplate(info?.templateItem)}
+          {renderTemplate(info?.templateItem)}
           {/* </div> */}
         </div>
 
-
         <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
-
           {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
           <div className="relative text-right">
             <Menu as="div" className="relative inline-block text-left ">
               <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-
-
                 <button
                   // onClick={handlePdf}
                   // onClick={generatePDF}
@@ -141,27 +150,22 @@ const FinalResume = () => {
                 </button>
               </Menu.Button>
 
-              <Menu.Items
-                className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44"
-              >
+              <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44">
                 <div className="bg-white rounded-xl p-5">
                   <Menu.Item>
                     {({ active }) => (
-                      <button onClick={handlePdf}
-                        className={`${active ? ' font-semibold bg-white ' : 'font-semibold'
-                          } group flex w-full items-center gap-2  py-1.5 text-black`}
+                      <button
+                        onClick={handlePdf}
+                        className={`${
+                          active ? " font-semibold bg-white " : "font-semibold"
+                        } group flex w-full items-center gap-2  py-1.5 text-black`}
                       >
                         <GrDocumentText className="text-primary" /> PDF Standard
                       </button>
                     )}
                   </Menu.Item>
-
-
-
-
                 </div>
               </Menu.Items>
-
             </Menu>
           </div>
 
@@ -187,6 +191,8 @@ const FinalResume = () => {
           </button>
         </div>
       </section>
+      {/* Review Modal */}
+      {showReviewModal && <ReviewModal setShowModal={setShowReviewModal} />}
     </div>
   );
 };
