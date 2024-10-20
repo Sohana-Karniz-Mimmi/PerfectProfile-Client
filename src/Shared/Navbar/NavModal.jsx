@@ -58,6 +58,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
 
               <Menu.Item>
                 {({ active }) => (
+                  <Link to='/my-favorites'>
                   <button
                     className={`${
                       active ? "bg-white" : ""
@@ -66,6 +67,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                   >
                     Favorite
                   </button>
+                  </Link>
                 )}
               </Menu.Item>
 
