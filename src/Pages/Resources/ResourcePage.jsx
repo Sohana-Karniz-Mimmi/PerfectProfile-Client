@@ -6,12 +6,16 @@ import EditorPicks from "./EditorPicks";
 import InterviewsResources from "./InterviewsResources";
 import JobResources from "./JobResources";
 import ResentBlog from "./ResentBlog";
+import ResourceBanner from "./ResourceBanner";
 import Resumes from "./Resumes";
 import TopResume from "./TopResume";
 
 const ResourcePage = () => {
   return (
     <div>
+      <div>
+        <ResourceBanner />
+      </div>
       {/* <div>
         <HeadingResource />
       </div> */}

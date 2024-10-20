@@ -18,7 +18,7 @@ const JobResources = () => {
           yourself and express your interest in working for them.
         </p>
       </div>
-      <div className="bg-[#d1fae5] p-10 ">
+      <div className="bg-[#d1fae5] p-20 ">
         <div className="container mx-auto">
           {/* Buttons */}
           {/* <div className="mb-6 flex space-x-4">
@@ -30,7 +30,7 @@ const JobResources = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 container mx-auto">
           <div className="flex flex-col ">
             <img
-              className="w-full md:w-[250px] rounded-xl"
+              className="w-full  rounded-xl"
               src={jobImg1}
               alt="Letter of Intent"
             />
@@ -52,7 +52,7 @@ const JobResources = () => {
           </div>
           <div className="flex flex-col ">
             <img
-              className="w-full md:w-[250px] rounded-xl"
+              className="w-full  rounded-xl"
               src={jobImg2}
               alt="Skills Based Hiring"
             />
@@ -74,7 +74,7 @@ const JobResources = () => {
           </div>
           <div className="flex flex-col ">
             <img
-              className="w-full md:w-[250px] rounded-xl"
+              className="w-full  rounded-xl"
               src={jobImg3}
               alt="Resume Email"
             />
