@@ -4,8 +4,15 @@ import examples from "../../assets/Resource/two-page-resume-example.avif";
 
 const ResentBlog = () => {
   return (
-    <div className="container mx-auto py-10 px-4">
-      <h1 className="text-3xl md:text-5xl font-bold mb-8 ">Most Recent</h1>
+    <div className="container mx-auto mt-12 px-4">
+      <div className="text-center my-6">
+        <h1 className="text-3xl md:text-4xl my-5 font-bold ">Most Recent</h1>
+        <p className="font-montserrat md:text-[17px] text-sm text-gray-800 font-light ">
+          Whether you're seeking a part-time job, internship or volunteer
+          opportunity, a well-crafted teen resume is <br /> essential for
+          showcasing your skills, initiative and willingness to learn.
+        </p>
+      </div>
 
       {/* Articles Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -18,11 +25,11 @@ const ResentBlog = () => {
           />
           <div className="p-5">
             <div className="flex items-center text-xs text-gray-500">
-              <span className="text-blue-600 font-semibold">RESUMES</span>
+              <span className="text-primary font-semibold">RESUMES</span>
               <span className="mx-1">•</span>
               <span>9 min read</span>
             </div>
-            <h2 className="text-blue-900 font-bold text-lg mt-3">
+            <h2 className="text-secondary font-bold text-lg mt-3">
               Teen Resume Examples, Templates & Guide
             </h2>
             <p className="text-gray-500 mt-2 text-sm">
@@ -48,11 +55,11 @@ const ResentBlog = () => {
           />
           <div className="p-5">
             <div className="flex items-center text-xs text-gray-500">
-              <span className="text-blue-600 font-semibold">INTERVIEWS</span>
+              <span className="text-primary font-semibold">INTERVIEWS</span>
               <span className="mx-1">•</span>
               <span>10 min read</span>
             </div>
-            <h2 className="text-blue-900 font-bold text-lg mt-3">
+            <h2 className="text-secondary font-bold text-lg mt-3">
               Cashier Interview Questions and Answers
             </h2>
             <p className="text-gray-500 mt-2 text-sm">
@@ -78,11 +85,11 @@ const ResentBlog = () => {
           />
           <div className="p-5">
             <div className="flex items-center text-xs text-gray-500">
-              <span className="text-blue-600 font-semibold">RESUMES</span>
+              <span className="text-primary font-semibold">RESUMES</span>
               <span className="mx-1">•</span>
               <span>6 min read</span>
             </div>
-            <h2 className="text-blue-900 font-bold text-lg mt-3">
+            <h2 className="text-secondary font-bold text-lg mt-3">
               Two-Page Resume Examples & Formatting Guide
             </h2>
             <p className="text-gray-500 mt-2 text-sm">

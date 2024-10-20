@@ -6,8 +6,15 @@ import resume5 from "../../assets/Resource/one-page-resume-example.avif";
 
 const EditorPicks = () => {
   return (
-    <div className="container mx-auto py-10 px-4">
-      <h1 className="text-3xl md:text-5xl my-5 font-bold ">Editors' Picks</h1>
+    <div className="container mx-auto mt-12 px-4">
+      <div className="text-center my-6">
+        <h1 className="text-3xl md:text-4xl my-5 font-bold ">Editors' Picks</h1>
+        <p className="font-montserrat md:text-[17px] text-sm text-gray-800 font-light ">
+          Your resume is one of the most important tools in your job search.
+          It’s your chance to make a great first impression on potential <br />
+          employers and show them why you’re the perfect candidate for the job.
+        </p>
+      </div>
 
       {/* Parent container for two sections */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -22,7 +29,7 @@ const EditorPicks = () => {
               />
             </div>
             <div className="p-5">
-              <h2 className="text-blue-900 font-bold text-lg mt-4">
+              <h2 className="text-secondary font-bold text-lg mt-4">
                 How to Write a Resume (Examples & Guide)
               </h2>
               <p className="text-gray-500 mt-1 text-sm">
@@ -30,7 +37,7 @@ const EditorPicks = () => {
                 reviewing a resume. To make a lasting impression...
               </p>
               <div className="flex items-center text-gray-400 mt-2 text-xs">
-                <span className="text-blue-600">RESUMES</span>
+                <span className="text-primary ">RESUMES</span>
                 <span className="mx-1">•</span>
                 <span>15 min read</span>
                 <span className="mx-1">•</span>
@@ -46,8 +53,11 @@ const EditorPicks = () => {
         {/* Right section (list of articles) */}
         <div className="space-y-8">
           {[resume2, resume3, resume4, resume5].map((image, index) => (
-            <div key={index} className="flex space-x-4">
-              <div className="w-1/3 h-32 bg-gray-100 rounded-lg overflow-hidden">
+            <div
+              key={index}
+              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+            >
+              <div className="w-full sm:w-1/3 h-48 sm:h-32 bg-gray-100 rounded-lg overflow-hidden">
                 <img
                   className="w-full h-full object-cover"
                   src={image}
@@ -55,7 +65,7 @@ const EditorPicks = () => {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-blue-900 font-bold text-sm">
+                <h3 className="text-secondary font-bold text-sm">
                   {index === 0 && "Guide to Update & Fix Your Resume"}
                   {index === 1 &&
                     "How to Write a Cover Letter: Examples For..."}
@@ -63,7 +73,7 @@ const EditorPicks = () => {
                   {index === 3 && "One-Page Resume Guide: Templates & Examples"}
                 </h3>
                 <div className="flex items-center text-gray-400 text-xs mt-1">
-                  <span className="text-blue-600">RESUMES</span>
+                  <span className="text-primary">RESUMES</span>
                   <span className="mx-1">•</span>
                   <span>
                     {index === 0
