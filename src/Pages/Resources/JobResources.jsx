@@ -64,7 +64,7 @@ const JobResources = () => {
               Skills-Based Hiring is Revolutionizing Talent..
             </h3>
             <p className="my-2 font-normal ">
-              In today’s rapidly evolving job market, traditional hiring
+              In today's rapidly evolving job market, traditional hiring
               practices often fall..
             </p>
             <p className="font-bold text-primary ">
