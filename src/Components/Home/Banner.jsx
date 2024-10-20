@@ -40,13 +40,13 @@ const Banner = () => {
               </p>
 
               <div className="mt-8 flex lg:flex-row flex-col lg:items-start items-center gap-6 text-center">
-                <Link>
+                <Link to={`predefined-templates`}>
                   <button className="py-3 px-5 rounded font-bold font-montserrat text-base bg-primary hover:bg-secondary text-white ">
                     Get Started
                   </button>
                 </Link>
 
-                <Link>
+                <Link to={`predefined-templates`}>
                   <div className="h-[50px] border group border-primary  rounded group-hover:border-secondary hover:border-secondary">
                     <button className="py-3 px-5  font-bold !font-montserrat text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
                       Create My Resume
@@ -160,9 +160,11 @@ const Banner = () => {
           <TemplateSlider></TemplateSlider>
         </div>
         <div className="flex justify-center items-center lg:py-16 py-8">
-          <button className="bg-gradient-to-r font-montserrat from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full font-bold shadow-lg transform transition duration-500 hover:scale-105">
-            Browse Templates
-          </button>
+          <Link to={`/predefined-templates`}>
+            <button className="bg-gradient-to-r font-montserrat from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-8 rounded-full font-bold shadow-lg transform transition duration-500 hover:scale-105">
+              Browse Templates
+            </button>
+          </Link>
         </div>
       </section>
       <section></section>

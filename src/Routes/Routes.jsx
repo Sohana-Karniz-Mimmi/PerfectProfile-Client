@@ -27,6 +27,7 @@ import UserDashboardLayout from "../Components/MyProfile/UserDashboardLayout";
 import ProfileInfo from "../Components/MyProfile/ProfileInfo";
 import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 import Favorite from "../Pages/Favorites/Favorite";
+import ResourcePage from "../Pages/Resources/ResourcePage";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
         path: "/my-resume",
         element: <MyResume />,
       },
+      {
+        path: "/resource",
+        element: <ResourcePage />,
+      },
     ],
   },
   {
@@ -107,7 +112,7 @@ const router = createBrowserRouter([
     path: "/resume/final-resume/:id",
     element: <FinalResume />,
     loader: ({ params }) =>
-      fetch(`${import.meta.env.VITE_LOCALHOST}/share-resume/${params.id}`),
+      fetch(`${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume/${params.id}`),
   },
   {
     path: "/resume/:link",

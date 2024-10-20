@@ -88,7 +88,7 @@ const PremiumFeature = () => {
             <FaStar className="text-lg" />
           </div>
           <figure className="-mr-16">
-            <img 
+            <img
               srcset="https://d.novoresume.com/images/landing_page/premium/premium-2.webp"
               alt="Two Pages+" loading="lazy" element="2"
               src="https://d.novoresume.com/images/landing_page/premium/premium-2.png"
@@ -113,9 +113,11 @@ const PremiumFeature = () => {
       </div>
 
       {/* Button */}
-      <div to={'/pricing'} className="relative z-10 text-center mt-12">
-        <Button route={'/pricing'} text="Checkout Premium" className="px-8 rounded-full " />
-      </div>
+      <Link to={'/pricing'} >
+        <div className="relative z-10 text-center mt-12">
+          <Button route={'/pricing'} text="Checkout Premium" className="px-8 rounded-full " />
+        </div>
+      </Link>
 
       {/* SVG Wave Background */}
       <div className="z-[-1] absolute bottom-0 w-full left-0">

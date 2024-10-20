@@ -11,8 +11,12 @@ import {
 import { FaSearch } from "react-icons/fa";
 import { TbRefresh } from "react-icons/tb";
 import { IoFilter } from "react-icons/io5";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
 // import LoadingSpinner from '../../Shared/LoadingSpinner';
 const ManageUsers = () => {
+
+  const axiosPublic = useAxiosPublic()
+  
   /****Use Search and filter****/
   const dispatch = useDispatch();
 
@@ -36,10 +40,7 @@ const ManageUsers = () => {
 
   useEffect(() => {
     const getCount = async () => {
-      const { data } = await axios(
-        `${
-          import.meta.env.VITE_API_URL
-        }/users-count?filter=${filter}&search=${search}`
+      const { data } = await axiosPublic(`/users-count?filter=${filter}&search=${search}`
       );
 
       setCount(data.count);

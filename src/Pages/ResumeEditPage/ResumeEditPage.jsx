@@ -431,7 +431,7 @@ const ResumeEditPage = () => {
 
   const renderTemplate = (id) => {
     if (id === "template1") {
-      return <Template1 data={template} userData={userData} />;
+      return <Template1 data={template} userData={myResumeTemplates} />;
     }
     if (id === "template2") {
       return <Template2nd data={template} userData={userData} />;
@@ -466,7 +466,7 @@ const ResumeEditPage = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_LOCALHOST}/share-resume`,
+        `${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume`,
         resumeData,
         { withCredentials: true }
       );

@@ -9,15 +9,17 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import MyTemplate from '../../assets/MyTemplate';
 import Template1 from '../../assets/Template1';
+import toast from 'react-hot-toast';
+import useAxiosSecure from './../../Hook/useAxiosSecure';
 
 const ManageResume = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const [myResumeTemplates, setMyResumeTemplates] = useState([]);
     const [myResumeTemplate, setMyResumeTemplate] = useState(null);
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axiosPublic(`/my-resume/${user?.email}`);
+            const { data } = await axiosSecure(`/my-resume/${user?.email}`);
             setMyResumeTemplates(data);
         };
         getData();
@@ -71,6 +73,11 @@ const ManageResume = () => {
             });
     };
 
+    const handleFavorite = () => {
+        toast.success("Added to the favorite");
+    };
+
+
     return (
         <div className="p-4">
             <h1 className="text-3xl font-bold mb-8">Recent Designs</h1>
@@ -101,7 +108,9 @@ const ManageResume = () => {
                                 checked={myResumeTemplate === template._id}
                             />
                             <div className="flex space-x-2">
-                                <button className="text-black hover:text-yellow-500 bg-white p-2 rounded-xl">
+                                <button 
+                                 onClick={handleFavorite}
+                                 className="text-black hover:text-yellow-500 bg-white p-2 rounded-xl">
                                     <FaStar size={20} />
                                 </button>
                                 <Link to={`/resume/edit/${template.templateItem}?resumeId=${template._id}`}>

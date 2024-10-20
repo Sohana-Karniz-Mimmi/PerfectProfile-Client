@@ -6,11 +6,21 @@ import "./styles.css";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { FaArrowLeft, FaArrowRight, FaCrown, FaStar } from "react-icons/fa6";
+import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import useRole from "./../../Hook/useRole";
 import useAuth from "../../Hook/useAuth";
+import toast from "react-hot-toast";
+import { FiEdit } from "react-icons/fi";
+import { FaRegStar } from "react-icons/fa";
+import { LuShare } from "react-icons/lu";
+import { MdOutlineColorLens } from "react-icons/md";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { FaCrown } from "react-icons/fa";
+import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import CheckoutForm from "../Payment/CheckoutForm";
+import { IoMdClose } from "react-icons/io";
 
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
@@ -36,9 +46,12 @@ const CustomNextButton = (props) => (
 export default function App() {
   const [role] = useRole();
   const { user } = useAuth();
-
   const axiosPublic = useAxiosPublic();
   const [predefinedTemplate, setPredefinedTemplate] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  let [isOpen, setIsOpen] = useState(false)
+  let [isOpen2nd, set2ndIsOpen] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
@@ -48,7 +61,40 @@ export default function App() {
     getData();
   }, []);
 
-  const [showModal, setShowModal] = useState(false);
+  const handleTemplateClick = (template) => {
+    if (!user) {
+      toast.error("You have to login first");
+      document.getElementById("my_modal_3").showModal();
+      return;
+    }
+    if (template.package === "premium" && role.productName === "premium") {
+      window.location.href = `/resume/edit/${template.templateItem}`;
+      return;
+    }
+    if (template.package === "premium" && role.productName === "standard") {
+      window.location.href = `/resume/edit/${template.templateItem}`;
+      return;
+    }
+
+    if (template.package === "premium") {
+      setModalContent(template?.image);
+      set2ndIsOpen(true);
+      return;
+    }
+
+    if (template.package === "free") {
+      window.location.href = `/resume/edit/${template.templateItem}`;
+      return;
+    }
+
+    setModalContent("To use this template, please check your package.");
+    set2ndIsOpen(true);
+  };
+
+  const handleFavorite = () => {
+    toast.success("Added to the favorite");
+  }
+
 
   return (
     <>
@@ -59,9 +105,6 @@ export default function App() {
           prevEl: ".prev",
           nextEl: ".next",
         }}
-        // pagination={{
-        //   clickable: true,
-        // }}
         breakpoints={{
           320: {
             slidesPerView: 2,
@@ -89,7 +132,6 @@ export default function App() {
             className="relative !overflow-visible"
           >
             <div className="relative group !overflow-visible">
-              {/* Adjust the position and ensure it's visible */}
               <div
                 className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${
                   template.package === "premium" ? "bg-secondary" : "bg-primary"
@@ -97,62 +139,130 @@ export default function App() {
               >
                 {template.package === "premium" ? (
                   <>
-                    <FaCrown className="mr-1" /> {/* Icon for Premium */}
-                    Premium
+                    <FaCrown className="mr-1" /> Premium
                   </>
                 ) : (
                   <>
-                    <FaStar className="mr-1" /> {/* Icon for Free */}
-                    Free
+                    <FaStar className="mr-1" /> Free
                   </>
                 )}
               </div>
-              <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
-                <Link
-                  to={`resume/edit/${template.templateItem}`}
-                  state={{ template: template }}
-                >
-                  <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Use Template
-                  </button>
-                  {/* <button className="bg-red-500 -top-3 z-50 absolute">{template.package}</button> */}
-                </Link>
 
-                {/* <button className="bg-red-500 -top-3 z-50 absolute">{template.package}</button> */}
+              <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+                <button
+                  onClick={() => handleTemplateClick(template)}
+                  className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  Use Template
+                </button>
               </div>
 
-              {/* <img className="w-[330px] h-[420px]" src={template.image} alt="" /> */}
               <img className="w-full size" src={template.image} alt="" />
             </div>
           </SwiperSlide>
         ))}
 
-        {/* Modal */}
-        {showModal && (
-          <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-md">
-              <h2 className="text-lg font-bold">Premium Package Required</h2>
-              <p className="mt-2">
-                To use this template, you need to purchase the premium package.
-              </p>
-              <div className="mt-4 flex justify-end">
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="bg-gray-300 text-black py-2 px-4 rounded mr-2"
-                >
-                  Cancel
-                </button>
-                <Link to={"/pricing"}>
-                  <button className="bg-primary text-white py-2 px-4 rounded">
-                    Purchase Package
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
 
-        {/* Custom navigation buttons */}
+        <Dialog open={isOpen2nd} onClose={() => set2ndIsOpen(false)} className="relative z-50">
+          <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+            <DialogPanel className=" space-y-4 border bg-white p-12">
+
+              <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
+                <div className="bg-white p-6 rounded-md flex md:flex-row flex-col items-center w-full lg:max-w-4xl mx-auto relative">
+                  {/* Close Icon */}
+                  <button
+                    onClick={() => set2ndIsOpen(false)}
+                    className="absolute top-4 right-4 text-gray-500 hover:text-white hover:bg-black hover:bg-opacity-50 p-1 rounded-full transition duration-300 "
+                  >
+                    <IoMdClose className="text-xl " />
+                  </button>
+
+                  {/* Image Section */}
+                  <div className="md:w-1/2 w-full p-4">
+                    <img
+                      src={modalContent}
+                      alt="Premium Template"
+                      className="w-[300px] h-[400px] rounded-md shadow-md"
+                    />
+                  </div>
+
+                  {/* Text Section */}
+                  <div className="md:w-1/2 w-full p-4 space-y-4">
+                    {/* Premium Icon and Heading */}
+                    <div className="flex items-center gap-1 px-2 bg-black bg-opacity-60 rounded-full w-fit">
+                      <FaCrown className="text-yellow-500 text-base" />
+                      <span className="text-sm text-white">Pro</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <h2 className="text-2xl font-bold">Professional Modern Resume</h2>
+                    </div>
+
+                    {/* Description */}
+                    <span className="block text-lg font-medium text-gray-600">
+                      Premium templates designed to showcase your skills with a modern and professional look.
+                    </span>
+
+                    {/* Use Template Button */}
+                    <div className="md:flex-row flex flex-col items-center w-full gap-2">
+                      <div className="card-actions justify-center ">
+                        <button
+                          onClick={() => (setIsOpen(true), set2ndIsOpen(false))}
+                          className="bg-primary text-white py-2 px-4 rounded-lg md:w-[300px] font-semibold hover:bg-primary-dark transition flex justify-center items-center gap-2">
+                          <FaCrown className="text-xl" />
+                          Use This Template
+                        </button>
+
+                      </div>
+
+
+                      <div className="flex gap-2 items-center">
+                        <button
+                          onClick={handleFavorite}
+                          className=" hover:text-primary border bg-white p-2 rounded-xl">
+                          <FaRegStar size={20} />
+                        </button>
+
+                        <button
+                          className=" hover:text-primary border bg-white p-2 rounded-xl">
+                          <HiDotsHorizontal size={20} />
+                        </button>
+                      </div>
+                      <div></div>
+                    </div>
+
+                    {/* Feature 1 */}
+                    <div className="flex items-center space-x-2 text-gray-700">
+                      <MdOutlineColorLens className="text-xl text-black" />
+                      <p>100% fully customizable</p>
+                    </div>
+
+                    {/* Feature 2 */}
+                    <div className="flex items-center space-x-2 text-gray-700">
+                      <FiEdit className="text-xl text-black" />
+                      <p>Edit and download on the go</p>
+                    </div>
+
+                    {/* Feature 3 */}
+                    <div className="flex items-center space-x-2 text-gray-700">
+                      <LuShare className="text-xl text-black" />
+                      <p>Share and publish anywhere</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </DialogPanel>
+          </div>
+        </Dialog>
+
+
+        <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+          <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black bg-opacity-50 ">
+            <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+              <CheckoutForm></CheckoutForm>
+            </DialogPanel>
+          </div>
+        </Dialog>
+
         <CustomPrevButton />
         <CustomNextButton />
       </Swiper>

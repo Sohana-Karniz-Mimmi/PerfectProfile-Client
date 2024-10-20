@@ -4,14 +4,14 @@ import Container from "../../Shared/Container";
 import { Link } from "react-router-dom";
 import { useState } from 'react'
 import CheckoutForm from "../Payment/CheckoutForm";
-import {Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 
 // import PackageModal from "./PackageModal";
 
 const Package = () => {
   let [isOpen, setIsOpen] = useState(false)
   let [isOpen2nd, set2ndIsOpen] = useState(false)
-  
+
   return (
     <Container  className="">
       <div id="price" className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:py-10 py-10">
@@ -64,7 +64,7 @@ const Package = () => {
             <h2 className="font-bold text-3xl px-5 text-blue-950 mb-2">
               Monthly Pack 
             </h2>
-            
+
             <div>
               <p className="text-gray-600 mb-4 mt-2 px-5">
                 Unlock all premium features with our affordable monthly package.
@@ -103,18 +103,18 @@ const Package = () => {
                  </span>
                  <span
                   className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-[#2CACD5] rounded-lg group-hover:mb-0 group-hover:mr-0"
-                   data-rounded="rounded-lg"
-                 ></span>
-               </button>
+                  data-rounded="rounded-lg"
+                ></span>
+              </button>
 
 
-               <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <CheckoutForm></CheckoutForm>
-          </DialogPanel>
-        </div>
-      </Dialog>
+              <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+                <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+                  <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+                    <CheckoutForm></CheckoutForm>
+                  </DialogPanel>
+                </div>
+              </Dialog>
 
 
 
@@ -187,12 +187,12 @@ const Package = () => {
                 ></span>
               </button>
               <Dialog open={isOpen2nd} onClose={() => set2ndIsOpen(false)} className="relative z-50">
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <CheckoutForm></CheckoutForm>
-          </DialogPanel>
-        </div>
-      </Dialog>
+                <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+                  <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+                    <CheckoutForm></CheckoutForm>
+                  </DialogPanel>
+                </div>
+              </Dialog>
             </div>
           </div>
         </div>

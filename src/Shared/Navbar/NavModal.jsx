@@ -32,9 +32,8 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <Link to={`userDashboard/editingProfile`}>
                     <button
-                      className={`${
-                        active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      className={`${active ? "bg-white" : ""
+                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     >
                       My Profile
                     </button>
@@ -44,11 +43,10 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
 
               <Menu.Item>
                 {({ active }) => (
-                  <Link to="/userDashboard/resume">
+                  <Link to="/my-resume">
                     <button
-                      className={`${
-                        active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      className={`${active ? "bg-white" : ""
+                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     >
                       My Resume
                     </button>
@@ -74,9 +72,8 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    className={`${
-                      active ? "bg-white" : ""
-                    } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                    className={`${active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     onClick={() => handleRoleChange("pricing")}
                   >
                     Plan & Pricing
@@ -87,9 +84,8 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    className={`${
-                      active ? "bg-white" : ""
-                    } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                    className={`${active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     onClick={() => handleRoleChange("purchaseHistory")}
                   >
                     Purchase History
@@ -101,9 +97,8 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <button
                     onClick={handleLogoutBtn}
-                    className={`${
-                      active ? "bg-white" : ""
-                    } group flex w-full items-center gap-2 py-1.5 text-black`}
+                    className={`${active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 text-black`}
                   >
                     Logout
                     <GrLogout className="size-4 fill-black/30" />
@@ -121,9 +116,8 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <Link to={`userDashboard/editingProfile`}>
                     <button
-                      className={`${
-                        active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      className={`${active ? "bg-white" : ""
+                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     >
                       My Profile
                     </button>
@@ -135,9 +129,8 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <Link to={`/dashboard`}>
                     <button
-                      className={`${
-                        active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      className={`${active ? "bg-white" : ""
+                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     >
                       Dashboard
                     </button>
@@ -149,9 +142,8 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <button
                     onClick={handleLogoutBtn}
-                    className={`${
-                      active ? "bg-white" : ""
-                    } group flex w-full items-center gap-2 py-1.5 text-black`}
+                    className={`${active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 text-black`}
                   >
                     Logout
                     <GrLogout className="size-4 fill-black/30" />

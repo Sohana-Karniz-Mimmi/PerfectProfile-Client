@@ -108,6 +108,20 @@ const Navbar = () => {
           Contact Us{" "}
         </NavLink>{" "}
       </li>
+      <li>
+        {" "}
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
+          }
+          to={"/resource"}
+        >
+          {" "}
+          Resource{" "}
+        </NavLink>{" "}
+      </li>
     </>
   );
 
@@ -191,7 +205,7 @@ const Navbar = () => {
                   <FaUser className="text-sm text-white"></FaUser>Log In
                 </button>
 
-                <Link to={`/createResume`}>
+                <Link to={`predefined-templates`}>
                   <button className="hidden font-bold md:flex gap-2 items-center justify-center py-2 lg:block bg-secondary text-white px-5 rounded-lg">
                     Create My Resume
                   </button>
