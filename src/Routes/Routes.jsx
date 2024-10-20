@@ -27,6 +27,7 @@ import UserDashboardLayout from "../Components/MyProfile/UserDashboardLayout";
 import ProfileInfo from "../Components/MyProfile/ProfileInfo";
 import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 import Favorite from "../Pages/Favorites/Favorite";
+import ResourcePage from "../Pages/Resources/ResourcePage";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: "/my-resume",
         element: <MyResume />,
+      },
+      {
+        path: "/resource",
+        element: <ResourcePage />,
       },
     ],
   },

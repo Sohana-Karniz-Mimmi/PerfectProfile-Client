@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" width="612px" height="792px" viewBox="0 0 612 792" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:cs="svg" xml:space="preserve">
+  <style type="text/css">@font-face{font-family:fnt0; src:url(data:font/otf;base64,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) format("opentype");font-display:swap;font-display:swap}
+@font-face{font-family:fnt1; src:url(data:font/otf;base64,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) format("opentype");font-display:swap;font-display:swap}
+.ps05{fill-opacity:0.2;stroke-opacity:0.2;fill:#FE7966}
+.ps02{fill-opacity:0.549;stroke-opacity:0.549;fill:#FE7966}
+.ps01{fill:#303030}
+.ps03{fill:#333A3F}
+.ps04{fill:#595959}
+.ps00{fill:none}
+.ps20{letter-spacing:0;word-spacing:0;font-family:fnt0;font-size:12px}
+.ps22{letter-spacing:0;word-spacing:0;font-family:fnt1;font-size:11px}
+.ps21{letter-spacing:0;word-spacing:0;font-family:fnt1;font-size:28px}</style>
+<clipPath id="clp1">
+<rect width="612" height="792" />
+</clipPath>
+<g clip-path="url(#clp1)" transform="matrix(1 0 0 -1 0 792)">
+<g>
+<g transform="matrix(1.342 0 0 1.342 0 30)">
+<clipPath id="clp2">
+<rect width="459" height="545.4" />
+</clipPath>
+<g clip-path="url(#clp2)">
+<g>
+<g transform="matrix(0.745 0 0 -0.745 0 545.435)">
+<g>
+<clipPath id="clp3">
+<path d="M0 0 L616.11 0 L616.11 731.55 L0 731.55 Z" />
+</clipPath>
+<g clip-path="url(#clp3)">
+<g class="ps00">
+<clipPath id="clp4">
+<path d="M69.002 76.998 L197 76.998 L197 100 L69.002 100 Z" />
+</clipPath>
+<g clip-path="url(#clp4)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 74 92.325)"><tspan class="ps01 ps20" xml:space="preserve">example@example.com</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp5">
+<path d="M228 76.998 L315 76.998 L315 100 L228 100 Z" />
+</clipPath>
+<g clip-path="url(#clp5)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 233.012 92.325)"><tspan x="0,3.996,9.996,15.996,21.996,25.992,28.992" class="ps01 ps20" xml:space="preserve">(555) 555-5555</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp6">
+<path d="M340 76.998 L387 76.998 L387 100 L340 100 Z" />
+</clipPath>
+<g clip-path="url(#clp6)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 345.012 92.325)"><tspan class="ps01 ps20" xml:space="preserve">Atlanta</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp7">
+<path d="M375 76.998 L391 76.998 L391 100 L375 100 Z" />
+</clipPath>
+<g clip-path="url(#clp7)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 380.337 92.325)"><tspan xml:space="preserve" x="0,3" class="ps01 ps20">, </tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp8">
+<path d="M381 76.998 L410 76.998 L410 100 L381 100 Z" />
+</clipPath>
+<g clip-path="url(#clp8)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 386.337 92.325)"><tspan x="0,8.664" class="ps01 ps20">GA</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp9">
+<path d="M401 76.998 L443 76.998 L443 100 L401 100 Z" />
+</clipPath>
+<g clip-path="url(#clp9)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 406.662 92.325)"><tspan x="0,6,12,18,24" class="ps01 ps20">30303</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp10">
+<path d="M44.998 115 L136 115 L136 138 L44.998 138 Z" />
+</clipPath>
+<g clip-path="url(#clp10)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 50 130.825)"><tspan x="0,8.664,14.664,20.664" class="ps01 ps20" xml:space="preserve">August 15, 2022</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp11">
+<path d="M44.998 146 L86.997 146 L86.997 169 L44.998 169 Z" />
+</clipPath>
+<g clip-path="url(#clp11)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 50 161.825)"><tspan class="ps01 ps20" xml:space="preserve">Esther</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp12">
+<path d="M77.999 146 L206 146 L206 169 L77.999 169 Z" />
+</clipPath>
+<g clip-path="url(#clp12)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 83.662 161.825)"><tspan class="ps01 ps20" xml:space="preserve">Wilson, Office Manager</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp13">
+<path d="M44.998 169 L184 169 L184 192 L44.998 192 Z" />
+</clipPath>
+<g clip-path="url(#clp13)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 50 184.825)"><tspan class="ps01 ps20" xml:space="preserve">Wallace Design Collective</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp14">
+<path d="M44.998 192 L91.999 192 L91.999 215 L44.998 215 Z" />
+</clipPath>
+<g clip-path="url(#clp14)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 50 207.825)"><tspan class="ps01 ps20" xml:space="preserve">Atlanta</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp15">
+<path d="M80.002 192 L96.005 192 L96.005 215 L80.002 215 Z" />
+</clipPath>
+<g clip-path="url(#clp15)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 85.325 207.825)"><tspan xml:space="preserve" x="0,3" class="ps01 ps20">, </tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp16">
+<path d="M86 192 L115 192 L115 215 L86 215 Z" />
+</clipPath>
+<g clip-path="url(#clp16)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 91.325 207.825)"><tspan x="0,8.664" class="ps01 ps20">GA</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp17">
+<path d="M106 192 L148 192 L148 215 L106 215 Z" />
+</clipPath>
+<g clip-path="url(#clp17)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 111.65 207.825)"><tspan x="0,6,12,18,24" class="ps01 ps20">30319</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp18">
+<path d="M44.998 215 L124 215 L124 238 L44.998 238 Z" />
+</clipPath>
+<g clip-path="url(#clp18)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 50 230.825)"><tspan x="0,6,12,18,21.996,27.996,33.996,39.996,43.992" class="ps01 ps20" xml:space="preserve">555-555-5555</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp19">
+<path d="M44.998 238 L173 238 L173 261 L44.998 261 Z" />
+</clipPath>
+<g clip-path="url(#clp19)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 50 253.825)"><tspan class="ps01 ps20" xml:space="preserve">example@example.com</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp20">
+<path d="M44.998 269 L141 269 L141 292 L44.998 292 Z" />
+</clipPath>
+<g clip-path="url(#clp20)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 284.825)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">Dear Ms. Wilson,</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp21">
+<path d="M44.998 300 L554 300 L554 323 L44.998 323 Z" />
+</clipPath>
+<g clip-path="url(#clp21)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 315.825)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">Upon learning about the administrative assistant posting with Wallace Design Collective, I was eager to</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp22">
+<path d="M44.998 323 L537 323 L537 346 L44.998 346 Z" />
+</clipPath>
+<g clip-path="url(#clp22)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 338.825)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">contact you with my interest. When reviewing the job description, I was excited to see how well my</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp23">
+<path d="M44.998 346 L551 346 L551 369 L44.998 369 Z" />
+</clipPath>
+<g clip-path="url(#clp23)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 361.825)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">experience aligns with your company's needs and position requirements. From reading your company's</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp24">
+<path d="M44.998 369 L472 369 L472 392 L44.998 392 Z" />
+</clipPath>
+<g clip-path="url(#clp24)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 384.825)"><tspan x="0,8.664" y="1e-005" class="ps01 ps20" xml:space="preserve">website, I feel your core mission and culture suit what I offer as a professional as well.</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp25">
+<path d="M44.998 400 L560 400 L560 423 L44.998 423 Z" />
+</clipPath>
+<g clip-path="url(#clp25)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 415.825)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">As an adept secretary, I have a well-rounded set of skills in customer service and office administration.  I</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp26">
+<path d="M44.998 423 L565 423 L565 446 L44.998 446 Z" />
+</clipPath>
+<g clip-path="url(#clp26)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 438.825)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">also honed my talents in data entry, multiline phone operation and scheduling. I am a recognized expert in</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp27">
+<path d="M44.998 446 L559 446 L559 469 L44.998 469 Z" />
+</clipPath>
+<g clip-path="url(#clp27)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 461.825)"><tspan x="0,4.668" y="1e-005" class="ps01 ps20" xml:space="preserve">supply ordering, scheduling, database management and precise notetaking with a 70 WPM typing speed.</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp28">
+<path d="M44.998 469 L507 469 L507 492 L44.998 492 Z" />
+</clipPath>
+<g clip-path="url(#clp28)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 484.825)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">These abilities helped me increase office productivity by 60% and promote client satisfaction.</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp29">
+<path d="M44.998 500 L568 500 L568 523 L44.998 523 Z" />
+</clipPath>
+<g clip-path="url(#clp29)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 515.825)"><tspan xml:space="preserve" x="0,3.996" y="1e-005" class="ps01 ps20">I am excited at the prospect of bringing my talents to Wallace Design Collective. I look forward to hearing</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp30">
+<path d="M44.998 523 L526 523 L526 546 L44.998 546 Z" />
+</clipPath>
+<g clip-path="url(#clp30)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 538.825)"><tspan x="0,3.996" y="1e-005" class="ps01 ps20" xml:space="preserve">from you at your earliest convenience to discuss how my experience and qualifications will prove</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp31">
+<path d="M44.998 546 L267 546 L267 569 L44.998 569 Z" />
+</clipPath>
+<g clip-path="url(#clp31)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 561.825)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">valuable in the administrative assistant role.</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp32">
+<path d="M44.998 574 L265 574 L265 597 L44.998 597 Z" />
+</clipPath>
+<g clip-path="url(#clp32)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 589.325)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">Thank you for your time and consideration.</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp33">
+<path d="M44.998 605 L104 605 L104 628 L44.998 628 Z" />
+</clipPath>
+<g clip-path="url(#clp33)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 620.325)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">Sincerely,</tspan></text>
+</g>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp34">
+<path d="M44.998 628 L131 628 L131 651 L44.998 651 Z" />
+</clipPath>
+<g clip-path="url(#clp34)">
+<g class="ps00">
+<g>
+<text transform="matrix(1 0 0 1 50 643.325)"><tspan y="1e-005" class="ps01 ps20" xml:space="preserve">Adelaide Smith</tspan></text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<clipPath id="clp35">
+<path d="M50 0 L105 0 L105 51.001 L50 51.001 Z" />
+</clipPath>
+<g clip-path="url(#clp35)">
+<g class="ps00">
+<path d="M50 0 L105 0 L105 51.001 L50 51.001 Z" class="ps02" />
+</g>
+</g>
+</g>
+<g>
+<clipPath id="clp36">
+<path d="M0 0 L616.11 0 L616.11 731.55 L0 731.55 Z" />
+</clipPath>
+<g clip-path="url(#clp36)">
+<g class="ps00">
+<clipPath id="clp37">
+<path d="M120 1.997 L279 1.997 L279 43 L120 43 Z" />
+</clipPath>
+<g clip-path="url(#clp37)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 125 31.5)"><tspan class="ps03 ps21" xml:space="preserve">ADELAIDE</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp38">
+<path d="M274 1.997 L380 1.997 L380 43 L274 43 Z" />
+</clipPath>
+<g clip-path="url(#clp38)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 279.825 31.5)"><tspan class="ps03 ps21" xml:space="preserve">SMITH</tspan></text>
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp39">
+<path d="M125 51.998 L157 51.998 L157 52.999 L125 52.999 Z" />
+</clipPath>
+<g clip-path="url(#clp39)">
+<g class="ps00">
+<path d="M125 51.998 L157 51.998 L157 52.999 L125 52.999 Z" class="ps04" />
+</g>
+</g>
+</g>
+<g class="ps00">
+<clipPath id="clp40">
+<path d="M48.002 76.998 L70.003 76.998 L70.003 98.999 L48.002 98.999 Z" />
+</clipPath>
+<g clip-path="url(#clp40)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 53.375 91.325)"><tspan class="ps01 ps22">@</tspan></text>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<clipPath id="clp41">
+<path d="M50 79.824 L66.999 79.824 L66.999 96.823 L50 96.823 Z" />
+</clipPath>
+<g clip-path="url(#clp41)">
+<g class="ps00">
+<clipPath id="clp42">
+<path d="M58.499 79.824 L58.499 79.824 C63.192 79.824 66.999 83.636 66.999 88.323 C66.999 93.016 63.192 96.823 58.499 96.823 C53.807 96.823 50 93.016 50 88.323 C50 83.636 53.807 79.824 58.499 79.824 Z" />
+</clipPath>
+<g clip-path="url(#clp42)">
+<g class="ps00">
+<path d="M50 79.824 L66.999 79.824 L66.999 96.823 L50 96.823 Z" class="ps05" />
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<clipPath id="clp43">
+<path d="M0 0 L616.11 0 L616.11 731.55 L0 731.55 Z" />
+</clipPath>
+<g clip-path="url(#clp43)">
+<g class="ps00">
+<clipPath id="clp44">
+<path d="M203 76.998 L221 76.998 L221 98.999 L203 98.999 Z" />
+</clipPath>
+<g clip-path="url(#clp44)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 208.45 91.325)"><tspan class="ps01 ps22">p</tspan></text>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<clipPath id="clp45">
+<path d="M203.01 79.824 L220.01 79.824 L220.01 96.823 L203.01 96.823 Z" />
+</clipPath>
+<g clip-path="url(#clp45)">
+<g class="ps00">
+<clipPath id="clp46">
+<path d="M211.51 79.824 L211.51 79.824 C216.2 79.824 220.01 83.636 220.01 88.323 C220.01 93.016 216.2 96.823 211.51 96.823 C206.82 96.823 203.01 93.016 203.01 88.323 C203.01 83.636 206.82 79.824 211.51 79.824 Z" />
+</clipPath>
+<g clip-path="url(#clp46)">
+<g class="ps00">
+<path d="M203.01 79.824 L220.01 79.824 L220.01 96.823 L203.01 96.823 Z" class="ps05" />
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<clipPath id="clp47">
+<path d="M0 0 L616.11 0 L616.11 731.55 L0 731.55 Z" />
+</clipPath>
+<g clip-path="url(#clp47)">
+<g class="ps00">
+<clipPath id="clp48">
+<path d="M321 76.998 L339 76.998 L339 98.999 L321 98.999 Z" />
+</clipPath>
+<g clip-path="url(#clp48)">
+<g class="ps00">
+<text transform="matrix(1 0 0 1 326.762 91.325)"><tspan class="ps01 ps22">a</tspan></text>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<clipPath id="clp49">
+<path d="M321.02 79.824 L338.01 79.824 L338.01 96.823 L321.02 96.823 Z" />
+</clipPath>
+<g clip-path="url(#clp49)">
+<g class="ps00">
+<clipPath id="clp50">
+<path d="M329.51 79.824 L329.51 79.824 C334.2 79.824 338.01 83.636 338.01 88.323 C338.01 93.016 334.2 96.823 329.51 96.823 C324.82 96.823 321.02 93.016 321.02 88.323 C321.02 83.636 324.82 79.824 329.51 79.824 Z" />
+</clipPath>
+<g clip-path="url(#clp50)">
+<g class="ps00">
+<path d="M321.02 79.824 L338.01 79.824 L338.01 96.823 L321.02 96.823 Z" class="ps05" />
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>

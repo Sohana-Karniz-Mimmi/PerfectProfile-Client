@@ -22,7 +22,6 @@ import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react
 import CheckoutForm from "../Payment/CheckoutForm";
 import { IoMdClose } from "react-icons/io";
 
-
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
   <button
@@ -62,7 +61,6 @@ export default function App() {
     getData();
   }, []);
 
-
   const handleTemplateClick = (template) => {
     if (!user) {
       toast.error("You have to login first");
@@ -92,7 +90,6 @@ export default function App() {
     setModalContent("To use this template, please check your package.");
     set2ndIsOpen(true);
   };
-
 
   const handleFavorite = () => {
     toast.success("Added to the favorite");
@@ -130,11 +127,15 @@ export default function App() {
         className="mySwiper"
       >
         {predefinedTemplate?.map((template) => (
-          <SwiperSlide key={template._id} className="relative !overflow-visible">
+          <SwiperSlide
+            key={template._id}
+            className="relative !overflow-visible"
+          >
             <div className="relative group !overflow-visible">
               <div
-                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${template.package === "premium" ? "bg-secondary" : "bg-primary"
-                  }`}
+                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${
+                  template.package === "premium" ? "bg-secondary" : "bg-primary"
+                }`}
               >
                 {template.package === "premium" ? (
                   <>
@@ -261,7 +262,6 @@ export default function App() {
             </DialogPanel>
           </div>
         </Dialog>
-
 
         <CustomPrevButton />
         <CustomNextButton />
