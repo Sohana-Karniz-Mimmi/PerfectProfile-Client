@@ -139,7 +139,7 @@ const Footer = () => {
           {/* Copyright */}
           <div className="footer footer-center text-[#a1a6ab] pt-4 pb-3 border-t">
             <aside>
-              <p>Copyright © {new Date().getFullYear()} - All right reserved by Perfect Profile Ltd</p>
+              <p className='text-center'>Copyright © {new Date().getFullYear()} - All right reserved by Perfect Profile Ltd</p>
             </aside>
           </div>
 

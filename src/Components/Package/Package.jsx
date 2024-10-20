@@ -4,14 +4,14 @@ import Container from "../../Shared/Container";
 import { Link } from "react-router-dom";
 import { useState } from 'react'
 import CheckoutForm from "../Payment/CheckoutForm";
-import {Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 
 // import PackageModal from "./PackageModal";
 
 const Package = () => {
   let [isOpen, setIsOpen] = useState(false)
   let [isOpen2nd, set2ndIsOpen] = useState(false)
-  
+
   return (
     <Container className="">
       <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:py-12 py-10">
@@ -62,9 +62,9 @@ const Package = () => {
           </div>
           <div className="card-body">
             <h2 className="font-bold text-3xl text-blue-950 mb-2">
-              Monthly Pack 
+              Monthly Pack
             </h2>
-            
+
             <div>
               <p className="text-gray-600 mb-4 mt-2">
                 Unlock all premium features with our affordable monthly package.
@@ -93,28 +93,28 @@ const Package = () => {
             <div className="card-actions justify-center mt-4">
               {/* standard button */}
 
-              <button 
-              onClick={() => setIsOpen(true)} 
-              className="relative inline-block text-lg group">
-                 <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-[#2CACD5] transition-colors duration-300 ease-out border-2 border-[#2CACD5] rounded-lg group-hover:text-white">
-                   <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
-                   <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-[#2CACD5] group-hover:-rotate-180 ease"></span>
-                   <span className="relative">Get Started</span>
-                 </span>
-                 <span
+              <button
+                onClick={() => setIsOpen(true)}
+                className="relative inline-block text-lg group">
+                <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-[#2CACD5] transition-colors duration-300 ease-out border-2 border-[#2CACD5] rounded-lg group-hover:text-white">
+                  <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+                  <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-[#2CACD5] group-hover:-rotate-180 ease"></span>
+                  <span className="relative">Get Started</span>
+                </span>
+                <span
                   className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-[#2CACD5] rounded-lg group-hover:mb-0 group-hover:mr-0"
-                   data-rounded="rounded-lg"
-                 ></span>
-               </button>
+                  data-rounded="rounded-lg"
+                ></span>
+              </button>
 
 
-               <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <CheckoutForm></CheckoutForm>
-          </DialogPanel>
-        </div>
-      </Dialog>
+              <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+                <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+                  <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+                    <CheckoutForm></CheckoutForm>
+                  </DialogPanel>
+                </div>
+              </Dialog>
 
 
 
@@ -177,7 +177,7 @@ const Package = () => {
               </ul>
             </div>
             <div className="card-actions justify-center mt-4">
-              <button onClick={() => set2ndIsOpen(true)}   class="relative inline-block text-lg group">
+              <button onClick={() => set2ndIsOpen(true)} class="relative inline-block text-lg group">
                 <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-[#2CACD5] transition-colors duration-300 ease-out border-2 border-[#2CACD5] rounded-lg group-hover:text-white">
                   <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
                   <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-[#2CACD5] group-hover:-rotate-180 ease"></span>
@@ -189,12 +189,12 @@ const Package = () => {
                 ></span>
               </button>
               <Dialog open={isOpen2nd} onClose={() => set2ndIsOpen(false)} className="relative z-50">
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <CheckoutForm></CheckoutForm>
-          </DialogPanel>
-        </div>
-      </Dialog>
+                <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+                  <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+                    <CheckoutForm></CheckoutForm>
+                  </DialogPanel>
+                </div>
+              </Dialog>
             </div>
           </div>
         </div>
