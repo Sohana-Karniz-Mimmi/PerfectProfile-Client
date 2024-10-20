@@ -58,6 +58,9 @@ console.log(filter)
             image,
             templatePackage,
           });
+          // axiosPublic.patch(`/predefined-templates/${user.email}/${template.templateItem}`, {
+          //   isFavorite : true
+          // })
 
           toast.success("Added to the favorite");
         } else {

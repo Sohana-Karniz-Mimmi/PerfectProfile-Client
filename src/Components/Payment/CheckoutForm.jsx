@@ -114,7 +114,7 @@ const CheckoutForm = () => {
                     productName === "standard"
                       ? "border-primary"
                       : "border-gray-200"
-                  } rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700`}
+                  } rounded-lg cursor-pointer  hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 `}
                 >
                   <div className="block text-center">
                     <h1 className="font-semibold text-xl">Standard </h1>
@@ -138,7 +138,7 @@ const CheckoutForm = () => {
                     productName === "premium"
                       ? "border-primary"
                       : "border-gray-200"
-                  } rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700`}
+                  } rounded-lg cursor-pointer  hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50 `}
                 >
                   <div className="block text-center">
                     <h1 className="font-semibold text-xl">Premium</h1>

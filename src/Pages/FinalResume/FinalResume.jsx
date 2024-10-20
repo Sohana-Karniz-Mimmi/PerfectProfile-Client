@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
+import domtoimage from 'dom-to-image';
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/FinalPageTemplate/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
@@ -83,6 +84,7 @@ const FinalResume = () => {
     });
   };
 
+  // download pdf
   const handlePdf = async () => {
     const element = document.getElementById("element");
     const opt = {
@@ -95,7 +97,20 @@ const FinalResume = () => {
     };
     html2pdf().set(opt).from(element).save();
   };
-
+// download png
+const handlePng = async()=>{
+  const node = document.getElementById('element');
+ 
+  domtoimage.toPng(node)
+      .then(function (dataUrl) {
+          var img = new Image();
+          img.src = dataUrl;
+          document.body.appendChild(img);
+      })
+      .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+      });
+}
  
 
   return (
@@ -155,11 +170,23 @@ const FinalResume = () => {
                       </button>
                     )}
                   </Menu.Item>
+                  {/* PNG */}
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button onClick={handlePng}
+                        className={`${active ? ' font-semibold bg-white ' : 'font-semibold'
+                          } group flex w-full items-center gap-2  py-1.5 text-black`}
+                      >
+                        <GrDocumentText className="text-primary" /> Download PNG
+                      </button>
+                    )}
+                  </Menu.Item>
 
 
 
 
                 </div>
+               
               </Menu.Items>
 
             </Menu>

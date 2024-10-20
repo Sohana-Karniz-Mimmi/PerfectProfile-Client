@@ -3,7 +3,7 @@ import img from "../../assets/pricing2ndBanner.png";
 import { Link } from "react-router-dom";
 const Pricing2ndBanner = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between items-center px-2 lg:px-9 py-6 mb-[21rem] lg:mb-1 h-[26rem] lg:h-96 mt-9 rounded-lg bg-cyan-50">
+    <div className="flex flex-col lg:flex-row justify-between items-center px-2 lg:px-9 py-6 mb-[21rem] lg:mb-1 h-[28rem] lg:h-96 mt-9 rounded-lg bg-cyan-50">
       <div>
         <h1 className="font-bold text-4xl">
           Get hired faster with PerfectProfile
@@ -35,11 +35,11 @@ const Pricing2ndBanner = () => {
               Publish your resume as a personal career website
             </p>
           </div>
-          <Link className="lg:mt-6 mt-8 mb-16 lg:mb-0">
+          <a href="#price" className="mt-6 mb-16  lg:mb-0">
             <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105">
               Upgrade Now
             </button>
-          </Link>
+          </a>
         </div>
       </div>
 
