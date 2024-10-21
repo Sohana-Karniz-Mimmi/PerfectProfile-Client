@@ -131,7 +131,7 @@ console.log(filter)
                 ) : (
                   <FaRegStar className="text-cyan-400" />
                 )}
-              </button>
+            </button>
 
               {/* Tooltip for Favorite Button */}
               <span className="tooltip-text-favorite hidden absolute -top-7 right-0 bg-primary text-white text-xs rounded py-1 px-2">
@@ -140,7 +140,7 @@ console.log(filter)
 
               {/* Hover Effect with "Use Template" Button */}
               <div className="absolute w-full h-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
-                <Link to={`resume/edit/${template.templateItem}`}>
+                <Link to={`/resume/edit/${template.templateItem}`}>
                   <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     Use Template
                   </button>
