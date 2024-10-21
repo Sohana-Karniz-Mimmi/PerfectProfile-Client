@@ -82,7 +82,7 @@ const Template2nd = ({ data, userData, setUserData }) => {
         <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[12rem] w-[11rem] ">
           <div className="lg:w-44 h-28 w-32 mx-auto px-2.5 py-4 mb-2 ">
             <img
-              className="rounded-full lg:w-[9rem] h-36 w-32 cursor-pointer"
+              className="rounded-full lg:w-[9rem] h-36 w-36 cursor-pointer"
               src={userData?.profile || img}
               alt=""
               id="profile-pic"

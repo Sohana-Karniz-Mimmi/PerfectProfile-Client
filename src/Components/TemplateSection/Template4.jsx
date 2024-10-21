@@ -2,22 +2,22 @@ import { IoMail } from "react-icons/io5";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 const Template4 = ({data,userData }) => {
-  console.log(data);
-  const {
-    _id,
-    name,
-    jobTitle,
-    careerObjective,
-    email,
-    phone,
-    address,
-    education,
-    certifications,
-    workExperience,
-    skills,
-    languages,
-    extraCurricularActivities,
-  } = data;
+  // console.log(data);
+  // const {
+  //   _id,
+  //   name,
+  //   jobTitle,
+  //   careerObjective,
+  //   email,
+  //   phone,
+  //   address,
+  //   education,
+  //   certifications,
+  //   workExperience,
+  //   skills,
+  //   languages,
+  //   extraCurricularActivities,
+  // } = data;
   return (
     <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
       <div className="">
