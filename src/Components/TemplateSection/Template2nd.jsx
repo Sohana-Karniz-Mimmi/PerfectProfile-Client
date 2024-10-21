@@ -7,11 +7,12 @@ import { CgProfile } from "react-icons/cg";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { createContext, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
+import axios from "axios";
+const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
-export const ImageContext = createContext()
-export const ImageState = ({children}) => {
+export const ImageContext = createContext();
+export const ImageState = ({ children }) => {
   const [image, setImage] = useState(null);
 
   return (
@@ -21,50 +22,79 @@ export const ImageState = ({children}) => {
   );
 };
 
-const Template2nd = ({ data, userData }) => {
-  const axiosPublic = useAxiosPublic()
+const Template2nd = ({ data, userData, setUserData }) => {
+  const axiosPublic = useAxiosPublic();
   const { setImage } = useContext(ImageContext); // Use useContext to access setImage
 
   const { register, handleSubmit, reset } = useForm();
-// console.log(userData.image)
-  const onSubmit = async(data) => {
+  // console.log(userData.image)
+  const onSubmit = async (data) => {
     console.log(data);
     // img bb te data upload kore url niye db te save korbo
-    const imgFile = {image : data.image[0]}
+    const imgFile = { image: data.image[0] };
     const res = await axiosPublic.post(img_hosting_api, imgFile, {
       headers: {
-        'content-Type' : 'multipart/form-data'
-      }
-    })
+        "content-Type": "multipart/form-data",
+      },
+    });
     console.log(res.data);
-    console.log(data?.image)
-  
+    console.log(data?.image);
 
-  if(res.data.success){
-    const image = res.data.data.display_url
-   setImage(image)
-  }
-  
-  }
+    if (res.data.success) {
+      const image = res.data.data.display_url;
 
-  console.log(data?.templateItem)
-  
-  
+      setImage(image);
+    }
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      // API call to ImgBB
+      axios
+        .post(img_hosting_api, formData)
+        .then((response) => {
+          // Get the URL of the uploaded image
+          const imageUrl = response.data.data.url;
+
+          // Update the userData state with the new profile image URL
+          setUserData((prevUserData) => ({
+            ...prevUserData,
+            profile: imageUrl, // Update only the profile field
+          }));
+        })
+        .catch((error) => {
+          console.error("Error uploading image to ImgBB:", error);
+        });
+    }
+  };
+
+  console.log(data?.templateItem);
+  console.log(userData);
+
   return (
     <div className="relative border-2 border-secondary">
       <div className="w-[790px] min-h-[1000px] mx-auto  flex justify-center  shadow-2xl rounded-lg   ">
         {/* 1st */}
         <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[12rem] w-[11rem] ">
           <div className="lg:w-44 h-28 w-32 mx-auto px-2.5 py-4 mb-2 ">
-          <img className="rounded-full lg:w-[9rem] h-36 w-32" src={img} alt="" id="profile-pic" />
-
-          
-
-         <form onSubmit={handleSubmit(onSubmit)}>
-         {/* <label  className="cursor-pointer" htmlFor="input-file">Upload Image</label> */}
-         <input  {...register("image")}   type="file" name="image" accept="image/jpeg, image/jpg, image/png" id="input-file"  />
-         <button type="submit">upload</button>
-         </form>
+            <img
+              className="rounded-full lg:w-[9rem] h-36 w-32 cursor-pointer"
+              src={userData?.profile || img}
+              alt=""
+              id="profile-pic"
+              onClick={() => document.getElementById("imageUpload").click()}
+            />
+            <input
+              type="file"
+              id="imageUpload"
+              style={{ display: "none" }}
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
           </div>
           <div className="mt-36">
             {/* about me */}

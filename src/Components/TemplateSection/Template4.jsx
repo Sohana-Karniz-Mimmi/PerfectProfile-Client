@@ -1,23 +1,9 @@
 import { IoMail } from "react-icons/io5";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
-const Template4 = ({data,userData }) => {
+const Template4 = ({ data, userData }) => {
   console.log(data);
-  const {
-    _id,
-    name,
-    jobTitle,
-    careerObjective,
-    email,
-    phone,
-    address,
-    education,
-    certifications,
-    workExperience,
-    skills,
-    languages,
-    extraCurricularActivities,
-  } = data;
+
   return (
     <div className="lg:w-[31rem] h-[45rem]  lg:h-[41rem] mx-auto  bg-slate-50 shadow-2xl rounded-lg  ">
       <div className="">
@@ -90,7 +76,7 @@ const Template4 = ({data,userData }) => {
                   <li key={index}>
                     <h3 className=" font-semibold">
                       {edu.degree || "Degree Name"} -{" "}
-                      {edu.institution || "Institure Name"}{" "}
+                      {edu.institution || "Institute Name"}{" "}
                       <span className="text-gray-500">
                         ({edu.year || "Graduation Year"})
                       </span>
@@ -149,21 +135,24 @@ const Template4 = ({data,userData }) => {
           )}
 
           {/* Extra Curricular Activities */}
-          {userData?.extraCurricularActivities && userData?.extraCurricularActivities.length > 0 && (
-            <section className="mb-1">
-              <h2 className="  text-sm uppercase font-semibold  text-center  bg-gray-400">
-                Extra Curricular Activities
-              </h2>
-              <ul className="mt-1 text-sm space-y-1">
-                {userData?.extraCurricularActivities.map((activityItem, index) => (
-                  <li key={index} className="text-gray-600">
-                    <strong>{activityItem.activity || "Work Title"}</strong> -{" "}
-                    {activityItem.description || "About your activities"}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {userData?.extraCurricularActivities &&
+            userData?.extraCurricularActivities.length > 0 && (
+              <section className="mb-1">
+                <h2 className="  text-sm uppercase font-semibold  text-center  bg-gray-400">
+                  Extra Curricular Activities
+                </h2>
+                <ul className="mt-1 text-sm space-y-1">
+                  {userData?.extraCurricularActivities.map(
+                    (activityItem, index) => (
+                      <li key={index} className="text-gray-600">
+                        <strong>{activityItem.activity || "Work Title"}</strong>{" "}
+                        - {activityItem.description || "About your activities"}
+                      </li>
+                    )
+                  )}
+                </ul>
+              </section>
+            )}
 
           {/* languages */}
           {userData?.languages && userData?.languages.length > 0 && (

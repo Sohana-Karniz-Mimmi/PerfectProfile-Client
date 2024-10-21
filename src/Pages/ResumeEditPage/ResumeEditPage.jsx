@@ -49,6 +49,7 @@ const ResumeEditPage = () => {
 
   const [userData, setUserData] = useState({
     name: "",
+    profile: "",
     jobTitle: "",
     email: "",
     phone: "",
@@ -323,19 +324,6 @@ const ResumeEditPage = () => {
     }));
   };
 
-  //End language area
-
-  // const updateWorkExperience = (index, field, value) => {
-  //   setUserData((prevData) => {
-  //     const updatedExperience = [...prevData.workExperience];
-  //     updatedExperience[index] = {
-  //       ...updatedExperience[index],
-  //       [field]: value,
-  //     };
-  //     return { ...prevData, workExperience: updatedExperience };
-  //   });
-  // };
-
   // Function to update the work experience entries
   const updateWorkExperience = (index, field, value) => {
     const updatedWorkExperience = [...userData.workExperience];
@@ -395,7 +383,7 @@ const ResumeEditPage = () => {
     const fetchData = async () => {
       try {
         const response = await axiosPublic.get("/predefined-templates");
-        setUserData(response.data);
+        setData(response.data);
       } catch (error) {
         console.error("Error fetching predefined templates:", error);
       }
@@ -405,18 +393,22 @@ const ResumeEditPage = () => {
   }, []);
 
   const template = data.find((item1) => item1.templateItem === id);
-
+  const [myResumeTemplates, setMyResumeTemplates] = useState([]);
   const location = useLocation();
+
   const queryParams = new URLSearchParams(location.search);
   const resumeId = queryParams.get("resumeId");
 
-  const [myResumeTemplates, setMyResumeTemplates] = useState([]);
+  console.log("line no 50", myResumeTemplates);
   useEffect(() => {
     if (resumeId) {
       const getData = async () => {
         try {
           const { data } = await axiosPublic(`/my-resume/edit/${resumeId}`);
+          console.log("fetch data ", data);
+
           setMyResumeTemplates(data);
+          setUserData(data);
         } catch (error) {
           console.error("Error fetching resume data", error);
         }
@@ -425,16 +417,22 @@ const ResumeEditPage = () => {
     }
   }, [resumeId]);
 
-  console.log("resume data", myResumeTemplates);
-  console.log("template data", template);
-  console.log("user data", userData);
+  // console.log("resume data", myResumeTemplates);
+  // console.log("template data", template);
+  // console.log("user data", userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
       return <Template1 data={template} userData={userData} />;
     }
     if (id === "template2") {
-      return <Template2nd data={template} userData={userData} />;
+      return (
+        <Template2nd
+          data={template}
+          userData={userData}
+          setUserData={setUserData}
+        />
+      );
     }
     if (id === "template3") {
       return <Template3 data={template} userData={userData} />;
@@ -449,7 +447,6 @@ const ResumeEditPage = () => {
       return <Template6 data={template} userData={userData} />;
     }
   };
-
   const navigate = useNavigate();
 
   // Function to generate a shareable link
@@ -610,7 +607,7 @@ const ResumeEditPage = () => {
                         message: "Invalid email format",
                       },
                     })}
-                    // value={userData.email}
+                    value={userData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                   />
                   {errors.email && (
@@ -1072,7 +1069,6 @@ const ResumeEditPage = () => {
               </button> */}
             </div>
           )}
-
           {currentStep === 6 && (
             <div className="space-y-4">
               <div>
