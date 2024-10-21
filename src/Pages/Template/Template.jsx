@@ -58,7 +58,7 @@ console.log(filter)
             image,
             templatePackage,
           });
-          // axiosPublic.patch(`/predefined-templates/${user.email}/${template.templateItem}`, {
+          // axiosPublic.patch(`/templates/${user.email}/${template._id}`, {
           //   isFavorite : true
           // })
 
@@ -74,6 +74,9 @@ console.log(filter)
       document.getElementById("my_modal_3").showModal();
     }
   };
+
+
+
 
   // pagination
 

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
-import domtoimage from 'dom-to-image';
+import domtoimage from "dom-to-image";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/FinalPageTemplate/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
@@ -11,20 +11,24 @@ import { FaFileExport, FaShare } from "react-icons/fa6";
 import useAxiosPublic, { axiosPublic } from "../../Hook/useAxiosPublic";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import ShareLinkCopyModal from "./ShareLinkCopyModal";
-import { Menu } from '@headlessui/react';
+import { Menu } from "@headlessui/react";
 import { GrDocumentText } from "react-icons/gr";
 import axios from "axios";
 // import Template2nd from "../../Components/TemplateSection/Template2nd";
 import Template4 from "../../Components/TemplateSection/Template4";
 import Template5 from "../../Components/TemplateSection/Template5";
 import Template6 from "../../Components/TemplateSection/Template6";
+import { toJpeg, toPng } from "html-to-image";
+import { px } from "framer-motion";
 // import Template1 from "../../assets/Template1";
+import { PiFilePng } from "react-icons/pi";
+import { SiJpeg } from "react-icons/si";
+
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
   const { shareLink } = useContext(ResumeContext);
   // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
   const info = useLoaderData();
-
 
   const useUnloadAlert = () => {
     useEffect(() => {
@@ -95,23 +99,63 @@ const FinalResume = () => {
       html2canvas: { scale: 3 },
       jsPDF: { format: "a4", orientation: "portrait" },
     };
-    html2pdf().set(opt).from(element).save();
+    html2pdf()
+      .set(opt)
+      .from(element)
+      .save();
   };
-// download png
-const handlePng = async()=>{
-  const node = document.getElementById('element');
- 
-  domtoimage.toPng(node)
-      .then(function (dataUrl) {
-          var img = new Image();
-          img.src = dataUrl;
-          document.body.appendChild(img);
+
+  // download png
+
+  const contentRef = useRef(null);
+  const handlePng = async () => {
+    const node = contentRef.current;
+
+    toPng(node, {
+      cacheBust: true,
+      width: node.offsetWidth,
+      height: node.offsetHeight,
+    })
+      .then((dataURL) => {
+        console.log("captureImg", dataURL);
+
+        const link = document.createElement("a");
+        link.download = "my-resume.png";
+        link.href = dataURL; // Correctly setting the dataURL
+        link.click();
       })
-      .catch(function (error) {
-          console.error('oops, something went wrong!', error);
+      .catch((error) => {
+        console.log("error", error);
       });
-}
- 
+  };
+  const handleJpeg = async () => {
+    const node = contentRef.current;
+
+    // Set white background for the content area
+    node.style.backgroundColor = "white"; // Apply white background
+
+    toJpeg(node, {
+      quality: 0.95,
+      cacheBust: true,
+      width: node.offsetWidth,
+      height: node.offsetHeight,
+    })
+      .then((dataURL) => {
+        console.log("captureImg", dataURL);
+
+        const link = document.createElement("a");
+        link.download = "my-resume.jpeg";
+        link.href = dataURL; // Correctly setting the dataURL for jpeg
+        link.click();
+      })
+      .catch((error) => {
+        console.log("error", error);
+      })
+      .finally(() => {
+        // Remove the background color after capture to avoid affecting the UI
+        node.style.backgroundColor = "";
+      });
+  };
 
   return (
     <div className="h-screen">
@@ -125,70 +169,62 @@ const handlePng = async()=>{
       <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
         <div className="lg:w-2/12 w-full"></div>
 
-        <div  id="element" className="w-full h-full">
-          {/* <div id="element"
-            className="w-full h-full"
-            style={{
-              transform: 'scale(0.60)',
-              transformOrigin: 'top left',
-              height: '400px',
-            }}
-          > */}
-            {renderTemplate(info?.templateItem)}
-          {/* </div> */}
+        <div ref={contentRef} id="element">
+          {renderTemplate(info?.templateItem)}
         </div>
 
-
         <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
-
           {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
           <div className="relative text-right">
             <Menu as="div" className="relative inline-block text-left ">
               <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-
-
-                <button
-                  // onClick={handlePdf}
-                  // onClick={generatePDF}
-                  className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
-                >
+                <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
                   <FaFileExport className="text-secondary" /> Export
                 </button>
               </Menu.Button>
 
-              <Menu.Items
-                className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44"
-              >
-                <div className="bg-white rounded-xl p-5">
+              <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44">
+                <div className="bg-white rounded-xl p-4">
                   <Menu.Item>
                     {({ active }) => (
-                      <button onClick={handlePdf}
-                        className={`${active ? ' font-semibold bg-white ' : 'font-semibold'
-                          } group flex w-full items-center gap-2  py-1.5 text-black`}
+                      <button
+                        onClick={handlePdf}
+                        className={`${
+                          active ? " font-semibold bg-white " : "font-semibold"
+                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
                       >
-                        <GrDocumentText className="text-primary" /> PDF Standard
+                        <GrDocumentText className="text-red-600" /> PDF Standard
                       </button>
                     )}
                   </Menu.Item>
                   {/* PNG */}
                   <Menu.Item>
                     {({ active }) => (
-                      <button onClick={handlePng}
-                        className={`${active ? ' font-semibold bg-white ' : 'font-semibold'
-                          } group flex w-full items-center gap-2  py-1.5 text-black`}
+                      <button
+                        onClick={handlePng}
+                        className={` ${
+                          active ? " font-semibold bg-white " : "font-semibold"
+                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
                       >
-                        <GrDocumentText className="text-primary" /> Download PNG
+                        <PiFilePng className="text-red-600" /> PNG
                       </button>
                     )}
                   </Menu.Item>
-
-
-
-
+                  {/* JPEG */}
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        onClick={handleJpeg}
+                        className={`${
+                          active ? " font-semibold bg-white " : "font-semibold"
+                        } group flex w-full items-center gap-2  py-1.5 text-black`}
+                      >
+                        <SiJpeg className="text-red-600" /> JPEG
+                      </button>
+                    )}
+                  </Menu.Item>
                 </div>
-               
               </Menu.Items>
-
             </Menu>
           </div>
 
