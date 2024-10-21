@@ -6,21 +6,21 @@ import { FaStar } from "react-icons/fa";
 
 const Template6 = ({ data }) => {
   console.log(data);
-  const {
-    _id,
-    name,
-    careerObjective,
-    email,
-    phone,
-    address,
-    education,
-    certifications,
-    workExperience,
-    skills,
-    languages,
-    jobTitle,
-    extraCurricularActivities,
-  } = data;
+  // const {
+  //   _id,
+  //   name,
+  //   careerObjective,
+  //   email,
+  //   phone,
+  //   address,
+  //   education,
+  //   certifications,
+  //   workExperience,
+  //   skills,
+  //   languages,
+  //   jobTitle,
+  //   extraCurricularActivities,
+  // } = data;
   return (
     <div className="relative">
       <div className="bg-slate-200 rounded-full px-2 py-0.5 flex gap-1 justify-between items-center absolute -top-3 left-[45%]">
