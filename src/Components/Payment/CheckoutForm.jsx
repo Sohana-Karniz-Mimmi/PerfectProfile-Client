@@ -74,18 +74,25 @@ const CheckoutForm = () => {
           window.location.replace(redirectUrl);
         }
       });
-
+      console.log(user.email)
     // update user profile in db
     axiosPublic
-      .put(`/user/${user.email}`, {
-        productName,
-        amount,
-        createdAt:
-          existingUser?.createdAt || new Date().toISOString().split("T")[0]
-      })
-      .then((res) => {
-        console.log(res);
-      });
+    .put(`/user/${user.email}`, {
+      productName,
+      amount,
+      createdAt: user?.createdAt || new Date().toISOString().split("T")[0],
+      isRead: false,
+    })
+    .then((res) => {
+      if (res.data.modifiedCount === 1) {
+        console.log('User updated successfully', res);
+      } else {
+        console.error('Failed to update user');
+      }
+    })
+    .catch((error) => {
+      console.error('Error updating user:', error);
+    });
   };
 
   return (
@@ -208,7 +215,6 @@ const CheckoutForm = () => {
                 </a>
               </p>
               <button
-                //   onClick={handleCreatePayment}
                 type="submit"
                 className="mt-4 inline-flex w-full items-center justify-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 text-base md:text-xl font-montserrat font-semibold shadow-lg transform transition duration-500 hover:scale-105"
               >
