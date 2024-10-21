@@ -40,7 +40,7 @@ import Template5 from "../../Components/TemplateSection/Template5";
 import Template6 from "../../Components/TemplateSection/Template6";
 import useAuth from "../../Hook/useAuth";
 import MyTemplate from "../../assets/MyTemplate";
-import { useProfile } from "../../Context/ProfileContext"; 
+import { useProfile } from "../../Context/ProfileContext";
 
 const ResumeEditPage = () => {
 
@@ -426,9 +426,9 @@ const ResumeEditPage = () => {
     }
   }, [resumeId]);
 
-  console.log('resume data', myResumeTemplates);
-  console.log('template data', template);
-  console.log('user data', userData);
+  // console.log('resume data', myResumeTemplates);
+  // console.log('template data', template);
+  // console.log('user data', userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -453,24 +453,29 @@ const ResumeEditPage = () => {
 
 
   const navigate = useNavigate();
- 
 
+  console.log(resumeId);
+  console.log('templateItem', id,);
   // Function to generate a shareable link
   const handleShare = async () => {
+    console.log(resumeId);
     const resumeData = {
       ...userData,
       templateItem: id,
       user_email: user?.email,
+      resumeId: resumeId,
       image
     };
     console.log(resumeData)
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume`,
+      const response = await axios.put(
+        `${import.meta.env.VITE_LOCALHOST_API_URL}/customize-resume`,
         resumeData,
         { withCredentials: true }
       );
+      console.log("Response data:", response.data);
+
       if (response.data.success) {
         setShareLink(response.data.shareLink);
         localStorage.removeItem("currentStep");
@@ -482,8 +487,7 @@ const ResumeEditPage = () => {
     }
   };
 
- 
- 
+
 
   return (
     <div className="flex xl:flex-row flex-col min-h-screen">
