@@ -13,6 +13,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
 import useAxiosPublic from "../Hook/useAxiosPublic";
+import axios from "axios";
 
 const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext();
@@ -55,40 +56,83 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, twitterProvider);
   };
-  const logOut = async () => {
+
+  // const logOut = async () => {
+  //   setLoading(true);
+  //   return signOut(auth).then(() => {
+  //     axiosPublic.post("/logout", {}, { withCredentials: true }).then(() => {
+  //       console.log("Token removed on logout.");
+  //     });
+  //   });
+  // };
+
+  // Sing Out User 
+  
+  const logOut = () => {
     setLoading(true);
-    return signOut(auth).then(() => {
-      axiosPublic.post("/logout", {}, { withCredentials: true }).then(() => {
-        console.log("Token removed on logout.");
-      });
-    });
-  };
+    return signOut(auth);
+  }
+
+
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //     setLoading(false);
+
+  //     if (currentUser) {
+  //       const loggedUser = { email: currentUser.email };
+
+  //       axiosPublic
+  //         .post("/login", loggedUser, { withCredentials: true })
+  //         .then((res) => {
+  //           console.log("JWT token received and set in cookies", res.data);
+  //         });
+  //     } else {
+  //       console.log("No user is logged in");
+  //     }
+  //     console.log("Current user: ", currentUser);
+  //   });
+
+  //   return () => unsubscribe();
+  // }, [axiosPublic]);
+
+
+  // onAuthStateChange
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoading(false);
-
+      setUser(currentUser);
+      console.log('save user', currentUser);
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       if (currentUser) {
-        const loggedUser = { email: currentUser.email };
-
-        axiosPublic
-          .post("/login", loggedUser, { withCredentials: true })
-          .then((res) => {
-            console.log("JWT token received and set in cookies", res.data);
-          });
-      } else {
-        console.log("No user is logged in");
+        axios.post(`${import.meta.env.VITE_LOCALHOST_API_URL}/jwt`, loggedUser, { withCredentials: true })
+          .then(data => {
+            console.log('token response', data.data);
+          })
+        // saveUser(currentUser)
       }
-      console.log("Current user: ", currentUser);
-    });
+      else {
+        axios.post(`${import.meta.env.VITE_LOCALHOST_API_URL}/logout`, loggedUser, { withCredentials: true })
+          .then(data => {
+            console.log(data.data);
+          })
+        console.log('ami nai');
+      }
 
-    return () => unsubscribe();
-  }, [axiosPublic]);
+    });
+    return () => {
+      unSubscribe();
+    }
+  }, [])
+
 
   const authInfo = {
     user,
     loading,
+    setLoading,
     createUser,
     updateUserProfile,
     updateUserEmail,

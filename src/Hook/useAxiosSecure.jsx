@@ -1,17 +1,16 @@
 import axios from "axios";
 import useAuth from "./useAuth";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    // baseURL: 'https://perfect-profile-server.vercel.app',
-    baseURL: 'http://localhost:5000',
+    baseURL: import.meta.env.VITE_LOCALHOST_API_URL,
     withCredentials: true
 });
 
 const useAxiosSecure = () => {
 
     const { logOut } = useAuth()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     axiosSecure.interceptors.response.use(res => {
         return res
@@ -21,7 +20,15 @@ const useAxiosSecure = () => {
             console.log('User Log out');
             logOut()
                 .then(() => {
-                    navigate('/login')
+                    // navigate('/')
+                    document.getElementById("my_modal_3").showModal();
+
+                    // navigate('/'); // First navigate to the home route
+                    // setTimeout(() => {
+                    //     document.getElementById("my_modal_3").showModal(); // Show modal after some delay
+                    // }, 100); // Adding a short delay (100ms)
+                    
+                    
                 })
                 .catch((error) => {
                     console.log(error);

@@ -49,6 +49,7 @@ const ResumeEditPage = () => {
 
   const [userData, setUserData] = useState({
     name: "",
+    profile: "",
     jobTitle: "",
     email: "",
     phone: "",
@@ -425,7 +426,13 @@ const ResumeEditPage = () => {
       return <Template1 data={template} userData={userData} />;
     }
     if (id === "template2") {
-      return <Template2nd data={template} userData={userData} />;
+      return (
+        <Template2nd
+          data={template}
+          userData={userData}
+          setUserData={setUserData}
+        />
+      );
     }
     if (id === "template3") {
       return <Template3 data={template} userData={userData} />;
@@ -454,7 +461,7 @@ const ResumeEditPage = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_LOCALHOST}/share-resume`,
+        `${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume`,
         resumeData,
         { withCredentials: true }
       );

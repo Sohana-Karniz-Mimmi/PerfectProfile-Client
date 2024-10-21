@@ -6,17 +6,16 @@ import "./styles.css";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { FaArrowLeft, FaArrowRight, FaCrown, FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
-import useRole from './../../Hook/useRole';
+import useRole from "./../../Hook/useRole";
 import useAuth from "../../Hook/useAuth";
 
 // Custom navigation buttons
 const CustomPrevButton = (props) => (
-
   <button
-    className="prev absolute z-10 lg:left-24 left-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
+    className="prev absolute z-10 lg:left-12 left-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
     onClick={props.onClick}
   >
     {/* &#10094; */}
@@ -26,7 +25,7 @@ const CustomPrevButton = (props) => (
 
 const CustomNextButton = (props) => (
   <button
-    className="next absolute z-10 lg:right-24 right-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
+    className="next absolute z-10 lg:right-12 right-4 top-1/2 transform -translate-y-1/2 bg-secondary rounded-full p-2 shadow-md"
     onClick={props.onClick}
   >
     {/* &#10095; */}
@@ -35,45 +34,21 @@ const CustomNextButton = (props) => (
 );
 
 export default function App() {
-
-  const [role] = useRole()
-  const {user} = useAuth();
+  const [role] = useRole();
+  const { user } = useAuth();
 
   const axiosPublic = useAxiosPublic();
   const [predefinedTemplate, setPredefinedTemplate] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axiosPublic(`/predefined-templates`);
+      const { data } = await axiosPublic('/predefined-templates');
       setPredefinedTemplate(data);
-    }
+    };
     getData();
   }, []);
 
   const [showModal, setShowModal] = useState(false);
-
-  const handleLoginModal = () => {
-    if (!user) {
-      toast.error('You have to log in first')
-      setTimeout(() => {
-        document.getElementById("my_modal_3").showModal();
-      }, 2000);
-    } 
-  };
-
-  const handleTemplateClick = () => {
-    if (!user) {
-      setShowModal(true);
-    } else if (template.package === 'premium' && (user.productName === 'standard' || user.productName === 'premium')) {
-      window.location.href = `/resume/edit/${template.templateItem}`;
-    } else if (template.package === 'premium') {
-      setShowModal(true);
-    } else {
-      window.location.href = `/resume/edit/${template.templateItem}`;
-    }
-  };
-
-  // console.log(predefinedTemplate);
 
   return (
     <>
@@ -109,43 +84,57 @@ export default function App() {
         className="mySwiper"
       >
         {predefinedTemplate?.map((template) => (
-          <SwiperSlide key={template._id}>
-            <div className="relative group">
-              <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+          <SwiperSlide
+            key={template._id}
+            className="relative !overflow-visible"
+          >
+            <div className="relative group !overflow-visible">
+              {/* Adjust the position and ensure it's visible */}
+              <div
+                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${template.package === "premium" ? "bg-secondary" : "bg-primary"
+                  }`}
+              >
                 {template.package === "premium" ? (
-                  (role.productName === "standard" || role.productName === "premium") ? (
-                    <Link to={`resume/edit/${template.templateItem}`}>
-                      <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Use Template
-                      </button>
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() => setShowModal(true)}
-                      className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      Use Template
-                    </button>
-                  )
+                  <>
+                    <FaCrown className="mr-1" /> {/* Icon for Premium */}
+                    Premium
+                  </>
                 ) : (
-                  <Link to={`resume/edit/${template.templateItem}`}>
-                    <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Use Template
-                    </button>
-                  </Link>
+                  <>
+                    <FaStar className="mr-1" /> {/* Icon for Free */}
+                    Free
+                  </>
                 )}
               </div>
-              <img className="w-full size" src={template.image} alt={template.name} />
-            </div>
-          </SwiperSlide>
-        ))}
 
-        {/* Modal */}
-        {showModal && (
+              <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
+              <Link to={`/resume/edit/${template.templateItem}`} state={{ template: template }}>
+
+                <button className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Use Template
+                </button>
+                {/* <button className="bg-red-500 -top-3 z-50 absolute">{template.package}</button> */}
+              </Link>
+
+              {/* <button className="bg-red-500 -top-3 z-50 absolute">{template.package}</button> */}
+            </div>
+
+            {/* <img className="w-[330px] h-[420px]" src={template.image} alt="" /> */}
+            < img className="w-full size" src={template.image} alt="" />
+          </div>
+    </SwiperSlide >
+      ))
+}
+
+      {/* Modal */}
+      {
+        showModal && (
           <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-md">
               <h2 className="text-lg font-bold">Premium Package Required</h2>
-              <p className="mt-2">To use this template, you need to purchase the premium package.</p>
+              <p className="mt-2">
+                To use this template, you need to purchase the premium package.
+              </p>
               <div className="mt-4 flex justify-end">
                 <button
                   onClick={() => setShowModal(false)}
@@ -153,7 +142,7 @@ export default function App() {
                 >
                   Cancel
                 </button>
-                <Link to={'/pricing'}>
+                <Link to={"/pricing"}>
                   <button className="bg-primary text-white py-2 px-4 rounded">
                     Purchase Package
                   </button>
@@ -161,15 +150,13 @@ export default function App() {
               </div>
             </div>
           </div>
-        )}
+        )
+      }
 
-
-        {/* Custom navigation buttons */}
-        <CustomPrevButton />
-        <CustomNextButton />
-      </Swiper>
+      {/* Custom navigation buttons */}
+      <CustomPrevButton />
+      <CustomNextButton />
+    </Swiper >
     </>
   );
-}
-
-
+} 
