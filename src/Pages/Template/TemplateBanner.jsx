@@ -4,7 +4,7 @@ const TemplateBanner = () => {
     return (
         <div className="flex flex-col lg:flex-row justify-between items-center px-2 lg:px-9 py-4 mb-[21rem] lg:mb-1 h-[26rem] lg:h-[15rem] mt-6 rounded-lg bg-cyan-50">
         <div>
-          <h1 className="font-bold text-4xl">
+          <h1 className="font-bold text-3xl lg:text-4xl">
           Choose the Perfect Template for Your Career
             
           </h1>
@@ -17,7 +17,7 @@ const TemplateBanner = () => {
   
           <div className="flex flex-col  items-start  text-base  font-bold lg:font-semibold">
            
-            <Link className="mt-5  mb-16 lg:mb-0">
+            <Link to='/pricing' className="mt-5  mb-16 lg:mb-0">
               <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105">
                 Upgrade Now
               </button>
