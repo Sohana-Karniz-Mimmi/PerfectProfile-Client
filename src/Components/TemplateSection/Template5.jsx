@@ -33,8 +33,8 @@ const Template5 = ({ data, userData }) => {
           </div>
         </div>
       </header>
-      {/* about me */}
-      {userData?.careerObjective === "" && (
+      {/* career objective */}
+      {userData?.careerObjective && (
         <>
           <section className="mb-4 px-3">
             <h2 className=" uppercase text-center font-bold  border-b border-black ">

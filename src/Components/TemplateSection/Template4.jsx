@@ -38,7 +38,7 @@ const Template4 = ({ data, userData }) => {
         </header>
         <div className="lg:px-7 px-4 py-3 ">
           {/* Career Objective */}
-          {userData?.careerObjective === "" && (
+          {userData?.careerObjective && (
             <section className="mb-1">
               <h2 className=" uppercase text-sm  font-semibold  text-center  bg-gray-400">
                 Career Objective
