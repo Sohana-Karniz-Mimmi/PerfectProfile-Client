@@ -12,6 +12,7 @@ const Template1 = ({ data, userData }) => {
               ? "Your Name"
               : userData?.name}
           </h1>
+          {/* <p className="text-red-500">{data?.package}</p> */}
           <p className="font-semibold uppercase ">
             {userData?.jobTitle === "" || userData?.jobTitle === undefined
               ? "Profession"

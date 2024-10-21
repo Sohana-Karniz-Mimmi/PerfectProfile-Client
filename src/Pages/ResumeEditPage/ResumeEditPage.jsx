@@ -35,19 +35,21 @@ import Template1 from "../../assets/Template1";
 import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
-import Template2nd, { ImageContext } from "../../Components/TemplateSection/Template2nd";
+import Template2nd, {
+  ImageContext,
+} from "../../Components/TemplateSection/Template2nd";
 import Template5 from "../../Components/TemplateSection/Template5";
 import Template6 from "../../Components/TemplateSection/Template6";
 import useAuth from "../../Hook/useAuth";
 import MyTemplate from "../../assets/MyTemplate";
-import { useProfile } from "../../Context/ProfileContext"; 
+import { useProfile } from "../../Context/ProfileContext";
 
 const ResumeEditPage = () => {
-
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   const [userData, setUserData] = useState({
     name: "",
+    profile: "",
     jobTitle: "",
     email: "",
     phone: "",
@@ -322,19 +324,6 @@ const ResumeEditPage = () => {
     }));
   };
 
-  //End language area
-
-  // const updateWorkExperience = (index, field, value) => {
-  //   setUserData((prevData) => {
-  //     const updatedExperience = [...prevData.workExperience];
-  //     updatedExperience[index] = {
-  //       ...updatedExperience[index],
-  //       [field]: value,
-  //     };
-  //     return { ...prevData, workExperience: updatedExperience };
-  //   });
-  // };
-
   // Function to update the work experience entries
   const updateWorkExperience = (index, field, value) => {
     const updatedWorkExperience = [...userData.workExperience];
@@ -404,19 +393,22 @@ const ResumeEditPage = () => {
   }, []);
 
   const template = data.find((item1) => item1.templateItem === id);
-
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const resumeId = queryParams.get('resumeId');
-
   const [myResumeTemplates, setMyResumeTemplates] = useState([]);
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const resumeId = queryParams.get("resumeId");
+
+  console.log("line no 50", myResumeTemplates);
   useEffect(() => {
     if (resumeId) {
       const getData = async () => {
         try {
           const { data } = await axiosPublic(`/my-resume/edit/${resumeId}`);
+          console.log("fetch data ", data);
+
           setMyResumeTemplates(data);
+          setUserData(data);
         } catch (error) {
           console.error("Error fetching resume data", error);
         }
@@ -425,16 +417,22 @@ const ResumeEditPage = () => {
     }
   }, [resumeId]);
 
-  console.log('resume data', myResumeTemplates);
-  console.log('template data', template);
-  console.log('user data', userData);
+  // console.log("resume data", myResumeTemplates);
+  // console.log("template data", template);
+  // console.log("user data", userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
-      return <Template1 data={template} userData={myResumeTemplates} />;
+      return <Template1 data={template} userData={userData} />;
     }
     if (id === "template2") {
-      return <Template2nd data={template} userData={userData} />;
+      return (
+        <Template2nd
+          data={template}
+          userData={userData}
+          setUserData={setUserData}
+        />
+      );
     }
     if (id === "template3") {
       return <Template3 data={template} userData={userData} />;
@@ -449,10 +447,7 @@ const ResumeEditPage = () => {
       return <Template6 data={template} userData={userData} />;
     }
   };
-
-
   const navigate = useNavigate();
- 
 
   // Function to generate a shareable link
   const handleShare = async () => {
@@ -460,9 +455,9 @@ const ResumeEditPage = () => {
       ...userData,
       templateItem: id,
       user_email: user?.email,
-      image
+      image,
     };
-    console.log(resumeData)
+    console.log(resumeData);
 
     try {
       const response = await axios.post(
@@ -481,9 +476,6 @@ const ResumeEditPage = () => {
     }
   };
 
- 
- 
-
   return (
     <div className="flex xl:flex-row flex-col min-h-screen">
       {/* Sidebar */}
@@ -497,21 +489,23 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
-                ? "text-white font-montserrat font-medium"
-                : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${
+                currentStep === step.id
+                  ? "text-white font-montserrat font-medium"
+                  : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500 font-montserrat font-medium"
-                }`}
+              }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center ${currentStep === step.id
-                  ? "  text-black"
-                  : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center ${
+                  currentStep === step.id
+                    ? "  text-black"
+                    : isStepCompleted(step.id)
                     ? " rounded-full text-rose-700"
                     : ""
-                  }`}
+                }`}
               >
                 {isStepCompleted(step.id) ? (
                   <span className="text-2xl text-secondary">
@@ -559,8 +553,9 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     placeholder="Your full name"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.name ? "border-red-500" : "border-gray-400"
-                      } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
+                      errors.name ? "border-red-500" : "border-gray-400"
+                    } focus:border-gray-400`}
                     {...register("name", {
                       // required: "Full name is required",
                       onChange: (e) =>
@@ -602,8 +597,9 @@ const ResumeEditPage = () => {
                   <input
                     type="email"
                     placeholder="example@gmail.com"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${errors.email ? "border-red-500" : "border-gray-400"
-                      } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${
+                      errors.email ? "border-red-500" : "border-gray-400"
+                    } focus:border-gray-400`}
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
@@ -611,7 +607,7 @@ const ResumeEditPage = () => {
                         message: "Invalid email format",
                       },
                     })}
-                    // value={userData.email}
+                    value={userData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                   />
                   {errors.email && (
@@ -625,8 +621,9 @@ const ResumeEditPage = () => {
                   <input
                     type="tel"
                     placeholder="+1-212-456-7890"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.phone ? "border-red-500" : "border-gray-400"
-                      } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
+                      errors.phone ? "border-red-500" : "border-gray-400"
+                    } focus:border-gray-400`}
                     {...register("phone", {
                       // required: "Phone is required",
                       pattern: {
@@ -772,7 +769,6 @@ const ResumeEditPage = () => {
                         selected={
                           entry.startDate ? new Date(entry.startDate) : null
                         } // Bind to individual entry's startDate
-
                         onChange={(date) =>
                           updateWorkExperience(index, "startDate", date)
                         }
@@ -813,15 +809,15 @@ const ResumeEditPage = () => {
                             ? new Date(entry.endDate)
                             : null
                         }
-
                         onChange={(date) =>
                           updateWorkExperience(index, "endDate", date)
                         }
                         dateFormat="MMMM yyyy"
                         showMonthYearPicker
                         placeholderText="Select End Date"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${entry.isCurrent ? "opacity-35" : "bg-transparent"
-                          }`}
+                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${
+                          entry.isCurrent ? "opacity-35" : "bg-transparent"
+                        }`}
                         wrapperClassName="w-full"
                         disabled={entry.isCurrent} // Disable if "Currently working here" is checked
                       />
@@ -1073,7 +1069,6 @@ const ResumeEditPage = () => {
               </button> */}
             </div>
           )}
-
           {currentStep === 6 && (
             <div className="space-y-4">
               <div>
@@ -1207,9 +1202,9 @@ const ResumeEditPage = () => {
         <div
           className="w-full h-full"
           style={{
-            transform: 'scale(0.50)',
-            transformOrigin: 'top left',
-            height: '400px',
+            transform: "scale(0.50)",
+            transformOrigin: "top left",
+            height: "400px",
           }}
         >
           {renderTemplate(id)}

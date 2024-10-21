@@ -50,6 +50,8 @@ const FinalResume = () => {
   useUnloadAlert();
 
   const userData = info;
+  console.log(userData);
+  
 
   const renderTemplate = (id) => {
     if (id === "template1") {
