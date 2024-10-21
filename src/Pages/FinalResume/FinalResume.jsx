@@ -8,12 +8,9 @@ import Template2 from "../../Components/FinalPageTemplate/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
-import useAxiosPublic, { axiosPublic } from "../../Hook/useAxiosPublic";
-import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { Menu } from "@headlessui/react";
 import { GrDocumentText } from "react-icons/gr";
-import axios from "axios";
 // import Template2nd from "../../Components/TemplateSection/Template2nd";
 import Template4 from "../../Components/TemplateSection/Template4";
 import Template5 from "../../Components/TemplateSection/Template5";
@@ -25,9 +22,6 @@ import { PiFilePng } from "react-icons/pi";
 import { SiJpeg } from "react-icons/si";
 
 const FinalResume = () => {
-  const axiosPublic = useAxiosPublic();
-  const { shareLink } = useContext(ResumeContext);
-  // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
   const info = useLoaderData();
 
   const useUnloadAlert = () => {
@@ -74,6 +68,8 @@ const FinalResume = () => {
     }
   };
 
+  console.log(userData);
+
   // for modal state management
   const [shareLinkCopy, setShareLinkCopy] = useState(false);
 
@@ -84,7 +80,7 @@ const FinalResume = () => {
   // Function to copy the shareable link
   const [copied, setCopied] = useState(false);
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(shareLink).then(() => {
+    navigator.clipboard.writeText(userData?.resumeLink).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -95,7 +91,7 @@ const FinalResume = () => {
     const element = document.getElementById("element");
     const opt = {
       margin: 1,
-      filename: "myResume.pdf",
+      filename: userData?.name,
       enableLinks: true,
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 3 },
@@ -241,7 +237,7 @@ const FinalResume = () => {
             closeModal={closeModal}
             copyToClipboard={copyToClipboard}
             copied={copied}
-            shareLink={shareLink}
+            shareLink={userData?.resumeLink}
           />
 
           <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
