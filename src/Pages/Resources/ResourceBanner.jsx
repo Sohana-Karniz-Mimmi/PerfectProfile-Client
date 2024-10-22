@@ -29,7 +29,7 @@ const ResourceBanner = () => {
               data-aos-duration="500"
               className="text-3xl sm:text-5xl mt-2 font-lora"
             >
-              CAREER CENTER
+              CAREER CENTERS
             </h1>
           </div>
         </div>
