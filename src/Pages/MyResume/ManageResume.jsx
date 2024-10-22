@@ -12,6 +12,7 @@ import useAxiosSecure from "./../../Hook/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
+
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";
 import Template2nd, {
