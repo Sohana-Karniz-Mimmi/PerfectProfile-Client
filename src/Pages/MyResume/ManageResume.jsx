@@ -181,7 +181,7 @@ const ManageResume = () => {
             }`}
             style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
           >
-            <div className="w-[275px] h-[330px] overflow-hidden">
+            <div className="w-[275px] h-[330px] border border-secondary overflow-hidden">
               <div
                 className="w-full h-full"
                 style={{

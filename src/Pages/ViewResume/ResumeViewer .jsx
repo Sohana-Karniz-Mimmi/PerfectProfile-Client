@@ -79,7 +79,7 @@ const ResumeViewer = () => {
   return (
     <div>
       <ShareResumeNavbar shareLink={resumeData?.resumeLink} />
-      <div className="py-12">{renderTemplate(templateID)}</div>
+      <div className="my-12 mx-auto w-fit border border-secondary">{renderTemplate(templateID)}</div>
     </div>
   );
 };
