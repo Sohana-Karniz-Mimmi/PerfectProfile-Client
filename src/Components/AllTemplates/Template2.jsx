@@ -77,12 +77,12 @@ const Template2 = ({ data, userData, setUserData }) => {
 
   return (
     <div className="relative ">
-      <div className="w-[790px] min-h-[1000px] mx-auto flex shadow-2xl rounded-lg border-2 border-secondary ">
+      <div className="w-[790px] min-h-[1000px] mx-auto flex ">
         {/* 1st */}
         <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[270px] w-[11rem] ">
           <div className="lg:w-44 h-12 w-32 mx-auto px-2.5 py-4 mb-2 ">
             <img
-              className="rounded-full lg:w-[9rem] h-36 w-36 cursor-pointer"
+              className="rounded-full lg:w-[9rem] h-36 w-36 object-cover cursor-pointer"
               src={userData?.profile || img}
               alt=""
               id="profile-pic"

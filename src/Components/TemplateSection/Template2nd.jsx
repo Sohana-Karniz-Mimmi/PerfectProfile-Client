@@ -77,7 +77,7 @@ const Template2nd = ({ data, userData, setUserData }) => {
 
   return (
     <div className="relative ">
-      <div className="w-[790px] min-h-[1000px] mx-auto flex shadow-2xl rounded-lg border-2 border-secondary ">
+      <div className="w-[790px] min-h-[1000px] mx-auto bg-white flex ">
         {/* 1st */}
         <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[270px] w-[11rem] ">
           <div className="lg:w-44 h-12 w-32 mx-auto px-2.5 py-4 mb-2 ">
