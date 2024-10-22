@@ -39,11 +39,7 @@ import Template2 from "../../Components/AllTemplates/Template2";
 import Template3 from "../../Components/AllTemplates/Template3";
 import Template4 from "../../Components/AllTemplates/Template4";
 import Template5 from "../../Components/AllTemplates/Template5";
-// import Template6 from "../../Components/AllTemplates/Template6";
-// import Template2, {ImageContext,} from "../../Components/AllTemplates/Template2";
-// import Template2nd, {
-//   ImageContext,
-// } from "../../Components/TemplateSection/Template2nd";
+import Template6 from "../../Components/AllTemplates/Template6";
 
 const ResumeEditPage = () => {
   const { user } = useAuth();
@@ -448,7 +444,10 @@ const ResumeEditPage = () => {
       return <Template5 data={template} userData={userData} />;
     }
     if (id === "template6") {
-      return <Template6 data={template} userData={userData} />;
+      return <Template6 
+      data={template} 
+      userData={userData} 
+      setUserData={setUserData} />;
     }
   };
   const navigate = useNavigate();
