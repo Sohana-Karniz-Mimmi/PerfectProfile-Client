@@ -3,9 +3,9 @@ import teamImg from "../../assets/Resource/career/pexels-tima-miroshnichenko-545
 const ResourceBanner = () => {
   return (
     <section
-      className="text-white relative bg-cover bg-center bg-no-repeat h-[450px]" // Reduced height to 450px
+      className="text-white relative bg-cover bg-center bg-no-repeat h-[565px]"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${teamImg})`, // Added opacity to the background
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${teamImg})`,
         backgroundSize: "cover",
       }}
     >

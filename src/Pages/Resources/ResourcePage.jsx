@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Container from "../../Shared/Container";
 import Careers from "./Careers";
 import Categories from "./Categories";
@@ -13,6 +14,9 @@ import TopResume from "./TopResume";
 const ResourcePage = () => {
   return (
     <div>
+      <Helmet>
+        <title>Resource - PerfectProfile</title>
+      </Helmet>
       <div>
         <ResourceBanner />
       </div>
