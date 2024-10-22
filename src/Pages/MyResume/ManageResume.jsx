@@ -17,7 +17,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Template1 from "../../Components/AllTemplates/Template1";;
 import Template2 from "../../Components/AllTemplates/Template2";
 import Template3 from "../../Components/AllTemplates/Template3";
-// import Template4 from "../../Components/AllTemplates/Template4";
+import Template4 from "../../Components/AllTemplates/Template4";
 // import Template5 from "../../Components/AllTemplates/Template5";
 // import Template6 from "../../Components/AllTemplates/Template6";
 // import Template2, {ImageContext,} from "../../Components/AllTemplates/Template2";
