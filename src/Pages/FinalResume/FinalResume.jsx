@@ -18,11 +18,17 @@ import Template6 from "../../Components/TemplateSection/Template6";
 import { toJpeg, toPng } from "html-to-image";
 import { px } from "framer-motion";
 // import Template1 from "../../assets/Template1";
-import { PiFilePng } from "react-icons/pi";
-import { SiJpeg } from "react-icons/si";
-
+import useAuth from "../../Hook/useAuth";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
+import { ResumeContext } from "../../Context/CustomizeResumeContext";
+import ReviewModal from "../../Components/ReviewModal/ReviewModal";
 const FinalResume = () => {
+  const axiosPublic = useAxiosPublic();
+  const { shareLink } = useContext(ResumeContext);
+  // State for the review modal
+  // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
   const info = useLoaderData();
+  const { user } = useAuth();
 
   const useUnloadAlert = () => {
     useEffect(() => {
@@ -44,7 +50,6 @@ const FinalResume = () => {
   useUnloadAlert();
 
   const userData = info;
-  console.log(userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -67,8 +72,6 @@ const FinalResume = () => {
     }
   };
 
-  console.log(userData);
-
   // for modal state management
   const [shareLinkCopy, setShareLinkCopy] = useState(false);
 
@@ -79,18 +82,17 @@ const FinalResume = () => {
   // Function to copy the shareable link
   const [copied, setCopied] = useState(false);
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(userData?.resumeLink).then(() => {
+    navigator.clipboard.writeText(shareLink).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   };
 
-  // download pdf
   const handlePdf = async () => {
     const element = document.getElementById("element");
     const opt = {
       margin: 1,
-      filename: userData?.name,
+      filename: "myResume.pdf",
       enableLinks: true,
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 3 },
@@ -102,56 +104,33 @@ const FinalResume = () => {
       .save();
   };
 
-  // download png
+  const [showModal, setShowModal] = useState(false);
 
-  const contentRef = useRef(null);
-  const handlePng = async () => {
-    const node = contentRef.current;
+  useEffect(() => {
+    const checkFeedbackSubmission = async () => {
+      if (user?.email) {
+        try {
+          const response = await axiosPublic.get(
+            `/check-feedback?email=${user.email}`
+          );
+          if (!response.data.hasSubmitted) {
+            // Show the modal after 2 seconds
+            const timer = setTimeout(() => {
+              setShowModal(true);
+            }, 2000);
+            return () => clearTimeout(timer);
+          }
+        } catch (error) {
+          console.error("Error checking feedback submission:", error);
+        }
+      }
+    };
 
-    toPng(node, {
-      cacheBust: true,
-      width: node.offsetWidth,
-      height: node.offsetHeight,
-    })
-      .then((dataURL) => {
-        console.log("captureImg", dataURL);
+    checkFeedbackSubmission();
+  }, [user]);
 
-        const link = document.createElement("a");
-        link.download = "my-resume.png";
-        link.href = dataURL; // Correctly setting the dataURL
-        link.click();
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
-  const handleJpeg = async () => {
-    const node = contentRef.current;
-
-    // Set white background for the content area
-    node.style.backgroundColor = "white"; // Apply white background
-
-    toJpeg(node, {
-      quality: 0.95,
-      cacheBust: true,
-      width: node.offsetWidth,
-      height: node.offsetHeight,
-    })
-      .then((dataURL) => {
-        console.log("captureImg", dataURL);
-
-        const link = document.createElement("a");
-        link.download = "my-resume.jpeg";
-        link.href = dataURL; // Correctly setting the dataURL for jpeg
-        link.click();
-      })
-      .catch((error) => {
-        console.log("error", error);
-      })
-      .finally(() => {
-        // Remove the background color after capture to avoid affecting the UI
-        node.style.backgroundColor = "";
-      });
+  const handleCloseModal = () => {
+    setShowModal(false); // Close the modal when triggered
   };
 
   return (
@@ -166,8 +145,17 @@ const FinalResume = () => {
       <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
         <div className="lg:w-2/12 w-full"></div>
 
-        <div ref={contentRef} id="element">
+        <div id="element" className="w-full h-full">
+          {/* <div id="element"
+            className="w-full h-full"
+            style={{
+              transform: 'scale(0.60)',
+              transformOrigin: 'top left',
+              height: '400px',
+            }}
+          > */}
           {renderTemplate(info?.templateItem)}
+          {/* </div> */}
         </div>
 
         <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
@@ -175,48 +163,26 @@ const FinalResume = () => {
           <div className="relative text-right">
             <Menu as="div" className="relative inline-block text-left ">
               <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-                <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
+                <button
+                  // onClick={handlePdf}
+                  // onClick={generatePDF}
+                  className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
+                >
                   <FaFileExport className="text-secondary" /> Export
                 </button>
               </Menu.Button>
 
               <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44">
-                <div className="bg-white rounded-xl p-4">
+                <div className="bg-white rounded-xl p-5">
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         onClick={handlePdf}
                         className={`${
                           active ? " font-semibold bg-white " : "font-semibold"
-                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
-                      >
-                        <GrDocumentText className="text-red-600" /> PDF Standard
-                      </button>
-                    )}
-                  </Menu.Item>
-                  {/* PNG */}
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        onClick={handlePng}
-                        className={` ${
-                          active ? " font-semibold bg-white " : "font-semibold"
-                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
-                      >
-                        <PiFilePng className="text-red-600" /> PNG
-                      </button>
-                    )}
-                  </Menu.Item>
-                  {/* JPEG */}
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        onClick={handleJpeg}
-                        className={`${
-                          active ? " font-semibold bg-white " : "font-semibold"
                         } group flex w-full items-center gap-2  py-1.5 text-black`}
                       >
-                        <SiJpeg className="text-red-600" /> JPEG
+                        <GrDocumentText className="text-primary" /> PDF Standard
                       </button>
                     )}
                   </Menu.Item>
@@ -236,7 +202,7 @@ const FinalResume = () => {
             closeModal={closeModal}
             copyToClipboard={copyToClipboard}
             copied={copied}
-            shareLink={userData?.resumeLink}
+            shareLink={shareLink}
           />
 
           <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
@@ -247,6 +213,12 @@ const FinalResume = () => {
           </button>
         </div>
       </section>
+      {/* Conditionally render the ReviewModal after 2 seconds */}
+      {showModal && (
+        <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal}>
+          {/* Modal content here */}
+        </ReviewModal>
+      )}
     </div>
   );
 };
