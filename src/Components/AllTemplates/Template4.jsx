@@ -4,7 +4,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 const Template4 = ({ data, userData }) => {
 
   return (
-    <div className="w-[790px] min-h-[1000px] mx-auto bg-slate-50 shadow-2xl rounded-lg border-2 border-secondary">
+    <div className="w-[790px] min-h-[1000px] mx-auto bg-slate-50">
       <div className="">
         {/* Header - Personal Info */}
         <header className=" bg-gray-200 py-3 flex justify-between items-center px-2 lg:px-5">
