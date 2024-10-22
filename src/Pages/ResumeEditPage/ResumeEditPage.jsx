@@ -35,15 +35,15 @@ import useAuth from "../../Hook/useAuth";
 
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";
-// import Template2 from "../../Components/AllTemplates/Template2";
-// import Template3 from "../../Components/AllTemplates/Template3";
+import Template2 from "../../Components/AllTemplates/Template2";
+import Template3 from "../../Components/AllTemplates/Template3";
 // import Template4 from "../../Components/AllTemplates/Template4";
 // import Template5 from "../../Components/AllTemplates/Template5";
 // import Template6 from "../../Components/AllTemplates/Template6";
 // import Template2, {ImageContext,} from "../../Components/AllTemplates/Template2";
-import Template2nd, {
-  ImageContext,
-} from "../../Components/TemplateSection/Template2nd";
+// import Template2nd, {
+//   ImageContext,
+// } from "../../Components/TemplateSection/Template2nd";
 
 const ResumeEditPage = () => {
   const { user } = useAuth();
@@ -122,7 +122,7 @@ const ResumeEditPage = () => {
     // { id: 7, name: "Finalize" },
   ];
   const { setSavedResume, setShareLink } = useContext(ResumeContext);
-  const { image } = useContext(ImageContext); // Use useContext to access setImage
+  // const { image } = useContext(ImageContext); // Use useContext to access setImage
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -428,7 +428,7 @@ const ResumeEditPage = () => {
     }
     if (id === "template2") {
       return (
-        <Template2nd
+        <Template2
           data={template}
           userData={userData}
           setUserData={setUserData}
@@ -460,7 +460,6 @@ const ResumeEditPage = () => {
       templateItem: id,
       user_email: user?.email,
       resumeId: resumeId,
-      image
     };
     console.log(resumeData);
 

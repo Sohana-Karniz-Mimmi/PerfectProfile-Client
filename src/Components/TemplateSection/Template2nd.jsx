@@ -116,7 +116,7 @@ const Template2nd = ({ data, userData, setUserData }) => {
               userData?.careerObjective !== "" && (
                 <section className="mb-1">
                   <h2 className=" uppercase text-sm font-roboto font-bold text-white border-b border-white ">
-                    Career Objective
+                  About Me
                   </h2>
                   <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
                     {userData?.careerObjective}

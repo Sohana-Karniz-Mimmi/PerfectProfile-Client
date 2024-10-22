@@ -11,41 +11,11 @@ import axios from "axios";
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
-export const ImageContext = createContext();
-export const ImageState = ({ children }) => {
-  const [image, setImage] = useState(null);
-
-  return (
-    <ImageContext.Provider value={{ image, setImage }}>
-      {children}
-    </ImageContext.Provider>
-  );
-};
-
 const Template2 = ({ data, userData, setUserData }) => {
   const axiosPublic = useAxiosPublic();
-  const { setImage } = useContext(ImageContext); // Use useContext to access setImage
-
+  
   const { register, handleSubmit, reset } = useForm();
-  // console.log(userData.image)
-  const onSubmit = async (data) => {
-    console.log(data);
-    // img bb te data upload kore url niye db te save korbo
-    const imgFile = { image: data.image[0] };
-    const res = await axiosPublic.post(img_hosting_api, imgFile, {
-      headers: {
-        "content-Type": "multipart/form-data",
-      },
-    });
-    console.log(res.data);
-    console.log(data?.image);
-
-    if (res.data.success) {
-      const image = res.data.data.display_url;
-
-      setImage(image);
-    }
-  };
+  
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -63,7 +33,7 @@ const Template2 = ({ data, userData, setUserData }) => {
           // Update the userData state with the new profile image URL
           setUserData((prevUserData) => ({
             ...prevUserData,
-            profile: imageUrl, // Update only the profile field
+            profile: imageUrl, 
           }));
         })
         .catch((error) => {
