@@ -7,14 +7,21 @@ import { FiEdit } from "react-icons/fi";
 import useAuth from "../../Hook/useAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import MyTemplate from "../../assets/MyTemplate";
-import Template1 from "../../assets/Template1";
 import toast from "react-hot-toast";
 import useAxiosSecure from "./../../Hook/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import Template2nd from "../../assets/MyTemplate";
-import Template5 from "../../Components/TemplateSection/Template5";
+
+
+/******** Templates **********/
+import Template1 from "../../Components/AllTemplates/Template1";;
+import Template2 from "../../Components/AllTemplates/Template2";
+import Template3 from "../../Components/AllTemplates/Template3";
+import Template4 from "../../Components/AllTemplates/Template4";
+import Template5 from "../../Components/AllTemplates/Template5";
+import Template6 from "../../Components/AllTemplates/Template6";
+// import Template2, {ImageContext,} from "../../Components/AllTemplates/Template2";
+
 
 const ManageResume = () => {
   const axiosSecure = useAxiosSecure();
@@ -175,7 +182,7 @@ const ManageResume = () => {
             }`}
             style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
           >
-            <div className="w-[275px] h-[330px] overflow-hidden">
+            <div className="w-[275px] h-[330px] border-2 overflow-hidden">
               <div
                 className="w-full h-full"
                 style={{
@@ -185,11 +192,12 @@ const ManageResume = () => {
                   height: "400px",
                 }}
               >
-                {/* <Template1 userData={template} /> */}
                 {template?.templateItem === "template1" && <Template1 userData={template} />}
-                {template?.templateItem === "template2" && <Template2nd userData={template} />}
+                {template?.templateItem === "template2" && <Template2 userData={template} />}
+                {template?.templateItem === "template3" && <Template3 userData={template} />}
+                {template?.templateItem === "template4" && <Template4 userData={template} />}
                 {template?.templateItem === "template5" && <Template5 userData={template} />}
-                {/* Add more conditionals for other templates */}
+                {template?.templateItem === "template6" && <Template6 userData={template} />}
               </div>
             </div>
 
