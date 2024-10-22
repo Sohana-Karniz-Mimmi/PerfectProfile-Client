@@ -29,6 +29,7 @@ import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 import Favorite from "../Pages/Favorites/Favorite";
 import ResourcePage from "../Pages/Resources/ResourcePage";
 import Consultation from "../Pages/Consultation/Consultation";
+import ManageConsultants from "../Pages/AdminPage/ManageConsultants/ManageConsultants";
 
 const router = createBrowserRouter([
   {
@@ -144,6 +145,16 @@ const router = createBrowserRouter([
           <PrivetRoute>
             <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "manage-consultant",
+        element: (
+          <PrivetRoute>
+            <AdminRoute>
+              <ManageConsultants />
             </AdminRoute>
           </PrivetRoute>
         ),

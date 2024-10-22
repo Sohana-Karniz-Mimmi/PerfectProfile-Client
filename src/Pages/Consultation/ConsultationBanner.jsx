@@ -4,7 +4,7 @@ const ConsultationBanner = () => {
     return (
         <div className="flex flex-col  lg:flex-row justify-between items-center px-2 lg:px-9 py-8 mb-9 lg:mb-7 h-[34rem] lg:h-[19rem] mt-6 rounded-lg bg-cyan-50">
         <div>
-          <h1 className="font-bold text-4xl">Struggling with Your Resume? Let Us Help!</h1>
+          <h1 className="font-bold text-4xl">Struggling with Your Resume? Our Experts Are Here to Help.</h1>
           <p className="text-gray-500 lg:w-[43rem] w-80 mt-5">
           Crafting a standout resume can be challenging, but you don’t have to do it alone. Our team of experienced consultants is here to guide you every step of the way, helping you create a resume that highlights your skills and achievements. Whether you're starting from scratch or refining an existing resume, our personalized sessions offer tailored advice to ensure your resume shines. Book a consultation today and take the first step toward landing your dream job!
           </p>
@@ -25,7 +25,7 @@ const ConsultationBanner = () => {
             src={img}
             alt=""
           />
-          <p className='bg-[#3da4bb] flex gap-[39px] p-1 absolute top-6 right-[51px] text-white text-[9px] rounded-sm'><ul className='list-disc list-inside ' ><li>online</li></ul> Resume Session</p>
+          <p className='bg-[#3da4bb] flex gap-[31px] p-1 absolute top-6 right-[45px] text-white text-[9px] rounded-sm'><ul className='list-disc list-inside flex items-center justify-center gap-[1px]' ><li>online</li></ul> Resume Session</p>
           
         </div>
       </div>
