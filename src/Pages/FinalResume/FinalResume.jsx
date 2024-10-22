@@ -134,7 +134,7 @@ const FinalResume = () => {
               if (!feedbackSubmitted) {
                 setShowReviewModal(true);
               }
-            }, 1000);
+            }, 3000);
 
             // Clean up the timer
             return () => clearTimeout(timer);

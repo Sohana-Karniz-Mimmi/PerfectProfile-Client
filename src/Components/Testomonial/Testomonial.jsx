@@ -220,7 +220,7 @@ const Testimonial = () => {
           {feedbacks.map((feedback, index) => (
             <SwiperSlide
               key={index}
-              className="flex justify-center items-center border-2 border-gray-200 relative overflow-hidden px-[20px] py-[30px] bg-white"
+              className="flex justify-center items-center border-2 border-gray-200 relative overflow-hidden px-[20px] py-[40px] bg-white"
             >
               {/* Display fractional ratings using react-rating */}
               <Rating
@@ -231,27 +231,27 @@ const Testimonial = () => {
                 fractions={2}
               />
 
-              <p className="font-medium font-montserrat text-[#888] mt-5 mb-6 text-sm leading-6">
+              <p className="font-medium font-montserrat text-[#4e4e4e] mt-5 mb-6 text-sm leading-6">
                 {feedback.feedback}
               </p>
 
               <div className="flex justify-between items-center">
-                <div className="flex gap-5 items-center">
+                <div className="flex md:gap-5 gap-2 items-center">
                   <div className="avatar">
-                    <div className="w-[70px] h-[70px] rounded">
+                    <div className="md:w-[70px] md:h-[70px] w-[50px] h-[50px] rounded">
                       <img src={feedback.photo} alt={feedback.name} />
                     </div>
                   </div>
                   <div className="">
-                    <h2 className="text-xl font-lora font-bold mb-1 text-[#13287e]">
+                    <h2 className="md:text-xl text-base font-lora font-bold mb-1 text-[#13287e]">
                       {feedback.name}
                     </h2>
-                    <h2 className="text-sm font-montserrat font-semibold">
+                    <h2 className="md:text-sm text-xs font-montserrat font-semibold">
                       Job seeker
                     </h2>
                   </div>
                 </div>
-                <div className="bottom-0 right-[15px] p-5 text-white text-[60px] z-0 leading-none absolute opacity-100 bg-primary">
+                <div className="bottom-0 right-[15px] md:p-8 p-5 text-white md:text-[60px] text-xl z-0 leading-none absolute opacity-100 bg-primary">
                   <FaQuoteRight />
                 </div>
               </div>

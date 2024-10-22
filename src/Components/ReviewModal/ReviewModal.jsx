@@ -30,7 +30,7 @@ const ReviewModal = ({ setShowModal }) => {
         rating: Number(rating),
         user_email: user?.email, // Ensure the rating is a number (including fractions)
         name: user?.displayName,
-        photo: user?.photoURL,
+        photo: user?.photoURL
       });
 
       if (response.status === 201) {
