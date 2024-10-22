@@ -1200,10 +1200,11 @@ const ResumeEditPage = () => {
                   type="submit"
                   className="bg-primary uppercase font-bold text-lg flex items-center gap-2 text-white py-3 px-5"
                 >
-                  Save & Finalize
+                  Save
                 </button>
               </div>
             )}
+            
           </div>
         </form>
       </div>
