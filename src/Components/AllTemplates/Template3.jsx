@@ -3,31 +3,67 @@ import { IoMail } from "react-icons/io5";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import axios from "axios";
+const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
-const Template3 = ({ data, userData, }) => {
 
+const Template3 = ({ data, userData, setUserData }) => {
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        
+        // File validation: Check if file is an image and less than 5MB
+        if (file && file.type.startsWith("image/") && file.size <= 5 * 1024 * 1024) {
+            const formData = new FormData();
+            formData.append("image", file);
+    
+            // API call to ImgBB
+            axios
+                .post(img_hosting_api, formData)
+                .then((response) => {
+                    // Get the URL of the uploaded image
+                    const imageUrl = response.data.data.url;
+    
+                    // Update the userData state with the new profile image URL
+                    setUserData((prevUserData) => ({
+                        ...prevUserData,
+                        profile: imageUrl,
+                    }));
+                })
+                .catch((error) => {
+                    console.error("Error uploading image to ImgBB:", error);
+                });
+        } else {
+            alert("Please upload a valid image file under 5MB.");
+        }
+    };
+    
     return (
         <div className="relative">
 
-            {/* <div className="bg-slate-200 rounded-full px-2 py-0.5 flex gap-1 justify-between items-center absolute -top-3 left-[45%]">
-        <div className=" bg-primary rounded-full  text-white p-1  ">
-          <FaStar className="" />
-          top-0 
-        </div>
-        <p className="font-semibold  ">{data.package}</p>
-      </div> */}
-
-            <div className="w-[790px] min-h-[1000px] mx-auto flex  ">
+            <div className="w-[790px] min-h-[1000px] mx-auto flex bg-white ">
                 {/* 1st */}
                 <div className="bg-blue-50  lg:w-[13rem] w-[9rem]">
 
                     <div className=" h-[132px] lg:h-[9rem] bg-blue-100 mx-auto lg:py-3 py-2 mb-12 flex justify-center">
-                        <img
-                            className="rounded-full lg:h-36 lg:w-36 w-32 h-32 mt-3 "
-                            src={img}
+                    <img
+                            className="rounded-full lg:w-[9rem] h-36 w-36 object-cover cursor-pointer"
+                            src={userData?.profile || img}
                             alt=""
+                            id="profile-pic"
+                            onClick={() => document.getElementById("imageUpload").click()}
+                        />
+                        <input
+                            type="file"
+                            id="imageUpload"
+                            style={{ display: "none" }}
+                            accept="image/*"
+                            onChange={handleImageUpload}
                         />
                     </div>
+
+
 
 
                     <div className="lg:px-3 px-2">

@@ -5,11 +5,8 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";
-import Template2nd, {
-  ImageContext,
-} from "../../Components/TemplateSection/Template2nd";
-// import Template2 from "../../Components/AllTemplates/Template2";
-// import Template3 from "../../Components/AllTemplates/Template3";
+import Template2 from "../../Components/AllTemplates/Template2";
+import Template3 from "../../Components/AllTemplates/Template3";
 // import Template4 from "../../Components/AllTemplates/Template4";
 // import Template5 from "../../Components/AllTemplates/Template5";
 // import Template6 from "../../Components/AllTemplates/Template6";
@@ -63,7 +60,7 @@ const ResumeViewer = () => {
       return < Template1 userData={showResume} />;
     }
     if (templateID === "template2") {
-      return <Template2nd userData={showResume} />;
+      return <Template2 userData={showResume} />;
     }
     if (templateID === "template3") {
       return <Template3 userData={showResume} />;

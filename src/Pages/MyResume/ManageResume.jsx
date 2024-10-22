@@ -14,12 +14,9 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 
 /******** Templates **********/
-import Template1 from "../../Components/AllTemplates/Template1";
-import Template2nd, {
-  ImageContext,
-} from "../../Components/TemplateSection/Template2nd";
-// import Template2 from "../../Components/AllTemplates/Template2";
-// import Template3 from "../../Components/AllTemplates/Template3";
+import Template1 from "../../Components/AllTemplates/Template1";;
+import Template2 from "../../Components/AllTemplates/Template2";
+import Template3 from "../../Components/AllTemplates/Template3";
 // import Template4 from "../../Components/AllTemplates/Template4";
 // import Template5 from "../../Components/AllTemplates/Template5";
 // import Template6 from "../../Components/AllTemplates/Template6";
@@ -196,7 +193,7 @@ const ManageResume = () => {
                 }}
               >
                 {template?.templateItem === "template1" && <Template1 userData={template} />}
-                {template?.templateItem === "template2" && <Template2nd userData={template} />}
+                {template?.templateItem === "template2" && <Template2 userData={template} />}
                 {template?.templateItem === "template3" && <Template3 userData={template} />}
                 {template?.templateItem === "template4" && <Template4 userData={template} />}
                 {template?.templateItem === "template5" && <Template5 userData={template} />}

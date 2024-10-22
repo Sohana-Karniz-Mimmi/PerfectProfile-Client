@@ -436,7 +436,10 @@ const ResumeEditPage = () => {
       );
     }
     if (id === "template3") {
-      return <Template3 data={template} userData={userData} />;
+      return <Template3 
+      data={template} 
+      userData={userData} 
+      setUserData={setUserData} />;
     }
     if (id === "template4") {
       return <Template4 data={template} userData={userData} />;
