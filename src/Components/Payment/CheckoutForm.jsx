@@ -74,18 +74,25 @@ const CheckoutForm = () => {
           window.location.replace(redirectUrl);
         }
       });
-
+      console.log(user.email)
     // update user profile in db
     axiosPublic
-      .put(`/user/${user.email}`, {
-        productName,
-        amount,
-        createdAt:
-          existingUser?.createdAt || new Date().toISOString().split("T")[0]
-      })
-      .then((res) => {
-        console.log(res);
-      });
+    .put(`/user/${user.email}`, {
+      productName,
+      amount,
+      createdAt: user?.createdAt || new Date().toISOString().split("T")[0],
+      isRead: false,
+    })
+    .then((res) => {
+      if (res.data.modifiedCount === 1) {
+        console.log('User updated successfully', res);
+      } else {
+        console.error('Failed to update user');
+      }
+    })
+    .catch((error) => {
+      console.error('Error updating user:', error);
+    });
   };
 
   return (
@@ -114,7 +121,7 @@ const CheckoutForm = () => {
                     productName === "standard"
                       ? "border-primary"
                       : "border-gray-200"
-                  } rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700`}
+                  } rounded-lg cursor-pointer  hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 `}
                 >
                   <div className="block text-center">
                     <h1 className="font-semibold text-xl">Standard </h1>
@@ -138,7 +145,7 @@ const CheckoutForm = () => {
                     productName === "premium"
                       ? "border-primary"
                       : "border-gray-200"
-                  } rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700`}
+                  } rounded-lg cursor-pointer  hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50 `}
                 >
                   <div className="block text-center">
                     <h1 className="font-semibold text-xl">Premium</h1>
@@ -208,7 +215,6 @@ const CheckoutForm = () => {
                 </a>
               </p>
               <button
-                //   onClick={handleCreatePayment}
                 type="submit"
                 className="mt-4 inline-flex w-full items-center justify-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 text-base md:text-xl font-montserrat font-semibold shadow-lg transform transition duration-500 hover:scale-105"
               >

@@ -18,7 +18,12 @@ import { LuShare } from "react-icons/lu";
 import { MdOutlineColorLens } from "react-icons/md";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { FaCrown } from "react-icons/fa";
-import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import {
+  Description,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
 import CheckoutForm from "../Payment/CheckoutForm";
 import { IoMdClose } from "react-icons/io";
 
@@ -50,8 +55,8 @@ export default function App() {
   const [predefinedTemplate, setPredefinedTemplate] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  let [isOpen, setIsOpen] = useState(false)
-  let [isOpen2nd, set2ndIsOpen] = useState(false)
+  let [isOpen, setIsOpen] = useState(false);
+  let [isOpen2nd, set2ndIsOpen] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -93,8 +98,7 @@ export default function App() {
 
   const handleFavorite = () => {
     toast.success("Added to the favorite");
-  }
-
+  };
 
   return (
     <>
@@ -162,11 +166,13 @@ export default function App() {
           </SwiperSlide>
         ))}
 
-
-        <Dialog open={isOpen2nd} onClose={() => set2ndIsOpen(false)} className="relative z-50">
+        <Dialog
+          open={isOpen2nd}
+          onClose={() => set2ndIsOpen(false)}
+          className="relative z-50"
+        >
           <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
             <DialogPanel className=" space-y-4 border bg-white p-12">
-
               <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
                 <div className="bg-white p-6 rounded-md flex md:flex-row flex-col items-center w-full lg:max-w-4xl mx-auto relative">
                   {/* Close Icon */}
@@ -194,12 +200,15 @@ export default function App() {
                       <span className="text-sm text-white">Pro</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <h2 className="text-2xl font-bold">Professional Modern Resume</h2>
+                      <h2 className="text-2xl font-bold">
+                        Professional Modern Resume
+                      </h2>
                     </div>
 
                     {/* Description */}
                     <span className="block text-lg font-medium text-gray-600">
-                      Premium templates designed to showcase your skills with a modern and professional look.
+                      Premium templates designed to showcase your skills with a
+                      modern and professional look.
                     </span>
 
                     {/* Use Template Button */}
@@ -207,23 +216,22 @@ export default function App() {
                       <div className="card-actions justify-center ">
                         <button
                           onClick={() => (setIsOpen(true), set2ndIsOpen(false))}
-                          className="bg-primary text-white py-2 px-4 rounded-lg md:w-[300px] font-semibold hover:bg-primary-dark transition flex justify-center items-center gap-2">
+                          className="bg-primary text-white py-2 px-4 rounded-lg md:w-[300px] font-semibold hover:bg-primary-dark transition flex justify-center items-center gap-2"
+                        >
                           <FaCrown className="text-xl" />
                           Use This Template
                         </button>
-
                       </div>
-
 
                       <div className="flex gap-2 items-center">
                         <button
                           onClick={handleFavorite}
-                          className=" hover:text-primary border bg-white p-2 rounded-xl">
+                          className=" hover:text-primary border bg-white p-2 rounded-xl"
+                        >
                           <FaRegStar size={20} />
                         </button>
 
-                        <button
-                          className=" hover:text-primary border bg-white p-2 rounded-xl">
+                        <button className=" hover:text-primary border bg-white p-2 rounded-xl">
                           <HiDotsHorizontal size={20} />
                         </button>
                       </div>
@@ -254,8 +262,11 @@ export default function App() {
           </div>
         </Dialog>
 
-
-        <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+        <Dialog
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          className="relative z-50"
+        >
           <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black bg-opacity-50 ">
             <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
               <CheckoutForm></CheckoutForm>

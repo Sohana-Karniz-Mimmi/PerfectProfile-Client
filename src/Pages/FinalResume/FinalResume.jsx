@@ -2,159 +2,151 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
+import domtoimage from "dom-to-image";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/FinalPageTemplate/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
-import useAxiosPublic, { axiosPublic } from "../../Hook/useAxiosPublic";
-import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import ShareLinkCopyModal from "./ShareLinkCopyModal";
-import { Menu } from '@headlessui/react';
+import { Menu } from "@headlessui/react";
 import { GrDocumentText } from "react-icons/gr";
-import axios from "axios";
 // import Template2nd from "../../Components/TemplateSection/Template2nd";
 import Template4 from "../../Components/TemplateSection/Template4";
 import Template5 from "../../Components/TemplateSection/Template5";
 import Template6 from "../../Components/TemplateSection/Template6";
+import { toJpeg, toPng } from "html-to-image";
+import { px } from "framer-motion";
 // import Template1 from "../../assets/Template1";
-import ReviewModal from "../../Components/ReviewModal/ReviewModal";
 import useAuth from "../../Hook/useAuth";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
+import { ResumeContext } from "../../Context/CustomizeResumeContext";
+import ReviewModal from "../../Components/ReviewModal/ReviewModal";
 const FinalResume = () => {
-        const axiosPublic = useAxiosPublic();
-        const { shareLink } = useContext(ResumeContext);
-        // State for the review modal
-        const [showReviewModal, setShowReviewModal] = useState(false);
-        const [currentUserEmail, setCurrentUserEmail] = useState(null);
-        const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
-        // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
-        const info = useLoaderData();
-        const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const { shareLink } = useContext(ResumeContext);
+  // State for the review modal
+  // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
+  const info = useLoaderData();
+  const { user } = useAuth();
 
-        const useUnloadAlert = () => {
-          useEffect(() => {
-            const handleBeforeUnload = (event) => {
-              // Confirmation message
-              event.preventDefault();
-              event.returnValue = ""; // Required for modern browsers
-            };
+  const useUnloadAlert = () => {
+    useEffect(() => {
+      const handleBeforeUnload = (event) => {
+        // Confirmation message
+        event.preventDefault();
+        event.returnValue = ""; // Required for modern browsers
+      };
 
-            // Add event listener for 'beforeunload' event
-            window.addEventListener("beforeunload", handleBeforeUnload);
+      // Add event listener for 'beforeunload' event
+      window.addEventListener("beforeunload", handleBeforeUnload);
 
-            // Clean up the event listener on component unmount
-            return () => {
-              window.removeEventListener("beforeunload", handleBeforeUnload);
-            };
-          }, []);
-        };
-        useUnloadAlert();
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+      };
+    }, []);
+  };
+  useUnloadAlert();
 
-        const userData = info;
+  const userData = info;
 
-        const renderTemplate = (id) => {
-          if (id === "template1") {
-            return <Template1 userData={userData} />;
-          }
-          if (id === "template2") {
-            return <Template2 userData={userData} />;
-          }
-          if (id === "template3") {
-            return <Template3 userData={userData} />;
-          }
-          if (id === "template4") {
-            return <Template4 userData={userData} />;
-          }
-          if (id === "template5") {
-            return <Template5 userData={userData} />;
-          }
-          if (id === "template6") {
-            return <Template6 userData={userData} />;
-          }
-        };
+  const renderTemplate = (id) => {
+    if (id === "template1") {
+      return <Template1 userData={userData} />;
+    }
+    if (id === "template2") {
+      return <Template2 userData={userData} />;
+    }
+    if (id === "template3") {
+      return <Template3 userData={userData} />;
+    }
+    if (id === "template4") {
+      return <Template4 userData={userData} />;
+    }
+    if (id === "template5") {
+      return <Template5 userData={userData} />;
+    }
+    if (id === "template6") {
+      return <Template6 userData={userData} />;
+    }
+  };
 
-        // for modal state management
-        const [shareLinkCopy, setShareLinkCopy] = useState(false);
+  // for modal state management
+  const [shareLinkCopy, setShareLinkCopy] = useState(false);
 
-        const closeModal = () => {
-          setShareLinkCopy(false);
-        };
+  const closeModal = () => {
+    setShareLinkCopy(false);
+  };
 
-        // Function to copy the shareable link
-        const [copied, setCopied] = useState(false);
-        const copyToClipboard = () => {
-          navigator.clipboard.writeText(shareLink).then(() => {
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-          });
-        };
+  // Function to copy the shareable link
+  const [copied, setCopied] = useState(false);
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareLink).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
-        const handlePdf = async () => {
-          const element = document.getElementById("element");
-          const opt = {
-            margin: 1,
-            filename: "myResume.pdf",
-            enableLinks: true,
-            image: { type: "jpeg", quality: 0.98 },
-            html2canvas: { scale: 3 },
-            jsPDF: { format: "a4", orientation: "portrait" },
-          };
-          html2pdf()
-            .set(opt)
-            .from(element)
-            .save();
-        };
+  const handlePdf = async () => {
+    const element = document.getElementById("element");
+    const opt = {
+      margin: 1,
+      filename: "myResume.pdf",
+      enableLinks: true,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 3 },
+      jsPDF: { format: "a4", orientation: "portrait" },
+    };
+    html2pdf()
+      .set(opt)
+      .from(element)
+      .save();
+  };
 
-        useEffect(() => {
-          const checkFeedbackSubmission = async (email) => {
-            try {
-              const response = await axios.get(
-                `${import.meta.env.VITE_LOCALHOST_API_URL}/feedback-status`,
-                {
-                  params: { email }, // Send the email as a query parameter
-                  withCredentials: true, // Include credentials if needed
-                }
-              );
+  const [showModal, setShowModal] = useState(false);
 
-              // Assuming response.data has a field that indicates whether feedback has been submitted
-              setFeedbackSubmitted(response.data.hasSubmitted);
-            } catch (error) {
-              console.error("Error checking feedback status:", error);
-            }
-          };
-
-          const userEmail = user?.email; // Get the email from the user object, safely
-
-          // Check if user email exists
-          if (userEmail) {
-            checkFeedbackSubmission(userEmail); // Check feedback submission for the current user
-
-            // Show the review modal after 3 seconds if feedback has not been submitted
+  useEffect(() => {
+    const checkFeedbackSubmission = async () => {
+      if (user?.email) {
+        try {
+          const response = await axiosPublic.get(
+            `/check-feedback?email=${user.email}`
+          );
+          if (!response.data.hasSubmitted) {
+            // Show the modal after 2 seconds
             const timer = setTimeout(() => {
-              if (!feedbackSubmitted) {
-                setShowReviewModal(true);
-              }
-            }, 3000);
-
-            // Clean up the timer
+              setShowModal(true);
+            }, 2000);
             return () => clearTimeout(timer);
           }
-        }, [user, feedbackSubmitted]); // Added feedbackSubmitted as a dependency
+        } catch (error) {
+          console.error("Error checking feedback submission:", error);
+        }
+      }
+    };
 
-        return (
-          <div className="h-screen">
-            <div className="py-6 px-4 flex items-center bg-[#00000f]">
-              <Link to="/">
-                <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora uppercase">
-                  Perfect<span className="text-primary">Profile</span>
-                </h1>
-              </Link>
-            </div>
-            <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
-              <div className="lg:w-2/12 w-full"></div>
+    checkFeedbackSubmission();
+  }, [user]);
 
-              <div id="element" className="w-full h-full">
-                {/* <div id="element"
+  const handleCloseModal = () => {
+    setShowModal(false); // Close the modal when triggered
+  };
+
+  return (
+    <div className="h-screen">
+      <div className="py-6 px-4 flex items-center bg-[#00000f]">
+        <Link to="/">
+          <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora uppercase">
+            Perfect<span className="text-primary">Profile</span>
+          </h1>
+        </Link>
+      </div>
+      <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
+        <div className="lg:w-2/12 w-full"></div>
+
+        <div id="element" className="w-full h-full">
+          {/* <div id="element"
             className="w-full h-full"
             style={{
               transform: 'scale(0.60)',
@@ -162,74 +154,73 @@ const FinalResume = () => {
               height: '400px',
             }}
           > */}
-                {renderTemplate(info?.templateItem)}
-                {/* </div> */}
-              </div>
+          {renderTemplate(info?.templateItem)}
+          {/* </div> */}
+        </div>
 
-              <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
-                {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
-                <div className="relative text-right">
-                  <Menu as="div" className="relative inline-block text-left ">
-                    <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-                      <button
-                        // onClick={handlePdf}
-                        // onClick={generatePDF}
-                        className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
-                      >
-                        <FaFileExport className="text-secondary" /> Export
-                      </button>
-                    </Menu.Button>
-
-                    <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44">
-                      <div className="bg-white rounded-xl p-5">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              onClick={handlePdf}
-                              className={`${
-                                active
-                                  ? " font-semibold bg-white "
-                                  : "font-semibold"
-                              } group flex w-full items-center gap-2  py-1.5 text-black`}
-                            >
-                              <GrDocumentText className="text-primary" /> PDF
-                              Standard
-                            </button>
-                          )}
-                        </Menu.Item>
-                      </div>
-                    </Menu.Items>
-                  </Menu>
-                </div>
-
+        <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
+          {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
+          <div className="relative text-right">
+            <Menu as="div" className="relative inline-block text-left ">
+              <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
                 <button
-                  onClick={() => setShareLinkCopy(true)}
+                  // onClick={handlePdf}
+                  // onClick={generatePDF}
                   className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
                 >
-                  <FaShare className="text-secondary" /> Share
+                  <FaFileExport className="text-secondary" /> Export
                 </button>
-                <ShareLinkCopyModal
-                  isOpen={shareLinkCopy}
-                  closeModal={closeModal}
-                  copyToClipboard={copyToClipboard}
-                  copied={copied}
-                  shareLink={shareLink}
-                />
+              </Menu.Button>
 
-                <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
-                  <FaEnvelope className="text-secondary" /> Email
-                </button>
-                <button className="w-36 px-5 py-1   rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l  text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
-                  Finish
-                </button>
-              </div>
-            </section>
-            {/* Review Modal */}
-            {showReviewModal && !feedbackSubmitted && (
-              <ReviewModal setShowModal={setShowReviewModal} />
-            )}
+              <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44">
+                <div className="bg-white rounded-xl p-5">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        onClick={handlePdf}
+                        className={`${
+                          active ? " font-semibold bg-white " : "font-semibold"
+                        } group flex w-full items-center gap-2  py-1.5 text-black`}
+                      >
+                        <GrDocumentText className="text-primary" /> PDF Standard
+                      </button>
+                    )}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Menu>
           </div>
-        );
-      };;;
+
+          <button
+            onClick={() => setShareLinkCopy(true)}
+            className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
+          >
+            <FaShare className="text-secondary" /> Share
+          </button>
+          <ShareLinkCopyModal
+            isOpen={shareLinkCopy}
+            closeModal={closeModal}
+            copyToClipboard={copyToClipboard}
+            copied={copied}
+            shareLink={shareLink}
+          />
+
+          <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
+            <FaEnvelope className="text-secondary" /> Email
+          </button>
+          <button className="w-36 px-5 py-1   rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l  text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
+            Finish
+          </button>
+        </div>
+      </section>
+      {/* Conditionally render the ReviewModal after 2 seconds */}
+      {showModal && (
+        <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal}>
+          {/* Modal content here */}
+        </ReviewModal>
+      )}
+    </div>
+  );
+};
 
 export default FinalResume;

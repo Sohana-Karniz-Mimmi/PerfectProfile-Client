@@ -1,312 +1,340 @@
 [
-    {
-      "_id": 1,
-      "name": "Alomgir Hasan Shakib",
-      "jobTitle": "Software Engineer",
-      "careerObjective": "To pursue a challenging career in data science and contribute to innovative solutions.",
-      "email": "alomgirhasanshakib@gmail.com",
-      "phone": "+9876543210",
-      "address": "45 Greenway, Dhaka",
-      "education": [
-        {
-          "degree": "BSc in Statistics",
-          "institution": "University of Dhaka",
-          "year": "2022"
-        },
-        {
-          "degree": "Higher Secondary Certificate",
-          "institution": "Dhaka College",
-          "year": "2018"
-        }
-      ],
-      "certifications": [
-        {
-          "title": "Data Science with Python",
-          "institution": "Coursera",
-          "year": "2023"
-        }
-      ],
-      "workExperience": [
-        {
-          "jobTitle": "Data Analyst",
-          "company": "Tech Insights",
-          "years": "2 years",
-          "description": "Performed data analysis using Python and SQL to generate insights for business decisions."
-        },
-        {
-          "jobTitle": "Junior Data Analyst",
-          "company": "Data Solutions",
-          "years": "1 year",
-          "description": "Assisted in data cleaning and visualization tasks."
-        }
-      ],
-      "extraCurricularActivities": [
-        {
-          "activity": "Hackathon",
-          "description": "Won 2nd place in a national-level hackathon."
-        }
-      ],
-      "skills": ["Python", "SQL", "Data Visualization", "Machine Learning", "Statistics"],
-      "languages": ["English", "Bengali"]
-    },
-    {
-      "_id": 2,
-      "name": "Meherun Nessa",
-      "jobTitle": "Backend Developer",
-      "careerObjective": "To become a Software Engineer with a focus on backend development.",
-      "email": "meherun97@gmail.com",
-      "phone": "+9988776655",
-      "address": "29 Avenue, Chittagong",
-      "education": [
-        {
-          "degree": "BSc in Software Engineering",
-          "institution": "Chittagong University of Engineering & Technology",
-          "year": "2021"
-        },
-        {
-          "degree": "Higher Secondary Certificate",
-          "institution": "Chittagong Government College",
-          "year": "2017"
-        }
-      ],
-      "certifications": [
-        {
-          "title": "Advanced Java Programming",
-          "institution": "Udemy",
-          "year": "2022"
-        }
-      ],
-      "workExperience": [
-        {
-          "jobTitle": "Backend Developer",
-          "company": "SoftSolutions",
-          "years": "1.5 years",
-          "description": "Developed RESTful APIs and managed server-side logic using Node.js and Express."
-        },
-        {
-          "jobTitle": "Intern Developer",
-          "company": "Tech Interns",
-          "years": "6 months",
-          "description": "Worked on front-end development using HTML, CSS, and JavaScript."
-        }
-      ],
-      "extraCurricularActivities": [
-        {
-          "activity": "Volunteer Work",
-          "description": "Organized coding workshops for underprivileged students."
-        }
-      ],
-      "skills": ["Node.js", "Express", "JavaScript", "HTML", "CSS"],
-      "languages": ["English", "Bengali"]
-    },
-    {
-      "_id": 3,
-      "name": "Shamim Hossain",
-      "jobTitle": "ML Engineer",
-      "careerObjective": "Aiming to work in the field of Artificial Intelligence and Machine Learning.",
-      "email": "shamimhossain@gmail.com",
-      "phone": "+8822334455",
-      "address": "12 West Road, Rajshahi",
-      "education": [
-        {
-          "degree": "BSc in Computer Science",
-          "institution": "Rajshahi University",
-          "year": "2020"
-        },
-        {
-          "degree": "Higher Secondary Certificate",
-          "institution": "Rajshahi College",
-          "year": "2016"
-        }
-      ],
-      "certifications": [
-        {
-          "title": "Machine Learning",
-          "institution": "Coursera",
-          "year": "2021"
-        }
-      ],
-      "workExperience": [
-        {
-          "jobTitle": "ML Engineer",
-          "company": "Innovative AI Solutions",
-          "years": "2 years",
-          "description": "Worked on building machine learning models for predictive analysis."
-        },
-        {
-          "jobTitle": "Data Scientist Intern",
-          "company": "AI Startups",
-          "years": "1 year",
-          "description": "Assisted in research and model development for various AI projects."
-        }
-      ],
-      "extraCurricularActivities": [
-        {
-          "activity": "AI Conference",
-          "description": "Presented a paper on AI-driven healthcare solutions."
-        },
-        {
-            "activity": "Volunteer Work",
-            "description": "Organized coding workshops for underprivileged students."
-          }
-      ],
-      "skills": ["Python", "Machine Learning", "Data Analysis", "TensorFlow", "Pandas"],
-      "languages": ["English", "Bengali", "Turkish"]
-    },
-    {
-      "_id": 4,
-      "name": "Tania Rahman",
-      "jobTitle": "Graphic Designer",
-      "careerObjective": "To contribute as a Graphic Designer, focusing on visual communication and branding.",
-      "email": "taniarahman@gmail.com",
-      "phone": "+8811223344",
-      "address": "14 Lake View, Sylhet",
-      "education": [
-        {
-          "degree": "BA in Graphic Design",
-          "institution": "Sylhet Art College",
-          "year": "2021"
-        },
-        {
-          "degree": "Higher Secondary Certificate",
-          "institution": "Sylhet Government College",
-          "year": "2017"
-        }
-      ],
-      "certifications": [
-        {
-          "title": "Creative Graphic Design",
-          "institution": "Skillshare",
-          "year": "2022"
-        },
-        {
-          "title": "Advanced Graphic Design",
-          "institution": "Udemy",
-          "year": "2024"
-        }
-      ],
-      "workExperience": [
-        {
-          "jobTitle": "Graphic Designer",
-          "company": "Creative Studio",
-          "years": "1 year",
-          "description": "Designed marketing materials and social media content for clients."
-        },
-        {
-          "jobTitle": "Design Intern",
-          "company": "Artistic Solutions",
-          "years": "6 months",
-          "description": "Assisted in creating designs for client projects."
-        }
-      ],
-      "extraCurricularActivities": [
-        {
-          "activity": "Photography Club",
-          "description": "Active member and organizer of photography exhibitions."
-        }
-      ],
-      "skills": ["Adobe Photoshop", "Illustrator", "Creativity", "Branding", "Visual Communication"],
-      "languages": ["English", "Bengali"]
-    },
-    {
-      "_id": 5,
-      "name": "Farzana Islam",
-      "jobTitle": "Financial Analyst",
-      "careerObjective": "To work as a Financial Analyst, assisting in making data-driven financial decisions.",
-      "email": "farzanai@gmail.com",
-      "phone": "+8801223344",
-      "address": "52 West End, Barisal",
-      "education": [
-        {
-          "degree": "BBA in Finance",
-          "institution": "University of Barisal",
-          "year": "2019"
-        },
-        {
-          "degree": "Higher Secondary Certificate",
-          "institution": "Barisal College",
-          "year": "2015"
-        }
-      ],
-      "certifications": [
-        {
-          "title": "Financial Analysis",
-          "institution": "LinkedIn Learning",
-          "year": "2020"
-        }
-      ],
-      "workExperience": [
-        {
-          "jobTitle": "Financial Analyst",
-          "company": "Global Finance",
-          "years": "2 years",
-          "description": "Provided financial forecasting and analysis to assist in decision-making processes."
-        },
-        {
-          "jobTitle": "Finance Intern",
-          "company": "Finance Hub",
-          "years": "6 months",
-          "description": "Supported the finance team with reporting and data analysis."
-        }
-      ],
-      "extraCurricularActivities": [
-        {
-          "activity": "Investment Club",
-          "description": "Led investment workshops for students."
-        }
-      ],
-      "skills": ["Financial Analysis", "Data Interpretation", "Excel", "Forecasting", "Reporting"],
-      "languages": ["English", "Bengali"]
-    },
-    {
-      "_id": 6,
-      "name": "Tanveer Hossain",
-      "jobTitle": "Cybersecurity Specialist",
-      "careerObjective": "To apply my skills as a Cybersecurity Specialist, ensuring robust network security.",
-      "email": "tanveerhossain@gmail.com",
-      "phone": "+88022334455",
-      "address": "26 Gulshan Avenue, Dhaka",
-      "education": [
-        {
-          "degree": "BSc in Cybersecurity",
-          "institution": "American International University-Bangladesh (AIUB)",
-          "year": "2020"
-        },
-        {
-          "degree": "Higher Secondary Certificate",
-          "institution": "Gulshan College",
-          "year": "2016"
-        }
-      ],
-      "certifications": [
-        {
-          "title": "Certified Ethical Hacker (CEH)",
-          "institution": "EC-Council",
-          "year": "2021"
-        }
-      ],
-      "workExperience": [
-        {
-          "jobTitle": "Cybersecurity Analyst",
-          "company": "Secure Networks",
-          "years": "2 years",
-          "description": "Monitored network security, identified vulnerabilities, and implemented solutions."
-        },
-        {
-          "jobTitle": "Security Intern",
-          "company": "CyberSafe",
-          "years": "1 year",
-          "description": "Assisted in security audits and vulnerability assessments."
-        }
-      ],
-      "extraCurricularActivities": [
-        {
-          "activity": "Cybersecurity Club",
-          "description": "Organized ethical hacking workshops."
-        }
-      ],
-      "skills": ["Network Security", "Ethical Hacking", "Risk Assessment", "Incident Response"],
-      "languages": ["English", "Bengali"]
-    }
-  ]
-  
+  {
+    "_id": 1,
+    "name": "Alomgir Hasan Shakib",
+    "jobTitle": "Software Engineer",
+    "careerObjective": "To pursue a challenging career in data science and contribute to innovative solutions.",
+    "email": "alomgirhasanshakib@gmail.com",
+    "phone": "+9876543210",
+    "address": "45 Greenway, Dhaka",
+    "education": [
+      {
+        "degree": "BSc in Statistics",
+        "institution": "University of Dhaka",
+        "year": "2022"
+      },
+      {
+        "degree": "Higher Secondary Certificate",
+        "institution": "Dhaka College",
+        "year": "2018"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Data Science with Python",
+        "institution": "Coursera",
+        "year": "2023"
+      }
+    ],
+    "workExperience": [
+      {
+        "jobTitle": "Data Analyst",
+        "company": "Tech Insights",
+        "years": "2 years",
+        "description": "Performed data analysis using Python and SQL to generate insights for business decisions."
+      },
+      {
+        "jobTitle": "Junior Data Analyst",
+        "company": "Data Solutions",
+        "years": "1 year",
+        "description": "Assisted in data cleaning and visualization tasks."
+      }
+    ],
+    "extraCurricularActivities": [
+      {
+        "activity": "Hackathon",
+        "description": "Won 2nd place in a national-level hackathon."
+      }
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Visualization",
+      "Machine Learning",
+      "Statistics"
+    ],
+    "languages": ["English", "Bengali"]
+  },
+  {
+    "_id": 2,
+    "name": "Meherun Nessa",
+    "jobTitle": "Backend Developer",
+    "careerObjective": "To become a Software Engineer with a focus on backend development.",
+    "email": "meherun97@gmail.com",
+    "phone": "+9988776655",
+    "address": "29 Avenue, Chittagong",
+    "education": [
+      {
+        "degree": "BSc in Software Engineering",
+        "institution": "Chittagong University of Engineering & Technology",
+        "year": "2021"
+      },
+      {
+        "degree": "Higher Secondary Certificate",
+        "institution": "Chittagong Government College",
+        "year": "2017"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Advanced Java Programming",
+        "institution": "Udemy",
+        "year": "2022"
+      }
+    ],
+    "workExperience": [
+      {
+        "jobTitle": "Backend Developer",
+        "company": "SoftSolutions",
+        "years": "1.5 years",
+        "description": "Developed RESTful APIs and managed server-side logic using Node.js and Express."
+      },
+      {
+        "jobTitle": "Intern Developer",
+        "company": "Tech Interns",
+        "years": "6 months",
+        "description": "Worked on front-end development using HTML, CSS, and JavaScript."
+      }
+    ],
+    "extraCurricularActivities": [
+      {
+        "activity": "Volunteer Work",
+        "description": "Organized coding workshops for underprivileged students."
+      }
+    ],
+    "skills": ["Node.js", "Express", "JavaScript", "HTML", "CSS"],
+    "languages": ["English", "Bengali"]
+  },
+  {
+    "_id": 3,
+    "name": "Shamim Hossain",
+    "jobTitle": "ML Engineer",
+    "careerObjective": "Aiming to work in the field of Artificial Intelligence and Machine Learning.",
+    "email": "shamimhossain@gmail.com",
+    "phone": "+8822334455",
+    "address": "12 West Road, Rajshahi",
+    "education": [
+      {
+        "degree": "BSc in Computer Science",
+        "institution": "Rajshahi University",
+        "year": "2020"
+      },
+      {
+        "degree": "Higher Secondary Certificate",
+        "institution": "Rajshahi College",
+        "year": "2016"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Machine Learning",
+        "institution": "Coursera",
+        "year": "2021"
+      }
+    ],
+    "workExperience": [
+      {
+        "jobTitle": "ML Engineer",
+        "company": "Innovative AI Solutions",
+        "years": "2 years",
+        "description": "Worked on building machine learning models for predictive analysis."
+      },
+      {
+        "jobTitle": "Data Scientist Intern",
+        "company": "AI Startups",
+        "years": "1 year",
+        "description": "Assisted in research and model development for various AI projects."
+      }
+    ],
+    "extraCurricularActivities": [
+      {
+        "activity": "AI Conference",
+        "description": "Presented a paper on AI-driven healthcare solutions."
+      },
+      {
+        "activity": "Volunteer Work",
+        "description": "Organized coding workshops for underprivileged students."
+      }
+    ],
+    "skills": [
+      "Python",
+      "Machine Learning",
+      "Data Analysis",
+      "TensorFlow",
+      "Pandas"
+    ],
+    "languages": ["English", "Bengali", "Turkish"]
+  },
+  {
+    "_id": 4,
+    "name": "Tania Rahman",
+    "jobTitle": "Graphic Designer",
+    "careerObjective": "To contribute as a Graphic Designer, focusing on visual communication and branding.",
+    "email": "taniarahman@gmail.com",
+    "phone": "+8811223344",
+    "address": "14 Lake View, Sylhet",
+    "education": [
+      {
+        "degree": "BA in Graphic Design",
+        "institution": "Sylhet Art College",
+        "year": "2021"
+      },
+      {
+        "degree": "Higher Secondary Certificate",
+        "institution": "Sylhet Government College",
+        "year": "2017"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Creative Graphic Design",
+        "institution": "Skillshare",
+        "year": "2022"
+      },
+      {
+        "title": "Advanced Graphic Design",
+        "institution": "Udemy",
+        "year": "2024"
+      }
+    ],
+    "workExperience": [
+      {
+        "jobTitle": "Graphic Designer",
+        "company": "Creative Studio",
+        "years": "1 year",
+        "description": "Designed marketing materials and social media content for clients."
+      },
+      {
+        "jobTitle": "Design Intern",
+        "company": "Artistic Solutions",
+        "years": "6 months",
+        "description": "Assisted in creating designs for client projects."
+      }
+    ],
+    "extraCurricularActivities": [
+      {
+        "activity": "Photography Club",
+        "description": "Active member and organizer of photography exhibitions."
+      }
+    ],
+    "skills": [
+      "Adobe Photoshop",
+      "Illustrator",
+      "Creativity",
+      "Branding",
+      "Visual Communication"
+    ],
+    "languages": ["English", "Bengali"]
+  },
+  {
+    "_id": 5,
+    "name": "Farzana Islam",
+    "jobTitle": "Financial Analyst",
+    "careerObjective": "To work as a Financial Analyst, assisting in making data-driven financial decisions.",
+    "email": "farzanai@gmail.com",
+    "phone": "+8801223344",
+    "address": "52 West End, Barisal",
+    "education": [
+      {
+        "degree": "BBA in Finance",
+        "institution": "University of Barisal",
+        "year": "2019"
+      },
+      {
+        "degree": "Higher Secondary Certificate",
+        "institution": "Barisal College",
+        "year": "2015"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Financial Analysis",
+        "institution": "LinkedIn Learning",
+        "year": "2020"
+      }
+    ],
+    "workExperience": [
+      {
+        "jobTitle": "Financial Analyst",
+        "company": "Global Finance",
+        "years": "2 years",
+        "description": "Provided financial forecasting and analysis to assist in decision-making processes."
+      },
+      {
+        "jobTitle": "Finance Intern",
+        "company": "Finance Hub",
+        "years": "6 months",
+        "description": "Supported the finance team with reporting and data analysis."
+      }
+    ],
+    "extraCurricularActivities": [
+      {
+        "activity": "Investment Club",
+        "description": "Led investment workshops for students."
+      }
+    ],
+    "skills": [
+      "Financial Analysis",
+      "Data Interpretation",
+      "Excel",
+      "Forecasting",
+      "Reporting"
+    ],
+    "languages": ["English", "Bengali"]
+  },
+  {
+    "_id": 6,
+    "name": "Tanveer Hossain",
+    "jobTitle": "Cybersecurity Specialist",
+    "careerObjective": "To apply my skills as a Cybersecurity Specialist, ensuring robust network security.",
+    "email": "tanveerhossain@gmail.com",
+    "phone": "+88022334455",
+    "address": "26 Gulshan Avenue, Dhaka",
+    "education": [
+      {
+        "degree": "BSc in Cybersecurity",
+        "institution": "American International University-Bangladesh (AIUB)",
+        "year": "2020"
+      },
+      {
+        "degree": "Higher Secondary Certificate",
+        "institution": "Gulshan College",
+        "year": "2016"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Certified Ethical Hacker (CEH)",
+        "institution": "EC-Council",
+        "year": "2021"
+      }
+    ],
+    "workExperience": [
+      {
+        "jobTitle": "Cybersecurity Analyst",
+        "company": "Secure Networks",
+        "years": "2 years",
+        "description": "Monitored network security, identified vulnerabilities, and implemented solutions."
+      },
+      {
+        "jobTitle": "Security Intern",
+        "company": "CyberSafe",
+        "years": "1 year",
+        "description": "Assisted in security audits and vulnerability assessments."
+      }
+    ],
+    "extraCurricularActivities": [
+      {
+        "activity": "Cybersecurity Club",
+        "description": "Organized ethical hacking workshops."
+      }
+    ],
+    "skills": [
+      "Network Security",
+      "Ethical Hacking",
+      "Risk Assessment",
+      "Incident Response"
+    ],
+    "languages": ["English", "Bengali"]
+  }
+]

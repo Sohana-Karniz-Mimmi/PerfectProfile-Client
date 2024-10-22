@@ -1,57 +1,96 @@
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form"; // Import React Hook Form
-import axios from "axios";
+import { axiosPublic } from "../../Hook/useAxiosPublic";
 import toast from "react-hot-toast";
 import Rating from "react-rating"; // Import the react-rating component
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"; // For star icons
 import useAuth from "../../Hook/useAuth";
 
-const ReviewModal = ({ setShowModal }) => {
+const ReviewModal = ({ showModal, handleCloseModal }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm(); // Destructure from useForm
+  } = useForm();
+  const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const [rating, setRating] = useState(0); // State for storing the rating
-  const {user} = useAuth();
+  const {user} = useAuth()
 
-  // Handle form submission
+  // working
+  // const onSubmit = async (data) => {
+  //   setLoading(true);
+
+  //   // Combine feedback and rating in the submission data
+  //   const feedbackData = {
+  //     feedback: data.feedback,
+  //     rating: Number(rating),
+  //     email: user?.email,
+  //     name: user?.displayName,
+  //     photo: user?.photoURL,
+  //   };
+
+  //   try {
+  //     // Send POST request to the /feedback API using axiosPublic
+  //     await axiosPublic.post("/feedback", feedbackData);
+
+  //     // If successful, show success message
+  //     toast.success("Feedback submitted successfully!");
+  //     reset(); // Reset form fields
+  //     setRating(0); // Reset the rating
+  //     handleCloseModal()
+  //   } catch (err) {
+  //     // Handle errors
+  //     toast.error(err.response?.data?.message || "Failed to submit feedback.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const onSubmit = async (data) => {
     setLoading(true);
 
-    try {
-      const response = await axios.post("http://localhost:5000/feedback", {
-        feedback: data.feedback,
-        rating: Number(rating),
-        user_email: user?.email, // Ensure the rating is a number (including fractions)
-        name: user?.displayName,
-        photo: user?.photoURL
-      });
+    // Check if the user is logged in
+    if (!user) {
+      toast.error("You must be logged in to submit feedback.");
+      setLoading(false); // Reset loading state
+      return; // Exit early
+    }
 
-      if (response.status === 201) {
-        toast.success("Feedback submitted successfully!");
-        reset();
-        setRating(0); // Reset the rating
-        setShowModal(false);
-      } else {
-        throw new Error("Failed to submit feedback");
-      }
+    // Combine feedback and rating in the submission data
+    const feedbackData = {
+      feedback: data.feedback,
+      rating: Number(rating),
+      email: user?.email, // Directly access email since user is defined
+      name: user?.displayName,
+      photo: user?.photoURL,
+    };
+
+    try {
+      // Send POST request to the /feedback API using axiosPublic
+      const response = await axiosPublic.post("/feedback", feedbackData);
+
+      // If successful, show success message
+      toast.success(
+        response.data.message || "Feedback submitted successfully!"
+      );
+      reset(); // Reset form fields
+      setRating(0); // Reset the rating
+      handleCloseModal();
     } catch (err) {
-      toast.error(err.response?.data?.error || "Something went wrong");
+      // Handle errors
+      toast.error(err.response?.data?.message || "Failed to submit feedback.");
     } finally {
       setLoading(false);
     }
   };
 
+  
+
   return (
     <Dialog
-      open={true}
-      onClose={() => {}}
+      open={showModal}
+      onClose={handleCloseModal}
       className="fixed inset-0 z-50 flex items-center justify-center"
     >
       {/* Overlay */}
@@ -96,16 +135,9 @@ const ReviewModal = ({ setShowModal }) => {
             />
           </div>
 
-          {/* Error Message */}
-          {error && <p className="text-red-500 mt-2">{error}</p>}
-
-          {/* Success Message */}
-          {success && <p className="text-green-500 mt-2">{success}</p>}
-
           {/* Submit Button */}
           <div className="mt-4 flex justify-end">
             <button
-            
               type="submit"
               disabled={loading}
               className={`bg-primary text-white px-4 py-2 rounded ${
@@ -116,24 +148,6 @@ const ReviewModal = ({ setShowModal }) => {
             </button>
           </div>
         </form>
-
-        {/* Review Textarea */}
-        {/* <div className="mt-4">
-          <textarea
-            className="w-full h-24 p-2 border rounded"
-            placeholder="Share your thoughts..."
-          ></textarea>
-        </div> */}
-
-        {/* Close Button */}
-        {/* <div className="mt-4 flex justify-end">
-          <button
-            onClick={() => setShowModal(false)} // This button will close the modal
-            className="bg-primary text-white px-4 py-2 rounded"
-          >
-            Give Feedback
-          </button>
-        </div> */}
       </Dialog.Panel>
     </Dialog>
   );

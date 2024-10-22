@@ -14,7 +14,7 @@ const Template2 = ({ data, userData }) => {
         {/* 1st */}
         <div className="bg-[#353535] text-white lg:px-2 lg:w-[291px] w-[11rem] ">
           <div className="lg:w-48 w-32 mx-auto py-7 mb-4">
-            <img className="rounded-full" src={img} alt="" />
+            <img className="rounded-full" src={userData?.profile} alt="" />
           </div>
           <div>
             {/* about me */}
