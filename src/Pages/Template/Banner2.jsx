@@ -8,9 +8,9 @@ import {  motion } from "framer-motion";
 
 const Banner2 = () => {
     return (
-        <div className="mb-40 mt-36 ">           
+        <div className=" -mb-44 lg:-mb-64 lg:mt-36 mt-8">           
           <div>
-          <h1 className="font-bold text-4xl text-center ">Why <span className=" border-b-4 rounded-sm border-primary">Choose</span> <span>
+          <h1 className="font-bold lg:text-4xl text-2xl text-center ">Why <span className=" border-b-4 rounded-sm border-primary">Choose</span> <span>
                 P<span>er</span>fect
                 <span className="text-primary">Profile</span>?
               </span></h1>
@@ -20,11 +20,11 @@ const Banner2 = () => {
               whileInView={{opacity : 1, y: 0}}
               initial={{opacity : 0, y: 100}}
               transition={{duration: 1.5}}
-              className='grid grid-cols-2 gap-7 pl-24 mt-10 mb-[20rem] p-16 items-center justify-center '>
+              className='grid grid-cols-1 lg:grid-cols-2 gap-7  lg:pl-24 mt-10 p-2 lg:p-16 items-center justify-center '>
                 {/* feature 1 */}
                 <div className="flex gap-4">
                     <div>
-                        <img className='w-36 h-36' src={img1} alt="" />
+                        <img className='w-36 h-28 lg:h-36' src={img1} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
                         <h1 className='font-bold text-2xl'>Professional Resume Templates</h1>
@@ -34,7 +34,7 @@ const Banner2 = () => {
                 {/* feature 2 */}
                 <div className="flex gap-4">
                     <div>
-                        <img className='w-36 h-36' src={img2} alt="" />
+                        <img className='w-36 h-28 lg:h-36' src={img2} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
                         <h1 className='font-bold text-2xl'>Real Time Resume Editing</h1>
@@ -44,7 +44,7 @@ const Banner2 = () => {
                 {/* feature 3 */}
                 <div className="flex gap-4">
                     <div>
-                        <img className='w-36 h-36' src={img3} alt="" />
+                        <img className='w-36 h-28 lg:h-36' src={img3} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
                         <h1 className='font-bold text-2xl'>Personalized Resume Coaching</h1>
@@ -54,7 +54,7 @@ const Banner2 = () => {
                 {/* feature 4 */}
                 <div className="flex gap-1">
                     <div>
-                        <img className='w-36 h-36' src={img4} alt="" />
+                        <img className='w-36 h-28 lg:h-36' src={img4} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
                         <h1 className='font-bold text-2xl'>Real Time Collaboration</h1>
@@ -64,7 +64,7 @@ const Banner2 = () => {
                 {/* feature 5 */}
                 <div className="flex gap-2">
                     <div>
-                        <img className='w-36 h-36' src={img5} alt="" />
+                        <img className='w-36 h-28 lg:h-36' src={img5} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
                         <h1 className='font-bold text-2xl'>Instant PDF Download & Share Links</h1>
@@ -74,7 +74,7 @@ const Banner2 = () => {
                 {/* feature 6 */}
                 <div className="flex gap-2">
                     <div>
-                        <img className='w-36 h-36' src={img6} alt="" />
+                        <img className='w-36 h-28 lg:h-36' src={img6} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
                         <h1 className='font-bold text-2xl'>Flexible Pricing Plans</h1>
@@ -86,7 +86,7 @@ const Banner2 = () => {
           </div>
 
  {/* SVG Wave Background */}
- <div className="z-[-1] absolute bottom-32  w-full left-0">
+ <div className="z-[-1]  lg:bottom-0   w-full left-0">
         <div className="transform scale-x-[-1]">
           <svg
             className="shape-svg-bottom"

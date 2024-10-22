@@ -58,6 +58,9 @@ console.log(filter)
             image,
             templatePackage,
           });
+          // axiosPublic.patch(`/templates/${user.email}/${template._id}`, {
+          //   isFavorite : true
+          // })
 
           toast.success("Added to the favorite");
         } else {
@@ -71,6 +74,9 @@ console.log(filter)
       document.getElementById("my_modal_3").showModal();
     }
   };
+
+
+
 
   // pagination
 
@@ -96,11 +102,12 @@ console.log(filter)
   // filter
 
   return (
-    <Container>
+   <div>
+     <Container>
       <TemplateBanner></TemplateBanner>
 
       {/* filter */}
-      <div className="w-[79rem] mt-12 justify-end flex item-end">
+      <div className="lg:w-[79rem] lg:mt-12 mt-20 justify-end flex item-end">
         <select
            onChange={e => {
             setFilter(e.target.value)
@@ -109,7 +116,7 @@ console.log(filter)
           name="package"
           id="package"
           value={filter}
-          className="border  px-4 py-2 rounded-lg "
+          className="border border-primary px-4 py-2 rounded-lg "
         >
           {/* <option value=''>Filter By Category</option> */}
           <option value="">Free + Premium</option>
@@ -118,7 +125,7 @@ console.log(filter)
         </select>
       </div>
 
-      <div className="mt-12 grid grid-cols-3 px-32 gap-8">
+      <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 lg:px-32 gap-8">
         {predefinedTemplate?.map((template) => (
           <div key={template._id}>
             <div className="relative group w-[350px] h-[450px]">
@@ -170,7 +177,7 @@ console.log(filter)
       </div>
 
       {/* pagination */}
-      <div className="flex justify-center mt-24 mb-20">
+      <div className="flex justify-center mt-16 lg:mt-24 mb-12 lg:mb-20">
         {/* prev button */}
         <button
           disabled={currentPage === 1}
@@ -210,9 +217,10 @@ console.log(filter)
           </div>
         </button>
       </div>
-
+      </Container>
       <Banner2></Banner2>
-    </Container>
+   
+   </div>
   );
 };
 

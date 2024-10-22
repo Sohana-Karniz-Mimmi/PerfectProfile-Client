@@ -4,10 +4,22 @@ import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import useRole from "../../Hook/useRole";
-
+import useAxiosPublic from "../../Hook/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
   const { user } = useAuth();
   const [role, isLoading] = useRole();
+ 
+  const axiosPublic = useAxiosPublic();
+
+  const { data: userData = {}, refetch } = useQuery({
+    queryKey: ["userData"],
+    queryFn: async () => {
+      const res = await axiosPublic(`/user/${user.email}`);
+      return res.data;
+    },
+  });
+  console.log(userData);
 
   return (
     <div className="relative text-right">
@@ -56,14 +68,15 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
 
               <Menu.Item>
                 {({ active }) => (
-                  <Link to="/my-favorites">
-                    <button
-                      className={`${active ? "bg-white" : ""
-                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
-                      onClick={() => handleRoleChange("favorite")}
-                    >
-                      Favorite
-                    </button>
+                  <Link to='/my-favorites'>
+                  <button
+                    className={`${
+                      active ? "bg-white" : ""
+                    } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                    onClick={() => handleRoleChange("favorite")}
+                  >
+                    Favorite
+                  </button>
                   </Link>
                 )}
               </Menu.Item>
