@@ -3,23 +3,24 @@ import { Link, useLoaderData } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
 import domtoimage from "dom-to-image";
-import Template1 from "../../Components/TemplateSection/Template1";
-import Template2 from "../../Components/FinalPageTemplate/Template2";
-import Template3 from "../../Components/TemplateSection/Template3";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFileExport, FaShare } from "react-icons/fa6";
 import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { Menu } from "@headlessui/react";
 import { GrDocumentText } from "react-icons/gr";
-// import Template2nd from "../../Components/TemplateSection/Template2nd";
-import Template4 from "../../Components/TemplateSection/Template4";
-import Template5 from "../../Components/TemplateSection/Template5";
-import Template6 from "../../Components/TemplateSection/Template6";
 import { toJpeg, toPng } from "html-to-image";
 import { px } from "framer-motion";
-// import Template1 from "../../assets/Template1";
 import { PiFilePng } from "react-icons/pi";
 import { SiJpeg } from "react-icons/si";
+
+/******** Templates **********/
+import Template1 from "../../Components/AllTemplates/Template1";
+// import Template2 from "../../Components/AllTemplates/Template2";
+// import Template3 from "../../Components/AllTemplates/Template3";
+// import Template4 from "../../Components/AllTemplates/Template4";
+// import Template5 from "../../Components/AllTemplates/Template5";
+// import Template6 from "../../Components/AllTemplates/Template6";
+// import Template2, {ImageContext,} from "../../Components/AllTemplates/Template2";
 
 const FinalResume = () => {
   const info = useLoaderData();
@@ -45,7 +46,7 @@ const FinalResume = () => {
 
   const userData = info;
   console.log(userData);
-  
+
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -164,11 +165,13 @@ const FinalResume = () => {
           </h1>
         </Link>
       </div>
-      <section className="flex lg:flex-row flex-col justify-between pt-8 gap-5">
+      <section className="flex lg:flex-row flex-col justify-between py-8 gap-5">
         <div className="lg:w-2/12 w-full"></div>
 
-        <div ref={contentRef} id="element">
-          {renderTemplate(info?.templateItem)}
+        <div className="border-2">
+          <div className="" ref={contentRef} id="element">
+            {renderTemplate(info?.templateItem)}
+          </div>
         </div>
 
         <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
@@ -187,9 +190,8 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handlePdf}
-                        className={`${
-                          active ? " font-semibold bg-white " : "font-semibold"
-                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
+                        className={`${active ? " font-semibold bg-white " : "font-semibold"
+                          } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
                       >
                         <GrDocumentText className="text-red-600" /> PDF Standard
                       </button>
@@ -200,9 +202,8 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handlePng}
-                        className={` ${
-                          active ? " font-semibold bg-white " : "font-semibold"
-                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
+                        className={` ${active ? " font-semibold bg-white " : "font-semibold"
+                          } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
                       >
                         <PiFilePng className="text-red-600" /> PNG
                       </button>
@@ -213,9 +214,8 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handleJpeg}
-                        className={`${
-                          active ? " font-semibold bg-white " : "font-semibold"
-                        } group flex w-full items-center gap-2  py-1.5 text-black`}
+                        className={`${active ? " font-semibold bg-white " : "font-semibold"
+                          } group flex w-full items-center gap-2  py-1.5 text-black`}
                       >
                         <SiJpeg className="text-red-600" /> JPEG
                       </button>

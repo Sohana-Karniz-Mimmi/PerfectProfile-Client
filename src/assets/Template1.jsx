@@ -1,7 +1,7 @@
 const Template1 = ({ data, userData }) => {
   return (
     <div
-      className="w-[790px] min-h-[1000px] mx-auto bg-slate-50 border-2 border-secondary pb-8"
+      className="w-[790px] min-h-[1000px] mx-auto bg-white pb-8"
       id="resume-content"
     >
       <div className="">

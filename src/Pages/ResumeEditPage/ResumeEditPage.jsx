@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-// import Template2 from "../../Components/TemplateSection/Template2";
 import Template3 from "../../Components/TemplateSection/Template3";
 import {
   FaBackward,
@@ -31,18 +30,22 @@ import axios from "axios";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Template1 from "../../assets/Template1";
-import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
-import Template2nd, {
-  ImageContext,
-} from "../../Components/TemplateSection/Template2nd";
-import Template5 from "../../Components/TemplateSection/Template5";
-import Template6 from "../../Components/TemplateSection/Template6";
 import useAuth from "../../Hook/useAuth";
-import MyTemplate from "../../assets/MyTemplate";
 import { useProfile } from "../../Context/ProfileContext";
+
+
+/******** Templates **********/
+import Template1 from "../../Components/AllTemplates/Template1";
+// import Template2 from "../../Components/AllTemplates/Template2";
+// import Template3 from "../../Components/AllTemplates/Template3";
+// import Template4 from "../../Components/AllTemplates/Template4";
+// import Template5 from "../../Components/AllTemplates/Template5";
+// import Template6 from "../../Components/AllTemplates/Template6";
+import Template2, {ImageContext,} from "../../Components/AllTemplates/Template2";
+
+
 
 const ResumeEditPage = () => {
   const { user } = useAuth();
@@ -427,7 +430,7 @@ const ResumeEditPage = () => {
     }
     if (id === "template2") {
       return (
-        <Template2nd
+        <Template2
           data={template}
           userData={userData}
           setUserData={setUserData}
