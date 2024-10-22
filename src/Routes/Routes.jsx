@@ -28,6 +28,7 @@ import ProfileInfo from "../Components/MyProfile/ProfileInfo";
 import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 import Favorite from "../Pages/Favorites/Favorite";
 import ResourcePage from "../Pages/Resources/ResourcePage";
+import Consultation from "../Pages/Consultation/Consultation";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/consultation",
+        element: <Consultation />,
       },
       // {
       //   path: "/profile",
