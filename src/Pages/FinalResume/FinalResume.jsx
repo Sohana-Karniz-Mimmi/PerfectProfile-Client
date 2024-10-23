@@ -21,7 +21,6 @@ import Template4 from "../../Components/AllTemplates/Template4";
 import Template5 from "../../Components/AllTemplates/Template5";
 import Template6 from "../../Components/AllTemplates/Template6";
 
-
 // import Template1 from "../../assets/Template1";
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
@@ -228,8 +227,9 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handlePdf}
-                        className={`${active ? " font-semibold bg-white " : "font-semibold"
-                          } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
+                        className={`${
+                          active ? " font-semibold bg-white " : "font-semibold"
+                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
                       >
                         <GrDocumentText className="text-red-600" /> PDF Standard
                       </button>
@@ -240,8 +240,9 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handlePng}
-                        className={` ${active ? " font-semibold bg-white " : "font-semibold"
-                          } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
+                        className={` ${
+                          active ? " font-semibold bg-white " : "font-semibold"
+                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
                       >
                         <PiFilePng className="text-red-600" /> PNG
                       </button>
@@ -252,10 +253,11 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handleJpeg}
-                        className={`${active ? " font-semibold bg-white " : "font-semibold"
-                          } group flex w-full items-center gap-2  py-1.5 text-black`}
+                        className={`${
+                          active ? " font-semibold bg-white " : "font-semibold"
+                        } group flex w-full items-center gap-2  py-1.5 text-black`}
                       >
-                        <GrDocumentText className="text-primary" /> PDF Standard
+                        <GrDocumentText className="text-red-600" /> JPG
                       </button>
                     )}
                   </Menu.Item>

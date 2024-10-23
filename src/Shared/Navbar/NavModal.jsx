@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
   const { user } = useAuth();
   const [role, isLoading] = useRole();
- 
+
   const axiosPublic = useAxiosPublic();
 
   const { data: userData = {}, refetch } = useQuery({
@@ -44,8 +44,9 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <Link to={`userDashboard/editingProfile`}>
                     <button
-                      className={`${active ? "bg-white" : ""
-                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      className={`${
+                        active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     >
                       My Profile
                     </button>
@@ -57,8 +58,9 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <Link to="/my-resume">
                     <button
-                      className={`${active ? "bg-white" : ""
-                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      className={`${
+                        active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     >
                       My Resume
                     </button>
@@ -68,15 +70,45 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
 
               <Menu.Item>
                 {({ active }) => (
-                  <Link to='/my-favorites'>
-                  <button
-                    className={`${
-                      active ? "bg-white" : ""
-                    } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
-                    onClick={() => handleRoleChange("favorite")}
-                  >
-                    Favorite
-                  </button>
+                  <Link to="/my-favorites">
+                    <button
+                      className={`${
+                        active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      onClick={() => handleRoleChange("favorite")}
+                    >
+                      Favorite
+                    </button>
+                  </Link>
+                )}
+              </Menu.Item>
+
+              <Menu.Item>
+                {({ active }) => (
+                  <Link>
+                    <button
+                      className={`${
+                        active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      onClick={() => handleRoleChange("pricing")}
+                    >
+                      Plan & Pricing
+                    </button>
+                  </Link>
+                )}
+              </Menu.Item>
+
+              <Menu.Item>
+                {({ active }) => (
+                  <Link to={`/purchase`}>
+                    <button
+                      className={`${
+                        active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      onClick={() => handleRoleChange("purchaseHistory")}
+                    >
+                      Purchase History
+                    </button>
                   </Link>
                 )}
               </Menu.Item>
@@ -84,33 +116,10 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    className={`${active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
-                    onClick={() => handleRoleChange("pricing")}
-                  >
-                    Plan & Pricing
-                  </button>
-                )}
-              </Menu.Item>
-
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
-                    onClick={() => handleRoleChange("purchaseHistory")}
-                  >
-                    Purchase History
-                  </button>
-                )}
-              </Menu.Item>
-
-              <Menu.Item>
-                {({ active }) => (
-                  <button
                     onClick={handleLogoutBtn}
-                    className={`${active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 text-black`}
+                    className={`${
+                      active ? "bg-white" : ""
+                    } group flex w-full items-center gap-2 py-1.5 text-black`}
                   >
                     Logout
                     <GrLogout className="size-4 fill-black/30" />
@@ -128,8 +137,9 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <Link to={`userDashboard/editingProfile`}>
                     <button
-                      className={`${active ? "bg-white" : ""
-                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      className={`${
+                        active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     >
                       My Profile
                     </button>
@@ -141,8 +151,9 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <Link to={`/dashboard`}>
                     <button
-                      className={`${active ? "bg-white" : ""
-                        } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      className={`${
+                        active ? "bg-white" : ""
+                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                     >
                       Dashboard
                     </button>
@@ -154,8 +165,9 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                 {({ active }) => (
                   <button
                     onClick={handleLogoutBtn}
-                    className={`${active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 text-black`}
+                    className={`${
+                      active ? "bg-white" : ""
+                    } group flex w-full items-center gap-2 py-1.5 text-black`}
                   >
                     Logout
                     <GrLogout className="size-4 fill-black/30" />

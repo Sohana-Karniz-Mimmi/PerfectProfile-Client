@@ -74,25 +74,25 @@ const CheckoutForm = () => {
           window.location.replace(redirectUrl);
         }
       });
-      console.log(user.email)
+    console.log(user.email);
     // update user profile in db
     axiosPublic
-    .put(`/user/${user.email}`, {
-      productName,
-      amount,
-      createdAt: user?.createdAt || new Date().toISOString().split("T")[0],
-      isRead: false,
-    })
-    .then((res) => {
-      if (res.data.modifiedCount === 1) {
-        console.log('User updated successfully', res);
-      } else {
-        console.error('Failed to update user');
-      }
-    })
-    .catch((error) => {
-      console.error('Error updating user:', error);
-    });
+      .put(`/user/${user.email}`, {
+        productName,
+        amount,
+        createdAt: user?.createdAt || new Date().toISOString().split("T")[0],
+        isRead: false,
+      })
+      .then((res) => {
+        if (res.data.modifiedCount === 1) {
+          console.log("User updated successfully", res);
+        } else {
+          console.error("Failed to update user");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+      });
   };
 
   return (
@@ -171,6 +171,8 @@ const CheckoutForm = () => {
                 <input
                   type="email"
                   id="email"
+                  defaultValue={user?.email}
+                  readOnly
                   placeholder="john.capler@fang.com"
                   {...register("email", { required: true })}
                   //   required
