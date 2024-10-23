@@ -1,4 +1,5 @@
 const Template1 = ({ data, userData }) => {
+  console.log(userData);
   return (
     <div
       className="w-[790px] min-h-[1000px] mx-auto bg-white pb-8"
@@ -44,7 +45,10 @@ const Template1 = ({ data, userData }) => {
                 <p className="mt-1 text-sm font-roboto break-words text-justify ">
                   Use this section to give recruiters a quick glimpse of your
                   professional profile. In just 3-4 lines, highlight your
-                  background, education and main skills. Use this section to give recruiters a quick glimpse of your professional profile. In just 3-4 lines, highlight your background, education and main skills.
+                  background, education and main skills. Use this section to
+                  give recruiters a quick glimpse of your professional profile.
+                  In just 3-4 lines, highlight your background, education and
+                  main skills.
                 </p>
               </>
             </section>
@@ -109,9 +113,7 @@ const Template1 = ({ data, userData }) => {
                     <h3 className=" font-medium font-roboto break-words ">
                       {cert.title || "Course Name"} -{" "}
                       {cert.institution || "Institute Name"} -{" "}
-                      <span className="">
-                        ({cert.year || "Duration"})
-                      </span>
+                      <span className="">({cert.year || "Duration"})</span>
                     </h3>
                   </li>
                 ))}
