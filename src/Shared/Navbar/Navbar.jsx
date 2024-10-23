@@ -11,17 +11,26 @@ import { MdDashboard } from "react-icons/md";
 import NavModal from "./NavModal";
 import Notification from "./Notification";
 import useAuth from "../../Hook/useAuth";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const modalRef = useRef(null); // Reference to the modal
+
+
+  // Function to close the modal when navLink is clicked
+  const closeMenuOnNavLinkClick = () => {
+    setMenuOpen(false);
+  };
 
   const navLinks = (
     <>
       <li>
         {" "}
         <NavLink
+          onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
               ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
@@ -37,6 +46,7 @@ const Navbar = () => {
       <li>
         {" "}
         <NavLink
+          onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
               ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
@@ -52,6 +62,7 @@ const Navbar = () => {
       <li>
         {" "}
         <NavLink
+          onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
               ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
@@ -82,6 +93,7 @@ const Navbar = () => {
       <li>
         {" "}
         <NavLink
+          onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
               ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
@@ -97,6 +109,7 @@ const Navbar = () => {
       <li>
         {" "}
         <NavLink
+          onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
               ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
@@ -111,6 +124,7 @@ const Navbar = () => {
       <li>
         {" "}
         <NavLink
+          onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
               ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
@@ -129,6 +143,26 @@ const Navbar = () => {
     setMenuOpen(!menuOpen);
   };
 
+  // Function to handle clicks outside of the modal
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setMenuOpen(false); // Close the modal when clicking outside
+    }
+  };
+
+  // Add event listener to detect clicks outside the modal
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside); // Cleanup on component unmount
+    };
+  }, [menuOpen]);
+
   const handleLogoutBtn = () => {
     logOut();
     navigate("/")
@@ -141,7 +175,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="min-h-[99px] border-b shadow">
+    <div className="min-h-[99px] border-b-[1px] z-[1000] shadow-sm">
       <Container>
         <div className="flex items-center justify-between min-h-[99px] p-0 md:py-3 py-5">
           <div className="flex items-center">
@@ -151,25 +185,15 @@ const Navbar = () => {
                 className="m-1 bg-transparent border-none lg:hidden shadow-none cursor-pointer"
                 onClick={toggleMenu} // Call toggle function on click
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 font-bold"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
+                <GiHamburgerMenu className="text-xl" />
               </div>
 
               {/* Menu */}
               {menuOpen && (
-                <ul className="absolute mt-2 p-2 shadow-lg z-50 bg-white rounded-lg w-52 text-black space-y-2">
+                <ul
+                  ref={modalRef}
+                  className="absolute mt-2 p-2 shadow-lg !z-[1000] bg-white rounded-lg w-52 text-black space-y-2"
+                >
                   {navLinks}
                 </ul>
               )}
@@ -177,7 +201,8 @@ const Navbar = () => {
 
             <Link to="/">
               <h1 className="text-[#00000f] lg:text-2xl text-xl font-extrabold font-lora uppercase">
-                Perfect<span className="text-primary">Profile</span>
+                Perfect
+                <span className="text-primary">Profile</span>
               </h1>
             </Link>
 
@@ -202,7 +227,8 @@ const Navbar = () => {
                   }
                   className="font-bold flex gap-2 items-center justify-center py-2 bg-primary px-5 rounded-lg text-white"
                 >
-                  <FaUser className="text-sm text-white"></FaUser>Log In
+                  <FaUser className="text-sm text-white"></FaUser>
+                  Log In
                 </button>
 
                 <Link to={`predefined-templates`}>
