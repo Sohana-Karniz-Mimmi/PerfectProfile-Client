@@ -51,6 +51,7 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
   // };
   const onSubmit = async (data) => {
     setLoading(true);
+
     if (rating === 0) {
       // If rating is 0, set an error
       setError("rating", { type: "manual", message: "Rating is required" });
@@ -141,7 +142,7 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
           </div>
 
           {/* Feedback Text Area */}
-          <label className="block text-xl font-lora font-extrabold mb-2">
+          <label className="block text-xl font-lora font-extrabold mb-1">
             Add a comment
           </label>
           <textarea
@@ -164,8 +165,8 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
           <div className="mt-4 flex justify-end">
             <button
               type="submit"
-              // disabled={loading}
-              className={`px-5 py-2  text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l  text-sm md:text-base font-montserrat  shadow-lg font-bold text-white`}
+              disabled={loading}
+              className={` px-5 py-2  text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l  text-sm md:text-base font-montserrat  shadow-lg font-bold text-white `}
             >
               Submit Feedback
             </button>
