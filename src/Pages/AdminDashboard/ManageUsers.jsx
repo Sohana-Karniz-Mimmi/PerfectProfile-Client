@@ -136,9 +136,9 @@ const ManageUsers = () => {
         <div className="pb-8 px-2 md:px-0 pt-2.5">
           <div className="-mx-4 sm:-mx-8 px-2 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-              <table className="min-w-full leading-normal ">
+              <table className="min-w-full leading-normal">
                 <thead className="bg-gray-300 ">
-                  <tr className="">
+                  <tr className=" text-sm">
                     {/* <th
                       scope='col'
                       className='pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
