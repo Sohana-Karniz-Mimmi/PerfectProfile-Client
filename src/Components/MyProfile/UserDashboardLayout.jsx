@@ -14,7 +14,7 @@ const UserDashboardLayout = () => {
       
 
       <div className="md:flex justify-between">
-        <div className="w-72 md:mt-[100px] mt-[159px] fixed z-[50] ">
+        <div className="w-72 md:mt-[100px] mt-[173px] fixed z-[50] ">
           <SitebarProfileRoute />
         </div>
         {/* Main Content */}

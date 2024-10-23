@@ -131,327 +131,172 @@ const BeforeEditingProfile = () => {
 
   return (
     <>
-      <div
-        className="w-full flex flex-col  mx-auto justify-center items-center md:mt-8 mt-52"
-        id="general"
-      >
-        <form
-          onSubmit={handleSaveChanges}
-          className=" lg:w-[70%] w-full
-    p-8 shadow-2xl rounded-lg"
-        >
-          {/* Profile Photo Section */}
-          <div className="flex flex-col md:flex-row justify-center md:justify-between items-center ">
-            <div className="flex flex-col items-center md:items-start">
-              <h2 className="md:text-xl mb-4 text-center md:text-left ml-3 font-montserrat">
+      <div className="md:mt-6 mt-28 lg:px-8 md:px-4 px-2">
+        <h1 className="text-3xl font-bold font-lora">Your Account</h1>
+        <div className="lg:w-1/2 w-full " id="general">
+          <form onSubmit={handleSaveChanges} className="w-full py-8">
+            {/* Profile Photo Section */}
+            <div className="flex flex-col justify-between ">
+              <h2 className="md:text-lg text-base font-bold mb-4 font-montserrat">
                 Profile Photo
               </h2>
-              <div className="flex justify-center items-center">
-                <div className="rounded-full border-4 border-gray-300 w-32 h-32 md:w-40 md:h-40 overflow-hidden relative">
-                  <img
-                    src={profilePhoto}
-                    alt="Profile"
-                    className="w-full h-full object-cover"
+              <div className="flex justify-between items-center ">
+                <div className="">
+                  <div className="rounded-full border-4 border-gray-300 md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
+                    <img
+                      src={profilePhoto}
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div className="">
+                  <input
+                    type="file"
+                    name="photo"
+                    id="profilePhotoInput"
+                    style={{ display: "none" }}
+                    onChange={handleChangePhoto}
                   />
+                  <label htmlFor="profilePhotoInput">
+                    <span className="py-2 px-4 hover:bg-secondary font-montserrat cursor-pointer border border-slate-300">
+                      Change Photo
+                    </span>
+                  </label>
                 </div>
               </div>
             </div>
 
-            <div className="relative inline-block mt-16">
-              <input
-                type="file"
-                name="photo"
-                id="profilePhotoInput"
-                style={{ display: "none" }}
-                onChange={handleChangePhoto}
-              />
-              <label htmlFor="profilePhotoInput">
-                <span className="py-2 px-4 hover:bg-secondary font-montserrat cursor-pointer border border-slate-300">
-                  Change Photo
-                </span>
-              </label>
-            </div>
-          </div>
+            <hr className="border-dashed mt-6 border-slate-500" />
 
-          <hr className="border-dashed mt-6 border-slate-500" />
-
-          {/* Name Section */}
-          <div className="flex flex-col md:flex-row justify-between items-center mt-4">
-            <div className="w-full md:w-1/2">
-              <h1 className="mb-4 text-2xl text-center md:text-left font-montserrat">
+            {/* Name Section */}
+            <div className="flex flex-col justify-between mt-4">
+              <h1 className="md:text-lg text-base font-bold mb-4 font-montserrat">
                 Name
               </h1>
-              {isEditingName ? (
-                <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
-                  <input
-                    type="text"
-                    name="name"
-                    value={tempUsername}
-                    onChange={(e) => setTempUsername(e.target.value)}
-                    className="border  py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
-                  />
-                  <div className="flex justify-end sm:justify-start space-x-2">
-                    <button
-                      type="button"
-                      className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                      onClick={handleSaveName}
-                    >
-                      Save
-                    </button>
-                    <button
-                      type="button"
-                      className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
-                      onClick={handleCancelNameEdit}
-                    >
-                      Cancel
-                    </button>
-                  </div>
+              <div className="flex justify-between items-center">
+                <div className="w-full md:w-1/2">
+                  {isEditingName ? (
+                    <div className="flex flex-col sm:flex-row text-sm sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
+                      <input
+                        type="text"
+                        name="name"
+                        value={tempUsername}
+                        onChange={(e) => setTempUsername(e.target.value)}
+                        className="border text-sm  py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
+                      />
+                      <div className="flex justify-end sm:justify-start space-x-2">
+                        <button
+                          type="button"
+                          className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
+                          onClick={handleSaveName}
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
+                          onClick={handleCancelNameEdit}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <h1 className="text-base font-montserrat">{username}</h1>
+                  )}
                 </div>
-              ) : (
-                <h1 className="text-xl text-center md:text-left">{username}</h1>
-              )}
+                <div className="border">
+                  {!isEditingName && (
+                    <div className="w-full md:w-1/2">
+                      <button
+                        type="button"
+                        className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
+                        onClick={handleEditName}
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
 
-            {!isEditingName && (
-              <div className="mt-4 md:mt-16">
-                <button
-                  type="button"
-                  className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                  onClick={handleEditName}
-                >
-                  Edit
-                </button>
-              </div>
-            )}
-          </div>
+            <hr className="border-dashed border-slate-500 mt-6" />
 
-          <hr className="border-dashed border-slate-500 mt-6" />
-
-          {/* Email Section */}
-          <div className="flex flex-col md:flex-row justify-between items-center mt-4">
-            <div className="w-full md:w-1/2">
-              <h1 className="mb-4 text-2xl text-center md:text-left font-montserrat">
+            {/* Email Section */}
+            <div className="flex flex-col justify-between mt-4">
+              <h1 className="md:text-lg text-base font-bold mb-4 font-montserrat">
                 Email
               </h1>
-              {isEditingEmail ? (
-                <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
-                  <input
-                    type="email"
-                    name="email"
-                    value={tempEmail}
-                    onChange={(e) => setTempEmail(e.target.value)}
-                    className="border py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
-                  />
-                  <div className="flex justify-end sm:justify-start space-x-2">
-                    <button
-                      type="button"
-                      className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                      onClick={() => {
-                        setEmail(tempEmail); // Update email in state
-                        handleCancelEmailEdit();
-                      }}
-                    >
-                      Save
-                    </button>
-                    <button
-                      type="button"
-                      className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
-                      onClick={handleCancelEmailEdit}
-                    >
-                      Cancel
-                    </button>
-                  </div>
+              <div className="flex justify-between items-center">
+                <div className="w-full md:w-1/2">
+                  {isEditingEmail ? (
+                    <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
+                      <input
+                        type="email"
+                        name="email"
+                        value={tempEmail}
+                        onChange={(e) => setTempEmail(e.target.value)}
+                        className="border py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
+                      />
+                      <div className="flex justify-end sm:justify-start space-x-2">
+                        <button
+                          type="button"
+                          className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
+                          onClick={() => {
+                            setEmail(tempEmail); // Update email in state
+                            handleCancelEmailEdit();
+                          }}
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
+                          onClick={handleCancelEmailEdit}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <h1 className="md:text-base text-xs font-montserrat">{email}</h1>
+                  )}
                 </div>
-              ) : (
-                <h1 className="md:text-xl text-sm text-center md:text-left">{email}</h1>
-              )}
-            </div>
-
-            {!isEditingEmail && (
-              <div className="mt-4 md:mt-16">
-                <button
-                  type="button"
-                  className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                  onClick={handleEditEmail}
-                >
-                  Edit
-                </button>
-              </div>
-            )}
-          </div>
-
-          <hr className="border-dashed border-slate-500 mt-6" />
-
-          {/* Save Changes Button */}
-          <div className="mt-8 flex justify-end">
-            <button
-              type="submit"
-              className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-              disabled={isUploading}
-            >
-              {isUploading ? "Uploading..." : "Save Changes"}
-            </button>
-          </div>
-        </form>
-        <form
-          onSubmit={handleSaveChanges}
-          className=" lg:w-[70%] w-full
-    p-8 shadow-2xl rounded-lg"
-        >
-          {/* Profile Photo Section */}
-          <div className="flex flex-col md:flex-row justify-center md:justify-between items-center ">
-            <div className="flex flex-col items-center md:items-start">
-              <h2 className="md:text-xl mb-4 text-center md:text-left ml-3 font-montserrat">
-                Profile Photo
-              </h2>
-              <div className="flex justify-center items-center">
-                <div className="rounded-full border-4 border-gray-300 w-32 h-32 md:w-40 md:h-40 overflow-hidden relative">
-                  <img
-                    src={profilePhoto}
-                    alt="Profile"
-                    className="w-full h-full object-cover"
-                  />
+                <div>
+                  {!isEditingEmail && (
+                    <div className="">
+                      <button
+                        type="button"
+                        className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
+                        onClick={handleEditEmail}
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            <div className="relative inline-block mt-16">
-              <input
-                type="file"
-                name="photo"
-                id="profilePhotoInput"
-                style={{ display: "none" }}
-                onChange={handleChangePhoto}
-              />
-              <label htmlFor="profilePhotoInput">
-                <span className="py-2 px-4 hover:bg-secondary font-montserrat cursor-pointer border border-slate-300">
-                  Change Photo
-                </span>
-              </label>
+            <hr className="border-dashed border-slate-500 mt-6" />
+
+            {/* Save Changes Button */}
+            <div className="mt-8 flex justify-end">
+              <button
+                type="submit"
+                className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
+                disabled={isUploading}
+              >
+                {isUploading ? "Uploading..." : "Save Changes"}
+              </button>
             </div>
-          </div>
+          </form>
 
-          <hr className="border-dashed mt-6 border-slate-500" />
-
-          {/* Name Section */}
-          <div className="flex flex-col md:flex-row justify-between items-center mt-4">
-            <div className="w-full md:w-1/2">
-              <h1 className="mb-4 text-2xl text-center md:text-left font-montserrat">
-                Name
-              </h1>
-              {isEditingName ? (
-                <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
-                  <input
-                    type="text"
-                    name="name"
-                    value={tempUsername}
-                    onChange={(e) => setTempUsername(e.target.value)}
-                    className="border  py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
-                  />
-                  <div className="flex justify-end sm:justify-start space-x-2">
-                    <button
-                      type="button"
-                      className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                      onClick={handleSaveName}
-                    >
-                      Save
-                    </button>
-                    <button
-                      type="button"
-                      className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
-                      onClick={handleCancelNameEdit}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <h1 className="text-xl text-center md:text-left">{username}</h1>
-              )}
-            </div>
-
-            {!isEditingName && (
-              <div className="mt-4 md:mt-16">
-                <button
-                  type="button"
-                  className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                  onClick={handleEditName}
-                >
-                  Edit
-                </button>
-              </div>
-            )}
-          </div>
-
-          <hr className="border-dashed border-slate-500 mt-6" />
-
-          {/* Email Section */}
-          <div className="flex flex-col md:flex-row justify-between items-center mt-4">
-            <div className="w-full md:w-1/2">
-              <h1 className="mb-4 text-2xl text-center md:text-left font-montserrat">
-                Email
-              </h1>
-              {isEditingEmail ? (
-                <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
-                  <input
-                    type="email"
-                    name="email"
-                    value={tempEmail}
-                    onChange={(e) => setTempEmail(e.target.value)}
-                    className="border py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
-                  />
-                  <div className="flex justify-end sm:justify-start space-x-2">
-                    <button
-                      type="button"
-                      className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                      onClick={() => {
-                        setEmail(tempEmail); // Update email in state
-                        handleCancelEmailEdit();
-                      }}
-                    >
-                      Save
-                    </button>
-                    <button
-                      type="button"
-                      className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
-                      onClick={handleCancelEmailEdit}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <h1 className="md:text-xl text-sm text-center md:text-left">{email}</h1>
-              )}
-            </div>
-
-            {!isEditingEmail && (
-              <div className="mt-4 md:mt-16">
-                <button
-                  type="button"
-                  className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                  onClick={handleEditEmail}
-                >
-                  Edit
-                </button>
-              </div>
-            )}
-          </div>
-
-          <hr className="border-dashed border-slate-500 mt-6" />
-
-          {/* Save Changes Button */}
-          <div className="mt-8 flex justify-end">
-            <button
-              type="submit"
-              className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-              disabled={isUploading}
-            >
-              {isUploading ? "Uploading..." : "Save Changes"}
-            </button>
-          </div>
-        </form>
-        <div className="w-[30%"></div>
+          <div className="w-[30%]"></div>
+        </div>
       </div>
     </>
   );

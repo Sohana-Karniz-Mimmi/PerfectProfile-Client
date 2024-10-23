@@ -23,7 +23,7 @@ const SitebarProfileRoute = () => {
   return (
     <div>
       {/* Mobile Navbar */}
-      <div className=" flex mt-[95px] justify-between w-full fixed top-0 left-0 md:hidden bg-white">
+      <div className="flex mt-[95px] justify-between w-full fixed top-0 left-0 hidden bg-white">
         <div className="p-4">
           <Link
             to="/"
@@ -53,13 +53,13 @@ const SitebarProfileRoute = () => {
       </div>
       {/* Sidebar */}
       <div
-        className={`z-[100]  md:block flex flex-col justify-between bg-white border-r text-white md:w-full w-[80%] md:h-screen h-screen fixed space-y-6 px-2 py-4
+        className={`z-[100]  md:block hidden flex flex-col justify-between bg-white text-white md:w-full w-[80%] md:h-screen h-screen fixed space-y-6 px-2 py-4
         transform ${isActive ? "translate-x-0" : "-translate-x-full"} 
         transition-transform duration-200 ease-in-out md:translate-x-0 md:relative`}
       >
         <div className="h-full ">
           {/* Close Button for Mobile Devices */}
-          <div className="hidden px-4 border">
+          {/* <div className="md:block hidden px-4 border">
             <Link to="/" className="  ">
               <h1 className="font-bold text-lg lg:text-2xl uppercase font-lora">
                 <span>
@@ -68,20 +68,20 @@ const SitebarProfileRoute = () => {
                 </span>
               </h1>
             </Link>
-          </div>
+          </div> */}
           {/* {isActive && (
             <button onClick={handleToggle} className="p-2 text-white md:hidden">
               <AiOutlineClose className="h-5 w-5" />
             </button>
           )} */}
           <div className="h-full flex flex-col font-montserrat justify-between">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               <NavLink
                 to="editingProfile"
                 className={({ isActive }) =>
                   `hover:bg-[#A7F3D0] hover:rounded px-4 py-3 flex items-center gap-2 ${
                     isActive
-                      ? "text-black font-bold"
+                      ? "text-black font-bold bg-[#A7F3D0] hover:bg-none"
                       : "text-gray-700 font-semibold"
                   }`
                 }
@@ -104,7 +104,7 @@ const SitebarProfileRoute = () => {
                 className={({ isActive }) =>
                   `hover:bg-[#A7F3D0] hover:rounded px-4 py-3 flex items-center gap-2 ${
                     isActive
-                      ? "text-black font-bold"
+                      ? "text-black font-bold bg-[#A7F3D0] hover:bg-none"
                       : "text-gray-700 font-semibold"
                   }`
                 }
