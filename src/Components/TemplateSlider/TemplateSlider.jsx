@@ -88,7 +88,7 @@ export default function App() {
     }
 
     if (template.package === "free") {
-      window.location.href = `/resume/edit/${template.templateItem}`;
+      window.location.href = `/resume/edit/${template?.templateItem}`;
       return;
     }
 
@@ -161,7 +161,7 @@ export default function App() {
                 </button>
               </div>
 
-              <img className="w-full size" src={template.image} alt="" />
+              <img className="w-full size" src={template?.image} alt="" />
             </div>
           </SwiperSlide>
         ))}

@@ -9,16 +9,13 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import ResumeEditPage from "../Pages/ResumeEditPage/ResumeEditPage";
 import FinalResume from "../Pages/FinalResume/FinalResume";
-// import Profile from "../Components/MyProfile/Profile";
 import ResumeViewer from "../Pages/ViewResume/ResumeViewer ";
-// import SocketChatLive from "../Components/LiveChat/SocketChatLive";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Statistics from "../Pages/AdminDashboard/Statistics";
 import ManageUsers from "../Pages/AdminDashboard/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
-// import MainChatBox from "../Components/LiveChat/NewChatComponent/MainChatbox";
 import PremiumRoute from "./PremiumRoute";
 import PremiumModal from "../Components/Modal/PremiumModal";
 import MyResume from "../Pages/MyResume/MyResume";
@@ -28,6 +25,8 @@ import ProfileInfo from "../Components/MyProfile/ProfileInfo";
 import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 import Favorite from "../Pages/Favorites/Favorite";
 import ResourcePage from "../Pages/Resources/ResourcePage";
+import PurchaseHistory from "../Pages/PurchaseHistory";
+import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -62,30 +61,12 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      // {
-      //   path: "/profile",
-      //   element: <Profile />,
-      // },
-      // {
-      //   path: "/livechat",
-      //   element: <SocketChatLive />,
-      // },
-      // {
-      //   path: "/profile",
-      //   element: <Profile />,
-      // },
+
       {
         path: "/my-favorites",
         element: <Favorite />,
       },
-      {
-        // path: "/livechat",
-        // element: <SocketChatLive />,
-      },
-      // {
-      //   path: "/address",
-      //   element: <Address />,
-      // },
+
       {
         path: "/my-resume",
         element: <MyResume />,
@@ -93,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "/resource",
         element: <ResourcePage />,
+      },
+      {
+        path: "/purchase",
+        element: <PurchaseHistory />,
       },
     ],
   },
@@ -112,7 +97,9 @@ const router = createBrowserRouter([
     path: "/resume/final-resume/:id",
     element: <FinalResume />,
     loader: ({ params }) =>
-      fetch(`${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume/${params.id}`),
+      fetch(
+        `${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume/${params.id}`
+      ),
   },
   {
     path: "/resume/:link",
@@ -124,7 +111,7 @@ const router = createBrowserRouter([
     element: (
       <PrivetRoute>
         <AdminRoute>
-        <DashboardLayout />
+          <DashboardLayout />
         </AdminRoute>
       </PrivetRoute>
     ),
@@ -145,6 +132,16 @@ const router = createBrowserRouter([
           <PrivetRoute>
             <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "transaction-history",
+        element: (
+          <PrivetRoute>
+            <AdminRoute>
+              <AllPaymentHistory />
             </AdminRoute>
           </PrivetRoute>
         ),

@@ -120,7 +120,7 @@ const Sidebar = () => {
             />
             <MenuItem
               label="Payment History"
-              address="/transaction-history"
+              address="transaction-history"
               icon={MdPayments}
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
             />

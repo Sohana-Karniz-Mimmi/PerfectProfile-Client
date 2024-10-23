@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Async thunk to fetch payment data from backend
-export const fetchPaymentData = createAsyncThunk(
-  "payment/fetchPaymentData",
-  async () => {
-    const response = await fetch(`${import.meta.env.VITE_LOCALHOST_API_URL}/payments`);
+// Thunk to fetch paginated payment data
+export const fetchPayments = createAsyncThunk(
+  "payment/fetchPayments",
+  async ({ page, limit }) => {
+    const response = await fetch(
+      `${
+        import.meta.env.VITE_LOCALHOST_API_URL
+      }/payments?page=${page}&limit=${limit}`
+    );
     const data = await response.json();
-    
     return data;
   }
 );
@@ -14,27 +17,38 @@ export const fetchPaymentData = createAsyncThunk(
 const paymentSlice = createSlice({
   name: "payment",
   initialState: {
-    totalAmount: 0,
-    paymentData: [],
-    status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
-    error: null,
+    payments: [],
+    totalPayments: 0,
+    totalAmount:0,
+    totalPages: 0,
+    currentPage: 1,
+    loading: false,
+    error: "",
   },
-  reducers: {},
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPaymentData.pending, (state) => {
-        state.status = "loading";
+      .addCase(fetchPayments.pending, (state) => {
+        state.loading = true;
       })
-      .addCase(fetchPaymentData.fulfilled, (state, action) => {
-        state.status = "succeeded";
+      .addCase(fetchPayments.fulfilled, (state, action) => {
+        state.loading = false;
+        state.payments = action.payload.payments;
         state.totalAmount = action.payload.totalAmount;
-        state.paymentData = action.payload.payments;
+        state.totalPayments = action.payload.totalPayments;
+        state.totalPages = action.payload.totalPages;
+        state.currentPage = action.payload.currentPage;
       })
-      .addCase(fetchPaymentData.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
+      .addCase(fetchPayments.rejected, (state) => {
+        state.loading = false;
+        state.error = "Failed to fetch payment data";
       });
   },
 });
 
+export const { setCurrentPage } = paymentSlice.actions;
 export default paymentSlice.reducer;
