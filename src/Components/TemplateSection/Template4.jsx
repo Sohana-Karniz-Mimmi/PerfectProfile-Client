@@ -2,7 +2,6 @@ import { IoMail } from "react-icons/io5";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 const Template4 = ({ data, userData }) => {
-
   return (
     <div className="w-[790px] min-h-[1000px] mx-auto bg-slate-50 shadow-2xl rounded-lg border-2 border-secondary">
       <div className="">
@@ -25,32 +24,39 @@ const Template4 = ({ data, userData }) => {
               <p>
                 <IoMail />
               </p>
-              <p> {userData?.email === "" || userData?.email === undefined
-                ? "yourmail@gmail.com"
-                : userData?.email}{" "}</p>
+              <p>
+                {" "}
+                {userData?.email === "" || userData?.email === undefined
+                  ? "yourmail@gmail.com"
+                  : userData?.email}{" "}
+              </p>
             </div>
             <div className="flex items-center justify-center gap-2 ">
               <p>
                 <FaPhoneFlip />
               </p>
-              <p>{" "}
+              <p>
+                {" "}
                 {userData?.phone === "" || userData?.phone === undefined
                   ? "+88012345678"
-                  : userData?.phone}{" "}</p>
+                  : userData?.phone}{" "}
+              </p>
             </div>
             <div className="flex items-center justify-center gap-2 ">
               <FaMapMarkerAlt className="inline" />
-              <p className="inline">{" "}
+              <p className="inline">
+                {" "}
                 {userData?.address === "" || userData?.address === undefined
                   ? "Your address"
-                  : userData?.address}</p>
+                  : userData?.address}
+              </p>
             </div>
           </div>
         </header>
         <div className="lg:px-7 px-4 py-3 ">
           {/* Career Objective */}
           {userData?.careerObjective === "" ||
-            userData?.careerObjective === undefined ? (
+          userData?.careerObjective === undefined ? (
             <section className="mb-1">
               <>
                 <h2 className=" uppercase text-sm  font-semibold  text-center  bg-gray-400">
@@ -59,7 +65,10 @@ const Template4 = ({ data, userData }) => {
                 <p className="mt-1 text-sm font-roboto break-words text-justify ">
                   Use this section to give recruiters a quick glimpse of your
                   professional profile. In just 3-4 lines, highlight your
-                  background, education and main skills. Use this section to give recruiters a quick glimpse of your professional profile. In just 3-4 lines, highlight your background, education and main skills.
+                  background, education and main skills. Use this section to
+                  give recruiters a quick glimpse of your professional profile.
+                  In just 3-4 lines, highlight your background, education and
+                  main skills.
                 </p>
               </>
             </section>
@@ -113,7 +122,6 @@ const Template4 = ({ data, userData }) => {
             </section>
           )}
 
-
           {/* Certifications */}
           {userData?.certifications && userData?.certifications.length >= 1 && (
             <section className="mb-1 space-y-3">
@@ -126,16 +134,13 @@ const Template4 = ({ data, userData }) => {
                     <h3 className=" font-medium font-roboto break-words ">
                       {cert.title || "Course Name"} -{" "}
                       {cert.institution || "Institute Name"} -{" "}
-                      <span className="">
-                        ({cert.year || "Duration"})
-                      </span>
+                      <span className="">({cert.year || "Duration"})</span>
                     </h3>
                   </li>
                 ))}
               </ul>
             </section>
           )}
-
 
           {/* Work Experience */}
           {userData?.workExperience && userData?.workExperience.length >= 1 && (
@@ -149,27 +154,26 @@ const Template4 = ({ data, userData }) => {
                     <h3 className="font-medium">
                       {exp.jobTitle || "Your Position"} -{" "}
                       {exp.company || "Company Name"} -{" "}
-
                       <span className="">
                         (
                         {exp.startDate
                           ? new Date(exp.startDate).toLocaleDateString(
-                            "en-US",
-                            {
-                              year: "numeric",
-                              month: "short",
-                            }
-                          )
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "short",
+                              }
+                            )
                           : "Start Date"}{" "}
                         -{" "}
                         {exp.isCurrent
                           ? "Present" // If isCurrent is true, show 'Present'
                           : exp.endDate
-                            ? new Date(exp.endDate).toLocaleDateString("en-US", {
+                          ? new Date(exp.endDate).toLocaleDateString("en-US", {
                               year: "numeric",
                               month: "short",
                             })
-                            : "End Date"}
+                          : "End Date"}
                         )
                       </span>
                     </h3>
@@ -184,21 +188,24 @@ const Template4 = ({ data, userData }) => {
           )}
 
           {/* Extra Curricular Activities */}
-          {userData?.extraCurricularActivities && userData?.extraCurricularActivities.length > 0 && (
-            <section className="mb-1">
-              <h2 className="  text-sm uppercase font-semibold  text-center  bg-gray-400">
-                Extra Curricular Activities
-              </h2>
-              <ul className="mt-1 text-sm space-y-1">
-                {userData?.extraCurricularActivities.map((activityItem, index) => (
-                  <li key={index} className="text-gray-600">
-                    <strong>{activityItem.activity || "Work Title"}</strong> -{" "}
-                    {activityItem.description || "About your activities"}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {userData?.extraCurricularActivities &&
+            userData?.extraCurricularActivities.length > 0 && (
+              <section className="mb-1">
+                <h2 className="  text-sm uppercase font-semibold  text-center  bg-gray-400">
+                  Extra Curricular Activities
+                </h2>
+                <ul className="mt-1 text-sm space-y-1">
+                  {userData?.extraCurricularActivities.map(
+                    (activityItem, index) => (
+                      <li key={index} className="text-gray-600">
+                        <strong>{activityItem.activity || "Work Title"}</strong>{" "}
+                        - {activityItem.description || "About your activities"}
+                      </li>
+                    )
+                  )}
+                </ul>
+              </section>
+            )}
 
           {/* languages */}
           {userData?.languages && userData?.languages.length >= 1 && (
@@ -215,7 +222,6 @@ const Template4 = ({ data, userData }) => {
               </ul>
             </section>
           )}
-
         </div>
       </div>
     </div>

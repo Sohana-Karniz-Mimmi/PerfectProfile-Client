@@ -65,7 +65,7 @@ const Careers = () => {
             CAREERS .{" "}
             <span className="font-normal text-gray-600">14 min read</span>
           </p>
-          <h3 className="font-bold text-blue-900 cursor-pointer text-lg md:text-xl hover:text-blue-700 transition">
+          <h3 className="font-bold text-secondary cursor-pointer text-lg md:text-xl  transition">
             Best AI Cover Letter Generators (Review & Comparison)
           </h3>
           <p className="my-2 text-sm md:text-base">
