@@ -30,6 +30,7 @@ import Favorite from "../Pages/Favorites/Favorite";
 import ResourcePage from "../Pages/Resources/ResourcePage";
 import Consultation from "../Pages/Consultation/Consultation";
 import ManageConsultants from "../Pages/AdminPage/ManageConsultants/ManageConsultants";
+import MakeConsultant from "../Pages/AdminPage/ManageConsultants/MakeConsultant";
 
 const router = createBrowserRouter([
   {
@@ -150,11 +151,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "manage-consultant",
+        path: "make-consultant",
         element: (
           <PrivetRoute>
             <AdminRoute>
-              <ManageConsultants />
+              <MakeConsultant />
             </AdminRoute>
           </PrivetRoute>
         ),

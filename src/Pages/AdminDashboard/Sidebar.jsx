@@ -126,8 +126,8 @@ const Sidebar = () => {
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
             /> */}
             <MenuItem
-              label="Manage Consultants"
-              address="manage-consultant"
+              label="Make Consultant"
+              address="make-consultant"
               icon={BsPersonWorkspace}
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
             />

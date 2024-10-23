@@ -65,15 +65,7 @@ const Consultation = () => {
  
   };
 
-  const {data =[], refetch} = useQuery({
-    queryKey: ["data"],
-    queryFn : async()=>{
-        const res = await axiosPublic.get(`/user/${user?.email}`)
-        return res.data
-    }
-
-})
-console.log(data)
+  
 
   return (
     <Container>
@@ -111,16 +103,18 @@ console.log(data)
                 Become a Consultant
               </button>
 
-              <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-                <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-                  <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+              <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50 ">
+                <div className=" fixed inset-0 w-screen overflow-y-auto p-4">
+                 <div className="flex min-h-full items-center justify-center">
+                 <DialogPanel className=" max-w-lg space-y-4 border bg-white p-12">
+                 <DialogTitle className="font-bold text-2xl text-center">Application Form</DialogTitle>
                   <form
                       onSubmit={handleSubmit}
                       className="w-full mt-6 flex flex-col gap-3"
                     >
                       {/* basic info */}
-                      <h1 className="mt-2">Basic Information :</h1>
-                      <div className="space-y-3">
+                      <h1 className="mt-3 mb-1 font-semibold text-xl">Basic Information :</h1>
+                      <div className="space-y-4">
                         <div className="relative">
                           <label
                             htmlFor="text"
@@ -134,7 +128,7 @@ console.log(data)
                             defaultValue={user?.displayName}
                             placeholder="Enter your name"
                             required
-                            className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm"
+                            className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                           />
                         </div>
                         <div className="relative">
@@ -151,7 +145,7 @@ console.log(data)
                             id="email"
                             placeholder="Enter your email"
                             required
-                            className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm"
+                            className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                           />
                         </div>
                         {/* phone */}
@@ -168,17 +162,17 @@ console.log(data)
                             id="number"
                             placeholder="Enter your Phone Number"
                             required
-                            className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm"
+                            className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                           />
                         </div>
                       </div>
 
                       {/* qualification and experience */}
                       <div>
-                        <h1 className="mb-4 mt-4">
+                        <h1 className="mb-5 mt-5 text-xl font-semibold">
                           Qualifications & Experience:
                         </h1>
-                        <div className="space-y-3">
+                        <div className="space-y-4">
                           {/* 1 */}
                           <div className="relative">
                             <label
@@ -190,11 +184,11 @@ console.log(data)
                             <select
                               name="expertise"
                               id="expertise"
-                              className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm "
+                              className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                             >
                               <option value="">Select Area</option>
-                              <option value="technical">Technical</option>
-                              <option value="nonTechnical">
+                              <option value="Technical">Technical</option>
+                              <option value="Non-Technical">
                                 Non-Technical
                               </option>
                             </select>
@@ -212,7 +206,7 @@ console.log(data)
                             <select
                               name="experience"
                               id="experience"
-                              className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm "
+                              className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                             >
                               
                               <option value="">Select Experience</option>
@@ -237,7 +231,7 @@ console.log(data)
                               name="resume"
                               placeholder="Please Provide Resume Link"
                               required
-                              className="mt-1 block w-[424px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm"
+                              className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                             />
                           </div>
                         </div>
@@ -246,38 +240,19 @@ console.log(data)
                       <div className="mt-4">
                         <button  type="submit"
                           
-                          className="py-2 rounded-md w-full bg-secondary text-white hover:bg-transparent border hover:text-primary hover:border hover:border-primary ">
-                            Submit
+                          className="py-2 font-bold rounded-md w-full bg-secondary text-white hover:bg-transparent border hover:text-primary hover:border hover:border-primary ">
+                            Submit Application
 
                         </button>
                       </div>
                     </form>
                   </DialogPanel>
+                 </div>
                 </div>
               </Dialog>
 
 
-              {/* <dialog id="consultant_modal" className="modal">
-                <div className="modal-box text-black bg-transparent !shadow-none relative h-full w-full font-montserrat">
-                  <div className="bg-white h-[667px] md:h-[680px]  p-6 !overflow-hidden">
-                    <div>
-                      <h1 className="text-2xl text-center font-semibold">
-                        Application Form
-                      </h1>
-                    </div>
-
-                    
-                  </div>
-                  <button
-                    className="btn btn-sm btn-circle absolute right-2 top-2"
-                    onClick={() =>
-                      document.getElementById("consultant_modal").close()
-                    }
-                  >
-                    ✕
-                  </button>
-                </div>
-              </dialog> */}
+           
            
           </div>
         </div>
