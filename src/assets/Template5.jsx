@@ -3,21 +3,21 @@ import { FaPhoneFlip } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 const Template5 = ({ data }) => {
   console.log(data);
-  const {
-    _id,
-    name,
-    jobTitle,
-    careerObjective,
-    email,
-    phone,
-    address,
-    education,
-    certifications,
-    workExperience,
-    skills,
-    languages,
-    extraCurricularActivities,
-  } = data;
+  // const {
+  //   _id,
+  //   name,
+  //   jobTitle,
+  //   careerObjective,
+  //   email,
+  //   phone,
+  //   address,
+  //   education,
+  //   certifications,
+  //   workExperience,
+  //   skills,
+  //   languages,
+  //   extraCurricularActivities,
+  // } = data;
   return (
     <div className="w-[35rem] h-[41rem] mx-auto    shadow-2xl rounded-lg  ">
       {/* Header - Personal Info */}

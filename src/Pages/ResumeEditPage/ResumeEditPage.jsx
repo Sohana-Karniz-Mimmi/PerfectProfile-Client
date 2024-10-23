@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-// import Template2 from "../../Components/TemplateSection/Template2";
-import Template3 from "../../Components/TemplateSection/Template3";
 import {
   FaBackward,
   FaCertificate,
@@ -31,18 +29,18 @@ import axios from "axios";
 import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Template1 from "../../assets/Template1";
-import Template4 from "../../Components/TemplateSection/Template4";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
-import Template2nd, {
-  ImageContext,
-} from "../../Components/TemplateSection/Template2nd";
-import Template5 from "../../Components/TemplateSection/Template5";
-import Template6 from "../../Components/TemplateSection/Template6";
 import useAuth from "../../Hook/useAuth";
-import MyTemplate from "../../assets/MyTemplate";
-import { useProfile } from "../../Context/ProfileContext";
+
+/******** Templates **********/
+import Template1 from "../../Components/AllTemplates/Template1";
+import Template2 from "../../Components/AllTemplates/Template2";
+import Template3 from "../../Components/AllTemplates/Template3";
+import Template4 from "../../Components/AllTemplates/Template4";
+import Template5 from "../../Components/AllTemplates/Template5";
+import Template6 from "../../Components/AllTemplates/Template6";
+import NewTemplate from "../../Components/AllTemplates/NewTemplate";
 
 const ResumeEditPage = () => {
   const { user } = useAuth();
@@ -121,7 +119,7 @@ const ResumeEditPage = () => {
     // { id: 7, name: "Finalize" },
   ];
   const { setSavedResume, setShareLink } = useContext(ResumeContext);
-  const { image } = useContext(ImageContext); // Use useContext to access setImage
+  // const { image } = useContext(ImageContext); // Use useContext to access setImage
 
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -417,9 +415,9 @@ const ResumeEditPage = () => {
     }
   }, [resumeId]);
 
-  // console.log("resume data", myResumeTemplates);
-  // console.log("template data", template);
-  // console.log("user data", userData);
+  // console.log('resume data', myResumeTemplates);
+  // console.log('template data', template);
+  // console.log('user data', userData);
 
   const renderTemplate = (id) => {
     if (id === "template1") {
@@ -427,7 +425,7 @@ const ResumeEditPage = () => {
     }
     if (id === "template2") {
       return (
-        <Template2nd
+        <Template2
           data={template}
           userData={userData}
           setUserData={setUserData}
@@ -435,7 +433,10 @@ const ResumeEditPage = () => {
       );
     }
     if (id === "template3") {
-      return <Template3 data={template} userData={userData} />;
+      return <Template3 
+      data={template} 
+      userData={userData} 
+      setUserData={setUserData} />;
     }
     if (id === "template4") {
       return <Template4 data={template} userData={userData} />;
@@ -444,27 +445,35 @@ const ResumeEditPage = () => {
       return <Template5 data={template} userData={userData} />;
     }
     if (id === "template6") {
-      return <Template6 data={template} userData={userData} />;
+      return <Template6 
+      data={template} 
+      userData={userData} 
+      setUserData={setUserData} />;
     }
   };
   const navigate = useNavigate();
 
+  console.log(resumeId);
+  console.log('templateItem', id,);
   // Function to generate a shareable link
   const handleShare = async () => {
+    console.log(resumeId);
     const resumeData = {
       ...userData,
       templateItem: id,
       user_email: user?.email,
-      image,
+      resumeId: resumeId,
     };
     console.log(resumeData);
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_LOCALHOST_API_URL}/share-resume`,
+      const response = await axios.put(
+        `${import.meta.env.VITE_LOCALHOST_API_URL}/customize-resume`,
         resumeData,
         { withCredentials: true }
       );
+      console.log("Response data:", response.data);
+
       if (response.data.success) {
         setShareLink(response.data.shareLink);
         localStorage.removeItem("currentStep");
@@ -475,6 +484,8 @@ const ResumeEditPage = () => {
       console.error("Error generating share link:", error);
     }
   };
+
+
 
   return (
     <div className="flex xl:flex-row flex-col min-h-screen">
@@ -1190,10 +1201,11 @@ const ResumeEditPage = () => {
                   type="submit"
                   className="bg-primary uppercase font-bold text-lg flex items-center gap-2 text-white py-3 px-5"
                 >
-                  Save & Finalize
+                  Save
                 </button>
               </div>
             )}
+            
           </div>
         </form>
       </div>

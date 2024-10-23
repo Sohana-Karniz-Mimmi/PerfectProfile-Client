@@ -11,41 +11,11 @@ import axios from "axios";
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
-export const ImageContext = createContext();
-export const ImageState = ({ children }) => {
-  const [image, setImage] = useState(null);
-
-  return (
-    <ImageContext.Provider value={{ image, setImage }}>
-      {children}
-    </ImageContext.Provider>
-  );
-};
-
-const Template2nd = ({ data, userData, setUserData }) => {
+const Template2 = ({ data, userData, setUserData }) => {
   const axiosPublic = useAxiosPublic();
-  const { setImage } = useContext(ImageContext); // Use useContext to access setImage
-
+  
   const { register, handleSubmit, reset } = useForm();
-  // console.log(userData.image)
-  const onSubmit = async (data) => {
-    console.log(data);
-    // img bb te data upload kore url niye db te save korbo
-    const imgFile = { image: data.image[0] };
-    const res = await axiosPublic.post(img_hosting_api, imgFile, {
-      headers: {
-        "content-Type": "multipart/form-data",
-      },
-    });
-    console.log(res.data);
-    console.log(data?.image);
-
-    if (res.data.success) {
-      const image = res.data.data.display_url;
-
-      setImage(image);
-    }
-  };
+  
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -63,7 +33,7 @@ const Template2nd = ({ data, userData, setUserData }) => {
           // Update the userData state with the new profile image URL
           setUserData((prevUserData) => ({
             ...prevUserData,
-            profile: imageUrl, // Update only the profile field
+            profile: imageUrl, 
           }));
         })
         .catch((error) => {
@@ -77,12 +47,12 @@ const Template2nd = ({ data, userData, setUserData }) => {
 
   return (
     <div className="relative ">
-      <div className="w-[790px] min-h-[1000px] mx-auto bg-white flex ">
+      <div className="w-[790px] min-h-[1000px] mx-auto flex bg-white">
         {/* 1st */}
         <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[270px] w-[11rem] ">
           <div className="lg:w-44 h-12 w-32 mx-auto px-2.5 py-4 mb-2 ">
             <img
-              className="rounded-full lg:w-[9rem] h-36 w-36 cursor-pointer"
+              className="rounded-full lg:w-[9rem] h-36 w-36 object-cover cursor-pointer"
               src={userData?.profile || img}
               alt=""
               id="profile-pic"
@@ -116,7 +86,7 @@ const Template2nd = ({ data, userData, setUserData }) => {
               userData?.careerObjective !== "" && (
                 <section className="mb-1">
                   <h2 className=" uppercase text-sm font-roboto font-bold text-white border-b border-white ">
-                  About Me
+                    Career Objective
                   </h2>
                   <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
                     {userData?.careerObjective}
@@ -293,7 +263,7 @@ const Template2nd = ({ data, userData, setUserData }) => {
                           )
                         </span>
                       </h3>
-                      <p className="font-roboto text-justify  text-sm max-w-[450px] break-words">
+                      <p className="font-roboto text-justify  text-sm  break-words">
                         {exp.description ||
                           "Include your degree, school name and the year you graduated. If you don’t have a degree, list coursework or training that’s relevant to the job you’re applying for."}
                       </p>
@@ -344,4 +314,4 @@ const Template2nd = ({ data, userData, setUserData }) => {
   );
 };
 
-export default Template2nd;
+export default Template2;

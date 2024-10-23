@@ -143,9 +143,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="min-h-[99px] border-b shadow">
-      <Container>
-        <div className="flex items-center justify-between min-h-[99px] p-0 md:py-3 py-5">
+    <div className="min-h-[99px] border-b shadow ">
+      {/* <Container> */}
+        <div className="max-w-[93%] mx-auto xl:px-0 px-2 lg:px-8 flex items-center justify-between min-h-[99px] p-0 md:py-3 py-5">
           <div className="flex items-center">
             <div className="relative">
               {/* Hamburger Icon */}
@@ -216,7 +216,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
-      </Container>
+      {/* </Container> */}
 
       {/* Modal for Login */}
       <Login />
