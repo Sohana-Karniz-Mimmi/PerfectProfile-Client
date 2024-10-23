@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "./../../Hook/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-
+import { HiDotsHorizontal } from "react-icons/hi";
 
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";;
@@ -30,6 +30,7 @@ const ManageResume = () => {
   const queryClient = useQueryClient();
   // const [myResumeTemplates, setMyResumeTemplates] = useState([]);
   const [myResumeTemplate, setMyResumeTemplate] = useState(null);
+  const [previewTemplate, setPreviewTemplate] = useState(null);
 
   // useEffect(() => {
   //     const getData = async () => {
@@ -100,7 +101,14 @@ const ManageResume = () => {
 
   const closeModal = () => {
     setMyResumeTemplate(null);
+    setPreviewTemplate(null);
   };
+
+  const handlePreview = (template) => {
+    setPreviewTemplate(template); // Set the selected template for preview
+  };
+
+  console.log(myResumeTemplates);
 
   // const handleDelete = (id) => {
   //     Swal.fire({
@@ -138,16 +146,13 @@ const ManageResume = () => {
   //         });
   // };
 
-  const handleFavorite = () => {
-    toast.success("Added to the favorite");
-  };
 
   if (isLoading) {
     <LoadingSpinner />;
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 max-w-7xl mx-auto">
       <h1 className="text-3xl font-bold mb-8">Recent Designs</h1>
 
       {myResumeTemplates?.length === 0 && (
@@ -171,15 +176,14 @@ const ManageResume = () => {
         </>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {myResumeTemplates?.map((template) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {/* {myResumeTemplates?.map((template) => (
           <div
             key={template._id}
-            className={`relative bg-white rounded-lg p-4 flex flex-col items-center transition-transform transform overflow-hidden ${
-              myResumeTemplate === template._id
+            className={`relative bg-white rounded-lg p-4 flex flex-col items-center transition-transform transform overflow-hidden ${myResumeTemplate === template._id
                 ? "border-2 border-blue-500"
                 : ""
-            }`}
+              }`}
             style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
           >
             <div className="w-[275px] h-[330px] border-2 overflow-hidden">
@@ -225,10 +229,68 @@ const ManageResume = () => {
               </div>
             </div>
           </div>
+        ))} */}
+
+        {myResumeTemplates?.map((template) => (
+          <div
+            key={template._id}
+            className={`relative bg-white rounded-lg p-4 flex flex-col items-center transition-transform transform overflow-hidden ${myResumeTemplate === template._id ? "border-2 border-blue-500" : ""
+              }`}
+            style={{
+              boxShadow:
+                'rgba(0, 0, 0, 0.16) 0px 3px 6px, ' + 
+                'rgba(0, 0, 0, 0.23) 0px 3px 6px' 
+            }}
+          >
+            <div className="w-[275px] h-[330px] border-2 overflow-hidden">
+              <div
+                className="w-full h-full"
+                style={{
+                  transform: "scale(0.35)",
+                  transformOrigin: "top left",
+                  height: "400px",
+                }}
+              >
+                {template?.templateItem === "template1" && <Template1 userData={template} />}
+                {template?.templateItem === "template2" && <Template2 userData={template} />}
+                {template?.templateItem === "template3" && <Template3 userData={template} />}
+                {template?.templateItem === "template4" && <Template4 userData={template} />}
+                {template?.templateItem === "template5" && <Template5 userData={template} />}
+                {template?.templateItem === "template6" && <Template6 userData={template} />}
+              </div>
+            </div>
+
+            <div className="absolute inset-0 flex flex-col justify-between opacity-0 hover:opacity-100 transition-opacity group p-5">
+              <div className="flex justify-between items-start">
+                <input
+                  type="checkbox"
+                  className="form-checkbox text-black bg-white border-gray-300 focus:ring-offset-2 w-6 h-6"
+                  onChange={(e) => handleCheckboxChange(e, template._id)}
+                  checked={myResumeTemplate === template._id}
+                />
+                <div className="flex space-x-2">
+
+                  <Link to={`/resume/edit/${template.templateItem}?resumeId=${template._id}`}>
+                    <button className="text-black hover:text-primary bg-white p-2 rounded-xl">
+                      <FiEdit size={20} />
+                    </button>
+                  </Link>
+                </div>
+
+              </div>
+              <button
+                onClick={() => handlePreview(template)}
+                className="text-white border border-primary bg-primary mb-3 p-2 rounded-xl uppercase font-bold"
+              >
+                See Template
+              </button>
+            </div>
+          </div>
         ))}
+
       </div>
 
-      {/* Modal */}
+      {/*Delete Modal */}
       {myResumeTemplate && (
         <div className="fixed inset-0 flex items-end mb-10 justify-center z-50">
           <div
@@ -252,6 +314,32 @@ const ManageResume = () => {
           </div>
         </div>
       )}
+
+      {/*  Modal Preview Implementation */}
+      {previewTemplate && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white p-5 rounded-2xl shadow-lg max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-lg font-semibold">Preview</h2>
+              <button onClick={closeModal}>
+                <LiaTimesSolid className="hover:text-red-500" size={25} />
+              </button>
+            </div>
+            {/* Scrollable area for template preview */}
+            <div className="overflow-y-auto max-h-[90vh]">
+              {/* Render preview based on template type */}
+              {previewTemplate.templateItem === "template1" && <Template1 userData={previewTemplate} />}
+              {previewTemplate.templateItem === "template2" && <Template2 userData={previewTemplate} />}
+              {previewTemplate.templateItem === "template3" && <Template3 userData={previewTemplate} />}
+              {previewTemplate.templateItem === "template4" && <Template4 userData={previewTemplate} />}
+              {previewTemplate.templateItem === "template5" && <Template5 userData={previewTemplate} />}
+              {previewTemplate.templateItem === "template6" && <Template6 userData={previewTemplate} />}
+            </div>
+          </div>
+        </div>
+      )}
+
+
     </div>
   );
 };
