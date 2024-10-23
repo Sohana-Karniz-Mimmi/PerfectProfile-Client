@@ -50,6 +50,21 @@ const Navbar = () => {
       </li>
 
       <li>
+      
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
+            : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
+        }
+        to={"/consultation"}
+      >
+       
+        Consultation
+      </NavLink>
+    </li>
+
+      <li>
         {" "}
         <NavLink
           className={({ isActive }) =>
@@ -64,20 +79,7 @@ const Navbar = () => {
         </NavLink>{" "}
       </li>
 
-      <li>
-      
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
-          }
-          to={"/consultation"}
-        >
-         
-          Consultation
-        </NavLink>
-      </li>
+     
 
       <li>
         {" "}
