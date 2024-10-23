@@ -167,7 +167,7 @@ const ManageUsers = () => {
                       scope="col"
                       className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
                     >
-                      Status
+                      Subscription Plan
                     </th>
 
                     <th

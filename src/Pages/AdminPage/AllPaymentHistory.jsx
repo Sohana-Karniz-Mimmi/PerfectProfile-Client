@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPayments, setCurrentPage } from "../../store/Features/Payment/PaymentSlice";
+import {
+  fetchPayments,
+  setCurrentPage,
+} from "../../store/Features/Payment/PaymentSlice";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const AllPaymentHistory = () => {
@@ -87,7 +90,9 @@ const AllPaymentHistory = () => {
                     <tr key={idx}>
                       <td className="px-4 py-4 text-sm font-medium text-gray-700  whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
-                          <span>{idx + 1}</span>
+                          <span>
+                            {(currentPage - 1) * itemsPerPage + idx + 1}
+                          </span>
                         </div>
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
@@ -127,41 +132,41 @@ const AllPaymentHistory = () => {
       </div>
 
       <div className="flex justify-center mt-12">
-      {/* Previous Button */}
-      <button
-        disabled={currentPage === 1}
-        onClick={() => handlePaginationButton(currentPage - 1)}
-        className="px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-primary rounded-full disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:bg-gray-200 disabled:hover:text-gray-500 hover:bg-secondary hover:text-white"
-      >
-        <div className="flex items-center -mx-1">
-          <IoIosArrowBack />
-        </div>
-      </button>
-
-      {/* Number of page */}
-      {pages.map((btnNum) => (
+        {/* Previous Button */}
         <button
-          onClick={() => handlePaginationButton(btnNum)}
-          key={btnNum}
-          className={`hidden ${
-            currentPage === btnNum ? 'bg-primary text-white' : ''
-          } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
+          disabled={currentPage === 1}
+          onClick={() => handlePaginationButton(currentPage - 1)}
+          className="px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-primary rounded-full disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:bg-gray-200 disabled:hover:text-gray-500 hover:bg-secondary hover:text-white"
         >
-          {btnNum}
+          <div className="flex items-center -mx-1">
+            <IoIosArrowBack />
+          </div>
         </button>
-      ))}
 
-      {/* Next Button */}
-      <button
-        disabled={currentPage === totalPages}
-        onClick={() => handlePaginationButton(currentPage + 1)}
-        className="px-4 py-2 mx-1 text-white bg-primary rounded-full hover:bg-secondary disabled:cursor-not-allowed disabled:bg-gray-200"
-      >
-        <div className="flex items-center -mx-1">
-          <IoIosArrowForward />
-        </div>
-      </button>
-    </div>
+        {/* Number of page */}
+        {pages.map((btnNum) => (
+          <button
+            onClick={() => handlePaginationButton(btnNum)}
+            key={btnNum}
+            className={`hidden ${
+              currentPage === btnNum ? "bg-primary text-white" : ""
+            } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
+          >
+            {btnNum}
+          </button>
+        ))}
+
+        {/* Next Button */}
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => handlePaginationButton(currentPage + 1)}
+          className="px-4 py-2 mx-1 text-white bg-primary rounded-full hover:bg-secondary disabled:cursor-not-allowed disabled:bg-gray-200"
+        >
+          <div className="flex items-center -mx-1">
+            <IoIosArrowForward />
+          </div>
+        </button>
+      </div>
     </section>
   );
 };
