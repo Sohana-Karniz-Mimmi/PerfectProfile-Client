@@ -40,6 +40,7 @@ import Template3 from "../../Components/AllTemplates/Template3";
 import Template4 from "../../Components/AllTemplates/Template4";
 import Template5 from "../../Components/AllTemplates/Template5";
 import Template6 from "../../Components/AllTemplates/Template6";
+import NewTemplate from "../../Components/AllTemplates/NewTemplate";
 
 const ResumeEditPage = () => {
   const { user } = useAuth();

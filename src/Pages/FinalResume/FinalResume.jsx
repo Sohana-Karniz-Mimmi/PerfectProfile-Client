@@ -257,7 +257,7 @@ const FinalResume = () => {
                           active ? " font-semibold bg-white " : "font-semibold"
                         } group flex w-full items-center gap-2  py-1.5 text-black`}
                       >
-                        <GrDocumentText className="text-primary" /> PDF Standard
+                        <GrDocumentText className="text-red-600" /> JPG
                       </button>
                     )}
                   </Menu.Item>
