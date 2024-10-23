@@ -20,7 +20,6 @@ import Template3 from "../../Components/AllTemplates/Template3";
 import Template4 from "../../Components/AllTemplates/Template4";
 import Template5 from "../../Components/AllTemplates/Template5";
 import Template6 from "../../Components/AllTemplates/Template6";
-// import Template2, {ImageContext,} from "../../Components/AllTemplates/Template2";
 
 
 const ManageResume = () => {
