@@ -13,6 +13,7 @@ import { FaUsers } from "react-icons/fa6";
 import { MdPayments } from "react-icons/md";
 import { HiTemplate } from "react-icons/hi";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { BsPersonWorkspace } from "react-icons/bs";
 
 import MenuItem from "./MenuItem";
 import useAuth from "../../Hook/useAuth";
@@ -114,22 +115,30 @@ const Sidebar = () => {
             />
             <MenuItem
               label="Subscription"
-              address="/subscription"
+              address="subscription"
               icon={MdPayments}
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
             />
+            {/* <MenuItem
+
             <MenuItem
               label="Payment History"
-              address="/transaction-history"
+              address="transaction-history"
               icon={MdPayments}
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
-            />
+            /> */}
             <MenuItem
+              label="Make Consultant"
+              address="make-consultant"
+              icon={BsPersonWorkspace}
+              handleToggle={handleToggle} // Pass handleToggle to MenuItem
+            />
+            {/* <MenuItem
               label="All Templates"
               address="/all-templates"
               icon={HiTemplate}
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
-            />
+            /> */}
           </nav>
           <div>
             <div className=" md:-mt-28">
@@ -139,7 +148,7 @@ const Sidebar = () => {
               >
                 <GrLogout className="text-2xl text-secondary" />
                 <span className="mx-4 font-medium font-montserrat text-lg text-white">
-                  Logout 
+                  Logout
                 </span>
               </button>
             </div>

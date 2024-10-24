@@ -25,7 +25,10 @@ import ProfileInfo from "../Components/MyProfile/ProfileInfo";
 import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 import Favorite from "../Pages/Favorites/Favorite";
 import ResourcePage from "../Pages/Resources/ResourcePage";
+import Consultation from "../Pages/Consultation/Consultation";
+import MakeConsultant from "../Pages/AdminPage/ManageConsultants/MakeConsultant";
 import PurchaseHistory from "../Pages/PurchaseHistory";
+import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +63,11 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-
+      {
+        path: "/consultation",
+        element: <Consultation />,
+      },
+      
       {
         path: "/my-favorites",
         element: <Favorite />,
@@ -131,6 +138,27 @@ const router = createBrowserRouter([
           <PrivetRoute>
             <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "make-consultant",
+        element: (
+          <PrivetRoute>
+            <AdminRoute>
+              <MakeConsultant />
+              </AdminRoute>
+              </PrivetRoute>
+        )
+      },
+
+
+       { path: "transaction-history",
+        element: (
+          <PrivetRoute>
+            <AdminRoute>
+              <AllPaymentHistory />
             </AdminRoute>
           </PrivetRoute>
         ),

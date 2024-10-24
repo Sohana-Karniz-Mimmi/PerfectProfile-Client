@@ -135,23 +135,7 @@ export default function App() {
             key={template._id}
             className="relative !overflow-visible"
           >
-            <div className="relative group !overflow-visible">
-              <div
-                className={`absolute top-1 left-1 text-white font-lora font-bold rounded-full px-4 py-1 z-[500] flex items-center ${
-                  template.package === "premium" ? "bg-secondary" : "bg-primary"
-                }`}
-              >
-                {template.package === "premium" ? (
-                  <>
-                    <FaCrown className="mr-1" /> Premium
-                  </>
-                ) : (
-                  <>
-                    <FaStar className="mr-1" /> Free
-                  </>
-                )}
-              </div>
-
+            <div className="relative group z-[1000] !overflow-visible">
               <div className="absolute h-full w-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
                 <button
                   onClick={() => handleTemplateClick(template)}
@@ -159,6 +143,15 @@ export default function App() {
                 >
                   Use Template
                 </button>
+                {template?.package === "premium" && (
+                  <>
+                    <FaCrown className="absolute bottom-4 right-4 text-yellow-400 text-2xl bg-black/70 p-1 rounded-full tooltip-crown" />
+
+                    <span className="tooltip-text-crown hidden z-[100] absolute bottom-12 right-4 bg-primary text-white text-xs rounded py-1 px-2">
+                      Premium
+                    </span>
+                  </>
+                )}
               </div>
 
               <img className="w-full size" src={template?.image} alt="" />

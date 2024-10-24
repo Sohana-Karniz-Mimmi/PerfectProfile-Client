@@ -101,4 +101,24 @@
   }
 }
 
+/* Tooltip styles for Favorite Button */
+.tooltip-favorite:hover + .tooltip-text-favorite {
+    display: block;
+  }
+  
+  .tooltip-text-favorite {
+    position: absolute;
+    white-space: nowrap;
+  }
+  
+  /* Tooltip styles for Crown Button */
+  .tooltip-crown:hover + .tooltip-text-crown {
+    display: block;
+  }
+  
+  .tooltip-text-crown {
+    position: absolute;
+    white-space: nowrap;
+  }
+
 
