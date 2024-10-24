@@ -21,7 +21,7 @@ const About = () => {
       <ScrollRestoration />
 
       <section
-        className="text-white relative bg-cover bg-center bg-no-repeat h-[565px]"
+        className="text-white relative bg-cover bg-no-repeat h-[565px]"
         style={{
           background:
             "linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(" +

@@ -176,7 +176,7 @@ const Template = () => {
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {predefinedTemplate?.map((template) => (
             <div key={template._id}>
-              <div className="relative group h-[450px]">
+              <div className="relative group h-[450px] border-secondary border">
                 <button
                   onClick={() => handleFavorite(template)} // Pass the whole template object
                   className="absolute text-3xl bg-white top-[6px] right-2 rounded-lg p-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"
