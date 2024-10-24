@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import ResumeTemplates from "../../Components/TemplateSection/ResumeTemplates";
-import Template1 from "../../Components/TemplateSection/Template1";
-import Template2 from "../../Components/TemplateSection/Template2nd";
-import Template3 from "../../Components/TemplateSection/Template3";
 import Container from "../../Shared/Container";
 import TemplateBanner from "./TemplateBanner";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
