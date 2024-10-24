@@ -147,35 +147,30 @@ const ManageUsers = () => {
                     </th> */}
                     <th
                       scope="col"
-                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
+                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm  uppercase font-lora font-bold"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
+                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm uppercase font-lora font-bold"
                     >
                       Email
                     </th>
                     <th
                       scope="col"
-                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
+                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm uppercase font-lora font-bold"
                     >
                       Role
                     </th>
                     <th
                       scope="col"
-                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left md:text-lg text-base uppercase font-lora font-bold"
+                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm uppercase font-lora font-bold"
                     >
                       Subscription Plan
                     </th>
 
-                    <th
-                      scope="col"
-                      className="pl-6 pr-12 py-3 text-center border-b border-gray-200 text-gray-800 md:text-lg text-base uppercase font-lora font-bold"
-                    >
-                      Action
-                    </th>
+                    
                   </tr>
                 </thead>
                 <tbody className="font-montserrat">

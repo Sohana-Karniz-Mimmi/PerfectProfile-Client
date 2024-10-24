@@ -109,7 +109,7 @@ const AllPaymentHistory = () => {
                         <div className="flex items-center gap-x-2">
                           <div>
                             <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                              {payment?.amount}
+                              ${payment?.amount}
                             </p>
                           </div>
                         </div>
