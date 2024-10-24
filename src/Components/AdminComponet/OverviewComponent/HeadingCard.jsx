@@ -3,6 +3,8 @@ import { GrMoney, GrTemplate } from "react-icons/gr";
 import HeadingChart from "./HeadingChart";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import bankCard from "../../../assets/bankcard.png";
+
 import {
   fetchPredefinedTemplates,
   selectTemplates,
@@ -12,6 +14,7 @@ import { selectAllUsersState } from "../../../store/Features/user/userSlice";
 import { FaCrown, FaUsers } from "react-icons/fa6";
 import { LuLayoutTemplate } from "react-icons/lu";
 import { RiVipCrownLine } from "react-icons/ri";
+import TotalEarning from "./TotalEarning";
 
 const HeadingCard = () => {
   const user = useSelector((state) => state?.users?.totalUsers);
@@ -34,15 +37,15 @@ const HeadingCard = () => {
   useEffect(() => {
     dispatch(fetchPredefinedTemplates()); // Fetch predefined templates when component loads
   }, [dispatch]);
-  console.log(templates);
-  console.log(users);
+  // console.log(templates);
+  // console.log(users);
 
   return (
     <section className="">
       <div className="flex flex-col lg:flex-row justify-between lg:gap-16 gap-8  h-full rounded-lg text-neutral-700">
         {/* card 1 */}
         <div
-          className="bg-gradient-to-r from-secondary/90 to-white  md:min-h-72 min-h-52 lg:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-between gap-8"
+          className="white  md:min-h-64 min-h-52 lg:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
@@ -55,16 +58,16 @@ const HeadingCard = () => {
             </div>
           </div>
           <div className="">
-            <p className="flex items-center gap-1 md:text-lg text-base font-semibold">
-              <IoTrendingUpOutline className="text-white font-extrabold text-2xl" />{" "}
-              <span className="text-white font-bold">8.07%</span> Growth From
+            <p className="flex items-center gap-1 md:text-lg text-base font-semibold ">
+              <IoTrendingUpOutline className="text-primary font-extrabold text-2xl" />{" "}
+              <span className="font-bold text-primary">8.07%</span> Growth From
               Yesterday{" "}
             </p>{" "}
           </div>
         </div>
         {/* card 2 */}
         <div
-          className="bg-gradient-to-r from-primary/90 to-white md:min-h-72 min-h-52 lg:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-between gap-8"
+          className="bg-white md:min-h-72 min-h-52 lg:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
@@ -80,15 +83,15 @@ const HeadingCard = () => {
           </div>
           <div className="">
             <p className="flex items-center gap-1 md:text-lg text-base font-semibold">
-              <IoTrendingUpOutline className="text-white font-extrabold text-2xl" />{" "}
-              <span className="text-white font-bold">8.07%</span> Growth From
+              <IoTrendingUpOutline className="text-primary font-extrabold text-2xl" />{" "}
+              <span className="text-primary font-bold">8.07%</span> Growth From
               Yesterday{" "}
             </p>{" "}
           </div>
         </div>
         {/* card 3 */}
         <div
-          className="bg-gradient-to-r from-violet-500 to-white md:min-h-72 min-h-52 lg:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-between gap-8"
+          className="bg-white md:min-h-72 min-h-52 lg:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
@@ -112,17 +115,27 @@ const HeadingCard = () => {
           </div>
         </div>
       </div>
-      <div
-        className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full "
-        style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
-      >
-        <HeadingChart />
-      </div>
-      <div
-        className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full  "
-        style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
-      >
-        <PieChartForUser />
+      <div className="grid grid-cols-1  lg:grid-cols-5 gap-10 ">
+        <div
+          className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full lg:col-span-3 "
+          style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+        >
+          <HeadingChart />
+        </div>
+        <div className="lg:col-span-2">
+          <div
+            className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full"
+            style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+          >
+            <PieChartForUser />
+          </div>
+          <div
+            className="rounded-lg p-5 mt-6 flex items-center  w-full"
+            style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", background:`url(${bankCard})`, backgroundPosition: "top", backgroundSize: "cover",backgroundRepeat:"no-repeat" }}
+          >
+            <TotalEarning />
+          </div>
+        </div>
       </div>
     </section>
   );

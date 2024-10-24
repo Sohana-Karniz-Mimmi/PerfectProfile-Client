@@ -50,10 +50,10 @@ const ResumeViewer = () => {
   const templateID = resumeData?.templateItem;
   const showResume = resumeData;
 
-  console.log(templateID);
-  // console.log(showResume);
-  console.log(resumeData?.resumeLink);
-  console.log(link);
+  // console.log(templateID);
+  // // console.log(showResume);
+  // console.log(resumeData?.resumeLink);
+  // console.log(link);
 
   const renderTemplate = (templateID) => {
     if (templateID === "template1") {

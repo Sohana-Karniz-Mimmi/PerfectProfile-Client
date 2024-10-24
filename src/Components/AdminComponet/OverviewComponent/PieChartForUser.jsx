@@ -15,7 +15,7 @@ const PieChartForUser = () => {
   const users = useSelector(selectAllUsersState);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  console.log(users);
+  // console.log(users);
 
   // Count the occurrences of each productName
   const userCounts = users?.reduce(
@@ -83,12 +83,12 @@ const PieChartForUser = () => {
   const getOuterRadius = () => (windowWidth < 768 ? 100 : 150);
 
   return (
-    <div className="max-w-full w-full h-[60vh] md:pb-0 pb-10 px-2">
+    <div className="max-w-full w-full lg:h-[50vh] h-[70vh]  md:pb-0 pb-10 px-2">
       <h2 className="text-2xl font-bold  font-lora">
         Overview of our Different type of user
       </h2>
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={400} height={600}>
+        <PieChart width={400} height={400}>
           <Pie
             data={pieData}
             cx="50%"

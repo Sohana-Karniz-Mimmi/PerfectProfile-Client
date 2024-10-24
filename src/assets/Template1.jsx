@@ -1,5 +1,5 @@
 const Template1 = ({ data, userData }) => {
-  console.log(userData);
+  // console.log(userData);
   return (
     <div
       className="w-[790px] min-h-[1000px] mx-auto bg-white pb-8"

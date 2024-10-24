@@ -17,11 +17,11 @@ const Notification = ({ handleLogoutBtn }) => {
       return res.data;
     },
   });
-  console.log(userData.isRead);
+  // console.log(userData.isRead);
 
 
   const read = userData.isRead
-  console.log(read)
+  // console.log(read)
 
 
 

@@ -23,7 +23,7 @@ const CheckoutForm = () => {
     return `TRAN${random}`;
   }
   const tran_id = generateTransactionId();
-  console.log(tran_id);
+  // console.log(tran_id);
 
   //   package checkbox
   const handleCheckboxChange = (e) => {
@@ -33,7 +33,7 @@ const CheckoutForm = () => {
       toast.error("Please select a package option before proceeding.");
     }
   };
-  console.log(productName);
+  // console.log(productName);
 
   const getPrice = () => {
     if (productName === "standard") {
@@ -44,12 +44,12 @@ const CheckoutForm = () => {
     return 0;
   };
 
-  console.log(getPrice());
+  // console.log(getPrice());
 
   //   form submit
   const onSubmit = (data) => {
     const { email, phone, cardNumber, date } = data;
-    console.log(data);
+    // console.log(data);
     const amount = getPrice();
 
     // console.log(amount);
@@ -65,16 +65,16 @@ const CheckoutForm = () => {
         productName,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
 
         const redirectUrl = res.data.paymentUrl;
-        console.log(redirectUrl);
+        // console.log(redirectUrl);
 
         if (redirectUrl) {
           window.location.replace(redirectUrl);
         }
       });
-    console.log(user.email);
+    // console.log(user.email);
     // update user profile in db
     axiosPublic
       .put(`/user/${user.email}`, {
@@ -85,7 +85,7 @@ const CheckoutForm = () => {
       })
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          console.log("User updated successfully", res);
+          // console.log("User updated successfully", res);
         } else {
           console.error("Failed to update user");
         }

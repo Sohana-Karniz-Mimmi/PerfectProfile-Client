@@ -29,13 +29,21 @@ const initialState = userAdapter.getInitialState({
   currentPage: 1,
   totalPages: 1,
   totalUsers: 0,
-  allUsers: [], 
+  allUsers: [],
 });
 
 const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    updateUserRole: (state, action) => {
+      const { userId, newRole } = action.payload;
+      const user = state.allUsers.find((user) => user._id === userId);
+      if (user) {
+        user.role = newRole; // ইউজারের রোল আপডেট করা হচ্ছে
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.pending, (state) => {
@@ -47,7 +55,7 @@ const userSlice = createSlice({
         userAdapter.setAll(state, action.payload.users);
         state.currentPage = action.payload.currentPage;
         state.totalPages = action.payload.totalPages;
-        state.totalUsers = action.payload.totalUsers; 
+        state.totalUsers = action.payload.totalUsers;
         state.allUsers = action.payload.allUsers;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
@@ -62,5 +70,6 @@ export const { selectAll: selectAllUsers } = userAdapter.getSelectors(
 );
 
 export const selectAllUsersState = (state) => state.users.allUsers;
+export const { updateUserRole } = userSlice.actions;
 
 export default userSlice.reducer;

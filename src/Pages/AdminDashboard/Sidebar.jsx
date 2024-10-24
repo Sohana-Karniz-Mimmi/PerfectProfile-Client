@@ -120,8 +120,10 @@ const Sidebar = () => {
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
             />
             {/* <MenuItem
+
+            <MenuItem
               label="Payment History"
-              address="/transaction-history"
+              address="transaction-history"
               icon={MdPayments}
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
             /> */}
@@ -146,7 +148,7 @@ const Sidebar = () => {
               >
                 <GrLogout className="text-2xl text-secondary" />
                 <span className="mx-4 font-medium font-montserrat text-lg text-white">
-                  Logout 
+                  Logout
                 </span>
               </button>
             </div>

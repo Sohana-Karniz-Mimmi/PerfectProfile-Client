@@ -28,6 +28,7 @@ import ResourcePage from "../Pages/Resources/ResourcePage";
 import Consultation from "../Pages/Consultation/Consultation";
 import MakeConsultant from "../Pages/AdminPage/ManageConsultants/MakeConsultant";
 import PurchaseHistory from "../Pages/PurchaseHistory";
+import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -147,6 +148,17 @@ const router = createBrowserRouter([
           <PrivetRoute>
             <AdminRoute>
               <MakeConsultant />
+              </AdminRoute>
+              </PrivetRoute>
+        )
+      },
+
+
+       { path: "transaction-history",
+        element: (
+          <PrivetRoute>
+            <AdminRoute>
+              <AllPaymentHistory />
             </AdminRoute>
           </PrivetRoute>
         ),

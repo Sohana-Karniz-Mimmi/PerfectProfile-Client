@@ -384,7 +384,7 @@ const ManageResume = () => {
     setPreviewTemplate(template); // Set the selected template for preview
   };
 
-  console.log(myResumeTemplates);
+  // console.log(myResumeTemplates);
 
   // const handleDelete = (id) => {
   //     Swal.fire({

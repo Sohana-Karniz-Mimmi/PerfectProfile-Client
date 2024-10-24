@@ -19,7 +19,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
       return res.data;
     },
   });
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <div className="relative text-right">
