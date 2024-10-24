@@ -18,11 +18,15 @@ import { BsPersonWorkspace } from "react-icons/bs";
 import MenuItem from "./MenuItem";
 import useAuth from "../../Hook/useAuth";
 import { FaHamburger } from "react-icons/fa";
+import useRole from "../../Hook/useRole";
+import { CgProfile } from "react-icons/cg";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const navigate = useNavigate();
   const [isActive, setActive] = useState(false);
+  const [role] = useRole()
+  console.log(role)
   // const [toggle, setToggle] = useState(true)
 
   // Sidebar Responsive Handler
@@ -100,7 +104,9 @@ const Sidebar = () => {
 
         {/* Nav Items */}
         <div className="flex flex-col justify-between h-full ">
-          <nav className="">
+          {
+            role?.role === "admin" && (
+              <nav className="">
             <MenuItem
               label="Overview"
               address="/dashboard"
@@ -140,6 +146,28 @@ const Sidebar = () => {
               handleToggle={handleToggle} // Pass handleToggle to MenuItem
             /> */}
           </nav>
+            )
+          }
+          {
+            role?.role === "consultant" && (
+              <nav className="">
+            <MenuItem
+              label="Session Request"
+              address="/consultant-dashboard"
+              icon={ FaUsers}
+              handleToggle={handleToggle} // Pass handleToggle to MenuItem
+            />
+            <MenuItem
+              label="Profile "
+              address="profile"
+              icon={CgProfile}
+              handleToggle={handleToggle} // Pass handleToggle to MenuItem
+            />
+            
+
+          </nav>
+            )
+          }
           <div>
             <div className=" md:-mt-28">
               <button

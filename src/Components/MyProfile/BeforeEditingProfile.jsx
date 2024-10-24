@@ -6,6 +6,7 @@ import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import ProfileInfo from "./ProfileInfo";
+import "./Profile.css";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -133,7 +134,7 @@ const BeforeEditingProfile = () => {
     <>
       <div className="md:mt-6 mt-28 lg:px-8 md:px-4 px-2">
         <h1 className="text-3xl font-bold font-lora">Your Account</h1>
-        <div className="lg:w-1/2 w-full " id="general">
+        <div className="lg:w-full xl:w-2/3 2xl:w-1/2 w-full " id="general">
           <form onSubmit={handleSaveChanges} className="w-full py-8">
             {/* Profile Photo Section */}
             <div className="flex flex-col justify-between ">
@@ -142,11 +143,11 @@ const BeforeEditingProfile = () => {
               </h2>
               <div className="flex justify-between items-center ">
                 <div className="">
-                  <div className="rounded-full border-4 border-gray-300 md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
+                  <div className="rounded-full border-8 p-1  border-secondary md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
                     <img
                       src={profilePhoto}
                       alt="Profile"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full rounded-full object-cover"
                     />
                   </div>
                 </div>
@@ -262,7 +263,9 @@ const BeforeEditingProfile = () => {
                       </div>
                     </div>
                   ) : (
-                    <h1 className="md:text-base text-xs font-montserrat">{email}</h1>
+                    <h1 className="md:text-base text-xs font-montserrat">
+                      {email}
+                    </h1>
                   )}
                 </div>
                 <div>
