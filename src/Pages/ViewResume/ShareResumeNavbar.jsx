@@ -9,22 +9,22 @@ import useAuth from "../../Hook/useAuth";
 import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { useState } from "react";
 
-const ShareResumeNavbar = ({shareLink}) => {
-    const { user,  } = useAuth();
+const ShareResumeNavbar = ({ shareLink }) => {
+    const { user, } = useAuth();
     const [shareLinkCopy, setShareLinkCopy] = useState(false);
 
     const handleShareClick = () => {
-      if (user) {
-        setShareLinkCopy(true);
-      } else {
-        toast.error('You have to log in first')
-         setTimeout(() => {
-      document.getElementById("my_modal_3").showModal();
-    }, 2000);
-      }
+        if (user) {
+            setShareLinkCopy(true);
+        } else {
+            toast.error('You have to log in first')
+            setTimeout(() => {
+                document.getElementById("my_modal_3").showModal();
+            }, 2000);
+        }
     };
-    
-    
+
+
     // for modal state management
     const closeModal = () => {
         setShareLinkCopy(false);
@@ -57,7 +57,7 @@ const ShareResumeNavbar = ({shareLink}) => {
                             </span>
                         </Link>
 
-                        <button className="hidden px-4 border font-montserrat rounded text-center border-secondary text-secondary md:flex items-center gap-2 py-1">
+                        <button className="hidden px-4 border font-montserrat rounded text-center border-secondary text-secondary md:flex items-center gap-2 py-1 font-medium">
                             <FaRegEye className="text-secondary" /> View Only
                         </button>
 
@@ -65,12 +65,20 @@ const ShareResumeNavbar = ({shareLink}) => {
 
                     {/* Right Section (Login/Logout Buttons) */}
                     <div className="flex gap-5">
-                        <Link 
-                        onClick={handleShareClick}>
+                        <Link
+                            onClick={handleShareClick}>
 
-                            <button className="md:flex hidden md:px-8 px-4 border font-montserrat rounded text-center border-secondary text-secondary  items-center gap-2 py-1">
+                            {/* <button className="flex md:px-8 px-4 border font-montserrat rounded text-center border-secondary text-secondary items-center gap-2 py-1 md:text-base text-sm">
                                 <FaShare className="text-secondary" /> Share
-                            </button>
+                            </button> */}
+
+                            <div className="md:h-[36px] h-7 border group border-primary font-montserrat text-center rounded group-hover:border-secondary hover:border-secondary">
+                                <button className="py-1 md:px-8 px-4 font-medium group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 font-montserrat rounded group-hover:border-secondary  text-secondary gap-2 md:text-base text-sm">
+                                    <h2 className="flex items-center gap-2"><FaShare className="text-secondary group-hover:text-white md:text-base text-sm" /> Share</h2>
+                                </button>
+                            </div>
+
+
                             <ShareLinkCopyModal
                                 isOpen={shareLinkCopy}
                                 closeModal={closeModal}

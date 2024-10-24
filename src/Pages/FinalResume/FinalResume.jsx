@@ -196,16 +196,51 @@ const FinalResume = () => {
           </h1>
         </Link>
       </div>
-      <section className="flex lg:flex-row flex-col justify-between py-8 gap-5">
-        <div className="lg:w-2/12 w-full"></div>
+      <section className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center py-8">
+        <div className="md:w-2/12 w-full"></div>
 
-        <div className="border-2">
+        {/* <div className="border-2">
           <div className="" ref={contentRef} id="element">
             {renderTemplate(info?.templateItem)}
           </div>
+        </div> */}
+
+        <div>
+          <div className="my-9 mx-auto w-fit border border-secondary hidden lg:block">
+            <div ref={contentRef} id="element">
+              {renderTemplate(info?.templateItem)}
+            </div>
+          </div>
+
+          <div className="my-12 mx-auto w-[500px] border border-secondary hidden md:block lg:hidden overflow-hidden">
+            <div
+              className="w-full h-full"
+              style={{
+                transform: "scale(0.63)",
+                transformOrigin: "top left",
+                height: "560px",
+              }}
+            >
+              {renderTemplate(info?.templateItem)}
+            </div>
+          </div>
+
+          <div className="my-6 mx-auto w-[303px] overflow-hidden border border-secondary block md:hidden">
+            <div
+              className="w-full h-full"
+              style={{
+                transform: "scale(0.38)",
+                transformOrigin: "top left",
+                height: "380px",
+              }}
+            >
+              {renderTemplate(info?.templateItem)}
+            </div>
+          </div>
         </div>
 
-        <div className="w-2/12 flex flex-col items-start px-7 pt-10 gap-4">
+        {/* Button */}
+        <div className="lg:w-2/12 flex flex-col lg:flex-col md:flex-row lg:items-start items-center px-7 lg:pt-10 pt-0 gap-4 lg:justify-start justify-center">
           {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
           <div className="relative text-right">
             <Menu as="div" className="relative inline-block text-left ">
@@ -225,9 +260,8 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handlePdf}
-                        className={`${
-                          active ? " font-semibold bg-white " : "font-semibold"
-                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
+                        className={`${active ? " font-semibold bg-white " : "font-semibold"
+                          } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
                       >
                         <GrDocumentText className="text-red-600" /> PDF Standard
                       </button>
@@ -238,9 +272,8 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handlePng}
-                        className={` ${
-                          active ? " font-semibold bg-white " : "font-semibold"
-                        } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
+                        className={` ${active ? " font-semibold bg-white " : "font-semibold"
+                          } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
                       >
                         <PiFilePng className="text-red-600" /> PNG
                       </button>
@@ -251,9 +284,8 @@ const FinalResume = () => {
                     {({ active }) => (
                       <button
                         onClick={handleJpeg}
-                        className={`${
-                          active ? " font-semibold bg-white " : "font-semibold"
-                        } group flex w-full items-center gap-2  py-1.5 text-black`}
+                        className={`${active ? " font-semibold bg-white " : "font-semibold"
+                          } group flex w-full items-center gap-2  py-1.5 text-black`}
                       >
                         <GrDocumentText className="text-red-600" /> JPG
                       </button>
@@ -281,15 +313,16 @@ const FinalResume = () => {
           <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
             <FaEnvelope className="text-secondary" /> Email
           </button>
-          <button className="w-36 px-5 py-1   rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l  text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
-            Finish
-          </button>
+
+          <Link to={`/`}>
+            <button className="w-36 px-5 py-1 rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
+              Finish
+            </button>
+          </Link>
         </div>
       </section>
-      {/* Conditionally render the ReviewModal after 2 seconds */}
       {showModal && (
         <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal}>
-          {/* Modal content here */}
         </ReviewModal>
       )}
     </div>
