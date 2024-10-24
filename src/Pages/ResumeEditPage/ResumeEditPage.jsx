@@ -493,10 +493,10 @@ const ResumeEditPage = () => {
   };
 
   return (
-    <div className="customization-layout flex xl:flex-row flex-col xl:gap-0 gap-6  min-h-screen">
+    <div className=" flex lg:flex-row xl:flex-row lg:flex-wrap xl:flex-nowrap flex-col xl:gap-0 gap-6 lg:bg-gray-50  min-h-screen">
       {/* Sidebar */}
-      
-      <div className="sidebar xl:w-[20%] w-[100%] lg:block bg-[#00000f] text-white p-6">
+
+      <div className="sidebar xl:w-[20%] lg:w-[25%] w-[100%] lg:block bg-[#00000f] text-white p-6">
         <Link to="/">
           <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
             Perfect<span className="text-primary">Profile</span>
@@ -554,7 +554,7 @@ const ResumeEditPage = () => {
         </div>
       </div>
       {/* Content Area */}
-      <div className="xl:w-[48%] 2xl:w-[53%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
+      <div className="xl:w-[48%] 2xl:w-[53%] lg:w-[70%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
         <form className="text-sm" onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
             <div className="space-y-4">
@@ -1240,17 +1240,19 @@ const ResumeEditPage = () => {
         </form>
       </div>
       {/* Template preview area */}
-      <div className="xl:w-[33%] 2xl:w-[27%] w-[100%] lg:p-8 px-2 flex flex-col lg:block justify-center items-center bg-gray-100 overflow-x-auto">
-        <div
-          className="w-full h-full"
-          style={{
-            transform: "scale(0.50)",
-            transformOrigin: "top left",
-            height: "400px",
-          }}
-        >
-          {renderTemplate(id)}
-        </div>
+      <div className="xl:w-[33%] 2xl:w-[27%] lg:w-[100%] w-[100%] lg:p-8 px-2 flex lg:flex-col flex-col items-center border bg-gray-100 overflow-x-auto">
+        
+          <div
+            className="w-full h-full"
+            style={{
+              transform: "scale(0.50)",
+              transformOrigin: "top left",
+              height: "400px",
+            }}
+          >
+            {renderTemplate(id)}
+          </div>
+        
         <div className="flex flex-col justify-center items-center mt-28 ">
           <Link to={`/predefined-templates`}>
             <button className="font-roboto font-medium text-primary mb-2">

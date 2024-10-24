@@ -1,7 +1,7 @@
 import img from "../../assets/pricing banner.png";
 const PricingBanner = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-between md:gap-6 gap-4 mb-16 lg:mb-7 items-center px-5 lg:px-9 mt-9 py-16 rounded-lg bg-cyan-50">
+    <div className="flex flex-col md:flex-row justify-between md:gap-6 gap-4 mb-16 lg:mb-7 items-center px-5 md:px-9 mt-9 py-16 rounded-lg bg-cyan-50">
       <div className="md:w-2/4">
         <h1 className="text-4xl md:text-2xl font-lora font-bold ">Professional Resume Writing</h1>
         <p className="text-gray-700 lg:w-2/3 xl:w-full font-montserrat w-full mt-4">

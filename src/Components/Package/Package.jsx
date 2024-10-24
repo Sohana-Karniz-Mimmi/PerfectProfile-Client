@@ -19,8 +19,8 @@ const Package = () => {
         id="price"
         className="flex lg:flex-row flex-col justify-between mt-8 xl:gap-8 lg:gap-3 gap-8 lg:py-10 py-10"
       >
-        <div className="space-y-7 card lg:w-2/3 md:max-w-md md:mx-auto w-full lg:h-[44rem] md:h-[43rem]  h-[44rem] ">
-          <h1 className="text-4xl font-lora font-bold">Our Pricing</h1>
+        <div className="space-y-7 card lg:w-2/3 md:max-w-md md:mx-auto w-full lg:h-[44rem] md:h-[43rem]  h-[44rem] p-5">
+          <h1 className="text-4xl font-lora text-center font-bold">Our Pricing</h1>
           <p className="text-gray-600 font-montserrat">
             In PerfectProfile, users can choose from flexible plans that provide
             full access to professional templates and additional advanced
@@ -38,7 +38,7 @@ const Package = () => {
                 <p className="font-bold text-xl font-montserrat mt-2">
                   Lets Build Resume
                 </p>
-                <p className="font-medium text-center w-3/4 mx-auto">
+                <p className="font-medium text-center mx-auto">
                   With Unlimited Predefined Templates
                 </p>
               </div>
