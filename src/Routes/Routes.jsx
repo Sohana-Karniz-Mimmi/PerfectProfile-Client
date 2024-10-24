@@ -153,8 +153,8 @@ const router = createBrowserRouter([
         ),
       },
 
-      {
-        path: "subscription",
+
+       { path: "subscription",
         element: (
           <PrivetRoute>
             <AdminRoute>
