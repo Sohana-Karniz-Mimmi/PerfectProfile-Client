@@ -13,9 +13,8 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const Template2 = ({ data, userData, setUserData }) => {
   const axiosPublic = useAxiosPublic();
-  
+
   const { register, handleSubmit, reset } = useForm();
-  
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -33,7 +32,7 @@ const Template2 = ({ data, userData, setUserData }) => {
           // Update the userData state with the new profile image URL
           setUserData((prevUserData) => ({
             ...prevUserData,
-            profile: imageUrl, 
+            profile: imageUrl,
           }));
         })
         .catch((error) => {
@@ -67,33 +66,6 @@ const Template2 = ({ data, userData, setUserData }) => {
             />
           </div>
           <div className="mt-36">
-            {/* about me */}
-            {userData?.careerObjective === "" ||
-            userData?.careerObjective === undefined ? (
-              <section className="mb-1">
-                <>
-                  <h2 className=" uppercase text-sm font-roboto  font-bold text-white border-b border-white ">
-                    About Me
-                  </h2>
-                  <p className="mt-1 text-sm font-roboto break-words text-justify ">
-                    Use this section to give recruiters a quick glimpse of your
-                    professional profile. In just 3-4 lines, highlight your
-                    background, education and main skills.
-                  </p>
-                </>
-              </section>
-            ) : (
-              userData?.careerObjective !== "" && (
-                <section className="mb-1">
-                  <h2 className=" uppercase text-sm font-roboto font-bold text-white border-b border-white ">
-                    Career Objective
-                  </h2>
-                  <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
-                    {userData?.careerObjective}
-                  </p>
-                </section>
-              )
-            )}
             <div className="flex flex-col items-start mt-3 space-y-1 text-xs lg:text-sm">
               <div className="flex items-center justify-center gap-2 text-white">
                 <p>
@@ -121,11 +93,26 @@ const Template2 = ({ data, userData, setUserData }) => {
                 <p className="inline">
                   {" "}
                   {userData?.address === "" || userData?.address === undefined
-                    ? data?.address
+                    ? "Dhaka Bangladesh"
                     : userData?.address}
                 </p>
               </div>
             </div>
+            {/* skills section */}
+            {userData?.skills?.length >= 1 && (
+              <section className="mb-1 space-y-3 mt-2">
+                <h2 className="uppercase text-sm font-roboto font-bold  border-b border-white">
+                  Skills
+                </h2>
+                <ul className="mt-1 text-sm   list-disc list-inside">
+                  {userData?.skills.map((skill, index) => (
+                    <li key={index} className="pl-2 font-roboto text-sm">
+                      <h3 className="font-medium inline-block">{skill}</h3>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
 
           {/* Education */}
@@ -149,7 +136,7 @@ const Template2 = ({ data, userData, setUserData }) => {
           )}
         </div>
         {/* 2nd */}
-        <div className="w-full">
+        <div className="w-full ">
           {/* Header - Personal Info */}
           <header className="text-center mb-3  bg-[#F0F0F0] py-4 lg:py-9">
             <h1 className="text-3xl font-bold text-black uppercase">
@@ -167,7 +154,7 @@ const Template2 = ({ data, userData, setUserData }) => {
           </header>
           <div className="lg:px-3 px-2">
             {/* skills */}
-            {userData?.skills?.length >= 1 && (
+            {/* {userData?.skills?.length >= 1 && (
               <section className="mb-1 space-y-3">
                 <h2 className="uppercase text-sm font-roboto font-bold  border-b border-black">
                   Skills
@@ -180,8 +167,34 @@ const Template2 = ({ data, userData, setUserData }) => {
                   ))}
                 </ul>
               </section>
+            )} */}
+            {/* about section */}
+            {userData?.careerObjective === "" ||
+            userData?.careerObjective === undefined ? (
+              <section className="mb-1">
+                <>
+                  <h2 className=" uppercase text-sm font-roboto  font-bold  border-b border-black ">
+                    About Me
+                  </h2>
+                  <p className="mt-1 text-sm font-roboto break-words text-justify ">
+                    Use this section to give recruiters a quick glimpse of your
+                    professional profile. In just 3-4 lines, highlight your
+                    background, education and main skills.
+                  </p>
+                </>
+              </section>
+            ) : (
+              userData?.careerObjective !== "" && (
+                <section className="mb-1">
+                  <h2 className=" uppercase text-sm font-roboto font-bold  border-b border-black ">
+                    About Me
+                  </h2>
+                  <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
+                    {userData?.careerObjective}
+                  </p>
+                </section>
+              )
             )}
-
             {/* Certifications */}
             {userData?.certifications && userData?.certifications.length >= 1 && (
               <section className="mb-1 space-y-3">
