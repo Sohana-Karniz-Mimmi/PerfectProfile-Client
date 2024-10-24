@@ -1,6 +1,6 @@
  <h2>Project_Name: Perfect Profile</h2>
 <h2>Project_Live_Link: https://perfectprofile-ebde4.web.app</h2>
-
+<img src=''/>
 <hr/>
 <h2> Overview</h2>
 
@@ -64,8 +64,8 @@ Users can preview templates before selecting them, helping them make an informed
 <hr/>
 <h2>Installation</h2>
 <p>1. Clone the Repository</p>
-<p>git clone https://github.com/Abusayem99133/product-flow-client-site</p>
-<p>cd product-flow</p>
+<p>git clone (https://github.com/Sohana-Karniz-Mimmi/PerfectProfile-Client)</p>
+<p>cd perfectprofile-client</p>
 <hr/>
 <h2>Install Dependencies</h2>
 <p>npm install</p>
