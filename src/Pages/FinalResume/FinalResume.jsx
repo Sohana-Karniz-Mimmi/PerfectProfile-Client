@@ -12,6 +12,7 @@ import { toJpeg, toPng } from "html-to-image";
 import { px } from "framer-motion";
 import { PiFilePng } from "react-icons/pi";
 import { SiJpeg } from "react-icons/si";
+import { BsFillFileEarmarkCheckFill } from "react-icons/bs";
 
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";
@@ -25,6 +26,8 @@ import Template6 from "../../Components/AllTemplates/Template6";
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import ReviewModal from "../../Components/ReviewModal/ReviewModal";
+import { Helmet } from "react-helmet-async";
+import Container from "../../Shared/Container";
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
   const info = useLoaderData();
@@ -184,148 +187,165 @@ const FinalResume = () => {
   }, [user]);
 
   const handleCloseModal = () => {
-    setShowModal(false); // Close the modal when triggered
+    setShowModal(false);
   };
 
   return (
-    <div className="h-screen">
-      <div className="py-6 px-4 flex items-center bg-[#00000f]">
-        <Link to="/">
-          <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora uppercase">
-            Perfect<span className="text-primary">Profile</span>
-          </h1>
-        </Link>
-      </div>
-      <section className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center py-8">
-        <div className="md:w-2/12 w-full"></div>
 
-        {/* <div className="border-2">
+    <>
+      {info && (
+        <Helmet>
+          <title>{`${info?.name} - PerfectProfile`}</title>
+        </Helmet>
+      )}
+
+      <div className="h-screen">
+        <div className="py-6 px-4 flex justify-between items-center bg-[#00000f]">
+          <Link to="/">
+            <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora">
+              Perfect<span className="text-primary">Profile</span>
+            </h1>
+          </Link>
+
+          <div className="text-white flex gap-2 items-center justify-center md:mx-auto">
+            <BsFillFileEarmarkCheckFill />
+            <h2>Saved</h2>
+          </div>
+        </div>
+
+        <Container>
+          <section className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center py-8">
+            <div className="md:w-2/12 w-full"></div>
+
+            {/* <div className="border-2">
           <div className="" ref={contentRef} id="element">
             {renderTemplate(info?.templateItem)}
           </div>
         </div> */}
 
-        <div>
-          <div className="my-9 mx-auto w-fit border border-secondary hidden lg:block">
-            <div ref={contentRef} id="element">
-              {renderTemplate(info?.templateItem)}
-            </div>
-          </div>
-
-          <div className="my-12 mx-auto w-[500px] border border-secondary hidden md:block lg:hidden overflow-hidden">
-            <div
-              className="w-full h-full"
-              style={{
-                transform: "scale(0.63)",
-                transformOrigin: "top left",
-                height: "560px",
-              }}
-            >
-              {renderTemplate(info?.templateItem)}
-            </div>
-          </div>
-
-          <div className="my-6 mx-auto w-[303px] overflow-hidden border border-secondary block md:hidden">
-            <div
-              className="w-full h-full"
-              style={{
-                transform: "scale(0.38)",
-                transformOrigin: "top left",
-                height: "380px",
-              }}
-            >
-              {renderTemplate(info?.templateItem)}
-            </div>
-          </div>
-        </div>
-
-        {/* Button */}
-        <div className="lg:w-2/12 flex flex-col lg:flex-col md:flex-row lg:items-start items-center px-7 lg:pt-10 pt-0 gap-4 lg:justify-start justify-center">
-          {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
-          <div className="relative text-right">
-            <Menu as="div" className="relative inline-block text-left ">
-              <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
-                <button
-                  // onClick={handlePdf}
-                  // onClick={generatePDF}
-                  className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
-                >
-                  <FaFileExport className="text-secondary" /> Export
-                </button>
-              </Menu.Button>
-
-              <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44">
-                <div className="bg-white rounded-xl p-5">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        onClick={handlePdf}
-                        className={`${active ? " font-semibold bg-white " : "font-semibold"
-                          } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
-                      >
-                        <GrDocumentText className="text-red-600" /> PDF Standard
-                      </button>
-                    )}
-                  </Menu.Item>
-                  {/* PNG */}
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        onClick={handlePng}
-                        className={` ${active ? " font-semibold bg-white " : "font-semibold"
-                          } group flex w-full items-center gap-2 border-b py-1.5 text-black`}
-                      >
-                        <PiFilePng className="text-red-600" /> PNG
-                      </button>
-                    )}
-                  </Menu.Item>
-                  {/* JPEG */}
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        onClick={handleJpeg}
-                        className={`${active ? " font-semibold bg-white " : "font-semibold"
-                          } group flex w-full items-center gap-2  py-1.5 text-black`}
-                      >
-                        <GrDocumentText className="text-red-600" /> JPG
-                      </button>
-                    )}
-                  </Menu.Item>
+            <div>
+              <div className="my-9 mx-auto w-fit border border-secondary hidden lg:block">
+                <div ref={contentRef} id="element">
+                  {renderTemplate(info?.templateItem)}
                 </div>
-              </Menu.Items>
-            </Menu>
-          </div>
+              </div>
 
-          <button
-            onClick={() => setShareLinkCopy(true)}
-            className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2"
-          >
-            <FaShare className="text-secondary" /> Share
-          </button>
-          <ShareLinkCopyModal
-            isOpen={shareLinkCopy}
-            closeModal={closeModal}
-            copyToClipboard={copyToClipboard}
-            copied={copied}
-            shareLink={userData?.resumeLink}
-          />
+              <div className="my-12 mx-auto w-[500px] border border-secondary hidden md:block lg:hidden overflow-hidden">
+                <div
+                  className="w-full h-full"
+                  style={{
+                    transform: "scale(0.63)",
+                    transformOrigin: "top left",
+                    height: "560px",
+                  }}
+                >
+                  {renderTemplate(info?.templateItem)}
+                </div>
+              </div>
 
-          <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">
-            <FaEnvelope className="text-secondary" /> Email
-          </button>
+              <div className="my-6 mx-auto w-[303px] overflow-hidden border border-secondary block md:hidden">
+                <div
+                  className="w-full h-full"
+                  style={{
+                    transform: "scale(0.38)",
+                    transformOrigin: "top left",
+                    height: "380px",
+                  }}
+                >
+                  {renderTemplate(info?.templateItem)}
+                </div>
+              </div>
+            </div>
 
-          <Link to={`/`}>
-            <button className="w-36 px-5 py-1 rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
-              Finish
-            </button>
-          </Link>
-        </div>
-      </section>
-      {showModal && (
-        <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal}>
-        </ReviewModal>
-      )}
-    </div>
+            {/* Button */}
+            <div className="lg:w-2/12 flex flex-col lg:flex-col md:flex-row lg:items-start items-center px-7 lg:pt-10 pt-0 gap-4 lg:justify-start justify-center">
+              {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
+              <div className="relative text-right">
+                <Menu as="div" className="relative inline-block text-left ">
+                  <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
+                    <button
+                      // onClick={handlePdf}
+                      // onClick={generatePDF}
+                      className="w-44 group justify-center md:text-base text-sm px-8 border font-montserrat rounded-full text-center hover:bg-secondary hover:text-white border-secondary transition duration-300 text-secondary flex items-center gap-2"
+                    >
+                      <FaFileExport className="text-secondary group-hover:text-white" /> Download
+                    </button>
+                  </Menu.Button>
+
+                  <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-44">
+                    <div className="bg-white rounded-xl p-5">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            onClick={handlePdf}
+                            className={`${active ? " font-semibold bg-white " : "font-semibold"
+                              } group flex w-full md:text-base text-sm items-center gap-2 border-b py-1.5 text-black`}
+                          >
+                            <GrDocumentText className="text-red-600" /> PDF Standard
+                          </button>
+                        )}
+                      </Menu.Item>
+                      {/* PNG */}
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            onClick={handlePng}
+                            className={` ${active ? " font-semibold bg-white " : "font-semibold"
+                              } group flex w-full md:text-base text-sm items-center gap-2 border-b py-1.5 text-black`}
+                          >
+                            <PiFilePng className="text-red-600" /> PNG
+                          </button>
+                        )}
+                      </Menu.Item>
+                      {/* JPEG */}
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            onClick={handleJpeg}
+                            className={`${active ? " font-semibold bg-white " : "font-semibold"
+                              } group flex w-full md:text-base text-sm items-center gap-2  py-1.5 text-black`}
+                          >
+                            <GrDocumentText className="text-red-600" /> JPG
+                          </button>
+                        )}
+                      </Menu.Item>
+                    </div>
+                  </Menu.Items>
+                </Menu>
+              </div>
+
+              <button
+                onClick={() => setShareLinkCopy(true)}
+                className="w-44 justify-center md:text-base text-sm px-8 border font-montserrat rounded-full text-center hover:bg-secondary hover:text-white transition duration-300 border-secondary group text-secondary flex items-center gap-2"
+              >
+                <FaShare className="text-secondary group-hover:text-white " /> Share
+              </button>
+              <ShareLinkCopyModal
+                isOpen={shareLinkCopy}
+                closeModal={closeModal}
+                copyToClipboard={copyToClipboard}
+                copied={copied}
+                shareLink={userData?.resumeLink}
+              />
+
+              <button className="w-44 justify-center md:text-base text-sm px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2 group hover:bg-secondary hover:text-white transition duration-300">
+                <FaEnvelope className="text-secondary group-hover:text-white " /> Email
+              </button>
+
+              <Link to={`/`}>
+                <button className="w-44 px-5 py-1 rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
+                  Finish
+                </button>
+              </Link>
+            </div>
+          </section>
+        </Container>
+        {showModal && (
+          <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal}>
+          </ReviewModal>
+        )}
+      </div>
+    </>
   );
 };
 

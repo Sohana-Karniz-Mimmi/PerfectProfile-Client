@@ -41,7 +41,7 @@ const ResumeViewer = () => {
         const response = await axiosPublic.get(`/resume/${link}`);
         setResumeData(response.data);
       } catch (err) {
-        console.log(err.message);
+        // console.log(err.message);
       }
     };
 
