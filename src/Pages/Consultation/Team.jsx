@@ -4,6 +4,7 @@ import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import TeamProfile from "./TeamProfile";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Team = () => {
@@ -11,7 +12,16 @@ const Team = () => {
   const axiosPublic = useAxiosPublic();
   let [isOpen, setIsOpen] = useState(false)
 
+  const {data =[], refetch} = useQuery({
+    queryKey : ["data"],
+    queryFn : async()=>{
+      const res = await axiosPublic(`/user`)
+      return res.data
+    }
+  })
 
+  const consultants = data.filter(user => user?.role === "consultant")
+console.log(consultants);
   const handleSubmit = async (e) => {
     console.log("h")
     e.preventDefault();
@@ -26,7 +36,7 @@ const Team = () => {
     const consultant = form.consultant.value;
     const resume = form.resume.value;
     console.log({ name, email, number, currentJob, currentIndustry,desiredJob, desiredIndustry, consultant, resume }); 
-    console.log("h")
+  
 
     const bookingData = {
         name, email, number, currentJob, currentIndustry,desiredJob, desiredIndustry, consultant, resume,  
@@ -36,12 +46,12 @@ const Team = () => {
       };
 
  
-        //  axiosPublic.put(`/consultant-info/user/${user?.email}`, consultantData)
-        // .then(res => {
-        //     console.log(res.data);
-        //   document.getElementById("consultant_modal").close();
-        //     toast.success("Your consultant application has been submitted! We’ll be in touch soon!");
-        //   });
+         axiosPublic.put(`/consultant-info/user/${user?.email}`, consultantData)
+        .then(res => {
+            console.log(res.data);
+          document.getElementById("consultant_modal").close();
+            toast.success("Your consultant application has been submitted! We’ll be in touch soon!");
+          });
      
  
   };
@@ -51,13 +61,13 @@ const Team = () => {
              <h1 className="font-bold lg:text-4xl mt-28 text-3xl text-center ">Meet Our Consultant To Review Resume</h1>
 
 
-             <TeamProfile></TeamProfile>
+             <TeamProfile consultants={consultants}></TeamProfile>
        
 
 
              <div className="flex flex-col  items-start  text-base  font-bold lg:font-semibold">
             
-            <button
+            {/* <button
                onClick={() => setIsOpen(true)} 
               className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5  mb-10 lg:mb-0 "
             >
@@ -74,7 +84,7 @@ const Team = () => {
                 </DialogPanel>
                </div>
               </div>
-            </Dialog>
+            </Dialog> */}
 
 
          
