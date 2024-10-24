@@ -2,19 +2,16 @@ import { useEffect, useState } from "react";
 import Container from "../../Shared/Container";
 import TemplateBanner from "./TemplateBanner";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { FaCrown } from "react-icons/fa";
-import { GrFavorite } from "react-icons/gr";
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import useAuth from "../../Hook/useAuth";
 import "./template.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import {
-  Description,
   Dialog,
   DialogPanel,
-  DialogTitle,
 } from "@headlessui/react";
 import { FiEdit } from "react-icons/fi";
 import { LuShare } from "react-icons/lu";
