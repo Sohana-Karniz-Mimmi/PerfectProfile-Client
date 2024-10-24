@@ -71,7 +71,7 @@ const TeamProfile = ({consultants}) => {
             <div className="flex flex-wrap justify-center">
               <div className="w-full px-4 flex justify-center">
                 <div className="mt-3">
-                 <img className="shadow-xl rounded-full h-44 align-middle border-none " src={img} alt="" />
+                 <img className="shadow-xl rounded-full h-44 align-middle border-none " src={consultant.image} alt="" />
                 
                 </div>
               </div>
