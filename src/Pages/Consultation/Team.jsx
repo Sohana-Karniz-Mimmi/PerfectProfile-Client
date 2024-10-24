@@ -46,12 +46,12 @@ console.log(consultants);
       };
 
  
-        //  axiosPublic.put(`/consultant-info/user/${user?.email}`, consultantData)
-        // .then(res => {
-        //     console.log(res.data);
-        //   document.getElementById("consultant_modal").close();
-        //     toast.success("Your consultant application has been submitted! We’ll be in touch soon!");
-        //   });
+         axiosPublic.put(`/consultant-info/user/${user?.email}`, consultantData)
+        .then(res => {
+            console.log(res.data);
+          document.getElementById("consultant_modal").close();
+            toast.success("Your consultant application has been submitted! We’ll be in touch soon!");
+          });
      
  
   };
@@ -67,7 +67,7 @@ console.log(consultants);
 
              <div className="flex flex-col  items-start  text-base  font-bold lg:font-semibold">
             
-            <button
+            {/* <button
                onClick={() => setIsOpen(true)} 
               className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5  mb-10 lg:mb-0 "
             >
@@ -84,7 +84,7 @@ console.log(consultants);
                 </DialogPanel>
                </div>
               </div>
-            </Dialog>
+            </Dialog> */}
 
 
          

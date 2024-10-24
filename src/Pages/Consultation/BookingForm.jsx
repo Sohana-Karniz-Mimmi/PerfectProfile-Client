@@ -1,5 +1,5 @@
 
-const BookingForm = ({handleSubmit, user}) => {
+const BookingForm = ({handleSubmit, user, consultants}) => {
     return (
         <div>
             <form
@@ -174,13 +174,14 @@ const BookingForm = ({handleSubmit, user}) => {
                               className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                             >
                               <option value="">Select A Consultant</option>
-                              <option value="Humahsaa Khan">Humashaa Khan</option>
-                              <option value="Shohana Akhter">
-                               Shohana Akhter
-                              </option>
-                              {/* <option value="Non-Technical">
-                               Shohana Akhter
-                              </option> */}
+                              {
+                                consultants.map(consultant=> (
+                                    <option value={consultant.name}>
+                                    {consultant.name}
+                                   </option>
+                                ))
+                              }
+                              
                             </select>
                           </div>
 

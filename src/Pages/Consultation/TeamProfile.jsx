@@ -1,11 +1,68 @@
 import { Link } from 'react-router-dom';
 import img from '../../assets/consultation/resume3.jpg'
+import { useRef, useState } from 'react';
+import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import BookingForm from "./BookingForm";
+import useAuth from '../../Hook/useAuth';
+import useAxiosPublic from '../../Hook/useAxiosPublic';
+import toast from 'react-hot-toast';
+
+
 const TeamProfile = ({consultants}) => {
+  const {user} = useAuth()
+  let [isOpen, setIsOpen] = useState(false)
+  const axiosPublic  = useAxiosPublic()
+
+  const sliderRef = useRef(null);
+
+  const scrollLeft = () => {
+    sliderRef.current.scrollLeft -= 300; // Adjust scroll distance as needed
+  };
+
+  const scrollRight = () => {
+    sliderRef.current.scrollLeft += 300;
+  };
+
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const number = form.number.value;
+    const currentJob = form.currentJob.value;
+    const currentIndustry = form.currentIndustry.value;
+    const desiredJob = form.desiredJob.value;
+    const desiredIndustry = form.desiredIndustry.value;
+    const consultant = form.consultant.value;
+    const resume = form.resume.value;
+    console.log({ name, email, number, currentJob, currentIndustry,desiredJob, desiredIndustry, consultant, resume }); 
+  
+
+    const bookingData = {
+        name, email, number, currentJob, currentIndustry,desiredJob, desiredIndustry, consultant, resume,  
+        bookingRequestedAt: new Date().toISOString().split("T")[0],
+        bookingRequest : "pending"
+        
+      };
+
+ 
+         axiosPublic.put(`/booking-info/user/${user?.email}`, bookingData)
+        .then(res => {
+            console.log(res.data);
+          // document.getElementById("consultant_modal").close();
+            toast.success("Your consultant application has been submitted! We’ll be in touch soon!");
+          });
+     
+ 
+  };
+
     return (
         <div>
-             <section className="pt-16  bg-blueGray-50 flex items-center justify-center">
-    
+             <section className="pt-16  bg-blueGray-50 px-16 flex items-center justify-center">
       {/* 1 */}
+      
       {
         consultants.map(consultant => <>
         <div className="w-[28rem] px-4 mx-auto ">
@@ -72,20 +129,36 @@ const TeamProfile = ({consultants}) => {
                   </Link>
               </div>
             </div>
-            <div className="mt-5 py-5 border-t border-blueGray-200 text-center">
+            {/* <div className="mt-5 py-5 border-t border-blueGray-200 text-center"> */}
               <div className="flex flex-wrap justify-center">
                 <div className="w-full px-3">
-                  <p className="mb-2 text-lg leading-relaxed text-blueGray-700">
+                  {/* <p className="mb-2 text-lg leading-relaxed text-blueGray-700">
                     An artist of considerable range, Jenna the name taken by
                     Melbourne-raised, Brooklyn-based Nick Murphy writes,
                     performs.
-                  </p>
-                  <a href="#" className="font-normal text-pink-500">
-                    Show more
-                  </a>
+                  </p> */}
+                  <button
+               onClick={() => setIsOpen(true)} 
+              className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+            >
+              Book A session
+            </button>
+
+            <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50 ">
+              <div className=" fixed inset-0 w-screen overflow-y-auto p-4">
+               <div className="flex min-h-full items-center justify-center">
+               <DialogPanel className=" max-w-lg space-y-4 border bg-white p-12">
+               <DialogTitle className="font-bold text-2xl text-center">Session Booking Form</DialogTitle>
+               <BookingForm handleSubmit={handleSubmit} user={user} consultants={consultants}></BookingForm>
+                
+                </DialogPanel>
+               </div>
+              </div>
+            </Dialog>
                 </div>
               </div>
-            </div>
+            {/* </div> */}
+
           </div>
         </div>
       </div>
