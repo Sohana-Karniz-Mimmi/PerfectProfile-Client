@@ -29,7 +29,7 @@ const Notification = ({ handleLogoutBtn }) => {
     <div className="relative text-right">
       <Menu as="div" className="relative inline-block text-left ">
         <Menu.Button  className="btn btn-ghost btn-circle avatar text-black">
-          <IoMdNotificationsOutline className="text-[28px]" />
+          <IoMdNotificationsOutline className="md:text-[28px] text-xl" />
         </Menu.Button>
 
         <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-white rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">

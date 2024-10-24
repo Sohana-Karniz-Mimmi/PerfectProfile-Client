@@ -154,7 +154,7 @@ const router = createBrowserRouter([
       },
 
 
-       { path: "transaction-history",
+       { path: "subscription",
         element: (
           <PrivetRoute>
             <AdminRoute>
