@@ -3,6 +3,7 @@ import BookingForm from "./BookingForm";
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
+import TeamProfile from "./TeamProfile";
 
 
 const Team = () => {
@@ -48,6 +49,9 @@ const Team = () => {
     return (
         <div id="session-booking">
              <h1 className="font-bold lg:text-4xl mt-28 text-3xl text-center ">Meet Our Consultant To Review Resume</h1>
+
+
+             <TeamProfile></TeamProfile>
        
 
 
