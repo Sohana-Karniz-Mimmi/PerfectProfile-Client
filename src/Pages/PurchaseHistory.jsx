@@ -1,38 +1,38 @@
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../Hook/useAxiosPublic";
+// import useAxiosPublic from "../Hook/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../Hook/useAuth";
 
 const PurchaseHistory = () => {
   const [payments, setPayments] = useState([]);
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
 
   useEffect(() => {
-    const fetchPayment = async () => {
-      try {
-        const response = await axiosPublic.get(
-          `/payment-transaction/${user?.email}`
-        );
-        setPayments(response.data);
-      } catch (error) {
+    fetch(`http://localhost:5000/payment-transaction/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPayments(Array.isArray(data) ? data : []);
+      })
+      .catch((error) => {
         console.error("Error fetching payment data:", error);
-      }
-    };
+      });
+  }, [user]);
 
-    fetchPayment();
-  }, [axiosPublic]);
+  console.log(payments);
 
-  const totalAmount = payments.reduce((total, payment) => {
-    return total + parseFloat(payment?.amount || 0);
-  }, 0);
+  const totalAmount = Array.isArray(payments)
+    ? payments.reduce((total, payment) => {
+        return total + parseFloat(payment?.amount || 0);
+      }, 0)
+    : 0;
 
   return (
     <>
       <Helmet>
         <title>Invoice - PerfectProfile</title>
       </Helmet>
-      <div className="max-w-5xl mx-auto my-10 p-4 md:p-6 bg-white shadow-lg border border-gray-300 ">
+      <div className="max-w-5xl mx-auto my-10 p-4 md:p-6 bg-white shadow-lg border border-gray-300">
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <h1 className="text-2xl md:text-3xl font-bold mb-2 md:mb-0">
             PERFECT <span className="text-primary">PROFILE</span>
@@ -66,39 +66,30 @@ const PurchaseHistory = () => {
               <tr className="bg-gray-100">
                 <th className="px-2 md:px-4 py-2">SL</th>
                 <th className="px-2 md:px-4 py-2">Customer Name</th>
-                {/* <th className="px-2 md:px-4 py-2 hidden sm:table-cell">
-                  Email
-                </th> */}
                 <th className="px-2 md:px-4 py-2">Product Name</th>
-                <th className="px-2 md:px-4 py-2  lg:table-cell">
+                <th className="px-2 md:px-4 py-2 lg:table-cell">
                   Transaction Id
                 </th>
-                {/* <th className="px-2 md:px-4 py-2 hidden sm:table-cell">
-                  Status
-                </th> */}
                 <th className="px-2 md:px-4 py-2 md:table-cell">Price</th>
               </tr>
             </thead>
             <tbody>
-              {payments?.map((payment, index) => (
-                <tr key={payment.tran_id} className="border-t text-center">
-                  <td className="px-2 md:px-4 py-2">{index + 1}</td>
-                  <td className="px-2 md:px-4 py-2">{payment.cus_name}</td>
-                  {/* <td className="px-2 md:px-4 py-2 hidden sm:table-cell">
-                    {payment.cus_email}
-                  </td> */}
-                  <td className="px-2 md:px-4 py-2">{payment.product_name}</td>
-                  <td className="px-2 md:px-4 py-2  lg:table-cell ">
-                    {payment?.tran_id}
-                  </td>
-                  {/* <td className="px-2 md:px-4 py-2 hidden sm:table-cell">
-                    {payment.status}
-                  </td> */}
-                  <td className="px-2 md:px-4 py-2  md:table-cell">
-                    {payment?.amount}
-                  </td>
-                </tr>
-              ))}
+              {Array.isArray(payments) &&
+                payments.map((payment, index) => (
+                  <tr key={payment.tran_id} className="border-t text-center">
+                    <td className="px-2 md:px-4 py-2">{index + 1}</td>
+                    <td className="px-2 md:px-4 py-2">{payment.cus_name}</td>
+                    <td className="px-2 md:px-4 py-2">
+                      {payment.product_name}
+                    </td>
+                    <td className="px-2 md:px-4 py-2 lg:table-cell">
+                      {payment.tran_id}
+                    </td>
+                    <td className="px-2 md:px-4 py-2 md:table-cell">
+                      {payment.amount}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
