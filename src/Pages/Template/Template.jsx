@@ -30,6 +30,7 @@ import toast from "react-hot-toast";
 import Banner2 from "./Banner2";
 import CheckoutForm from "../../Components/Payment/CheckoutForm";
 import useRole from "../../Hook/useRole";
+import { Helmet } from "react-helmet-async";
 const Template = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
@@ -145,11 +146,16 @@ const Template = () => {
 
   return (
     <div>
+
+      <Helmet>
+        <title>Template - PerfectProfile</title>
+      </Helmet>
+
       <Container>
         <TemplateBanner></TemplateBanner>
 
         {/* filter */}
-        <div className="lg:w-[79rem] lg:mt-12 mt-20 justify-end flex item-end">
+        <div className=" lg:mt-12 mt-20 justify-end flex item-end">
           <select
             onChange={e => {
               setFilter(e.target.value)
@@ -167,10 +173,10 @@ const Template = () => {
           </select>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 lg:px-32 gap-8">
+        <div className="grid grid-cols-1 gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
           {predefinedTemplate?.map((template) => (
             <div key={template._id}>
-              <div className="relative group w-[350px] h-[450px]">
+              <div className="relative group h-[450px] border-secondary border">
                 <button
                   onClick={() => handleFavorite(template)} // Pass the whole template object
                   className="absolute text-3xl bg-white top-[6px] right-2 rounded-lg p-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"
@@ -190,11 +196,11 @@ const Template = () => {
                 {/* Hover Effect with "Use Template" Button */}
                 <div className="absolute w-full h-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
                   {/* <Link to={`/resume/edit/${template.templateItem}`}> */}
-                    <button
-                     onClick={() => handleTemplateClick(template)}
+                  <button
+                    onClick={() => handleTemplateClick(template)}
                     className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Use Template
-                    </button>
+                    Use Template
+                  </button>
                   {/* </Link> */}
                 </div>
 

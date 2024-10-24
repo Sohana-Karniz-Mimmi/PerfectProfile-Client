@@ -104,7 +104,7 @@ const Testimonial = () => {
                     </h2>
                   </div>
                 </div>
-                <div className="bottom-0 right-[15px] md:p-8 p-5 text-white md:text-[60px] text-xl z-0 leading-none absolute opacity-100 bg-primary">
+                <div className="bottom-0 right-[15px] md:p-8 p-5 text-white lg:text-[60px] text-xl z-0 leading-none absolute opacity-100 bg-primary">
                   <FaQuoteRight />
                 </div>
               </div>

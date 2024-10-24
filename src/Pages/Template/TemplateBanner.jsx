@@ -2,22 +2,24 @@ import { Link } from 'react-router-dom';
 import img from '../../assets/banner/template-banner.png'
 const TemplateBanner = () => {
     return (
-        <div className="flex flex-col lg:flex-row justify-between items-center px-2 lg:px-9 py-4 mb-[21rem] lg:mb-1 h-[26rem] lg:h-[15rem] mt-6 rounded-lg bg-cyan-50">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-5 md:px-9 lg:mb-1 mt-6 py-6 rounded-lg bg-cyan-50"
+        style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}
+        >
         <div>
-          <h1 className="font-bold text-3xl lg:text-4xl">
+          <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">
           Choose the Perfect Template for Your Career
             
           </h1>
-          <p className="text-gray-500 lg:w-[43rem] w-80 mt-3">
+          <p className="text-gray-500 text-sm md:[15px] lg:text-base lg:w-[43rem] mt-3">
           Your resume is the key to making a great first impression. PerfectProfile offers a wide range of professionally designed templates that cater to all industries and career levels.
           </p>
-          <p className="text-gray-500 lg:w-[43rem] w-80 mt-2">
+          <p className="text-gray-500 text-sm md:[15px] lg:text-base lg:w-[43rem] mt-2">
            Unlock access to Premium Templates by upgrading to a <span className='font-bold text-black'>Premium Plan</span>. With these high-quality designs, give your resume a polished look. 
           </p>
   
-          <div className="flex flex-col  items-start  text-base  font-bold lg:font-semibold">
+          <div className="flex flex-col items-start text-base font-bold lg:font-semibold">
            
-            <Link to='/pricing' className="mt-5  mb-16 lg:mb-0">
+            <Link to='/pricing' className="mt-5 lg:mb-0">
               <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105">
                 Upgrade Now
               </button>
@@ -26,7 +28,7 @@ const TemplateBanner = () => {
         </div>
   
         <div className="">
-          <img className="h-72 w-[28rem] rounded-lg" src={img} alt="" />
+          <img className="xl:h-72 lg:w-[28rem] md:w-[40rem] md:h-56 rounded-lg" src={img} alt="" />
         </div>
       </div>
     );
