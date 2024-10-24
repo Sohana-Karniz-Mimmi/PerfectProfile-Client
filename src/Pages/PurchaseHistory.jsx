@@ -34,7 +34,7 @@ const PurchaseHistory = () => {
       </Helmet>
       <div className="min-h-screen">
         <div className="max-w-5xl mx-auto my-10 p-4 md:p-6 bg-white shadow-lg  border border-gray-300 ">
-          <div className="flex flex-col md:flex-row justify-between items-start  md:items-center mb-4">
+          <div className="flex flex-col md:flex-row justify-between items-start  md:items-center mb-2">
             <h1 className="text-2xl md:text-3xl font-bold mb-2 md:mb-0">
               P<span className="text-primary">P</span>
             </h1>
