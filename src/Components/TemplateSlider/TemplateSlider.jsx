@@ -145,7 +145,7 @@ export default function App() {
                 </button>
                 {template?.package === "premium" && (
                   <>
-                    <FaCrown className="absolute bottom-4 right-4 text-yellow-400 text-2xl bg-black/70 p-1 rounded-full tooltip-crown" />
+                    <FaCrown className="absolute top-4 right-4 text-yellow-400 text-2xl bg-black/70 p-1 rounded-full tooltip-crown" />
 
                     <span className="tooltip-text-crown hidden z-[100] absolute bottom-12 right-4 bg-primary text-white text-xs rounded py-1 px-2">
                       Premium
