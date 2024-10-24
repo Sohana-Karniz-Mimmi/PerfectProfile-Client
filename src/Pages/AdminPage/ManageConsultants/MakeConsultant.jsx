@@ -3,9 +3,15 @@ import Container from "../../../Shared/Container";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import UserDataRow from "../../AdminDashboard/UserDataRow";
 import { useEffect, useState } from "react";
+import { IoPersonAddOutline } from "react-icons/io5";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from "sweetalert2";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const MakeConsultant = () => {
     const axiosPublic = useAxiosPublic()
+ 
 
     const {data =[], refetch} = useQuery({
         queryKey: ["data"],
@@ -16,27 +22,62 @@ const MakeConsultant = () => {
     
     })
     console.log(data)
-//     const [count, setCount] = useState([]);
 
-// useEffect(() => {
-//     const getCount = async () => {
-//       const { data } = await axiosPublic(`/user`
-//       );
+    // make consultant
+    const handleRoleChange = async (user) => {
+     
+         await axiosPublic.patch(`/user/make-consultant/${user?._id}`, user)
+         .then(res =>{
+          toast.success("User is a consultant now")
+          refetch()
 
-//       setCount(data.count);
-//     };
-//     getCount();
-//   }, []);
+         })
+         
+    };
+
+    const handleDelete = (user) => {
+      console.log(user)
+      Swal.fire({
+        title: "Are you sure?",
+        text: `You won't be able to revert this!`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: `Remove`,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const res = await axiosPublic.patch(`/user/${user?._id}`, user);
+            if (res.status === 200) {
+              Swal.fire({
+                title: "Success!",
+                text: "Request field removed successfully.",
+                icon: "success",
+              });
+            }
+            refetch()
+          } catch (error) {
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to remove request field.",
+              icon: "error",
+            });
+          }
+        }
+      });
+    };
+    
 
 
 
     return (
         <Container>
-            <h1>Pending Requests</h1>
+            <h1 className="text-center mb-16 font-lora text-4xl text-primary font-bold">Pending Requests</h1>
 
             {/* table */}
 
-            <div className="flex flex-col mt-6  ">
+            <div className="flex flex-col mt-8 ">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
@@ -45,7 +86,7 @@ const MakeConsultant = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-3 text-xl font-bold text-left rtl:text-right "
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Name</span>
@@ -54,7 +95,7 @@ const MakeConsultant = () => {
 
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-3 text-xl font-bold text-left rtl:text-right "
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Email</span>
@@ -62,7 +103,7 @@ const MakeConsultant = () => {
                     </th>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Number</span>
@@ -70,7 +111,7 @@ const MakeConsultant = () => {
                     </th>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Specialization</span>
@@ -78,7 +119,7 @@ const MakeConsultant = () => {
                     </th>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Experience</span>
@@ -86,7 +127,7 @@ const MakeConsultant = () => {
                     </th>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Resume</span>
@@ -94,9 +135,9 @@ const MakeConsultant = () => {
                     </th>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-5  text-left rtl:text-right"
                     >
-                      <div className="flex items-center gap-x-3">
+                      <div className="flex text-xl font-bold items-center gap-x-3">
                         <span>Action</span>
                       </div>
                     </th>
@@ -109,29 +150,39 @@ const MakeConsultant = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
                   { data
-                  .filter( emp =>emp.request === "pending")
-                  .map((emp) => (
-                    <tr key={emp._id}>
+                  .filter( user =>user.role === "consultant")
+                  .map((user) => (
+                    <tr key={user._id}>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        {emp.name}
+                        {user.name}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        {emp.email}
+                      <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {user.email}
+                      </td>
+                      <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {user.number}
+                      </td>
+                      <td className="px-5 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {user.expertise}
+                      </td>
+                      <td className="px-5 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {user.experience}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        {emp.number}
+                       <a className="underline text-blue-950" href= {user.resume}>View Resume</a>
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        {emp.expertise}
+                      <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
+                       <div className="flex item-center justify-between pr-6 gap-2">
+                        <button onClick={() => handleRoleChange(user)}>
+                        <IoPersonAddOutline className="text-primary text-2xl font-extrabold"/>
+                        </button>
+                        <button onClick={() => handleDelete(user)}>
+                        <RiDeleteBin6Line className="text-red-500 text-2xl font-bold"/>
+                        </button>
+                       </div>
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        {emp.experience}
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                       <a href= {emp.resume}>resume</a>
-                      </td>
-                     
+                      
                     </tr>
                   ))}
                  

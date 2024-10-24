@@ -29,6 +29,8 @@ import Consultation from "../Pages/Consultation/Consultation";
 import MakeConsultant from "../Pages/AdminPage/ManageConsultants/MakeConsultant";
 import PurchaseHistory from "../Pages/PurchaseHistory";
 import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
+import SessionRequest from "../Pages/ConsultantDashboard/SessionRequest";
+import Profile from "../Pages/ConsultantDashboard/Profile";
 
 const router = createBrowserRouter([
   {
@@ -115,31 +117,29 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <PrivetRoute>
-        <AdminRoute>
-          <DashboardLayout />
-        </AdminRoute>
-      </PrivetRoute>
+      <DashboardLayout />
     ),
     children: [
       {
         index: true,
         element: (
-          <PrivetRoute>
-            <AdminRoute>
-              <Statistics />
-            </AdminRoute>
-          </PrivetRoute>
+          <Statistics />
+          // <PrivetRoute>
+          //   <AdminRoute>
+             
+          //   </AdminRoute>
+          // </PrivetRoute>
         ),
       },
       {
         path: "manage-users",
         element: (
-          <PrivetRoute>
-            <AdminRoute>
-              <ManageUsers />
-            </AdminRoute>
-          </PrivetRoute>
+          <ManageUsers />
+          // <PrivetRoute>
+          //   <AdminRoute>
+             
+          //   </AdminRoute>
+          // </PrivetRoute>
         ),
       },
       {
@@ -163,6 +163,33 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
       },
+    ],
+  },
+
+  // consultant dashboard
+  {
+    path: "/consultant-dashboard",
+    element: (
+      <DashboardLayout />
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          // session booking
+          <SessionRequest />
+          
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          // profile
+          <Profile />
+          
+        ),
+      },
+  
     ],
   },
   {

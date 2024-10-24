@@ -4,6 +4,7 @@ import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import TeamProfile from "./TeamProfile";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Team = () => {
@@ -11,7 +12,16 @@ const Team = () => {
   const axiosPublic = useAxiosPublic();
   let [isOpen, setIsOpen] = useState(false)
 
+  const {data =[], refetch} = useQuery({
+    queryKey : ["data"],
+    queryFn : async()=>{
+      const res = await axiosPublic(`/user`)
+      return res.data
+    }
+  })
 
+  const consultants = data.filter(user => user?.role === "consultant")
+console.log(consultants);
   const handleSubmit = async (e) => {
     console.log("h")
     e.preventDefault();
@@ -26,7 +36,7 @@ const Team = () => {
     const consultant = form.consultant.value;
     const resume = form.resume.value;
     console.log({ name, email, number, currentJob, currentIndustry,desiredJob, desiredIndustry, consultant, resume }); 
-    console.log("h")
+  
 
     const bookingData = {
         name, email, number, currentJob, currentIndustry,desiredJob, desiredIndustry, consultant, resume,  
@@ -51,7 +61,7 @@ const Team = () => {
              <h1 className="font-bold lg:text-4xl mt-28 text-3xl text-center ">Meet Our Consultant To Review Resume</h1>
 
 
-             <TeamProfile></TeamProfile>
+             <TeamProfile consultants={consultants}></TeamProfile>
        
 
 
