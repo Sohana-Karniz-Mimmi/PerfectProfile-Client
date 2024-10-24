@@ -41,6 +41,7 @@ import Template4 from "../../Components/AllTemplates/Template4";
 import Template5 from "../../Components/AllTemplates/Template5";
 import Template6 from "../../Components/AllTemplates/Template6";
 import NewTemplate from "../../Components/AllTemplates/NewTemplate";
+import "./Customize.css"
 
 const ResumeEditPage = () => {
   const { user } = useAuth();
@@ -433,10 +434,13 @@ const ResumeEditPage = () => {
       );
     }
     if (id === "template3") {
-      return <Template3 
-      data={template} 
-      userData={userData} 
-      setUserData={setUserData} />;
+      return (
+        <Template3
+          data={template}
+          userData={userData}
+          setUserData={setUserData}
+        />
+      );
     }
     if (id === "template4") {
       return <Template4 data={template} userData={userData} />;
@@ -445,16 +449,19 @@ const ResumeEditPage = () => {
       return <Template5 data={template} userData={userData} />;
     }
     if (id === "template6") {
-      return <Template6 
-      data={template} 
-      userData={userData} 
-      setUserData={setUserData} />;
+      return (
+        <Template6
+          data={template}
+          userData={userData}
+          setUserData={setUserData}
+        />
+      );
     }
   };
   const navigate = useNavigate();
 
   console.log(resumeId);
-  console.log('templateItem', id,);
+  console.log("templateItem", id);
   // Function to generate a shareable link
   const handleShare = async () => {
     console.log(resumeId);
@@ -485,18 +492,17 @@ const ResumeEditPage = () => {
     }
   };
 
-
-
   return (
-    <div className="flex xl:flex-row flex-col min-h-screen">
+    <div className="customization-layout flex xl:flex-row flex-col xl:gap-0 gap-6  min-h-screen">
       {/* Sidebar */}
-      <div className="xl:w-[20%] w-[100%] lg:block bg-[#00000f] text-white p-6">
+      
+      <div className="sidebar xl:w-[20%] w-[100%] lg:block bg-[#00000f] text-white p-6">
         <Link to="/">
           <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
             Perfect<span className="text-primary">Profile</span>
           </h1>
         </Link>
-        <div className="space-y-6 lg:pb-6 pb-0 flex lg:flex-col flex-row hidden lg:block overscroll-x-none overflow-x-auto">
+        <div className="space-y-6 lg:pb-6 pb-0 flex flex-col  lg:block md:overscroll-y-none ">
           {steps.map((step) => (
             <div
               key={step.id}
@@ -553,7 +559,7 @@ const ResumeEditPage = () => {
           {currentStep === 1 && (
             <div className="space-y-4">
               <div>
-                <h2 className="lg:text-4xl text-3xl font-lora font-extrabold mb-12">
+                <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
                   How do you want recruiters to <br />
                   contact you?
                 </h2>
@@ -708,9 +714,9 @@ const ResumeEditPage = () => {
           )}
 
           {currentStep === 2 && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <h2 className="lg:text-4xl text-3xl font-lora  font-extrabold mb-12">
+                <h2 className="lg:text-4xl text-2xl font-lora  font-extrabold mb-12">
                   Tell us about your work <br />
                   experience to showcase your professional journey.
                 </h2>
@@ -718,7 +724,7 @@ const ResumeEditPage = () => {
               {userData.workExperience.map((entry, index) => (
                 <div
                   key={index}
-                  className="relative lg:p-4 p-2 rounded rounded-tr-3xl bg-white border-gray-400 border-dashed gap-6 flex flex-col mb-4"
+                  className="relative lg:p-4 p-2 space-y-2 rounded rounded-tr-3xl bg-white border-gray-400 border-dashed gap-6 flex flex-col mb-4"
                 >
                   <div className="flex lg:flex-row flex-col justify-between gap-6">
                     {/* Company Name Input */}
@@ -753,13 +759,79 @@ const ResumeEditPage = () => {
                       />
                     </div>
                   </div>
+
+                  <div className="flex lg:flex-row flex-col items-center justify-between gap-6">
+                    <div className="w-full">
+                      {/* Start Date Input */}
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">Start Date</label>
+                        <DatePicker
+                          selected={
+                            entry.startDate ? new Date(entry.startDate) : null
+                          } // Bind to individual entry's startDate
+                          onChange={(date) =>
+                            updateWorkExperience(index, "startDate", date)
+                          }
+                          // dateFormat="dd/MM/yyyy"
+                          dateFormat="MMMM yyyy"
+                          showMonthYearPicker
+                          placeholderText="Select Start Date"
+                          className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
+                          wrapperClassName="w-full"
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full relative">
+                      {/* End Date Input (set to "present" if "Currently working here" is checked) */}
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">End Date</label>
+                        <DatePicker
+                          selected={
+                            entry.endDate && entry.endDate !== "present"
+                              ? new Date(entry.endDate)
+                              : null
+                          }
+                          onChange={(date) =>
+                            updateWorkExperience(index, "endDate", date)
+                          }
+                          dateFormat="MMMM yyyy"
+                          showMonthYearPicker
+                          placeholderText="Select End Date"
+                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${
+                            entry.isCurrent ? "opacity-35" : "bg-transparent"
+                          }`}
+                          wrapperClassName="w-full"
+                          disabled={entry.isCurrent} // Disable if "Currently working here" is checked
+                        />
+                      </div>
+
+                      {/* "Currently Working Here" Checkbox */}
+                      <div className="flex absolute justify-end items-center gap-2 w-full lg:mt-2 mt-1">
+                        <input
+                          type="checkbox"
+                          id={`current-${index}`}
+                          checked={entry.isCurrent}
+                          onChange={(e) =>
+                            handleCurrentCheckboxChange(index, e.target.checked)
+                          }
+                        />
+                        <label
+                          htmlFor={`current-${index}`}
+                          className="font-bold"
+                        >
+                          Currently, I'm working here
+                        </label>
+                      </div>
+                    </div>
+                  </div>
                   <div className="">
                     {/* Job Role Input */}
                     <div className="w-full space-y-1">
                       <label className="font-bold">Job Role</label>
-                      <input
+                      <textarea
                         type="text"
-                        placeholder="e.g. Frontend Development"
+                        rows={8}
+                        placeholder="Enter your job role and key responsibilities"
                         className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
                         value={entry.description}
                         onChange={(e) =>
@@ -772,101 +844,10 @@ const ResumeEditPage = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex lg:flex-row flex-col items-center justify-between gap-6">
-                    {/* Start Date Input */}
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Start Date</label>
-                      <DatePicker
-                        selected={
-                          entry.startDate ? new Date(entry.startDate) : null
-                        } // Bind to individual entry's startDate
-                        onChange={(date) =>
-                          updateWorkExperience(index, "startDate", date)
-                        }
-                        // dateFormat="dd/MM/yyyy"
-                        dateFormat="MMMM yyyy"
-                        showMonthYearPicker
-                        placeholderText="Select Start Date"
-                        className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                        wrapperClassName="w-full"
-                      />
-                    </div>
-
-                    {/* End Date Input */}
-                    {/* <div className="space-y-1">
-                      <label className="font-bold">End Date</label>
-                      <DatePicker
-                        selected={
-                          entry.endDate ? new Date(entry.endDate) : null
-                        } // Bind to individual entry's endDate
-                        onChange={(date) =>
-                          updateWorkExperience(index, "endDate", date)
-                        }
-                        // dateFormat="dd/MM/yyyy"
-                        dateFormat="MMMM yyyy"
-                        showMonthYearPicker
-                        placeholderText="Select End Date"
-                        className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                        wrapperClassName="w-full"
-                      />
-                    </div> */}
-
-                    {/* End Date Input (set to "present" if "Currently working here" is checked) */}
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">End Date</label>
-                      <DatePicker
-                        selected={
-                          entry.endDate && entry.endDate !== "present"
-                            ? new Date(entry.endDate)
-                            : null
-                        }
-                        onChange={(date) =>
-                          updateWorkExperience(index, "endDate", date)
-                        }
-                        dateFormat="MMMM yyyy"
-                        showMonthYearPicker
-                        placeholderText="Select End Date"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${
-                          entry.isCurrent ? "opacity-35" : "bg-transparent"
-                        }`}
-                        wrapperClassName="w-full"
-                        disabled={entry.isCurrent} // Disable if "Currently working here" is checked
-                      />
-                    </div>
-
-                    {/* "Currently Working Here" Checkbox */}
-                    <div className="flex items-center gap-2 w-full lg:mt-5 mt-0">
-                      <input
-                        type="checkbox"
-                        id={`current-${index}`}
-                        checked={entry.isCurrent}
-                        onChange={(e) =>
-                          handleCurrentCheckboxChange(index, e.target.checked)
-                        }
-                      />
-                      <label htmlFor={`current-${index}`} className="font-bold">
-                        Currently, I'm working here
-                      </label>
-                    </div>
-
-                    {/* Duration Input */}
-                    {/* <div className="space-y-1">
-                      <label className="font-bold">Duration</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. 2 years"
-                        className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                        value={entry.years}
-                        onChange={(e) =>
-                          updateWorkExperience(index, "years", e.target.value)
-                        }
-                      />
-                    </div> */}
-                  </div>
 
                   {/* Delete Button (only show for entries other than the first one) */}
-                  {index > 0 && (
-                    <div className="flex absolute top-0 right-0 items-center justify-end bg-white p-4 rounded-full">
+                  {index >= 0 && (
+                    <div className="flex absolute -top-2 right-0 items-center justify-end  rounded-full">
                       <button
                         type="button"
                         onClick={() => deleteWorkExperience(index)}
@@ -892,9 +873,9 @@ const ResumeEditPage = () => {
           )}
 
           {currentStep === 3 && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <h2 className="lg:text-4xl text-3xl font-lora font-extrabold mb-12">
+                <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
                   Share your educational background and achievements.
                 </h2>
               </div>
@@ -929,8 +910,8 @@ const ResumeEditPage = () => {
                       />
                     </div>
                   </div>
-                  <div>
-                    <div className="space-y-1">
+                  <div className="flex lg:flex-row flex-col justify-between gap-6">
+                    {/* <div className="lg:w-1/2 w-full space-y-1">
                       <label className="font-bold">Passing Year</label>
                       <input
                         type="text"
@@ -941,11 +922,37 @@ const ResumeEditPage = () => {
                           updateEducation(index, "year", e.target.value)
                         }
                       />
+                    </div> */}
+                    <div className=" w-full space-y-1">
+                      <label className="font-bold">Passing Year</label>
+                      <input
+                        type="number"
+                        min="2006" // Minimum valid year
+                        max={new Date().getFullYear()} // Maximum year is the current year
+                        placeholder="2020"
+                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                        value={entry.year}
+                        onChange={(e) =>
+                          updateEducation(index, "year", e.target.value)
+                        }
+                      />
+                    </div>
+                    <div className="w-full space-y-1 opacity-0">
+                      <label className="font-bold block">Passing Year</label>
+                      <DatePicker
+                        selected={new Date(entry.year, 0)} // Set selected year
+                        onChange={(date) =>
+                          updateEducation(index, "year", date.getFullYear())
+                        }
+                        showYearPicker
+                        dateFormat="yyyy"
+                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                      />
                     </div>
                   </div>
                   {index > 0 && (
                     <div
-                      className={`flex absolute top-0 right-0 items-center justify-end bg-white p-4 rounded-full`}
+                      className={`flex absolute -top-6 right-0 items-center justify-end  rounded-full`}
                     >
                       <button
                         type="button"
@@ -978,7 +985,7 @@ const ResumeEditPage = () => {
           {currentStep === 4 && (
             <div className="space-y-4">
               <div>
-                <h2 className="lg:text-4xl text-3xl font-extrabold font-lora mb-12">
+                <h2 className="lg:text-4xl text-2xl font-extrabold font-lora mb-12">
                   Showcase your key skills and expertise.
                 </h2>
               </div>
@@ -1031,7 +1038,7 @@ const ResumeEditPage = () => {
           {currentStep === 5 && (
             <div className="space-y-4">
               <div>
-                <h2 className="lg:text-4xl text-3xl font-lora font-extrabold mb-12">
+                <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
                   List the languages you speak fluently.
                 </h2>
               </div>
@@ -1081,9 +1088,9 @@ const ResumeEditPage = () => {
             </div>
           )}
           {currentStep === 6 && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <h2 className="lg:text-4xl text-3xl font-lora font-extrabold mb-12">
+                <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
                   What certifications have you earned to strengthen your
                   profile?
                 </h2>
@@ -1091,10 +1098,10 @@ const ResumeEditPage = () => {
               {userData.certifications.map((entry, index) => (
                 <div
                   key={index}
-                  className="relative bg-white p-8 rounded-tr-3xl gap-4 mb-4"
+                  className="relative certification bg-white md:p-8 p-2 rounded-tr-3xl gap-4 mb-4"
                 >
-                  <div className="flex lg:flex-row flex-col justify-between gap-6">
-                    <div className="space-y-1">
+                  <div className="flex lg:flex-row flex-col items-center justify-between gap-6">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Certificate Name</label>
                       <input
                         type="text"
@@ -1106,7 +1113,7 @@ const ResumeEditPage = () => {
                         }
                       />
                     </div>
-                    <div className="space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Institution Name</label>
                       <input
                         type="text"
@@ -1122,7 +1129,7 @@ const ResumeEditPage = () => {
                         }
                       />
                     </div>
-                    <div className="space-y-1">
+                    {/* <div className="space-y-1">
                       <label className="font-bold">Duration</label>
                       <input
                         type="text"
@@ -1133,11 +1140,35 @@ const ResumeEditPage = () => {
                           updateCertificate(index, "year", e.target.value)
                         }
                       />
+                    </div> */}
+                    <div className="w-full space-y-1">
+                      <label className="font-bold">Duration</label>
+                      <div className="border py-2 rounded">
+                        <select
+                          className="px-2 w-full rounded outline-none  focus:border-gray-300"
+                          value={entry.year}
+                          onChange={(e) =>
+                            updateCertificate(index, "year", e.target.value)
+                          }
+                        >
+                          <option className="" value="" disabled>
+                            Select duration
+                          </option>
+                          <option value="2 months">2 months</option>
+                          <option value="3 months">3 months</option>
+                          <option value="3 months">4 months</option>
+                          <option value="6 months">6 months</option>
+                          <option value="1 year">1 year</option>
+                          <option value="2 years">2 years</option>
+                          <option value="3 years">3 years</option>
+                          <option value="4 years">4 years</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                   {index > 0 && (
                     <div
-                      className={`flex absolute top-0 right-0 items-center justify-end bg-white p-4 rounded-full`}
+                      className={`flex absolute top-0 right-0 items-center justify-end rounded-full`}
                     >
                       <button
                         type="button"
@@ -1180,7 +1211,7 @@ const ResumeEditPage = () => {
               <button
                 type="button"
                 onClick={handlePreviousStep}
-                className={`border border-black uppercase flex text-lg items-center gap-2 font-bold text-black py-3 px-5 ${currentStep ==
+                className={`border border-black uppercase flex md:text-lg text-sm items-center gap-2 font-bold text-black md:py-3 py-2 px-5 ${currentStep ==
                   1 && "opacity-0"}`}
               >
                 <FaBackward /> Previous
@@ -1190,7 +1221,7 @@ const ResumeEditPage = () => {
               <button
                 type="button"
                 onClick={handleNextStep}
-                className="bg-primary uppercase font-bold text-lg flex items-center gap-2 text-white py-3 px-5"
+                className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
               >
                 Next <FaForward />
               </button>
@@ -1199,13 +1230,12 @@ const ResumeEditPage = () => {
                 <button
                   onClick={handleShare}
                   type="submit"
-                  className="bg-primary uppercase font-bold text-lg flex items-center gap-2 text-white py-3 px-5"
+                  className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
                 >
-                  Save
+                  Save & Finalize
                 </button>
               </div>
             )}
-            
           </div>
         </form>
       </div>
