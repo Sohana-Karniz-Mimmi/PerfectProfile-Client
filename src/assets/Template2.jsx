@@ -5,7 +5,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 
 const Template2 = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   const {
     _id,
     name,

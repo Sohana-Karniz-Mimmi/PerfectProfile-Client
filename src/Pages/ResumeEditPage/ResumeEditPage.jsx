@@ -88,7 +88,7 @@ const ResumeEditPage = () => {
     ],
   });
 
-  console.log(userData);
+  // console.log(userData);
   // Define icons for each step
   const stepIcons = {
     1: <FaRegCircleUser />,
@@ -197,8 +197,8 @@ const ResumeEditPage = () => {
       : 0;
 
   const onSubmit = (event, data) => {
-    console.log(`Form Step ${currentStep} Data:`, data);
-    console.log(data.isCurrentJob);
+    // console.log(`Form Step ${currentStep} Data:`, data);
+    // console.log(data.isCurrentJob);
     handleNextStep();
   };
 
@@ -403,7 +403,7 @@ const ResumeEditPage = () => {
       const getData = async () => {
         try {
           const { data } = await axiosPublic(`/my-resume/edit/${resumeId}`);
-          console.log("fetch data ", data);
+          // console.log("fetch data ", data);
 
           setMyResumeTemplates(data);
           setUserData(data);

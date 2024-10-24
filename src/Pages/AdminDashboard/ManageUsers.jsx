@@ -68,7 +68,7 @@ const ManageUsers = () => {
     setSearch(searchText);
   };
 
-  console.log(users);
+  // console.log(users);
   // if ( loading) return <LoadingSpinner />
   return (
     <>
