@@ -15,7 +15,7 @@ const PieChartForUser = () => {
   const users = useSelector(selectAllUsersState);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  console.log(users);
+  // console.log(users);
 
   // Count the occurrences of each productName
   const userCounts = users?.reduce(
