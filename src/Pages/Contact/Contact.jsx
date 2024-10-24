@@ -316,12 +316,12 @@ const Contact = () => {
             </div>
           </div>
         </section>
-        <section className="py-24">
+        <section className="md:py-24 py-12">
           <div className="flex lg:flex-row flex-col-reverse justify-between gap-8">
-            <div className="lg:w-1/2 w-full">
+            <div className="lg:w-1/2 w-full bg-gray-50">
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="font-montserrat pr-4"
+                className="font-montserrat p-4"
               >
                 <div className="mb-4 ">
                   <label
@@ -389,13 +389,13 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="bg-primary text-white w-full py-2 px-4 rounded"
+                  className="w-full px-5 py-2 text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l  text-sm md:text-xl font-montserrat  shadow-lg font-medium text-white"
                 >
                   Submit
                 </button>
               </form>
             </div>
-            <div className="lg:w-1/2 w-full  pl-6 space-y-4 flex flex-col justify-between">
+            <div className="lg:w-1/2 w-full border p-4  space-y-4 flex flex-col justify-between">
               <div className="space-y-4">
                 <h2 className="font-montserrat text-3xl font-bold">
                   Get in touch
@@ -404,10 +404,13 @@ const Contact = () => {
                   We believe sustainability is vitally important.
                 </p>
                 <p className="font-montserrat">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea
-                  natus placeat et non esse beatae ipsa, ipsum modi voluptates
-                  asperiores nam doloribus minus repudiandae at ut veritatis
-                  tempore dolores? Quia, labore suscipit!
+                  At <strong>PerfectProfile</strong>, we are committed to
+                  creating a sustainable future by integrating eco-friendly
+                  practices into everything we do. Whether you're interested in
+                  learning more about our sustainability initiatives or have
+                  questions about how we can work together, we'd love to hear
+                  from you. Fill out the form below or reach out directly, and
+                  let's take a step toward a greener tomorrow!
                 </p>
               </div>
               <div className="flex items-center gap-4">

@@ -21,7 +21,7 @@ const Resumes = () => {
         </div>
 
         {/* Content Grid */}
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-6">
           {/* Left column (Featured resume) */}
           <div className="md:w-2/3">
             <img
@@ -43,7 +43,7 @@ const Resumes = () => {
           </div>
 
           {/* Right column (Other resumes) */}
-          <div className="flex flex-col gap-6 md:w-1/3">
+          <div className="flex flex-col gap-6 lg:w-1/3">
             {/* First Small Card */}
             <div className="flex space-x-4">
               <img

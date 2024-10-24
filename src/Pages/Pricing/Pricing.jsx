@@ -7,7 +7,7 @@ const Pricing = () => {
     
     return (
         <Container>
-             <Pricing2ndBanner></Pricing2ndBanner> 
+            <Pricing2ndBanner></Pricing2ndBanner> 
             <Package></Package>
             <PricingBanner></PricingBanner>
         </Container>
