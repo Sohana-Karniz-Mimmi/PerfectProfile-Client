@@ -22,7 +22,7 @@ const PremiumFeature = () => {
       {/* Card Section rendered using map() */}
       <div className="relative z-10 flex flex-col lg:flex-row justify-center items-center gap-8 mx-auto">
         <div
-          className="2xl:h-[550px] lg:h-[484px] lg:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center"
+          className="2xl:h-[550px] lg:h-[484px] md:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center"
           style={{
             backdropFilter: "blur(25px)",
             backgroundColor: "rgba(245, 245, 245, 0.2)",
@@ -49,7 +49,7 @@ const PremiumFeature = () => {
         </div>
 
         <div
-          className="2xl:h-[550px] lg:h-[484px] lg:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center"
+          className="2xl:h-[550px] lg:h-[484px] md:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center"
           style={{
             backdropFilter: "blur(25px)",
             backgroundColor: "rgba(245, 245, 245, 0.2)",
@@ -105,7 +105,7 @@ const PremiumFeature = () => {
         </div>
 
         <div
-          className="2xl:h-[550px] lg:h-[484px] lg:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center"
+          className="2xl:h-[550px] lg:h-[484px] md:w-[375px] relative shadow-[0_0_10px_4px_rgba(0,0,0,0.1)] transform transition duration-500 p-8 rounded-2xl flex flex-col justify-center items-center"
           style={{
             backdropFilter: "blur(25px)",
             backgroundColor: "rgba(245, 245, 245, 0.2)",
