@@ -119,7 +119,7 @@ const Favorite = () => {
       <div className="grid grid-cols-1 gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
         {templates.map((template) => (
           <div key={template._id}>
-            <div className="relative group h-[450px]">
+            <div className="relative group h-[450px] border-secondary border">
               <button
                 onClick={() => handleDelete(template)} // Pass the whole template object
                 className="absolute text-3xl top-[6px] right-2 p-1 bg-white rounded-lg z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"

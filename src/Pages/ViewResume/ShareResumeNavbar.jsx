@@ -41,20 +41,15 @@ const ShareResumeNavbar = ({ shareLink }) => {
 
 
     return (
-        <div className="min-h-[70px] border-b shadow">
+        <div className="min-h-[70px] border-b bg-[#00000f] shadow">
             <Container>
                 <div className=" flex items-center justify-between barlow-regular min-h-[70px] p-0 md:py-3 py-5">
                     <div className="space-x-5 flex items-center">
 
-                        <Link
-                            to={"/"}
-                            className="font-bold text-lg md:text-3xl gap-3 flex items-center"
-                        >
-                            {/* <img className="md:w-12 md:h-10 w-7 h-7 relative" src={logo} alt="" /> */}
-                            <span className="">
-                                P<span className="">er</span>fect
-                                <span className="text-primary">Profile</span>
-                            </span>
+                        <Link to="/">
+                            <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora">
+                                Perfect<span className="text-primary">Profile</span>
+                            </h1>
                         </Link>
 
                         <button className="hidden px-4 border font-montserrat rounded text-center border-secondary text-secondary md:flex items-center gap-2 py-1 font-medium">

@@ -42,7 +42,7 @@ const Banner = () => {
                 <Link to={`predefined-templates`}>
                   <div className="h-[50px] border group border-primary  rounded group-hover:border-secondary hover:border-secondary">
                     <button className="py-3 px-5  font-bold !font-montserrat text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
-                      Create My Resume
+                      Create Resume
                     </button>
                   </div>
                 </Link>

@@ -173,7 +173,7 @@ const Template = () => {
           </select>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
           {predefinedTemplate?.map((template) => (
             <div key={template._id}>
               <div className="relative group h-[450px] border-secondary border">

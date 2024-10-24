@@ -193,9 +193,8 @@ const Navbar = () => {
           </div>
 
           <Link to="/">
-            <h1 className="text-[#00000f] lg:text-2xl text-xl font-extrabold">
-              Perfect
-              <span className="text-primary">Profile</span>
+            <h1 className="text-black lg:text-2xl text-xl font-extrabold font-lora">
+              Perfect<span className="text-primary">Profile</span>
             </h1>
           </Link>
 
@@ -218,7 +217,7 @@ const Navbar = () => {
                 onClick={() =>
                   document.getElementById("my_modal_3").showModal()
                 }
-                className="font-bold flex gap-2 items-center justify-center md:py-2 py-1 bg-primary md:px-5 px-2 rounded-lg text-white lg:text-lg text-sm"
+                className="font-bold flex gap-2 items-center justify-center md:py-2 py-1 bg-primary md:px-5 px-2 rounded-lg text-white lg:text-base text-sm"
               >
                 <FaUser className="md:text-sm text-xs text-white"></FaUser>
                 Log In
@@ -226,7 +225,7 @@ const Navbar = () => {
 
               <Link to={`predefined-templates`}>
                 <button className="hidden font-bold xl:flex gap-2 items-center justify-center py-2 bg-secondary text-white px-5 rounded-lg">
-                  Create My Resume
+                  Create Resume
                 </button>
               </Link>
             </div>
