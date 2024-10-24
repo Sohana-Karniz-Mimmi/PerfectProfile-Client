@@ -17,18 +17,8 @@ import { useState } from "react";
 const Consultation = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  console.log("h")
   let [isOpen, setIsOpen] = useState(false)
 
-
-//   const handleConsultant = () => {
-//     if (user) {
-//       document.getElementById("consultant_modal").showModal();
-//     } else {
-//       toast.error("You have to login first");
-//       document.getElementById("my_modal_3").showModal();
-//     }
-//   };
 
   const handleSubmit = async (e) => {
     console.log("h")
@@ -113,7 +103,7 @@ const Consultation = () => {
                       className="w-full mt-6 flex flex-col gap-3"
                     >
                       {/* basic info */}
-                      <h1 className="mt-3 mb-1 font-semibold text-xl">Basic Information :</h1>
+                      <h1 className="mt-3 mb-1 font-semibold text-xl">Personal Information :</h1>
                       <div className="space-y-4">
                         <div className="relative">
                           <label

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import img from '../../assets/banner/session-banner.png'
 const ConsultationBanner = () => {
     return (
-        <div className="flex flex-col  lg:flex-row justify-between items-center px-2 lg:px-9 py-8 mb-9 lg:mb-7 h-[34rem] lg:h-[19rem] mt-6 rounded-lg bg-cyan-50">
+        <div className="flex flex-col  lg:flex-row justify-between items-center px-2 lg:px-9 py-8 mb-9 lg:mb-7 h-[48rem] lg:h-[20rem] mt-6 rounded-lg bg-cyan-50">
         <div>
           <h1 className="font-bold text-4xl">Struggling with Your Resume? Our Experts Are Here to Help.</h1>
           <p className="text-gray-500 lg:w-[43rem] w-80 mt-5">
@@ -10,22 +10,22 @@ const ConsultationBanner = () => {
           </p>
          
 
-          <div className="flex flex-col  items-start  text-base  font-bold lg:font-semibold">
-            <Link  className="mt-5  mb-10 lg:mb-0">
+          <div className="flex flex-col  lg:items-start items-center text-base  font-bold lg:font-semibold">
+            <a href='#session'  className="mt-5  mb-10 lg:mb-0">
               <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105">
               Book a Session Now
               </button>
-            </Link>
+            </a>
           </div>
         </div>
 
         <div className="flex relative item-center justify-center">
           <img
-            className="lg:h-[16rem] h-44 w-44 lg:w-[27rem] rounded-lg"
+            className="lg:h-[16rem] h-44 w-80 lg:w-[27rem] rounded-lg"
             src={img}
             alt=""
           />
-          <p className='bg-[#3da4bb] flex gap-[31px] p-1 absolute top-6 right-[45px] text-white text-[9px] rounded-sm'><ul className='list-disc list-inside flex items-center justify-center gap-[1px]' ><li>online</li></ul> Resume Session</p>
+          <div className='bg-[#3da4bb] lg:w-[125px] w-[107px] lg:h-5 h-3 flex gap-[15px] p-1 absolute lg:top-[26px] top-[18px] lg:right-[42px]  items-center justify-center right-[40px] text-white lg:text-[9px] text-[6px] rounded-sm'><ul className='list-disc list-inside flex items-center justify-center ' ><li>online</li></ul> Resume Session</div>
           
         </div>
       </div>
