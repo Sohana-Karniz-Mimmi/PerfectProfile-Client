@@ -495,6 +495,7 @@ const ResumeEditPage = () => {
   return (
     <div className="customization-layout flex xl:flex-row flex-col xl:gap-0 gap-6  min-h-screen">
       {/* Sidebar */}
+      
       <div className="sidebar xl:w-[20%] w-[100%] lg:block bg-[#00000f] text-white p-6">
         <Link to="/">
           <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
@@ -1140,27 +1141,29 @@ const ResumeEditPage = () => {
                         }
                       />
                     </div> */}
-                    <div className=" w-full space-y-1">
+                    <div className="w-full space-y-1">
                       <label className="font-bold">Duration</label>
-                      <select
-                        className="border py-2 px-2 w-full rounded outline-none  focus:border-gray-300"
-                        value={entry.year}
-                        onChange={(e) =>
-                          updateCertificate(index, "year", e.target.value)
-                        }
-                      >
-                        <option className="" value="" disabled>
-                          Select duration
-                        </option>
-                        <option value="2 months">2 months</option>
-                        <option value="3 months">3 months</option>
-                        <option value="3 months">4 months</option>
-                        <option value="6 months">6 months</option>
-                        <option value="1 year">1 year</option>
-                        <option value="2 years">2 years</option>
-                        <option value="3 years">3 years</option>
-                        <option value="4 years">4 years</option>
-                      </select>
+                      <div className="border py-2 rounded">
+                        <select
+                          className="px-2 w-full rounded outline-none  focus:border-gray-300"
+                          value={entry.year}
+                          onChange={(e) =>
+                            updateCertificate(index, "year", e.target.value)
+                          }
+                        >
+                          <option className="" value="" disabled>
+                            Select duration
+                          </option>
+                          <option value="2 months">2 months</option>
+                          <option value="3 months">3 months</option>
+                          <option value="3 months">4 months</option>
+                          <option value="6 months">6 months</option>
+                          <option value="1 year">1 year</option>
+                          <option value="2 years">2 years</option>
+                          <option value="3 years">3 years</option>
+                          <option value="4 years">4 years</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                   {index > 0 && (
