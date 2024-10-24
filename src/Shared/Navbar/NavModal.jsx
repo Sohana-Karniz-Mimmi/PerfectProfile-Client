@@ -22,10 +22,10 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
   // console.log(userData);
 
   return (
-    <div className="relative text-right">
+    <div className="relative text-right m-0 z-50">
       <Menu as="div" className="relative inline-block text-left">
-        <Menu.Button className="bg-transparent rounded-full p-2 text-black">
-          <div className="w-14 h-14 border rounded-full overflow-hidden">
+        <Menu.Button className="bg-transparent rounded-full text-black">
+          <div className="md:w-14 md:h-14 w-8 h-8 border rounded-full overflow-hidden">
             <img
               src={
                 user?.photoURL ||
@@ -42,7 +42,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
             <div className="bg-white rounded-xl p-6">
               <Menu.Item>
                 {({ active }) => (
-                  <Link to={`userDashboard/editingProfile`}>
+                  <Link to={`/userDashboard/editingProfile`}>
                     <button
                       className={`${
                         active ? "bg-white" : ""
@@ -85,7 +85,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
 
               <Menu.Item>
                 {({ active }) => (
-                  <Link>
+                  <Link to={`/pricing`}>
                     <button
                       className={`${
                         active ? "bg-white" : ""
