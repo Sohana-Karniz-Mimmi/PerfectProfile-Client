@@ -104,9 +104,9 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
 
       {/* Modal Content */}
       <Dialog.Panel className="relative bg-white rounded-lg p-6 z-60 shadow-lg min-w-96 mx-auto">
-        <Dialog.Title className="text-4xl font-lora tracking-wide font-extrabold text-center">
+        <Dialog.Title className="2xl:text-4xl text-3xl font-lora tracking-wide font-extrabold text-center">
           Give Us Your
-          <span className="block text-5xl">Feedback!</span>
+          <span className="block 2xl:text-5xl text-4xl">Feedback!</span>
         </Dialog.Title>
         {/* <Dialog.Description className="mt-2">
           We would love to hear your feedback about your experience!
