@@ -19,24 +19,34 @@ const FAQ = () => {
                           button and fill up the questions. You'll receive a Google
                           Meet link for the scheduled session via email.`,
     },
-    { question: "What is included in the resume consultation?",
-         answer: `During the consultation, our experts will review your resume, provide personalized feedback, suggest improvements, and answer any questions you have about enhancing your resume real time.` },
-    { question: " How long does each consultation session last?", answer: `Each consultation session typically lasts around 30 minutes to 1 hour.`},
-    { question: "Can I reschedule my consultation?",
-         answer: `Yes, you can reschedule your consultation up to 24 hours before the scheduled time. Just visit the "Consultation" section, find your appointment, and choose a new time.` },
-    { question: " Is the consultation feature available for all users?", answer: `The consultation feature is available for users on our Standard and Premium plans. Free plan users can upgrade their plan to access personalized resume consultations.`},
+    {
+      question: "What is included in the resume consultation?",
+      answer: `During the consultation, our experts will review your resume, provide personalized feedback, suggest improvements, and answer any questions you have about enhancing your resume real time.`,
+    },
+    {
+      question: " How long does each consultation session last?",
+      answer: `Each consultation session typically lasts around 30 minutes to 1 hour.`,
+    },
+    {
+      question: "Can I reschedule my consultation?",
+      answer: `Yes, you can reschedule your consultation up to 24 hours before the scheduled time. Just visit the "Consultation" section, find your appointment, and choose a new time.`,
+    },
+    {
+      question: " Is the consultation feature available for all users?",
+      answer: `The consultation feature is available for users on our Standard and Premium plans. Free plan users can upgrade their plan to access personalized resume consultations.`,
+    },
   ];
   return (
     <div>
       <div className="py-4 bg-white">
-        <div className=" mx-auto px-4 sm:px-6 lg:px-16 flex  items-start justify-center gap-36 ">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-16 flex flex-col lg:flex-row lg:text-start text-center  lg:items-start justify-center gap-6 lg:gap-36 ">
           <div className="">
             <h3 className="text-4xl mt-4 sm:text-4xl leading-normal font-bold tracking-tight ">
-              Frequently Asked  <span className="text-primary">  Questions</span>
+              Frequently Asked <span className="text-primary"> Questions</span>
             </h3>
           </div>
 
-          <div className="mt-4  w-[50rem]">
+          <div className="mt-4  lg:w-[50rem]">
             <ul className="">
               {/* 1st */}
               {faqData.map((data, index) => (
@@ -46,20 +56,24 @@ const FAQ = () => {
                       <FaQuestion className="text-5xl -mt-3 p-3 rounded-full bg-[#26c9f6] text-white" />
                     </div>
                     <div className="bg-gray-100 p-5 px-10 w-full flex items-center justify-between">
-            <h4
-              onClick={() => handleClick(index)}
-              style={{ cursor: "pointer" }}
-              className="text-md leading-6 font-medium text-gray-900 flex justify-between items-center w-full"
-            >
-              {/* The question on the left */}
-              <span>{data.question}</span>
-              
-              {/* The arrow icon on the far right */}
-              <span className={`transform transition-transform ${openIndex === index ? 'rotate-180' : ''}`}>
-                <IoIosArrowDown />
-              </span>
-            </h4>
-          </div>
+                      <h4
+                        onClick={() => handleClick(index)}
+                        style={{ cursor: "pointer" }}
+                        className="text-md leading-6 font-medium text-gray-900 flex justify-between items-center w-full"
+                      >
+                        {/* The question on the left */}
+                        <span>{data.question}</span>
+
+                        {/* The arrow icon on the far right */}
+                        <span
+                          className={`transform transition-transform ${
+                            openIndex === index ? "rotate-180" : ""
+                          }`}
+                        >
+                          <IoIosArrowDown />
+                        </span>
+                      </h4>
+                    </div>
                   </div>
                   {openIndex === index && (
                     <div className="flex flex-row items-start">
