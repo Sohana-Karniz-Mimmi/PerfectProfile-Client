@@ -12,6 +12,7 @@ import { FaStar } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { axiosPublic } from "../../Hook/useAxiosPublic";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Favorite = () => {
   const { user } = useAuth();
@@ -58,21 +59,26 @@ const Favorite = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Favorite - PerfectProfile</title>
+      </Helmet>
       {/* banner */}
-      <div className="flex flex-col  lg:flex-row justify-between items-center px-2 lg:px-9 py-4 mb-9 lg:mb-7 h-[34rem] lg:h-[15rem] mt-6 rounded-lg bg-cyan-50">
+      <div className="flex flex-col md:flex-row justify-between items-center px-5 md:px-9 py-8 mb-9 lg:mb-7 mt-6 rounded-lg bg-cyan-50 gap-5"
+      style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}
+      >
         <div>
-          <h1 className="font-bold text-4xl">Favorite Resume Templates</h1>
-          <p className="text-gray-500 lg:w-[43rem] w-80 mt-3">
+          <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">Favorite Resume Templates</h1>
+          <p className="text-gray-500 text-sm md:text-[15px] lg:text-base lg:w-[43rem] mt-3">
             Curate your perfect collection of resume templates with ease. Here,
             you can find all your favorite designs saved in one place.
           </p>
-          <p className="text-gray-500 lg:w-[43rem] w-80 mt-2">
+          <p className="text-gray-500 text-sm md:text-[15px] lg:text-base lg:w-[43rem] mt-2">
             Find the perfect template that resonates with your personality, and
             start building your dream resume today!
           </p>
 
-          <div className="flex flex-col  items-start  text-base  font-bold lg:font-semibold">
-            <Link to={`/pricing`} className="mt-5  mb-10 lg:mb-0">
+          <div className="flex flex-col md:items-start items-center text-base  font-bold lg:font-semibold">
+            <Link to={`/pricing`} className="mt-5 ">
               <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105">
                 Get Started
               </button>
@@ -82,7 +88,7 @@ const Favorite = () => {
 
         <div className="flex item-center justify-center">
           <img
-            className="lg:h-52 h-44 w-44 lg:w-64 rounded-lg"
+            className="xl:h-52 h-44 w-44 lg:w-64 rounded-lg"
             src={img2}
             alt=""
           />
@@ -91,7 +97,7 @@ const Favorite = () => {
       </div>
       {templates.length === 0 && (
         <>
-          <p className="lg:mt-20 text-center font-bold text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <p className="lg:mt-20 text-center font-bold lg:text-4xl md:text-3xl text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             No Favorite Resume Template
           </p>
           <div className="  text-center mt-5 ">
@@ -110,10 +116,10 @@ const Favorite = () => {
         </>
       )}
 
-      <div className="grid grid-cols-1 gap-9 mb-9 lg:grid-cols-3 p-2 lg:p-20 pl-0 lg:pl-36">
+      <div className="grid grid-cols-1 gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
         {templates.map((template) => (
           <div key={template._id}>
-            <div className="relative group w-[350px] h-[450px]">
+            <div className="relative group h-[450px]">
               <button
                 onClick={() => handleDelete(template)} // Pass the whole template object
                 className="absolute text-3xl top-[6px] right-2 p-1 bg-white rounded-lg z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tooltip-favorite"

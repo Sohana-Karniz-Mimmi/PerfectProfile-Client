@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import img from '../../assets/banner/session-banner.png'
 const MyResumeConsultationBanner = () => {
     return (
-        <div className="flex flex-col md:flex-row justify-between items-center px-5 md:px-9 py-8 mb-9 lg:mb-20 lg:h-[20rem] mt-6 rounded-lg bg-cyan-50 gap-5">
+        <div className="flex flex-col md:flex-row justify-between items-center px-5 md:px-9 py-8 mb-9 lg:mb-20 lg:h-[20rem] mt-6 rounded-lg bg-cyan-50 gap-5"
+        style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}
+        >
         <div>
           <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">Struggling with Your Resume? Our Experts Are Here to Help.</h1>
           <p className="text-gray-500  text-sm md:text-[15px] lg:text-base  xl:w-[44rem] lg:w-[43rem] md:w-[28rem] mt-5">
