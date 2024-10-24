@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         path: "/consultation",
         element: <Consultation />,
       },
-      
+
       {
         path: "/my-favorites",
         element: <Favorite />,
@@ -148,13 +148,13 @@ const router = createBrowserRouter([
           <PrivetRoute>
             <AdminRoute>
               <MakeConsultant />
-              </AdminRoute>
-              </PrivetRoute>
-        )
+            </AdminRoute>
+          </PrivetRoute>
+        ),
       },
 
-
-       { path: "transaction-history",
+      {
+        path: "subscription",
         element: (
           <PrivetRoute>
             <AdminRoute>
