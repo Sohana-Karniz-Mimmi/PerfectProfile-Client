@@ -47,7 +47,7 @@ const Team = () => {
 
     return (
         <div id="session-booking">
-             <h1 className="font-bold lg:text-4xl mt-28 text-2xl text-center ">Meet Our Consultant To Review Resume</h1>
+             <h1 className="font-bold lg:text-4xl mt-28 text-3xl text-center ">Meet Our Consultant To Review Resume</h1>
        
 
 
