@@ -3,7 +3,13 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGithub,
+  FaGoogle,
+  FaLinkedin,
+  FaTwitter,
+} from "react-icons/fa";
 import useAuth from "../Hook/useAuth";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosPublic from "../Hook/useAxiosPublic";
@@ -13,7 +19,13 @@ const Register = () => {
   const location = useLocation();
   const from = location?.state || "/";
   const axiosPublic = useAxiosPublic();
-  const { createUser, googleSignIn, facebookSignIn, twitterSignIn } = useAuth();
+  const {
+    createUser,
+    googleSignIn,
+    facebookSignIn,
+    twitterSignIn,
+    githubSignIn,
+  } = useAuth();
   const [errorText, setErrorText] = useState("");
   const [eyePassword, setEyePassword] = useState(false);
   const [eyeConfirmPassword, setEyeConfirmPassword] = useState(false);
@@ -234,43 +246,50 @@ const Register = () => {
               </p>
               <div className="flex justify-center space-x-4">
                 {/* Google Sign In */}
-                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                {/* <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(googleSignIn)}
                     className="p-3 rounded-full bg-transparent hover:bg-transparent shadow-2xl focus:outline-none"
                   >
                     <FaGoogle className="text-white" />
                   </button>
-                </div>
+                </div> */}
 
                 {/* Facebook Sign In */}
-                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                {/* <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(facebookSignIn)}
                     className="p-3 rounded-full bg-transparent hover:bg-transparent shadow-2xl focus:outline-none"
                   >
                     <FaFacebook className="text-white" />
                   </button>
-                </div>
+                </div> */}
 
                 {/* Twitter Sign In */}
-                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                {/* <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(twitterSignIn)}
                     className="p-3 rounded-full bg-transparent hover:bg-transparent shadow-2xl focus:outline-none"
                   >
                     <FaTwitter className="text-white" />
                   </button>
-                </div>
+                </div> */}
 
-                {/* LinkedIn Sign In */}
-                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                {/* github Sign In */}
+                {/* <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
-                    onClick={() => handleSocialSignIn(linkedinSignIn)}
+                    onClick={() => handleSocialSignIn(githubSignIn)}
                     className="p-3 rounded-full bg-transparent hover:bg-transparent shadow-2xl focus:outline-none"
                   >
-                    <FaLinkedin className="text-white" />
+                    <FaGithub className="text-white" />
                   </button>
+                </div> */}
+                <div>
+                  <Link onClick={() => handleSocialSignIn(googleSignIn)}>
+                    <button className="flex items-center text-white border p-2 rounded bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)]">
+                      <FaGoogle className="mr-2 " /> <span>SignIn</span>
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

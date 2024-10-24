@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   FacebookAuthProvider,
+  GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -19,6 +20,7 @@ const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext();
 const facebookProvider = new FacebookAuthProvider();
 const twitterProvider = new TwitterAuthProvider();
+const githubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,6 +50,10 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
+  const githubSignIn = () => {
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  };
   const facebookSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, facebookProvider);
@@ -66,14 +72,12 @@ const AuthProvider = ({ children }) => {
   //   });
   // };
 
-  // Sing Out User 
-  
+  // Sing Out User
+
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
-  }
-
-
+  };
 
   // useEffect(() => {
   //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -97,37 +101,40 @@ const AuthProvider = ({ children }) => {
   //   return () => unsubscribe();
   // }, [axiosPublic]);
 
-
   // onAuthStateChange
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoading(false);
       setUser(currentUser);
-      console.log('save user', currentUser);
+      console.log("save user", currentUser);
       const userEmail = currentUser?.email || user?.email;
       const loggedUser = { email: userEmail };
       if (currentUser) {
-        axios.post(`${import.meta.env.VITE_LOCALHOST_API_URL}/jwt`, loggedUser, { withCredentials: true })
-          .then(data => {
-            console.log('token response', data.data);
+        axios
+          .post(`${import.meta.env.VITE_LOCALHOST_API_URL}/jwt`, loggedUser, {
+            withCredentials: true,
           })
+          .then((data) => {
+            console.log("token response", data.data);
+          });
         // saveUser(currentUser)
-      }
-      else {
-        axios.post(`${import.meta.env.VITE_LOCALHOST_API_URL}/logout`, loggedUser, { withCredentials: true })
-          .then(data => {
+      } else {
+        axios
+          .post(
+            `${import.meta.env.VITE_LOCALHOST_API_URL}/logout`,
+            loggedUser,
+            { withCredentials: true }
+          )
+          .then((data) => {
             console.log(data.data);
-          })
-        console.log('ami nai');
+          });
       }
-
     });
     return () => {
       unSubscribe();
-    }
-  }, [])
-
+    };
+  }, []);
 
   const authInfo = {
     user,
@@ -138,6 +145,7 @@ const AuthProvider = ({ children }) => {
     updateUserEmail,
     signIn,
     googleSignIn,
+    githubSignIn,
     facebookSignIn,
     twitterSignIn,
     logOut,

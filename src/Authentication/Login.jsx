@@ -3,7 +3,13 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import useAuth from "../Hook/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGithub,
+  FaGoogle,
+  FaLinkedin,
+  FaTwitter,
+} from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet-async";
@@ -20,6 +26,7 @@ const Login = () => {
     facebookSignIn,
     twitterSignIn,
     setLoading,
+    githubSignIn,
   } = useAuth();
   const [eye, setEye] = useState(false);
   const [remember, setRemember] = useState(false);
@@ -70,7 +77,7 @@ const Login = () => {
         productName: "free",
         role: "user",
       };
-
+      console.log(user.email, "hlw world");
       await axiosPublic.post("/users", userInfo);
       toast.success("Login Successful!");
       document.getElementById("my_modal_3").close();
@@ -186,7 +193,7 @@ const Login = () => {
                 Sign In with other accounts
               </p>
               <div className="flex justify-center space-x-4">
-                <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
+                {/* <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
                     onClick={() => handleSocialSignIn(googleSignIn)}
                     className="p-2 rounded-full bg-transparent hover:bg-transparent focus:outline-none"
@@ -212,11 +219,18 @@ const Login = () => {
                 </div>
                 <div className="bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)] rounded-full">
                   <button
-                    onClick={() => handleSocialSignIn(linkedinSignIn)}
+                    onClick={() => handleSocialSignIn(githubSignIn)}
                     className="p-2 rounded-full bg-transparent hover:bg-transparent focus:outline-none"
                   >
-                    <FaLinkedin className="text-white" />
+                    <FaGithub className="text-white" />
                   </button>
+                </div> */}
+                <div>
+                  <Link onClick={() => handleSocialSignIn(googleSignIn)}>
+                    <button className="flex items-center text-white border p-2 rounded bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)]">
+                      <FaGoogle className="mr-2 " /> <span>SignIn</span>
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
