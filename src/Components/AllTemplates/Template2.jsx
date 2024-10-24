@@ -276,7 +276,7 @@ const Template2 = ({ data, userData, setUserData }) => {
                           )
                         </span>
                       </h3>
-                      <p className="font-roboto text-justify  text-sm max-w-[450px] break-words">
+                      <p className="font-roboto text-justify  text-sm  break-words">
                         {exp.description ||
                           "Include your degree, school name and the year you graduated. If you don’t have a degree, list coursework or training that’s relevant to the job you’re applying for."}
                       </p>

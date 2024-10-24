@@ -4,10 +4,10 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 const Template4 = ({ data, userData }) => {
 
   return (
-    <div className="w-[790px] min-h-[1000px] mx-auto bg-slate-50">
+    <div className="w-[790px] min-h-[950px] mx-auto bg-slate-50">
       <div className="">
         {/* Header - Personal Info */}
-        <header className=" bg-gray-200 py-3 flex justify-between items-center px-2 lg:px-5">
+        <header className=" bg-gray-200 py-5 flex justify-between items-center px-2 lg:px-5">
           <div>
             <h1 className="text-2xl font-bold  uppercase">
               {userData?.name === "" || userData?.name === undefined
@@ -53,13 +53,14 @@ const Template4 = ({ data, userData }) => {
             userData?.careerObjective === undefined ? (
             <section className="mb-1">
               <>
-                <h2 className=" uppercase text-sm  font-semibold  text-center  bg-gray-400">
+                <h2 className=" uppercase text-sm  font-semibold text-center  bg-gray-400">
                   Career Objective
                 </h2>
                 <p className="mt-1 text-sm font-roboto break-words text-justify ">
-                  Use this section to give recruiters a quick glimpse of your
+                  {/* Use this section to give recruiters a quick glimpse of your
                   professional profile. In just 3-4 lines, highlight your
-                  background, education and main skills. Use this section to give recruiters a quick glimpse of your professional profile. In just 3-4 lines, highlight your background, education and main skills.
+                  background, education and main skills. Use this section to give recruiters a quick glimpse of your professional profile. In just 3-4 lines, highlight your background, education and main skills. */}
+                  Creative and detail-oriented graphic designer skilled in developing visually compelling designs for various platforms. Proficient in using industry-standard design software and tools, I aim to leverage my artistic vision and strong attention to detail to create impactful visual solutions. Seeking to contribute to a dynamic team where I can further enhance my skills and drive innovative design projects that engage and inspire audiences.
                 </p>
               </>
             </section>
@@ -69,7 +70,7 @@ const Template4 = ({ data, userData }) => {
                 <h2 className=" uppercase text-sm  font-semibold  text-center  bg-gray-400">
                   Career Objective
                 </h2>
-                <p className="mt-1 text-sm font-roboto break-words text-justify ">
+                <p className="mt-2 text-sm font-roboto break-words text-justify ">
                   {userData?.careerObjective}
                 </p>
               </section>
@@ -79,7 +80,7 @@ const Template4 = ({ data, userData }) => {
           {/* skills */}
           {userData?.skills?.length >= 1 && (
             // If userData.skills exist and the length is greater than 0, show userData.skills
-            <section className="mb-1 space-y-3">
+            <section className="mb-1 mt-6 space-y-3">
               <h2 className="uppercase text-sm font-semibold  text-center  bg-gray-400 ">
                 Skills
               </h2>
@@ -95,7 +96,7 @@ const Template4 = ({ data, userData }) => {
 
           {/* Education */}
           {userData?.education?.length >= 1 && (
-            <section className="mb-1 space-y-3">
+            <section className="mb-1 mt-3 space-y-3">
               <h2 className=" uppercase text-sm font-semibold  text-center  bg-gray-400">
                 Education
               </h2>
@@ -116,7 +117,7 @@ const Template4 = ({ data, userData }) => {
 
           {/* Certifications */}
           {userData?.certifications && userData?.certifications.length >= 1 && (
-            <section className="mb-1 space-y-3">
+            <section className="mb-1 mt-5 space-y-3">
               <h2 className=" uppercase text-sm font-semibold  text-center  bg-gray-400 ">
                 Certifications
               </h2>
@@ -139,7 +140,7 @@ const Template4 = ({ data, userData }) => {
 
           {/* Work Experience */}
           {userData?.workExperience && userData?.workExperience.length >= 1 && (
-            <section className="mb-1 space-y-3">
+            <section className="mb-1 mt-6 space-y-3">
               <h2 className=" text-sm uppercase font-semibold  text-center  bg-gray-400 ">
                 Work Experience
               </h2>
@@ -183,8 +184,10 @@ const Template4 = ({ data, userData }) => {
             </section>
           )}
 
+
+
           {/* Extra Curricular Activities */}
-          {userData?.extraCurricularActivities && userData?.extraCurricularActivities.length > 0 && (
+          {/* {userData?.extraCurricularActivities && userData?.extraCurricularActivities.length > 0 && (
             <section className="mb-1">
               <h2 className="  text-sm uppercase font-semibold  text-center  bg-gray-400">
                 Extra Curricular Activities
@@ -198,11 +201,11 @@ const Template4 = ({ data, userData }) => {
                 ))}
               </ul>
             </section>
-          )}
+          )} */}
 
           {/* languages */}
           {userData?.languages && userData?.languages.length >= 1 && (
-            <section className="mb-1 space-y-3">
+            <section className="mb-1 mt-6 space-y-3">
               <h2 className=" text-sm uppercase font-semibold  text-center  bg-gray-400 ">
                 language
               </h2>

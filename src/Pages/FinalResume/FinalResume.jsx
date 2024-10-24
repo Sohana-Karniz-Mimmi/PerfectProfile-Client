@@ -24,13 +24,9 @@ import Template6 from "../../Components/AllTemplates/Template6";
 // import Template1 from "../../assets/Template1";
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
-import { ResumeContext } from "../../Context/CustomizeResumeContext";
 import ReviewModal from "../../Components/ReviewModal/ReviewModal";
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
-  const { shareLink } = useContext(ResumeContext);
-  // State for the review modal
-  // Find common objects winpm i html2pdf.js@0.9.0th the same _id in both arrays
   const info = useLoaderData();
   const { user } = useAuth();
 
@@ -86,7 +82,7 @@ const FinalResume = () => {
   // Function to copy the shareable link
   const [copied, setCopied] = useState(false);
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(shareLink).then(() => {
+    navigator.clipboard.writeText(userData?.resumeLink).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -107,6 +103,8 @@ const FinalResume = () => {
       .from(element)
       .save();
   };
+
+  console.log(userData.resumeLink);
 
   // download png
 
@@ -257,7 +255,7 @@ const FinalResume = () => {
                           active ? " font-semibold bg-white " : "font-semibold"
                         } group flex w-full items-center gap-2  py-1.5 text-black`}
                       >
-                        <GrDocumentText className="text-primary" /> PDF Standard
+                        <GrDocumentText className="text-red-600" /> JPG
                       </button>
                     )}
                   </Menu.Item>
@@ -277,7 +275,7 @@ const FinalResume = () => {
             closeModal={closeModal}
             copyToClipboard={copyToClipboard}
             copied={copied}
-            shareLink={shareLink}
+            shareLink={userData?.resumeLink}
           />
 
           <button className="w-36 px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2">

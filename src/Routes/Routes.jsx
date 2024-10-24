@@ -26,6 +26,7 @@ import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 import Favorite from "../Pages/Favorites/Favorite";
 import ResourcePage from "../Pages/Resources/ResourcePage";
 import PurchaseHistory from "../Pages/PurchaseHistory";
+import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -131,6 +132,16 @@ const router = createBrowserRouter([
           <PrivetRoute>
             <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "transaction-history",
+        element: (
+          <PrivetRoute>
+            <AdminRoute>
+              <AllPaymentHistory />
             </AdminRoute>
           </PrivetRoute>
         ),

@@ -52,12 +52,12 @@ const HeadingChart = () => {
   return (
     <div className="w-full h-full overflow-x-auto font-montserrat">
       <h2 className="text-2xl font-bold pb-10 font-lora">Most Used Template</h2>
-      <div className="min-w-[1080px] w-full lg:w-[100%]">
+      <div className="min-w-[500px] w-full lg:w-[100%]">
         {" "}
         {/* Ensure a minimum width for the chart */}
-        <ResponsiveContainer width="100%" height={600}>
+        <ResponsiveContainer width="100%" height={500}>
           <BarChart
-            width={1000} // Still large enough to accommodate all labels
+            width={700} // Still large enough to accommodate all labels
             height={600}
             data={data}
             margin={{
