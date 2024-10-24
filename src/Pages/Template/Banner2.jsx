@@ -5,11 +5,12 @@ import img4 from '../../assets/feature/feature4.png'
 import img5 from '../../assets/feature/feature5.png'
 import img6 from '../../assets/feature/feature6.png'
 import {  motion } from "framer-motion";
+import Container from '../../Shared/Container'
 
 const Banner2 = () => {
     return (
         <div className=" -mb-44 lg:-mb-64 lg:mt-36 mt-8">           
-          <div>
+          <Container>
           <h1 className="font-bold lg:text-4xl text-2xl text-center ">Why <span className=" border-b-4 rounded-sm border-primary">Choose</span> <span>
                 P<span>er</span>fect
                 <span className="text-primary">Profile</span>?
@@ -20,70 +21,70 @@ const Banner2 = () => {
               whileInView={{opacity : 1, y: 0}}
               initial={{opacity : 0, y: 100}}
               transition={{duration: 1.5}}
-              className='grid grid-cols-1 lg:grid-cols-2 gap-7  lg:pl-24 mt-10 p-2 lg:p-16 items-center justify-center '>
+              className='grid grid-cols-1 lg:grid-cols-2 gap-7 mt-10 p-2 items-center justify-center '>
                 {/* feature 1 */}
                 <div className="flex gap-4">
                     <div>
-                        <img className='w-36 h-28 lg:h-36' src={img1} alt="" />
+                        <img className='2xl:h-32 lg:w-32 lg:h-[115px] md:w-28 md:h-24 w-28 h-16' src={img1} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
-                        <h1 className='font-bold text-2xl'>Professional Resume Templates</h1>
-                        <p className='text-gray-500'>Access a curated collection of stylish and modern templates designed to make your resume stand out.Whether it's a classic black-and-white template, or something a bit more outside the box, we have what you need!</p>
+                        <h1 className='font-bold lg:text-2xl md:text-[23px] text-lg'>Professional Resume Templates</h1>
+                        <p className='text-gray-500 lg:text-base md:text-[15px] text-sm'>Access a curated collection of stylish and modern templates designed to make your resume stand out.Whether it's a classic black-and-white template, or something a bit more outside the box, we have what you need!</p>
                     </div>
                 </div>
                 {/* feature 2 */}
                 <div className="flex gap-4">
                     <div>
-                        <img className='w-36 h-28 lg:h-36' src={img2} alt="" />
+                        <img className='2xl:h-32 lg:w-32 lg:h-[115px] md:w-28 md:h-24 w-28 h-16' src={img2} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
-                        <h1 className='font-bold text-2xl'>Real Time Resume Editing</h1>
-                        <p className='text-gray-500'>Customize every aspect of your resume with our user-friendly editor. Whether you want to tweak the font or layout, PerfectProfile provides the flexibility to make your resume truly your own.</p>
+                        <h1 className='font-bold lg:text-2xl md:text-[23px] text-lg'>Real Time Resume Editing</h1>
+                        <p className='text-gray-500 lg:text-base md:text-[15px] text-sm'>Customize every aspect of your resume with our user-friendly editor. Whether you want to tweak the font or layout, PerfectProfile provides the flexibility to make your resume truly your own. Stand out with a resume that reflects your style.</p>
                     </div>
                 </div>
                 {/* feature 3 */}
                 <div className="flex gap-4">
                     <div>
-                        <img className='w-36 h-28 lg:h-36' src={img3} alt="" />
+                        <img className='2xl:h-32 lg:w-32 lg:h-[115px] md:w-28 md:h-24 w-28 h-16' src={img3} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
-                        <h1 className='font-bold text-2xl'>Personalized Resume Coaching</h1>
-                        <p className='text-gray-500'>We offer one-on-one coaching to help you craft the perfect resume. Our expert coaches guide you through each section, providing personalized advice tailored to your career goals. </p>
+                        <h1 className='font-bold lg:text-2xl md:text-[23px] text-lg'>Personalized Resume Coaching</h1>
+                        <p className='text-gray-500 lg:text-base md:text-[15px] text-sm'>We offer one-on-one coaching to help you craft the perfect resume. Our expert coaches guide you through each section, providing personalized advice tailored to your career goals. </p>
                     </div>
                 </div>
                 {/* feature 4 */}
                 <div className="flex gap-1">
                     <div>
-                        <img className='w-36 h-28 lg:h-36' src={img4} alt="" />
+                        <img className='2xl:h-32 lg:w-32 lg:h-[115px] md:w-28 md:h-24 w-28 h-16' src={img4} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
-                        <h1 className='font-bold text-2xl'>Real Time Collaboration</h1>
-                        <p className='text-gray-500'>Whether you're getting feedback from a mentor, collaborating with a colleague, or working alongside a career coach, everyone review your resume.Ensuring your resume is polished to perfection with input from trusted collaborators.</p>
+                        <h1 className='font-bold lg:text-2xl md:text-[23px] text-lg'>Real Time Collaboration</h1>
+                        <p className='text-gray-500 lg:text-base md:text-[15px] text-sm'>Whether you're getting feedback from a mentor, collaborating with a colleague, or working alongside a career coach, everyone review your resume.Ensuring your resume is polished to perfection with input from trusted collaborators.</p>
                     </div>
                 </div>
                 {/* feature 5 */}
                 <div className="flex gap-2">
                     <div>
-                        <img className='w-36 h-28 lg:h-36' src={img5} alt="" />
+                        <img className='2xl:h-32 lg:w-32 lg:h-[115px] md:w-28 md:h-24 w-28 h-16' src={img5} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
-                        <h1 className='font-bold text-2xl'>Instant PDF Download & Share Links</h1>
-                        <p className='text-gray-500'>Download your resume in high-quality PDF format or generate a shareable link, making it easy to send your resume to recruiters instantly</p>
+                        <h1 className='font-bold lg:text-2xl md:text-[23px] text-lg'>Instant PDF Download & Share Links</h1>
+                        <p className='text-gray-500 lg:text-base md:text-[15px] text-sm'>Download your resume in high-quality PDF format or generate a shareable link, making it easy to send your resume to recruiters instantly</p>
                     </div>
                 </div>
                 {/* feature 6 */}
                 <div className="flex gap-2">
                     <div>
-                        <img className='w-36 h-28 lg:h-36' src={img6} alt="" />
+                        <img className='2xl:h-32 lg:w-32 lg:h-[115px] md:w-28 md:h-24 w-28 h-16' src={img6} alt="" />
                     </div>
                     <div className='w-[27rem] space-y-2'>
-                        <h1 className='font-bold text-2xl'>Flexible Pricing Plans</h1>
-                        <p className='text-gray-500'>Choose a plan that aligns with your career goals and budget.From a free plan that gives you access to essential tools, to premium packages with enhanced customization and real-time collaboration, we ensure there's an option for everyone.</p>
+                        <h1 className='font-bold lg:text-2xl md:text-[23px] text-lg'>Flexible Pricing Plans</h1>
+                        <p className='text-gray-500 lg:text-base md:text-[15px] text-sm'>Choose a plan that aligns with your career goals and budget.From a free plan that gives you access to essential tools, to premium packages with enhanced customization and real-time collaboration, we ensure there's an option for everyone.</p>
                     </div>
                 </div>
 
               </motion.div>
-          </div>
+          </Container>
 
  {/* SVG Wave Background */}
  <div className="z-[-1]  lg:bottom-0   w-full left-0">
