@@ -1,12 +1,12 @@
-import React from 'react'
-import HeadingCard from './HeadingCard'
+import React from "react";
+import HeadingCard from "./HeadingCard";
 
 const Main = () => {
   return (
     <div>
-        <HeadingCard/>
+      <HeadingCard />
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
