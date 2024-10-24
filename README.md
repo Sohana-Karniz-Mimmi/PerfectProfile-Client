@@ -27,7 +27,7 @@ A range of predefined resume templates tailored to various industries, allowing 
 <li>Authentication: Firebase</li>
 <hr/>
 <h2>How to Clone and Run Locally</h2>
-<p>**Frontend**</p>
+<p>Frontend</p>
 <p>1. clone the repository</p>
 <span>
 git clone https://github.com/Sohana-Karniz-Mimmi/PerfectProfile-Client
