@@ -41,9 +41,9 @@ const ShareResumeNavbar = ({ shareLink }) => {
 
 
     return (
-        <div className="min-h-[70px] border-b bg-[#00000f] shadow">
+        <div className="min-h-[70px] border-b bg-[#00000f] shadow ">
             <Container>
-                <div className=" flex items-center justify-between barlow-regular min-h-[70px] p-0 md:py-3 py-5">
+                <div className="max-w-[93%] mx-auto xl:px-0 px-2 flex items-center justify-between p-0 md:py-3 py-5  barlow-regular min-h-[70px] ">
                     <div className="space-x-5 flex items-center">
 
                         <Link to="/">
@@ -67,7 +67,7 @@ const ShareResumeNavbar = ({ shareLink }) => {
                                 <FaShare className="text-secondary" /> Share
                             </button> */}
 
-                            <div className="md:h-[36px] h-7 border group border-primary font-montserrat text-center rounded group-hover:border-secondary hover:border-secondary">
+                            <div className="md:h-[36px] h-7 border group border-secondary font-montserrat text-center rounded group-hover:border-secondary hover:border-secondary">
                                 <button className="py-1 md:px-8 px-4 font-medium group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 font-montserrat rounded group-hover:border-secondary  text-secondary gap-2 md:text-base text-sm">
                                     <h2 className="flex items-center gap-2"><FaShare className="text-secondary group-hover:text-white md:text-base text-sm" /> Share</h2>
                                 </button>
