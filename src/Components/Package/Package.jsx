@@ -17,9 +17,9 @@ const Package = () => {
     <Container className="">
       <div
         id="price"
-        className="flex lg:flex-row flex-col justify-between mt-8  gap-8 lg:py-10 py-10"
+        className="flex lg:flex-row flex-col justify-between mt-8 xl:gap-8 lg:gap-3 gap-8 lg:py-10 py-10"
       >
-        <div className="space-y-7 card lg:w-1/3 w-full lg:h-[43rem] md:h-[41rem] h-[41rem]  px-3">
+        <div className="space-y-7 card lg:w-2/3 md:max-w-md md:mx-auto w-full lg:h-[44rem] md:h-[43rem]  h-[44rem] ">
           <h1 className="text-4xl font-lora font-bold">Our Pricing</h1>
           <p className="text-gray-600 font-montserrat">
             In PerfectProfile, users can choose from flexible plans that provide
@@ -55,7 +55,7 @@ const Package = () => {
           </div>
         </div>
         {/* standard */}
-        <div className=" bg-base-100 lg:w-1/3 w-full lg:h-[43rem] md:h-[41rem]  h-[39rem]  shadow-xl relative transition-transform duration-300 hover:scale-105">
+        <div className=" bg-base-100 lg:w-2/3 md:max-w-md md:mx-auto w-full lg:h-[44rem] md:h-[43rem]  h-[44rem]  shadow-xl relative transition-transform duration-300 hover:scale-105">
           <div className="flex justify-end ">
             <figure>
               <img src={priceImg} alt="price" />
@@ -70,18 +70,18 @@ const Package = () => {
               /month
             </p>
           </div>
-          <div className="card-body">
-            <h2 className="text-3xl px-5 font-roboto font-extrabold text-blue-950 mb-4">
+          <div className="card-body pt-6 px-8">
+            <h2 className="text-3xl font-roboto font-extrabold text-blue-950 mb-2">
               Monthly Pack
             </h2>
 
             <div>
-              <p className="text-gray-600 mb-4 mt-2 px-5 font-montserrat">
+              <p className="text-gray-600 mb-4 mt-2  font-montserrat">
                 Unlock all premium features with our affordable monthly package.
                 Build, customize, and optimize your resume effortlessly to stand
                 out from the competition!
               </p>
-              <ul className="px-5 font-roboto">
+              <ul className="font-roboto">
                 <li className="font-medium text-gray-600 flex items-baseline gap-2">
                   <SiTicktick className="mt-1 text-secondary" />
                   <span>Unlimited access to professional templates</span>
@@ -100,12 +100,12 @@ const Package = () => {
                 </li>
               </ul>
             </div>
-            <div className="buy-btn justify-center lg:mt-24 mt-4">
+            <div className="buy-btn justify-center lg:mt-24 mt-1">
               {/* standard button */}
 
               <button
                 onClick={() => setIsOpen(true)}
-                className="relative inline-block font-montserrat text-lg group ml-5"
+                className="relative inline-block font-montserrat text-lg group"
               >
                 <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-[#2CACD5] transition-colors duration-300 ease-out border-2 border-[#2CACD5] rounded-lg group-hover:text-white">
                   <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
@@ -133,7 +133,7 @@ const Package = () => {
           </div>
         </div>
         {/* premium */}
-        <div className=" bg-base-100 lg:w-1/3 w-full lg:h-[43rem] md:h-[41rem] h-[41rem] relative  shadow-xl transition-transform duration-300 hover:scale-105">
+        <div className=" bg-base-100 lg:w-2/3 md:max-w-md md:mx-auto w-full lg:h-[44rem] md:h-[43rem] h-[44rem] relative  shadow-xl transition-transform duration-300 hover:scale-105">
           <div className="flex justify-end ">
             <figure>
               <img src={priceImg} alt="price" />
@@ -149,41 +149,40 @@ const Package = () => {
             </p>
           </div>
 
-          <div className="">
-            <div className="flex  items-center lg:gap-16 gap-8 px-5 relative">
-              <h2 className="font-extrabold text-3xl font-roboto text-blue-950 mb-2">
-                Yearly Pack
-              </h2>
-              <p className="px-2 absolute right-4 mb-3 py-1 bg-gradient-to-r text-center from-primary to-secondary hover:bg-gradient-to-l text-white rounded-full shadow-lg font-montserrat md:font-medium font-light md:text-base text-xs">
-                Save 20%
-              </p>
-            </div>
+          <div className="relative card-body pt-6 px-8">
+            <h2 className="text-3xl font-roboto font-extrabold text-blue-950 mb-2">
+              Yearly Pack
+            </h2>
+            {/* absolut button to show save 20 */}
+            <button className="absolute py-1 lg:px-3 lg:py-1 xl:px-5 px-2 md:px-5 right-5 rounded-full md:top-5 top-8 xl:text-lg md:text-lg text-[10px] lg:text-[10px] text-white font-montserrat font-bold md:font-bold lg:font-medium xl:font-medium bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l">
+              Save 20%
+            </button>
             <div>
-              <p className=" text-gray-600 mb-4 mt-2 font-montserrat px-5 ">
-                Unlock all premium features with our affordable monthly package.
+              <p className="text-gray-600 mb-4 mt-2  font-montserrat">
+                Unlock all premium features with our affordable yearly package.
                 Build, customize, and optimize your resume effortlessly to stand
                 out from the competition!
               </p>
-              <ul className="px-5 font-roboto">
+              <ul className="font-roboto">
                 <li className="font-medium text-gray-600 flex items-baseline gap-2">
                   <SiTicktick className="mt-1 text-secondary" />
                   <span>Unlimited access to professional templates</span>
                 </li>
-                <li className="font-medium text-gray-600 flex items-baseline gap-2">
+                <li className="font-medium text-gray-600 flex items-center gap-2">
                   <SiTicktick className="mt-1 text-secondary" />
-                  <span>Real time editing</span>
+                  Real time editing
                 </li>
-                <li className="font-medium text-gray-600 flex items-baseline gap-2">
+                <li className="font-medium text-gray-600 flex items-center gap-2">
                   <SiTicktick className="mt-1 text-secondary" />
-                  <span>Get one-to-one coaching</span>
+                  Get one-to-one coaching
                 </li>
-                <li className="font-medium  text-gray-600 flex items-baseline gap-2">
-                  <SiTicktick className=" mt-1 text-secondary" />
-                  <span>Custom sections and many more</span>
+                <li className="font-medium text-gray-600 flex items-center gap-2">
+                  <SiTicktick className="mt-1 text-secondary" />
+                  Custom sections and many more
                 </li>
               </ul>
             </div>
-            <div className="px-5 buy-btn justify-center lg:mt-24 mt-4">
+            <div className="buy-btn justify-center lg:mt-24 mt-1">
               <button
                 onClick={() => set2ndIsOpen(true)}
                 class="relative inline-block text-lg group"
