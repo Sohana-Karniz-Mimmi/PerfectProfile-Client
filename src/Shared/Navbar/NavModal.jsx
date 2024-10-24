@@ -77,7 +77,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                       } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
                       onClick={() => handleRoleChange("favorite")}
                     >
-                      Favorite
+                      Favorites
                     </button>
                   </Link>
                 )}
