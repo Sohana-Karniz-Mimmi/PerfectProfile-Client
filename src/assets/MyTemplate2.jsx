@@ -14,7 +14,7 @@ const MyTemplate2 = ({ data, userData }) => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async(data) => {
-    console.log(data);
+    // console.log(data);
     // img bb te data upload kore url niye db te save korbo
     const imgFile = {image : data.image[0]}
     const res = await axiosPublic.post(img_hosting_api, imgFile, {
@@ -22,7 +22,7 @@ const MyTemplate2 = ({ data, userData }) => {
         'content-Type' : 'multipart/form-data'
       }
     })
-    console.log(res.data);
+    // console.log(res.data);
   
 
   if(res.data.success){
@@ -31,7 +31,7 @@ const MyTemplate2 = ({ data, userData }) => {
       image : res.data.data.display_url
     }
     const profileRes = axiosPublic.patch(`/predefined-templates/${data?._id}`, profile)
-    console.log(profileRes.data);
+    // console.log(profileRes.data);
    
   }
   }

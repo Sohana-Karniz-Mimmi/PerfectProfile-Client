@@ -37,8 +37,8 @@ const HeadingCard = () => {
   useEffect(() => {
     dispatch(fetchPredefinedTemplates()); // Fetch predefined templates when component loads
   }, [dispatch]);
-  console.log(templates);
-  console.log(users);
+  // console.log(templates);
+  // console.log(users);
 
   return (
     <section className="">
