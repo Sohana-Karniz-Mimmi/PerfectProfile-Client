@@ -149,8 +149,8 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
             {...register("feedback", {
               required: "Feedback is required",
               maxLength: {
-                value: 250,
-                message: "Feedback cannot exceed 250 characters",
+                value: 415,
+                message: "Feedback cannot exceed 415 characters",
               },
             })}
             className="w-full p-3 border font-montserrat rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"

@@ -203,13 +203,19 @@
 
 // export default Contact;
 
-
-
 import React from "react";
 import Container from "../../Shared/Container";
 import contact from "../../assets/contact.jpg";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
-import { FaEnvelope, FaPhone, FaRocketchat, FaFacebook, FaLinkedin, FaYoutube, FaX } from "react-icons/fa6";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaRocketchat,
+  FaFacebook,
+  FaLinkedin,
+  FaYoutube,
+  FaX,
+} from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import "./Contact.css";
@@ -318,24 +324,26 @@ const Contact = () => {
         </section>
         <section className="md:py-24 py-12">
           <div className="flex lg:flex-row flex-col-reverse justify-between gap-8">
-            <div className="lg:w-1/2 w-full bg-gray-50">
+            <div className="lg:w-1/2 w-full">
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="font-montserrat p-4"
+                className="font-montserrat"
               >
-                <div className="mb-4 ">
+                <div className="mb-4">
                   <label
                     htmlFor="name"
                     className="block mb-2 text-sm font-bold "
                   >
                     Name
                   </label>
-                  <input
-                    id="name"
-                    {...register("name", { required: "Name is required" })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary focus:bg-gray-50"
-                    placeholder="Enter your name"
-                  />
+                  <div className="p-[1px] bg-gradient-to-r from-primary to-secondary focus-within:bg-gradient-to-r focus-within:from-secondary focus-within:to-primary">
+                    <input
+                      id="name"
+                      {...register("name", { required: "Name is required" })}
+                      className="w-full p-2 focus:outline-none"
+                      placeholder="Enter your name"
+                    />
+                  </div>
                   {errors.name && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.name.message}
@@ -350,13 +358,15 @@ const Contact = () => {
                   >
                     Email
                   </label>
-                  <input
-                    id="email"
-                    type="email"
-                    {...register("email", { required: "Email is required" })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary focus:bg-gray-50"
-                    placeholder="Enter your email"
-                  />
+                  <div className="p-[1px] bg-gradient-to-r from-primary to-secondary focus-within:bg-gradient-to-r focus-within:from-secondary focus-within:to-primary">
+                    <input
+                      id="email"
+                      type="email"
+                      {...register("email", { required: "Email is required" })}
+                      className="w-full p-2  focus:outline-none"
+                      placeholder="Enter your email"
+                    />
+                  </div>
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.email.message}
@@ -371,15 +381,17 @@ const Contact = () => {
                   >
                     Message
                   </label>
-                  <textarea
-                    id="message"
-                    {...register("message", {
-                      required: "Message is required",
-                    })}
-                    className="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-primary focus:bg-gray-50"
-                    placeholder="Enter your message"
-                    rows="5"
-                  />
+                  <div className="p-[1px] bg-gradient-to-r from-primary to-secondary focus-within:bg-gradient-to-r focus-within:from-secondary focus-within:to-primary">
+                    <textarea
+                      id="message"
+                      {...register("message", {
+                        required: "Message is required",
+                      })}
+                      className="w-full h-full p-2 m-0 border-none outline-none focus:outline-none"
+                      placeholder="Enter your message"
+                      rows="5"
+                    />
+                  </div>
                   {errors.message && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.message.message}
@@ -391,11 +403,11 @@ const Contact = () => {
                   type="submit"
                   className="w-full px-5 py-2 text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l  text-sm md:text-xl font-montserrat  shadow-lg font-medium text-white"
                 >
-                  Submit
+                  Send Message
                 </button>
               </form>
             </div>
-            <div className="lg:w-1/2 w-full border p-4  space-y-4 flex flex-col justify-between">
+            <div className="lg:w-1/2 w-full px-8 py-4   space-y-4 flex flex-col shadow-lg items-center justify-center">
               <div className="space-y-4">
                 <h2 className="font-montserrat text-3xl font-bold">
                   Get in touch
@@ -413,26 +425,18 @@ const Contact = () => {
                   let's take a step toward a greener tomorrow!
                 </p>
               </div>
-              <div className="flex items-center gap-4">
+              {/* <div className="flex items-center gap-4">
                 <FaFacebook className="text-2xl text-primary"></FaFacebook>
                 <FaLinkedin className="text-2xl text-primary"></FaLinkedin>
                 <FaX className="text-2xl text-primary"></FaX>
                 <FaYoutube className="text-2xl text-primary"></FaYoutube>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
       </Container>
-      <div className="p-[1px]  focus-within:bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-md">
-        <input
-          type="text"
-          placeholder="Enter text"
-          className="w-full p-2 rounded-md  bg-white text-black outline-none"
-        />
-      </div>
     </div>
   );
 };
 
 export default Contact;
-
