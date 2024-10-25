@@ -287,7 +287,7 @@ const Register = () => {
                 <div>
                   <Link onClick={() => handleSocialSignIn(googleSignIn)}>
                     <button className="flex items-center text-white border p-2 rounded bg-opacity-75 shadow-[0_0_10px_4px_rgba(255,255,255,0.7)]">
-                      <FaGoogle className="mr-2 " /> <span>SignIn</span>
+                      <FaGoogle className="mr-2 " /> <span>SignUp</span>
                     </button>
                   </Link>
                 </div>
