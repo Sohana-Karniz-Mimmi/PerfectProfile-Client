@@ -13,9 +13,9 @@ const MyResumeConsultationBanner = () => {
          
 
           <div className="flex flex-col md:items-start items-center text-base  font-bold lg:font-semibold">
-            <a href='#session'  className="mt-5 ">
+            <a href='/consultation'  className="mt-5 ">
               <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105">
-              Book a Session Now
+              Book Session
               </button>
             </a>
           </div>
