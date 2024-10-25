@@ -181,6 +181,7 @@ const Consultation = () => {
                 <select
                   name="expertise"
                   id="expertise"
+                  required
                   className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                 >
                   <option value="">Select Area</option>
@@ -197,6 +198,7 @@ const Consultation = () => {
                 <select
                   name="experience"
                   id="experience"
+                  required
                   className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                 >
                   <option value="">Select Experience</option>
