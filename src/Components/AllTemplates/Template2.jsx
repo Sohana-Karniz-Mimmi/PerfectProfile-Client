@@ -41,8 +41,8 @@ const Template2 = ({ data, userData, setUserData }) => {
     }
   };
 
-  console.log(data?.templateItem);
-  console.log(userData);
+  // console.log(data?.templateItem);
+  // console.log(userData);
 
   return (
     <div className="relative ">

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosSecure from "./../../Hook/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
-import { useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 
 /******** Templates **********/
@@ -40,39 +40,67 @@ const ManageResume = () => {
 
   const handleDelete = (id) => {
     console.log(id);
-      Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!"
-      })
-          .then((result) => {
-              if (result.isConfirmed) {
-                  axiosPublic.delete(`/my-resume/${id}`)
-                      .then((response) => {
-                          if (response.data.deletedCount > 0) {
-                              closeModal();
-                              Swal.fire({
-                                  title: "Deleted!",
-                                  text: "Your file has been deleted.",
-                                  icon: "success"
-                              });
-                              refetch();
-                          }
-                      })
-                      .catch((error) => {
-                          console.error("There was an error deleting the resume", error);
-                          Swal.fire({
-                              title: "Error!",
-                              text: "There was an error deleting the resume.",
-                              icon: "error"
-                          });
-                      });
+    Swal.fire({
+      title: "Are you sure?",
+      html: `<div class="text-start text-gray-600 text-base">You won't be able to revert this!</div>`,
+      showCancelButton: true,
+      cancelButtonText: "Cancel",
+      confirmButtonText: "Delete",
+      backdrop: `
+          rgba(0, 0, 0, 0.5) 
+          url('path/to/your/background-image.jpg') 
+          left top 
+          no-repeat
+      `,
+      customClass: {
+        title: 'text-2xl pt-9 text-start font-semibold text-black',
+        confirmButton: 'hover:bg-[#fd4958] bg-[#DB142C] text-white font-medium py-2 px-4 rounded-md ml-2',
+        cancelButton: 'text-[#0d1216] bg-[#E5E5E5] font-medium py-2 px-4 rounded-md mr-4',
+        popup: 'w-[420px] rounded-2xl shadow-lg border flex flex-col items-start px-1',
+        actions: 'flex justify-end w-full mt-4'
+      }
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axiosPublic.delete(`/my-resume/${id}`)
+            .then((response) => {
+              if (response.data.deletedCount > 0) {
+                closeModal();
+                Swal.fire({
+                  title: "Deleting...",
+                  html: `
+                      <div class="relative mb-6 w-full h-3 bg-gray-200 rounded">
+                          <div id="progress-bar" class="absolute h-full rounded-full" style="width: 0; background: linear-gradient(90deg, #2CACD5, #00C8AA); transition: width 1s ease;"></div>
+                      </div>
+                  `,
+                  showConfirmButton: false,
+                  willOpen: () => {
+                    const progressBar = document.getElementById('progress-bar');
+                    setTimeout(() => {
+                      progressBar.style.width = '87%'; 
+
+                      setTimeout(() => {
+                        progressBar.style.width = '100%'; 
+                      }, 500);
+                      setTimeout(() => {
+                        Swal.close();
+                      }, 1700);
+                    }, 100); 
+                  }
+                });
+                refetch();
               }
-          });
+            })
+            .catch((error) => {
+              console.error("There was an error deleting the resume", error);
+              Swal.fire({
+                title: "Error!",
+                text: "There was an error deleting the resume.",
+                icon: "error"
+              });
+            });
+        }
+      });
   };
 
 
