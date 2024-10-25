@@ -332,7 +332,7 @@ const FinalResume = () => {
                 <FaEnvelope className="text-secondary group-hover:text-white " /> Email
               </button>
 
-              <Link to={`/`}>
+              <Link to={`/my-resume`}>
                 <button className="w-44 px-5 py-1 rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
                   Finish
                 </button>
