@@ -150,7 +150,7 @@ const MakeConsultant = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
                   { data
-                  .filter( user =>user.role === "consultant")
+                  .filter( user =>user.request === "pending")
                   .map((user) => (
                     <tr key={user._id}>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
