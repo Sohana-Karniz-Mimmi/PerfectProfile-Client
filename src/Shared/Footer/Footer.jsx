@@ -59,7 +59,7 @@ const Footer = () => {
               <NavLink link="/predefined-templates" label="Resume Examples" />
               <NavLink link="/predefined-templates" label="Cover Letter Examples" />
               <NavLink link="/pricing" label="Pricing" />
-              <NavLink link="/#" label="User Strategy" />
+              <NavLink link="/resource" label="Resource" />
             </LinkGroup>
             <LinkGroup header="Company">
               <NavLink link="about" label="About PerfectProfile" />
