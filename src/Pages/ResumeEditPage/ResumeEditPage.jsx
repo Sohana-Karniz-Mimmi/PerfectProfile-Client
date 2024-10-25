@@ -496,7 +496,7 @@ const ResumeEditPage = () => {
     <div className=" flex lg:flex-row xl:flex-row lg:flex-wrap xl:flex-nowrap flex-col xl:gap-0 gap-6 lg:bg-gray-50  min-h-screen">
       {/* Sidebar */}
 
-      <div className="sidebar xl:w-[20%] lg:w-[25%] w-[100%] lg:block bg-[#00000f] text-white p-6">
+      <div className="sidebar lg:fixed lg:min-h-screen h-full xl:w-[20%] lg:w-[25%] w-[100%] lg:block bg-[#00000f] text-white p-6">
         <Link to="/">
           <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
             Perfect<span className="text-primary">Profile</span>
@@ -554,7 +554,7 @@ const ResumeEditPage = () => {
         </div>
       </div>
       {/* Content Area */}
-      <div className="xl:w-[48%] 2xl:w-[53%] lg:w-[70%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
+      <div className="xl:w-[48%] xl:ml-[20%] lg:ml-[25%] 2xl:w-[53%] lg:w-[70%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
         <form className="text-sm" onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
             <div className="space-y-4">

@@ -84,7 +84,7 @@ const Testimonial = () => {
                 fractions={2}
               />
               
-                <p className="font-medium font-montserrat text-[#4e4e4e] mt-5 mb-6 text-sm leading-6">
+                <p className="font-medium font-montserrat min-h-28 text-[#4e4e4e] mt-5 mb-6 text-sm leading-6">
                   {feedback.feedback}
                 </p>
               
