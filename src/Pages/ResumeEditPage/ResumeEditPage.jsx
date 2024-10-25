@@ -46,6 +46,8 @@ import "./Customize.css"
 
 const ResumeEditPage = () => {
   const { user } = useAuth();
+  const [previewTemplate, setPreviewTemplate] = useState(null);
+
 
   const [userData, setUserData] = useState({
     name: "",
@@ -492,7 +494,6 @@ const ResumeEditPage = () => {
       console.error("Error generating share link:", error);
     }
   };
-  const [previewTemplate, setPreviewTemplate] = useState(null);
 
   const closeModal = () => {
     setPreviewTemplate(null);
@@ -1294,9 +1295,7 @@ const ResumeEditPage = () => {
                 <LiaTimesSolid className="hover:text-red-500" size={25} />
               </button>
             </div>
-            {/* Scrollable area for template preview */}
             <div className="overflow-y-auto max-h-[90vh]">
-              {/* Render preview based on template type */}
               {id === "template1" && <Template1 userData={userData} />}
               {id === "template2" && <Template2 userData={userData} />}
               {id === "template3" && <Template3 userData={userData} />}
