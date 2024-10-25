@@ -11,7 +11,7 @@ const Question = () => {
                 <p className="">Our dedicated customer support team is here to help with all of your account needs, seven days a week.</p>
                 {/* Button */}
                 <div className="relative z-10 text-center !mt-10">
-                    <Link to={'/contact'} className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 px-16 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
+                    <Link to={'/contact'} className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 md:px-16 px-10 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
                         Contact Us
                     </Link>
                 </div>
@@ -22,7 +22,7 @@ const Question = () => {
                 <p className="">Explore job openings across the globe and join us in helping job seekers unlock their career potential.</p>
                 {/* Button */}
                 <div className=" text-center !mb-5 !mt-10">
-                    <Link to={'/contact'} className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 md:px-16 px-10 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
+                    <Link to={'/consultation'} className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-3 md:px-16 px-10 rounded-full text-lg lg:text-xl font-semibold shadow-lg transform transition duration-500 hover:scale-105">
                     Join our team
                     </Link>
                 </div>

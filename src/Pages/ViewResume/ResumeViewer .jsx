@@ -10,6 +10,7 @@ import Template3 from "../../Components/AllTemplates/Template3";
 import Template4 from "../../Components/AllTemplates/Template4";
 import Template5 from "../../Components/AllTemplates/Template5";
 import Template6 from "../../Components/AllTemplates/Template6";
+import { Helmet } from "react-helmet-async";
 // import Template2, {ImageContext,} from "../../Components/AllTemplates/Template2";
 
 const ResumeViewer = () => {
@@ -40,7 +41,7 @@ const ResumeViewer = () => {
         const response = await axiosPublic.get(`/resume/${link}`);
         setResumeData(response.data);
       } catch (err) {
-        console.log(err.message);
+        // console.log(err.message);
       }
     };
 
@@ -50,10 +51,8 @@ const ResumeViewer = () => {
   const templateID = resumeData?.templateItem;
   const showResume = resumeData;
 
-  // console.log(templateID);
-  // // console.log(showResume);
+  // console.log(showResume);
   // console.log(resumeData?.resumeLink);
-  // console.log(link);
 
   const renderTemplate = (templateID) => {
     if (templateID === "template1") {
@@ -77,10 +76,53 @@ const ResumeViewer = () => {
   };
 
   return (
-    <div>
-      <ShareResumeNavbar shareLink={resumeData?.resumeLink} />
-      <div className="my-12 mx-auto w-fit border border-secondary">{renderTemplate(templateID)}</div>
-    </div>
+    <>
+
+      {resumeData && (
+        <Helmet>
+          <title>{`${resumeData?.name} - PerfectProfile`}</title>
+        </Helmet>
+      )}
+
+      <div>
+        <ShareResumeNavbar shareLink={resumeData?.resumeLink} />
+        {/* <div className="my-12 mx-auto w-fit border border-secondary">{renderTemplate(templateID)}</div> */}
+
+        <div>
+          <div className="my-12 mx-auto w-fit border border-secondary hidden lg:block">
+            {renderTemplate(templateID)}
+          </div>
+
+          <div className="my-12 mx-auto w-[500px] border border-secondary hidden md:block lg:hidden overflow-hidden">
+            <div
+              className="w-full h-full"
+              style={{
+                transform: "scale(0.63)",
+                transformOrigin: "top left",
+                height: "560px",
+              }}
+            >
+              {renderTemplate(templateID)}
+            </div>
+          </div>
+
+          <div className="my-6 mx-auto w-[303px] overflow-hidden border border-secondary block md:hidden">
+            <div
+              className="w-full h-full"
+              style={{
+                transform: "scale(0.38)",
+                transformOrigin: "top left",
+                height: "380px",
+              }}
+            >
+              {renderTemplate(templateID)}
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </>
   );
 };
 

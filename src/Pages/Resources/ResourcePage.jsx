@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Container from "../../Shared/Container";
 import Careers from "./Careers";
 import Categories from "./Categories";
-import EditorPicks from "./EditorPicks";
+// import EditorPicks from "./EditorPicks";
 // import HeadingResource from "./HeadingResource";
 import InterviewsResources from "./InterviewsResources";
 import JobResources from "./JobResources";
@@ -23,9 +23,9 @@ const ResourcePage = () => {
       {/* <div>
         <HeadingResource />
       </div> */}
-      <div>
+      {/* <div>
         <EditorPicks />
-      </div>
+      </div> */}
       <div>
         <Container></Container>
         <ResentBlog />
