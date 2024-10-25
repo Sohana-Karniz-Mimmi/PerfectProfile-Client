@@ -72,7 +72,7 @@ const MakeConsultant = () => {
 
 
     return (
-        <Container>
+        <Container className="min-h-screen">
             <h1 className="text-center mb-16 font-lora text-4xl text-primary font-bold">Pending Requests</h1>
 
             {/* table */}

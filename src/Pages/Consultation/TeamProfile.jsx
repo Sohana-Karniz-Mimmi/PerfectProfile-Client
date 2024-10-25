@@ -60,12 +60,12 @@ const TeamProfile = ({consultants}) => {
 
     return (
         <div>
-             <section className="pt-16  bg-blueGray-50 px-16 flex items-center justify-center">
+             <section id="#session" className="pt-16  bg-blueGray-50 px-10 flex items-center justify-center">
       {/* 1 */}
       
       {
         consultants.map(consultant => <>
-        <div className="w-[28rem] px-4 mx-auto ">
+        <div className="w-[28rem] h-[31rem] px-4 mx-auto ">
         <div className="relative border-2 border-primary flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
           <div className="px-6">
             <div className="flex flex-wrap justify-center">
@@ -82,7 +82,8 @@ const TeamProfile = ({consultants}) => {
                {consultant.name}
               </h3>
               <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-               Resume consultant ({consultant.expertise})
+              <p> Resume consultant</p>
+              <p> ({consultant.expertise})</p>
               </div>
               <div className="mb-2 px-5 text-blueGray-600 mt-4 flex item-center justify-center">
                 {/* <p>industry - non tech</p> */}
@@ -92,7 +93,7 @@ const TeamProfile = ({consultants}) => {
               <div className="mb-2 mt-5 text-blueGray-600 flex item-center justify-center">
                {/* social */}
                <Link
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-black hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width="8"
@@ -104,7 +105,7 @@ const TeamProfile = ({consultants}) => {
                     </svg>
                   </Link>
                   <Link
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-black hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width="16"
@@ -116,7 +117,7 @@ const TeamProfile = ({consultants}) => {
                     </svg>
                   </Link>
                   <Link
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-black hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width="14"
