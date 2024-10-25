@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import img from '../../assets/consultation/resume3.jpg'
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import BookingForm from "./BookingForm";
 import useAuth from '../../Hook/useAuth';
@@ -8,20 +8,10 @@ import useAxiosPublic from '../../Hook/useAxiosPublic';
 import toast from 'react-hot-toast';
 
 
-const TeamProfile = ({consultants}) => {
+const TeamProfile = ({consultants, handleShowLogin}) => {
   const {user} = useAuth()
   let [isOpen, setIsOpen] = useState(false)
   const axiosPublic  = useAxiosPublic()
-
-  const sliderRef = useRef(null);
-
-  const scrollLeft = () => {
-    sliderRef.current.scrollLeft -= 300; // Adjust scroll distance as needed
-  };
-
-  const scrollRight = () => {
-    sliderRef.current.scrollLeft += 300;
-  };
 
 
   const handleSubmit = async (e) => {
@@ -138,12 +128,19 @@ const TeamProfile = ({consultants}) => {
                     Melbourne-raised, Brooklyn-based Nick Murphy writes,
                     performs.
                   </p> */}
-                  <button
-               onClick={() => setIsOpen(true)} 
-              className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
-            >
-              Book A session
-            </button>
+                 {
+                  user ? <> <button
+                  onClick={() => setIsOpen(true)} 
+                 className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+               >
+                 Book A session
+               </button></> : <> <button
+                  onClick={handleShowLogin} 
+                 className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+               >
+                 Book A session
+               </button></>
+                 }
 
             <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50 ">
               <div className=" fixed inset-0 w-screen overflow-y-auto p-4">

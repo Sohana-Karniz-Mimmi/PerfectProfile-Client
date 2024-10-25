@@ -26,12 +26,18 @@ const MakeConsultant = () => {
     // make consultant
     const handleRoleChange = async (user) => {
      
-         await axiosPublic.patch(`/user/make-consultant/${user?._id}`, user)
-         .then(res =>{
-          toast.success("User is a consultant now")
-          refetch()
-
-         })
+      try {
+        await axiosPublic.patch(`/make-consultant/user/${user?._id}`)
+          .then(res => {
+            if (res.status === 200) {
+              toast.success(`${user.name} is now a consultant`);
+              refetch(); 
+            }
+          });
+      } catch (error) {
+        console.error("Error updating role:", error);
+        toast.error("Failed to update user role");
+      }
          
     };
 
