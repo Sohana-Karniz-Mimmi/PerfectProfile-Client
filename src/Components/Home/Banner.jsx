@@ -34,14 +34,20 @@ const Banner = () => {
 
               <div className="mt-8 flex lg:flex-row flex-col lg:items-start items-center gap-6 text-center">
                 <Link to={`predefined-templates`}>
-                  <button className="py-3 px-5 rounded font-bold font-montserrat text-base bg-primary hover:bg-secondary text-white ">
+                  <button
+                    role="button"
+                    className="py-3 px-5 rounded font-bold font-montserrat text-base bg-primary hover:bg-secondary text-white "
+                  >
                     Get Started
                   </button>
                 </Link>
 
                 <Link to={`predefined-templates`}>
                   <div className="h-[50px] border group border-primary  rounded group-hover:border-secondary hover:border-secondary">
-                    <button className="py-3 px-5  font-bold !font-montserrat text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 ">
+                    <button
+                      role="button"
+                      className="py-3 px-5  font-bold !font-montserrat text-base  text-primary group-hover:bg-secondary group-hover:text-white h-0 group-hover:h-full transition-all duration-300 ease-out transform translate-y-0 "
+                    >
                       Create Resume
                     </button>
                   </div>
@@ -50,14 +56,14 @@ const Banner = () => {
             </div>
             <div className="lg:w-1/2 w-full flex items-center justify-center">
               <video width="500" autoPlay muted loop>
-                <source src={video} type="video/mp4"role="video" />
+                <source src={video} type="video/mp4" role="video" />
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
         </Container>
       </section>
-     
+
       <section className=" bg-white">
         <div className="custom-shape-divider-bottom-1727289857">
           <svg
@@ -86,7 +92,6 @@ const Banner = () => {
             />
           </svg>
         </div>
-        
       </section>
       <section className="bg-gradient-to-r from-[#51E2C2] to-[#4BCCEF]">
         <Container>

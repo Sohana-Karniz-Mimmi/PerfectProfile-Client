@@ -109,7 +109,7 @@ const AllPaymentHistory = () => {
                         <div className="flex items-center gap-x-2">
                           <div>
                             <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                              {payment?.amount}
+                              ${payment?.amount}
                             </p>
                           </div>
                         </div>
@@ -119,7 +119,7 @@ const AllPaymentHistory = () => {
                       </td>
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
-                          <span>{payment?.product_name}</span>
+                          <span className="capitalize">{payment?.product_name}</span>
                         </div>
                       </td>
                     </tr>
@@ -144,17 +144,19 @@ const AllPaymentHistory = () => {
         </button>
 
         {/* Number of page */}
-        {pages.map((btnNum) => (
+      <div className="hidden lg:flex">
+      {pages.map((btnNum) => (
           <button
             onClick={() => handlePaginationButton(btnNum)}
             key={btnNum}
             className={`hidden ${
               currentPage === btnNum ? "bg-primary text-white" : ""
-            } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
+            } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white hidden`}
           >
             {btnNum}
           </button>
         ))}
+      </div>
 
         {/* Next Button */}
         <button
