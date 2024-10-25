@@ -91,7 +91,7 @@ const HeadingCard = () => {
         </div>
         {/* card 3 */}
         <div
-          className="bg-white md:min-h-72 min-h-52 xl:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-center gap-8 "
+          className="bg-secondary md:min-h-72 min-h-52 xl:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-center gap-8 text-white"
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
