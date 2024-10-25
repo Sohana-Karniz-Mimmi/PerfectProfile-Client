@@ -1,20 +1,29 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import teamImg from "../../assets/Images/About/team.jpg";
 import vision from "../../assets/Images/About/our-vision.png";
 import mission from "../../assets/Images/About/our-mission.png";
 import certified from "../../assets/Images/About/certified-professionals.png";
 import { Link, ScrollRestoration } from "react-router-dom";
-import Team from "./Team";
-import AboutCompany from "./AboutCompany";
-import Container from "../../Shared/Container";
-import Question from "./Question";
-import ResumeAbout from "./ResumeAbout";
-import Heading from "../../Shared/Heading";
-import Button from "../../Shared/Button/Button";
+const Team = lazy(() => import("./Team"));
+const AboutCompany = lazy(() => import("./AboutCompany"));
+const Container = lazy(() => import("../../Shared/Container"));
+const Question = lazy(() => import("./Question"));
+const ResumeAbout = lazy(() => import("./ResumeAbout"));
+const Heading = lazy(() => import("../../Shared/Heading"));
+const Button = lazy(() => import("../../Shared/Button/Button"));
+
+import loadingGif from "../../assets/loading.gif";
 
 const About = () => {
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="w-full h-screen flex justify-center items-center">
+          <img className="h-64" src={loadingGif} alt="loading..." />
+        </div>
+      }
+    >
       <Helmet>
         <title>About Us- PerfectProfile</title>
       </Helmet>
@@ -125,7 +134,7 @@ const About = () => {
         </div>
       </Container>
       <ResumeAbout />
-    </>
+    </Suspense>
   );
 };
 

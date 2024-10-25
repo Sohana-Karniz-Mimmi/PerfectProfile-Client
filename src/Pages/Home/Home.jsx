@@ -1,11 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import Banner from "../../Components/Home/Banner";
-import PremiumFeature from "../../Components/Home/PremiumFeature";
-import StepsOfResume from "../../Components/Home/StepsOfResume";
-import Testomonial from "../../Components/Testomonial/Testomonial";
-// import Chat from "../../Components/LiveChat/Chat";
-import PremiumModal from "../../Components/Modal/PremiumModal";
-// import Chat from "../../Components/LiveChat/Chat";
+import { lazy, Suspense } from "react";
+
+const Banner = lazy(() => import("../../Components/Home/Banner"));
+const PremiumFeature = lazy(() =>
+  import("../../Components/Home/PremiumFeature")
+);
+const StepsOfResume = lazy(() => import("../../Components/Home/StepsOfResume"));
+const Testomonial = lazy(() =>
+  import("../../Components/Testomonial/Testomonial")
+);
+const PremiumModal = lazy(() => import("../../Components/Modal/PremiumModal"));
 
 const Home = () => {
   return (
@@ -31,6 +35,7 @@ const Home = () => {
         <Chat />
       </div> */}
     </div>
+    // </Suspense>
   );
 };
 

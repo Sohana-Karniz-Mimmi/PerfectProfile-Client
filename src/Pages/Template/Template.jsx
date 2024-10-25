@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import ResumeTemplates from "../../Components/TemplateSection/ResumeTemplates";
 import Template1 from "../../Components/TemplateSection/Template1";
 import Template2 from "../../Components/TemplateSection/Template2nd";
 import Template3 from "../../Components/TemplateSection/Template3";
-import Container from "../../Shared/Container";
-import TemplateBanner from "./TemplateBanner";
+const Container = lazy(() => import("../../Shared/Container"));
+const TemplateBanner = lazy(() => import("./TemplateBanner"));
+
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { Link, useNavigate } from "react-router-dom";
 import { FaCrown } from "react-icons/fa";
@@ -27,10 +28,16 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 
 import toast from "react-hot-toast";
-import Banner2 from "./Banner2";
-import CheckoutForm from "../../Components/Payment/CheckoutForm";
+const Banner2 = lazy(() => import("./Banner2"));
+const CheckoutForm = lazy(() =>
+  import("../../Components/Payment/CheckoutForm")
+);
+
 import useRole from "../../Hook/useRole";
 import { Helmet } from "react-helmet-async";
+
+import loadingGif from "../../assets/loading.gif";
+
 const Template = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
@@ -56,8 +63,8 @@ const Template = () => {
     };
     getData();
   }, [currentPage, itemPerPage, filter]);
-  console.log(predefinedTemplate)
-  console.log(filter)
+  console.log(predefinedTemplate);
+  console.log(filter);
   //   add to favorite
   const handleFavorite = (template) => {
     const { _id, image, package: templatePackage } = template;
@@ -132,10 +139,7 @@ const Template = () => {
   }, [filter]);
 
   const numofPage = Math.ceil(count / itemPerPage);
-  const pages = [
-    ...Array(numofPage)
-      .keys()]
-    .map((element) => element + 1)
+  const pages = [...Array(numofPage).keys()].map((element) => element + 1);
 
   const handlePagination = (value) => {
     console.log(value);
@@ -145,8 +149,13 @@ const Template = () => {
   // filter
 
   return (
-    <div>
-
+    <Suspense
+      fallback={
+        <div className="w-full h-screen flex justify-center items-center">
+          <img className="h-64" src={loadingGif} alt="loading..." />
+        </div>
+      }
+    >
       <Helmet>
         <title>Template - PerfectProfile</title>
       </Helmet>
@@ -157,9 +166,9 @@ const Template = () => {
         {/* filter */}
         <div className=" lg:mt-12 mt-20 justify-end flex item-end">
           <select
-            onChange={e => {
-              setFilter(e.target.value)
-              setCurrentPage(1)
+            onChange={(e) => {
+              setFilter(e.target.value);
+              setCurrentPage(1);
             }}
             name="package"
             id="package"
@@ -198,7 +207,8 @@ const Template = () => {
                   {/* <Link to={`/resume/edit/${template.templateItem}`}> */}
                   <button
                     onClick={() => handleTemplateClick(template)}
-                    className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
                     Use Template
                   </button>
                   {/* </Link> */}
@@ -245,10 +255,11 @@ const Template = () => {
             <button
               onClick={() => handlePagination(btnNum)}
               key={btnNum}
-              className={`hidden ${currentPage === btnNum
-                ? "bg-primary text-white border-primary"
-                : ""
-                } px-3 py-1 mx-1 border-2 rounded-full transition-colors duration-300 transform   sm:inline hover:bg-primary  hover:text-white`}
+              className={`hidden ${
+                currentPage === btnNum
+                  ? "bg-primary text-white border-primary"
+                  : ""
+              } px-3 py-1 mx-1 border-2 rounded-full transition-colors duration-300 transform   sm:inline hover:bg-primary  hover:text-white`}
             >
               {btnNum}
             </button>
@@ -376,9 +387,7 @@ const Template = () => {
           </DialogPanel>
         </div>
       </Dialog>
-
-
-    </div>
+    </Suspense>
   );
 };
 
