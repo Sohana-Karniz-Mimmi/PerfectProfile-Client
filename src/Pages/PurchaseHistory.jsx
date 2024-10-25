@@ -9,7 +9,9 @@ const PurchaseHistory = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    fetch(`https://perfect-profile-server.vercel.app/payment-transaction/${user?.email}`)
+    fetch(
+      `https://perfect-profile-server.vercel.app/payment-transaction/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setPayments(Array.isArray(data) ? data : []);
