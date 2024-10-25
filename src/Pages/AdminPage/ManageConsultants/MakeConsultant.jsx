@@ -72,7 +72,7 @@ const MakeConsultant = () => {
 
 
     return (
-        <Container>
+        <Container className="min-h-screen">
             <h1 className="text-center mb-16 font-lora text-4xl text-primary font-bold">Pending Requests</h1>
 
             {/* table */}
@@ -150,7 +150,7 @@ const MakeConsultant = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
                   { data
-                  .filter( user =>user.role === "consultant")
+                  .filter( user =>user.request === "pending")
                   .map((user) => (
                     <tr key={user._id}>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
