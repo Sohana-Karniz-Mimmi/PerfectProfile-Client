@@ -42,10 +42,10 @@ const HeadingCard = () => {
 
   return (
     <section className="">
-      <div className="flex flex-col lg:flex-row justify-between lg:gap-16 gap-8  h-full rounded-lg text-neutral-700">
+      <div className="flex flex-col xl:flex-row justify-between lg:gap-16 gap-8  h-full rounded-lg text-neutral-700 ">
         {/* card 1 */}
         <div
-          className="white  md:min-h-64 min-h-52 lg:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
+          className="white  md:min-h-64 min-h-52 xl:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
@@ -67,7 +67,7 @@ const HeadingCard = () => {
         </div>
         {/* card 2 */}
         <div
-          className="bg-white md:min-h-72 min-h-52 lg:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
+          className="bg-white md:min-h-72 min-h-52 xl:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
@@ -91,7 +91,7 @@ const HeadingCard = () => {
         </div>
         {/* card 3 */}
         <div
-          className="bg-white md:min-h-72 min-h-52 lg:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
+          className="bg-white md:min-h-72 min-h-52 xl:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
@@ -115,14 +115,14 @@ const HeadingCard = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1  lg:grid-cols-5 gap-10 ">
+      <div className="grid grid-cols-1  xl:grid-cols-5 gap-10 ">
         <div
-          className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full lg:col-span-3 "
+          className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full xl:col-span-3 "
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <HeadingChart />
         </div>
-        <div className="lg:col-span-2">
+        <div className="xl:col-span-2">
           <div
             className="bg-white rounded-lg p-5 mt-6 flex items-center justify-center w-full"
             style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}

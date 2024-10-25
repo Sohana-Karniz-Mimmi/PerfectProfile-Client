@@ -41,6 +41,9 @@ const Consultation = () => {
         resume,
         expertise,      
         requestedAt: new Date().toISOString().split("T")[0],
+        request: "pending",
+       
+
         
       };
 
@@ -48,7 +51,6 @@ const Consultation = () => {
          axiosPublic.put(`/consultant-info/user/${user?.email}`, consultantData)
         .then(res => {
             console.log(res.data);
-          document.getElementById("consultant_modal").close();
             toast.success("Your consultant application has been submitted! We’ll be in touch soon!");
           });
      
