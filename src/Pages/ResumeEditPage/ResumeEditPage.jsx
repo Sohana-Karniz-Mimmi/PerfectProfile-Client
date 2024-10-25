@@ -32,7 +32,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
 import useAuth from "../../Hook/useAuth";
-
+import { VscPreview } from "react-icons/vsc";
+import { LiaTimesSolid } from "react-icons/lia";
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";
 import Template2 from "../../Components/AllTemplates/Template2";
@@ -491,6 +492,15 @@ const ResumeEditPage = () => {
       console.error("Error generating share link:", error);
     }
   };
+  const [previewTemplate, setPreviewTemplate] = useState(null);
+
+  const closeModal = () => {
+    setPreviewTemplate(null);
+  };
+
+  const handlePreview = (template) => {
+    setPreviewTemplate(template); // Set the selected template for preview
+  };
 
   return (
     <div className=" flex lg:flex-row xl:flex-row lg:flex-wrap xl:flex-nowrap flex-col xl:gap-0 gap-6 lg:bg-gray-50  min-h-screen">
@@ -506,23 +516,21 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${
-                currentStep === step.id
-                  ? "text-white font-montserrat font-medium"
-                  : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
+                ? "text-white font-montserrat font-medium"
+                : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500 font-montserrat font-medium"
-              }`}
+                }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center ${
-                  currentStep === step.id
-                    ? "  text-black"
-                    : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center ${currentStep === step.id
+                  ? "  text-black"
+                  : isStepCompleted(step.id)
                     ? " rounded-full text-rose-700"
                     : ""
-                }`}
+                  }`}
               >
                 {isStepCompleted(step.id) ? (
                   <span className="text-2xl text-secondary">
@@ -570,9 +578,8 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     placeholder="Your full name"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
-                      errors.name ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.name ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("name", {
                       // required: "Full name is required",
                       onChange: (e) =>
@@ -614,9 +621,8 @@ const ResumeEditPage = () => {
                   <input
                     type="email"
                     placeholder="example@gmail.com"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${
-                      errors.email ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${errors.email ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
@@ -638,9 +644,8 @@ const ResumeEditPage = () => {
                   <input
                     type="tel"
                     placeholder="+1-212-456-7890"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
-                      errors.phone ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.phone ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("phone", {
                       // required: "Phone is required",
                       pattern: {
@@ -797,9 +802,8 @@ const ResumeEditPage = () => {
                           dateFormat="MMMM yyyy"
                           showMonthYearPicker
                           placeholderText="Select End Date"
-                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${
-                            entry.isCurrent ? "opacity-35" : "bg-transparent"
-                          }`}
+                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${entry.isCurrent ? "opacity-35" : "bg-transparent"
+                            }`}
                           wrapperClassName="w-full"
                           disabled={entry.isCurrent} // Disable if "Currently working here" is checked
                         />
@@ -1207,6 +1211,7 @@ const ResumeEditPage = () => {
           )} */}
 
           <div className="flex justify-between mt-12">
+
             {currentStep >= 1 && (
               <button
                 type="button"
@@ -1217,42 +1222,55 @@ const ResumeEditPage = () => {
                 <FaBackward /> Previous
               </button>
             )}
-            {currentStep < 6 ? (
+
+            <div className="flex gap-3">
+
               <button
+                onClick={() => handlePreview(userData)}
                 type="button"
-                onClick={handleNextStep}
                 className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
               >
-                Next <FaForward />
+                <VscPreview /> Preview
               </button>
-            ) : (
-              <div>
+              {currentStep < 6 ? (
                 <button
-                  onClick={handleShare}
-                  type="submit"
+                  type="button"
+                  onClick={handleNextStep}
                   className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
                 >
-                  Save & Finalize
+                  Next <FaForward />
                 </button>
-              </div>
-            )}
+              ) : (
+                <div>
+                  <button
+                    onClick={handleShare}
+                    type="submit"
+                    className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                  >
+                    Save & Finalize
+                  </button>
+                </div>
+              )}
+
+            </div>
+
           </div>
         </form>
       </div>
       {/* Template preview area */}
       <div className="xl:w-[33%] 2xl:w-[27%] lg:w-[100%] w-[100%] lg:p-8 px-2 flex lg:flex-col flex-col items-center border bg-gray-100 overflow-x-auto">
-        
-          <div
-            className="w-full h-full"
-            style={{
-              transform: "scale(0.50)",
-              transformOrigin: "top left",
-              height: "400px",
-            }}
-          >
-            {renderTemplate(id)}
-          </div>
-        
+
+        <div
+          className="w-full h-full"
+          style={{
+            transform: "scale(0.50)",
+            transformOrigin: "top left",
+            height: "400px",
+          }}
+        >
+          {renderTemplate(id)}
+        </div>
+
         <div className="flex flex-col justify-center items-center mt-28 ">
           <Link to={`/predefined-templates`}>
             <button className="font-roboto font-medium text-primary mb-2">
@@ -1265,6 +1283,31 @@ const ResumeEditPage = () => {
           </p>
         </div>
       </div>
+
+      {/*  Modal Preview Implementation */}
+      {previewTemplate && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white p-5 rounded-2xl shadow-lg max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-lg font-semibold">Preview</h2>
+              <button onClick={closeModal}>
+                <LiaTimesSolid className="hover:text-red-500" size={25} />
+              </button>
+            </div>
+            {/* Scrollable area for template preview */}
+            <div className="overflow-y-auto max-h-[90vh]">
+              {/* Render preview based on template type */}
+              {id === "template1" && <Template1 userData={userData} />}
+              {id === "template2" && <Template2 userData={userData} />}
+              {id === "template3" && <Template3 userData={userData} />}
+              {id === "template4" && <Template4 userData={userData} />}
+              {id === "template5" && <Template5 userData={userData} />}
+              {id === "template6" && <Template6 userData={userData} />}
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
