@@ -1240,7 +1240,7 @@ const ResumeEditPage = () => {
         </form>
       </div>
       {/* Template preview area */}
-      <div className="xl:w-[33%] 2xl:w-[27%] lg:hidden w-[100%] lg:p-8 px-2 flex lg:flex-col flex-col items-center border bg-gray-100 overflow-x-auto">
+      <div className="xl:w-[33%] 2xl:w-[27%] xl:block lg:hidden w-[100%] lg:p-8 px-2 flex lg:flex-col flex-col items-center border bg-gray-100 overflow-x-auto">
         
           <div
             className="w-full h-full"
