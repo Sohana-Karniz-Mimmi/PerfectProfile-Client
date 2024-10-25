@@ -423,6 +423,13 @@ const Contact = () => {
           </div>
         </section>
       </Container>
+      <div className="p-[1px]  focus-within:bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-md">
+        <input
+          type="text"
+          placeholder="Enter text"
+          className="w-full p-2 rounded-md  bg-white text-black outline-none"
+        />
+      </div>
     </div>
   );
 };
