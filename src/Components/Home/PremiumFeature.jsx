@@ -59,7 +59,7 @@ const PremiumFeature = () => {
             <FaStar className="text-lg" />
           </div>
 
-          <div class="flex">
+          <div className="flex">
             <figure className="mr-8 h-[240px] flex items-center">
               <img
                 width="145"
@@ -117,7 +117,9 @@ const PremiumFeature = () => {
           <figure className="-mr-16">
             <img
               srcset="https://d.novoresume.com/images/landing_page/premium/premium-2.webp"
-              alt="Two Pages+" loading="lazy" element="2"
+              alt="Two Pages+"
+              loading="lazy"
+              element="2"
               src="https://d.novoresume.com/images/landing_page/premium/premium-2.png"
               class="mx-auto md:w-[160px] w-[160px] lg:h-[240px]"
               role="img"
@@ -141,9 +143,13 @@ const PremiumFeature = () => {
       </div>
 
       {/* Button */}
-      <Link to={'/pricing'} >
+      <Link to={"/pricing"}>
         <div className="relative z-10 text-center mt-12">
-          <Button route={'/pricing'} text="Checkout Premium" className="px-8 rounded-full " />
+          <Button
+            route={"/pricing"}
+            text="Checkout Premium"
+            className="px-8 rounded-full "
+          />
         </div>
       </Link>
 
