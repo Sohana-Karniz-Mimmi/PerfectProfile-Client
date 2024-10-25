@@ -103,7 +103,7 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
       <div className="fixed inset-0 bg-black opacity-80" aria-hidden="true" />
 
       {/* Modal Content */}
-      <Dialog.Panel className="relative bg-white rounded-lg p-6 z-60 shadow-lg min-w-96 mx-auto">
+      <Dialog.Panel className="relative bg-white rounded-lg p-6 z-60 shadow-lg md:max-w-96  w-full mx-auto">
         <Dialog.Title className="2xl:text-4xl text-3xl font-lora tracking-wide font-extrabold text-center">
           Give Us Your
           <span className="block 2xl:text-5xl text-4xl">Feedback!</span>
