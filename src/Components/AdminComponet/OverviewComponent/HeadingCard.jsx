@@ -45,10 +45,10 @@ const HeadingCard = () => {
       <div className="flex flex-col xl:flex-row justify-between lg:gap-16 gap-8  h-full rounded-lg text-neutral-700 ">
         {/* card 1 */}
         <div
-          className="white  md:min-h-64 min-h-52 xl:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
+          className="bg-primary opacity-80  md:min-h-64 min-h-52 xl:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8 text-white"
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
-          <div className=" font-lora flex justify-between">
+          <div className=" font-lora flex justify-between ">
             <div className="space-y-2">
               <h3 className="text-lg text-balck/80 font-bold">Total User</h3>
               <p className="!text-3xl font-semibold md:text-2xl">{user}</p>
@@ -59,15 +59,15 @@ const HeadingCard = () => {
           </div>
           <div className="">
             <p className="flex items-center gap-1 md:text-lg text-base font-semibold ">
-              <IoTrendingUpOutline className="text-primary font-extrabold text-2xl" />{" "}
-              <span className="font-bold text-primary">8.07%</span> Growth From
+              <IoTrendingUpOutline className="text-white/80 font-extrabold text-2xl" />{" "}
+              <span className="font-bold text-white/80">8.07%</span> Growth From
               Yesterday{" "}
             </p>{" "}
           </div>
         </div>
         {/* card 2 */}
         <div
-          className="bg-white md:min-h-72 min-h-52 xl:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
+          className="bg-white md:min-h-72 min-h-52 xl:w-1/3 w-full rounded-lg p-5 font-lora flex flex-col justify-center gap-8 "
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
@@ -91,7 +91,7 @@ const HeadingCard = () => {
         </div>
         {/* card 3 */}
         <div
-          className="bg-white md:min-h-72 min-h-52 xl:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-center gap-8"
+          className="bg-white md:min-h-72 min-h-52 xl:w-1/3 w-full  rounded-lg p-5 font-lora flex flex-col justify-center gap-8 "
           style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
         >
           <div className=" font-lora flex justify-between">
