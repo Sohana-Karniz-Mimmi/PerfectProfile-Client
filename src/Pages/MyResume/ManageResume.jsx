@@ -28,15 +28,25 @@ const ManageResume = () => {
   const { user } = useAuth();
   const [myResumeTemplate, setMyResumeTemplate] = useState(null);
   const [previewTemplate, setPreviewTemplate] = useState(null);
+  const [myResumeTemplates, setMyResumeTemplates] = useState([]);
 
 
-  const { data: myResumeTemplates = [], refetch, isLoading } = useQuery({
-    queryKey: ["templates"],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/my-resume/${user?.email}`);
-      return res.data;
-    },
-  });
+  // const { data: myResumeTemplates = [], refetch, isLoading } = useQuery({
+  //   queryKey: ["myResumeTemplates"],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get(`/my-resume/${user?.email}`);
+  //     return res.data;
+  //   },
+  // });
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axiosSecure(`/my-resume/${user?.email}`);
+      setMyResumeTemplates(data);
+    };
+    getData();
+  }, [user?.email]);
+
 
   const handleDelete = (id) => {
     console.log(id);
@@ -77,18 +87,21 @@ const ManageResume = () => {
                   willOpen: () => {
                     const progressBar = document.getElementById('progress-bar');
                     setTimeout(() => {
-                      progressBar.style.width = '87%'; 
+                      progressBar.style.width = '87%';
 
                       setTimeout(() => {
-                        progressBar.style.width = '100%'; 
+                        progressBar.style.width = '100%';
                       }, 500);
                       setTimeout(() => {
                         Swal.close();
                       }, 1700);
-                    }, 100); 
+                    }, 100);
                   }
                 });
-                refetch();
+
+                const updatedTemplates = myResumeTemplates.filter(template => template._id !== id);
+                setMyResumeTemplates(updatedTemplates); 
+
               }
             })
             .catch((error) => {
@@ -118,13 +131,17 @@ const ManageResume = () => {
   };
 
   const handlePreview = (template) => {
-    setPreviewTemplate(template); // Set the selected template for preview
+    setPreviewTemplate(template);
   };
 
 
-  if (isLoading) {
-    <LoadingSpinner />;
-  }
+  // if (isLoading) {
+  //   <LoadingSpinner />;
+  // }
+
+  console.log('myResumeTemplate', myResumeTemplate);
+  console.log(previewTemplate);
+  console.log('myResumeTemplates', myResumeTemplates);
 
   return (
     <div className="p-4 max-w-7xl mx-auto">

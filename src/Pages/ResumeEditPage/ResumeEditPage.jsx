@@ -387,7 +387,7 @@ const ResumeEditPage = () => {
         const response = await axiosPublic.get("/predefined-templates");
         setData(response.data);
       } catch (error) {
-        console.error("Error fetching predefined templates:", error);
+        // console.error("Error fetching predefined templates:", error);
       }
     };
 
@@ -401,7 +401,7 @@ const ResumeEditPage = () => {
   const queryParams = new URLSearchParams(location.search);
   const resumeId = queryParams.get("resumeId");
 
-  console.log("line no 50", myResumeTemplates);
+  // console.log("line no 50", myResumeTemplates);
   useEffect(() => {
     if (resumeId) {
       const getData = async () => {
@@ -412,7 +412,7 @@ const ResumeEditPage = () => {
           setMyResumeTemplates(data);
           setUserData(data);
         } catch (error) {
-          console.error("Error fetching resume data", error);
+          // console.error("Error fetching resume data", error);
         }
       };
       getData();
@@ -463,18 +463,18 @@ const ResumeEditPage = () => {
   };
   const navigate = useNavigate();
 
-  console.log(resumeId);
-  console.log("templateItem", id);
+  // console.log(resumeId);
+  // console.log("templateItem", id);
   // Function to generate a shareable link
   const handleShare = async () => {
-    console.log(resumeId);
+    // console.log(resumeId);
     const resumeData = {
       ...userData,
       templateItem: id,
       user_email: user?.email,
       resumeId: resumeId,
     };
-    console.log(resumeData);
+    // console.log(resumeData);
 
     try {
       const response = await axios.put(
@@ -482,7 +482,7 @@ const ResumeEditPage = () => {
         resumeData,
         { withCredentials: true }
       );
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
 
       if (response.data.success) {
         setShareLink(response.data.shareLink);
@@ -491,7 +491,7 @@ const ResumeEditPage = () => {
         navigate(`/resume/final-resume/${response.data.sendInfo.templateID}`);
       }
     } catch (error) {
-      console.error("Error generating share link:", error);
+      // console.error("Error generating share link:", error);
     }
   };
 
