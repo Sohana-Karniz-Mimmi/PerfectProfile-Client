@@ -8,19 +8,11 @@ import loadingGif from "../../assets/loading.gif";
 
 const Pricing = () => {
   return (
-    <Suspense
-      fallback={
-        <div className="w-full h-screen flex justify-center items-center">
-          <img className="h-64" src={loadingGif} alt="loading..." />
-        </div>
-      }
-    >
-      <Container>
-        <Pricing2ndBanner></Pricing2ndBanner>
-        <Package></Package>
-        <PricingBanner></PricingBanner>
-      </Container>
-    </Suspense>
+    <Container>
+      <Pricing2ndBanner></Pricing2ndBanner>
+      <Package></Package>
+      <PricingBanner></PricingBanner>
+    </Container>
   );
 };
 

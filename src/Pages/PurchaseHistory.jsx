@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 // import useAxiosPublic from "../Hook/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../Hook/useAuth";
+
+
+import loadingGif from "../assets/loading.gif";
 
 const PurchaseHistory = () => {
   const [payments, setPayments] = useState([]);
@@ -9,7 +12,9 @@ const PurchaseHistory = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    fetch(`https://perfect-profile-server.vercel.app/payment-transaction/${user?.email}`)
+    fetch(
+      `https://perfect-profile-server.vercel.app/payment-transaction/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setPayments(Array.isArray(data) ? data : []);
@@ -28,7 +33,13 @@ const PurchaseHistory = () => {
     : 0;
 
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="w-full h-screen flex justify-center items-center">
+          <img className="h-64" src={loadingGif} alt="loading..." />
+        </div>
+      }
+    >
       <Helmet>
         <title>Invoice - PerfectProfile</title>
       </Helmet>
@@ -118,7 +129,7 @@ const PurchaseHistory = () => {
           </div>
         </div>
       </div>
-    </>
+    </Suspense>
   );
 };
 

@@ -77,7 +77,7 @@ const SitebarProfileRoute = () => {
           <div className="h-full flex flex-col font-montserrat justify-between">
             <div className="flex flex-col gap-1">
               <NavLink
-                to="/editingProfile"
+                to="editingProfile"
                 className={({ isActive }) =>
                   `hover:bg-[#A7F3D0] hover:rounded px-4 py-3 flex items-center gap-2 ${
                     isActive

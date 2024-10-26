@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, lazy, Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
@@ -35,19 +35,19 @@ import useAuth from "../../Hook/useAuth";
 import { VscPreview } from "react-icons/vsc";
 import { LiaTimesSolid } from "react-icons/lia";
 /******** Templates **********/
-import Template1 from "../../Components/AllTemplates/Template1";
-import Template2 from "../../Components/AllTemplates/Template2";
-import Template3 from "../../Components/AllTemplates/Template3";
-import Template4 from "../../Components/AllTemplates/Template4";
-import Template5 from "../../Components/AllTemplates/Template5";
-import Template6 from "../../Components/AllTemplates/Template6";
-import NewTemplate from "../../Components/AllTemplates/NewTemplate";
-import "./Customize.css"
+
+const Template1 = lazy(() => import("../../Components/AllTemplates/Template1"));
+const Template2 = lazy(() => import("../../Components/AllTemplates/Template2"));
+const Template3 = lazy(() => import("../../Components/AllTemplates/Template3"));
+const Template4 = lazy(() => import("../../Components/AllTemplates/Template4"));
+const Template5 = lazy(() => import("../../Components/AllTemplates/Template5"));
+const Template6 = lazy(() => import("../../Components/AllTemplates/Template6"));
+import loadingGif from "../../assets/loading.gif";
+import "./Customize.css";
 
 const ResumeEditPage = () => {
   const { user } = useAuth();
   const [previewTemplate, setPreviewTemplate] = useState(null);
-
 
   const [userData, setUserData] = useState({
     name: "",
@@ -504,208 +504,224 @@ const ResumeEditPage = () => {
   };
 
   return (
-    <div className=" flex lg:flex-row xl:flex-row lg:flex-wrap xl:flex-nowrap flex-col xl:gap-0 gap-6 lg:bg-gray-50  min-h-screen">
-      {/* Sidebar */}
-
-      <div className="sidebar lg:fixed lg:min-h-screen h-full xl:w-[20%] lg:w-[25%] w-[100%] lg:block bg-[#00000f] text-white p-6">
-        <Link to="/">
-          <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
-            Perfect<span className="text-primary">Profile</span>
-          </h1>
-        </Link>
-        <div className="space-y-6 lg:pb-6 pb-0 flex flex-col  lg:block md:overscroll-y-none ">
-          {steps.map((step) => (
-            <div
-              key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
-                ? "text-white font-montserrat font-medium"
-                : isStepCompleted(step.id)
-                  ? "text-white font-bold font-montserrat"
-                  : "text-gray-500 font-montserrat font-medium"
-                }`}
-              onClick={() => handleStepClick(step.id)}
-            >
-              <span
-                className={`w-8 h-8 flex items-center justify-center ${currentStep === step.id
-                  ? "  text-black"
-                  : isStepCompleted(step.id)
-                    ? " rounded-full text-rose-700"
-                    : ""
-                  }`}
-              >
-                {isStepCompleted(step.id) ? (
-                  <span className="text-2xl text-secondary">
-                    {stepIcons[step.id]}
-                  </span>
-                ) : (
-                  <span className="text-lg text-gray-500">
-                    {stepIcons[step.id]}
-                  </span>
-                )}
-              </span>
-              <span>{step.name}</span>
-            </div>
-          ))}
+    <Suspense
+      fallback={
+        <div className="w-full h-screen flex justify-center items-center">
+          <img className="h-64" src={loadingGif} alt="loading..." />
         </div>
-        <div className="mt-6 ">
-          <h3 className="text-base lg:text-lg font-montserrat font-bold mb-2">
-            Completion status:{" "}
-          </h3>
-          <div className="flex items-center gap-2">
-            <div className="w-full bg-gray-200 h-2 rounded">
+      }
+    >
+      <div className=" flex lg:flex-row xl:flex-row lg:flex-wrap xl:flex-nowrap flex-col xl:gap-0 gap-6 lg:bg-gray-50  min-h-screen">
+        {/* Sidebar */}
+
+        <div className="sidebar lg:fixed lg:min-h-screen h-full xl:w-[20%] lg:w-[25%] w-[100%] lg:block bg-[#00000f] text-white p-6">
+          <Link to="/">
+            <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
+              Perfect<span className="text-primary">Profile</span>
+            </h1>
+          </Link>
+          <div className="space-y-6 lg:pb-6 pb-0 flex flex-col  lg:block md:overscroll-y-none ">
+            {steps.map((step) => (
               <div
-                className="bg-gradient-to-r from-secondary to-primary rounded-r-full h-full"
-                style={{ width: `${completionPercentage}%` }}
-              />
+                key={step.id}
+                className={`flex items-center space-x-2 cursor-pointer ${
+                  currentStep === step.id
+                    ? "text-white font-montserrat font-medium"
+                    : isStepCompleted(step.id)
+                    ? "text-white font-bold font-montserrat"
+                    : "text-gray-500 font-montserrat font-medium"
+                }`}
+                onClick={() => handleStepClick(step.id)}
+              >
+                <span
+                  className={`w-8 h-8 flex items-center justify-center ${
+                    currentStep === step.id
+                      ? "  text-black"
+                      : isStepCompleted(step.id)
+                      ? " rounded-full text-rose-700"
+                      : ""
+                  }`}
+                >
+                  {isStepCompleted(step.id) ? (
+                    <span className="text-2xl text-secondary">
+                      {stepIcons[step.id]}
+                    </span>
+                  ) : (
+                    <span className="text-lg text-gray-500">
+                      {stepIcons[step.id]}
+                    </span>
+                  )}
+                </span>
+                <span>{step.name}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 ">
+            <h3 className="text-base lg:text-lg font-montserrat font-bold mb-2">
+              Completion status:{" "}
+            </h3>
+            <div className="flex items-center gap-2">
+              <div className="w-full bg-gray-200 h-2 rounded">
+                <div
+                  className="bg-gradient-to-r from-secondary to-primary rounded-r-full h-full"
+                  style={{ width: `${completionPercentage}%` }}
+                />
+              </div>
+              <div className="font-lora font-bold">{completionPercentage}%</div>
             </div>
-            <div className="font-lora font-bold">{completionPercentage}%</div>
           </div>
         </div>
-      </div>
-      {/* Content Area */}
-      <div className="xl:w-[48%] xl:ml-[20%] lg:ml-[25%] 2xl:w-[53%] lg:w-[70%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
-        <form className="text-sm" onSubmit={handleSubmit(onSubmit)}>
-          {currentStep === 1 && (
-            <div className="space-y-4">
-              <div>
-                <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
-                  How do you want recruiters to <br />
-                  contact you?
-                </h2>
-              </div>
-              <div className="flex lg:flex-row justify-between flex-col gap-6">
-                <div className="w-full space-y-1">
-                  <label className="font-bold">Full Name*</label>
-                  <input
-                    type="text"
-                    placeholder="Your full name"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.name ? "border-red-500" : "border-gray-400"
+        {/* Content Area */}
+        <div className="xl:w-[48%] xl:ml-[20%] lg:ml-[25%] 2xl:w-[53%] lg:w-[70%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
+          <form className="text-sm" onSubmit={handleSubmit(onSubmit)}>
+            {currentStep === 1 && (
+              <div className="space-y-4">
+                <div>
+                  <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
+                    How do you want recruiters to <br />
+                    contact you?
+                  </h2>
+                </div>
+                <div className="flex lg:flex-row justify-between flex-col gap-6">
+                  <div className="w-full space-y-1">
+                    <label className="font-bold">Full Name*</label>
+                    <input
+                      type="text"
+                      placeholder="Your full name"
+                      className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
+                        errors.name ? "border-red-500" : "border-gray-400"
                       } focus:border-gray-400`}
-                    {...register("name", {
-                      // required: "Full name is required",
-                      onChange: (e) =>
-                        handleInputChange("name", e.target.value),
-                    })}
-                  />
-                  {/* Display error message if name has a validation error */}
-                  {errors.name && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.name.message}
-                    </p>
-                  )}
+                      {...register("name", {
+                        // required: "Full name is required",
+                        onChange: (e) =>
+                          handleInputChange("name", e.target.value),
+                      })}
+                    />
+                    {/* Display error message if name has a validation error */}
+                    {errors.name && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.name.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="w-full space-y-1">
+                    <label className="font-bold">Job Title</label>
+                    <input
+                      type="text"
+                      placeholder="Frontend Developer"
+                      className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                      {...register("jobTitle", {
+                        // required: "Job title is required",
+                      })}
+                      // value={userData.jobTitle}
+                      onChange={(e) =>
+                        handleInputChange("jobTitle", e.target.value)
+                      }
+                    />
+                    {errors.jobTitle && (
+                      <p className="text-red-500 text-sm">
+                        {errors.jobTitle.message}
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <div className="w-full space-y-1">
-                  <label className="font-bold">Job Title</label>
-                  <input
-                    type="text"
-                    placeholder="Frontend Developer"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                    {...register("jobTitle", {
-                      // required: "Job title is required",
-                    })}
-                    // value={userData.jobTitle}
-                    onChange={(e) =>
-                      handleInputChange("jobTitle", e.target.value)
-                    }
-                  />
-                  {errors.jobTitle && (
-                    <p className="text-red-500 text-sm">
-                      {errors.jobTitle.message}
-                    </p>
-                  )}
-                </div>
-              </div>
 
-              <div className="flex lg:flex-row justify-between flex-col gap-6">
-                <div className="w-full space-y-1">
-                  <label className="font-bold">Email*</label>
-                  <input
-                    type="email"
-                    placeholder="example@gmail.com"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${errors.email ? "border-red-500" : "border-gray-400"
+                <div className="flex lg:flex-row justify-between flex-col gap-6">
+                  <div className="w-full space-y-1">
+                    <label className="font-bold">Email*</label>
+                    <input
+                      type="email"
+                      placeholder="example@gmail.com"
+                      className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${
+                        errors.email ? "border-red-500" : "border-gray-400"
                       } focus:border-gray-400`}
-                    {...register("email", {
-                      // required: "Email is required",
-                      pattern: {
-                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                        message: "Invalid email format",
-                      },
-                    })}
-                    value={userData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                  />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.email.message}
-                    </p>
-                  )}
-                </div>
-                <div className="w-full space-y-1">
-                  <label className="font-bold">Phone*</label>
-                  <input
-                    type="tel"
-                    placeholder="+1-212-456-7890"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.phone ? "border-red-500" : "border-gray-400"
+                      {...register("email", {
+                        // required: "Email is required",
+                        pattern: {
+                          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                          message: "Invalid email format",
+                        },
+                      })}
+                      value={userData.email}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.email.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="w-full space-y-1">
+                    <label className="font-bold">Phone*</label>
+                    <input
+                      type="tel"
+                      placeholder="+1-212-456-7890"
+                      className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
+                        errors.phone ? "border-red-500" : "border-gray-400"
                       } focus:border-gray-400`}
-                    {...register("phone", {
-                      // required: "Phone is required",
-                      pattern: {
-                        value: /^[0-9\s()+-]*$/,
-                        message: "Phone number must be number",
-                      },
-                    })}
-                    // value={userData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                  />
-                  {errors.phone && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.phone.message}
-                    </p>
-                  )}
+                      {...register("phone", {
+                        // required: "Phone is required",
+                        pattern: {
+                          value: /^[0-9\s()+-]*$/,
+                          message: "Phone number must be number",
+                        },
+                      })}
+                      // value={userData.phone}
+                      onChange={(e) =>
+                        handleInputChange("phone", e.target.value)
+                      }
+                    />
+                    {errors.phone && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.phone.message}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className="space-y-1">
-                  <label className="font-bold">Street Address</label>
-                  <input
-                    type="text"
-                    placeholder="123 Main Street, Anytown, USA, 12345"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                    {...register("address", {
-                      // required: "Job title is required",
-                    })}
-                    // value={userData.address}
-                    onChange={(e) =>
-                      handleInputChange("address", e.target.value)
-                    }
-                  />
-                  {errors.address && (
-                    <p className="text-red-500 font-lora text-sm">
-                      {errors.address.message}
-                    </p>
-                  )}
+                <div>
+                  <div className="space-y-1">
+                    <label className="font-bold">Street Address</label>
+                    <input
+                      type="text"
+                      placeholder="123 Main Street, Anytown, USA, 12345"
+                      className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                      {...register("address", {
+                        // required: "Job title is required",
+                      })}
+                      // value={userData.address}
+                      onChange={(e) =>
+                        handleInputChange("address", e.target.value)
+                      }
+                    />
+                    {errors.address && (
+                      <p className="text-red-500 font-lora text-sm">
+                        {errors.address.message}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div className="">
-                <div className="space-y-1">
-                  <label className="font-bold">Career Objective</label>
-                  <textarea
-                    type="text-area"
-                    placeholder="Write about your career goal"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                    // name="careerObjective"
-                    {...register("careerObjective", {
-                      // required: "Job title is required",
-                    })}
-                    // value={userData.careerObjective}
-                    onChange={(e) =>
-                      handleInputChange("careerObjective", e.target.value)
-                    }
-                    rows={6}
-                  />
+                <div className="">
+                  <div className="space-y-1">
+                    <label className="font-bold">Career Objective</label>
+                    <textarea
+                      type="text-area"
+                      placeholder="Write about your career goal"
+                      className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                      // name="careerObjective"
+                      {...register("careerObjective", {
+                        // required: "Job title is required",
+                      })}
+                      // value={userData.careerObjective}
+                      onChange={(e) =>
+                        handleInputChange("careerObjective", e.target.value)
+                      }
+                      rows={6}
+                    />
 
-                  {/* <input
+                    {/* <input
                     type="text-area"
                     className="border py-2 px-2 w-full rounded"
                     name="careerObjective"
@@ -714,209 +730,221 @@ const ResumeEditPage = () => {
                       handleInputChange("careerObjective", e.target.value)
                     }
                   /> */}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {currentStep === 2 && (
-            <div className="space-y-6">
-              <div>
-                <h2 className="lg:text-4xl text-2xl font-lora  font-extrabold mb-12">
-                  Tell us about your work <br />
-                  experience to showcase your professional journey.
-                </h2>
-              </div>
-              {userData.workExperience.map((entry, index) => (
-                <div
-                  key={index}
-                  className="relative lg:p-4 p-2 space-y-2 rounded rounded-tr-3xl bg-white border-gray-400 border-dashed gap-6 flex flex-col mb-4"
-                >
-                  <div className="flex lg:flex-row flex-col justify-between gap-6">
-                    {/* Company Name Input */}
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Company Name</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Microsoft"
-                        className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                        value={entry.company}
-                        onChange={(e) =>
-                          updateWorkExperience(index, "company", e.target.value)
-                        }
-                      />
-                    </div>
-
-                    {/* Job Title Input */}
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Job Title</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Software Engineer"
-                        className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                        value={entry.jobTitle}
-                        onChange={(e) =>
-                          updateWorkExperience(
-                            index,
-                            "jobTitle",
-                            e.target.value
-                          )
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex lg:flex-row flex-col items-center justify-between gap-6">
-                    <div className="w-full">
-                      {/* Start Date Input */}
+            {currentStep === 2 && (
+              <div className="space-y-6">
+                <div>
+                  <h2 className="lg:text-4xl text-2xl font-lora  font-extrabold mb-12">
+                    Tell us about your work <br />
+                    experience to showcase your professional journey.
+                  </h2>
+                </div>
+                {userData.workExperience.map((entry, index) => (
+                  <div
+                    key={index}
+                    className="relative lg:p-4 p-2 space-y-2 rounded rounded-tr-3xl bg-white border-gray-400 border-dashed gap-6 flex flex-col mb-4"
+                  >
+                    <div className="flex lg:flex-row flex-col justify-between gap-6">
+                      {/* Company Name Input */}
                       <div className="w-full space-y-1">
-                        <label className="font-bold">Start Date</label>
-                        <DatePicker
-                          selected={
-                            entry.startDate ? new Date(entry.startDate) : null
-                          } // Bind to individual entry's startDate
-                          onChange={(date) =>
-                            updateWorkExperience(index, "startDate", date)
-                          }
-                          // dateFormat="dd/MM/yyyy"
-                          dateFormat="MMMM yyyy"
-                          showMonthYearPicker
-                          placeholderText="Select Start Date"
-                          className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                          wrapperClassName="w-full"
-                        />
-                      </div>
-                    </div>
-                    <div className="w-full relative">
-                      {/* End Date Input (set to "present" if "Currently working here" is checked) */}
-                      <div className="w-full space-y-1">
-                        <label className="font-bold">End Date</label>
-                        <DatePicker
-                          selected={
-                            entry.endDate && entry.endDate !== "present"
-                              ? new Date(entry.endDate)
-                              : null
-                          }
-                          onChange={(date) =>
-                            updateWorkExperience(index, "endDate", date)
-                          }
-                          dateFormat="MMMM yyyy"
-                          showMonthYearPicker
-                          placeholderText="Select End Date"
-                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${entry.isCurrent ? "opacity-35" : "bg-transparent"
-                            }`}
-                          wrapperClassName="w-full"
-                          disabled={entry.isCurrent} // Disable if "Currently working here" is checked
-                        />
-                      </div>
-
-                      {/* "Currently Working Here" Checkbox */}
-                      <div className="flex absolute justify-end items-center gap-2 w-full lg:mt-2 mt-1">
+                        <label className="font-bold">Company Name</label>
                         <input
-                          type="checkbox"
-                          id={`current-${index}`}
-                          checked={entry.isCurrent}
+                          type="text"
+                          placeholder="e.g. Microsoft"
+                          className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
+                          value={entry.company}
                           onChange={(e) =>
-                            handleCurrentCheckboxChange(index, e.target.checked)
+                            updateWorkExperience(
+                              index,
+                              "company",
+                              e.target.value
+                            )
                           }
                         />
-                        <label
-                          htmlFor={`current-${index}`}
-                          className="font-bold"
-                        >
-                          Currently, I'm working here
-                        </label>
+                      </div>
+
+                      {/* Job Title Input */}
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">Job Title</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Software Engineer"
+                          className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
+                          value={entry.jobTitle}
+                          onChange={(e) =>
+                            updateWorkExperience(
+                              index,
+                              "jobTitle",
+                              e.target.value
+                            )
+                          }
+                        />
                       </div>
                     </div>
-                  </div>
-                  <div className="">
-                    {/* Job Role Input */}
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Job Role</label>
-                      <textarea
-                        type="text"
-                        rows={8}
-                        placeholder="Enter your job role and key responsibilities"
-                        className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
-                        value={entry.description}
-                        onChange={(e) =>
-                          updateWorkExperience(
-                            index,
-                            "description",
-                            e.target.value
-                          )
-                        }
-                      />
+
+                    <div className="flex lg:flex-row flex-col items-center justify-between gap-6">
+                      <div className="w-full">
+                        {/* Start Date Input */}
+                        <div className="w-full space-y-1">
+                          <label className="font-bold">Start Date</label>
+                          <DatePicker
+                            selected={
+                              entry.startDate ? new Date(entry.startDate) : null
+                            } // Bind to individual entry's startDate
+                            onChange={(date) =>
+                              updateWorkExperience(index, "startDate", date)
+                            }
+                            // dateFormat="dd/MM/yyyy"
+                            dateFormat="MMMM yyyy"
+                            showMonthYearPicker
+                            placeholderText="Select Start Date"
+                            className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
+                            wrapperClassName="w-full"
+                          />
+                        </div>
+                      </div>
+                      <div className="w-full relative">
+                        {/* End Date Input (set to "present" if "Currently working here" is checked) */}
+                        <div className="w-full space-y-1">
+                          <label className="font-bold">End Date</label>
+                          <DatePicker
+                            selected={
+                              entry.endDate && entry.endDate !== "present"
+                                ? new Date(entry.endDate)
+                                : null
+                            }
+                            onChange={(date) =>
+                              updateWorkExperience(index, "endDate", date)
+                            }
+                            dateFormat="MMMM yyyy"
+                            showMonthYearPicker
+                            placeholderText="Select End Date"
+                            className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${
+                              entry.isCurrent ? "opacity-35" : "bg-transparent"
+                            }`}
+                            wrapperClassName="w-full"
+                            disabled={entry.isCurrent} // Disable if "Currently working here" is checked
+                          />
+                        </div>
+
+                        {/* "Currently Working Here" Checkbox */}
+                        <div className="flex absolute justify-end items-center gap-2 w-full lg:mt-2 mt-1">
+                          <input
+                            type="checkbox"
+                            id={`current-${index}`}
+                            checked={entry.isCurrent}
+                            onChange={(e) =>
+                              handleCurrentCheckboxChange(
+                                index,
+                                e.target.checked
+                              )
+                            }
+                          />
+                          <label
+                            htmlFor={`current-${index}`}
+                            className="font-bold"
+                          >
+                            Currently, I'm working here
+                          </label>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Delete Button (only show for entries other than the first one) */}
-                  {index >= 0 && (
-                    <div className="flex absolute -top-2 right-0 items-center justify-end  rounded-full">
-                      <button
-                        type="button"
-                        onClick={() => deleteWorkExperience(index)}
-                        className="text-red-500 hover:text-red-700 bg-white"
-                      >
-                        <FaTrashAlt />
-                      </button>
+                    <div className="">
+                      {/* Job Role Input */}
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">Job Role</label>
+                        <textarea
+                          type="text"
+                          rows={8}
+                          placeholder="Enter your job role and key responsibilities"
+                          className="border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400"
+                          value={entry.description}
+                          onChange={(e) =>
+                            updateWorkExperience(
+                              index,
+                              "description",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
                     </div>
-                  )}
-                </div>
-              ))}
 
-              {/* Button to add a new work experience section */}
-              <button
-                type="button"
-                onClick={addWorkExperienceArrayEntry}
-                className="flex items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black lg:text-2xl text-base p-4 w-full border border-dashed border-secondary"
-              >
-                Add Another Work Experience
-                <FaPlus className="font-extrabold text-2xl" />
-              </button>
-            </div>
-          )}
+                    {/* Delete Button (only show for entries other than the first one) */}
+                    {index >= 0 && (
+                      <div className="flex absolute -top-2 right-0 items-center justify-end  rounded-full">
+                        <button
+                          type="button"
+                          onClick={() => deleteWorkExperience(index)}
+                          className="text-red-500 hover:text-red-700 bg-white"
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
 
-          {currentStep === 3 && (
-            <div className="space-y-6">
-              <div>
-                <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
-                  Share your educational background and achievements.
-                </h2>
-              </div>
-              {userData.education.map((entry, index) => (
-                <div
-                  key={index}
-                  className="relative bg-white lg:p-4 p-2 rounded-tr-3xl mb-4 space-y-6"
+                {/* Button to add a new work experience section */}
+                <button
+                  type="button"
+                  onClick={addWorkExperienceArrayEntry}
+                  className="flex items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black lg:text-2xl text-base p-4 w-full border border-dashed border-secondary"
                 >
-                  <div className="flex lg:flex-row flex-col justify-between gap-6">
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Degree</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Bechelor of science"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                        value={entry.degree}
-                        onChange={(e) =>
-                          updateEducation(index, "degree", e.target.value)
-                        }
-                      />
+                  Add Another Work Experience
+                  <FaPlus className="font-extrabold text-2xl" />
+                </button>
+              </div>
+            )}
+
+            {currentStep === 3 && (
+              <div className="space-y-6">
+                <div>
+                  <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
+                    Share your educational background and achievements.
+                  </h2>
+                </div>
+                {userData.education.map((entry, index) => (
+                  <div
+                    key={index}
+                    className="relative bg-white lg:p-4 p-2 rounded-tr-3xl mb-4 space-y-6"
+                  >
+                    <div className="flex lg:flex-row flex-col justify-between gap-6">
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">Degree</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Bechelor of science"
+                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                          value={entry.degree}
+                          onChange={(e) =>
+                            updateEducation(index, "degree", e.target.value)
+                          }
+                        />
+                      </div>
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">Institute Name</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Oxford University"
+                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                          value={entry.institution}
+                          onChange={(e) =>
+                            updateEducation(
+                              index,
+                              "institution",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
                     </div>
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Institute Name</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Oxford University"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                        value={entry.institution}
-                        onChange={(e) =>
-                          updateEducation(index, "institution", e.target.value)
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div className="flex lg:flex-row flex-col justify-between gap-6">
-                    {/* <div className="lg:w-1/2 w-full space-y-1">
+                    <div className="flex lg:flex-row flex-col justify-between gap-6">
+                      {/* <div className="lg:w-1/2 w-full space-y-1">
                       <label className="font-bold">Passing Year</label>
                       <input
                         type="text"
@@ -928,213 +956,219 @@ const ResumeEditPage = () => {
                         }
                       />
                     </div> */}
-                    <div className=" w-full space-y-1">
-                      <label className="font-bold">Passing Year</label>
-                      <input
-                        type="number"
-                        min="2006" // Minimum valid year
-                        max={new Date().getFullYear()} // Maximum year is the current year
-                        placeholder="2020"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                        value={entry.year}
-                        onChange={(e) =>
-                          updateEducation(index, "year", e.target.value)
-                        }
-                      />
+                      <div className=" w-full space-y-1">
+                        <label className="font-bold">Passing Year</label>
+                        <input
+                          type="number"
+                          min="2006" // Minimum valid year
+                          max={new Date().getFullYear()} // Maximum year is the current year
+                          placeholder="2020"
+                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                          value={entry.year}
+                          onChange={(e) =>
+                            updateEducation(index, "year", e.target.value)
+                          }
+                        />
+                      </div>
+                      <div className="w-full space-y-1 opacity-0">
+                        <label className="font-bold block">Passing Year</label>
+                        <DatePicker
+                          selected={new Date(entry.year, 0)} // Set selected year
+                          onChange={(date) =>
+                            updateEducation(index, "year", date.getFullYear())
+                          }
+                          showYearPicker
+                          dateFormat="yyyy"
+                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                        />
+                      </div>
                     </div>
-                    <div className="w-full space-y-1 opacity-0">
-                      <label className="font-bold block">Passing Year</label>
-                      <DatePicker
-                        selected={new Date(entry.year, 0)} // Set selected year
-                        onChange={(date) =>
-                          updateEducation(index, "year", date.getFullYear())
-                        }
-                        showYearPicker
-                        dateFormat="yyyy"
-                        className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                      />
-                    </div>
-                  </div>
-                  {index > 0 && (
-                    <div
-                      className={`flex absolute -top-6 right-0 items-center justify-end  rounded-full`}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => deleteEducationEntry(index)} // Call delete function
-                        className="text-red-500 hover:text-red-700 bg-white"
+                    {index > 0 && (
+                      <div
+                        className={`flex absolute -top-6 right-0 items-center justify-end  rounded-full`}
                       >
-                        <FaTrashAlt />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() =>
-                  addArrayEntry("education", {
-                    degree: "",
-                    institution: "",
-                    year: "",
-                  })
-                }
-                className="flex items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 w-full lg:text-2xl text-base border border-dashed border-secondary"
-              >
-                Add Another Education{" "}
-                <FaPlus className="font-extrabold text-2xl" />
-              </button>
-            </div>
-          )}
-
-          {currentStep === 4 && (
-            <div className="space-y-4">
-              <div>
-                <h2 className="lg:text-4xl text-2xl font-extrabold font-lora mb-12">
-                  Showcase your key skills and expertise.
-                </h2>
-              </div>
-              <div className="flex gap-6 flex-wrap">
-                {userData.skills.map((skill, index) => (
-                  <div key={index} className="flex justify-between gap-2 mb-2">
-                    <div className="border border-gray-400 relative rounded  gap-6 py-1 px-4">
-                      <span>{skill}</span>
-                      <button
-                        type="button"
-                        className="text-red-500 absolute p-0 m-0 -top-3 -right-3 "
-                        onClick={() => handleDeleteSkill(skill)}
-                      >
-                        <TiDelete className="p-0 m-0 text-xl" />
-                      </button>
-                    </div>
+                        <button
+                          type="button"
+                          onClick={() => deleteEducationEntry(index)} // Call delete function
+                          className="text-red-500 hover:text-red-700 bg-white"
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ))}
-              </div>
-
-              {/* {showInput && ( */}
-              <div className="flex relative items-center">
-                <input
-                  type="text"
-                  className={`border py-3 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                  value={newSkill}
-                  onChange={(e) => setNewSkill(e.target.value)} // Update input value
-                  placeholder="Enter new skill"
-                />
-
                 <button
                   type="button"
-                  className="absolute border border-secondary bg-secondary right-0 flex  font-bold text-white py-3 px-5"
-                  onClick={() => handleAddSkill()}
+                  onClick={() =>
+                    addArrayEntry("education", {
+                      degree: "",
+                      institution: "",
+                      year: "",
+                    })
+                  }
+                  className="flex items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black p-4 w-full lg:text-2xl text-base border border-dashed border-secondary"
                 >
-                  Add Skill
+                  Add Another Education{" "}
+                  <FaPlus className="font-extrabold text-2xl" />
                 </button>
               </div>
-              {/* // )} */}
-              {/* <button
+            )}
+
+            {currentStep === 4 && (
+              <div className="space-y-4">
+                <div>
+                  <h2 className="lg:text-4xl text-2xl font-extrabold font-lora mb-12">
+                    Showcase your key skills and expertise.
+                  </h2>
+                </div>
+                <div className="flex gap-6 flex-wrap">
+                  {userData.skills.map((skill, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between gap-2 mb-2"
+                    >
+                      <div className="border border-gray-400 relative rounded  gap-6 py-1 px-4">
+                        <span>{skill}</span>
+                        <button
+                          type="button"
+                          className="text-red-500 absolute p-0 m-0 -top-3 -right-3 "
+                          onClick={() => handleDeleteSkill(skill)}
+                        >
+                          <TiDelete className="p-0 m-0 text-xl" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* {showInput && ( */}
+                <div className="flex relative items-center">
+                  <input
+                    type="text"
+                    className={`border py-3 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                    value={newSkill}
+                    onChange={(e) => setNewSkill(e.target.value)} // Update input value
+                    placeholder="Enter new skill"
+                  />
+
+                  <button
+                    type="button"
+                    className="absolute border border-secondary bg-secondary right-0 flex  font-bold text-white py-3 px-5"
+                    onClick={() => handleAddSkill()}
+                  >
+                    Add Skill
+                  </button>
+                </div>
+                {/* // )} */}
+                {/* <button
                 type="button"
                 className="flex lg:w-1/4 w-full items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black text-lg p-4 border border-dashed border-gray-400"
                 // onClick={() => setShowInput(true)} // Show input on button click
               >
                 Add New Skill <FaPlus className="font-bold text-lg" />
               </button> */}
-            </div>
-          )}
-
-          {currentStep === 5 && (
-            <div className="space-y-4">
-              <div>
-                <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
-                  List the languages you speak fluently.
-                </h2>
               </div>
-              <div className="flex gap-3 flex-wrap">
-                {userData.languages.map((language, index) => (
-                  <div key={index} className="flex justify-between gap-2 mb-2">
-                    <div className="border border-gray-400 relative rounded  gap-6 py-1 px-4">
-                      <span>{language}</span>
-                      <button
-                        type="button"
-                        className="text-red-500 absolute p-0 m-0 -top-3 -right-3 "
-                        onClick={() => handleDeleteLanguage(language)}
-                      >
-                        <TiDelete className="p-0 m-0 text-xl " />
-                      </button>
+            )}
+
+            {currentStep === 5 && (
+              <div className="space-y-4">
+                <div>
+                  <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
+                    List the languages you speak fluently.
+                  </h2>
+                </div>
+                <div className="flex gap-3 flex-wrap">
+                  {userData.languages.map((language, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between gap-2 mb-2"
+                    >
+                      <div className="border border-gray-400 relative rounded  gap-6 py-1 px-4">
+                        <span>{language}</span>
+                        <button
+                          type="button"
+                          className="text-red-500 absolute p-0 m-0 -top-3 -right-3 "
+                          onClick={() => handleDeleteLanguage(language)}
+                        >
+                          <TiDelete className="p-0 m-0 text-xl " />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              {/* {showInput && ( */}
-              <div className="mt-4 relative flex items-center">
-                <input
-                  type="text"
-                  className={`border py-3 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
-                  value={newLanguage}
-                  onChange={(e) => setNewLanguage(e.target.value)} // Update input value
-                  placeholder="Enter new language"
-                />
+                {/* {showInput && ( */}
+                <div className="mt-4 relative flex items-center">
+                  <input
+                    type="text"
+                    className={`border py-3 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent border-gray-400 focus:border-gray-400`}
+                    value={newLanguage}
+                    onChange={(e) => setNewLanguage(e.target.value)} // Update input value
+                    placeholder="Enter new language"
+                  />
 
-                <button
-                  type="button"
-                  className="absolute border border-secondary bg-secondary right-0 flex  font-bold text-white py-3 px-6"
-                  onClick={() => handleAddLanguage()}
-                >
-                  Add Language
-                </button>
-              </div>
-              {/* )} */}
-              {/* <button
+                  <button
+                    type="button"
+                    className="absolute border border-secondary bg-secondary right-0 flex  font-bold text-white py-3 px-6"
+                    onClick={() => handleAddLanguage()}
+                  >
+                    Add Language
+                  </button>
+                </div>
+                {/* )} */}
+                {/* <button
                 type="button"
                 className="flex lg:w-1/4 w-full items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black text-lg p-4 border border-dashed border-gray-400"
                 // onClick={() => setShowInput(true)} // Show input on button click
               >
                 Add new language <FaPlus className="font-bold" />
               </button> */}
-            </div>
-          )}
-          {currentStep === 6 && (
-            <div className="space-y-6">
-              <div>
-                <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
-                  What certifications have you earned to strengthen your
-                  profile?
-                </h2>
               </div>
-              {userData.certifications.map((entry, index) => (
-                <div
-                  key={index}
-                  className="relative certification bg-white md:p-8 p-2 rounded-tr-3xl gap-4 mb-4"
-                >
-                  <div className="flex lg:flex-row flex-col items-center justify-between gap-6">
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Certificate Name</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Full stack development"
-                        className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
-                        value={entry.title}
-                        onChange={(e) =>
-                          updateCertificate(index, "title", e.target.value)
-                        }
-                      />
-                    </div>
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Institution Name</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Udemy"
-                        className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
-                        value={entry.institution}
-                        onChange={(e) =>
-                          updateCertificate(
-                            index,
-                            "institution",
-                            e.target.value
-                          )
-                        }
-                      />
-                    </div>
-                    {/* <div className="space-y-1">
+            )}
+            {currentStep === 6 && (
+              <div className="space-y-6">
+                <div>
+                  <h2 className="lg:text-4xl text-2xl font-lora font-extrabold mb-12">
+                    What certifications have you earned to strengthen your
+                    profile?
+                  </h2>
+                </div>
+                {userData.certifications.map((entry, index) => (
+                  <div
+                    key={index}
+                    className="relative certification bg-white md:p-8 p-2 rounded-tr-3xl gap-4 mb-4"
+                  >
+                    <div className="flex lg:flex-row flex-col items-center justify-between gap-6">
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">Certificate Name</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Full stack development"
+                          className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
+                          value={entry.title}
+                          onChange={(e) =>
+                            updateCertificate(index, "title", e.target.value)
+                          }
+                        />
+                      </div>
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">Institution Name</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Udemy"
+                          className="border py-2 px-2 w-full rounded outline-none focus:border-gray-300"
+                          value={entry.institution}
+                          onChange={(e) =>
+                            updateCertificate(
+                              index,
+                              "institution",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                      {/* <div className="space-y-1">
                       <label className="font-bold">Duration</label>
                       <input
                         type="text"
@@ -1146,63 +1180,63 @@ const ResumeEditPage = () => {
                         }
                       />
                     </div> */}
-                    <div className="w-full space-y-1">
-                      <label className="font-bold">Duration</label>
-                      <div className="border py-2 rounded">
-                        <select
-                          className="px-2 w-full rounded outline-none  focus:border-gray-300"
-                          value={entry.year}
-                          onChange={(e) =>
-                            updateCertificate(index, "year", e.target.value)
-                          }
-                        >
-                          <option className="" value="" disabled>
-                            Select duration
-                          </option>
-                          <option value="2 months">2 months</option>
-                          <option value="3 months">3 months</option>
-                          <option value="3 months">4 months</option>
-                          <option value="6 months">6 months</option>
-                          <option value="1 year">1 year</option>
-                          <option value="2 years">2 years</option>
-                          <option value="3 years">3 years</option>
-                          <option value="4 years">4 years</option>
-                        </select>
+                      <div className="w-full space-y-1">
+                        <label className="font-bold">Duration</label>
+                        <div className="border py-2 rounded">
+                          <select
+                            className="px-2 w-full rounded outline-none  focus:border-gray-300"
+                            value={entry.year}
+                            onChange={(e) =>
+                              updateCertificate(index, "year", e.target.value)
+                            }
+                          >
+                            <option className="" value="" disabled>
+                              Select duration
+                            </option>
+                            <option value="2 months">2 months</option>
+                            <option value="3 months">3 months</option>
+                            <option value="3 months">4 months</option>
+                            <option value="6 months">6 months</option>
+                            <option value="1 year">1 year</option>
+                            <option value="2 years">2 years</option>
+                            <option value="3 years">3 years</option>
+                            <option value="4 years">4 years</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {index > 0 && (
-                    <div
-                      className={`flex absolute top-0 right-0 items-center justify-end rounded-full`}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => deleteCertifications(index)} // Call delete function
-                        className="text-red-500 hover:text-red-700 bg-white"
+                    {index > 0 && (
+                      <div
+                        className={`flex absolute top-0 right-0 items-center justify-end rounded-full`}
                       >
-                        <FaTrashAlt />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() =>
-                  addArrayEntry("certifications", {
-                    title: "",
-                    institution: "",
-                    year: "",
-                  })
-                }
-                className="flex items-center justify-center w-full gap-2 mt-4 font-bold bg-gray-200 text-black p-4 border lg:text-2xl text-lg  border-dashed border-secondary"
-              >
-                Add Another Certification
-                <FaPlus className="font-bold text-lg" />
-              </button>
-            </div>
-          )}
-          {/* {currentStep === 7 && (
+                        <button
+                          type="button"
+                          onClick={() => deleteCertifications(index)} // Call delete function
+                          className="text-red-500 hover:text-red-700 bg-white"
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    addArrayEntry("certifications", {
+                      title: "",
+                      institution: "",
+                      year: "",
+                    })
+                  }
+                  className="flex items-center justify-center w-full gap-2 mt-4 font-bold bg-gray-200 text-black p-4 border lg:text-2xl text-lg  border-dashed border-secondary"
+                >
+                  Add Another Certification
+                  <FaPlus className="font-bold text-lg" />
+                </button>
+              </div>
+            )}
+            {/* {currentStep === 7 && (
             <div className="space-y-4">
               <div className="mx-auto shadow-lg p-8">
               <MdDoneOutline className="text-secondary" />
@@ -1211,55 +1245,51 @@ const ResumeEditPage = () => {
             </div>
           )} */}
 
-          <div className="flex justify-between mt-12 pb-4">
-            {currentStep >= 1 && (
-              <button
-                type="button"
-                onClick={handlePreviousStep}
-                className={`border border-black uppercase flex md:text-lg text-sm items-center gap-2 font-bold text-black md:py-3 py-2 px-5 ${currentStep ==
-                  1 && "opacity-0"}`}
-              >
-                <FaBackward /> Previous
-              </button>
-            )}
-
-            <div className="flex gap-3">
-
-              <button
-                onClick={() => handlePreview(userData)}
-                type="button"
-                className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
-              >
-                <VscPreview /> Preview
-              </button>
-              {currentStep < 6 ? (
+            <div className="flex justify-between mt-12 pb-4">
+              {currentStep >= 1 && (
                 <button
                   type="button"
-                  onClick={handleNextStep}
-                  className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                  onClick={handlePreviousStep}
+                  className={`border border-black uppercase flex md:text-lg text-sm items-center gap-2 font-bold text-black md:py-3 py-2 px-5 ${currentStep ==
+                    1 && "opacity-0"}`}
                 >
-                  Next <FaForward />
+                  <FaBackward /> Previous
                 </button>
-              ) : (
-                <div>
-                  <button
-                    onClick={handleShare}
-                    type="submit"
-                    className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
-                  >
-                    Save & Finalize
-                  </button>
-                </div>
               )}
 
+              <div className="flex gap-3">
+                <button
+                  onClick={() => handlePreview(userData)}
+                  type="button"
+                  className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                >
+                  <VscPreview /> Preview
+                </button>
+                {currentStep < 6 ? (
+                  <button
+                    type="button"
+                    onClick={handleNextStep}
+                    className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                  >
+                    Next <FaForward />
+                  </button>
+                ) : (
+                  <div>
+                    <button
+                      onClick={handleShare}
+                      type="submit"
+                      className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                    >
+                      Save & Finalize
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-
-          </div>
-        </form>
-      </div>
-      {/* Template preview area */}
-      <div className="xl:w-[33%] 2xl:w-[27%] xl:block hidden  lg:p-8 px-2 flex lg:flex-col flex-col items-center border bg-gray-100 overflow-x-auto">
-        
+          </form>
+        </div>
+        {/* Template preview area */}
+        <div className="xl:w-[33%] 2xl:w-[27%] xl:block hidden  lg:p-8 px-2 flex lg:flex-col flex-col items-center border bg-gray-100 overflow-x-auto">
           <div
             className="w-full h-full"
             style={{
@@ -1270,43 +1300,43 @@ const ResumeEditPage = () => {
           >
             {renderTemplate(id)}
           </div>
-        
-        <div className="flex flex-col justify-center items-center mt-28 ">
-          <Link to={`/predefined-templates`}>
-            <button className="font-roboto font-medium text-primary mb-2">
-              Change Template
-            </button>
-          </Link>
-          <p className="text-xs font-roboto text-gray-500 text-center w-3/4 mx-auto">
-            You can edit the content, use other fonts, adjust format, add
-            sections, and change placement of the sections later on.
-          </p>
-        </div>
-      </div>
 
-      {/*  Modal Preview Implementation */}
-      {previewTemplate && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-white p-5 rounded-2xl shadow-lg max-h-[90vh] overflow-hidden">
-            <div className="flex justify-between items-center mb-2">
-              <h2 className="text-lg font-semibold">Preview</h2>
-              <button onClick={closeModal}>
-                <LiaTimesSolid className="hover:text-red-500" size={25} />
+          <div className="flex flex-col justify-center items-center mt-28 ">
+            <Link to={`/predefined-templates`}>
+              <button className="font-roboto font-medium text-primary mb-2">
+                Change Template
               </button>
-            </div>
-            <div className="overflow-y-auto max-h-[90vh]">
-              {id === "template1" && <Template1 userData={userData} />}
-              {id === "template2" && <Template2 userData={userData} />}
-              {id === "template3" && <Template3 userData={userData} />}
-              {id === "template4" && <Template4 userData={userData} />}
-              {id === "template5" && <Template5 userData={userData} />}
-              {id === "template6" && <Template6 userData={userData} />}
-            </div>
+            </Link>
+            <p className="text-xs font-roboto text-gray-500 text-center w-3/4 mx-auto">
+              You can edit the content, use other fonts, adjust format, add
+              sections, and change placement of the sections later on.
+            </p>
           </div>
         </div>
-      )}
 
-    </div>
+        {/*  Modal Preview Implementation */}
+        {previewTemplate && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-white p-5 rounded-2xl shadow-lg max-h-[90vh] overflow-hidden">
+              <div className="flex justify-between items-center mb-2">
+                <h2 className="text-lg font-semibold">Preview</h2>
+                <button onClick={closeModal}>
+                  <LiaTimesSolid className="hover:text-red-500" size={25} />
+                </button>
+              </div>
+              <div className="overflow-y-auto max-h-[90vh]">
+                {id === "template1" && <Template1 userData={userData} />}
+                {id === "template2" && <Template2 userData={userData} />}
+                {id === "template3" && <Template3 userData={userData} />}
+                {id === "template4" && <Template4 userData={userData} />}
+                {id === "template5" && <Template5 userData={userData} />}
+                {id === "template6" && <Template6 userData={userData} />}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </Suspense>
   );
 };
 

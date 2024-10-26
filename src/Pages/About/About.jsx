@@ -17,13 +17,7 @@ import loadingGif from "../../assets/loading.gif";
 
 const About = () => {
   return (
-    <Suspense
-      fallback={
-        <div className="w-full h-screen flex justify-center items-center">
-          <img className="h-64" src={loadingGif} alt="loading..." />
-        </div>
-      }
-    >
+    <>
       <Helmet>
         <title>About Us- PerfectProfile</title>
       </Helmet>
@@ -134,7 +128,7 @@ const About = () => {
         </div>
       </Container>
       <ResumeAbout />
-    </Suspense>
+    </>
   );
 };
 

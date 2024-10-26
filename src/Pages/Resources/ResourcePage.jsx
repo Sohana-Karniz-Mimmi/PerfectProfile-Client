@@ -1,15 +1,16 @@
 import { Helmet } from "react-helmet-async";
-import Container from "../../Shared/Container";
-import Careers from "./Careers";
-import Categories from "./Categories";
-// import EditorPicks from "./EditorPicks";
-// import HeadingResource from "./HeadingResource";
-import InterviewsResources from "./InterviewsResources";
-import JobResources from "./JobResources";
-import ResentBlog from "./ResentBlog";
-import ResourceBanner from "./ResourceBanner";
-import Resumes from "./Resumes";
-import TopResume from "./TopResume";
+
+import { lazy } from "react";
+
+const Container = lazy(() => import("../../Shared/Container"));
+const Categories = lazy(() => import("./Categories"));
+const InterviewsResources = lazy(() => import("./InterviewsResources"));
+const JobResources = lazy(() => import("./JobResources"));
+const ResentBlog = lazy(() => import("./ResentBlog"));
+const ResourceBanner = lazy(() => import("./ResourceBanner"));
+const Resumes = lazy(() => import("./Resumes"));
+const TopResume = lazy(() => import("./TopResume"));
+const Careers = lazy(() => import("./Careers"));
 
 const ResourcePage = () => {
   return (

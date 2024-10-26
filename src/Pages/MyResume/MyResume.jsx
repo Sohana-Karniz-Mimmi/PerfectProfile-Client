@@ -1,30 +1,31 @@
-import React from 'react';;
-import MyResumeBanner from './MyResumeBanner';
-import Container from '../../Shared/Container';
-import ManageResume from './ManageResume';
-import ResumeTips from './ResumeTips';
-import InteractiveTutorials from './InteractiveTutorials';
-import MyResumeConsultationBanner from './MyResumeConsultationBanner';
-import { Helmet } from 'react-helmet-async';
+import React, { lazy } from "react";
+const MyResumeBanner = lazy(() => import("./MyResumeBanner"));
+const Container = lazy(() => import("../../Shared/Container"));
+const ManageResume = lazy(() => import("./ManageResume"));
+const ResumeTips = lazy(() => import("./ResumeTips"));
+const MyResumeConsultationBanner = lazy(() =>
+  import("./MyResumeConsultationBanner")
+);
+
+import { Helmet } from "react-helmet-async";
 
 const MyResume = () => {
-    return (
-        <>
+  return (
+    <>
+      <Helmet>
+        <title>My Resume - PerfectProfile</title>
+      </Helmet>
 
-            <Helmet>
-                <title>My Resume - PerfectProfile</title>
-            </Helmet>
-
-            <Container>
-                <MyResumeBanner />
-                <ManageResume />
-            </Container>
-            <ResumeTips />
-            <Container>
-                <MyResumeConsultationBanner />
-            </Container>
-        </>
-    );
+      <Container>
+        <MyResumeBanner />
+        <ManageResume />
+      </Container>
+      <ResumeTips />
+      <Container>
+        <MyResumeConsultationBanner />
+      </Container>
+    </>
+  );
 };
 
 export default MyResume;
