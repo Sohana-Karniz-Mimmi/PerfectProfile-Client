@@ -155,8 +155,7 @@ const TeamProfile = ({consultants, handleShowLogin}) => {
             </Dialog>
                 </div>
               </div>
-            {/* </div> */}
-
+          
           </div>
         </div>
       </div>
