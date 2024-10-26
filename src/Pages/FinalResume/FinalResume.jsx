@@ -3,8 +3,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
 import domtoimage from "dom-to-image";
-import { FaEnvelope } from "react-icons/fa";
-import { FaFileExport, FaShare } from "react-icons/fa6";
+import { FaEnvelope, FaHome, FaTimes } from "react-icons/fa";
+import { FaApper, FaDollarSign, FaFileExport, FaShare } from "react-icons/fa6";
 import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { Menu } from "@headlessui/react";
 import { GrDocumentText } from "react-icons/gr";
@@ -13,6 +13,9 @@ import { px } from "framer-motion";
 import { PiFilePng } from "react-icons/pi";
 import { SiJpeg } from "react-icons/si";
 import { BsFillFileEarmarkCheckFill } from "react-icons/bs";
+import { GoRepoTemplate } from "react-icons/go";
+import { IoColorPaletteOutline } from "react-icons/io5";
+import { LiaCrownSolid } from "react-icons/lia";
 
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";
@@ -28,6 +31,9 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 import ReviewModal from "../../Components/ReviewModal/ReviewModal";
 import { Helmet } from "react-helmet-async";
 import Container from "../../Shared/Container";
+import Templats from "../../Components/DrawerComponent/Templates";
+import Pricings from "../../Components/DrawerComponent/Pricings";
+import Designs from "../../Components/DrawerComponent/Designs";
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
   const info = useLoaderData();
@@ -99,7 +105,10 @@ const FinalResume = () => {
       enableLinks: true,
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 3 },
-      jsPDF: { format: "a4", orientation: "portrait" },
+      jsPDF: {
+        format: "a4",
+        orientation: "portrait",
+      },
     };
     html2pdf()
       .set(opt)
@@ -190,77 +199,177 @@ const FinalResume = () => {
     setShowModal(false);
   };
 
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [activeIcon, setActiveIcon] = useState("");
+  const [activeComponent, setActiveComponent] = useState(null);
+
+  // Function to set active component based on icon clicked
+  const handleIconClick = (component) => {
+    setActiveComponent(component);
+    setActiveIcon(component)
+  };
+
+  const closeDrawer = () => {
+    setDrawerOpen(false);
+    setActiveComponent(null);
+    setActiveIcon("")
+  };
+
   return (
+    <div className="min-h-screen 2xl:max-w-[2150px] mx-auto">
+      <div className="w-full">
+        {info && (
+          <Helmet>
+            <title>{`${info?.name} - PerfectProfile`}</title>
+          </Helmet>
+        )}
+      </div>
 
-    <>
-      {info && (
-        <Helmet>
-          <title>{`${info?.name} - PerfectProfile`}</title>
-        </Helmet>
-      )}
+      <div className="h-[80px] fixed w-full z-50 px-4 flex justify-between items-center bg-[#00000f]">
+        <Link to="/">
+          <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora">
+            Perfect
+            <span className="text-primary">Profile</span>
+          </h1>
+        </Link>
 
-      <div className="h-screen">
-        <div className="py-6 px-4 flex justify-between items-center bg-[#00000f]">
-          <Link to="/">
-            <h1 className="text-white lg:text-2xl text-xl font-extrabold font-lora">
-              Perfect<span className="text-primary">Profile</span>
-            </h1>
-          </Link>
+        <div className="text-white  flex gap-2 items-center justify-center md:mx-auto">
+          <BsFillFileEarmarkCheckFill />
+          <h2>Saved</h2>
+        </div>
+      </div>
 
-          <div className="text-white flex gap-2 items-center justify-center md:mx-auto">
-            <BsFillFileEarmarkCheckFill />
-            <h2>Saved</h2>
+      {/* <Container> */}
+      <section className="flex justify-between min-h-screen">
+        {/* Mini Sidebar */}
+        <div className="w-[50px] mt-[80px] fixed lg:block hidden border-r z-50 bg-white min-h-screen">
+          <div className="flex flex-col justify-center items-center">
+            <GoRepoTemplate
+              onClick={() => handleIconClick("template")}
+              className={`text-4xl cursor-pointer my-2 ${
+                activeIcon === "template" ? "text-secondary" : "text-black"
+              }`}
+            />
+            <IoColorPaletteOutline
+              onClick={() => handleIconClick("designs")}
+              className={`text-4xl cursor-pointer my-2 ${
+                activeIcon === "designs" ? "text-secondary" : "text-black"
+              }`}
+            />
+            <LiaCrownSolid
+              onClick={() => handleIconClick("pricings")}
+              className={`text-4xl cursor-pointer my-2 ${
+                activeIcon === "pricings" ? "text-secondary" : "text-black"
+              }`}
+            />
           </div>
         </div>
 
-        <Container>
-          <section className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center py-8">
-            <div className="md:w-2/12 w-full"></div>
+        {/* Drawer */}
+        <div
+          // className={`fixed bg-white lg:block hidden shadow-lg drop-shadow z-10 transform transition-all duration-1000 ease-in-out ${
+          //   activeComponent
+          //     ? "translate-x-0 mt-[80px] min-h-screen w-[350px] ml-[50px]"
+          //     : "-translate-x-full mt-[80px] min-h-screen -ml-[50px] w-0"
+          // }`}
+          className={`fixed top-0 left-0 bg-primary shadow-lg z-10 transition-transform duration-1000 ease-in-out ${
+            activeComponent
+              ? "translate-x-0 mt-[80px] min-h-screen w-[350px] ml-[50px]"
+              : "-translate-x-full mt-[80px] min-h-screen -ml-[50px] w-0"
+          }`}
+        >
+          <div className="flex justify-end">
+            <button
+              onClick={closeDrawer}
+              className={`transform transition-transform duration-1000 ease-in-out text-right flex justify-end px-4 py-3`}
+            >
+              <FaTimes className="text-gray-600 text-2xl cursor-pointer" />
+            </button>
+          </div>
+          <div className="p-4">
+            {/* <h3 className="font-semibold text-lg">This is drawer</h3> */}
+            {activeComponent === "template" && <Templats />}
+            {activeComponent === "pricings" && <Pricings />}
+            {activeComponent === "designs" && <Designs />}
+          </div>
+        </div>
 
-            {/* <div className="border-2">
+        {/* <div className="border-2">
           <div className="" ref={contentRef} id="element">
             {renderTemplate(info?.templateItem)}
           </div>
         </div> */}
-
-            <div>
-              <div className="my-9 mx-auto w-fit border border-secondary hidden lg:block">
-                <div ref={contentRef} id="element">
-                  {renderTemplate(info?.templateItem)}
-                </div>
-              </div>
-
-              <div className="my-12 mx-auto w-[500px] border border-secondary hidden md:block lg:hidden overflow-hidden">
-                <div
-                  className="w-full h-full"
-                  style={{
-                    transform: "scale(0.63)",
-                    transformOrigin: "top left",
-                    height: "560px",
-                  }}
-                >
-                  {renderTemplate(info?.templateItem)}
-                </div>
-              </div>
-
-              <div className="my-6 mx-auto w-[303px] overflow-hidden border border-secondary block md:hidden">
-                <div
-                  className="w-full h-full"
-                  style={{
-                    transform: "scale(0.38)",
-                    transformOrigin: "top left",
-                    height: "380px",
-                  }}
-                >
-                  {renderTemplate(info?.templateItem)}
-                </div>
+        <div
+          className={`flex flex-col-reverse w-full lg:justify-between mt-[80px]  transform transition-all duration-1000 ease-in-out ${
+            activeComponent
+              ? "lg:flex-col-reverse xl:flex-row lg:w-[624px] xl:w-[1040px] 2xl:w-full lg:ml-[400px]"
+              : "lg:ml-[50px] lg:w-[974px] xl:min-w-[1390px] 2xl:w-full lg:flex-row"
+          }`}
+        >
+          {/* Template section */}
+          <div
+            className={`transform transition-all duration-1000 ease-in-out ${
+              activeComponent
+                ? " lg:w-full xl:w-2/3 2xl:w-3/4"
+                : "lg:w-2/3 xl:w-2/3 2xl:w-3/4"
+            }`}
+          >
+            <div
+              className={`w-fit border lg:block hidden border-secondary ${
+                activeComponent
+                  ? "lg:-ml-[88px] xl:-ml-[52px] 2xl:ml-32 lg:-mt-36 xl:-mt-24 lg:scale-[0.7] xl:scale-[0.8]"
+                  : "lg:scale-[0.7] xl:scale-[0.9] lg:-ml-[78px] xl:ml-[64px] 2xl:ml-60 xl:-mt-7 lg:-mt-40"
+              }`}
+            >
+              <div ref={contentRef} id="element" className={``}>
+                {renderTemplate(info?.templateItem)}
               </div>
             </div>
 
-            {/* Button */}
-            <div className="lg:w-2/12 flex flex-col lg:flex-col md:flex-row lg:items-start items-center px-7 lg:pt-10 pt-0 gap-4 lg:justify-start justify-center">
+            <div className="my-12 mx-auto w-[500px] border border-secondary hidden md:block lg:hidden overflow-x-auto">
+              <div
+                className="w-full h-full"
+                style={{
+                  transform: "scale(0.63)",
+                  transformOrigin: "top left",
+                  height: "560px",
+                }}
+              >
+                {renderTemplate(info?.templateItem)}
+              </div>
+            </div>
+
+            <div className="my-6 mx-auto w-[303px] overflow-y-auto border border-secondary block md:hidden">
+              <div
+                className="w-full h-full"
+                style={{
+                  transform: "scale(0.38)",
+                  transformOrigin: "top left",
+                  height: "380px",
+                }}
+              >
+                {renderTemplate(info?.templateItem)}
+              </div>
+            </div>
+          </div>
+
+          {/* Button Section */}
+          <div
+            className={` ${
+              activeComponent
+                ? "lg:w-full xl:w-1/3 2xl:w-1/4"
+                : "lg:w-1/3 xl:w-1/3 2xl:w-1/4"
+            }`}
+          >
+            <div
+              className={`flex flex-col md:flex-row md:gap-2 md:py-8 gap-4  items-center justify-center ${
+                activeComponent
+                  ? "lg:w-full xl:w-full lg:flex-col lg:items-center xl:items-center lg:py-8 xl:py-9"
+                  : "lg:flex-col lg:items-center xl:items-center lg:py-9"
+              }`}
+            >
               {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}
-              <div className="relative text-right">
+              <div className="relative">
                 <Menu as="div" className="relative inline-block text-left ">
                   <Menu.Button className="btn btn-ghost btn-circle avatar text-black">
                     <button
@@ -268,7 +377,8 @@ const FinalResume = () => {
                       // onClick={generatePDF}
                       className="w-44 group justify-center md:text-base text-sm px-8 border font-montserrat rounded-full text-center hover:bg-secondary hover:text-white border-secondary transition duration-300 text-secondary flex items-center gap-2"
                     >
-                      <FaFileExport className="text-secondary group-hover:text-white" /> Download
+                      <FaFileExport className="text-secondary group-hover:text-white" />{" "}
+                      Download
                     </button>
                   </Menu.Button>
 
@@ -278,10 +388,14 @@ const FinalResume = () => {
                         {({ active }) => (
                           <button
                             onClick={handlePdf}
-                            className={`${active ? " font-semibold bg-white " : "font-semibold"
-                              } group flex w-full md:text-base text-sm items-center gap-2 border-b py-1.5 text-black`}
+                            className={`${
+                              active
+                                ? " font-semibold bg-white "
+                                : "font-semibold"
+                            } group flex w-full md:text-base text-sm items-center gap-2 border-b py-1.5 text-black`}
                           >
-                            <GrDocumentText className="text-red-600" /> PDF Standard
+                            <GrDocumentText className="text-red-600" /> PDF
+                            Standard
                           </button>
                         )}
                       </Menu.Item>
@@ -290,8 +404,11 @@ const FinalResume = () => {
                         {({ active }) => (
                           <button
                             onClick={handlePng}
-                            className={` ${active ? " font-semibold bg-white " : "font-semibold"
-                              } group flex w-full md:text-base text-sm items-center gap-2 border-b py-1.5 text-black`}
+                            className={` ${
+                              active
+                                ? " font-semibold bg-white "
+                                : "font-semibold"
+                            } group flex w-full md:text-base text-sm items-center gap-2 border-b py-1.5 text-black`}
                           >
                             <PiFilePng className="text-red-600" /> PNG
                           </button>
@@ -302,8 +419,11 @@ const FinalResume = () => {
                         {({ active }) => (
                           <button
                             onClick={handleJpeg}
-                            className={`${active ? " font-semibold bg-white " : "font-semibold"
-                              } group flex w-full md:text-base text-sm items-center gap-2  py-1.5 text-black`}
+                            className={`${
+                              active
+                                ? " font-semibold bg-white "
+                                : "font-semibold"
+                            } group flex w-full md:text-base text-sm items-center gap-2  py-1.5 text-black`}
                           >
                             <GrDocumentText className="text-red-600" /> JPG
                           </button>
@@ -318,7 +438,8 @@ const FinalResume = () => {
                 onClick={() => setShareLinkCopy(true)}
                 className="w-44 justify-center md:text-base text-sm px-8 border font-montserrat rounded-full text-center hover:bg-secondary hover:text-white transition duration-300 border-secondary group text-secondary flex items-center gap-2"
               >
-                <FaShare className="text-secondary group-hover:text-white " /> Share
+                <FaShare className="text-secondary group-hover:text-white " />{" "}
+                Share
               </button>
               <ShareLinkCopyModal
                 isOpen={shareLinkCopy}
@@ -329,7 +450,8 @@ const FinalResume = () => {
               />
 
               <button className="w-44 justify-center md:text-base text-sm px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2 group hover:bg-secondary hover:text-white transition duration-300">
-                <FaEnvelope className="text-secondary group-hover:text-white " /> Email
+                <FaEnvelope className="text-secondary group-hover:text-white " />{" "}
+                Email
               </button>
 
               <Link to={`/my-resume`}>
@@ -338,14 +460,17 @@ const FinalResume = () => {
                 </button>
               </Link>
             </div>
-          </section>
-        </Container>
-        {showModal && (
-          <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal}>
-          </ReviewModal>
-        )}
-      </div>
-    </>
+          </div>
+        </div>
+      </section>
+      {/* </Container> */}
+      {showModal && (
+        <ReviewModal
+          showModal={showModal}
+          handleCloseModal={handleCloseModal}
+        ></ReviewModal>
+      )}
+    </div>
   );
 };
 
