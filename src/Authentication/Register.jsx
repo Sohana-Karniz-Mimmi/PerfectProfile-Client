@@ -64,9 +64,32 @@ const Register = () => {
       role: "user",
     };
 
+
+    const fetchUserCounts = async () => {
+      try {
+        const response = await axiosPublic.get("/users");
+        const users = response.data;
+        const activeUsersCount = users.filter(user => user.isActive).length; 
+        return {
+          new_users: 1, 
+          active_users: activeUsersCount 
+        };
+      } catch (error) {
+        console.error("Error fetching user counts:", error);
+        return {
+          new_users: 1,
+          active_users: 0 
+        };
+      }
+    };
     try {
       const result = await createUser(email, password);
       await axiosPublic.post("/users", userInfo);
+
+      const userTrendsInfo = await fetchUserCounts(); 
+      const date = new Date();
+      await axiosPublic.post("/user-trends", { ...userTrendsInfo, date });
+
       toast.success("Successfully signed up!");
       document.getElementById("my_modal_4").close();
       navigate(from);

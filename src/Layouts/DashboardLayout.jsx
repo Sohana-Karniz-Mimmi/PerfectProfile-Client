@@ -17,13 +17,13 @@ const DashboardLayout = () => {
   return (
     <div className="md:flex justify-between bg-gray-50">
       {/* Sidebar */}
-      <div className="w-72 fixed z-50">
+      <div className="2xl:w-72 w-60 fixed z-50">
         <Sidebar />
       </div>
 
       {/* Outlet --> Dynamic content */}
-      <div className="max-w-4/6 md:ml-72 overflow-hidden w-full">
-        <div className="md:p-6 p-2 md:mt-0 mt-20 ">
+      <div className="max-w-4/6 2xl:ml-72 md:ml-60 overflow-hidden w-full">
+        <div className="">
           <Outlet />
         </div>
       </div>

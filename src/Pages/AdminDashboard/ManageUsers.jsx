@@ -72,7 +72,7 @@ const ManageUsers = () => {
   // if ( loading) return <LoadingSpinner />
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto md:p-6 p-2 md:mt-0 mt-20 ">
         <Helmet>
           <title>Manage Users</title>
         </Helmet>

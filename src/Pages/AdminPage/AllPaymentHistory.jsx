@@ -30,7 +30,7 @@ const AllPaymentHistory = () => {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
-    <section className="container px-4 mx-auto">
+    <section className="container px-4 mx-auto md:p-6 p-2 md:mt-0 mt-20 ">
       <div className="flex flex-col">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
