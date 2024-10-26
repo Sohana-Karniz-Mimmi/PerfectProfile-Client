@@ -12,6 +12,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+    scroll-behavior: smooth;
+}
+
 
 .n-container::after,
 .n-container::before {
