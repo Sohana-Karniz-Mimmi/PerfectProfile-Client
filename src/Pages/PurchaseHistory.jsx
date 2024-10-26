@@ -126,10 +126,10 @@ const PurchaseHistory = () => {
         // Message when no purchase data is found
         <div className="mt-8 flex flex-col items-center justify-center min-h-screen  ">
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-center">
+            <h2 className="text-5xl text-primary font-bold mb-4 text-center font-lora">
               No purchases yet!
             </h2>
-            <p className="text-gray-600 mb-4 text-center">
+            <p className="text-black mb-4 text-center">
               Explore our premium templates and make your first purchase to get
               started.
             </p>
