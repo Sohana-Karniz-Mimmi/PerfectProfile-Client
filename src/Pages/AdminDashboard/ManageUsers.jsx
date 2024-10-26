@@ -81,7 +81,7 @@ const ManageUsers = () => {
           <h2 className="text-2xl font-bold font-lora ">Manage Users</h2>
         </div>
 
-        <div className="flex w-full flex-col md:flex-row items-center gap-3">
+        <div className="flex w-full flex-col xl:flex-row items-center gap-3">
           <div className="md:max-w-sm relative flex items-center font-roboto font-medium text-base w-full">
             <select
               onChange={(e) => {

@@ -59,7 +59,7 @@ describe("Banner Component", () => {
       screen.getByRole("button", { name: /Get Started/i })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /Create My Resume/i })
+      screen.getByRole("button", { name: /Create Resume/i })
     ).toBeInTheDocument();
   });
 });

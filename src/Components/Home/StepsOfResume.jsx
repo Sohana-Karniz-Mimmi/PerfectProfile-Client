@@ -78,7 +78,7 @@ const StepsOfResume = () => {
               Step Num <span className="text-primary">#2</span>
             </p>
             <h3 className="mt-2 text-lg md:text-[22px] text-black font-lora font-semibold">
-              Choose Your Resume
+              Select Your Template
             </h3>
           </div>
 

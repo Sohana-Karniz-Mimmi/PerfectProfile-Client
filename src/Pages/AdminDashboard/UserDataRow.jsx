@@ -13,10 +13,10 @@ const UserDataRow = ({ user, refetch }) => {
         <p className="text-gray-900 whitespace-no-wrap">{user?.email}</p>
       </td>
       <td className="pr-5 pl-10 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{user?.role}</p>
+        <p className="text-gray-900 whitespace-no-wrap capitalize">{user?.role}</p>
       </td>
       <td className="pr-5 pl-10 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-green-500 ">{user.productName}</p>
+        <p className="text-green-500 capitalize">{user.productName}</p>
       </td>
     </tr>
   );
