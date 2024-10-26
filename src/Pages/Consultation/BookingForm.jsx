@@ -19,7 +19,7 @@ const BookingForm = ({handleSubmit, user, consultants}) => {
                         <input
                           type="text"
                           name="name"
-                          defaultValue={user?.displayName}
+                          value={user?.displayName}
                           placeholder="Enter your name"
                           required
                           className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
@@ -35,7 +35,7 @@ const BookingForm = ({handleSubmit, user, consultants}) => {
                         <input
                           type="email"
                           name="email"
-                          defaultValue={user?.email}
+                          value={user?.email}
                           id="email"
                           placeholder="Enter your email"
                           required
