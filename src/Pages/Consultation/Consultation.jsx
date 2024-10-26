@@ -12,6 +12,7 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const Consultation = () => {
@@ -57,16 +58,24 @@ const Consultation = () => {
  
   };
 
+  const handleShowLogin =()=>{
+    toast.error("You have to login first")
+    document.getElementById("my_modal_3").showModal();
+  }
+
   
 
   return (
    <div>
+    <Helmet>
+        <title>Consultation - PerfectProfile</title>
+      </Helmet>
      <Container>
       {/* banner */}
       <ConsultationBanner></ConsultationBanner>
       <WhyNeedSection></WhyNeedSection>
       </Container>
-      <Team></Team>
+      <Team handleShowLogin={handleShowLogin}></Team>
       <Container>
       <HowWorks></HowWorks>
       <FAQ></FAQ>
@@ -91,12 +100,21 @@ const Consultation = () => {
 
           <div className="flex flex-col items-center mt-2  lg:items-start  text-base  font-bold lg:font-semibold">
             
-              <button
-                 onClick={() => setIsOpen(true)} 
-                className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5  mb-10 lg:mb-0 "
-              >
-                Become a Consultant
-              </button>
+             {
+                user? <> <button
+                onClick={() => setIsOpen(true)} 
+               className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5  mb-10 lg:mb-0 "
+             >
+               Become a Consultant
+             </button></> : <>
+             <button
+                onClick={handleShowLogin} 
+               className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5  mb-10 lg:mb-0 "
+             >
+               Become a Consultant
+             </button>
+             </>
+             }
 
               <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50 ">
   <div className="fixed inset-0 w-screen overflow-y-auto p-4">
@@ -117,7 +135,7 @@ const Consultation = () => {
               <input
                 type="text"
                 name="name"
-                defaultValue={user?.displayName}
+                value={user?.displayName}
                 placeholder="Enter your name"
                 required
                 className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
@@ -130,7 +148,7 @@ const Consultation = () => {
               <input
                 type="email"
                 name="email"
-                defaultValue={user?.email}
+                value={user?.email}
                 id="email"
                 placeholder="Enter your email"
                 required
@@ -167,6 +185,7 @@ const Consultation = () => {
                 <select
                   name="expertise"
                   id="expertise"
+                  required
                   className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                 >
                   <option value="">Select Area</option>
@@ -183,6 +202,7 @@ const Consultation = () => {
                 <select
                   name="experience"
                   id="experience"
+                  required
                   className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                 >
                   <option value="">Select Experience</option>

@@ -41,8 +41,8 @@ const Template2 = ({ data, userData, setUserData }) => {
     }
   };
 
-  console.log(data?.templateItem);
-  console.log(userData);
+  // console.log(data?.templateItem);
+  // console.log(userData);
 
   return (
     <div className="relative ">
@@ -189,7 +189,7 @@ const Template2 = ({ data, userData, setUserData }) => {
                   <h2 className=" uppercase text-sm font-roboto font-bold  border-b border-black ">
                     About Me
                   </h2>
-                  <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
+                  <p className="mt-1 text-sm font-roboto break-words text-justify">
                     {userData?.careerObjective}
                   </p>
                 </section>

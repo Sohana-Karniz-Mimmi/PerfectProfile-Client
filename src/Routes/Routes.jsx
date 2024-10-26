@@ -34,11 +34,13 @@ import Profile from "../Pages/ConsultantDashboard/Profile";
 import Templats from "../Components/DrawerComponent/Templates";
 import Designs from "../Components/DrawerComponent/Designs";
 import Pricings from "../Components/DrawerComponent/Pricings";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
