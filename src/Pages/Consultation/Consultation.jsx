@@ -12,6 +12,7 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const Consultation = () => {
@@ -66,6 +67,9 @@ const Consultation = () => {
 
   return (
    <div>
+    <Helmet>
+        <title>Consultation - PerfectProfile</title>
+      </Helmet>
      <Container>
       {/* banner */}
       <ConsultationBanner></ConsultationBanner>
