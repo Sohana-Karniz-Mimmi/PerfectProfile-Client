@@ -31,11 +31,13 @@ import PurchaseHistory from "../Pages/PurchaseHistory";
 import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
 import SessionRequest from "../Pages/ConsultantDashboard/SessionRequest";
 import Profile from "../Pages/ConsultantDashboard/Profile";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

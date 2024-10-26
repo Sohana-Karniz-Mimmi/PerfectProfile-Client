@@ -107,7 +107,7 @@ const FinalResume = () => {
       .save();
   };
 
-  console.log(userData.resumeLink);
+  // console.log(userData.resumeLink);
 
   // download png
 
@@ -121,7 +121,7 @@ const FinalResume = () => {
       height: node.offsetHeight,
     })
       .then((dataURL) => {
-        console.log("captureImg", dataURL);
+        // console.log("captureImg", dataURL);
 
         const link = document.createElement("a");
         link.download = "my-resume.png";
@@ -129,7 +129,7 @@ const FinalResume = () => {
         link.click();
       })
       .catch((error) => {
-        console.log("error", error);
+        // console.log("error", error);
       });
   };
   const handleJpeg = async () => {
@@ -145,7 +145,7 @@ const FinalResume = () => {
       height: node.offsetHeight,
     })
       .then((dataURL) => {
-        console.log("captureImg", dataURL);
+        // console.log("captureImg", dataURL);
 
         const link = document.createElement("a");
         link.download = "my-resume.jpeg";
@@ -153,7 +153,7 @@ const FinalResume = () => {
         link.click();
       })
       .catch((error) => {
-        console.log("error", error);
+        // console.log("error", error);
       })
       .finally(() => {
         // Remove the background color after capture to avoid affecting the UI
@@ -178,7 +178,7 @@ const FinalResume = () => {
             return () => clearTimeout(timer);
           }
         } catch (error) {
-          console.error("Error checking feedback submission:", error);
+          // console.error("Error checking feedback submission:", error);
         }
       }
     };
