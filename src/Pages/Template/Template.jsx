@@ -38,6 +38,7 @@ import { Helmet } from "react-helmet-async";
 
 import loadingGif from "../../assets/loading.gif";
 
+
 const Template = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
@@ -176,7 +177,7 @@ const Template = () => {
             className="border border-primary px-4 py-2 rounded-lg "
           >
             {/* <option value=''>Filter By Category</option> */}
-            <option value="">Free + Premium</option>
+            <option value="">All</option>
             <option value="free">Free</option>
             <option value="premium">Premium</option>
           </select>

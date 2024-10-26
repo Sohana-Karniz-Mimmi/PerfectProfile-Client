@@ -7,7 +7,7 @@ import TeamProfile from "./TeamProfile";
 import { useQuery } from "@tanstack/react-query";
 
 
-const Team = () => {
+const Team = ({handleShowLogin}) => {
     const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   let [isOpen, setIsOpen] = useState(false)
@@ -57,11 +57,11 @@ console.log(consultants);
   };
 
     return (
-        <div id="session-booking">
+        <div id="session">
              <h1 className="font-bold lg:text-4xl mt-28 text-3xl text-center ">Meet Our Consultant To Review Resume</h1>
 
 
-             <TeamProfile consultants={consultants}></TeamProfile>
+             <TeamProfile consultants={consultants} handleShowLogin={handleShowLogin}></TeamProfile>
        
 
 

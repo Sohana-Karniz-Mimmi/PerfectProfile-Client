@@ -135,7 +135,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
             <div className="bg-white rounded-xl p-6">
               <Menu.Item>
                 {({ active }) => (
-                  <Link to={`userDashboard/editingProfile`}>
+                  <Link to={`/userDashboard/editingProfile`}>
                     <button
                       className={`${
                         active ? "bg-white" : ""
@@ -182,20 +182,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
         { role?.role === "consultant" && (
           <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
             <div className="bg-white rounded-xl p-6">
-              <Menu.Item>
-                {({ active }) => (
-                  <Link to={`userDashboard/editingProfile`}>
-                    <button
-                      className={`${
-                        active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
-                    >
-                      My Profile
-                    </button>
-                  </Link>
-                )}
-              </Menu.Item>
-
+          
               <Menu.Item>
                 {({ active }) => (
                   <Link to={`/consultant-dashboard`}>

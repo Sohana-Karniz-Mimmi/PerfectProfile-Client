@@ -11,6 +11,10 @@ const Testomonial = lazy(() =>
 );
 const PremiumModal = lazy(() => import("../../Components/Modal/PremiumModal"));
 
+import ScrollToTop from "react-scroll-to-top";
+import { FaArrowUp } from "react-icons/fa6";
+// import Chat from "../../Components/LiveChat/Chat";
+
 const Home = () => {
   return (
     <div className=" py-4">
@@ -34,6 +38,24 @@ const Home = () => {
       {/* <div>
         <Chat />
       </div> */}
+      {/* Scroll Top to Bottom*/}
+      <div>
+        <ScrollToTop
+          smooth
+          color="white"
+          component={<FaArrowUp size={20} color="#090909" />}
+          style={{
+            zIndex: "1000",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#00C8AA",
+            height: "36px",
+            width: "36px",
+            borderRadius: "50%",
+          }}
+        />
+      </div>
     </div>
     // </Suspense>
   );

@@ -23,12 +23,19 @@ const SessionRequest = () => {
 
     // make consultant
     const handleAccept = async (user) => {
-     
-         console.log(user)
-          toast.success(`Session Booked for ${user?.name}`)
-          refetch()
 
-         
+      try {
+        await axiosPublic.patch(`/accept-session/user/${user?._id}` , user)
+          .then(res => {
+            if (res.status === 200) {
+              toast.success(`Session is booked for ${user.name}`);
+              refetch(); 
+            }
+          });
+      } catch (error) {
+        console.error("Error updating booking request:", error);
+        toast.error("Failed to update user booking request");
+      }
     };
 
     const handleRemove = (user) => {
@@ -44,7 +51,7 @@ const SessionRequest = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const res = await axiosPublic.patch(`/user/declined-session/${user?.email}`, user);
+            const res = await axiosPublic.patch(`/user/declined-session/${user?._id}`, user);
             if (res.status === 200) {
               Swal.fire({
                 title: "Success!",
