@@ -34,6 +34,7 @@ import Container from "../../Shared/Container";
 import Templats from "../../Components/DrawerComponent/Templates";
 import Pricings from "../../Components/DrawerComponent/Pricings";
 import Designs from "../../Components/DrawerComponent/Designs";
+import "./Final.css"
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
   const info = useLoaderData();
@@ -317,23 +318,23 @@ const FinalResume = () => {
         <div
           className={`flex flex-col-reverse w-full lg:justify-between mt-[80px]  transform transition-all duration-1000 ease-in-out ${
             activeComponent
-              ? "lg:flex-col-reverse xl:flex-row lg:w-[594px] xl:w-[1010px] 2xl:w-full lg:ml-[430px]"
-              : "lg:ml-[80px] lg:w-[944px] xl:min-w-[1360px] 2xl:w-full lg:flex-row"
+              ? "lg:flex-col-reverse xl:flex-row lg:w-[594px] xl:w-[930px] 2xl:w-full lg:ml-[430px]"
+              : "lg:ml-[80px] lg:w-[944px] xl:w-[1280px] 2xl:w-full lg:flex-row"
           }`}
         >
           {/* Template section */}
           <div
-            className={`transform transition-all duration-1000 ease-in-out lg:flex ${
+            className={`transform transition-all duration-1000 ease-in-out border border-green-500 ${
               activeComponent
-                ? " lg:w-full xl:w-2/3 2xl:w-3/4 lg:justify-center"
-                : "lg:w-3/4 xl:w-5/6 2xl:w-3/4 xl:justify-end lg:justify-start"
+                ? " lg:w-full xl:w-2/3 2xl:w-3/4"
+                : "lg:w-3/4 xl:w-2/3 2xl:w-3/4"
             }`}
           >
             <div
-              className={`w-fit border lg:block hidden border-secondary ${
+              className={`w-fit border lg:block hidden  border-secondary ${
                 activeComponent
-                  ? " 2xl:ml-32 lg:-mt-36 xl:-mt-14 lg:scale-[0.5] xl:ml-28 xl:scale-[0.8]"
-                  : "lg:scale-[0.7] xl:scale-[1] 2xl:scale-[1]   2xl:ml-60 xl:mt-8 lg:ml-8 lg:-mt-28"
+                  ? " 2xl:ml-44 2xl:!-mt-[7px] lg:-mt-36 lg:-ml-24 xl:-mt-[100px] 2xl:scale-[0.9] lg:scale-[0.6]  xl:scale-[0.7]"
+                  : "lg:scale-[0.6] xl:scale-[0.7] 2xl:scale-[0.9] 2xl:ml-[510px] 2xl:-mt-[7px] xl:ml-36 xl:-mt-24 lg:ml-16 lg:-mt-40"
               }`}
             >
               <div ref={contentRef} id="element" className={``}>
@@ -370,10 +371,10 @@ const FinalResume = () => {
 
           {/* Button Section */}
           <div
-            className={` ${
+            className={`border border-rose-500 ${
               activeComponent
-                ? "lg:w-full xl:w-3/12 2xl:w-1/4"
-                : "lg:w-1/3 xl:w-1/4 2xl:w-1/4"
+                ? "lg:w-full xl:w-1/3 2xl:w-1/4"
+                : "lg:w-1/3 xl:w-1/3 2xl:w-1/4"
             }`}
           >
             <div
