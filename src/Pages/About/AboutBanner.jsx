@@ -3,7 +3,7 @@ const AboutBanner = ({img}) => {
     <section
       className="text-white relative bg-cover bg-center bg-no-repeat h-[565px]"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${img})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${img})`,
         backgroundSize: "cover",
       }}
     >
@@ -15,14 +15,14 @@ const AboutBanner = ({img}) => {
             data-aos="zoom-in"
             data-aos-duration="1000"
             data-aos-delay="200"
-            className="text-center max-w-lg sm:text-lg/relaxed font-montserrat"
+            className="font-medium text-center max-w-lg sm:text-lg/relaxed font-montserrat"
           >
            Get to know our talented team.
           </p>
           <h1
             data-aos="fade-up"
             data-aos-duration="500"
-            className="text-3xl sm:text-5xl mt-2 font-lora"
+            className="text-3xl sm:text-5xl mt-2 font-lora text-bold"
           >
            MORE ABOUT US
           </h1>
