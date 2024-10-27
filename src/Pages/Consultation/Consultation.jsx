@@ -76,13 +76,14 @@ const Consultation = () => {
         <FAQ></FAQ>
 
         {/* join as consultant */}
-
-        <div className="flex flex-col  lg:flex-row justify-between items-center px-2 lg:px-9 py-8 mb-0 lg:mb-9 h-[49rem] lg:h-[21rem] mt-6 rounded-lg bg-cyan-50">
-          <div>
-            <h1 className="font-bold lg:text-4xl text-3xl">
+        
+        <div className="flex flex-col gap-3 md:gap-16 lg:flex-row justify-between items-center px-2 lg:px-9 py-8 mb-0 lg:mb-9 h-[35rem] md:h-[46rem] lg:h-[23rem] mt-6 rounded-lg bg-cyan-50">
+          <div className="px-2 ">
+            <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl font-lora">
               Join Us as a Consultant – Empowering Growth Together
             </h1>
-            <p className="text-gray-500 lg:w-[43rem] w-80 mt-5">
+            <p className="            text-gray-500 text-sm md:text-[15px] lg:text-base xl:w-[44rem] lg:w-[35rem] md:w-[37rem] font-montserrat mt-4
+">
               Are you ready to make a meaningful impact and elevate your
               expertise? As a Resume Consultant at PerfectProfile, you’ll
               transform how individuals present themselves to employers by
@@ -93,22 +94,22 @@ const Consultation = () => {
               to new opportunities.
             </p>
 
-            <div className="flex flex-col items-center mt-2  lg:items-start  text-base  font-bold lg:font-semibold">
+            <div className="flex flex-col items-center mt-2  md:items-start  text-base  font-bold lg:font-semibold font-montserrat ">
               {user ? (
                 <>
                   {" "}
                   <button
                     onClick={() => setIsOpen(true)}
-                    className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5  mb-10 lg:mb-0 "
+                    className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 capitalize  lg:text-base font-semibold shadow-lg transform transition duration-500 font-montserrat hover:scale-105 mt-5  mb-10 lg:mb-0 "
                   >
-                    Become a Consultant
+                    become a consultant
                   </button>
                 </>
               ) : (
                 <>
                   <button
                     onClick={handleShowLogin}
-                    className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5  mb-10 lg:mb-0 "
+                    className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5 font-montserrat  mb-10 lg:mb-0 "
                   >
                     Become a Consultant
                   </button>
@@ -292,7 +293,7 @@ const Consultation = () => {
 
           <div className="flex relative item-center justify-center">
             <img
-              className="lg:h-[19rem] h-56 w-72 lg:w-[24rem] rounded-lg"
+              className="lg:h-[19rem] h-56 w-72 hidden md:block  lg:w-[24rem] rounded-lg"
               src={img}
               alt=""
             />

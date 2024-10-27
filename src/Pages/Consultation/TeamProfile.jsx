@@ -47,37 +47,37 @@ const TeamProfile = ({consultants, handleShowLogin}) => {
 
     return (
         <div>
-             <section id="#session" className="pt-16  bg-blueGray-50 px-10 flex items-center justify-center">
+             <section id="#session" className="pt-16  bg-blueGray-50 px-2 lg:px-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:space-x-32 md:space-x-5  xl:space-x-16 items-center justify-center">
       {/* 1 */}
       
       {
         consultants.map(consultant => <>
-        <div className="w-[28rem] h-[31rem] px-4 mx-auto ">
-        <div className="relative border-2 border-primary flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
-          <div className="px-6">
+        <div className="w-72 lg:w-[25rem] lg:h-[29rem] p-2 lg:px-4 mx-auto ">
+        <div className="relative border-2 border-primary flex flex-col min-w-0 break-words bg-white w-full h-[27rem] md:h-[28rem] mb-6 shadow-xl rounded-lg mt-16">
+          <div className="px-3 lg:px-6">
             <div className="flex flex-wrap justify-center">
               <div className="w-full px-4 flex justify-center">
-                <div className="mt-3">
-                 <img className="shadow-xl rounded-full h-44 align-middle border-none " src={consultant.image} alt="" />
+                <div className="mt-4">
+                 <img className="shadow-xl rounded-full h-36 w-36 md:h-36 align-middle border-none " src={consultant.image} alt="" />
                 
                 </div>
               </div>
             
             </div>
             <div className="text-center mt-4">
-              <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700">
+              <h3 className="text-xl font-lora font-semibold leading-normal mb-2 text-blueGray-700">
                {consultant.name}
               </h3>
-              <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+              <div className=" leading-normal mt-0 mb-2 text-blueGray-400 font-lora font-semibold capitalize">
               <p> Resume consultant</p>
               <p> ({consultant.expertise})</p>
               </div>
-              <div className="mb-2 px-5 text-blueGray-600 mt-4 flex item-center justify-center">
+              <div className="mb-2 px-5 text-blueGray-600 mt-3 flex item-center justify-center">
                 {/* <p>industry - non tech</p> */}
-                <p className='text-center font-semibold'> ({consultant.experience}) Years of Experience</p>
+                <p className='text-center font-semibold font-lora'> ({consultant.experience}) Years of Experience</p>
               </div>
               
-              <div className="mb-2 mt-5 text-blueGray-600 flex item-center justify-center">
+              <div className="mb-2 mt-4 text-blueGray-600 flex item-center justify-center">
                {/* social */}
                <Link to={consultant.facebook}
                     className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-black hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3  dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
@@ -117,23 +117,19 @@ const TeamProfile = ({consultants, handleShowLogin}) => {
                   </Link>
               </div>
             </div>
-            {/* <div className="mt-5 py-5 border-t border-blueGray-200 text-center"> */}
+           
               <div className="flex flex-wrap justify-center">
                 <div className="w-full px-3">
-                  {/* <p className="mb-2 text-lg leading-relaxed text-blueGray-700">
-                    An artist of considerable range, Jenna the name taken by
-                    Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                    performs.
-                  </p> */}
+                 
                  {
                   user ? <> <button
                   onClick={() => setIsOpen(true)} 
-                 className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+                 className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 capitalize font-lora  lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
                >
                  Book A session
                </button></> : <> <button
                   onClick={handleShowLogin} 
-                 className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4  uppercase lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-5 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+                 className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 font-lora capitalize lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
                >
                  Book A session
                </button></>
