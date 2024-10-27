@@ -12,11 +12,12 @@ import { FaSearch } from "react-icons/fa";
 import { TbRefresh } from "react-icons/tb";
 import { IoFilter } from "react-icons/io5";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
+import Swal from "sweetalert2";
 // import LoadingSpinner from '../../Shared/LoadingSpinner';
 const ManageUsers = () => {
 
   const axiosPublic = useAxiosPublic()
-  
+
   /****Use Search and filter****/
   const dispatch = useDispatch();
 
@@ -68,6 +69,76 @@ const ManageUsers = () => {
     setSearch(searchText);
   };
 
+  const handleDelete = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      html: `<div class="text-start text-gray-600 text-base">You won't be able to revert this!</div>`,
+      showCancelButton: true,
+      cancelButtonText: "Cancel",
+      confirmButtonText: "Delete",
+      backdrop: `
+          rgba(0, 0, 0, 0.5) 
+          url('path/to/your/background-image.jpg') 
+          left top 
+          no-repeat
+      `,
+      customClass: {
+        title: 'text-2xl pt-9 text-start font-semibold text-black',
+        confirmButton: 'hover:bg-[#fd4958] bg-[#DB142C] text-white font-medium py-2 px-4 rounded-md ml-2',
+        cancelButton: 'text-[#0d1216] bg-[#E5E5E5] font-medium py-2 px-4 rounded-md mr-4',
+        popup: 'w-[420px] rounded-2xl shadow-lg border flex flex-col items-start px-1',
+        actions: 'flex justify-end w-full mt-4'
+      }
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axiosPublic.delete(`/user/${id}`)
+            .then((response) => {
+              if (response.data.deletedCount > 0) {
+                Swal.fire({
+                  title: "Deleting...",
+                  html: `
+                      <div class="relative mb-6 w-full h-3 bg-gray-200 rounded">
+                          <div id="progress-bar" class="absolute h-full rounded-full" style="width: 0; background: linear-gradient(90deg, #2CACD5, #00C8AA); transition: width 1s ease;"></div>
+                      </div>
+                  `,
+                  showConfirmButton: false,
+                  willOpen: () => {
+                    const progressBar = document.getElementById('progress-bar');
+                    setTimeout(() => {
+                      progressBar.style.width = '87%';
+
+                      setTimeout(() => {
+                        progressBar.style.width = '100%';
+                      }, 500);
+                      setTimeout(() => {
+                        Swal.close();
+                      }, 1700);
+                    }, 100);
+                  }
+                });
+
+                // Update local state to remove deleted user without refetching
+                setCount((prev) => prev - 1);
+                dispatch(fetchUsers({ page: currentPage, size, filter, search }));
+
+              }
+            })
+            .catch((error) => {
+              console.error("There was an error deleting the resume", error);
+              Swal.fire({
+                title: "Error!",
+                text: "There was an error deleting the resume.",
+                icon: "error"
+              });
+            });
+        }
+      });
+  };
+
+
+
   // console.log(users);
   // if ( loading) return <LoadingSpinner />
   return (
@@ -93,7 +164,7 @@ const ManageUsers = () => {
               id="productName"
               className="border w-full appearance-none cursor-pointer focus:outline-none px-4 py-3 rounded"
             >
-              <option value="">Filter By Role</option>
+              <option value="">Filter By Subscription</option>
               <option value="free">Free</option>
               <option value="standard">Standard</option>
               <option value="premium">Premium</option>
@@ -116,7 +187,7 @@ const ManageUsers = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 name="search"
-                placeholder="Search by name, email, role..."
+                placeholder="Search by name, email..."
                 aria-label="Enter User Name"
               />
               <button className="px-3 py-3 text-sm font-medium tracking-wider uppercase rounded bg-none transition-colors duration-300 transform focus:outline-none">
@@ -137,40 +208,46 @@ const ManageUsers = () => {
           <div className="-mx-4 sm:-mx-8 px-2 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
               <table className="min-w-full leading-normal">
-                <thead className="bg-gray-300 ">
+                <thead className="bg-gray-50 ">
                   <tr className=" text-sm">
-                    {/* <th
+                    <th
                       scope='col'
-                      className='pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='text-center px-4 py-3.5  border-b border-gray-200 text-gray-800 text-sm uppercase font-normal'
                     >
                       #
-                    </th> */}
+                    </th>
                     <th
                       scope="col"
-                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm  uppercase font-lora font-bold"
+                      className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm  uppercase font-lora font-bold"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm uppercase font-lora font-bold"
+                      className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm uppercase font-lora font-bold"
                     >
                       Email
                     </th>
                     <th
                       scope="col"
-                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm uppercase font-lora font-bold"
+                      className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800 xl:text-lg text-sm uppercase font-lora font-bold text-center"
                     >
                       Role
                     </th>
                     <th
                       scope="col"
-                      className="pr-5 pl-10 py-3  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm uppercase font-lora font-bold"
+                      className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800  xl:text-lg text-sm uppercase font-lora font-bold text-center"
                     >
-                      Subscription Plan
+                      Subscription
+                    </th>
+                    <th
+                      scope="col"
+                      className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800  text-center xl:text-lg text-sm uppercase font-lora font-bold"
+                    >
+                      Action
                     </th>
 
-                    
+
                   </tr>
                 </thead>
                 <tbody className="font-montserrat">
@@ -179,7 +256,7 @@ const ManageUsers = () => {
                       key={user?._id}
                       user={user}
                       indx={indx}
-                      // refetch={fetchBookings}
+                      handleDelete={handleDelete}
                     />
                   ))}
                 </tbody>
@@ -206,9 +283,8 @@ const ManageUsers = () => {
             <button
               onClick={() => handlePaginationButton(btnNum)}
               key={btnNum}
-              className={`hidden ${
-                currentPage === btnNum ? "bg-primary text-white" : ""
-              } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
+              className={`hidden ${currentPage === btnNum ? "bg-primary text-white" : ""
+                } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
             >
               {btnNum}
             </button>

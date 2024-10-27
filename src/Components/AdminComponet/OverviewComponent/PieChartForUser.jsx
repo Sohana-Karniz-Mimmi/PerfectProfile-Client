@@ -29,8 +29,12 @@ const PieChartForUser = () => {
     { name: "Free", value: userCounts?.free },
     { name: "Premium", value: userCounts?.premium },
   ];
+  
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  // const COLORS = ["#0088FE", "#00C49F", "#FFBB28",];
+  // const COLORS = ["#A0E7E5", "#B4F8C8", "#FBE7C6"];
+  const COLORS = ["#00ECFE", "#F56320", "#F6F90C",];
+
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({

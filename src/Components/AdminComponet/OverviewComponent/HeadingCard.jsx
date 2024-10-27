@@ -17,11 +17,20 @@ import { RiVipCrownLine } from "react-icons/ri";
 import TotalEarning from "./TotalEarning";
 import { HiTemplate } from "react-icons/hi";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { fetchPayments } from "../../../store/Features/Payment/PaymentSlice";
 
 const HeadingCard = () => {
   const user = useSelector((state) => state?.users?.totalUsers);
   const dispatch = useDispatch();
-  const templates = useSelector(selectTemplates); // Access templates from Redux store
+  const templates = useSelector(selectTemplates); 
+
+  const { totalAmount, status, currentPage } = useSelector(
+    (state) => state.payment
+  );
+
+  useEffect(() => {
+    dispatch(fetchPayments({ page: currentPage, limit: 10 }));
+  }, [status, dispatch]);
 
   const users = useSelector(selectAllUsersState);
 
@@ -114,7 +123,7 @@ const HeadingCard = () => {
             <p className="font-semibold md:text-4xl font-roboto">{totalPremiumUser}</p>
             <p className="flex items-center gap-1 font-semibold px-2 bg-[#00C8AA]/20 rounded-full h-5">
               <IoTrendingUpOutline className="text-lg p-0 text-[#2CACD5]" />
-              <span className="p-0 text-[#00C8AA] text-xs"> 8.07%</span>
+              <span className="p-0 text-[#00C8AA] text-xs"> 6.05%</span>
             </p>{" "}
           </div>
         </div>
@@ -137,7 +146,7 @@ const HeadingCard = () => {
             <p className="font-semibold md:text-4xl font-roboto">{templates?.length}</p>
             <p className="flex items-center gap-1 font-semibold px-2 bg-[#FE784A]/20 rounded-full h-5">
               <IoTrendingUpOutline className="text-lg p-0 text-[#FE784A]" />
-              <span className="p-0 text-[#FE784A] text-xs"> 8.07%</span>
+              <span className="p-0 text-[#FE784A] text-xs"> 9.04%</span>
             </p>{" "}
           </div>
         </div>
@@ -182,10 +191,10 @@ const HeadingCard = () => {
 
           </div>
           <div className="flex justify-between items-center">
-            <p className="font-semibold md:text-4xl font-roboto">{user}</p>
+            <p className="font-semibold md:text-4xl font-roboto">${totalAmount}</p>
             <p className="flex items-center gap-1 font-semibold px-2 bg-[#2CACD5]/20 rounded-full h-5">
               <IoTrendingUpOutline className="text-lg p-0 text-[#2CACD5]" />
-              <span className="p-0 text-[#2CACD5] text-xs"> 8.07%</span>
+              <span className="p-0 text-[#2CACD5] text-xs"> 12.07%</span>
             </p>{" "}
           </div>
         </div>

@@ -15,7 +15,7 @@ const DashboardLayout = () => {
   }, [dispatch, size, filter, search]);
 
   return (
-    <div className="md:flex justify-between bg-gray-50">
+    <div className="md:flex justify-between ">
       {/* Sidebar */}
       <div className="2xl:w-72 w-60 fixed z-50">
         <Sidebar />

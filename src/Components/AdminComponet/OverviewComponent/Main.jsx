@@ -5,7 +5,7 @@ import AdminHeader from "./AdminHeader";
 
 const Main = () => {
   return (
-    <div className="md:mt-0 mt-14 ">
+    <div className="md:mt-0 mt-14 bg-gray-50">
       <AdminHeader />
       <div className="md:p-6 p-2">
         <HeadingCard />
