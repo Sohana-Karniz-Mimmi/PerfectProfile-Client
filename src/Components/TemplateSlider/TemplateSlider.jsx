@@ -167,7 +167,7 @@ export default function App() {
           <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
             <DialogPanel className=" space-y-4 border bg-white p-12">
               <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
-                <div className="bg-white p-6 rounded-md flex md:flex-row flex-col items-center w-full lg:max-w-4xl mx-auto relative">
+                <div className="bg-white p-6 rounded-md flex md:flex-row flex-col items-center w-full md:max-w-2xl lg:max-w-4xl mx-auto relative">
                   {/* Close Icon */}
                   <button
                     onClick={() => set2ndIsOpen(false)}
@@ -177,7 +177,7 @@ export default function App() {
                   </button>
 
                   {/* Image Section */}
-                  <div className="md:w-1/2 w-full p-4">
+                  <div className="md:flex hidden md:w-1/2 w-full p-4">
                     <img
                       src={modalContent}
                       alt="Premium Template"
@@ -205,7 +205,7 @@ export default function App() {
                     </span>
 
                     {/* Use Template Button */}
-                    <div className="md:flex-row flex flex-col items-center w-full gap-2">
+                    <div className="lg:flex-row flex flex-col lg:items-center w-full gap-2">
                       <div className="card-actions justify-center ">
                         <button
                           onClick={() => (setIsOpen(true), set2ndIsOpen(false))}
