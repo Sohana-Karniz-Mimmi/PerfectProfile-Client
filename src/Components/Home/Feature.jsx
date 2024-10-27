@@ -1,68 +1,100 @@
-// spell-checker: disable
 import React from "react";
 import "./Feature.css";
 import Container from "../../Shared/Container";
 
 const Feature = () => {
   const data = [
-    {
-      feature: "Live Preview System",
-      image_url: "https://i.ibb.co.com/25xrSth/file.png",
-    },
+    // {
+    //   feature: "Live Preview System",
+    //   image_url: "https://i.ibb.co.com/25xrSth/file.png",
+    //   description: (
+    //     <>
+    //       Instant feedback allows you to see real-time updates as you edit,
+    //       making <br /> it easy to tailor your resume with various templates and
+    //       styles.
+    //     </>
+    //   ),
+    // },
     {
       feature: "Template Customization",
       image_url: "https://i.ibb.co.com/6Zpw8Cy/curriculum.png",
+      description: (
+        <>
+          Choose from a variety of templates to suit your personal style and
+          career goals.easy to tailor your resume with various templates and
+          styles.
+        </>
+      ),
     },
     {
-      feature: "Consultancy for Resume Building Guidance",
+      feature: "One to One Guidance",
       image_url: "https://i.ibb.co.com/30ZNZzq/operator.png",
+      description: (
+        <>
+          Our consultancy service offers personalized advice to help you
+          showcase your strengths effectively, making your resume more
+          attractive to employers.
+        </>
+      ),
     },
     {
       feature: "Version Control",
       image_url: "https://i.ibb.co.com/8KTpzw4/integration.png",
+      description: (
+        <>
+          Our version control feature allows you to easily revert to previous
+          drafts, making resume updates and revisions efficient and hassle-free.
+        </>
+      ),
     },
-    {
-      feature: "Multiple Export Options",
-      image_url: "https://i.ibb.co.com/gJWXG4Q/export.png",
-    },
+    // {
+    //   feature: "Multiple Export Options",
+    //   image_url: "https://i.ibb.co.com/gJWXG4Q/export.png",
+    //   description: (
+    //     <>
+    //       Our multiple export options ensure your resume is compatible with any{" "}
+    //       <br />
+    //       platform, making sharing and submitting easy.
+    //     </>
+    //   ),
+    // },
   ];
 
   return (
-    <>
-      <Container>
-        <div className="programs-container">
-          <h2 className="title  font-bold">Our Features</h2>
-          <ul className="cards">
-            {data.map((item, index) => (
-              <li key={index} className="card" style={{ "--index": index + 1 }}>
-                <div className="card__content border-2 ">
-                  <div className="flex justify-between  items-center">
-                    <div className="">
-                      <span className="">{item?.feature}</span>
-                      <h3 className="card-title text-xl md:text-3xl lg:text-5xl ">
-                        {item.feature}
-                      </h3>
-                      {/* <p className="card-description">
-                  {item.degree}
-                  <br />
-                  {item.session}
-                  </p> */}
-                    </div>
-                    <div className="ml-12">
-                      <img
-                        className=" w-10 md:w-32 lg:w-60 text-white"
-                        src={item.image_url}
-                        alt={item.feature}
-                      />
-                    </div>
+    <Container>
+      <div className="programs-container ">
+        <h2 className="title font-bold">Our Features</h2>
+        <ul className="cards">
+          {data.map((item, index) => (
+            <li key={index} className="card " style={{ "--index": index + 1 }}>
+              <div className="card__content  lg:w-[1000px] mx-auto">
+                <div className="bg-white border-t-4 border-b-0 h-40 rounded-t-2xl border-primary">
+                  <h1 className="text-primary card-title text-2xl md:text-3xl lg:text-4xl font-bold mt-2 pt-14 pl-5 font-lora">
+                    {item?.feature}
+                  </h1>
+                </div>
+                <div className="flex   md:px-5 space-y-5 lg:space-y-0 lg:space-x-5 h-52">
+                  <div className="text-center lg:text-left max-w-xs lg:max-w-none">
+                    <p className="card-description text-base md:text-lg break-words mt-2 pt-5 font-montserrat lg:w-5/6">
+                      {item.description}
+                    </p>
+                  </div>
+                  <div className="flex justify-center items-center mt-5 lg:mt-0">
+                    {" "}
+                    {/* Add mt-5 for spacing on smaller screens */}
+                    <img
+                      className="  w-[22rem] h-44 text-white -mt-52"
+                      src={item.image_url}
+                      alt={item.feature}
+                    />
                   </div>
                 </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Container>
-    </>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Container>
   );
 };
 

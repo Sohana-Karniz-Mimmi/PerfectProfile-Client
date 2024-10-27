@@ -13,7 +13,8 @@
   .programs-container {
     max-width: 80vw;
     margin: 0 auto;
-    padding: 2rem 0;
+    /* margin-top: rem; */
+    /* padding: 2rem 0; */
   }
   
   .title {
@@ -33,7 +34,7 @@
   .cards {
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 2rem;
     padding-bottom: calc(var(--numcards) * var(--card-top-offset));
     margin-bottom: var(--card-margin);
   }
@@ -48,18 +49,21 @@
   }
   
   .card__content { 
-    display: flex;
-    align-items: center;
-    padding: 7rem;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    /* padding: 7rem; */
     border-radius: 1rem;
-    background: radial-gradient(circle,#2CACD5, #00C8AA); /* Darker gradient */
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to left, #2CACD5 40%, #00C8AA 100%);
+
+
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     color: rgb(255, 255, 255); /* Text color for readability on dark background */
     }
   
   .card-description {
     font-size: 1.2em;
-    color: #ffff00;
+    color:white;
   }
   
   /* Scroll-Driven Animation Support */

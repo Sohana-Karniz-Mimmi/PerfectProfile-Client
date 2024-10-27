@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../Hook/useAuth";
 import useAxiosPublic from "../Hook/useAxiosPublic";
 import { Link } from "react-router-dom";
-
+import foundImg from "../assets/error/download.jpeg";
 const PurchaseHistory = () => {
   const [payments, setPayments] = useState([]);
   const axiosPublic = useAxiosPublic();
