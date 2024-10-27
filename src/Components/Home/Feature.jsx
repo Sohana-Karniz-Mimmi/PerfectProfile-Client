@@ -1,20 +1,21 @@
 import React from "react";
 import "./Feature.css";
 import Container from "../../Shared/Container";
+import pdf from "../../assets/MainFeature Icon/icons8-pdf-100.png";
 
 const Feature = () => {
   const data = [
-    // {
-    //   feature: "Live Preview System",
-    //   image_url: "https://i.ibb.co.com/25xrSth/file.png",
-    //   description: (
-    //     <>
-    //       Instant feedback allows you to see real-time updates as you edit,
-    //       making <br /> it easy to tailor your resume with various templates and
-    //       styles.
-    //     </>
-    //   ),
-    // },
+    {
+      feature: "Live Preview System",
+      image_url: "https://i.ibb.co.com/25xrSth/file.png",
+      description: (
+        <>
+          Instant feedback allows you to see real-time updates as you edit,
+          making it easy to tailor your resume with various templates and
+          styles.
+        </>
+      ),
+    },
     {
       feature: "Template Customization",
       image_url: "https://i.ibb.co.com/6Zpw8Cy/curriculum.png",
@@ -47,17 +48,16 @@ const Feature = () => {
         </>
       ),
     },
-    // {
-    //   feature: "Multiple Export Options",
-    //   image_url: "https://i.ibb.co.com/gJWXG4Q/export.png",
-    //   description: (
-    //     <>
-    //       Our multiple export options ensure your resume is compatible with any{" "}
-    //       <br />
-    //       platform, making sharing and submitting easy.
-    //     </>
-    //   ),
-    // },
+    {
+      feature: "Multiple Export Options",
+      image_url: 'https://i.ibb.co.com/QFMD4n3/1.png',
+      description: (
+        <>
+          Our multiple export options ensure your resume is compatible with any
+          platform, making sharing and submitting easy.
+        </>
+      ),
+    },
   ];
 
   return (
@@ -83,7 +83,7 @@ const Feature = () => {
                     {" "}
                     {/* Add mt-5 for spacing on smaller screens */}
                     <img
-                      className="  w-[22rem] h-44 text-white -mt-52"
+                      className="  w-[21rem] h-40 text-white -mt-52"
                       src={item.image_url}
                       alt={item.feature}
                     />

@@ -1217,7 +1217,7 @@ const ResumeEditPage = () => {
             </div>
           )} */}
 
-          <div className="flex justify-between mt-12 pb-4">
+          <div className="sm:flex sm:space-y-0 space-y-2 justify-between mt-12 pb-4">
             {currentStep >= 1 && (
               <button
                 type="button"
@@ -1228,6 +1228,8 @@ const ResumeEditPage = () => {
                 <FaBackward /> Previous
               </button>
             )}
+
+            {/* <div className="sm:flex gap-3 sm:space-y-0 space-y-2"> */}
 
             <div className="flex gap-3">
               <button
