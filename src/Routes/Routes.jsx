@@ -31,6 +31,7 @@ import PurchaseHistory from "../Pages/PurchaseHistory";
 import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
 import SessionRequest from "../Pages/ConsultantDashboard/SessionRequest";
 import Profile from "../Pages/ConsultantDashboard/Profile";
+import BookingForm from "../Pages/Consultation/BookingForm";
 import Templats from "../Components/DrawerComponent/Templates";
 import Designs from "../Components/DrawerComponent/Designs";
 import Pricings from "../Components/DrawerComponent/Pricings";
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "/consultation",
         element: <Consultation />,
+      },
+      {
+        path: "/:consultantId",
+        element: <BookingForm />,
       },
 
       {
