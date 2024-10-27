@@ -145,7 +145,7 @@ const ManageUsers = () => {
     <>
       <div className="container mx-auto md:p-6 p-2 md:mt-0 mt-20 ">
         <Helmet>
-          <title>Manage Users</title>
+          <title>Manage Users - PerfectProfile</title>
         </Helmet>
 
         <div className="flex items-center pb-6 gap-x-3">
@@ -213,8 +213,7 @@ const ManageUsers = () => {
               <table className="min-w-full leading-normal">
                 <thead className="bg-gray-50 ">
                   <tr className=" text-sm">
-                    <th
-                      scope='col'
+                    <th scope='col'
                       className='text-center px-4 py-3.5  border-b border-gray-200 text-gray-800 text-sm uppercase font-normal'
                     >
                       #
