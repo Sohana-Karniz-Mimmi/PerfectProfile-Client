@@ -178,7 +178,7 @@ const ManageUsers = () => {
             onSubmit={handleSearch}
             className="flex-grow font-roboto font-medium w-full"
           >
-            <div className="flex p-1 overflow-hidden border focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
+            <div className="flex overflow-hidden border focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
             <button className="px-3 py-3 text-sm font-medium tracking-wider uppercase rounded bg-none transition-colors duration-300 transform focus:outline-none">
                 <FaSearch className="font-bold" />
               </button>
@@ -285,7 +285,7 @@ const ManageUsers = () => {
             <button
               onClick={() => handlePaginationButton(btnNum)}
               key={btnNum}
-              className={`hidden ${currentPage === btnNum ? "bg-primary text-white" : ""
+              className={` ${currentPage === btnNum ? "bg-primary text-white" : ""
                 } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white`}
             >
               {btnNum}

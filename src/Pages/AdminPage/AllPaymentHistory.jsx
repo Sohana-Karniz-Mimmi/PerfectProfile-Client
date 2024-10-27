@@ -114,12 +114,12 @@ const AllPaymentHistory = () => {
         </button>
 
         {/* Number of page */}
-        <div className="hidden lg:flex">
+        <div className="flex">
           {pages.map((btnNum) => (
             <button
               onClick={() => handlePaginationButton(btnNum)}
               key={btnNum}
-              className={`hidden ${currentPage === btnNum ? "bg-primary text-white" : ""
+              className={` ${currentPage === btnNum ? "bg-primary text-white" : ""
                 } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white hidden`}
             >
               {btnNum}
