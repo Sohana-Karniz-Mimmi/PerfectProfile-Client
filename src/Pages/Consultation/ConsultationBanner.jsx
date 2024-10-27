@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import img from '../../assets/banner/session-banner.png'
 const ConsultationBanner = () => {
     return (
-        <div className="flex flex-col  lg:flex-row justify-between items-center px-2 lg:px-9 py-8 mb-9 lg:mb-7 h-[48rem] lg:h-[20rem] mt-6 rounded-lg bg-cyan-50">
+        <div className="flex flex-col  lg:flex-row justify-between items-center px-2 lg:px-9 py-11 mb-9 lg:mb-7 h-[52rem] lg:h-[20rem] mt-6 rounded-lg bg-cyan-50">
         <div className='pl-2'>
           <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl font-lora ">Struggling with Your Resume? Our Experts Are Here to Help.</h1>
           <p className="text-gray-500 text-sm md:text-[15px] lg:text-base xl:w-[44rem] lg:w-[35rem] md:w-[39rem] font-montserrat mt-4">
