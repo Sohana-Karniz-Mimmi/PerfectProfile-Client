@@ -34,7 +34,6 @@ import Container from "../../Shared/Container";
 import Templats from "../../Components/DrawerComponent/Templates";
 import Pricings from "../../Components/DrawerComponent/Pricings";
 import Designs from "../../Components/DrawerComponent/Designs";
-import "./Final.css"
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
   const info = useLoaderData();
@@ -324,7 +323,7 @@ const FinalResume = () => {
         >
           {/* Template section */}
           <div
-            className={`transform transition-all duration-1000 ease-in-out border border-green-500 ${
+            className={`transform transition-all duration-1000 ease-in-out  ${
               activeComponent
                 ? " lg:w-full xl:w-2/3 2xl:w-3/4"
                 : "lg:w-3/4 xl:w-2/3 2xl:w-3/4"
@@ -371,7 +370,7 @@ const FinalResume = () => {
 
           {/* Button Section */}
           <div
-            className={`border border-rose-500 ${
+            className={` ${
               activeComponent
                 ? "lg:w-full xl:w-1/3 2xl:w-1/4"
                 : "lg:w-1/3 xl:w-1/3 2xl:w-1/4"
