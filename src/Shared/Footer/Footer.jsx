@@ -76,8 +76,8 @@ const Footer = () => {
             <LinkGroup header="Company">
               <NavLink link="about" label="About PerfectProfile" />
               <NavLink link="/contact" label="Contact & Support" />
-              <NavLink link="/#" label="Terms" />
-              <NavLink link="/#" label="Setting & Privacy" />
+              <NavLink link="/terms&conditions" label="Terms & Conditions" />
+              <NavLink link="/privacy-policy" label="Privacy Policy" />
             </LinkGroup>
             <LinkGroup header="Quick Links">
               <NavLink link="/pricing" label="Premium Support" />
