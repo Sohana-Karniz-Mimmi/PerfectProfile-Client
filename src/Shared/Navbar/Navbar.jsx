@@ -60,7 +60,6 @@ const Navbar = () => {
       </li>
 
       <li>
-
         <NavLink
           className={({ isActive }) =>
             isActive
@@ -69,7 +68,6 @@ const Navbar = () => {
           }
           to={"/consultation"}
         >
-
           Consultation
         </NavLink>
       </li>
@@ -88,7 +86,6 @@ const Navbar = () => {
           Pricing{" "}
         </NavLink>{" "}
       </li>
-
 
       <li>
         {" "}
@@ -121,8 +118,6 @@ const Navbar = () => {
           Contact Us{" "}
         </NavLink>{" "}
       </li>
-    
-     
     </>
   );
 
@@ -240,6 +235,6 @@ const Navbar = () => {
       <Register />
     </div>
   );
-};;
+};
 
 export default Navbar;

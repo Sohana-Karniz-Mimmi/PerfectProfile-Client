@@ -67,7 +67,7 @@ const Footer = () => {
                 label="Cover Letter Examples"
               />
               <NavLink link="/pricing" label="Pricing" />
-              <NavLink link="/resource" label="Resource" />
+              {/* <NavLink link="/resource" label="Resource" /> */}
             </LinkGroup>
             <LinkGroup header="Company">
               <NavLink link="about" label="About PerfectProfile" />

@@ -6,19 +6,19 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 const HowWorks = () => {
   return (
-    <div className="mb-36">
-      <h1 className="font-bold lg:text-4xl  mt-28 text-3xl text-center ">
+    <div className="lg:mb-36 mb-24">
+      <h1 className="font-bold lg:text-4xl font-lora mt-28 text-3xl text-center ">
         <span className="border-b-4 rounded-sm border-primary">
           How It Works
         </span>
       </h1>
-      <div className="flex flex-col lg:flex-row justify-center mt-16 lg:mt-24 lg:items-start items-center gap-9">
+      <div className="flex flex-col lg:flex-row justify-center mt-16 lg:mt-24 lg:items-start items-center gap-4 lg:gap-9">
         {/* 1 */}
 
         <div className=" flex flex-col justify-center items-center w-60 gap-1 text-center">
           <img className="h-20 w-20" src={img1} alt="" />
-          <h1 className="font-bold text-xl">Book a Session</h1>
-          <p className="text-gray-500">
+          <h1 className="font-bold text-xl font-lora">Book a Session</h1>
+          <p className="text-gray-500 text-sm md:text-base font-montserrat">
             Schedule a consultation with one of our expert resume consultants at
             a time that suits you.
           </p>
@@ -30,8 +30,8 @@ const HowWorks = () => {
 
         <div className=" flex flex-col justify-center items-center w-60 gap-1 text-center">
           <img className="h-20 w-20" src={img2} alt="" />
-          <h1 className="font-bold text-xl">Live Guidance</h1>
-          <p className="text-gray-500">
+          <h1 className="font-bold text-xl font-lora">Live Guidance</h1>
+          <p className="text-gray-500 text-sm md:text-base font-montserrat">
             Join a Google Meet session where our consultant will help you build
             or update your resume from scratch.
           </p>
@@ -42,10 +42,10 @@ const HowWorks = () => {
         {/* 3 */}
         <div className=" flex flex-col justify-center items-center w-60 gap-1 text-center">
           <img className="h-20 w-20" src={img3} alt="" />
-          <h1 className="font-bold text-xl">
+          <h1 className="font-bold text-xl font-lora">
             Collaborative Editing & Feedback
           </h1>
-          <p className="text-gray-500">
+          <p className="text-gray-500text-sm md:text-base font-montserrat">
             Collaborate in real-time to refine your resume and receive expert
             feedback to make it stand out
           </p>
@@ -56,8 +56,8 @@ const HowWorks = () => {
         {/* 4 */}
         <div className=" flex flex-col justify-center items-center w-60 gap-1 text-center">
           <img className="h-20 w-20" src={img4} alt="" />
-          <h1 className="font-bold text-xl">Finalize & Download</h1>
-          <p className="text-gray-500">
+          <h1 className="font-bold text-xl font-lora">Finalize & Download</h1>
+          <p className="text-gray-500 font-montserrat text-sm md:text-base">
             Once completed, download your polished resume as PDF, PNG or JPEG.
           </p>
         </div>

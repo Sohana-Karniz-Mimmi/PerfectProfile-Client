@@ -261,7 +261,7 @@ const Contact = () => {
         <title>Contact Us- PerfectProfile</title>
       </Helmet>
       <section
-        className="lg:py-72 py-16 bg-primary relative"
+        className="lg:py-72 py-16 bg-primary relative h-[300px]"
         style={{
           backgroundImage: `url(${contact})`,
           backgroundSize: "cover",

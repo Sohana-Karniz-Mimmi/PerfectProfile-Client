@@ -22,6 +22,7 @@ const Register = () => {
   const {
     createUser,
     googleSignIn,
+    updateUserProfile,
     facebookSignIn,
     twitterSignIn,
     githubSignIn,
@@ -43,7 +44,7 @@ const Register = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
-
+    console.log(name);
     if (password.length < 6) {
       toast.error("Password should be at least 6 characters long.");
       return;
@@ -56,7 +57,7 @@ const Register = () => {
       toast.error("Passwords do not match.");
       return;
     }
-
+    console.log(e.target.name.value);
     const userInfo = {
       name,
       email,
@@ -64,9 +65,35 @@ const Register = () => {
       role: "user",
     };
 
+
+    const fetchUserCounts = async () => {
+      try {
+        const response = await axiosPublic.get("/users");
+        const users = response.data;
+        const activeUsersCount = users.filter(user => user.isActive).length; 
+        return {
+          new_users: 1, 
+          active_users: activeUsersCount 
+        };
+      } catch (error) {
+        console.error("Error fetching user counts:", error);
+        return {
+          new_users: 1,
+          active_users: 0 
+        };
+      }
+    };
     try {
       const result = await createUser(email, password);
+      const user = result.user;
+      // console.log(user, "this is usr 1");
+      updateUserProfile(name, null);
       await axiosPublic.post("/users", userInfo);
+
+      const userTrendsInfo = await fetchUserCounts(); 
+      const date = new Date();
+      await axiosPublic.post("/user-trends", { ...userTrendsInfo, date });
+
       toast.success("Successfully signed up!");
       document.getElementById("my_modal_4").close();
       navigate(from);
@@ -75,7 +102,6 @@ const Register = () => {
       toast.error("Sign up failed.");
     }
   };
-
   const handleSocialSignIn = async (socialProvider) => {
     try {
       const result = await socialProvider();

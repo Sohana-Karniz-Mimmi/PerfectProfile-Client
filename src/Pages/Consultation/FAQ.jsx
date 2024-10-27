@@ -38,16 +38,16 @@ const FAQ = () => {
   ];
   return (
     <div>
-      <div className="py-4 bg-white">
+      <div className=" bg-white">
         <div className=" mx-auto px-4 sm:px-6 lg:px-16 flex flex-col lg:flex-row lg:text-start text-center  lg:items-start justify-center gap-6 lg:gap-36 ">
           <div className="">
-            <h3 className="text-4xl mt-4 sm:text-4xl leading-normal font-bold tracking-tight ">
+            <h3 className=" mt-4 text-4xl font-lora leading-normal font-bold tracking-tight ">
               Frequently Asked <span className="text-primary"> Questions</span>
             </h3>
           </div>
 
           <div className="mt-4  lg:w-[50rem]">
-            <ul className="">
+            <ul className="font-montserrat">
               {/* 1st */}
               {faqData.map((data, index) => (
                 <li className="text-left mb-10">
