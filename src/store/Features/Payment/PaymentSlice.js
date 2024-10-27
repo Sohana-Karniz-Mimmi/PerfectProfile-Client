@@ -19,7 +19,7 @@ const paymentSlice = createSlice({
   initialState: {
     payments: [],
     totalPayments: 0,
-    totalAmount:0,
+    totalAmount: 0,
     totalPages: 0,
     currentPage: 1,
     loading: false,
