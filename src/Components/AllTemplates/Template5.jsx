@@ -54,7 +54,7 @@ const Template5 = ({ data, userData }) => {
       {userData?.careerObjective === "" ||
       userData?.careerObjective === undefined ? (
         <>
-          <section className="mb-4 px-3">
+          <section className="px-12 py-3 space-y-4">
             <h2 className=" uppercase text-center font-bold  border-b border-black ">
               career objective
             </h2>
@@ -69,7 +69,7 @@ const Template5 = ({ data, userData }) => {
         </>
       ) : (
         userData?.careerObjective !== "" && (
-          <section className="mb-4 px-3">
+          <section className="px-12 py-3 space-y-4">
             <h2 className=" uppercase text-center font-bold  border-b border-black ">
               career objective
             </h2>
@@ -78,12 +78,12 @@ const Template5 = ({ data, userData }) => {
         )
       )}
 
-      <div className="flex justify-center ">
+      <div className="flex justify-center px-12 py-3 space-y-4">
         {/* 1st */}
         <div className=" w-[16rem]">
           {/* Education */}
           {userData?.education?.length >= 1 && (
-            <section className="mb-2 mt-6 px-4">
+            <section className="mb-2 mt-6 ">
               <h2 className=" uppercase font-bold border-b border-black ">
                 Education
               </h2>
@@ -106,7 +106,7 @@ const Template5 = ({ data, userData }) => {
 
           {/* languages */}
           {userData?.languages && userData?.languages.length >= 1 && (
-            <section className="mb-2 mt-5 px-4">
+            <section className="mb-2 mt-5">
               <h2 className=" uppercase font-bold  border-b border-black">
                 language
               </h2>
@@ -164,7 +164,7 @@ const Template5 = ({ data, userData }) => {
 
             {/* Work Experience */}
             {userData?.workExperience && userData?.workExperience.length >= 1 && (
-              <section className="mb-2">
+              <section className="mb-2 ">
                 <h2 className=" font-bold uppercase  border-b border-black ">
                   Work Experience
                 </h2>

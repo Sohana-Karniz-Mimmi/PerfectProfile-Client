@@ -41,14 +41,14 @@ const Template2 = ({ data, userData, setUserData }) => {
     }
   };
 
-  console.log(data?.templateItem);
-  console.log(userData);
+  // console.log(data?.templateItem);
+  // console.log(userData);
 
   return (
     <div className="relative ">
       <div className="w-[790px] min-h-[1000px] mx-auto flex bg-white">
         {/* 1st */}
-        <div className="bg-[#353535] text-white lg:px-3 px-2 lg:w-[270px] w-[11rem] ">
+        <div className="bg-[#353535] text-white  px-12  lg:w-[270px] w-[11rem] ">
           <div className="lg:w-44 h-12 w-32 mx-auto px-2.5 py-4 mb-2 ">
             <img
               className="rounded-full lg:w-[9rem] h-36 w-36 object-cover cursor-pointer"
@@ -138,7 +138,7 @@ const Template2 = ({ data, userData, setUserData }) => {
         {/* 2nd */}
         <div className="w-full ">
           {/* Header - Personal Info */}
-          <header className="text-center mb-3  bg-[#F0F0F0] py-4 lg:py-9">
+          <header className="text-center mb-3  bg-[#F0F0F0] py-4  lg:py-9">
             <h1 className="text-3xl font-bold text-black uppercase">
               {" "}
               {userData?.name === "" || userData?.name === undefined
@@ -152,7 +152,7 @@ const Template2 = ({ data, userData, setUserData }) => {
                 : userData?.jobTitle}
             </p>
           </header>
-          <div className="lg:px-3 px-2">
+          <div className="px-12 py-3 space-y-4">
             {/* skills */}
             {/* {userData?.skills?.length >= 1 && (
               <section className="mb-1 space-y-3">
@@ -189,7 +189,7 @@ const Template2 = ({ data, userData, setUserData }) => {
                   <h2 className=" uppercase text-sm font-roboto font-bold  border-b border-black ">
                     About Me
                   </h2>
-                  <p className="mt-1 text-sm font-roboto break-words text-justify max-w-[450px]">
+                  <p className="mt-1 text-sm font-roboto break-words text-justify">
                     {userData?.careerObjective}
                   </p>
                 </section>

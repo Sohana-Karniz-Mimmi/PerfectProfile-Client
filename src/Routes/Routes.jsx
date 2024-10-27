@@ -24,7 +24,7 @@ import UserDashboardLayout from "../Components/MyProfile/UserDashboardLayout";
 import ProfileInfo from "../Components/MyProfile/ProfileInfo";
 import BeforeEditingProfile from "../Components/MyProfile/BeforeEditingProfile";
 import Favorite from "../Pages/Favorites/Favorite";
-import ResourcePage from "../Pages/Resources/ResourcePage";
+// import ResourcePage from "../Pages/Resources/ResourcePage";
 import Consultation from "../Pages/Consultation/Consultation";
 import MakeConsultant from "../Pages/AdminPage/ManageConsultants/MakeConsultant";
 import PurchaseHistory from "../Pages/PurchaseHistory";
@@ -32,11 +32,16 @@ import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
 import SessionRequest from "../Pages/ConsultantDashboard/SessionRequest";
 import Profile from "../Pages/ConsultantDashboard/Profile";
 import BookingForm from "../Pages/Consultation/BookingForm";
+import Templats from "../Components/DrawerComponent/Templates";
+import Designs from "../Components/DrawerComponent/Designs";
+import Pricings from "../Components/DrawerComponent/Pricings";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -84,10 +89,10 @@ const router = createBrowserRouter([
         path: "/my-resume",
         element: <MyResume />,
       },
-      {
-        path: "/resource",
-        element: <ResourcePage />,
-      },
+      // {
+      //   path: "/resource",
+      //   element: <ResourcePage />,
+      // },
       {
         path: "/purchase",
         element: <PurchaseHistory />,
@@ -121,9 +126,7 @@ const router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: (
-      <DashboardLayout />
-    ),
+    element: <DashboardLayout />,
     children: [
       {
         index: true,
@@ -131,7 +134,7 @@ const router = createBrowserRouter([
           <Statistics />
           // <PrivetRoute>
           //   <AdminRoute>
-             
+
           //   </AdminRoute>
           // </PrivetRoute>
         ),
@@ -142,7 +145,7 @@ const router = createBrowserRouter([
           <ManageUsers />
           // <PrivetRoute>
           //   <AdminRoute>
-             
+
           //   </AdminRoute>
           // </PrivetRoute>
         ),
@@ -158,8 +161,8 @@ const router = createBrowserRouter([
         ),
       },
 
-
-       { path: "subscription",
+      {
+        path: "subscription",
         element: (
           <PrivetRoute>
             <AdminRoute>
@@ -174,16 +177,13 @@ const router = createBrowserRouter([
   // consultant dashboard
   {
     path: "/consultant-dashboard",
-    element: (
-      <DashboardLayout />
-    ),
+    element: <DashboardLayout />,
     children: [
       {
         index: true,
         element: (
           // session booking
           <SessionRequest />
-          
         ),
       },
       {
@@ -191,10 +191,8 @@ const router = createBrowserRouter([
         element: (
           // profile
           <Profile />
-          
         ),
       },
-  
     ],
   },
   {
@@ -211,6 +209,18 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/final-resume/template",
+    element: <Templats />
+  },
+  {
+    path: "/final-resume/pricing",
+    element: <Pricings />
+  },
+  {
+    path: "/final-resume/designs",
+    element: <Designs />
+  }
 ]);
 
 export default router;

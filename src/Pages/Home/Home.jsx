@@ -7,6 +7,7 @@ import Testomonial from "../../Components/Testomonial/Testomonial";
 import PremiumModal from "../../Components/Modal/PremiumModal";
 import ScrollToTop from "react-scroll-to-top";
 import { FaArrowUp } from "react-icons/fa6";
+import Feature from "../../Components/Home/Feature";
 // import Chat from "../../Components/LiveChat/Chat";
 
 const Home = () => {
@@ -25,6 +26,9 @@ const Home = () => {
       </div>
       <div>
         <PremiumFeature />
+      </div>
+      <div>
+        <Feature />
       </div>
       <div>
         <Testomonial></Testomonial>

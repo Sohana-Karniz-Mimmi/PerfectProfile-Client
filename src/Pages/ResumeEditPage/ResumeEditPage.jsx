@@ -32,7 +32,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { PiTranslateBold } from "react-icons/pi";
 import { GrCertificate } from "react-icons/gr";
 import useAuth from "../../Hook/useAuth";
-
+import { VscPreview } from "react-icons/vsc";
+import { LiaTimesSolid } from "react-icons/lia";
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";
 import Template2 from "../../Components/AllTemplates/Template2";
@@ -45,6 +46,8 @@ import "./Customize.css"
 
 const ResumeEditPage = () => {
   const { user } = useAuth();
+  const [previewTemplate, setPreviewTemplate] = useState(null);
+
 
   const [userData, setUserData] = useState({
     name: "",
@@ -384,7 +387,7 @@ const ResumeEditPage = () => {
         const response = await axiosPublic.get("/predefined-templates");
         setData(response.data);
       } catch (error) {
-        console.error("Error fetching predefined templates:", error);
+        // console.error("Error fetching predefined templates:", error);
       }
     };
 
@@ -398,7 +401,7 @@ const ResumeEditPage = () => {
   const queryParams = new URLSearchParams(location.search);
   const resumeId = queryParams.get("resumeId");
 
-  console.log("line no 50", myResumeTemplates);
+  // console.log("line no 50", myResumeTemplates);
   useEffect(() => {
     if (resumeId) {
       const getData = async () => {
@@ -409,7 +412,7 @@ const ResumeEditPage = () => {
           setMyResumeTemplates(data);
           setUserData(data);
         } catch (error) {
-          console.error("Error fetching resume data", error);
+          // console.error("Error fetching resume data", error);
         }
       };
       getData();
@@ -460,18 +463,18 @@ const ResumeEditPage = () => {
   };
   const navigate = useNavigate();
 
-  console.log(resumeId);
-  console.log("templateItem", id);
+  // console.log(resumeId);
+  // console.log("templateItem", id);
   // Function to generate a shareable link
   const handleShare = async () => {
-    console.log(resumeId);
+    // console.log(resumeId);
     const resumeData = {
       ...userData,
       templateItem: id,
       user_email: user?.email,
       resumeId: resumeId,
     };
-    console.log(resumeData);
+    // console.log(resumeData);
 
     try {
       const response = await axios.put(
@@ -479,7 +482,7 @@ const ResumeEditPage = () => {
         resumeData,
         { withCredentials: true }
       );
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
 
       if (response.data.success) {
         setShareLink(response.data.shareLink);
@@ -488,8 +491,16 @@ const ResumeEditPage = () => {
         navigate(`/resume/final-resume/${response.data.sendInfo.templateID}`);
       }
     } catch (error) {
-      console.error("Error generating share link:", error);
+      // console.error("Error generating share link:", error);
     }
+  };
+
+  const closeModal = () => {
+    setPreviewTemplate(null);
+  };
+
+  const handlePreview = (template) => {
+    setPreviewTemplate(template); // Set the selected template for preview
   };
 
   return (
@@ -506,23 +517,21 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${
-                currentStep === step.id
-                  ? "text-white font-montserrat font-medium"
-                  : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
+                ? "text-white font-montserrat font-medium"
+                : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500 font-montserrat font-medium"
-              }`}
+                }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center ${
-                  currentStep === step.id
-                    ? "  text-black"
-                    : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center ${currentStep === step.id
+                  ? "  text-black"
+                  : isStepCompleted(step.id)
                     ? " rounded-full text-rose-700"
                     : ""
-                }`}
+                  }`}
               >
                 {isStepCompleted(step.id) ? (
                   <span className="text-2xl text-secondary">
@@ -570,9 +579,8 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     placeholder="Your full name"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
-                      errors.name ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.name ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("name", {
                       // required: "Full name is required",
                       onChange: (e) =>
@@ -614,9 +622,8 @@ const ResumeEditPage = () => {
                   <input
                     type="email"
                     placeholder="example@gmail.com"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${
-                      errors.email ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${errors.email ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
@@ -638,9 +645,8 @@ const ResumeEditPage = () => {
                   <input
                     type="tel"
                     placeholder="+1-212-456-7890"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
-                      errors.phone ? "border-red-500" : "border-gray-400"
-                    } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.phone ? "border-red-500" : "border-gray-400"
+                      } focus:border-gray-400`}
                     {...register("phone", {
                       // required: "Phone is required",
                       pattern: {
@@ -797,9 +803,8 @@ const ResumeEditPage = () => {
                           dateFormat="MMMM yyyy"
                           showMonthYearPicker
                           placeholderText="Select End Date"
-                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${
-                            entry.isCurrent ? "opacity-35" : "bg-transparent"
-                          }`}
+                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${entry.isCurrent ? "opacity-35" : "bg-transparent"
+                            }`}
                           wrapperClassName="w-full"
                           disabled={entry.isCurrent} // Disable if "Currently working here" is checked
                         />
@@ -1217,25 +1222,38 @@ const ResumeEditPage = () => {
                 <FaBackward /> Previous
               </button>
             )}
-            {currentStep < 6 ? (
+
+            <div className="flex gap-3">
+
               <button
+                onClick={() => handlePreview(userData)}
                 type="button"
-                onClick={handleNextStep}
                 className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
               >
-                Next <FaForward />
+                <VscPreview /> Preview
               </button>
-            ) : (
-              <div>
+              {currentStep < 6 ? (
                 <button
-                  onClick={handleShare}
-                  type="submit"
+                  type="button"
+                  onClick={handleNextStep}
                   className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
                 >
-                  Save & Finalize
+                  Next <FaForward />
                 </button>
-              </div>
-            )}
+              ) : (
+                <div>
+                  <button
+                    onClick={handleShare}
+                    type="submit"
+                    className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                  >
+                    Save & Finalize
+                  </button>
+                </div>
+              )}
+
+            </div>
+
           </div>
         </form>
       </div>
@@ -1265,6 +1283,29 @@ const ResumeEditPage = () => {
           </p>
         </div>
       </div>
+
+      {/*  Modal Preview Implementation */}
+      {previewTemplate && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white p-5 rounded-2xl shadow-lg max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-lg font-semibold">Preview</h2>
+              <button onClick={closeModal}>
+                <LiaTimesSolid className="hover:text-red-500" size={25} />
+              </button>
+            </div>
+            <div className="overflow-y-auto max-h-[90vh]">
+              {id === "template1" && <Template1 userData={userData} />}
+              {id === "template2" && <Template2 userData={userData} />}
+              {id === "template3" && <Template3 userData={userData} />}
+              {id === "template4" && <Template4 userData={userData} />}
+              {id === "template5" && <Template5 userData={userData} />}
+              {id === "template6" && <Template6 userData={userData} />}
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

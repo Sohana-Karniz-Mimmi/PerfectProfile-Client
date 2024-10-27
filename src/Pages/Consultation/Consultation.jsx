@@ -18,6 +18,8 @@ import {
 } from "@headlessui/react";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import { Helmet } from "react-helmet-async";
+
 
 const Consultation = () => {
   const { user } = useAuth();
@@ -64,11 +66,14 @@ const Consultation = () => {
   };
 
   return (
-    <div>
-      <Container>
-        {/* banner */}
-        <ConsultationBanner></ConsultationBanner>
-        <WhyNeedSection></WhyNeedSection>
+   <div>
+    <Helmet>
+        <title>Consultation - PerfectProfile</title>
+      </Helmet>
+     <Container>
+      {/* banner */}
+      <ConsultationBanner></ConsultationBanner>
+      <WhyNeedSection></WhyNeedSection>
       </Container>
       <Team handleShowLogin={handleShowLogin}></Team>
       <Container>

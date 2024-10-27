@@ -77,7 +77,7 @@ const Login = () => {
         productName: "free",
         role: "user",
       };
-      console.log(user.email, "hlw world");
+
       await axiosPublic.post("/users", userInfo);
       toast.success("Login Successful!");
       document.getElementById("my_modal_3").close();

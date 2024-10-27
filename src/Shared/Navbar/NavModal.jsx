@@ -135,7 +135,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
             <div className="bg-white rounded-xl p-6">
               <Menu.Item>
                 {({ active }) => (
-                  <Link to={`userDashboard/editingProfile`}>
+                  <Link to={`/userDashboard/editingProfile`}>
                     <button
                       className={`${
                         active ? "bg-white" : ""
