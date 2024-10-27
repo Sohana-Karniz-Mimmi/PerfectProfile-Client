@@ -21,17 +21,14 @@ const TeamProfile = ({consultants, handleShowLogin}) => {
     const name = form.name.value;
     const email = form.email.value;
     const number = form.number.value;
-    const currentJob = form.currentJob.value;
-    const currentIndustry = form.currentIndustry.value;
-    const desiredJob = form.desiredJob.value;
-    const desiredIndustry = form.desiredIndustry.value;
+    const resumeType = form.resumeType.value;
     const consultant = form.consultant.value;
     const resume = form.resume.value;
-    console.log({ name, email, number, currentJob, currentIndustry,desiredJob, desiredIndustry, consultant, resume }); 
+    console.log({ name, email, number, resumeType, consultant, resume }); 
   
 
     const bookingData = {
-        name, email, number, currentJob, currentIndustry,desiredJob, desiredIndustry, consultant, resume,  
+        name, email, number, resumeType, consultant, resume,  
         bookingRequestedAt: new Date().toISOString().split("T")[0],
         bookingRequest : "pending"
         

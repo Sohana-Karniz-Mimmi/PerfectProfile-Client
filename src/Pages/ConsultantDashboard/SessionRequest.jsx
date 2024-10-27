@@ -21,6 +21,29 @@ const SessionRequest = () => {
     })
     console.log(data)
 
+
+    // Function to validate if the input is a URL
+  const isValidUrl = (string) => {
+    try {
+      new URL(string);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  };
+
+
+    // to see if the input is url
+    const validateUrl = (string)=>{
+      try{
+        new URL(string);
+        return true;
+      }
+      catch(err){
+        return false;
+      }
+    }
+
     // make consultant
     const handleAccept = async (user) => {
 
@@ -89,7 +112,7 @@ const SessionRequest = () => {
               <tr>
                 <th
                   scope="col"
-                  className="py-3.5 px-3 text-xl font-bold text-left rtl:text-right "
+                  className="py-3.5 px-3 text-xl font-lora font-bold text-left rtl:text-right "
                 >
                   <div className="flex items-center gap-x-3">
                     <span>Name</span>
@@ -98,7 +121,7 @@ const SessionRequest = () => {
 
                 <th
                   scope="col"
-                  className="py-3.5 px-3 text-xl font-bold text-left rtl:text-right "
+                  className="py-3.5 px-3 text-xl font-bold font-lora text-left rtl:text-right "
                 >
                   <div className="flex items-center gap-x-3">
                     <span>Email</span>
@@ -106,7 +129,7 @@ const SessionRequest = () => {
                 </th>
                 <th
                   scope="col"
-                  className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
+                  className="py-3.5 px-4 text-xl font-bold font-lora text-left rtl:text-right "
                 >
                   <div className="flex items-center gap-x-3">
                     <span>Number</span>
@@ -114,39 +137,39 @@ const SessionRequest = () => {
                 </th>
                 <th
                   scope="col"
-                  className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
+                  className="py-3.5 px-4 text-xl font-lora font-bold text-left rtl:text-right "
                 >
-                  <div className="flex items-center gap-x-3">
-                    <span>Current Job</span>
+                  <div className="flex items-center font-lora gap-x-3">
+                    <span>Resume Type</span>
                   </div>
                 </th>
                 <th
                   scope="col"
-                  className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
+                  className="py-3.5 px-4 text-xl font-lora font-bold text-left rtl:text-right "
                 >
                   <div className="flex items-center gap-x-3">
-                    <span>Desired Job</span>
+                    <span>Resume</span>
                   </div>
                 </th>
                 <th
                   scope="col"
-                  className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
+                  className="py-3.5 px-4 text-xl font-lora font-bold text-left rtl:text-right "
                 >
-                  <div className="flex items-center gap-x-3">
-                    <span>Desired Industry</span>
-                  </div>
-                </th>
-                <th
-                  scope="col"
-                  className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
-                >
-                  <div className="flex items-center gap-x-3">
+                  <div className="flex items-center  font-lora gap-x-3">
                     <span>Requested At</span>
                   </div>
                 </th>
                 <th
                   scope="col"
-                  className="py-3.5 px-5  text-left rtl:text-right"
+                  className="py-3.5 px-4 text-xl font-lora font-bold text-left rtl:text-right "
+                >
+                  <div className="flex items-center gap-x-3">
+                    <span>Status</span>
+                  </div>
+                </th>
+                <th
+                  scope="col"
+                  className="py-3.5 px-5 font-lora  text-left rtl:text-right"
                 >
                   <div className="flex text-xl font-bold items-center gap-x-3">
                     <span>Action</span>
@@ -159,34 +182,61 @@ const SessionRequest = () => {
 
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200 ">
+            <tbody className="bg-white font-montserrat divide-y divide-gray-200 ">
               { data
-              .filter( user =>user.bookingRequest === "pending")
+              .filter( user =>user.bookingRequest === "pending" || user.bookingRequest === "accepted" || user.bookingRequest === "rejected" )
               .map((user) => (
                 <tr key={user._id}>
-                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                  <td className="px-4 py-4 text-sm text-gray-800  whitespace-nowrap">
                     {user.name}
                   </td>
 
-                  <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
+                  <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
                     {user.email}
                   </td>
-                  <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
+                  <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
                     {user.number}
                   </td>
-                  <td className="px-5 py-4 text-sm text-gray-500  whitespace-nowrap">
+                  <td className="px-5 py-4 text-sm text-gray-800  whitespace-nowrap">
                     {user.currentJob}
                   </td>
-                  <td className="px-5 py-4 text-sm text-gray-500  whitespace-nowrap">
-                    {user.desiredJob}
+                  <td className="px-5 py-4 text-sm text-gray-800  whitespace-nowrap">
+                  {
+                    user.resume && isValidUrl(user.resume) ? (
+                      <a href={user.resume} target="_blank" rel="noopener noreferrer" className="text-blue-800 underline">resume</a>
+
+                    ) :
+                    (
+                      <p className="text-gray-800">Not provided</p>
+
+                    )
+                  }
                   </td>
-                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                  {/* <td className="px-4 py-4 text-sm text-gray-800  whitespace-nowrap">
                    {user.desiredIndustry}
-                  </td>
-                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                  </td> */}
+                  <td className="px-4 py-4 text-sm text-gray-800  whitespace-nowrap">
                    {user.bookingRequestedAt}
                   </td>
-                  <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
+                  <td className='px-4 py-4 text-sm whitespace-nowrap'>
+                        <div className='flex items-center gap-x-2'>
+                          <p
+                            className={`px-3 py-1  ${
+                              user.bookingRequest === 'pending' &&
+                              'text-amber-500 bg-amber-100/60'
+                            } ${
+                              user.bookingRequest === 'accepted' &&
+                              'text-emerald-500 bg-emerald-100/60'
+                            } ${
+                              user.bookingRequest === 'rejected' &&
+                              'text-red-500 bg-red-100/60'
+                            }  text-xs  rounded-full`}
+                          >
+                            {user.bookingRequest}
+                          </p>
+                        </div>
+                      </td>
+                  <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
                    <div className="flex item-center justify-between  gap-5 pr-2">
                     <button onClick={() => handleAccept(user)}>
                     <IoPersonAddOutline className="text-primary text-2xl font-extrabold"/>

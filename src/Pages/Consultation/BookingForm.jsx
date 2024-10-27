@@ -68,80 +68,23 @@ const BookingForm = ({handleSubmit, user, consultants}) => {
                       </h1>
                       <div className="space-y-4">
                         {/* 1 */}
-                        <div className="relative">
-                        <label
-                          htmlFor="text"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                         Current Job Title(If Applicable)
-                        </label>
-                        <input
-                          type="text"
-                          name="currentJob"
-                        //   defaultValue={user?.displayName}
-                          placeholder="Enter your Current Job Position"
-                          className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                        />
-                      </div>
-
-                        {/* 2 */}
-
-                        <div className="relative">
-                            <label
-                              htmlFor="currentIndustry"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                            Current Industry
-                            </label>
-                            <select
-                              name="currentIndustry"
-                              id="currentIndustry"
-                              className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
-                            >
-                              <option value="">Select Industry</option>
-                              <option value="Technical">Technical</option>
-                              <option value="Non-Technical">
-                                Non-Technical
-                              </option>
-                            </select>
-                          </div>
-
-                          {/* 3 */}
+                      
                           <div className="relative">
                         <label
                           htmlFor="text"
                           className="block text-sm font-medium text-gray-700"
                         >
-                         Desired Job Title
+                        Resume Type
                         </label>
                         <input
                           type="text"
-                          name="desiredJob"
-                          placeholder="Enter your Desired Job Position"
+                          name="resumeType"
+                          placeholder="e.g., Web Developer, Graphic Designer, Software Engineer"
                           className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                         />
                       </div>
 
-                      {/* 4 */}
-                      <div className="relative">
-                            <label
-                              htmlFor="desiredIndustry"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                            Desired Industry
-                            </label>
-                            <select
-                              name="desiredIndustry"
-                              id="desiredIndustry"
-                              className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
-                            >
-                              <option value="">Select Desired industry</option>
-                              <option value="Technical">Technical</option>
-                              <option value="Non-Technical">
-                                Non-Technical
-                              </option>
-                            </select>
-                          </div>
+                    
 
                           {/* 5 */}
  <div className="relative">
