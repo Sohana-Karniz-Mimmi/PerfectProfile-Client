@@ -149,7 +149,7 @@ const ManageUsers = () => {
         </Helmet>
 
         <div className="flex items-center pb-6 gap-x-3">
-          <h2 className="text-xl text-gray-800 font-bold font-lora ">Manage Users</h2>
+          <h2 className="2xl:text-2xl text-xl text-gray-800 font-bold font-lora ">Manage Users</h2>
         </div>
 
         <div className=" flex w-full flex-col md:flex-row items-center gap-5">
