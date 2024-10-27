@@ -149,11 +149,11 @@ const ManageUsers = () => {
         </Helmet>
 
         <div className="flex items-center pb-6 gap-x-3">
-          <h2 className="text-2xl font-bold font-lora ">Manage Users</h2>
+          <h2 className="text-xl text-gray-800 font-bold font-lora ">Manage Users</h2>
         </div>
 
-        <div className="flex w-full flex-col xl:flex-row items-center gap-3">
-          <div className="md:max-w-sm relative flex items-center font-roboto font-medium text-base w-full">
+        <div className=" flex w-full flex-col md:flex-row items-center gap-5">
+          <div className="md:max-w-44 relative flex items-center font-roboto font-medium text-base w-full">
             <select
               onChange={(e) => {
                 setFilter(e.target.value);
@@ -164,7 +164,7 @@ const ManageUsers = () => {
               id="productName"
               className="border w-full appearance-none cursor-pointer focus:outline-none px-4 py-3 rounded"
             >
-              <option value="">Filter By Subscription</option>
+              <option value="">Subscription</option>
               <option value="free">Free</option>
               <option value="standard">Standard</option>
               <option value="premium">Premium</option>
@@ -178,27 +178,30 @@ const ManageUsers = () => {
             onSubmit={handleSearch}
             className="flex-grow font-roboto font-medium w-full"
           >
-            <div className="flex overflow-hidden rounded border">
+            <div className="flex p-1 overflow-hidden border focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
+            <button className="px-3 py-3 text-sm font-medium tracking-wider uppercase rounded bg-none transition-colors duration-300 transform focus:outline-none">
+                <FaSearch className="font-bold" />
+              </button>
               <input
-                className="px-6 py-3 w-full placeholder-gray-300 bg-white outline-none focus:placeholder-transparent placeholder:font-normal focus:outline-none rounded"
+                className="pr-6 pl-1 py-2 w-full placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
                 type="text"
                 // onChange={e => setSearchText(e.target.value)}
                 // value={searchText}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 name="search"
-                placeholder="Search by name, email..."
+                placeholder="Search By Name, Email..."
                 aria-label="Enter User Name"
               />
-              <button className="px-3 py-3 text-sm font-medium tracking-wider uppercase rounded bg-none transition-colors duration-300 transform focus:outline-none">
-                <FaSearch className="font-bold" />
+              <button className='lg:flex hidden px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#00C8AA] hover:bg-[#2CACD5] focus:[#FF0143] focus:outline-none'>
+                Search
               </button>
             </div>
           </form>
 
           <button
             onClick={handleReset}
-            className="px-2 md:px-4 font-roboto justify-center flex items-center gap-1 md:max-w-sm w-full py-3 text-base font-medium rounded border"
+            className="px-2 md:px-4 font-roboto justify-center flex items-center gap-1 py-3 text-base font-medium rounded border"
           >
             <TbRefresh /> Reset
           </button>
