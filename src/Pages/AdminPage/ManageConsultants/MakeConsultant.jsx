@@ -141,6 +141,14 @@ const MakeConsultant = () => {
                     </th>
                     <th
                       scope="col"
+                      className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
+                    >
+                      <div className="flex items-center gap-x-3">
+                        <span>Status</span>
+                      </div>
+                    </th>
+                    <th
+                      scope="col"
                       className="py-3.5 px-5  text-left rtl:text-right"
                     >
                       <div className="flex text-xl font-bold items-center gap-x-3">
