@@ -206,13 +206,13 @@ const FinalResume = () => {
   // Function to set active component based on icon clicked
   const handleIconClick = (component) => {
     setActiveComponent(component);
-    setActiveIcon(component)
+    setActiveIcon(component);
   };
 
   const closeDrawer = () => {
     setDrawerOpen(false);
     setActiveComponent(null);
-    setActiveIcon("")
+    setActiveIcon("");
   };
 
   return (
@@ -242,26 +242,41 @@ const FinalResume = () => {
       {/* <Container> */}
       <section className="flex justify-between min-h-screen">
         {/* Mini Sidebar */}
-        <div className="w-[50px] mt-[80px] fixed lg:block hidden border-r z-50 bg-white min-h-screen">
-          <div className="flex flex-col justify-center items-center">
-            <GoRepoTemplate
+        <div className="w-[80px] mt-[80px] fixed lg:block hidden border-r z-50 bg-white min-h-screen">
+          <div className="flex flex-col justify-center items-center gap-4 pt-10">
+            <div
               onClick={() => handleIconClick("template")}
-              className={`text-4xl cursor-pointer my-2 ${
-                activeIcon === "template" ? "text-secondary" : "text-black"
+              className={`text-sm cursor-pointer my-2 flex flex-col items-center font-lora text-center ${
+                activeIcon === "template"
+                  ? "text-secondary"
+                  : "text-black hover:text-secondary"
               }`}
-            />
-            <IoColorPaletteOutline
+            >
+              <GoRepoTemplate className="text-3xl" />
+              Templates
+            </div>
+            <div
               onClick={() => handleIconClick("designs")}
-              className={`text-4xl cursor-pointer my-2 ${
-                activeIcon === "designs" ? "text-secondary" : "text-black"
+              className={`text-sm cursor-pointer my-2 flex flex-col items-center font-lora text-center ${
+                activeIcon === "designs"
+                  ? "text-secondary"
+                  : "text-black hover:text-secondary"
               }`}
-            />
-            <LiaCrownSolid
+            >
+              <IoColorPaletteOutline className="text-3xl" />
+              Desings & Tools
+            </div>
+            <div
               onClick={() => handleIconClick("pricings")}
-              className={`text-4xl cursor-pointer my-2 ${
-                activeIcon === "pricings" ? "text-secondary" : "text-black"
+              className={`text-sm cursor-pointer my-2 flex flex-col items-center font-lora text-center ${
+                activeIcon === "pricings"
+                  ? "text-secondary"
+                  : "text-black hover:text-secondary"
               }`}
-            />
+            >
+              <LiaCrownSolid className="text-3xl" />
+              Upgrade Premium
+            </div>
           </div>
         </div>
 
@@ -272,21 +287,21 @@ const FinalResume = () => {
           //     ? "translate-x-0 mt-[80px] min-h-screen w-[350px] ml-[50px]"
           //     : "-translate-x-full mt-[80px] min-h-screen -ml-[50px] w-0"
           // }`}
-          className={`fixed top-0 left-0 bg-primary shadow-lg z-10 transition-transform duration-1000 ease-in-out ${
+          className={`fixed top-0 left-0 bg-gray-50 shadow-lg z-10 transition-transform duration-1000 ease-in-out overflow-y-auto ${
             activeComponent
-              ? "translate-x-0 mt-[80px] min-h-screen w-[350px] ml-[50px]"
-              : "-translate-x-full mt-[80px] min-h-screen -ml-[50px] w-0"
+              ? "translate-x-0 mt-[80px] min-h-screen w-[350px] ml-[80px]"
+              : "-translate-x-full mt-[80px] min-h-screen -ml-[80px] w-0"
           }`}
         >
-          <div className="flex justify-end">
+          <div className="flex justify-end border-b bg-white">
             <button
               onClick={closeDrawer}
               className={`transform transition-transform duration-1000 ease-in-out text-right flex justify-end px-4 py-3`}
             >
-              <FaTimes className="text-gray-600 text-2xl cursor-pointer" />
+              <FaTimes className="text-gray-800 text-2xl cursor-pointer" />
             </button>
           </div>
-          <div className="p-4">
+          <div className="xl:p-4 lg:pt-4 overflow-y-auto max-h-[calc(100vh-0px)]">
             {/* <h3 className="font-semibold text-lg">This is drawer</h3> */}
             {activeComponent === "template" && <Templats />}
             {activeComponent === "pricings" && <Pricings />}
@@ -302,23 +317,23 @@ const FinalResume = () => {
         <div
           className={`flex flex-col-reverse w-full lg:justify-between mt-[80px]  transform transition-all duration-1000 ease-in-out ${
             activeComponent
-              ? "lg:flex-col-reverse xl:flex-row lg:w-[624px] xl:w-[1040px] 2xl:w-full lg:ml-[400px]"
-              : "lg:ml-[50px] lg:w-[974px] xl:min-w-[1390px] 2xl:w-full lg:flex-row"
+              ? "lg:flex-col-reverse xl:flex-row lg:w-[594px] xl:w-[930px] 2xl:w-full lg:ml-[430px]"
+              : "lg:ml-[80px] lg:w-[944px] xl:w-[1280px] 2xl:w-full lg:flex-row"
           }`}
         >
           {/* Template section */}
           <div
-            className={`transform transition-all duration-1000 ease-in-out ${
+            className={`transform transition-all duration-1000 ease-in-out  ${
               activeComponent
                 ? " lg:w-full xl:w-2/3 2xl:w-3/4"
-                : "lg:w-2/3 xl:w-2/3 2xl:w-3/4"
+                : "lg:w-3/4 xl:w-2/3 2xl:w-3/4"
             }`}
           >
             <div
-              className={`w-fit border lg:block hidden border-secondary ${
+              className={`w-fit border lg:block hidden  border-secondary ${
                 activeComponent
-                  ? "lg:-ml-[88px] xl:-ml-[52px] 2xl:ml-32 lg:-mt-36 xl:-mt-24 lg:scale-[0.7] xl:scale-[0.8]"
-                  : "lg:scale-[0.7] xl:scale-[0.9] lg:-ml-[78px] xl:ml-[64px] 2xl:ml-60 xl:-mt-7 lg:-mt-40"
+                  ? " 2xl:ml-44 2xl:!-mt-[7px] lg:-mt-36 lg:-ml-24 xl:-mt-[100px] 2xl:scale-[0.9] lg:scale-[0.6]  xl:scale-[0.7]"
+                  : "lg:scale-[0.6] xl:scale-[0.7] 2xl:scale-[0.9] 2xl:ml-[510px] 2xl:-mt-[7px] xl:ml-36 xl:-mt-24 lg:ml-16 lg:-mt-40"
               }`}
             >
               <div ref={contentRef} id="element" className={``}>
@@ -364,8 +379,8 @@ const FinalResume = () => {
             <div
               className={`flex flex-col md:flex-row md:gap-2 md:py-8 gap-4  items-center justify-center ${
                 activeComponent
-                  ? "lg:w-full xl:w-full lg:flex-col lg:items-center xl:items-center lg:py-8 xl:py-9"
-                  : "lg:flex-col lg:items-center xl:items-center lg:py-9"
+                  ? "lg:w-full xl:w-full lg:flex-col lg:items-center xl:items-center lg:py-12 xl:py-12"
+                  : "lg:flex-col lg:items-center xl:items-center  lg:py-10"
               }`}
             >
               {/* <div className="lg:w-2/12 w-full flex flex-col lg:items-start items-center px-7 pt-10 gap-4"> */}

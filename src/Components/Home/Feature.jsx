@@ -1,6 +1,7 @@
 import React from "react";
 import "./Feature.css";
 import Container from "../../Shared/Container";
+import pdf from "../../assets/MainFeature Icon/icons8-pdf-100.png";
 
 const Feature = () => {
   const data = [
