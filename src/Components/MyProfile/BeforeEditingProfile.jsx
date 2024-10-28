@@ -11,94 +11,17 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const BeforeEditingProfile = () => {
   const { user, updateUserProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const [isEditingName, setIsEditingName] = useState(false);
-  const [username, setUsername] = useState("User not found");
-  const [tempUsername, setTempUsername] = useState("");
-  const [profilePhoto, setProfilePhoto] = useState(image);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [isUploading, setIsUploading] = useState(false);
 
-  const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [email, setEmail] = useState("");
-  const [tempEmail, setTempEmail] = useState("");
-
-  useEffect(() => {
-    if (user) {
-      setUsername(user.displayName || "User not found");
-      setTempUsername(user.displayName || "User not found");
-      setEmail(user.email || "");
-      setTempEmail(user.email || "");
-      setProfilePhoto(user.photoURL || image);
-    }
-  }, [user]);
-
-  const handleEditName = () => setIsEditingName(true);
-  const handleSaveName = () => {
-    setUsername(tempUsername);
-    setIsEditingName(false);
-  };
-
-  const handleCancelNameEdit = () => {
-    setTempUsername(username);
-    setIsEditingName(false);
-  };
-
-  const handleEditEmail = () => setIsEditingEmail(true);
-  const handleCancelEmailEdit = () => {
-    setTempEmail(email);
-    setIsEditingEmail(false);
-  };
-
-  const handleChangePhoto = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-      const reader = new FileReader();
-      reader.onload = () => setProfilePhoto(reader.result);
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleUpdateProfile = async () => {
-    let uploadedImageUrl = profilePhoto;
-
-    if (selectedFile) {
-      uploadedImageUrl = await uploadImageToImgbb(selectedFile);
-      if (!uploadedImageUrl) {
-        return;
-      }
-    }
-
-    const updatedProfile = {
-      name: tempUsername,
-      email: tempEmail,
-      photoURL: uploadedImageUrl,
-    };
-
-    try {
-      const response = await axiosPublic.patch(
-        `/updateProfile/${user?.email}`,
-        updatedProfile
-      );
-      if (response.status === 200) {
-        setUsername(tempUsername);
-        setProfilePhoto(uploadedImageUrl);
-        setEmail(tempEmail);
-        setTempUsername(tempUsername);
-        setTempEmail(tempEmail);
-        toast.success("Success", "Profile updated successfully!", "success");
-      } else {
-        toast.error("Error", "Failed to update profile.", "error");
-      }
-    } catch (error) {
-      console.error(error.message);
-      toast.error("Error", "Failed to update profile.", "error");
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+    updateUserProfile(name, null);
+    console.log(name, photo);
   };
 
   const handleSaveChanges = async (e) => {
     e.preventDefault();
-    await handleUpdateProfile();
   };
 
   const uploadImageToImgbb = async (file) => {
@@ -132,7 +55,7 @@ const BeforeEditingProfile = () => {
       <div className="md:mt-6 mt-28 lg:px-8 md:px-4 px-2">
         <h1 className="text-3xl font-bold font-lora">Your Account</h1>
         <div className="lg:w-full xl:w-2/3 2xl:w-1/2 w-full " id="general">
-          <form onSubmit={handleSaveChanges} className="w-full py-8">
+          <form onSubmit={handleSubmit} className="w-full py-8">
             {/* Profile Photo Section */}
             <div className="flex flex-col justify-between ">
               <h2 className="md:text-lg text-base font-bold mb-4 font-montserrat">
@@ -142,7 +65,7 @@ const BeforeEditingProfile = () => {
                 <div className="">
                   <div className="rounded-full border-8 p-1 border-l-primary border-r-secondary border-t-sky-400 border-b-sky-400 md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
                     <img
-                      src={profilePhoto}
+                      src={user?.photoURL}
                       alt="Profile"
                       className="w-full h-full rounded-full object-cover"
                     />
@@ -155,7 +78,6 @@ const BeforeEditingProfile = () => {
                     name="photo"
                     id="profilePhotoInput"
                     style={{ display: "none" }}
-                    onChange={handleChangePhoto}
                   />
                   <label htmlFor="profilePhotoInput">
                     <span className="py-2 px-4 hover:bg-secondary font-montserrat cursor-pointer border border-slate-300">
@@ -175,48 +97,43 @@ const BeforeEditingProfile = () => {
               </h1>
               <div className="flex justify-between items-center">
                 <div className="w-full md:w-1/2">
-                  {isEditingName ? (
-                    <div className="flex flex-col sm:flex-row text-sm sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
-                      <input
-                        type="text"
-                        name="name"
-                        value={tempUsername}
-                        onChange={(e) => setTempUsername(e.target.value)}
-                        className="border text-sm  py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
-                      />
-                      <div className="flex justify-end sm:justify-start space-x-2">
-                        <button
-                          type="button"
-                          className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                          onClick={handleSaveName}
-                        >
-                          Save
-                        </button>
-                        <button
-                          type="button"
-                          className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
-                          onClick={handleCancelNameEdit}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <h1 className="text-base font-montserrat">{username}</h1>
-                  )}
-                </div>
-                <div className="border">
-                  {!isEditingName && (
-                    <div className="w-full md:w-1/2">
+                  <div className="flex flex-col sm:flex-row text-sm sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
+                    <input
+                      type="text"
+                      name="name"
+                      onChange={(e) => {
+                        e.target.value;
+                      }}
+                      defaultValue={user?.displayName}
+                      className="border text-sm  py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
+                    />
+                    <div className="flex justify-end sm:justify-start space-x-2">
                       <button
                         type="button"
                         className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                        onClick={handleEditName}
                       >
-                        Edit
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
+                      >
+                        Cancel
                       </button>
                     </div>
-                  )}
+                  </div>
+
+                  <h1 className="text-base font-montserrat">{``}</h1>
+                </div>
+                <div className="border">
+                  <div className="w-full md:w-1/2">
+                    <button
+                      type="button"
+                      className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
+                    >
+                      Edit
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -230,53 +147,40 @@ const BeforeEditingProfile = () => {
               </h1>
               <div className="flex justify-between items-center">
                 <div className="w-full md:w-1/2">
-                  {isEditingEmail ? (
-                    <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
-                      <input
-                        type="email"
-                        name="email"
-                        value={tempEmail}
-                        onChange={(e) => setTempEmail(e.target.value)}
-                        className="border py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
-                      />
-                      <div className="flex justify-end sm:justify-start space-x-2">
-                        <button
-                          type="button"
-                          className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                          onClick={() => {
-                            setEmail(tempEmail); // Update email in state
-                            handleCancelEmailEdit();
-                          }}
-                        >
-                          Save
-                        </button>
-                        <button
-                          type="button"
-                          className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
-                          onClick={handleCancelEmailEdit}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <h1 className="md:text-base text-xs font-montserrat">
-                      {email}
-                    </h1>
-                  )}
-                </div>
-                <div>
-                  {!isEditingEmail && (
-                    <div className="">
+                  <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
+                    <input
+                      type="email"
+                      name="email"
+                      value={user?.email}
+                      className="border py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
+                    />
+                    <div className="flex justify-end sm:justify-start space-x-2">
                       <button
                         type="button"
                         className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                        onClick={handleEditEmail}
                       >
-                        Edit
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
+                      >
+                        Cancel
                       </button>
                     </div>
-                  )}
+                  </div>
+
+                  <h1 className="md:text-base text-xs font-montserrat"></h1>
+                </div>
+                <div>
+                  <div className="">
+                    <button
+                      type="button"
+                      className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
+                    >
+                      Edit
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -288,9 +192,8 @@ const BeforeEditingProfile = () => {
               <button
                 type="submit"
                 className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                disabled={isUploading}
               >
-                {isUploading ? "Uploading..." : "Save Changes"}
+                Save Changes
               </button>
             </div>
           </form>
