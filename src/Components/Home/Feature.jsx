@@ -44,7 +44,7 @@ const Feature = () => {
   return (
     <div className="programs-container ">
       <h2 className="title font-bold font-lora">Our Features</h2>
-      <p className="text-gray-800 text-[15px] font-montserrat text-center mb-12">
+      <p className="text-gray-800 text-[15px] font-montserrat text-center mb-12 lg:max-w-4xl mx-auto">
         Our features are designed to make resume building effortless and
         impactful. From customizable templates to one-on-one guidance, and
         seamless version control.
