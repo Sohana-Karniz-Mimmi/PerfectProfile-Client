@@ -62,7 +62,7 @@ const Feature = () => {
 
   return (
     <Container>
-      <div className="programs-container ">
+      <div className="programs-container">
         <h2 className="title font-bold">Our Features</h2>
         <ul className="cards">
           {data.map((item, index) => (
