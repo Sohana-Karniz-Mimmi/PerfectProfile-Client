@@ -87,7 +87,7 @@ const Register = () => {
       const result = await createUser(email, password);
       const user = result.user;
       // console.log(user, "this is usr 1");
-      updateUserProfile(name, null);
+      updateUserProfile(name);
       await axiosPublic.post("/users", userInfo);
 
       const userTrendsInfo = await fetchUserCounts(); 
