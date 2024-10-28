@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
 import image from "../../assets/profile image/FjU2lkcWYAgNG6d.jpg";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
-import ProfileInfo from "./ProfileInfo";
 import "./Profile.css";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
@@ -89,13 +86,13 @@ const BeforeEditingProfile = () => {
         setEmail(tempEmail);
         setTempUsername(tempUsername);
         setTempEmail(tempEmail);
-        Swal.fire("Success", "Profile updated successfully!", "success");
+        toast.success("Success", "Profile updated successfully!", "success");
       } else {
-        Swal.fire("Error", "Failed to update profile.", "error");
+        toast.error("Error", "Failed to update profile.", "error");
       }
     } catch (error) {
       console.error(error.message);
-      Swal.fire("Error", "Failed to update profile.", "error");
+      toast.error("Error", "Failed to update profile.", "error");
     }
   };
 
@@ -143,7 +140,7 @@ const BeforeEditingProfile = () => {
               </h2>
               <div className="flex justify-between items-center ">
                 <div className="">
-                  <div className="rounded-full border-8 p-1  border-secondary md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
+                  <div className="rounded-full border-8 p-1 border-l-primary border-r-secondary border-t-sky-400 border-b-sky-400 md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
                     <img
                       src={profilePhoto}
                       alt="Profile"

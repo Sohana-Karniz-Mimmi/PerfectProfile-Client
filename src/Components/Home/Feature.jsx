@@ -43,7 +43,7 @@ const Feature = () => {
 
   return (
     <div className="programs-container ">
-      <h2 className="title font-bold">Our Features</h2>
+      <h2 className="title font-bold font-lora">Our Features</h2>
       <p className="text-gray-800 text-[15px] font-montserrat text-center mb-12">
         Our features are designed to make resume building effortless and
         impactful. From customizable templates to one-on-one guidance, and
@@ -60,13 +60,13 @@ const Feature = () => {
               </div>
               <div className="flex flex-col lg:flex-row items-center md:px-5 space-y-5 lg:space-y-0 lg:space-x-5 h-auto lg:h-52">
                 <div className="text-center lg:text-left max-w-xs lg:max-w-none">
-                  <p className="card-description text-base md:text-lg break-words mt-2 pt-5 font-montserrat lg:w-5/6">
+                  <p className="card-description text-base md:text-lg break-words mt-2 p-2 md:pt-5 font-montserrat lg:w-5/6 ">
                     {item.description}
                   </p>
                 </div>
                 <div className="flex justify-center items-center mt-5 lg:mt-0">
                   <img
-                    className="w-40 h-40 md:w-56 md:h-56 lg:w-[22rem] lg:h-44 -mt-0 lg:-mt-52"
+                    className="w-28 h-28 md:w-56 md:h-56 lg:w-[22rem] lg:h-44 -mt-0 lg:-mt-52"
                     src={item.image_url}
                     alt={item.feature}
                   />
