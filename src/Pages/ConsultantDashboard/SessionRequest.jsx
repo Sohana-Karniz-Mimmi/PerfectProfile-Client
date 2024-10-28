@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { IoPersonAddOutline } from "react-icons/io5";
+import { IoPersonAddOutline, IoPersonRemoveOutline } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { CiCircleRemove } from "react-icons/ci";
+
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Container from "../../Shared/Container";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
+import { TiTick } from "react-icons/ti";
 const SessionRequest = () => {
   const axiosPublic = useAxiosPublic();
 
@@ -231,10 +234,10 @@ const SessionRequest = () => {
                         <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
                           <div className="flex item-center justify-between  gap-5 pr-2">
                             <button onClick={() => handleAccept(user)}>
-                              <IoPersonAddOutline className="text-primary text-2xl font-extrabold" />
+                              <TiTick className="text-green-400 border rounded-full border-green-500 text-2xl font-bold" />
                             </button>
                             <button onClick={() => handleRemove(user)}>
-                              <RiDeleteBin6Line className="text-red-500 text-2xl font-bold" />
+                              <CiCircleRemove className="text-red-500 text-3xl font-bold" />
                             </button>
                           </div>
                         </td>

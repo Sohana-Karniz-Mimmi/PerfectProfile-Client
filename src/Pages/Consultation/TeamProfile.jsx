@@ -139,9 +139,9 @@ const TeamProfile = ({ consultants, handleShowLogin }) => {
                     <div className="w-full px-3">
                       {user ? (
                         <>
-                          <Link to={`${consultant._id}`}
+                          <Link to={`/consultant/consultant-details/${consultant?._id}`}
                             // onClick={() => setIsOpen(true)}
-                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 capitalize font-lora  lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 capitalize font-montserrat  lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
                           >
                             View Profile
                           </Link>

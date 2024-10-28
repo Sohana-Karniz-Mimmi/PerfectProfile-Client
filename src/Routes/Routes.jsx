@@ -31,11 +31,11 @@ import PurchaseHistory from "../Pages/PurchaseHistory";
 import AllPaymentHistory from "../Pages/AdminPage/AllPaymentHistory";
 import SessionRequest from "../Pages/ConsultantDashboard/SessionRequest";
 import Profile from "../Pages/ConsultantDashboard/Profile";
-import BookingForm from "../Pages/Consultation/BookingForm";
 import Templats from "../Components/DrawerComponent/Templates";
 import Designs from "../Components/DrawerComponent/Designs";
 import Pricings from "../Components/DrawerComponent/Pricings";
 import ErrorPage from "../Pages/ErrorPage";
+import ConsultantDetails from "../Pages/Consultation/ConsultantDetails";
 import TermsAndConditions from "../Pages/TermsAndConditions.jsx/TermsAndConditions";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 
@@ -74,12 +74,12 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/consultation",
+        path: "/consultants",
         element: <Consultation />,
       },
       {
-        path: "/:consultantId",
-        element: <BookingForm />,
+        path: "/consultant/consultant-details/:id",
+        element: <ConsultantDetails />,
       },
 
       {
