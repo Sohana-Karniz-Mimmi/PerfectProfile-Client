@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import jsPDF from "jspdf";
 import domtoimage from "dom-to-image";
-import { FaEnvelope, FaHome, FaTimes } from "react-icons/fa";
+import { FaEnvelope, FaHome, FaRegFileAlt, FaTimes } from "react-icons/fa";
 import { FaApper, FaDollarSign, FaFileExport, FaShare } from "react-icons/fa6";
 import ShareLinkCopyModal from "./ShareLinkCopyModal";
 import { Menu } from "@headlessui/react";
@@ -16,6 +16,7 @@ import { BsFillFileEarmarkCheckFill } from "react-icons/bs";
 import { GoRepoTemplate } from "react-icons/go";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { LiaCrownSolid } from "react-icons/lia";
+import { RiCustomerServiceLine } from "react-icons/ri";
 
 /******** Templates **********/
 import Template1 from "../../Components/AllTemplates/Template1";
@@ -252,8 +253,8 @@ const FinalResume = () => {
                   : "text-black hover:text-secondary"
               }`}
             >
-              <GoRepoTemplate className="text-3xl" />
-              Templates
+              <FaRegFileAlt className="text-3xl" />
+              Explore Templates
             </div>
             <div
               onClick={() => handleIconClick("designs")}
@@ -263,8 +264,8 @@ const FinalResume = () => {
                   : "text-black hover:text-secondary"
               }`}
             >
-              <IoColorPaletteOutline className="text-3xl" />
-              Desings & Tools
+              <RiCustomerServiceLine className="text-3xl" />
+              Resume Guidance
             </div>
             <div
               onClick={() => handleIconClick("pricings")}
