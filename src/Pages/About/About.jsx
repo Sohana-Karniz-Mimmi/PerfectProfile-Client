@@ -11,6 +11,7 @@ import Question from "./Question";
 import ResumeAbout from "./ResumeAbout";
 import Heading from "../../Shared/Heading";
 import Button from "../../Shared/Button/Button";
+import AboutBanner from "./AboutBanner";
 
 const About = () => {
   return (
@@ -20,7 +21,7 @@ const About = () => {
       </Helmet>
       <ScrollRestoration />
 
-      <section
+      {/* <section
         className="text-white relative bg-cover bg-no-repeat h-[565px]"
         style={{
           background:
@@ -52,7 +53,8 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <AboutBanner img={teamImg} />
 
       {/* About Our Company */}
       <Container>

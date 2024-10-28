@@ -36,6 +36,8 @@ import Designs from "../Components/DrawerComponent/Designs";
 import Pricings from "../Components/DrawerComponent/Pricings";
 import ErrorPage from "../Pages/ErrorPage";
 import ConsultantDetails from "../Pages/Consultation/ConsultantDetails";
+import TermsAndConditions from "../Pages/TermsAndConditions.jsx/TermsAndConditions";
+import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +99,14 @@ const router = createBrowserRouter([
         path: "/purchase",
         element: <PurchaseHistory />,
       },
+      {
+        path: "/terms&conditions",
+        element: <TermsAndConditions />
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicy />
+      }
     ],
   },
   {

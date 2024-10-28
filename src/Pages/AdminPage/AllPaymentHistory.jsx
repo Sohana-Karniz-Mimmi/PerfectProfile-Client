@@ -5,6 +5,8 @@ import {
   setCurrentPage,
 } from "../../store/Features/Payment/PaymentSlice";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import PaymentHistoryDataRow from "./PaymentHistoryDataRow";
+import { Helmet } from "react-helmet-async";
 
 const AllPaymentHistory = () => {
   const dispatch = useDispatch();
@@ -30,106 +32,74 @@ const AllPaymentHistory = () => {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
-    <section className="container px-4 mx-auto">
-      <div className="flex flex-col">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden border border-gray-200  md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200 ">
-                <thead className="bg-gray-50 ">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <button className="flex items-center gap-x-2">
-                          <span>Serial</span>
-                        </button>
-                      </div>
-                    </th>
+    <section className="container mx-auto md:p-6 p-2 md:mt-0 mt-20 ">
+      <Helmet>
+        <title>Purchase History - Perfect Profile</title>
+      </Helmet>
 
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                    >
-                      User Name
-                    </th>
+      <div className="flex items-center gap-x-3">
+        <h2 className="2xl:text-2xl text-xl text-gray-800 font-bold font-lora ">Purchase History</h2>
+      </div>
 
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                    >
-                      Email ID
-                    </th>
+      <div className="pb-8 px-2 md:px-0 pt-2.5">
+        <div className="-mx-4 sm:-mx-8 px-2 sm:px-8 py-4 overflow-x-auto">
+          <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <table className="min-w-full leading-normal">
+              <thead className="bg-gray-50 ">
+                <tr className=" text-sm">
+                  <th scope='col'
+                    className='text-center px-4 py-3.5  border-b border-gray-200 text-gray-800 xl:text-lg text-sm  uppercase font-lora font-bold'
+                  >
+                    Serial
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm  uppercase font-lora font-bold"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800  text-left xl:text-lg text-sm uppercase font-lora font-bold"
+                  >
+                    Email
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800 xl:text-lg text-sm uppercase font-lora font-bold text-center"
+                  >
+                    Amount
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800  xl:text-lg text-sm uppercase font-lora font-bold text-center"
+                  >
+                    Transaction
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-1/6 px-4 py-3.5  border-b border-gray-200 text-gray-800  text-center xl:text-lg text-sm uppercase font-lora font-bold"
+                  >
+                    Subscription
+                  </th>
 
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                    >
-                      Amount
-                    </th>
 
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                    >
-                      Transaction ID
-                    </th>
-
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                    >
-                      Purchase Plan
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {payments?.map((payment, idx) => (
-                    <tr key={idx}>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700  whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <span>
-                            {(currentPage - 1) * itemsPerPage + idx + 1}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        {payment?.cus_name}
-                      </td>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 ">
-                          <h2 className="text-sm font-normal">
-                            {payment?.cus_email}
-                          </h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        <div className="flex items-center gap-x-2">
-                          <div>
-                            <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                              ${payment?.amount}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {payment?.tran_id}
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <span className="capitalize">{payment?.product_name}</span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                </tr>
+              </thead>
+              <tbody className="font-montserrat">
+                {payments?.map((payment, indx) => (
+                  <PaymentHistoryDataRow
+                    key={payment?._id}
+                    payment={payment}
+                    indx={indx}
+                  />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
+
 
       <div className="flex justify-center mt-12">
         {/* Previous Button */}
@@ -144,19 +114,18 @@ const AllPaymentHistory = () => {
         </button>
 
         {/* Number of page */}
-      <div className="hidden lg:flex">
-      {pages.map((btnNum) => (
-          <button
-            onClick={() => handlePaginationButton(btnNum)}
-            key={btnNum}
-            className={`hidden ${
-              currentPage === btnNum ? "bg-primary text-white" : ""
-            } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white hidden`}
-          >
-            {btnNum}
-          </button>
-        ))}
-      </div>
+        <div className="flex">
+          {pages.map((btnNum) => (
+            <button
+              onClick={() => handlePaginationButton(btnNum)}
+              key={btnNum}
+              className={` ${currentPage === btnNum ? "bg-primary text-white" : ""
+                } px-4 py-2 mx-1 border rounded-full sm:inline hover:bg-secondary hover:text-white hidden`}
+            >
+              {btnNum}
+            </button>
+          ))}
+        </div>
 
         {/* Next Button */}
         <button

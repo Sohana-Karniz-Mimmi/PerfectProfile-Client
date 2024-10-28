@@ -509,7 +509,7 @@ const ResumeEditPage = () => {
 
       <div className="sidebar lg:fixed lg:min-h-screen h-full xl:w-[20%] lg:w-[25%] w-[100%] lg:block bg-[#00000f] text-white p-6">
         <Link to="/">
-          <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4 uppercase">
+          <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-6 font-extrabold font-lora mb-4">
             Perfect<span className="text-primary">Profile</span>
           </h1>
         </Link>
@@ -517,21 +517,23 @@ const ResumeEditPage = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className={`flex items-center space-x-2 cursor-pointer ${currentStep === step.id
-                ? "text-white font-montserrat font-medium"
-                : isStepCompleted(step.id)
+              className={`flex items-center space-x-2 cursor-pointer ${
+                currentStep === step.id
+                  ? "text-white font-montserrat font-medium"
+                  : isStepCompleted(step.id)
                   ? "text-white font-bold font-montserrat"
                   : "text-gray-500 font-montserrat font-medium"
-                }`}
+              }`}
               onClick={() => handleStepClick(step.id)}
             >
               <span
-                className={`w-8 h-8 flex items-center justify-center ${currentStep === step.id
-                  ? "  text-black"
-                  : isStepCompleted(step.id)
+                className={`w-8 h-8 flex items-center justify-center ${
+                  currentStep === step.id
+                    ? "  text-black"
+                    : isStepCompleted(step.id)
                     ? " rounded-full text-rose-700"
                     : ""
-                  }`}
+                }`}
               >
                 {isStepCompleted(step.id) ? (
                   <span className="text-2xl text-secondary">
@@ -554,7 +556,7 @@ const ResumeEditPage = () => {
           <div className="flex items-center gap-2">
             <div className="w-full bg-gray-200 h-2 rounded">
               <div
-                className="bg-gradient-to-r from-secondary to-primary rounded-r-full h-full"
+                className="bg-gradient-to-r from-secondary via-[#006AFF] to-primary rounded-r-full h-full"
                 style={{ width: `${completionPercentage}%` }}
               />
             </div>
@@ -579,8 +581,9 @@ const ResumeEditPage = () => {
                   <input
                     type="text"
                     placeholder="Your full name"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.name ? "border-red-500" : "border-gray-400"
-                      } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
+                      errors.name ? "border-red-500" : "border-gray-400"
+                    } focus:border-gray-400`}
                     {...register("name", {
                       // required: "Full name is required",
                       onChange: (e) =>
@@ -622,8 +625,9 @@ const ResumeEditPage = () => {
                   <input
                     type="email"
                     placeholder="example@gmail.com"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${errors.email ? "border-red-500" : "border-gray-400"
-                      } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600  outline-none bg-transparent ${
+                      errors.email ? "border-red-500" : "border-gray-400"
+                    } focus:border-gray-400`}
                     {...register("email", {
                       // required: "Email is required",
                       pattern: {
@@ -645,8 +649,9 @@ const ResumeEditPage = () => {
                   <input
                     type="tel"
                     placeholder="+1-212-456-7890"
-                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${errors.phone ? "border-red-500" : "border-gray-400"
-                      } focus:border-gray-400`}
+                    className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none bg-transparent ${
+                      errors.phone ? "border-red-500" : "border-gray-400"
+                    } focus:border-gray-400`}
                     {...register("phone", {
                       // required: "Phone is required",
                       pattern: {
@@ -803,8 +808,9 @@ const ResumeEditPage = () => {
                           dateFormat="MMMM yyyy"
                           showMonthYearPicker
                           placeholderText="Select End Date"
-                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${entry.isCurrent ? "opacity-35" : "bg-transparent"
-                            }`}
+                          className={`border py-2 px-2 w-full placeholder:text-gray-600 outline-none  border-gray-400 focus:border-gray-400 ${
+                            entry.isCurrent ? "opacity-35" : "bg-transparent"
+                          }`}
                           wrapperClassName="w-full"
                           disabled={entry.isCurrent} // Disable if "Currently working here" is checked
                         />
@@ -1211,24 +1217,25 @@ const ResumeEditPage = () => {
             </div>
           )} */}
 
-          <div className="flex justify-between mt-12 pb-4">
+          <div className="sm:flex sm:space-y-0 space-y-2 justify-between mt-12 pb-4">
             {currentStep >= 1 && (
               <button
                 type="button"
                 onClick={handlePreviousStep}
-                className={`border border-black uppercase flex md:text-lg text-sm items-center gap-2 font-bold text-black md:py-3 py-2 px-5 ${currentStep ==
+                className={`border border-black uppercase flex md:text-base lg:text-lg items-center gap-2 font-bold text-black md:py-3 py-2 text-[12px] md:px-5 px-3 ${currentStep ==
                   1 && "opacity-0"}`}
               >
                 <FaBackward /> Previous
               </button>
             )}
 
-            <div className="flex gap-3">
+            {/* <div className="sm:flex gap-3 sm:space-y-0 space-y-2"> */}
 
+            <div className="flex gap-3">
               <button
                 onClick={() => handlePreview(userData)}
                 type="button"
-                className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                className="bg-primary uppercase font-bold md:text-base lg:text-lg flex items-center gap-2 text-white md:py-3 py-2 md:px-5 text-[12px] px-3"
               >
                 <VscPreview /> Preview
               </button>
@@ -1236,41 +1243,38 @@ const ResumeEditPage = () => {
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                  className="bg-primary uppercase font-bold md:text-base lg:text-lg flex items-center gap-2 text-white md:py-3 py-2 md:px-5 text-[12px] px-3"
                 >
                   Next <FaForward />
                 </button>
               ) : (
-                <div>
+                <div className="bg-primary uppercase font-bold md:text-base lg:text-lg flex items-center gap-2 text-white md:py-3 py-2 md:px-5 text-[12px] px-3">
                   <button
                     onClick={handleShare}
                     type="submit"
-                    className="bg-primary uppercase font-bold md:text-lg text-sm flex items-center gap-2 text-white md:py-3 py-2 px-5"
+                    className="uppercase"
                   >
                     Save & Finalize
                   </button>
                 </div>
               )}
-
             </div>
-
           </div>
         </form>
       </div>
       {/* Template preview area */}
       <div className="xl:w-[33%] 2xl:w-[27%] xl:block hidden  lg:p-8 px-2 flex lg:flex-col flex-col items-center border bg-gray-100 overflow-x-auto">
-        
-          <div
-            className="w-full h-full"
-            style={{
-              transform: "scale(0.50)",
-              transformOrigin: "top left",
-              height: "400px",
-            }}
-          >
-            {renderTemplate(id)}
-          </div>
-        
+        <div
+          className="w-full h-full"
+          style={{
+            transform: "scale(0.50)",
+            transformOrigin: "top left",
+            height: "400px",
+          }}
+        >
+          {renderTemplate(id)}
+        </div>
+
         <div className="flex flex-col justify-center items-center mt-28 ">
           <Link to={`/predefined-templates`}>
             <button className="font-roboto font-medium text-primary mb-2">
@@ -1305,7 +1309,6 @@ const ResumeEditPage = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };

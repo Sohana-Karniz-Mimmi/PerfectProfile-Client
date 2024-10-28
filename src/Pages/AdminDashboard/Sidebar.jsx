@@ -54,7 +54,7 @@ const Sidebar = () => {
             to="/"
             className="font-bold text-lg md:text-3xl gap-3 flex items-center"
           >
-            <h1 className="uppercase font-bold font-lora text-white">
+            <h1 className="font-bold font-lora text-white">
               <span>
                 Perfect
                 <span className="text-primary">Profile</span>
@@ -87,7 +87,7 @@ const Sidebar = () => {
           {/* Close Button for Mobile Devices */}
           <div className="hidden md:block px-4">
             <Link to="/" className="  ">
-              <h1 className="font-bold text-lg lg:text-2xl uppercase font-lora">
+              <h1 className="font-bold text-lg lg:text-2xl font-lora">
                 <span>
                   Perfect
                   <span className="text-primary">Profile</span>

@@ -258,10 +258,10 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Contact Us- PerfectProfile</title>
+        <title>Contact | PerfectProfile</title>
       </Helmet>
       <section
-        className="lg:py-72 py-16 bg-primary relative"
+        className="lg:py-80 py-16 bg-primary relative h-[300px]"
         style={{
           backgroundImage: `url(${contact})`,
           backgroundSize: "cover",
@@ -407,7 +407,7 @@ const Contact = () => {
                 </button>
               </form>
             </div>
-            <div className="lg:w-1/2 w-full px-8 py-4   space-y-4 flex flex-col shadow-lg items-center justify-center">
+            <div className="lg:w-1/2 w-full px-8 py-4 lg:block hidden  space-y-4 flex flex-col shadow-lg items-center justify-center">
               <div className="space-y-4">
                 <h2 className="font-montserrat text-3xl font-bold">
                   Get in touch

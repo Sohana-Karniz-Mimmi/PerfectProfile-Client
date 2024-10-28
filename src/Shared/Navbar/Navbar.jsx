@@ -61,6 +61,7 @@ const Navbar = () => {
 
       <li>
         <NavLink
+          onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
               ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
@@ -75,6 +76,7 @@ const Navbar = () => {
       <li>
         {" "}
         <NavLink
+          onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
               ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
@@ -181,7 +183,7 @@ const Navbar = () => {
             {menuOpen && (
               <ul
                 ref={modalRef}
-                className="absolute mt-2 p-2 shadow-lg !z-[1000] bg-white rounded-lg w-52 text-black space-y-2"
+                className="absolute mt-2 p-2 shadow-lg !z-[1000] bg-white rounded-lg w-52 text-black space-y-2 font-montserrat md:font-semibold font-normal"
               >
                 {navLinks}
               </ul>
@@ -195,7 +197,7 @@ const Navbar = () => {
           </Link>
 
           {/* Nav Menu */}
-          <div className="hidden font-bold  ml-8 lg:flex">
+          <div className="hidden font-bold font-montserrat   ml-8 lg:flex">
             <ul className="flex space-x-5">{navLinks}</ul>
           </div>
         </div>
