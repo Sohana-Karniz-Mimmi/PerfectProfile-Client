@@ -556,7 +556,7 @@ const ResumeEditPage = () => {
           <div className="flex items-center gap-2">
             <div className="w-full bg-gray-200 h-2 rounded">
               <div
-                className="bg-gradient-to-r from-secondary to-primary rounded-r-full h-full"
+                className="bg-gradient-to-r from-secondary via-[#006AFF] to-primary rounded-r-full h-full"
                 style={{ width: `${completionPercentage}%` }}
               />
             </div>
