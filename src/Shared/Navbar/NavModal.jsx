@@ -6,6 +6,10 @@ import useAuth from "../../Hook/useAuth";
 import useRole from "../../Hook/useRole";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { FaFileAlt, FaRegistered, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import { MdFavorite } from "react-icons/md";
+import { BiSolidPurchaseTag } from "react-icons/bi";
+import { FaCrow, FaCrown } from "react-icons/fa6";
 const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
   const { user } = useAuth();
   const [role, isLoading] = useRole();
@@ -39,15 +43,16 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
 
         {role?.role === "user" && (
           <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
-            <div className="bg-white rounded-xl p-6">
+            <div className="bg-white  font-montserrat md:font-semibold font-normal rounded-xl p-2">
               <Menu.Item>
                 {({ active }) => (
                   <Link to={`/userDashboard/editingProfile`}>
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
                     >
+                      <FaUserAlt />
                       My Profile
                     </button>
                   </Link>
@@ -60,9 +65,9 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
                     >
-                      My Resume
+                      <FaFileAlt /> My Resume
                     </button>
                   </Link>
                 )}
@@ -74,10 +79,10 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
                       onClick={() => handleRoleChange("favorite")}
                     >
-                      Favorites
+                      <MdFavorite /> Favorites
                     </button>
                   </Link>
                 )}
@@ -89,9 +94,10 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
                       onClick={() => handleRoleChange("pricing")}
                     >
+                      <FaCrown />
                       Plan & Pricing
                     </button>
                   </Link>
@@ -104,9 +110,10 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
                       onClick={() => handleRoleChange("purchaseHistory")}
                     >
+                      <BiSolidPurchaseTag />
                       Purchase History
                     </button>
                   </Link>
@@ -119,10 +126,9 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     onClick={handleLogoutBtn}
                     className={`${
                       active ? "bg-white" : ""
-                    } group flex w-full items-center gap-2 py-1.5 text-black`}
+                    } group flex w-full items-center gap-2 px-3 py-1.5 text-black`}
                   >
-                    Logout
-                    <GrLogout className="size-4 fill-black/30" />
+                    <FaSignOutAlt /> Logout
                   </button>
                 )}
               </Menu.Item>
@@ -179,10 +185,9 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
         )}
 
         {/* consultant */}
-        { role?.role === "consultant" && (
+        {role?.role === "consultant" && (
           <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
             <div className="bg-white rounded-xl p-6">
-          
               <Menu.Item>
                 {({ active }) => (
                   <Link to={`/consultant-dashboard`}>
@@ -213,8 +218,6 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
             </div>
           </Menu.Items>
         )}
-
-      
       </Menu>
     </div>
   );
