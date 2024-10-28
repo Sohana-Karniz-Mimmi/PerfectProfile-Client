@@ -19,7 +19,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
   const { data: userData = {}, refetch } = useQuery({
     queryKey: ["userData"],
     queryFn: async () => {
-      const res = await axiosPublic(`/user/${user.email}`);
+      const res = await axiosPublic(`/user/${user?.email}`);
       return res.data;
     },
   });
@@ -41,7 +41,7 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
           </div>
         </Menu.Button>
 
-        {role?.role === "user" && (
+        {role?.role === "user" && user && (
           <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#006AFF] rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:w-64">
             <div className="bg-white  font-montserrat md:font-semibold font-normal rounded-xl p-2">
               <Menu.Item>
