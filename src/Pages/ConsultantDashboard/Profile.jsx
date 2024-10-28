@@ -226,12 +226,12 @@ const Profile = () => {
           {/* basic info */}
           <div className="flex flex-row justify-center items-start gap-12">
             <div>
-              <h1 className="mt-6 mb-4 font-semibold text-xl">
+              <h1 className="mt-6 mb-4 font-lora font-semibold text-xl">
                 Personal Information :
               </h1>
               <div className="space-y-4">
                 {/* 1st row */}
-                <div className="flex flex-col items-start justify-start gap-5">
+                <div className="flex flex-col font-montserrat items-start justify-start gap-5">
                   <div className="relative">
                     <label
                       htmlFor="text"
@@ -319,7 +319,7 @@ const Profile = () => {
 
                   {/* socials */}
                   <div>
-                    <h1 className="mb-5 mt-5 text-xl font-semibold">
+                    <h1 className="mb-5 mt-5 font-lora text-xl font-semibold">
                       Socials :
                     </h1>
 
@@ -377,10 +377,10 @@ const Profile = () => {
 
             {/* Career Information: */}
             <div>
-              <h1 className="mb-5 mt-5 text-xl font-semibold">
+              <h1 className="mb-5 mt-5 text-xl font-lora font-semibold">
                 Career Information:
               </h1>
-              <div className="space-y-4">
+              <div className="space-y-4 font-montserrat">
                 <div className="flex flex-col justify-start items-start gap-5">
                   {/* 1 */}
                   <div className="relative">
@@ -425,7 +425,7 @@ const Profile = () => {
                   </div>
 
                   {/* work experience */}
-                  <h1 className="mb-5 mt-5 text-xl font-semibold">
+                  <h1 className="mb-5 mt-5 font-lora text-xl font-semibold">
                     Work Experience(If Applicable):
                   </h1>
 
@@ -525,7 +525,7 @@ const Profile = () => {
                     <button
                       type="button"
                       onClick={addWorkExperienceArrayEntry}
-                      className="flex items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black lg:text-2xl text-base p-4 w-[424px] border border-dashed border-secondary"
+                      className="flex items-center justify-center gap-2 mt-4 font-bold bg-gray-200 text-black lg:text-2xl text-base p-4 w-[424px] font-lora border border-dashed border-secondary"
                     >
                       Add Another Work Experience
                       <FaPlus className="font-extrabold text-2xl" />
@@ -538,7 +538,7 @@ const Profile = () => {
 
           {/* </div> */}
 
-          <div className="mt-12 flex justify-end  items-start ml-[20rem]  w-[27rem] gap-7 ">
+          <div className="mt-12 flex justify-end font-montserrat items-start ml-[20rem]  w-[27rem] gap-7 ">
             <button
               onClick={handleReset}
               className="py-2 font-bold rounded-md w-full border-secondary text-secondary hover:bg-secondary border hover:border hover:border-secondary hover:text-white "
