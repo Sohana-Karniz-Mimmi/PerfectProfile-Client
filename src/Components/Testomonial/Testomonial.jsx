@@ -8,8 +8,10 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { FaQuoteRight, FaStar } from "react-icons/fa";
 import axios from "axios";
 import Rating from "react-rating";
+import useAuth from "../../Hook/useAuth";
 
 const Testimonial = () => {
+  const { user } = useAuth();
   const swiperRef = useRef(null);
   const nextRef = useRef(null);
   const prevRef = useRef(null);

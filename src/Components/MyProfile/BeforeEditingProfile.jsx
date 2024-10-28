@@ -2,52 +2,74 @@ import { useState, useEffect } from "react";
 import image from "../../assets/profile image/FjU2lkcWYAgNG6d.jpg";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
-import useAxiosPublic from "../../Hook/useAxiosPublic";
+import useAxiosPublic, { axiosPublic } from "../../Hook/useAxiosPublic";
+import ProfileInfo from "./ProfileInfo";
 import "./Profile.css";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BeforeEditingProfile = () => {
-  const { user, updateUserProfile } = useAuth();
-  const axiosPublic = useAxiosPublic();
+  const { user, updateUserProfile, loading } = useAuth();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
-    updateUserProfile(name, null);
-    console.log(name, photo);
-  };
+  // Function to handle file upload and return the image URL
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return null;
 
-  const handleSaveChanges = async (e) => {
-    e.preventDefault();
-  };
-
-  const uploadImageToImgbb = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
 
     try {
-      setIsUploading(true);
-      const response = await fetch(image_hosting_api, {
-        method: "POST",
-        body: formData,
+      const response = await axios.post(image_hosting_api, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-
-      const data = await response.json();
-      setIsUploading(false);
-
-      if (data.success) {
-        return data.data.url;
-      } else {
-        throw new Error("Image upload failed");
-      }
+      return response.data.data.url; // Returning the URL of the uploaded image
     } catch (error) {
-      setIsUploading(false);
-      toast.error("Failed to upload image.");
+      console.error("Error uploading file:", error);
       return null;
     }
+  };
+
+  // Form submit handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+
+    try {
+      // Trigger file upload and wait for the result
+      const fileInput = document.getElementById("profilePhotoInput");
+      const image = await handleFileChange({
+        target: fileInput,
+      });
+
+      // Update Firebase profile
+      await updateUserProfile(name, image);
+      // Assuming updateUserProfile accepts name and image
+
+      // Update backend profile
+      const response = await axiosPublic.patch(
+        `/updateProfile/${user?.email}`,
+        {
+          name,
+          image, // Add photo URL for backend update
+        }
+      );
+      toast.success("User Updated Successfully");
+      console.log("Backend updated successfully:", response.data);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+
+    // Log the name and photo URL for confirmation
+    console.log("Updated name:", name, "Photo URL:", image);
+    // Reload the page after 0.5 seconds
+    setTimeout(() => {
+      window.location.reload();
+    }, 700);
   };
 
   return (
@@ -78,6 +100,7 @@ const BeforeEditingProfile = () => {
                     name="photo"
                     id="profilePhotoInput"
                     style={{ display: "none" }}
+                    onChange={handleFileChange}
                   />
                   <label htmlFor="profilePhotoInput">
                     <span className="py-2 px-4 hover:bg-secondary font-montserrat cursor-pointer border border-slate-300">
@@ -101,29 +124,13 @@ const BeforeEditingProfile = () => {
                     <input
                       type="text"
                       name="name"
+                      defaultValue={user?.displayName}
                       onChange={(e) => {
                         e.target.value;
                       }}
-                      defaultValue={user?.displayName}
                       className="border text-sm  py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
                     />
-                    <div className="flex justify-end sm:justify-start space-x-2">
-                      <button
-                        type="button"
-                        className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                      >
-                        Save
-                      </button>
-                      <button
-                        type="button"
-                        className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
-                      >
-                        Cancel
-                      </button>
-                    </div>
                   </div>
-
-                  <h1 className="text-base font-montserrat">{``}</h1>
                 </div>
                 <div className="border">
                   <div className="w-full md:w-1/2">
@@ -152,25 +159,10 @@ const BeforeEditingProfile = () => {
                       type="email"
                       name="email"
                       value={user?.email}
-                      className="border py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
+                      readOnly
+                      className="border py-2 px-4 w-full sm:w-auto sm:flex-1 focus-within:ring-0 focus:outline-none"
                     />
-                    <div className="flex justify-end sm:justify-start space-x-2">
-                      <button
-                        type="button"
-                        className="border border-slate-300 py-2 px-4 hover:bg-secondary font-montserrat"
-                      >
-                        Save
-                      </button>
-                      <button
-                        type="button"
-                        className="border border-slate-300 py-2 px-4 hover:bg-red-600 font-montserrat"
-                      >
-                        Cancel
-                      </button>
-                    </div>
                   </div>
-
-                  <h1 className="md:text-base text-xs font-montserrat"></h1>
                 </div>
                 <div>
                   <div className="">

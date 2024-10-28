@@ -118,7 +118,6 @@ const AuthProvider = ({ children }) => {
           .then((data) => {
             console.log("token response", data.data);
           });
-        // saveUser(currentUser)
       } else {
         axios
           .post(
