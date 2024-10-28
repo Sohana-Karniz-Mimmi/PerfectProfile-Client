@@ -34,7 +34,7 @@ const PurchaseHistory = () => {
       {payments.length > 0 ? (
         <>
           <div className="min-h-screen">
-            <div className="max-w-5xl mx-auto my-10 p-4 md:p-6 bg-white shadow-lg border border-gray-300 ">
+            <div className="max-w-5xl mx-auto my-10 p-4 md:p-6 bg-white border shadow-custom-light">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                 <h1 className="text-2xl md:text-3xl font-bold mb-2 md:mb-0">
                   P<span className="text-primary">P</span>
@@ -124,7 +124,10 @@ const PurchaseHistory = () => {
         </>
       ) : (
         // Message when no purchase data is found
-        <div className="mt-8 flex flex-col items-center justify-center min-h-screen  ">
+        <div className="my-8 flex flex-col items-center justify-center  ">
+          <div>
+            <img className="" src={foundImg} alt="" />
+          </div>
           <div>
             <h2 className="text-5xl text-primary font-bold mb-4 text-center font-lora">
               No purchases yet!
