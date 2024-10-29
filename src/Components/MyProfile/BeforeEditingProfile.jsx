@@ -1,18 +1,16 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
 import image from "../../assets/profile image/FjU2lkcWYAgNG6d.jpg";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
-import useAxiosPublic, { axiosPublic } from "../../Hook/useAxiosPublic";
-import ProfileInfo from "./ProfileInfo";
-import "./Profile.css";
+import { axiosPublic } from "../../Hook/useAxiosPublic";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
+import "./Profile.css";
+import axios from "axios";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BeforeEditingProfile = () => {
-  const { user, updateUserProfile, loading } = useAuth();
+  const { user, updateUserProfile } = useAuth();
 
   // Function to handle file upload and return the image URL
   const handleFileChange = async (event) => {
@@ -87,7 +85,7 @@ const BeforeEditingProfile = () => {
               </h2>
               <div className="flex justify-between items-center ">
                 <div className="">
-                  <div className="rounded-full border-8 p-1  border-secondary md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
+                  <div className="rounded-full border-8 p-1 border-l-primary border-r-secondary border-t-sky-400 border-b-sky-400 md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
                     <img
                       src={user?.photoURL}
                       alt="Profile"
