@@ -181,7 +181,7 @@ const Navbar = () => {
     <div className="h-[80px] border-b shadow">
       {/* <Container> */}
       <div className="max-w-[95%] mx-auto xl:px-0 px-2 flex items-center justify-between h-[80px] ">
-        <div className="flex gap-1 items-center">
+        <div className="flex md:gap-1 gap-0 items-center">
           <div className="relative">
             {/* Hamburger Icon */}
             <div
@@ -189,7 +189,7 @@ const Navbar = () => {
               onClick={toggleMenu} // Call toggle function on click
               ref={burgerRef}
             >
-              <GiHamburgerMenu className="text-2xl" />
+              <GiHamburgerMenu className="md:text-2xl text-lg" />
             </div>
 
             {/* Menu */}
@@ -204,7 +204,7 @@ const Navbar = () => {
           </div>
 
           <Link to="/">
-            <h1 className="text-black text-2xl font-extrabold font-lora">
+            <h1 className="text-black md:text-2xl text-xl font-extrabold font-lora">
               Perfect<span className="text-primary">Profile</span>
             </h1>
           </Link>
