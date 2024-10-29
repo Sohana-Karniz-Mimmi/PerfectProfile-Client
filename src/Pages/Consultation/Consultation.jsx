@@ -82,19 +82,18 @@ const Consultation = () => {
 
         {/* join as consultant */}
         
-        <div className="flex flex-col gap-3 md:gap-16 lg:flex-row justify-between items-center px-2 lg:px-9 py-8 mb-0 lg:mb-9 h-[35rem] md:h-[46rem] lg:h-[23rem] mt-6 rounded-lg bg-cyan-50">
+        <div className="flex flex-col gap-3 md:gap-1 lg:gap-9 lg:flex-row justify-between items-center  px-2 lg:px-9 pt-7 pb-5  mb-0 lg:mb-9 h-[35rem] md:h-[35rem] lg:h-[23rem] mt-6 rounded-lg bg-cyan-50">
           <div className="px-2 ">
             <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl font-lora">
               Join Us as a Consultant – Empowering Growth Together
             </h1>
-            <p className="            text-gray-500 text-sm md:text-[15px] lg:text-base xl:w-[44rem] lg:w-[35rem] md:w-[37rem] font-montserrat mt-4
+            <p className=" text-gray-500 text-sm md:text-[15px] lg:text-base xl:w-[44rem] lg:w-[35rem] md:w-[37rem] font-montserrat mt-4
 ">
               Are you ready to make a meaningful impact and elevate your
               expertise? As a Resume Consultant at PerfectProfile, you’ll
               transform how individuals present themselves to employers by
-              high-quality resumes. Your guidance will empower job seekers to
-              highlight their strengths, navigate career transitions in
-              competitive markets. Join us in helping people achieve their
+              high-quality resumes. <br /> <br />
+               Join us in helping people achieve their
               career goals. Together, we’ll create lasting impact and open doors
               to new opportunities.
             </p>
@@ -165,7 +164,7 @@ const Consultation = () => {
                                   value={user?.displayName}
                                   placeholder="Enter your name"
                                   required
-                                  className="mt-1 capitalize block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                  className="mt-1 cap block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                                 />
                               </div>
                               <div className="relative">
@@ -298,7 +297,7 @@ const Consultation = () => {
 
           <div className="flex relative item-center justify-center">
             <img
-              className="lg:h-[19rem] h-56 w-72 hidden md:block  lg:w-[24rem] rounded-lg"
+              className="lg:h-[19rem]  h-56 w-72 hidden md:block  lg:w-[24rem] rounded-lg"
               src={img}
               alt=""
             />

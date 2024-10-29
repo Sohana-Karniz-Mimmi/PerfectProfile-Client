@@ -7,7 +7,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 const HowWorks = () => {
   return (
     <div className="lg:mb-36 mb-24">
-      <h1 className="font-bold lg:text-4xl font-lora mt-28 text-3xl text-center ">
+      <h1 className="font-bold  lg:text-4xl font-lora mt-32 text-3xl text-center ">
         <span className="border-b-4 rounded-sm border-primary">
           How It Works
         </span>
