@@ -11,6 +11,7 @@ import {
 } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
 import useAuth from "../../Hook/useAuth";
+import img from '../../assets/consultation/profile.png'
 
 
 const ConsultantDetails = () => {
@@ -49,6 +50,7 @@ const ConsultantDetails = () => {
     const number = form.number.value;
     const resumeType = form.resumeType.value;
     const consultant = name;
+    const consultantEmail = email;
     const resume = form.resume.value;
     console.log({ name, email, number, resumeType, consultant, resume });
 
@@ -58,6 +60,7 @@ const ConsultantDetails = () => {
       number,
       resumeType,
       consultant,
+      consultantEmail,
       resume,
       bookingRequestedAt: new Date().toISOString().split("T")[0],
       bookingRequest: "pending",
@@ -86,7 +89,7 @@ const ConsultantDetails = () => {
             <div className=" p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] h-[28rem] rounded-xl shadow-lg ">
               <div className="flex bg-white h-[444px] rounded-lg flex-col items-center">
                 <img
-                  src={image}
+                  src={image || img}
                   alt="Profile"
                   className="w-48 mt-6 h-48 bg-gray-300 rounded-full mb-4 shrink-0"
                 />
@@ -140,7 +143,8 @@ const ConsultantDetails = () => {
                 </div>
 
                 <div className="mt-2 flex flex-wrap gap-4 justify-center">
-                {user ? (
+                {/* {user.package === "premium" || user.package === "standard" ? ( */}
+                {user? (
                         <>
                           <button
                             onClick={() => setIsOpen(true)}
@@ -320,7 +324,7 @@ const ConsultantDetails = () => {
           <div className=" w-[55rem] h-[28rem] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] p-[2px] rounded-lg shadow-lg ">
             <div className="bg-white shadow-lg rounded-lg  h-[444px] ">
               <h2 className="text-xl font-bold font-lora  mb-4 pt-10 pl-10">
-                About Me
+               {about && " About Me"}
               </h2>
               <p className="text-gray-700 px-10 font-montserrat">{about}</p>
               <div className="flex items-center gap-3 justify-start pl-10 mb-4 pt-5 ">

@@ -72,7 +72,7 @@ const MakeConsultant = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen md:p-6 p-2 md:mt-0 mt-20">
       <h1 className="text-center mb-16 font-lora text-4xl text-primary font-bold">
         Requests For Being A Consultant
       </h1>

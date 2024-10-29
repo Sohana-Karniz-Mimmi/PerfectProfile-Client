@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import img from "../../assets/consultation/resume3.jpg";
 import { useEffect, useRef, useState } from "react";
 import BookingForm from "./BookingForm";
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import toast from "react-hot-toast";
+import img from '../../assets/consultation/profile.png'
 
 const TeamProfile = ({ consultants }) => {
   const { user } = useAuth();
@@ -16,7 +16,7 @@ const TeamProfile = ({ consultants }) => {
     <div>
       <section
         id="#session"
-        className="pt-16 bg-blueGray-50 px-2 lg:px-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 items-center justify-center gap-5"
+        className="pt-16 bg-blueGray-50 px-2 lg:px-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-7 2xl:px-10 items-center justify-center gap-5"
       >
         {/* 1 */}
 
@@ -28,11 +28,20 @@ const TeamProfile = ({ consultants }) => {
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full px-4 flex justify-center">
                       <div className="mt-4">
-                        <img
-                          className="shadow-xl rounded-full h-36 w-36 md:h-36 align-middle border-none "
-                          src={consultant.image}
-                          alt=""
-                        />
+                        {
+                          consultant?.image ? ( <img
+                            className="shadow-xl rounded-full h-36 w-36 md:h-36 align-middle border-none "
+                            src={consultant.image}
+                            alt=""
+                          />) : (
+                            <img
+                            className=" rounded-full h-36 w-36 md:h-36 align-middle border-none "
+                            src={ img}
+                            alt=""
+                          />
+                          )
+                        }
+                       
                       </div>
                     </div>
                   </div>
