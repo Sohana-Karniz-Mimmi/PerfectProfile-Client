@@ -1,6 +1,7 @@
 import React from "react";
 import "./Feature.css";
 import Container from "../../Shared/Container";
+import Heading from "../../Shared/Heading";
 
 const Feature = () => {
   const data = [
@@ -70,8 +71,20 @@ const Feature = () => {
 
   return (
     <Container>
-      <div className="programs-container">
-        <h2 className="title font-bold">Our Features</h2>
+      <div className="programs-container ">
+        {/* <h2 className="title font-bold">Our Features</h2> */}
+
+        {/* Top Text Section */}
+        <div className="mb-15">
+          <Heading
+            title={"Our Main Features"}
+            subtitle={
+              "The job market today is competitive – you’ll need every edge to make your application shine."
+            }
+            className={"max-w-3xl mx-auto mb-12 md:w-[600px]"}
+          />
+        </div>
+
         <ul className="cards">
           {data.map((item, index) => (
             <li key={index} className="card " style={{ "--index": index + 1 }}>
