@@ -6,7 +6,7 @@ import { axiosPublic } from "../../Hook/useAxiosPublic";
 import "./Profile.css";
 import axios from "axios";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BeforeEditingProfile = () => {
