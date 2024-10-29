@@ -324,7 +324,7 @@ const Template = () => {
                       </button>
                     </div>
 
-                    <div className="flex gap-2 items-center">
+                    {/* <div className="flex gap-2 items-center">
                       <button
                         onClick={handleFavorite}
                         className=" hover:text-primary border bg-white p-2 rounded-xl"
@@ -335,7 +335,7 @@ const Template = () => {
                       <button className=" hover:text-primary border bg-white p-2 rounded-xl">
                         <HiDotsHorizontal size={20} />
                       </button>
-                    </div>
+                    </div> */}
                     <div></div>
                   </div>
 

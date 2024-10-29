@@ -221,8 +221,6 @@ const Profile = () => {
             </div>
           </div>
 
-         
-
           {/* basic info */}
           <div className="flex md:flex-col lg:flex-col xl:flex-row justify-center items-start gap-12">
             <div>
@@ -274,7 +272,7 @@ const Profile = () => {
                       Phone Number
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       name="number"
                       id="number"
                       placeholder="Enter Your Phone Number"
