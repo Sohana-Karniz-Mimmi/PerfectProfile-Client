@@ -6,10 +6,7 @@
     --numcards: 4;
   }
   
-  body {
-    font-family: "Armata", sans-serif;
-  }
-  
+
   .programs-container {
     max-width: 80vw;
     margin: 0 auto;
@@ -26,7 +23,6 @@
   
   .subtitle {
     text-align: center;
-    font-size: 1.2em;
     color: #ffffff;
     margin-bottom: 2rem;
   }
@@ -46,6 +42,7 @@
     margin-bottom: 2rem;
     will-change: transform;
     transform-origin: 50% 0%;
+
   }
   
   .card__content { 
@@ -54,18 +51,18 @@
     /* align-items: center; */
     /* padding: 7rem; */
     border-radius: 1rem;
-    background: linear-gradient(to left, #2CACD5 0%, #00C8AA 100%);
+    background: linear-gradient(to left, #4BCCEF 20%, #51E2C2 100%);
 
 
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 8px;
     color: rgb(255, 255, 255); /* Text color for readability on dark background */
     }
   
-  .card-description {
+  /* .card-description {
     font-size: 1.2em;
     color:white;
   }
-  
+   */
   /* Scroll-Driven Animation Support */
   @supports (animation-timeline: view()) {
     .card {

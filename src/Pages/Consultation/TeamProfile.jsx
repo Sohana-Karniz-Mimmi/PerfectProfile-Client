@@ -1,77 +1,47 @@
 import { Link } from "react-router-dom";
-import img from "../../assets/consultation/resume3.jpg";
 import { useEffect, useRef, useState } from "react";
-import {
-  Description,
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
 import BookingForm from "./BookingForm";
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import toast from "react-hot-toast";
-import { IoMdClose } from "react-icons/io";
+import img from '../../assets/consultation/profile.png'
 
-const TeamProfile = ({ consultants, handleShowLogin }) => {
+const TeamProfile = ({ consultants }) => {
   const { user } = useAuth();
-  let [isOpen, setIsOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const number = form.number.value;
-    const resumeType = form.resumeType.value;
-    const consultant = form.consultant.value;
-    const resume = form.resume.value;
-    console.log({ name, email, number, resumeType, consultant, resume });
-
-    const bookingData = {
-      name,
-      email,
-      number,
-      resumeType,
-      consultant,
-      resume,
-      bookingRequestedAt: new Date().toISOString().split("T")[0],
-      bookingRequest: "pending",
-    };
-
-    axiosPublic
-      .put(`/booking-info/user/${user?.email}`, bookingData)
-      .then((res) => {
-        console.log(res.data);
-        // document.getElementById("consultant_modal").close();
-        toast.success(
-          "Your consultant application has been submitted! We’ll be in touch soon!"
-        );
-      });
-  };
+  
 
   return (
     <div>
       <section
         id="#session"
-        className="pt-16  bg-blueGray-50 px-2 lg:px-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:space-x-32 md:space-x-5  xl:space-x-16 items-center justify-center"
+        className="pt-16 bg-blueGray-50 px-2 lg:px-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-7 2xl:px-10 items-center justify-center gap-5"
       >
         {/* 1 */}
 
         {consultants.map((consultant) => (
           <>
-            <div className="w-72 lg:w-[25rem] lg:h-[29rem] p-2 lg:px-4 mx-auto ">
+            <div className="w-72 md:w-[23rem] 2xl:w-[23rem] lg:w-[24rem] lg:h-[29rem] p-2 lg:px-4 mx-auto ">
               <div className="relative border-2 border-primary flex flex-col min-w-0 break-words bg-white w-full h-[27rem] md:h-[28rem] mb-6 shadow-xl rounded-lg mt-16">
                 <div className="px-3 lg:px-6">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full px-4 flex justify-center">
                       <div className="mt-4">
-                        <img
-                          className="shadow-xl rounded-full h-36 w-36 md:h-36 align-middle border-none "
-                          src={consultant.image}
-                          alt=""
-                        />
+                        {
+                          consultant?.image ? ( <img
+                            className="shadow-xl rounded-full h-36 w-36 md:h-36 align-middle border-none "
+                            src={consultant.image}
+                            alt=""
+                          />) : (
+                            <img
+                            className=" rounded-full h-36 w-36 md:h-36 align-middle border-none "
+                            src={ img}
+                            alt=""
+                          />
+                          )
+                        }
+                       
                       </div>
                     </div>
                   </div>
@@ -137,184 +107,13 @@ const TeamProfile = ({ consultants, handleShowLogin }) => {
 
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full px-3">
-                      {user ? (
-                        <>
-                          <Link to={`/consultant/consultant-details/${consultant?._id}`}
-                            // onClick={() => setIsOpen(true)}
+                    <Link to={`/consultant/consultant-details/${consultant?._id}`}
                             className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 capitalize font-montserrat  lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
                           >
                             View Profile
                           </Link>
-                        </>
-                      ) : (
-                        <>
-                          {" "}
-                          <button
-                            onClick={handleShowLogin}
-                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 font-lora capitalize lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
-                          >
-                            Book A session
-                          </button>
-                        </>
-                      )}
 
-                      <Dialog
-                        open={isOpen}
-                        onClose={() => setIsOpen(false)}
-                        className="relative z-50 w-[30rem] "
-                      >
-                        <div className="fixed inset-0 w-screen overflow-y-auto p-4">
-                          <div className="flex min-h-full items-center justify-center">
-                            <DialogPanel className="max-w-3xl w-full space-y-4 border bg-white p-5 md:p-12">
-                              {/* Close Icon */}
-                              <button
-                                onClick={() => setIsOpen(false)}
-                                className="absolute top-24 right-[394px] bg-gray-100  text-gray-500 hover:text-white hover:bg-black hover:bg-opacity-50 p-1 rounded-full transition duration-300 "
-                              >
-                                <IoMdClose className="text-2xl " />
-                              </button>
-                              <DialogTitle className="font-bold font-lora text-3xl text-center ">
-                                Booking Form
-                              </DialogTitle>
-                              <form
-                                onSubmit={handleSubmit}
-                                className="w-full mt-6 flex flex-col gap-3"
-                              >
-                                <div className=" flex items-center justify-between">
-                                  {/* 1st row */}
-                                  <div className="flex flex-col items-start justify-start gap-4">
-                                    {/* basic info */}
-                                    <h1 className="mt-5 mb-1 font-lora font-semibold text-xl">
-                                      Personal Information :
-                                    </h1>
 
-                                    <div className="space-y-4 font-montserrat">
-                                      <div className="relative">
-                                        <label
-                                          htmlFor="text"
-                                          className="block text-sm font-medium text-gray-700"
-                                        >
-                                          Name
-                                        </label>
-                                        <input
-                                          type="text"
-                                          name="name"
-                                          value={user?.displayName}
-                                          placeholder="Enter your name"
-                                          required
-                                          className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                                        />
-                                      </div>
-                                      <div className="relative">
-                                        <label
-                                          htmlFor="email"
-                                          className="block text-sm font-medium text-gray-700"
-                                        >
-                                          Email Address
-                                        </label>
-                                        <input
-                                          type="email"
-                                          name="email"
-                                          value={user?.email}
-                                          id="email"
-                                          placeholder="Enter your email"
-                                          required
-                                          className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                                        />
-                                      </div>
-                                      {/* phone */}
-                                      <div className="relative">
-                                        <label
-                                          htmlFor="number"
-                                          className="block text-sm font-medium text-gray-700"
-                                        >
-                                          Phone Number
-                                        </label>
-                                        <input
-                                          type="number"
-                                          name="number"
-                                          id="number"
-                                          placeholder="Enter your Phone Number"
-                                          required
-                                          className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  {/* Career Information & Goal */}
-                                  <div>
-                                    <h1 className="mb-5 font-lora mt-5 text-xl font-semibold">
-                                      Career Information & Goal:
-                                    </h1>
-                                    <div className="space-y-4 font-montserrat">
-                                      {/* 1st row */}
-                                      <div className="flex flex-col justify-start items-start gap-4">
-                                        <div className="relative">
-                                          <label
-                                            htmlFor="text"
-                                            className="block text-sm font-medium text-gray-700"
-                                          >
-                                            Resume Type
-                                          </label>
-                                          <input
-                                            type="text"
-                                            name="resumeType"
-                                            placeholder="e.g., Web Developer, Graphic Designer, Software Engineer"
-                                            required
-                                            className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                                          />
-                                        </div>
-                                        {/* 2nd */}
-                                        <div className="relative">
-                                          <label
-                                            htmlFor="text"
-                                            className="block text-sm font-medium text-gray-700"
-                                          >
-                                            Current Resume Link (If Applicable)
-                                          </label>
-                                          <input
-                                            type="url"
-                                            name="resume"
-                                            placeholder="Please Provide Resume Link"
-                                            className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                                          />
-                                        </div>
-
-                                        {/* 3 */}
-                                        {/* <div className="relative">
-                                  <label
-                                    htmlFor="resume"
-                                    className="block text-sm font-medium text-gray-700"
-                                  >
-                                    Resume
-                                  </label>
-                                  <input
-                                    type="url"
-                                    name="resume"
-                                    placeholder="Please Provide Resume Link"
-                                    required
-                                    className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                                  />
-                                </div> */}
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="mt-6 flex items-center justify-center">
-                                  <button
-                                    type="submit"
-                                    className="py-2 font-bold rounded-md w-80 bg-secondary text-white hover:bg-transparent border hover:text-primary hover:border hover:border-primary font-montserrat"
-                                  >
-                                    Submit Application
-                                  </button>
-                                </div>
-                              </form>
-                            </DialogPanel>
-                          </div>
-                        </div>
-                      </Dialog>
                     </div>
                   </div>
                 </div>
@@ -322,11 +121,7 @@ const TeamProfile = ({ consultants, handleShowLogin }) => {
             </div>
           </>
         ))}
-        {/* 2 */}
-
-        {/* 3 */}
-
-        {/* 4 */}
+       
       </section>
     </div>
   );
