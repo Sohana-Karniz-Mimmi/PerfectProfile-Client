@@ -88,7 +88,7 @@ const Feature = () => {
         <ul className="cards">
           {data.map((item, index) => (
             <li key={index} className="card " style={{ "--index": index + 1 }}>
-              <div className="card__content  xl:w-[1000px] lg:w-[780px] md:w-[500px] w-[280px] mx-auto border border-black">
+              <div className="card__content  xl:w-[1000px] lg:w-[780px] md:w-[500px] w-[280px] mx-auto">
                 <div className="bg-white border-t-4 border-b-0 md:h-40 h-28 rounded-t-2xl border-primary">
                   <h1 className="text-primary p-0 card-title md:text-3xl text-lg lg:text-4xl font-bold mt-2 md:pt-14 pt-10 md:pl-5 pl-2 font-lora">
                     {item?.feature}
