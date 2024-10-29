@@ -123,7 +123,7 @@ const Template = () => {
     set2ndIsOpen(true);
   };
 
-  // paginatio
+  // pagination
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axiosPublic(`/templates-count?filter=${filter}`);
@@ -176,10 +176,10 @@ const Template = () => {
             name="package"
             id="package"
             value={filter}
-            className="border border-primary px-4 py-2 rounded-lg "
+            className="border font-montserrat border-primary px-4 py-2 rounded-lg "
           >
             {/* <option value=''>Filter By Category</option> */}
-            <option value="">All</option>
+            <option value="">Free + Premium</option>
             <option value="free">Free</option>
             <option value="premium">Premium</option>
           </select>

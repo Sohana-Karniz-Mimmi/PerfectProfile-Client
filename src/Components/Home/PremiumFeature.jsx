@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 
 const PremiumFeature = () => {
   return (
-    <div className="relative bg-gradient-to-b pb-12 px-6 overflow-hidden">
+    <div
+      className="relative bg-gradient-to-b pb-12 px-6 overflow-hidden"
+    >
       {/* Top Text Section */}
       <div className="mb-15">
         <Heading

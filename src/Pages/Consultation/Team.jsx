@@ -78,7 +78,7 @@ const Team = ({ handleShowLogin }) => {
 
   return (
     <div id="session">
-      <h1 className="font-bold font-lora lg:text-4xl mt-28 md:text-3xl text-2xl text-center ">
+      <h1 className="font-bold font-lora lg:text-4xl mt-10 md:mt-24 md:text-3xl text-2xl text-center ">
         Meet Our Consultant To Review Resume
       </h1>
 
