@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import img from '../../assets/banner/template-banner.png'
 const TemplateBanner = () => {
     return (
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-5 md:px-9 lg:mb-1 mt-6 py-6 rounded-lg bg-cyan-50"
+        <div className="flex font-montserrat flex-col md:flex-row justify-between items-center gap-4 px-5 md:px-9 lg:mb-1 mt-6 py-6 rounded-lg bg-cyan-50"
         style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}
         >
         <div>
-          <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">
+          <h1 className="font-bold text-2xl font-lora md:text-3xl lg:text-4xl">
           Choose the Perfect Template for Your Career
             
           </h1>

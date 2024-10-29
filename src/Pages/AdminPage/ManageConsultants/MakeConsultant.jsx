@@ -73,13 +73,13 @@ const MakeConsultant = () => {
 
   return (
     <div className="min-h-screen md:p-6 p-2 md:mt-0 mt-20">
-      <h1 className="text-center mb-16 font-lora text-4xl text-primary font-bold">
-        Requests For Being A Consultant
-      </h1>
+       <div className="flex items-center pb-6 gap-x-3 mt-4">
+          <h2 className="2xl:text-3xl capitalize text-xl text-gray-800 font-bold font-lora ">Requests for being a consultant</h2>
+        </div>
 
       {/* table */}
 
-      <div className="flex flex-col mt-8 ">
+      <div className="flex flex-col mt-6 ">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
@@ -103,14 +103,7 @@ const MakeConsultant = () => {
                         <span>Email</span>
                       </div>
                     </th>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <span>Number</span>
-                      </div>
-                    </th>
+                   
                     <th
                       scope="col"
                       className="py-3.5 px-4 text-xl font-bold text-left rtl:text-right "
@@ -170,9 +163,7 @@ const MakeConsultant = () => {
                         <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
                           {user.email}
                         </td>
-                        <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
-                          {user.number}
-                        </td>
+                        
                         <td className="px-5 py-4 text-sm text-gray-500  whitespace-nowrap">
                           {user.expertise}
                         </td>
@@ -205,10 +196,12 @@ const MakeConsultant = () => {
                         </td>
                         <td className="px-3 py-4 text-sm text-gray-500  whitespace-nowrap">
                           <div className="flex item-center justify-between pr-3 gap-3">
-                            <button onClick={() => handleRoleChange(user)}>
-                              <IoPersonAddOutline className="text-primary text-2xl font-bold" />
+                            <button 
+                             title="Make Consultant" onClick={() => handleRoleChange(user)}>
+                              <IoPersonAddOutline  className="text-primary text-2xl font-bold" />
+                            
                             </button>
-                            <button onClick={() => handleDelete(user)}>
+                            <button  title="Decline Request" onClick={() => handleDelete(user)}>
                               <IoPersonRemoveOutline className="text-red-500 text-2xl font-bold" />
                             </button>
                           </div>

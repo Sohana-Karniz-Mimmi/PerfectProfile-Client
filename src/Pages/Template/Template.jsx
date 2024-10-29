@@ -122,7 +122,7 @@ const Template = () => {
     set2ndIsOpen(true);
   };
 
-  // paginatio
+  // pagination
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axiosPublic(`/templates-count?filter=${filter}`);
@@ -164,16 +164,16 @@ const Template = () => {
             name="package"
             id="package"
             value={filter}
-            className="border border-primary px-4 py-2 rounded-lg "
+            className="border font-montserrat border-primary px-4 py-2 rounded-lg "
           >
             {/* <option value=''>Filter By Category</option> */}
-            <option value="">All</option>
+            <option value="">Free + Premium</option>
             <option value="free">Free</option>
             <option value="premium">Premium</option>
           </select>
         </div>
 
-        <div className="grid grid-cols-1 gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
+        <div className="grid grid-cols-1 font-montserrat gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
           {predefinedTemplate?.map((template) => (
             <div key={template._id}>
               <div className="relative group h-[450px] border-secondary border">
