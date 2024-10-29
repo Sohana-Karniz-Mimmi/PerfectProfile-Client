@@ -164,11 +164,24 @@ const Navbar = () => {
       });
   };
 
+   // Add event listener to detect clicks outside the modal
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside); // Cleanup on component unmount
+    };
+  }, [menuOpen]);
+
   return (
-    <div className="min-h-[99px] border-b shadow ">
+    <div className="h-[80px] border-b shadow">
       {/* <Container> */}
-      <div className="max-w-[93%] mx-auto xl:px-0 px-2 flex items-center justify-between min-h-[99px] p-0 md:py-3 py-5">
-        <div className="flex items-center">
+      <div className="max-w-[95%] mx-auto xl:px-0 px-2 flex items-center justify-between h-[80px] ">
+        <div className="flex gap-1 items-center">
           <div className="relative">
             {/* Hamburger Icon */}
             <div
@@ -176,7 +189,7 @@ const Navbar = () => {
               onClick={toggleMenu} // Call toggle function on click
               ref={burgerRef}
             >
-              <GiHamburgerMenu className="text-xl" />
+              <GiHamburgerMenu className="text-2xl" />
             </div>
 
             {/* Menu */}
@@ -191,7 +204,7 @@ const Navbar = () => {
           </div>
 
           <Link to="/">
-            <h1 className="text-black lg:text-2xl text-xl font-extrabold font-lora">
+            <h1 className="text-black text-2xl font-extrabold font-lora">
               Perfect<span className="text-primary">Profile</span>
             </h1>
           </Link>
