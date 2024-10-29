@@ -2,9 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import {
+  Description,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
+import { IoMdClose } from "react-icons/io";
+import useAuth from "../../Hook/useAuth";
+import img from '../../assets/consultation/profile.png'
+
 
 const ConsultantDetails = () => {
   const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
+  let [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
 
   const { data: consultant = {}, refetch } = useQuery({
@@ -28,15 +41,55 @@ const ConsultantDetails = () => {
     workExperience,
   } = consultant;
 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const number = form.number.value;
+    const resumeType = form.resumeType.value;
+    const consultant = name;
+    const consultantEmail = email;
+    const resume = form.resume.value;
+    console.log({ name, email, number, resumeType, consultant, resume });
+
+    const bookingData = {
+      name,
+      email,
+      number,
+      resumeType,
+      consultant,
+      consultantEmail,
+      resume,
+      bookingRequestedAt: new Date().toISOString().split("T")[0],
+      bookingRequest: "pending",
+    };
+
+    axiosPublic
+      .put(`/booking-info/user/${user?.email}`, bookingData)
+      .then((res) => {
+        console.log(res.data);
+        toast.success(
+          "Your consultant application has been submitted! We’ll be in touch soon!"
+        );
+      });
+  };
+
+  const handleShowLogin = () => {
+    toast.error("You have to login first");
+    document.getElementById("my_modal_3").showModal();
+  };
+
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto py-8">
-        <div className="flex justify-center items-start gap-6 px-44  mt-8 ">
+        <div className="flex justify-center items-start gap-6   mt-8 ">
           <div className="w-80  h-[28rem] ">
             <div className=" p-[2px] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] h-[28rem] rounded-xl shadow-lg ">
               <div className="flex bg-white h-[444px] rounded-lg flex-col items-center">
                 <img
-                  src={image}
+                  src={image || img}
                   alt="Profile"
                   className="w-48 mt-6 h-48 bg-gray-300 rounded-full mb-4 shrink-0"
                 />
@@ -89,34 +142,213 @@ const ConsultantDetails = () => {
                   </Link>
                 </div>
 
-                <div className="mt-4 flex flex-wrap gap-4 justify-center">
-                  <button
-                    // onClick={handleShowLogin}
-                    className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-5 font-montserrat capitalize lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
-                  >
-                    Book A session
-                  </button>
+                <div className="mt-2 flex flex-wrap gap-4 justify-center">
+                {/* {user.package === "premium" || user.package === "standard" ? ( */}
+                {user? (
+                        <>
+                          <button
+                            onClick={() => setIsOpen(true)}
+                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 capitalize font-montserrat  lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-3 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+                          >
+                            Book A Session
+                          </button>
+
+                          <Dialog
+                        open={isOpen}
+                        onClose={() => setIsOpen(false)}
+                        className="relative z-50 w-[30rem] "
+                      >
+                        <div className="fixed inset-0 w-screen overflow-y-auto p-4">
+                          <div className="flex min-h-full items-center justify-center">
+                            <DialogPanel className="max-w-3xl w-full space-y-4 border bg-white p-5 md:p-12">
+                              {/* Close Icon */}
+                              <button
+                                onClick={() => setIsOpen(false)}
+                                className="absolute top-24 right-[394px] bg-gray-100  text-gray-500 hover:text-white hover:bg-black hover:bg-opacity-50 p-1 rounded-full transition duration-300 "
+                              >
+                                <IoMdClose className="text-2xl " />
+                              </button>
+                              <DialogTitle className="font-bold font-lora text-3xl text-center ">
+                                Booking Form
+                              </DialogTitle>
+                              <form
+                                onSubmit={handleSubmit}
+                                className="w-full mt-6 flex flex-col gap-3"
+                              >
+                                <div className=" flex items-center justify-between">
+                                  {/* 1st row */}
+                                  <div className="flex flex-col items-start justify-start gap-4">
+                                    {/* basic info */}
+                                    <h1 className="mt-5 mb-1 font-lora font-semibold text-xl">
+                                      Personal Information :
+                                    </h1>
+
+                                    <div className="space-y-4 font-montserrat">
+                                      <div className="relative">
+                                        <label
+                                          htmlFor="text"
+                                          className="block text-sm font-medium text-gray-700"
+                                        >
+                                          Name
+                                        </label>
+                                        <input
+                                          type="text"
+                                          name="name"
+                                          value={user?.displayName}
+                                          placeholder="Enter your name"
+                                          required
+                                          className="mt-1 capitalize block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                        />
+                                      </div>
+                                      <div className="relative">
+                                        <label
+                                          htmlFor="email"
+                                          className="block text-sm font-medium text-gray-700"
+                                        >
+                                          Email Address
+                                        </label>
+                                        <input
+                                          type="email"
+                                          name="email"
+                                          value={user?.email}
+                                          id="email"
+                                          placeholder="Enter your email"
+                                          required
+                                          className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                        />
+                                      </div>
+                                      {/* phone */}
+                                      <div className="relative">
+                                        <label
+                                          htmlFor="number"
+                                          className="block text-sm font-medium text-gray-700"
+                                        >
+                                          Phone Number
+                                        </label>
+                                        <input
+                                          type="number"
+                                          name="number"
+                                          id="number"
+                                          placeholder="Enter your Phone Number"
+                                          required
+                                          className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {/* Career Information & Goal */}
+                                  <div>
+                                    <h1 className="mb-5 font-lora mt-5 text-xl font-semibold">
+                                      Career Information & Goal:
+                                    </h1>
+                                    <div className="space-y-4 font-montserrat">
+                                      {/* 1st row */}
+                                      <div className="flex flex-col justify-start items-start gap-4">
+                                        <div className="relative">
+                                          <label
+                                            htmlFor="text"
+                                            className="block text-sm font-medium text-gray-700"
+                                          >
+                                            Resume Type
+                                          </label>
+                                          <input
+                                            type="text"
+                                            name="resumeType"
+                                            placeholder="e.g., Web Developer, Graphic Designer, Software Engineer"
+                                            required
+                                            className="mt-1 capitalize block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                          />
+                                        </div>
+                                        {/* 2nd */}
+                                        <div className="relative">
+                                          <label
+                                            htmlFor="text"
+                                            className="block text-sm font-medium text-gray-700"
+                                          >
+                                            Current Resume Link (If Applicable)
+                                          </label>
+                                          <input
+                                            type="url"
+                                            name="resume"
+                                            placeholder="Please Provide Resume Link"
+                                            className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                          />
+                                        </div>
+
+                                        <div className="font-lora text-xl flex justify-start items-center gap-2 font-medium mt-2">
+                                          <h1>Consultant :</h1>
+                                          <p className="font-medium text-xl">{name}</p>
+                                        </div>
+
+                                      
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="mt-6 flex items-center justify-center">
+                                  <button
+                                    type="submit"
+                                    className="py-2 font-bold rounded-md w-80 bg-secondary text-white hover:bg-transparent border hover:text-primary hover:border hover:border-primary font-montserrat"
+                                  >
+                                    Submit Application
+                                  </button>
+                                </div>
+                              </form>
+                            </DialogPanel>
+                          </div>
+                        </div>
+                      </Dialog>
+
+
+
+
+
+                        </>
+                      ) : (
+                        <>
+                          {" "}
+                          <button
+                            onClick={handleShowLogin}
+                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 font-lora capitalize lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+                          >
+                            Book A session
+                          </button>
+                        </>
+                      )}
                 </div>
               </div>
             </div>
           </div>
-          <div className=" w-[37rem] h-[28rem] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] p-[2px] rounded-lg shadow-lg ">
+          <div className=" w-[55rem] h-[28rem] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] p-[2px] rounded-lg shadow-lg ">
             <div className="bg-white shadow-lg rounded-lg  h-[444px] ">
-              <h2 className="text-xl font-bold font-lora  mb-4">About Me</h2>
-              <p className="text-gray-700">{about}</p>
+              <h2 className="text-xl font-bold font-lora  mb-4 pt-10 pl-10">
+               {about && " About Me"}
+              </h2>
+              <p className="text-gray-700 px-10 font-montserrat">{about}</p>
+              <div className="flex items-center gap-3 justify-start pl-10 mb-4 pt-5 ">
+                <p className="text-xl font-bold font-lora  ">Email :</p>
+                <p className="text-gray-700 font-montserrat">{email}</p>
+              </div>
 
-              <h2 className="text-xl font-bold mt-6 mb-4">Experience</h2>
+              <h2 className="text-xl font-bold font-lora mt-9 mb-4 px-10">
+                {workExperience && "Experience"}
+              </h2>
               {workExperience?.map((exp, index) => (
-                <div key={index} className="mb-6">
+                <div key={index} className="mb-6 mt-3 px-10">
                   <div className="flex justify-between flex-wrap gap-2 w-full">
-                    <span className="text-gray-700 font-bold">
+                    <span className="text-gray-700 font-lora font-bold">
                       {exp.jobTitle}
                     </span>
-                    <p>
-                      <span className="text-gray-700 mr-2">{exp.company}</span>
+                    <p className="font-montserrat">
+                      at
+                      <span className="text-gray-700 mr-2 font-montserrat ml-2">
+                        {exp.company}
+                      </span>
                     </p>
                   </div>
-                  <p className="mt-2">{exp.jobRole}</p>
+                  <p className="mt-2 font-montserrat">{exp.jobRole}</p>
                 </div>
               ))}
             </div>
