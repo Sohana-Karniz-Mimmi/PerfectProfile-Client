@@ -155,7 +155,7 @@ const Profile = () => {
           onSubmit={handleSubmit}
           className="w-full  mt-6   flex flex-col gap-3 "
         >
-          <div className="flex justify-center xl:flex-row lg:gap-80 md:gap-40 flex-col gap-3  xl:gap-[34rem] items-center ">
+          <div className="flex justify-center  xl:flex-row lg:gap-80 md:gap-40 flex-col gap-3  xl:gap-[34rem] items-center ">
             <div>
               <h1 className="text-3xl font-bold text-secondary flex justify-center items-center  lg:gap-3 font-lora">
                 Edit Profile <FiEdit />
