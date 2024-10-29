@@ -9,8 +9,10 @@ import toast from "react-hot-toast";
 import Container from "../../Shared/Container";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { TiTick } from "react-icons/ti";
+import useAuth from "../../Hook/useAuth";
 const SessionRequest = () => {
   const axiosPublic = useAxiosPublic();
+  const {user} = useAuth()
 
   const { data = [], refetch } = useQuery({
     queryKey: ["data"],
@@ -95,7 +97,7 @@ const SessionRequest = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen md:p-6 p-2 md:mt-0 mt-20">
       <h1 className="text-center mb-16 font-lora text-4xl text-primary font-bold">
         Session Requests
       </h1>
@@ -179,30 +181,31 @@ const SessionRequest = () => {
                 <tbody className="bg-white font-montserrat divide-y divide-gray-200 ">
                   {data
                     .filter(
-                      (user) =>
-                        user.bookingRequest === "pending" ||
-                        user.bookingRequest === "accepted" ||
-                        user.bookingRequest === "rejected"
+                      (client) =>
+                        client.bookingRequest === "pending" ||
+                        client.bookingRequest === "accepted" ||
+                        client.bookingRequest === "rejected" || 
+                        user?.email === client.consultant
                     )
-                    .map((user) => (
-                      <tr key={user._id}>
+                    .map((client) => (
+                      <tr key={client._id}>
                         <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap capitalize">
-                          {user.name}
+                          {client.name}
                         </td>
 
                         <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
-                          {user.email}
+                          {client.email}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-800  whitespace-nowrap">
-                          {user.number}
+                          {client.number}
                         </td>
                         <td className="px-3 py-3 text-sm text-gray-800  whitespace-nowrap">
-                          {user.resumeType}
+                          {client.resumeType}
                         </td>
                         <td className="px-5 py-3 text-sm text-gray-800  whitespace-nowrap">
-                          {user.resume && isValidUrl(user.resume) ? (
+                          {client.resume && isValidUrl(client.resume) ? (
                             <a
-                              href={user.resume}
+                              href={client.resume}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-800 underline"
@@ -214,29 +217,29 @@ const SessionRequest = () => {
                           )}
                         </td>
                         <td className="px-5 py-4 text-sm text-gray-800  whitespace-nowrap">
-                          {user.bookingRequestedAt}
+                          {client.bookingRequestedAt}
                         </td>
                         <td className="px-3 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-2">
                             <p
-                              className={`px-3 py-1  ${user.bookingRequest ===
+                              className={`px-3 py-1  ${client.bookingRequest ===
                                 "pending" &&
-                                "text-amber-500 bg-amber-100/60"} ${user.bookingRequest ===
+                                "text-amber-500 bg-amber-100/60"} ${client.bookingRequest ===
                                 "accepted" &&
-                                "text-emerald-500 bg-emerald-100/60"} ${user.bookingRequest ===
+                                "text-emerald-500 bg-emerald-100/60"} ${client.bookingRequest ===
                                 "rejected" &&
                                 "text-red-500 bg-red-100/60"}  text-xs  rounded-full`}
                             >
-                              {user.bookingRequest}
+                              {client.bookingRequest}
                             </p>
                           </div>
                         </td>
                         <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
                           <div className="flex item-center justify-between  gap-5 pr-2">
-                            <button onClick={() => handleAccept(user)}>
+                            <button onClick={() => handleAccept(client)}>
                               <TiTick className="text-green-400 border rounded-full border-green-500 text-2xl font-bold" />
                             </button>
-                            <button onClick={() => handleRemove(user)}>
+                            <button onClick={() => handleRemove(client)}>
                               <CiCircleRemove className="text-red-500 text-3xl font-bold" />
                             </button>
                           </div>
