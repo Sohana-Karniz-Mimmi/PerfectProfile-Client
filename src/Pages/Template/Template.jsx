@@ -31,6 +31,7 @@ import Banner2 from "./Banner2";
 import CheckoutForm from "../../Components/Payment/CheckoutForm";
 import useRole from "../../Hook/useRole";
 import { Helmet } from "react-helmet-async";
+import Heading from "../../Shared/Heading";
 const Template = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
@@ -150,8 +151,19 @@ const Template = () => {
       <Container>
         <TemplateBanner></TemplateBanner>
 
+        {/* Top Text Section */}
+        <div className="">
+          <Heading
+            title={"Predefine Templates "}
+            subtitle={
+              "We'll help you choose the right layout for your CV from over our available templates. Each is instantly ready to use and requires no design skills."
+            }
+            className={"max-w-3xl mx-auto md:w-[670px]"}
+          />
+        </div>
+
         {/* filter */}
-        <div className=" lg:mt-12 mt-20 justify-end flex item-end">
+        <div className="xl:pr-20 my-6 justify-end flex item-end">
           <select
             onChange={(e) => {
               setFilter(e.target.value);
@@ -169,7 +181,7 @@ const Template = () => {
           </select>
         </div>
 
-        <div className="grid grid-cols-1 font-montserrat gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
+        <div className="grid grid-cols-1 gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 px-2 xl:px-20 ">
           {predefinedTemplate?.map((template) => (
             <div key={template._id}>
               <div className="relative group h-[450px] border-secondary border">
