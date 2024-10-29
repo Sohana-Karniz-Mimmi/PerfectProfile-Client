@@ -16,13 +16,13 @@ const TeamProfile = ({ consultants }) => {
     <div>
       <section
         id="#session"
-        className="pt-16  bg-blueGray-50 px-2 lg:px-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:space-x-32 md:space-x-5  xl:space-x-16 items-center justify-center"
+        className="pt-16 bg-blueGray-50 px-2 lg:px-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 items-center justify-center gap-5"
       >
         {/* 1 */}
 
         {consultants.map((consultant) => (
           <>
-            <div className="w-72 lg:w-[25rem] lg:h-[29rem] p-2 lg:px-4 mx-auto ">
+            <div className="w-72 md:w-[23rem] 2xl:w-[23rem] lg:w-[24rem] lg:h-[29rem] p-2 lg:px-4 mx-auto ">
               <div className="relative border-2 border-primary flex flex-col min-w-0 break-words bg-white w-full h-[27rem] md:h-[28rem] mb-6 shadow-xl rounded-lg mt-16">
                 <div className="px-3 lg:px-6">
                   <div className="flex flex-wrap justify-center">
