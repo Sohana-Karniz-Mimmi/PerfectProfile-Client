@@ -10,6 +10,7 @@ import { FaFileAlt, FaRegistered, FaSignOutAlt, FaUserAlt } from "react-icons/fa
 import { MdFavorite } from "react-icons/md";
 import { BiSolidPurchaseTag } from "react-icons/bi";
 import { FaCrow, FaCrown } from "react-icons/fa6";
+import { LuUser2 } from "react-icons/lu";
 const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
   const { user } = useAuth();
   const [role, isLoading] = useRole();
@@ -30,14 +31,15 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
       <Menu as="div" className="relative inline-block text-left">
         <Menu.Button className="bg-transparent rounded-full text-black">
           <div className="md:w-14 md:h-14 w-8 h-8 border rounded-full overflow-hidden">
-            <img
-              src={
-                user?.photoURL ||
-                "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
-              }
-              alt="User"
-              className="object-cover w-full h-full"
-            />
+            {user?.photoURL ? (
+              <img
+                src={user?.photoURL}
+                alt="Profile"
+                className="w-full h-full rounded-full object-cover"
+              />
+            ) : (
+              <LuUser2 className="w-full h-full rounded-full text-gray-700 object-cover" />
+            )}
           </div>
         </Menu.Button>
 
