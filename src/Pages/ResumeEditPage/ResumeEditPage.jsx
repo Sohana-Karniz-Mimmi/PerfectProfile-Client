@@ -565,7 +565,7 @@ const ResumeEditPage = () => {
         </div>
       </div>
       {/* Content Area */}
-      <div className="xl:w-[48%] xl:ml-[20%] lg:ml-[25%] 2xl:w-[53%] lg:w-[70%] w-[100%] lg:px-12 lg:py-6 px-2 font-roboto  bg-gray-50">
+      <div className="xl:w-[48%] xl:ml-[20%] lg:ml-[25%] 2xl:w-[53%] lg:w-[70%] w-[100%] lg:px-12 lg:py-6 px-2 font-montserrat  bg-gray-50">
         <form className="text-sm" onSubmit={handleSubmit(onSubmit)}>
           {currentStep === 1 && (
             <div className="space-y-4">
