@@ -6,6 +6,7 @@ import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
 import useAxiosPublic, { axiosPublic } from "../../Hook/useAxiosPublic";
 import ProfileInfo from "./ProfileInfo";
+import { LuUser2 } from "react-icons/lu";
 import "./Profile.css";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
@@ -13,10 +14,15 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const BeforeEditingProfile = () => {
   const { user, updateUserProfile, loading } = useAuth();
+  const [preview, setPreview] = useState(null); // State for preview URL
 
   // Function to handle file upload and return the image URL
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
+    if (file) {
+      const previewURL = URL.createObjectURL(file); // Create a temporary URL
+      setPreview(previewURL); // Set preview URL in state
+    }
     if (!file) return null;
 
     const formData = new FormData();
@@ -33,6 +39,10 @@ const BeforeEditingProfile = () => {
       console.error("Error uploading file:", error);
       return null;
     }
+  };
+
+  const triggerFileInput = () => {
+    document.getElementById("profilePhotoInput").click();
   };
 
   // Form submit handler
@@ -86,17 +96,44 @@ const BeforeEditingProfile = () => {
                 Profile Photo
               </h2>
               <div className="flex justify-between items-center ">
-                <div className="">
-                  <div className="rounded-full border-8 p-1  border-secondary md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
+                {/* <div className="">
+                  <div className="rounded-full bg-gray-100 md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
+                    {user?.photoURL ? (
+                      <img
+                        src={user?.photoURL}
+                        alt="Profile"
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <LuUser2 className="w-full h-full rounded-full text-gray-700 object-cover" />
+                    )}
+                  </div>
+                </div> */}
+                <div className="rounded-full bg-gray-100 md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
+                  {preview ? (
                     <img
-                      src={user?.photoURL}
-                      alt="Profile"
+                      src={preview} // Display the selected image's preview URL
+                      alt="Profile Preview"
                       className="w-full h-full rounded-full object-cover"
                     />
-                  </div>
+                  ) : (
+                    <div className="">
+                      <div className="rounded-full bg-gray-100 md:w-32 md:h-32 w-20 h-20 overflow-hidden relative">
+                        {user?.photoURL ? (
+                          <img
+                            src={user?.photoURL}
+                            alt="Profile"
+                            className="w-full h-full rounded-full object-cover"
+                          />
+                        ) : (
+                          <LuUser2 className="w-full h-full rounded-full text-gray-700 object-cover" />
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                <div className="">
+                <div className="font-montserrat">
                   <input
                     type="file"
                     name="photo"
@@ -104,11 +141,13 @@ const BeforeEditingProfile = () => {
                     style={{ display: "none" }}
                     onChange={handleFileChange}
                   />
-                  <label htmlFor="profilePhotoInput">
-                    <span className="py-2 px-4 hover:bg-secondary font-montserrat cursor-pointer border border-slate-300">
-                      Change Photo
-                    </span>
-                  </label>
+                  <button
+                    type="button"
+                    onClick={triggerFileInput}
+                    className="px-4 py-2 bg-primary text-white rounded"
+                  >
+                    Change Photo
+                  </button>
                 </div>
               </div>
             </div>
@@ -121,7 +160,7 @@ const BeforeEditingProfile = () => {
                 Name
               </h1>
               <div className="flex justify-between items-center">
-                <div className="w-full md:w-1/2">
+                <div className="w-full">
                   <div className="flex flex-col sm:flex-row text-sm sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
                     <input
                       type="text"
@@ -130,11 +169,11 @@ const BeforeEditingProfile = () => {
                       onChange={(e) => {
                         e.target.value;
                       }}
-                      className="border text-sm  py-2 px-4 w-full sm:w-auto sm:flex-1 focus:outline-primary"
+                      className="border text-sm  py-3 px-4 w-full sm:w-auto sm:flex-1 focus:outline-none focus:border-gray-300"
                     />
                   </div>
                 </div>
-                <div className="border">
+                {/* <div className="border">
                   <div className="w-full md:w-1/2">
                     <button
                       type="button"
@@ -143,7 +182,7 @@ const BeforeEditingProfile = () => {
                       Edit
                     </button>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -155,18 +194,18 @@ const BeforeEditingProfile = () => {
                 Email
               </h1>
               <div className="flex justify-between items-center">
-                <div className="w-full md:w-1/2">
+                <div className="w-full">
                   <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
                     <input
                       type="email"
                       name="email"
                       value={user?.email}
                       readOnly
-                      className="border py-2 px-4 w-full sm:w-auto sm:flex-1 focus-within:ring-0 focus:outline-none"
+                      className=" bg-transparent w-full sm:w-auto sm:flex-1 focus-within:ring-0 focus:outline-none"
                     />
                   </div>
                 </div>
-                <div>
+                {/* <div>
                   <div className="">
                     <button
                       type="button"
@@ -175,7 +214,7 @@ const BeforeEditingProfile = () => {
                       Edit
                     </button>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
