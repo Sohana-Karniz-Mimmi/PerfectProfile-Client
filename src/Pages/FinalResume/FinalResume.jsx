@@ -35,6 +35,7 @@ import Container from "../../Shared/Container";
 import Templats from "../../Components/DrawerComponent/Templates";
 import Pricings from "../../Components/DrawerComponent/Pricings";
 import Designs from "../../Components/DrawerComponent/Designs";
+import './Final.css';
 const FinalResume = () => {
   const axiosPublic = useAxiosPublic();
   const info = useLoaderData();
@@ -291,7 +292,7 @@ const FinalResume = () => {
           className={`fixed top-0 left-0 bg-gray-50 shadow-lg z-10 transition-transform duration-1000 ease-in-out overflow-y-auto ${
             activeComponent
               ? "translate-x-0 mt-[80px] min-h-screen w-[350px] ml-[80px]"
-              : "-translate-x-full mt-[80px] min-h-screen -ml-[80px] w-0"
+              : "-translate-x-full mt-[80px] overflow-hidden min-h-screen -ml-[80px] w-0"
           }`}
         >
           <div className="flex justify-end border-b bg-white">
@@ -318,8 +319,8 @@ const FinalResume = () => {
         <div
           className={`flex flex-col-reverse w-full lg:justify-between mt-[80px]  transform transition-all duration-1000 ease-in-out ${
             activeComponent
-              ? "lg:flex-col-reverse xl:flex-row lg:w-[594px] xl:w-[930px] 2xl:w-full lg:ml-[430px]"
-              : "lg:ml-[80px] lg:w-[944px] xl:w-[1280px] 2xl:w-full lg:flex-row"
+              ? "lg:flex-col-reverse xl:flex-row lg:w-[594px] xl:w-[930px] 2xl:w-full custom:w-[1080px] lg:ml-[430px]"
+              : "lg:ml-[80px] lg:w-[944px] xl:w-[1280px] custom:w-[1456px] custom:ml-[80px] 2xl:w-full lg:flex-row"
           }`}
         >
           {/* Template section */}
@@ -333,8 +334,8 @@ const FinalResume = () => {
             <div
               className={`w-fit border lg:block hidden  border-secondary ${
                 activeComponent
-                  ? " 2xl:ml-44 2xl:!-mt-[7px] lg:-mt-36 lg:-ml-24 xl:-mt-[100px] 2xl:scale-[0.9] lg:scale-[0.6]  xl:scale-[0.7]"
-                  : "lg:scale-[0.6] xl:scale-[0.7] 2xl:scale-[0.9] 2xl:ml-[510px] 2xl:-mt-[7px] xl:ml-36 xl:-mt-24 lg:ml-16 lg:-mt-40"
+                  ? " 2xl:ml-44 2xl:!-mt-[7px] lg:-mt-36 custom:ml-12 lg:-ml-24 xl:-mt-[100px] 2xl:scale-[0.9] lg:scale-[0.6]  xl:scale-[0.7]"
+                  : "lg:scale-[0.6] xl:scale-[0.7] 2xl:scale-[0.9] 2xl:ml-[510px] 2xl:-mt-[7px] xl:ml-36 xl:-mt-24 lg:ml-16 lg:-mt-40 custom:ml-80"
               }`}
             >
               <div ref={contentRef} id="element" className={``}>
@@ -378,7 +379,7 @@ const FinalResume = () => {
             }`}
           >
             <div
-              className={`flex flex-col md:flex-row md:gap-2 md:py-8 gap-4  items-center justify-center ${
+              className={`flex flex-col md:flex-row md:gap-2 md:py-8 pt-8 gap-4  items-center justify-center ${
                 activeComponent
                   ? "lg:w-full xl:w-full lg:flex-col lg:items-center xl:items-center lg:py-12 xl:py-12"
                   : "lg:flex-col lg:items-center xl:items-center  lg:py-10"
