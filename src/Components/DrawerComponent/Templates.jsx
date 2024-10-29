@@ -79,12 +79,12 @@ const Templates = () => {
                 {/* Hover Effect with "Use Template" Button */}
                 <div className="absolute w-full h-full flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-45 transition-opacity duration-300">
                   {/* <Link to={`/resume/edit/${template.templateItem}`}> */}
-                  <button
+                  {/* <button
                     onClick={() => handleTemplateClick(template)}
                     className="bg-primary text-white font-montserrat font-bold rounded py-2 px-3 text-[14px]  opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     Use Template
-                  </button>
+                  </button> */}
                   {/* </Link> */}
                 </div>
 
