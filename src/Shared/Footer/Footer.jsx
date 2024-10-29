@@ -13,23 +13,19 @@ const Footer = () => {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
               <div className="mb-10 w-full">
-                <Link className="mb-6 inline-block max-w-[160px]">
-                  <Link
-                    to={"/"}
-                    className="font-bold text-3xl md:text-4xl gap-3 flex items-center"
-                  >
-                    <span className="">
-                      P<span className="">er</span>fect
-                      <span className="text-primary ">Profile</span>
-                    </span>
+                <Link className="inline-block max-w-[160px]">
+                  <Link to="/">
+                    <h1 className="text-white lg:text-2xl md:text-lg text-xl pb-9 font-extrabold font-lora">
+                      Perfect<span className="text-primary">Profile</span>
+                    </h1>
                   </Link>
                 </Link>
-                <p className="mb-7 text-[#a1a6ab] text-body-color">
+                <p className="mb-7 text-slate-300 font-montserrat text-body-color">
                   At PerfectProfile, we help job seekers craft stunning resumes
                   with customizable templates and expert tips, empowering you to
                   stand out in today's competitive job market.
                 </p>
-                <p className="flex md:justify-start justify-center items-center text-sm font-medium text-dark dark:text-[#a1a6ab]">
+                <p className="flex md:justify-start justify-center font-montserrat items-center text-sm font-medium text-dark dark:text-[#a1a6ab]">
                   <span className="mr-3 text-primary">
                     <svg
                       width="20"
@@ -64,7 +60,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <LinkGroup header="Resources">
+            <LinkGroup className="!font-lora" header="Resources">
               <NavLink link="/predefined-templates" label="Resume Examples" />
               <NavLink
                 link="/predefined-templates"
@@ -88,10 +84,10 @@ const Footer = () => {
 
             <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
               <div className="mb-10 w-full">
-                <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
+                <h4 className="mb-9 text-lg font-lora font-semibold text-dark dark:text-white">
                   Follow Us On
                 </h4>
-                <div className="mb-6 flex md:justify-start justify-center  items-center">
+                <div className="mb-6 font-montserrat flex md:justify-start justify-center  items-center">
                   <Link className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4">
                     <svg
                       width="8"
@@ -133,19 +129,23 @@ const Footer = () => {
                     </svg>
                   </Link>
                 </div>
-                <p className="text-base text-body-color dark:text-[#a1a6ab]">
-                  &copy; {new Date().getFullYear()} Perfect Profile
-                </p>
+                {/* <p className="text-base text-body-color dark:text-[#a1a6ab]">
+                  &copy;{new Date().getFullYear()} Perfect Profile
+                </p> */}
               </div>
             </div>
           </div>
 
           {/* Copyright */}
-          <div className="footer footer-center text-[#a1a6ab] pt-4 pb-3 border-t">
+          <div className="footer text-sm footer-center text-slate-300 pt-4 pb-3 border-t">
             <aside>
               <p className="text-center">
-                Copyright © {new Date().getFullYear()} - All right reserved by
-                Perfect Profile Ltd
+                Copyright ©{new Date().getFullYear()} - All Right Reserved by{" "}
+                <span className="font-lora text-sm  text-primary">
+                  <a className="hover:underline" href="/">
+                    <span className="text-white">Perfect</span>Profile
+                  </a>
+                </span>
               </p>
             </aside>
           </div>
@@ -218,7 +218,7 @@ const LinkGroup = ({ children, header }) => {
     <>
       <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
         <div className="mb-10 w-full">
-          <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
+          <h4 className="mb-9 text-lg font-lora font-semibold text-dark dark:text-white">
             {header}
           </h4>
           <ul className="space-y-3">{children}</ul>
@@ -233,7 +233,7 @@ const NavLink = ({ link, label }) => {
     <li>
       <a
         href={link}
-        className="inline-block text-base hover:underline leading-loose text-body-color hover:text-primary dark:text-[#a1a6ab]"
+        className="inline-block text-base font-montserrat hover:underline leading-loose text-body-color hover:text-primary dark:text-[#a1a6ab]"
       >
         {label}
       </a>

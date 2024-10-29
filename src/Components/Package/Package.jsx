@@ -2,25 +2,32 @@ import priceImg from "../../assets/pricingCard.png";
 import { SiTicktick } from "react-icons/si";
 import Container from "../../Shared/Container";
 import { Link } from "react-router-dom";
-import { useState } from 'react'
+import { useState } from "react";
 import CheckoutForm from "../Payment/CheckoutForm";
-import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import "./Package.css"
+import {
+  Description,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
+import "./Package.css";
 
 // import PackageModal from "./PackageModal";
 
 const Package = () => {
-  let [isOpen, setIsOpen] = useState(false)
-  let [isOpen2nd, set2ndIsOpen] = useState(false)
+  let [isOpen, setIsOpen] = useState(false);
+  let [isOpen2nd, set2ndIsOpen] = useState(false);
 
   return (
     <Container className="">
       <div
         id="price"
-        className="flex lg:flex-row flex-col justify-between mt-8 xl:gap-8 lg:gap-3 gap-8 lg:py-10 py-10"
+        className="flex lg:flex-row flex-col justify-between mt-8 xl:gap-8 lg:gap-3 gap-8 lg:py-10 py-10 "
       >
-        <div className="space-y-7 card lg:w-2/3 md:max-w-md md:mx-auto w-full lg:h-[44rem] md:h-[43rem]  h-[44rem]">
-          <h1 className="text-4xl font-lora text-center font-extrabold">Our Pricing</h1>
+        <div className="space-y-7 card lg:w-2/3 md:max-w-md md:mx-auto lg:block hidden w-full lg:h-[44rem] md:h-[43rem]  h-[44rem] lg:shadow-none shadow-lg p-5">
+          <h1 className="text-4xl font-lora text-center font-extrabold">
+            Our Pricing
+          </h1>
           <p className="text-gray-600 font-montserrat">
             In PerfectProfile, users can choose from flexible plans that provide
             full access to professional templates and additional advanced
@@ -30,28 +37,29 @@ const Package = () => {
 
           <Link
             to="/predefined-templates"
-            className="px-5 py-2.5 h-24 relative flex justify-center items-center rounded group overflow-hidden  bg-cyan-50 border-2 border-[#2CACD5]  text-[#2CACD5] "
+            className="px-5 py-2.5 h-24 relative flex justify-center items-center rounded group overflow-hidden  border-2 border-[#2CACD5] hover:border-secondary  text-[#2CACD5] "
           >
-            <span className="absolute top-0 left-0 flex justify-center items-center w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#2CACD5] group-hover:h-full opacity-90"></span>
+            <span className="absolute top-0 left-0 flex justify-center items-center w-full h-0 mb-0 transition-all duration-300  ease-out transform translate-y-0 bg-secondary group-hover:h-full opacity-90"></span>
             <span className="relative group-hover:text-white ">
-              <div className="flex flex-col items-center justify-center">
-                <p className="font-bold text-xl font-montserrat mt-2">
-                  Lets Build Resume
-                </p>
-                <p className="font-medium text-center mx-auto">
-                  With Unlimited Predefined Templates
+              <div className="flex font-montserrat flex-col items-center justify-center">
+                <p className="font-bold text-xl text-center">Lets Build Resume</p>
+                <p className="font-medium text-center text-xs mx-auto">
+                  Unlimited Predefined Templates
                 </p>
               </div>
             </span>
           </Link>
 
-          <div>
-            <Link to="" className="font-roboto font-bold hover:underline">
-              Terms & Conditions
+          <div className="">
+            <Link
+              to="/terms&conditions"
+              className="font-lora text-xs text-gray-900 font-bold hover:underline"
+            >
+              <p className="-mt-6">Terms & Conditions</p>
             </Link>
-            <p className="font-light font-roboto text-xs text-gray-700">
+            {/* <p className="font-light font-roboto text-xs text-gray-700">
               Subject to change with perior notice
-            </p>
+            </p> */}
           </div>
         </div>
         {/* standard */}

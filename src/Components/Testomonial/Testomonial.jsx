@@ -7,9 +7,11 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { FaQuoteRight, FaStar } from "react-icons/fa";
 import axios from "axios";
-import Rating from "react-rating"; 
+import Rating from "react-rating";
+import useAuth from "../../Hook/useAuth";
 
 const Testimonial = () => {
+  const { user } = useAuth();
   const swiperRef = useRef(null);
   const nextRef = useRef(null);
   const prevRef = useRef(null);
@@ -40,7 +42,7 @@ const Testimonial = () => {
 
   return (
     <Container>
-      <div className="flex flex-col justify-center items-center pt-24 space-y-4">
+      <div className="flex flex-col justify-center items-center  space-y-4">
         <h2 className="lg:text-5xl text-center md:text-4xl text-3xl font-bold font-lora text-black">
           Your Success, Our Inspiration
         </h2>
@@ -83,11 +85,11 @@ const Testimonial = () => {
                 fullSymbol={<FaStar className="text-[#F3961B]" />}
                 fractions={2}
               />
-              
-                <p className="font-medium font-montserrat min-h-28 text-[#4e4e4e] mt-5 mb-6 text-sm leading-6">
-                  {feedback.feedback}
-                </p>
-              
+
+              <p className="font-medium font-montserrat min-h-28 text-[#4e4e4e] mt-5 mb-6 text-sm leading-6">
+                {feedback.feedback}
+              </p>
+
               <div className="flex justify-between items-center">
                 <div className="flex md:gap-5 gap-2 items-center">
                   <div className="avatar">
