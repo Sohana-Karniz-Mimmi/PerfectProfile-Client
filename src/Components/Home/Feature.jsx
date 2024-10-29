@@ -71,7 +71,7 @@ const Feature = () => {
 
   return (
     <Container>
-      <div className="programs-container ">
+      <div id="feature" className="programs-container ">
         {/* <h2 className="title font-bold">Our Features</h2> */}
 
         {/* Top Text Section */}
