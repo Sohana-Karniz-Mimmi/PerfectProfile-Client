@@ -48,7 +48,7 @@ const WhyNeedSection = () => {
                 {/* features */}
                 {
                     features.map(feature=> <>
-                    <div className="flex flex-col md:flex-row gap-5 justify-center p-3 text-center md:justify-start items-center">
+                    <div className="flex flex-col md:flex-row gap-5 justify-center md:items-start p-3 text-center md:justify-start items-center md:text-start">
                     <motion.div
                      whileInView={{opacity : 1, y: 0}}
                      initial={{opacity : 0, y: -70}}

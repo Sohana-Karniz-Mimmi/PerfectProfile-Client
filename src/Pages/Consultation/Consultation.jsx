@@ -165,7 +165,7 @@ const Consultation = () => {
                                   value={user?.displayName}
                                   placeholder="Enter your name"
                                   required
-                                  className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                  className="mt-1 capitalize block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                                 />
                               </div>
                               <div className="relative">
