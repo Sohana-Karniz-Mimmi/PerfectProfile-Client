@@ -11,7 +11,7 @@ const Banner2 = () => {
     return (
         <div className=" -mb-44 lg:-mb-64 lg:mt-36 mt-8">           
           <Container>
-          <h1 className="font-bold lg:text-4xl text-2xl text-center ">Why <span className=" border-b-4 rounded-sm border-primary">Choose</span> <span>
+          <h1 className="font-bold font-lora lg:text-4xl text-2xl text-center ">Why <span className=" border-b-4 rounded-sm border-primary">Choose</span> <span>
                 P<span>er</span>fect
                 <span className="text-primary">Profile</span>?
               </span></h1>
@@ -21,7 +21,7 @@ const Banner2 = () => {
               whileInView={{opacity : 1, y: 0}}
               initial={{opacity : 0, y: 100}}
               transition={{duration: 1.5}}
-              className='grid grid-cols-1 lg:grid-cols-2 gap-7 mt-10 p-2 items-center justify-center '>
+              className='grid grid-cols-1 font-montserrat lg:grid-cols-2 gap-7 mt-20 p-2 items-center justify-center '>
                 {/* feature 1 */}
                 <div className="flex gap-4">
                     <div>

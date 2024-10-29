@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
 import image from "../../assets/profile image/FjU2lkcWYAgNG6d.jpg";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
@@ -9,7 +6,11 @@ import ProfileInfo from "./ProfileInfo";
 import { LuUser2 } from "react-icons/lu";
 import "./Profile.css";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOISTING_API_KEY;
+import "./Profile.css";
+import axios from "axios";
+import { useState } from "react";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BeforeEditingProfile = () => {

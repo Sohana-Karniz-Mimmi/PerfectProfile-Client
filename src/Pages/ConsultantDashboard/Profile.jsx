@@ -149,15 +149,15 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto  px-10">
+      <div className="mx-auto lg:px-5  xl:px-10">
         <form
           ref={formRef}
           onSubmit={handleSubmit}
           className="w-full  mt-6   flex flex-col gap-3 "
         >
-          <div className="flex justify-center gap-[34rem] items-center ">
+          <div className="flex justify-center  xl:flex-row lg:gap-80 md:gap-40 flex-col gap-3  xl:gap-[34rem] items-center ">
             <div>
-              <h1 className="text-3xl font-bold text-secondary flex justify-center items-center gap-3 font-lora">
+              <h1 className="text-3xl font-bold text-secondary flex justify-center items-center  lg:gap-3 font-lora">
                 Edit Profile <FiEdit />
               </h1>
               <img src="" alt="" />
@@ -221,10 +221,10 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* form */}
+         
 
           {/* basic info */}
-          <div className="flex flex-row justify-center items-start gap-12">
+          <div className="flex md:flex-col lg:flex-col xl:flex-row justify-center items-start gap-12">
             <div>
               <h1 className="mt-6 mb-4 font-lora font-semibold text-xl">
                 Personal Information :

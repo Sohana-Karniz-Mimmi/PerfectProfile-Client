@@ -56,8 +56,8 @@ const Template = () => {
     };
     getData();
   }, [currentPage, itemPerPage, filter]);
-  console.log(predefinedTemplate)
-  console.log(filter)
+  console.log(predefinedTemplate);
+  console.log(filter);
   //   add to favorite
   const handleFavorite = (template) => {
     const { _id, image, package: templatePackage } = template;
@@ -122,7 +122,7 @@ const Template = () => {
     set2ndIsOpen(true);
   };
 
-  // paginatio
+  // pagination
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axiosPublic(`/templates-count?filter=${filter}`);
@@ -132,10 +132,7 @@ const Template = () => {
   }, [filter]);
 
   const numofPage = Math.ceil(count / itemPerPage);
-  const pages = [
-    ...Array(numofPage)
-      .keys()]
-    .map((element) => element + 1)
+  const pages = [...Array(numofPage).keys()].map((element) => element + 1);
 
   const handlePagination = (value) => {
     console.log(value);
@@ -146,7 +143,6 @@ const Template = () => {
 
   return (
     <div>
-
       <Helmet>
         <title>Template - PerfectProfile</title>
       </Helmet>
@@ -157,23 +153,23 @@ const Template = () => {
         {/* filter */}
         <div className=" lg:mt-12 mt-20 justify-end flex item-end">
           <select
-            onChange={e => {
-              setFilter(e.target.value)
-              setCurrentPage(1)
+            onChange={(e) => {
+              setFilter(e.target.value);
+              setCurrentPage(1);
             }}
             name="package"
             id="package"
             value={filter}
-            className="border border-primary px-4 py-2 rounded-lg "
+            className="border font-montserrat border-primary px-4 py-2 rounded-lg "
           >
             {/* <option value=''>Filter By Category</option> */}
-            <option value="">All</option>
+            <option value="">Free + Premium</option>
             <option value="free">Free</option>
             <option value="premium">Premium</option>
           </select>
         </div>
 
-        <div className="grid grid-cols-1 gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
+        <div className="grid grid-cols-1 font-montserrat gap-9 mb-9 lg:grid-cols-3 md:grid-cols-2 p-2 xl:p-20 pl-0 xl:pl-36">
           {predefinedTemplate?.map((template) => (
             <div key={template._id}>
               <div className="relative group h-[450px] border-secondary border">
@@ -198,7 +194,8 @@ const Template = () => {
                   {/* <Link to={`/resume/edit/${template.templateItem}`}> */}
                   <button
                     onClick={() => handleTemplateClick(template)}
-                    className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
                     Use Template
                   </button>
                   {/* </Link> */}
@@ -245,10 +242,11 @@ const Template = () => {
             <button
               onClick={() => handlePagination(btnNum)}
               key={btnNum}
-              className={`hidden ${currentPage === btnNum
-                ? "bg-primary text-white border-primary"
-                : ""
-                } px-3 py-1 mx-1 border-2 rounded-full transition-colors duration-300 transform   sm:inline hover:bg-primary  hover:text-white`}
+              className={`hidden ${
+                currentPage === btnNum
+                  ? "bg-primary text-white border-primary"
+                  : ""
+              } px-3 py-1 mx-1 border-2 rounded-full transition-colors duration-300 transform   sm:inline hover:bg-primary  hover:text-white`}
             >
               {btnNum}
             </button>
@@ -376,8 +374,6 @@ const Template = () => {
           </DialogPanel>
         </div>
       </Dialog>
-
-
     </div>
   );
 };

@@ -28,8 +28,8 @@ const Feature = () => {
       description: (
         <>
           Choose from a variety of templates to suit your personal style and
-          career goals.easy to tailor your resume with various templates and
-          styles.
+          career goals, making it easy to tailor your resume with various
+          templates and styles.
         </>
       ),
     },
@@ -59,7 +59,7 @@ const Feature = () => {
     {
       feature: "Multiple Export Options",
       // image_url: 'https://i.ibb.co.com/QFMD4n3/1.png',
-      image_url: 'https://i.ibb.co.com/1MrynwS/13.png',
+      image_url: "https://i.ibb.co.com/1MrynwS/13.png",
       description: (
         <>
           Our multiple export options ensure your resume is compatible with any
@@ -71,7 +71,7 @@ const Feature = () => {
 
   return (
     <Container>
-      <div className="programs-container ">
+      <div id="feature" className="programs-container ">
         {/* <h2 className="title font-bold">Our Features</h2> */}
 
         {/* Top Text Section */}
