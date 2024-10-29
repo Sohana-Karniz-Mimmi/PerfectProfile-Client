@@ -12,13 +12,17 @@ import {
 import { IoMdClose } from "react-icons/io";
 import useAuth from "../../Hook/useAuth";
 import img from '../../assets/consultation/profile.png'
+import CheckoutForm from "../../Components/Payment/CheckoutForm";
 
 
 const ConsultantDetails = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   let [isOpen, setIsOpen] = useState(false);
+  let [isOpen2nd, set2ndIsOpen] = useState(false);
+
   const { id } = useParams();
+  const [userData, setUserData] = useState()
 
   const { data: consultant = {}, refetch } = useQuery({
     queryKey: ["consultant", id],
@@ -28,6 +32,18 @@ const ConsultantDetails = () => {
     },
   });
   console.log(consultant);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await axiosPublic(`/user/${user?.email}`
+      );
+
+      setUserData(data);
+    };
+    getUser();
+  }, [user?.email]);
+ 
+  console.log(userData);
   const {
     image,
     about,
@@ -143,8 +159,8 @@ const ConsultantDetails = () => {
                 </div>
 
                 <div className="mt-2 flex flex-wrap gap-4 justify-center">
-                {/* {user.package === "premium" || user.package === "standard" ? ( */}
-                {user? (
+                {user.productName === "premium" || user.package === "standard" ? (
+               
                         <>
                           <button
                             onClick={() => setIsOpen(true)}
@@ -310,11 +326,21 @@ const ConsultantDetails = () => {
                         <>
                           {" "}
                           <button
-                            onClick={handleShowLogin}
-                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 font-lora capitalize lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+onClick={() => set2ndIsOpen(true)}                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 font-lora capitalize lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
                           >
                             Book A session
                           </button>
+                          <Dialog
+        open={isOpen2nd}
+        onClose={() => set2ndIsOpen(false)}
+        className="relative z-50"
+      >
+        <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black bg-opacity-50 ">
+          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+            <CheckoutForm></CheckoutForm>
+          </DialogPanel>
+        </div>
+      </Dialog>
                         </>
                       )}
                 </div>

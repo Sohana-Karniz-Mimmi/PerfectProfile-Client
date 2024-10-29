@@ -98,13 +98,14 @@ const SessionRequest = () => {
 
   return (
     <div className="min-h-screen md:p-6 p-2 md:mt-0 mt-20">
-      <h1 className="text-center mb-16 font-lora text-4xl text-primary font-bold">
-        Session Requests
-      </h1>
+      <div className="flex items-center pb-6 gap-x-3 mt-4">
+          <h2 className="2xl:text-3xl capitalize mt-5 text-xl text-gray-800 font-bold font-lora ">session requests</h2>
+        </div>
+
 
       {/* table */}
 
-      <div className="flex flex-col mt-8 ">
+      <div className="flex flex-col mt-6 ">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
@@ -152,14 +153,7 @@ const SessionRequest = () => {
                         <span>Resume</span>
                       </div>
                     </th>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-4 text-xl font-lora font-bold text-left rtl:text-right "
-                    >
-                      <div className="flex items-center  font-lora gap-x-3">
-                        <span>Requested At</span>
-                      </div>
-                    </th>
+                  
                     <th
                       scope="col"
                       className="py-3.5 px-4 text-xl font-lora font-bold text-left rtl:text-right "
@@ -216,9 +210,7 @@ const SessionRequest = () => {
                             <p className="text-gray-800">Not provided</p>
                           )}
                         </td>
-                        <td className="px-5 py-4 text-sm text-gray-800  whitespace-nowrap">
-                          {client.bookingRequestedAt}
-                        </td>
+                      
                         <td className="px-3 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-2">
                             <p
@@ -236,10 +228,10 @@ const SessionRequest = () => {
                         </td>
                         <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
                           <div className="flex item-center justify-between  gap-5 pr-2">
-                            <button onClick={() => handleAccept(client)}>
+                            <button title="Accept Session Request" onClick={() => handleAccept(client)}>
                               <TiTick className="text-green-400 border rounded-full border-green-500 text-2xl font-bold" />
                             </button>
-                            <button onClick={() => handleRemove(client)}>
+                            <button title="Decline Session Request" onClick={() => handleRemove(client)}>
                               <CiCircleRemove className="text-red-500 text-3xl font-bold" />
                             </button>
                           </div>
