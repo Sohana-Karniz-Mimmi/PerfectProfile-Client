@@ -3,6 +3,7 @@ import img from "../../assets/consultation/thinking.png";
 import { FaQuestion } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
+import Heading from "../../Shared/Heading";
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -41,6 +42,7 @@ const FAQ = () => {
       <div className=" bg-white">
         <div className=" mx-auto px-4 sm:px-6 lg:px-16 flex flex-col lg:flex-row lg:text-start text-center  lg:items-start justify-center gap-6 lg:gap-36 ">
           <div className="">
+          
             <h3 className=" mt-4 text-4xl font-lora leading-normal font-bold tracking-tight ">
               Frequently Asked <span className="text-primary"> Questions</span>
             </h3>

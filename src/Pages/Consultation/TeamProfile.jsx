@@ -16,7 +16,7 @@ const TeamProfile = ({ consultants }) => {
     <div>
       <section
         id="#session"
-        className="md:pt-16 pt-4 bg-blueGray-50 px-3 -gap-12 lg:px-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-7 2xl:px-10 items-center justify-center "
+        className="md:pt-10 pt-4 bg-blueGray-50 px-3 -gap-12 lg:px-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-7 2xl:px-10 items-center justify-center "
       >
         {/* 1 */}
 
