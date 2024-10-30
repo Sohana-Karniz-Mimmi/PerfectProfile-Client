@@ -11,9 +11,8 @@ import {
 } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
 import useAuth from "../../Hook/useAuth";
-import img from '../../assets/consultation/profile.png'
+import img from "../../assets/consultation/profile.png";
 import CheckoutForm from "../../Components/Payment/CheckoutForm";
-
 
 const ConsultantDetails = () => {
   const axiosPublic = useAxiosPublic();
@@ -22,7 +21,7 @@ const ConsultantDetails = () => {
   let [isOpen2nd, set2ndIsOpen] = useState(false);
 
   const { id } = useParams();
-  const [userData, setUserData] = useState()
+  const [userData, setUserData] = useState();
 
   const { data: consultant = {}, refetch } = useQuery({
     queryKey: ["consultant", id],
@@ -35,14 +34,13 @@ const ConsultantDetails = () => {
 
   useEffect(() => {
     const getUser = async () => {
-      const { data } = await axiosPublic(`/user/${user?.email}`
-      );
+      const { data } = await axiosPublic(`/user/${user?.email}`);
 
       setUserData(data);
     };
     getUser();
   }, [user?.email]);
- 
+
   console.log(userData);
   const {
     image,
@@ -56,7 +54,6 @@ const ConsultantDetails = () => {
     expertise,
     workExperience,
   } = consultant;
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -159,17 +156,17 @@ const ConsultantDetails = () => {
                 </div>
 
                 <div className="mt-2 flex flex-wrap gap-4 justify-center">
-                {user.productName === "premium" || user.package === "standard" ? (
-               
-                        <>
-                          <button
-                            onClick={() => setIsOpen(true)}
-                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 capitalize font-montserrat  lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-3 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
-                          >
-                            Book A Session
-                          </button>
+                  {user.productName === "premium" ||
+                  user.package === "standard" ? (
+                    <>
+                      <button
+                        onClick={() => setIsOpen(true)}
+                        className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 capitalize font-montserrat  lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-3 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+                      >
+                        Book A Session
+                      </button>
 
-                          <Dialog
+                      <Dialog
                         open={isOpen}
                         onClose={() => setIsOpen(false)}
                         className="relative z-50 w-[30rem] "
@@ -242,7 +239,7 @@ const ConsultantDetails = () => {
                                           Phone Number
                                         </label>
                                         <input
-                                          type="number"
+                                          type="text"
                                           name="number"
                                           id="number"
                                           placeholder="Enter your Phone Number"
@@ -294,10 +291,10 @@ const ConsultantDetails = () => {
 
                                         <div className="font-lora text-xl flex justify-start items-center gap-2 font-medium mt-2">
                                           <h1>Consultant :</h1>
-                                          <p className="font-medium text-xl">{name}</p>
+                                          <p className="font-medium text-xl">
+                                            {name}
+                                          </p>
                                         </div>
-
-                                      
                                       </div>
                                     </div>
                                   </div>
@@ -306,6 +303,7 @@ const ConsultantDetails = () => {
                                 <div className="mt-6 flex items-center justify-center">
                                   <button
                                     type="submit"
+                                    onClick={() => setIsOpen(false)}
                                     className="py-2 font-bold rounded-md w-80 bg-secondary text-white hover:bg-transparent border hover:text-primary hover:border hover:border-primary font-montserrat"
                                   >
                                     Submit Application
@@ -316,33 +314,29 @@ const ConsultantDetails = () => {
                           </div>
                         </div>
                       </Dialog>
-
-
-
-
-
-                        </>
-                      ) : (
-                        <>
-                          {" "}
-                          <button
-onClick={() => set2ndIsOpen(true)}                            className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 font-lora capitalize lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
-                          >
-                            Book A session
-                          </button>
-                          <Dialog
-        open={isOpen2nd}
-        onClose={() => set2ndIsOpen(false)}
-        className="relative z-50"
-      >
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black bg-opacity-50 ">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <CheckoutForm></CheckoutForm>
-          </DialogPanel>
-        </div>
-      </Dialog>
-                        </>
-                      )}
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <button
+                        onClick={() => set2ndIsOpen(true)}
+                        className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-white py-2 px-4 font-lora capitalize lg:text-base font-semibold shadow-lg transform transition duration-500 hover:scale-105 mt-4 flex justify-center items-center mx-auto mb-10 lg:mb-7 "
+                      >
+                        Book A session
+                      </button>
+                      <Dialog
+                        open={isOpen2nd}
+                        onClose={() => set2ndIsOpen(false)}
+                        className="relative z-50"
+                      >
+                        <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black bg-opacity-50 ">
+                          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+                            <CheckoutForm></CheckoutForm>
+                          </DialogPanel>
+                        </div>
+                      </Dialog>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -350,7 +344,7 @@ onClick={() => set2ndIsOpen(true)}                            className="bg-grad
           <div className=" w-[55rem] min-h-[28rem] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] p-[2px] rounded-lg shadow-lg ">
             <div className="bg-white shadow-lg rounded-lg  min-h-[444px] ">
               <h2 className="text-xl font-bold font-lora  mb-4 pt-10 pl-10">
-               {about && " About Me"}
+                {about && " About Me"}
               </h2>
               <p className="text-gray-700 px-10 font-montserrat">{about}</p>
               <div className="flex items-center gap-3 justify-start pl-10 mb-4 pt-5 ">

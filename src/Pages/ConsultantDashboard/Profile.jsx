@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAuth from "../../Hook/useAuth";
 import { FiEdit } from "react-icons/fi";
 import img from "../../assets/consultation/profile.png";
@@ -9,13 +9,17 @@ import { useQuery } from "@tanstack/react-query";
 import { FaPlus, FaTrash, FaTrashAlt } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet-async";
+import useRole from "../../Hook/useRole";
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 const Profile = () => {
   const { user } = useAuth();
   console.log(user);
+  const [role] = useRole()
   const axiosPublic = useAxiosPublic();
   const [image, setImage] = useState(null);
+  const [selectedExperience, setSelectedExperience] = useState(role.experience || "")
+  const [selectedExpertise, setSelectedExpertise] = useState(role.expertise || "")
 
   const formRef = useRef(null);
   const inputRef = useRef(null);
@@ -52,15 +56,26 @@ const Profile = () => {
 
   // add more experience
   const [userData, setUserData] = useState({
-    workExperience: [
-      {
-        jobRole: "",
-        company: "",
-        jobTitle: "",
-        isCurrent: false,
-      },
-    ],
+    workExperience: role.workExperience && role.workExperience.length > 0
+      ? role.workExperience
+      : [
+          {
+            jobRole: "",
+            company: "",
+            jobTitle: "",
+            isCurrent: false,
+          },
+        ],
   });
+
+  // update data in initial render
+  useEffect(() => {
+    if (role.workExperience && role.workExperience.length > 0) {
+      setUserData({ workExperience: role.workExperience });
+    }
+  }, [role.workExperience]);
+  console.log(role)
+  
 
   const addWorkExperienceArrayEntry = () => {
     const newEntry = {
@@ -86,7 +101,6 @@ const Profile = () => {
     }));
   };
 
-  // Remove specific work experience entry
   // Delete Work experience section
   const deleteWorkExperience = (index) => {
     const updatedWorkExperience = userData.workExperience.filter(
@@ -138,15 +152,22 @@ const Profile = () => {
       });
   };
 
-  // get the consultant data
-  const { data: consultant = {}, refetch } = useQuery({
-    queryKey: ["consultant", user?.email],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/user/${user?.email}`);
-      return res.data;
-    },
-  });
-  console.log(consultant);
+  // set default value as role.experience & role.expertise
+  useEffect(()=>{
+    if(role.experience){
+      setSelectedExperience(role.experience)
+    }
+
+  }, [role.experience])
+
+  useEffect(()=>{
+    if(role.expertise){
+      setSelectedExpertise(role.expertise)
+    }
+
+  }, [role.expertise])
+
+  
 
   return (
     <div>
@@ -174,7 +195,7 @@ const Profile = () => {
               <div className="relative ">
                 {typeof image === "string" ? (
                   <img
-                    src={image}
+                    src={ role.image || image}
                     alt="Uploaded"
                     className="rounded-full lg:w-[10rem] h-40 w-36 cursor-pointer"
                   />
@@ -248,7 +269,7 @@ const Profile = () => {
                       <input
                         type="text"
                         name="name"
-                        defaultValue={user?.displayName}
+                        defaultValue={role.name || user?.displayName}
                         placeholder="Enter your name"
                         required
                         className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
@@ -280,7 +301,8 @@ const Profile = () => {
                         Phone Number
                       </label>
                       <input
-                        type="number"
+                        type="text"
+                        defaultValue={role.number}
                         name="number"
                         id="number"
                         placeholder="Enter Your Phone Number"
@@ -298,6 +320,7 @@ const Profile = () => {
                       </label>
                       <input
                         type="text"
+                        defaultValue={role.address}
                         name="address"
                         id="address"
                         placeholder="Please Provide Your Address"
@@ -316,10 +339,11 @@ const Profile = () => {
                       </label>
                       <textarea
                         id="about"
+                        defaultValue={role.about}
                         name="about"
                         className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                         placeholder="Enter your message"
-                        rows="3"
+                        rows="7"
                       />
                     </div>
 
@@ -341,6 +365,7 @@ const Profile = () => {
                           <input
                             type="url"
                             name="facebook"
+                            defaultValue={role.facebook}
                             placeholder="Facebook Profile Link"
                             className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                           />
@@ -356,6 +381,7 @@ const Profile = () => {
                           <input
                             type="url"
                             name="twitter"
+                            defaultValue={role.twitter}
                             placeholder="Twitter Profile Link"
                             className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                           />
@@ -370,6 +396,7 @@ const Profile = () => {
                           </label>
                           <input
                             type="url"
+                            defaultValue={role.linkdin}
                             name="linkdin"
                             placeholder="Linkdin Profile Link"
                             className="mt-1 block w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
@@ -399,6 +426,8 @@ const Profile = () => {
                       <select
                         name="expertise"
                         id="expertise"
+                        value={selectedExpertise}
+                        onChange={e => setSelectedExpertise(e.target.value)}
                         className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                       >
                         <option value="">Select Area</option>
@@ -418,6 +447,8 @@ const Profile = () => {
                       <select
                         name="experience"
                         id="experience"
+                        value={selectedExperience}
+                        onChange={e => setSelectedExperience(e.target.value)}
                         className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                       >
                         <option value="">Select Experience</option>
@@ -443,14 +474,14 @@ const Profile = () => {
                         >
                           {index > 0 && (
                             <div
-                              className={`flex absolute -top-2 right-0 items-center justify-end  rounded-full`}
+                              className={`flex absolute -top-4 right-0 items-center justify-end  rounded-full`}
                             >
                               <button
                                 type="button"
                                 onClick={() => deleteWorkExperience(index)}
                                 className="text-red-500 hover:text-red-600 bg-white"
                               >
-                                <FaTrashAlt />
+                                <FaTrashAlt className="text-xl" />
                               </button>
                             </div>
                           )}
@@ -510,6 +541,7 @@ const Profile = () => {
                             <textarea
                               name="jobRole"
                               id="jobRole"
+                              defaultValue={role.jobRole}
                               rows={5}
                               placeholder="Enter your job role and key responsibilities"
                               value={experience.jobRole}
