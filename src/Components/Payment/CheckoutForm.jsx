@@ -193,7 +193,7 @@ const CheckoutForm = () => {
                   Phone
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   id="phone"
                   placeholder="+880 1111111111"
                   {...register("phone", { required: true })}

@@ -11,9 +11,11 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { TiTick } from "react-icons/ti";
 import useAuth from "../../Hook/useAuth";
 import { Helmet } from "react-helmet-async";
+import useRole from "../../Hook/useRole";
 const SessionRequest = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
+  const [role] = useRole()
 
   const { data = [], refetch } = useQuery({
     queryKey: ["data"],
@@ -186,7 +188,7 @@ const SessionRequest = () => {
                           client.bookingRequest === "pending" ||
                           client.bookingRequest === "accepted" ||
                           client.bookingRequest === "rejected" ||
-                          user?.email === client.consultant
+                          role?.name === client.consultant
                       )
                       .map((client) => (
                         <tr key={client._id}>

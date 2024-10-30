@@ -3,6 +3,7 @@ import img2 from '../../assets/consultation/team.png'
 import img3 from '../../assets/consultation/timetable.png'
 import img4 from '../../assets/consultation/success.png'
 import {  motion } from "framer-motion";
+import Heading from '../../Shared/Heading';
 
 const WhyNeedSection = () => {
 
@@ -37,9 +38,22 @@ const WhyNeedSection = () => {
 
     return (
         <div>
-          <h1 className="font-bold font-lora  lg:text-4xl lg:mt-28 mt-20 text-3xl text-center ">Why Seek Help from Resume <span className=" border-b-4 rounded-sm border-primary">Experts</span> <span>
-               ?
-              </span></h1>
+           
+
+             {/* Top Text Section */}
+        <div className="">
+          <Heading
+            title={"Why Seek Help from Resume Experts? "}
+            subtitle={
+              "Resume experts help showcase your strengths and optimize your resume, ensuring it stands out to employers."
+            }
+            className={"max-w-3xl mx-auto md:w-[670px]"}
+          />
+        </div>
+
+
+
+    
 
              {/* feature section */}
               <div 
