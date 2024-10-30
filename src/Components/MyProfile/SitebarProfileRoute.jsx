@@ -79,9 +79,9 @@ const SitebarProfileRoute = () => {
               <NavLink
                 to="editingProfile"
                 className={({ isActive }) =>
-                  `hover:bg-[#A7F3D0] hover:rounded px-4 py-3 flex items-center gap-2 ${
+                  `group hover:rounded px-4 py-3 flex items-center gap-2 ${
                     isActive
-                      ? "text-black font-bold bg-[#A7F3D0] hover:bg-none"
+                      ? "text-black font-bold"
                       : "text-gray-700 font-semibold"
                   }`
                 }
@@ -89,11 +89,11 @@ const SitebarProfileRoute = () => {
                 {({ isActive }) => (
                   <>
                     <CgProfile
-                      className="text-2xl text-gray-700"
-                      style={{
-                        color: isActive && "#00C8AA",
-                        fontSize: isActive && "28px",
-                      }}
+                      className={`text-2xl ${
+                        isActive
+                          ? "text-secondary"
+                          : "text-gray-700 group-hover:text-secondary"
+                      } `}
                     />
                     Your Account
                   </>
@@ -102,9 +102,9 @@ const SitebarProfileRoute = () => {
               <NavLink
                 to="address"
                 className={({ isActive }) =>
-                  `hover:bg-[#A7F3D0] hover:rounded px-4 py-3 flex items-center gap-2 ${
+                  `group hover:rounded px-4 py-3 flex items-center gap-2 ${
                     isActive
-                      ? "text-black font-bold bg-[#A7F3D0] hover:bg-none"
+                      ? "text-black font-bold"
                       : "text-gray-700 font-semibold"
                   }`
                 }
@@ -112,11 +112,11 @@ const SitebarProfileRoute = () => {
                 {({ isActive }) => (
                   <>
                     <CgProfile
-                      className="text-2xl text-gray-700"
-                      style={{
-                        color: isActive && "#00C8AA",
-                        fontSize: isActive && "28px",
-                      }}
+                      className={`text-2xl ${
+                        isActive
+                          ? "text-secondary"
+                          : "text-gray-700 group-hover:text-secondary"
+                      } `}
                     />
                     General
                   </>
