@@ -33,8 +33,8 @@ const Navbar = () => {
           onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-secondary hover:rounded-none text-[17px] hover:border-b-2 border-primary mt-2"
+              ? "p-0 text-primary pb-1 rounded-none md:text-[17px] text-sm font-medium  border-b-2  mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-secondary hover:rounded-none md:text-[17px] text-sm hover:border-b-2 border-primary mt-2"
           }
           to={"/"}
         >
@@ -49,8 +49,8 @@ const Navbar = () => {
           onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
+              ? "p-0 text-primary pb-1 rounded-none md:text-[17px] text-sm font-medium  border-b-2  mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-secondary hover:rounded-none md:text-[17px] text-sm hover:border-b-2 border-primary mt-2"
           }
           to={"/predefined-templates"}
         >
@@ -64,8 +64,8 @@ const Navbar = () => {
           onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
+              ? "p-0 text-primary pb-1 rounded-none md:text-[17px] text-sm font-medium  border-b-2  mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-secondary hover:rounded-none md:text-[17px] text-sm hover:border-b-2 border-primary mt-2"
           }
           to={"/consultants"}
         >
@@ -79,8 +79,8 @@ const Navbar = () => {
           onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-blue-600"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
+              ? "p-0 text-primary pb-1 rounded-none md:text-[17px] text-sm font-medium  border-b-2  mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-secondary hover:rounded-none md:text-[17px] text-sm hover:border-b-2 border-primary mt-2"
           }
           to={"/pricing"}
         >
@@ -95,8 +95,8 @@ const Navbar = () => {
           onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
+              ? "p-0 text-primary pb-1 rounded-none md:text-[17px] text-sm font-medium  border-b-2  mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-secondary hover:rounded-none md:text-[17px] text-sm hover:border-b-2 border-primary mt-2"
           }
           to={"/about"}
         >
@@ -111,8 +111,8 @@ const Navbar = () => {
           onClick={closeMenuOnNavLinkClick}
           className={({ isActive }) =>
             isActive
-              ? "p-0 text-primary pb-1 rounded-none text-[17px] border-b-2 font-medium mt-2 border-secondary"
-              : "font-medium p-0 transition-all duration-200 ease-in-out hover:text-secondary hover:pb-1 hover:rounded-none text-[17px] hover:border-b-2 mt-2 border-primary"
+              ? "p-0 text-primary pb-1 rounded-none md:text-[17px] text-sm font-medium  border-b-2  mt-2 border-secondary"
+              : "font-medium p-0 transition-all duration-200 ease-in-out hover:pb-1 hover:text-secondary hover:rounded-none md:text-[17px] text-sm hover:border-b-2 border-primary mt-2"
           }
           to={"/contact"}
         >
@@ -196,7 +196,7 @@ const Navbar = () => {
             {menuOpen && (
               <ul
                 ref={modalRef}
-                className="absolute mt-2 p-2 shadow-lg !z-[1000] bg-white rounded-lg w-52 text-black space-y-2 font-montserrat md:font-semibold font-normal"
+                className="absolute mt-2 p-2 shadow-lg !z-[1000] bg-white rounded-lg w-52 text-black space-y-2 font-montserrat"
               >
                 {navLinks}
               </ul>
