@@ -53,7 +53,7 @@ const Testimonial = () => {
       </div>
 
       <div className="md:flex justify-between items-center md:mt-16 mt-8">
-        <div className="md:w-[470px] md:h-[398px] flex items-center border">
+        <div className="md:w-[470px] md:h-[398px] flex items-center">
           <img src="https://cvland.netlify.app/img/core-img/test.png" alt="" />
         </div>
 
