@@ -10,9 +10,10 @@ import Container from "../../Shared/Container";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { TiTick } from "react-icons/ti";
 import useAuth from "../../Hook/useAuth";
+import { Helmet } from "react-helmet-async";
 const SessionRequest = () => {
   const axiosPublic = useAxiosPublic();
-  const {user} = useAuth()
+  const { user } = useAuth();
 
   const { data = [], refetch } = useQuery({
     queryKey: ["data"],
@@ -97,149 +98,162 @@ const SessionRequest = () => {
   };
 
   return (
-    <div className="min-h-screen md:p-6 p-2 md:mt-0 mt-20">
-      <div className="flex items-center pb-6 gap-x-3 mt-4">
-          <h2 className="2xl:text-3xl capitalize mt-5 text-xl text-gray-800 font-bold font-lora ">session requests</h2>
+    <div>
+      <Helmet>
+        <title>Session Requests - PerfectProfile</title>
+      </Helmet>
+
+      <div className="min-h-screen md:p-6 p-2 md:mt-0 mt-20">
+        <div className="flex items-center pb-6 gap-x-3 mt-4">
+          <h2 className="2xl:text-3xl capitalize mt-5 text-xl text-gray-800 font-bold font-lora ">
+            session requests
+          </h2>
         </div>
 
+        {/* table */}
 
-      {/* table */}
+        <div className="flex flex-col mt-6 ">
+          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+              <div className="overflow-hidden border border-gray-200  md:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="py-3.5 px-3 text-xl font-lora font-bold text-left rtl:text-right "
+                      >
+                        <div className="flex items-center gap-x-3">
+                          <span>Name</span>
+                        </div>
+                      </th>
 
-      <div className="flex flex-col mt-6 ">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden border border-gray-200  md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-3 text-xl font-lora font-bold text-left rtl:text-right "
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <span>Name</span>
-                      </div>
-                    </th>
+                      <th
+                        scope="col"
+                        className="py-3.5 px-3 text-xl font-bold font-lora text-left rtl:text-right "
+                      >
+                        <div className="flex items-center gap-x-3">
+                          <span>Email</span>
+                        </div>
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3.5 px-4 text-xl font-bold font-lora text-left rtl:text-right "
+                      >
+                        <div className="flex items-center gap-x-3">
+                          <span>Number</span>
+                        </div>
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3.5 px-3 text-xl font-lora font-bold text-left rtl:text-right "
+                      >
+                        <div className="flex items-center font-lora gap-x-3">
+                          <span>Resume Type</span>
+                        </div>
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3.5 px-3 text-xl font-lora font-bold text-left rtl:text-right "
+                      >
+                        <div className="flex items-center gap-x-3">
+                          <span>Resume</span>
+                        </div>
+                      </th>
 
-                    <th
-                      scope="col"
-                      className="py-3.5 px-3 text-xl font-bold font-lora text-left rtl:text-right "
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <span>Email</span>
-                      </div>
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-4 text-xl font-bold font-lora text-left rtl:text-right "
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <span>Number</span>
-                      </div>
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-3 text-xl font-lora font-bold text-left rtl:text-right "
-                    >
-                      <div className="flex items-center font-lora gap-x-3">
-                        <span>Resume Type</span>
-                      </div>
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-3 text-xl font-lora font-bold text-left rtl:text-right "
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <span>Resume</span>
-                      </div>
-                    </th>
-                  
-                    <th
-                      scope="col"
-                      className="py-3.5 px-4 text-xl font-lora font-bold text-left rtl:text-right "
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <span>Status</span>
-                      </div>
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-5 font-lora  text-left rtl:text-right"
-                    >
-                      <div className="flex text-xl font-bold items-center gap-x-3">
-                        <span>Action</span>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white font-montserrat divide-y divide-gray-200 ">
-                  {data
-                    .filter(
-                      (client) =>
-                        client.bookingRequest === "pending" ||
-                        client.bookingRequest === "accepted" ||
-                        client.bookingRequest === "rejected" || 
-                        user?.email === client.consultant
-                    )
-                    .map((client) => (
-                      <tr key={client._id}>
-                        <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap capitalize">
-                          {client.name}
-                        </td>
+                      <th
+                        scope="col"
+                        className="py-3.5 px-4 text-xl font-lora font-bold text-left rtl:text-right "
+                      >
+                        <div className="flex items-center gap-x-3">
+                          <span>Status</span>
+                        </div>
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3.5 px-5 font-lora  text-left rtl:text-right"
+                      >
+                        <div className="flex text-xl font-bold items-center gap-x-3">
+                          <span>Action</span>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white font-montserrat divide-y divide-gray-200 ">
+                    {data
+                      .filter(
+                        (client) =>
+                          client.bookingRequest === "pending" ||
+                          client.bookingRequest === "accepted" ||
+                          client.bookingRequest === "rejected" ||
+                          user?.email === client.consultant
+                      )
+                      .map((client) => (
+                        <tr key={client._id}>
+                          <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap capitalize">
+                            {client.name}
+                          </td>
 
-                        <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
-                          {client.email}
-                        </td>
-                        <td className="px-4 py-4 text-sm text-gray-800  whitespace-nowrap">
-                          {client.number}
-                        </td>
-                        <td className="px-3 py-3 text-sm text-gray-800  whitespace-nowrap">
-                          {client.resumeType}
-                        </td>
-                        <td className="px-5 py-3 text-sm text-gray-800  whitespace-nowrap">
-                          {client.resume && isValidUrl(client.resume) ? (
-                            <a
-                              href={client.resume}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-800 underline"
-                            >
-                              resume
-                            </a>
-                          ) : (
-                            <p className="text-gray-800">Not provided</p>
-                          )}
-                        </td>
-                      
-                        <td className="px-3 py-4 text-sm whitespace-nowrap">
-                          <div className="flex items-center gap-x-2">
-                            <p
-                              className={`px-3 py-1  ${client.bookingRequest ===
-                                "pending" &&
-                                "text-amber-500 bg-amber-100/60"} ${client.bookingRequest ===
-                                "accepted" &&
-                                "text-emerald-500 bg-emerald-100/60"} ${client.bookingRequest ===
-                                "rejected" &&
-                                "text-red-500 bg-red-100/60"}  text-xs  rounded-full`}
-                            >
-                              {client.bookingRequest}
-                            </p>
-                          </div>
-                        </td>
-                        <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
-                          <div className="flex item-center justify-between  gap-5 pr-2">
-                            <button title="Accept Session Request" onClick={() => handleAccept(client)}>
-                              <TiTick className="text-green-400 border rounded-full border-green-500 text-2xl font-bold" />
-                            </button>
-                            <button title="Decline Session Request" onClick={() => handleRemove(client)}>
-                              <CiCircleRemove className="text-red-500 text-3xl font-bold" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
+                          <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
+                            {client.email}
+                          </td>
+                          <td className="px-4 py-4 text-sm text-gray-800  whitespace-nowrap">
+                            {client.number}
+                          </td>
+                          <td className="px-3 py-3 text-sm text-gray-800  whitespace-nowrap">
+                            {client.resumeType}
+                          </td>
+                          <td className="px-5 py-3 text-sm text-gray-800  whitespace-nowrap">
+                            {client.resume && isValidUrl(client.resume) ? (
+                              <a
+                                href={client.resume}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-800 underline"
+                              >
+                                resume
+                              </a>
+                            ) : (
+                              <p className="text-gray-800">Not provided</p>
+                            )}
+                          </td>
+
+                          <td className="px-3 py-4 text-sm whitespace-nowrap">
+                            <div className="flex items-center gap-x-2">
+                              <p
+                                className={`px-3 py-1  ${client.bookingRequest ===
+                                  "pending" &&
+                                  "text-amber-500 bg-amber-100/60"} ${client.bookingRequest ===
+                                  "accepted" &&
+                                  "text-emerald-500 bg-emerald-100/60"} ${client.bookingRequest ===
+                                  "rejected" &&
+                                  "text-red-500 bg-red-100/60"}  text-xs  rounded-full`}
+                              >
+                                {client.bookingRequest}
+                              </p>
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-800  whitespace-nowrap">
+                            <div className="flex item-center justify-between  gap-5 pr-2">
+                              <button
+                                title="Accept Session Request"
+                                onClick={() => handleAccept(client)}
+                              >
+                                <TiTick className="text-green-400 border rounded-full border-green-500 text-2xl font-bold" />
+                              </button>
+                              <button
+                                title="Decline Session Request"
+                                onClick={() => handleRemove(client)}
+                              >
+                                <CiCircleRemove className="text-red-500 text-3xl font-bold" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

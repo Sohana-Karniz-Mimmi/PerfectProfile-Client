@@ -164,7 +164,7 @@ const Consultation = () => {
                                   value={user?.displayName}
                                   placeholder="Enter your name"
                                   required
-                                  className="mt-1 cap block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                  className="mt-1 capitalize cap block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                                 />
                               </div>
                               <div className="relative">
@@ -193,7 +193,7 @@ const Consultation = () => {
                                   Phone Number
                                 </label>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="number"
                                   id="number"
                                   placeholder="Enter your Phone Number"
@@ -282,6 +282,7 @@ const Consultation = () => {
                         <div className="mt-6 flex items-center justify-center">
                           <button
                             type="submit"
+                            onClick={() => setIsOpen(false)}
                             className="py-2 font-bold rounded-md w-80 bg-secondary text-white hover:bg-transparent border hover:text-primary hover:border hover:border-primary"
                           >
                             Submit Application
