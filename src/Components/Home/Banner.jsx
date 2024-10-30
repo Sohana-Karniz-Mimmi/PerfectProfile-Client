@@ -33,7 +33,7 @@ const Banner = () => {
               </p>
 
               <div className="mt-8 flex lg:flex-row flex-col lg:items-start items-center gap-6 text-center">
-                <Link to={`predefined-templates`}>
+                <Link to={`pricing`}>
                   <button
                     role="button"
                     className="py-3 px-5 rounded font-bold font-montserrat text-base bg-primary hover:bg-secondary text-white "

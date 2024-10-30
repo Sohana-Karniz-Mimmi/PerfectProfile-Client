@@ -235,7 +235,7 @@ const FinalResume = () => {
           </h1>
         </Link>
 
-        <div className="text-white  flex gap-2 items-center justify-center md:mx-auto">
+        <div className="text-white font-montserrat  flex gap-1 items-center justify-center md:mx-auto">
           <BsFillFileEarmarkCheckFill />
           <h2>Saved</h2>
         </div>
@@ -466,10 +466,10 @@ const FinalResume = () => {
                 shareLink={userData?.resumeLink}
               />
 
-              <button className="w-44 justify-center md:text-base text-sm px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2 group hover:bg-secondary hover:text-white transition duration-300">
+              {/* <button className="w-44 justify-center md:text-base text-sm px-8 border font-montserrat rounded-full text-center border-secondary text-secondary flex items-center gap-2 group hover:bg-secondary hover:text-white transition duration-300">
                 <FaEnvelope className="text-secondary group-hover:text-white " />{" "}
                 Email
-              </button>
+              </button> */}
 
               <Link to={`/my-resume`}>
                 <button className="w-44 px-5 py-1 rounded-full text-center bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-sm md:text-xl font-montserrat  shadow-lg font-bold text-white">
