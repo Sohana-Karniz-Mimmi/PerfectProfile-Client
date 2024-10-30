@@ -347,8 +347,8 @@ onClick={() => set2ndIsOpen(true)}                            className="bg-grad
               </div>
             </div>
           </div>
-          <div className=" w-[55rem] h-[28rem] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] p-[2px] rounded-lg shadow-lg ">
-            <div className="bg-white shadow-lg rounded-lg  h-[444px] ">
+          <div className=" w-[55rem] min-h-[28rem] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] p-[2px] rounded-lg shadow-lg ">
+            <div className="bg-white shadow-lg rounded-lg  min-h-[444px] ">
               <h2 className="text-xl font-bold font-lora  mb-4 pt-10 pl-10">
                {about && " About Me"}
               </h2>

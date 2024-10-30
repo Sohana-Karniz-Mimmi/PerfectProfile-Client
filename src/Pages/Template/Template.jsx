@@ -56,8 +56,8 @@ const Template = () => {
     };
     getData();
   }, [currentPage, itemPerPage, filter]);
-  console.log(predefinedTemplate)
-  console.log(filter)
+  console.log(predefinedTemplate);
+  console.log(filter);
   //   add to favorite
   const handleFavorite = (template) => {
     const { _id, image, package: templatePackage } = template;
@@ -132,10 +132,7 @@ const Template = () => {
   }, [filter]);
 
   const numofPage = Math.ceil(count / itemPerPage);
-  const pages = [
-    ...Array(numofPage)
-      .keys()]
-    .map((element) => element + 1)
+  const pages = [...Array(numofPage).keys()].map((element) => element + 1);
 
   const handlePagination = (value) => {
     console.log(value);
@@ -146,9 +143,8 @@ const Template = () => {
 
   return (
     <div>
-
       <Helmet>
-        <title>Template - PerfectProfile</title>
+        <title>Templates - PerfectProfile</title>
       </Helmet>
 
       <Container>
@@ -157,9 +153,9 @@ const Template = () => {
         {/* filter */}
         <div className=" lg:mt-12 mt-20 justify-end flex item-end">
           <select
-            onChange={e => {
-              setFilter(e.target.value)
-              setCurrentPage(1)
+            onChange={(e) => {
+              setFilter(e.target.value);
+              setCurrentPage(1);
             }}
             name="package"
             id="package"
@@ -198,7 +194,8 @@ const Template = () => {
                   {/* <Link to={`/resume/edit/${template.templateItem}`}> */}
                   <button
                     onClick={() => handleTemplateClick(template)}
-                    className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    className="bg-primary text-white font-montserrat md:font-bold font-semibold rounded py-2 px-3 md:py-3 md:px-6 text-[14px] md:text-base lg:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
                     Use Template
                   </button>
                   {/* </Link> */}
@@ -245,10 +242,11 @@ const Template = () => {
             <button
               onClick={() => handlePagination(btnNum)}
               key={btnNum}
-              className={`hidden ${currentPage === btnNum
-                ? "bg-primary text-white border-primary"
-                : ""
-                } px-3 py-1 mx-1 border-2 rounded-full transition-colors duration-300 transform   sm:inline hover:bg-primary  hover:text-white`}
+              className={`hidden ${
+                currentPage === btnNum
+                  ? "bg-primary text-white border-primary"
+                  : ""
+              } px-3 py-1 mx-1 border-2 rounded-full transition-colors duration-300 transform   sm:inline hover:bg-primary  hover:text-white`}
             >
               {btnNum}
             </button>
@@ -376,8 +374,6 @@ const Template = () => {
           </DialogPanel>
         </div>
       </Dialog>
-
-
     </div>
   );
 };
