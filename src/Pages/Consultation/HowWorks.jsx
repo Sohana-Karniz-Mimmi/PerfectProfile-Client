@@ -7,10 +7,8 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 const HowWorks = () => {
   return (
     <div className="lg:mb-36 mb-24">
-      <h1 className="font-bold  lg:text-4xl font-lora mt-32 text-3xl text-center ">
-        <span className="border-b-4 rounded-sm border-primary">
-          How It Works
-        </span>
+      <h1 className="font-bold  lg:text-4xl lg:mt-52 font-lora mt-32 text-3xl text-center ">
+      How It Works
       </h1>
       <div className="flex flex-col lg:flex-row justify-center mt-16 lg:mt-24 lg:items-start items-center gap-4 lg:gap-9">
         {/* 1 */}
