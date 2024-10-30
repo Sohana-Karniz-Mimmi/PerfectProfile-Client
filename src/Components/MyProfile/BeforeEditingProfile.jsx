@@ -162,7 +162,7 @@ const BeforeEditingProfile = () => {
               </h1>
               <div className="flex justify-between items-center">
                 <div className="w-full">
-                  <div className="flex flex-col sm:flex-row text-sm sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
+                  <div className="flex flex-col font-montserrat sm:flex-row text-sm sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
                     <input
                       type="text"
                       name="name"
@@ -170,7 +170,7 @@ const BeforeEditingProfile = () => {
                       onChange={(e) => {
                         e.target.value;
                       }}
-                      className="border text-sm  py-3 px-4 w-full sm:w-auto sm:flex-1 focus:outline-none focus:border-gray-300"
+                      className="text-sm  py-3 border-none w-full sm:w-auto sm:flex-1 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -196,7 +196,7 @@ const BeforeEditingProfile = () => {
               </h1>
               <div className="flex justify-between items-center">
                 <div className="w-full">
-                  <div className="flex flex-col sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
+                  <div className="flex flex-col font-montserrat sm:flex-row sm:space-x-2 sm:items-center space-y-2 sm:space-y-0 w-full">
                     <input
                       type="email"
                       name="email"
