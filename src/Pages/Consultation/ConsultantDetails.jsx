@@ -88,6 +88,7 @@ const ConsultantDetails = () => {
         toast.success(
           "Your consultant application has been submitted! We’ll be in touch soon!"
         );
+        setIsOpen(false)
       });
   };
 
@@ -305,7 +306,6 @@ const ConsultantDetails = () => {
                                 <div className="mt-6 flex items-center justify-center">
                                   <button
                                     type="submit"
-                                    onClick={() => setIsOpen(false)}
                                     className="py-2 font-bold rounded-md w-80 bg-secondary text-white hover:bg-transparent border hover:text-primary hover:border hover:border-primary font-montserrat"
                                   >
                                     Submit Application
