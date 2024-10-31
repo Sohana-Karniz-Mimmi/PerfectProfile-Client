@@ -145,7 +145,7 @@ const Template = () => {
   return (
     <div>
       <Helmet>
-        <title>Template - PerfectProfile</title>
+        <title>Templates - PerfectProfile</title>
       </Helmet>
 
       <Container>

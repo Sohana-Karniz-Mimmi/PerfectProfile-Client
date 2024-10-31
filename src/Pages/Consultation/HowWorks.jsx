@@ -3,15 +3,21 @@ import img2 from "../../assets/consultation/guidance.png";
 import img3 from "../../assets/consultation/feedback.png";
 import img4 from "../../assets/consultation/download.png";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import Heading from "../../Shared/Heading";
 
 const HowWorks = () => {
   return (
-    <div className="lg:mb-36 mb-24">
-      <h1 className="font-bold  lg:text-4xl font-lora mt-32 text-3xl text-center ">
-        <span className="border-b-4 rounded-sm border-primary">
-          How It Works
-        </span>
-      </h1>
+    <div className="lg:mb-36 mb-24 lg:mt-36 mt-32 ">
+       <div className="">
+          <Heading
+            title={" How It Works"}
+            subtitle={
+              "Our simple process involves understanding your goals, crafting a tailored resume, and providing revisions until you're satisfied."
+            }
+            className={"max-w-3xl mx-auto md:w-[670px]"}
+          />
+        </div>
+      
       <div className="flex flex-col lg:flex-row justify-center mt-16 lg:mt-24 lg:items-start items-center gap-4 lg:gap-9">
         {/* 1 */}
 

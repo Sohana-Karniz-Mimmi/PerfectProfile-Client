@@ -6,10 +6,16 @@ import useAuth from "../../Hook/useAuth";
 import useRole from "../../Hook/useRole";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { FaFileAlt, FaRegistered, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import {
+  FaFileAlt,
+  FaRegistered,
+  FaRegListAlt,
+  FaSignOutAlt,
+  FaUserAlt,
+} from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { BiSolidPurchaseTag } from "react-icons/bi";
-import { FaCrow, FaCrown } from "react-icons/fa6";
+import { FaCrow, FaCrown, FaStar } from "react-icons/fa6";
 import { LuUser2 } from "react-icons/lu";
 const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
   const { user } = useAuth();
@@ -52,9 +58,11 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b px-3 text-black`}
                     >
-                      <FaUserAlt />
+                      <span className="group-hover:text-secondary">
+                        <FaUserAlt />
+                      </span>
                       My Profile
                     </button>
                   </Link>
@@ -67,9 +75,12 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b  px-3 text-black`}
                     >
-                      <FaFileAlt /> My Resume
+                      <span className="group-hover:text-secondary">
+                        <FaFileAlt />
+                      </span>{" "}
+                      My Resume
                     </button>
                   </Link>
                 )}
@@ -81,10 +92,13 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b px-3 text-black`}
                       onClick={() => handleRoleChange("favorite")}
                     >
-                      <MdFavorite /> Favorites
+                      <span className="group-hover:text-secondary">
+                        <FaStar />
+                      </span>{" "}
+                      Favorites
                     </button>
                   </Link>
                 )}
@@ -96,10 +110,12 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b px-3 text-black`}
                       onClick={() => handleRoleChange("pricing")}
                     >
-                      <FaCrown />
+                      <span className="group-hover:text-secondary">
+                        <FaCrown />
+                      </span>
                       Plan & Pricing
                     </button>
                   </Link>
@@ -112,10 +128,12 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     <button
                       className={`${
                         active ? "bg-white" : ""
-                      } group flex w-full items-center gap-2 py-1.5 border-b hover:bg-green-300 px-3 text-black`}
+                      } group flex w-full items-center gap-2 py-1.5 border-b px-3 text-black`}
                       onClick={() => handleRoleChange("purchaseHistory")}
                     >
-                      <BiSolidPurchaseTag />
+                      <span className="group-hover:text-secondary">
+                        <BiSolidPurchaseTag />
+                      </span>
                       Purchase History
                     </button>
                   </Link>
@@ -128,9 +146,12 @@ const NavModal = ({ handleLogoutBtn, handleRoleChange }) => {
                     onClick={handleLogoutBtn}
                     className={`${
                       active ? "bg-white" : ""
-                    } group flex w-full items-center gap-2 px-3 py-1.5 text-black`}
+                    } group flex w-full items-center gap-2 py-1.5 border-b px-3 text-black`}
                   >
-                    <FaSignOutAlt /> Logout
+                    <span className="group-hover:text-secondary">
+                      <FaSignOutAlt />
+                    </span>
+                    Logout
                   </button>
                 )}
               </Menu.Item>

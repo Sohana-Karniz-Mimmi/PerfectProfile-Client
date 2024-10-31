@@ -5,7 +5,7 @@ const ConsultationBanner = () => {
     <div className="flex flex-col md:flex-row justify-between items-center px-5 lg:px-9 lg:py-9 py-5 mb-9 lg:mb-7 mt-6 rounded-lg bg-cyan-50 gap-5">
       <div className="pl-2">
         <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl font-lora ">
-          Struggling with Your Resume Our Experts
+          Unlock resume success with our expert support
         </h1>
         <p className="text-gray-500 text-sm md:text-[15px] lg:text-base xl:w-[44rem] lg:w-[35rem] md:w-[25rem] font-montserrat mt-4">
           Crafting a standout resume can be challenging, but you don’t have to
@@ -13,8 +13,8 @@ const ConsultationBanner = () => {
           every step of the way, helping you create a resume that highlights
           your skills and achievements. <br />
           <br />
-          helping you create a resume that highlights your skills and
-          achievements.
+          With our support, you’ll create a polished, professional document that
+          showcases your strengths and sets you apart.
         </p>
 
         <div className="flex flex-col items-start  text-base  font-bold lg:font-semibold">

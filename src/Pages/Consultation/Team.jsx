@@ -10,6 +10,7 @@ import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import TeamProfile from "./TeamProfile";
 import { useQuery } from "@tanstack/react-query";
+import Heading from "../../Shared/Heading";
 
 const Team = ({ handleShowLogin }) => {
   const { user } = useAuth();
@@ -78,9 +79,15 @@ const Team = ({ handleShowLogin }) => {
 
   return (
     <div id="session">
-      <h1 className="font-bold font-lora lg:text-4xl mt-10 md:mt-24 md:text-3xl text-2xl text-center ">
-        Meet Our Consultant To Review Resume
-      </h1>
+       <div className="">
+          <Heading
+            title={"Meet Our Consultant To Review Resume"}
+            subtitle={
+              "Connect with our consultant for a personalized resume review to enhance your job prospects."
+            }
+            className={"max-w-3xl mx-auto md:w-[670px]"}
+          />
+        </div>
 
       <TeamProfile
         consultants={consultants}

@@ -53,7 +53,7 @@ const Testimonial = () => {
       </div>
 
       <div className="md:flex justify-between items-center md:mt-16 mt-8">
-        <div className="md:w-[470px] md:h-[398px]">
+        <div className="md:w-[470px] md:h-[398px] flex items-center">
           <img src="https://cvland.netlify.app/img/core-img/test.png" alt="" />
         </div>
 
@@ -70,12 +70,12 @@ const Testimonial = () => {
           onInit={(swiper) => {
             swiperRef.current = swiper;
           }}
-          className="mySwiper md:w-[640px] md:h-[310px] overflow-hidden"
+          className="mySwiper md:w-[640px] md:h-[350px] h-[400px] overflow-hidden"
         >
           {feedbacks.map((feedback, index) => (
             <SwiperSlide
               key={index}
-              className="flex justify-center items-center border-2 border-gray-200 relative overflow-hidden px-[20px] py-[40px] bg-white"
+              className="flex justify-center items-center border-2 border-gray-200 relative overflow-hidden md:px-5 px-[12px] py-[40px] bg-white"
             >
               {/* Display fractional ratings using react-rating */}
               <Rating
@@ -86,7 +86,7 @@ const Testimonial = () => {
                 fractions={2}
               />
 
-              <p className="font-medium font-montserrat min-h-28 text-[#4e4e4e] mt-5 mb-6 text-sm leading-6">
+              <p className="font-medium font-montserrat md:h-36 h-56 overflow-hidden text-[#4e4e4e] mt-5 mb-8 text-sm leading-6">
                 {feedback.feedback}
               </p>
 
