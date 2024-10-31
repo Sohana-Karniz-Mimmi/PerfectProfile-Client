@@ -15,11 +15,15 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 const Profile = () => {
   const { user } = useAuth();
   console.log(user);
-  const [role] = useRole()
+  const [role] = useRole();
   const axiosPublic = useAxiosPublic();
   const [image, setImage] = useState(null);
-  const [selectedExperience, setSelectedExperience] = useState(role.experience || "")
-  const [selectedExpertise, setSelectedExpertise] = useState(role.expertise || "")
+  const [selectedExperience, setSelectedExperience] = useState(
+    role.experience || ""
+  );
+  const [selectedExpertise, setSelectedExpertise] = useState(
+    role.expertise || ""
+  );
 
   const formRef = useRef(null);
   const inputRef = useRef(null);
@@ -56,16 +60,17 @@ const Profile = () => {
 
   // add more experience
   const [userData, setUserData] = useState({
-    workExperience: role.workExperience && role.workExperience.length > 0
-      ? role.workExperience
-      : [
-          {
-            jobRole: "",
-            company: "",
-            jobTitle: "",
-            isCurrent: false,
-          },
-        ],
+    workExperience:
+      role.workExperience && role.workExperience.length > 0
+        ? role.workExperience
+        : [
+            {
+              jobRole: "",
+              company: "",
+              jobTitle: "",
+              isCurrent: false,
+            },
+          ],
   });
 
   // update data in initial render
@@ -74,8 +79,7 @@ const Profile = () => {
       setUserData({ workExperience: role.workExperience });
     }
   }, [role.workExperience]);
-  console.log(role)
-  
+  console.log(role);
 
   const addWorkExperienceArrayEntry = () => {
     const newEntry = {
@@ -153,21 +157,17 @@ const Profile = () => {
   };
 
   // set default value as role.experience & role.expertise
-  useEffect(()=>{
-    if(role.experience){
-      setSelectedExperience(role.experience)
+  useEffect(() => {
+    if (role.experience) {
+      setSelectedExperience(role.experience);
     }
+  }, [role.experience]);
 
-  }, [role.experience])
-
-  useEffect(()=>{
-    if(role.expertise){
-      setSelectedExpertise(role.expertise)
+  useEffect(() => {
+    if (role.expertise) {
+      setSelectedExpertise(role.expertise);
     }
-
-  }, [role.expertise])
-
-  
+  }, [role.expertise]);
 
   return (
     <div>
@@ -195,7 +195,7 @@ const Profile = () => {
               <div className="relative ">
                 {typeof image === "string" ? (
                   <img
-                    src={ role.image || image}
+                    src={role.image || image}
                     alt="Uploaded"
                     className="rounded-full lg:w-[10rem] h-40 w-36 cursor-pointer"
                   />
@@ -427,7 +427,7 @@ const Profile = () => {
                         name="expertise"
                         id="expertise"
                         value={selectedExpertise}
-                        onChange={e => setSelectedExpertise(e.target.value)}
+                        onChange={(e) => setSelectedExpertise(e.target.value)}
                         className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                       >
                         <option value="">Select Area</option>
@@ -448,7 +448,7 @@ const Profile = () => {
                         name="experience"
                         id="experience"
                         value={selectedExperience}
-                        onChange={e => setSelectedExperience(e.target.value)}
+                        onChange={(e) => setSelectedExperience(e.target.value)}
                         className="mt-1 block w-full md:w-[424px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm "
                       >
                         <option value="">Select Experience</option>

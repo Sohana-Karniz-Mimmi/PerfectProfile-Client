@@ -77,7 +77,7 @@ const Footer = () => {
             </LinkGroup>
             <LinkGroup header="Quick Links">
               <NavLink link="/pricing" label="Premium Support" />
-              <NavLink link="#feature" label="Our Services" />
+              {/* <NavLink link="#feature" label="Our Services" /> */}
               <NavLink link="/about" label="Know Our Team" />
               {/* <NavLink link="/#" label="Download App" /> */}
             </LinkGroup>

@@ -79,7 +79,7 @@ const Feature = () => {
           <Heading
             title={"Our Main Features"}
             subtitle={
-              "The job market today is competitive – you’ll need every edge to make your application shine."
+              "Effortlessly craft standout resumes with live previews, customizable templates, and multiple export options."
             }
             className={"max-w-3xl mx-auto mb-12 md:w-[600px]"}
           />

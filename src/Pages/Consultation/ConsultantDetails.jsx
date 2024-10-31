@@ -18,7 +18,6 @@ import useRole from "../../Hook/useRole";
 const ConsultantDetails = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-  const [role]= useRole()
   let [isOpen, setIsOpen] = useState(false);
   let [isOpen2nd, set2ndIsOpen] = useState(false);
 
@@ -32,6 +31,7 @@ const ConsultantDetails = () => {
       return res.data;
     },
   });
+  const [role] = useRole();
   console.log(consultant);
 
   useEffect(() => {
@@ -345,36 +345,36 @@ const ConsultantDetails = () => {
           </div>
           <div className=" w-[55rem] min-h-[28rem] bg-gradient-to-r from-[#00FFB2] via-[#00ffff] to-[#4b93f8] p-[2px] rounded-lg shadow-lg ">
             <div className="bg-white shadow-lg rounded-lg  min-h-[444px] ">
-             <div className="px-10 py-5">
-             <h2 className="text-xl font-bold font-lora  mb-4 ">
-                {about && " About Me"}
-              </h2>
-              <p className="text-gray-700  font-montserrat">{about}</p>
-              <div className="flex items-center gap-3 mt-4 justify-start  mb-4  ">
-                <p className="text-xl font-bold font-lora  ">Email :</p>
-                <p className="text-gray-700 font-montserrat">{email}</p>
-              </div>
-
-              <h2 className="text-xl font-bold font-lora mt-5 mb-4 ">
-                {workExperience && "Experience"}
-              </h2>
-              {workExperience?.map((exp, index) => (
-                <div key={index} className="mb-6 mt-3 ">
-                  <div className="flex justify-between flex-wrap gap-2 w-full">
-                    <span className="text-gray-700 font-lora font-bold">
-                      {exp.jobTitle}
-                    </span>
-                    <p className="font-montserrat">
-                      at
-                      <span className="text-gray-700 mr-2 font-montserrat ml-2">
-                        {exp.company}
-                      </span>
-                    </p>
-                  </div>
-                  <p className="mt-2 font-montserrat">{exp.jobRole}</p>
+              <div className="px-10 py-5">
+                <h2 className="text-xl font-bold font-lora  mb-4 ">
+                  {about && " About Me"}
+                </h2>
+                <p className="text-gray-700  font-montserrat">{about}</p>
+                <div className="flex items-center gap-3 mt-4 justify-start  mb-4  ">
+                  <p className="text-xl font-bold font-lora  ">Email :</p>
+                  <p className="text-gray-700 font-montserrat">{email}</p>
                 </div>
-              ))}
-             </div>
+
+                <h2 className="text-xl font-bold font-lora mt-5 mb-4 ">
+                  {workExperience && "Experience"}
+                </h2>
+                {workExperience?.map((exp, index) => (
+                  <div key={index} className="mb-6 mt-3 ">
+                    <div className="flex justify-between flex-wrap gap-2 w-full">
+                      <span className="text-gray-700 font-lora font-bold">
+                        {exp.jobTitle}
+                      </span>
+                      <p className="font-montserrat">
+                        at
+                        <span className="text-gray-700 mr-2 font-montserrat ml-2">
+                          {exp.company}
+                        </span>
+                      </p>
+                    </div>
+                    <p className="mt-2 font-montserrat">{exp.jobRole}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

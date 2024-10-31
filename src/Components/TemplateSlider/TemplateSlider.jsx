@@ -216,7 +216,7 @@ export default function App() {
                         </button>
                       </div>
 
-                      <div className="flex gap-2 items-center">
+                      {/* <div className="flex gap-2 items-center">
                         <button
                           onClick={handleFavorite}
                           className=" hover:text-primary border bg-white p-2 rounded-xl"
@@ -227,7 +227,7 @@ export default function App() {
                         <button className=" hover:text-primary border bg-white p-2 rounded-xl">
                           <HiDotsHorizontal size={20} />
                         </button>
-                      </div>
+                      </div> */}
                       <div></div>
                     </div>
 

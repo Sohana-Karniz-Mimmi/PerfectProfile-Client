@@ -20,7 +20,6 @@ import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
 
-
 const Consultation = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
@@ -66,14 +65,14 @@ const Consultation = () => {
   };
 
   return (
-   <div>
-    <Helmet>
+    <div>
+      <Helmet>
         <title>Consultation - PerfectProfile</title>
       </Helmet>
-     <Container>
-      {/* banner */}
-      <ConsultationBanner></ConsultationBanner>
-      <WhyNeedSection></WhyNeedSection>
+      <Container>
+        {/* banner */}
+        <ConsultationBanner></ConsultationBanner>
+        <WhyNeedSection></WhyNeedSection>
       </Container>
       <Team handleShowLogin={handleShowLogin}></Team>
       <Container>
@@ -81,21 +80,22 @@ const Consultation = () => {
         <FAQ></FAQ>
 
         {/* join as consultant */}
-        
+
         <div className="flex flex-col gap-3 md:gap-1 lg:gap-9 lg:flex-row justify-between items-center  px-2 lg:px-9 pt-7 pb-5  mb-0 lg:mb-9 h-[35rem] md:h-[35rem] lg:h-[23rem] mt-6 rounded-lg bg-cyan-50">
           <div className="px-2 ">
             <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl font-lora">
               Join Us as a Consultant – Empowering Growth Together
             </h1>
-            <p className=" text-gray-500 text-sm md:text-[15px] lg:text-base xl:w-[44rem] lg:w-[35rem] md:w-[37rem] font-montserrat mt-4
-">
+            <p
+              className=" text-gray-500 text-sm md:text-[15px] lg:text-base xl:w-[44rem] lg:w-[35rem] md:w-[37rem] font-montserrat mt-4
+"
+            >
               Are you ready to make a meaningful impact and elevate your
               expertise? As a Resume Consultant at PerfectProfile, you’ll
               transform how individuals present themselves to employers by
               high-quality resumes. <br /> <br />
-               Join us in helping people achieve their
-              career goals. Together, we’ll create lasting impact and open doors
-              to new opportunities.
+              Join us in helping people achieve their career goals. Together,
+              we’ll create lasting impact and open doors to new opportunities.
             </p>
 
             <div className="flex flex-col items-center mt-2  md:items-start  text-base  font-bold lg:font-semibold font-montserrat ">
@@ -198,7 +198,7 @@ const Consultation = () => {
                                   id="number"
                                   placeholder="Enter your Phone Number"
                                   required
-                                  className="mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                  className="appearance-none mt-1 block w-full md:w-[320px] px-3 py-2 border border-secondary rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm custom-number-input"
                                 />
                               </div>
                             </div>
